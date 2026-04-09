@@ -1,0 +1,35 @@
+---
+import type { AlertItem } from "@/types";
+import { formatDateTime } from "@/utils/format";
+
+export interface Props {
+  alerts: AlertItem[];
+}
+
+const { alerts } = Astro.props;
+
+const borderForSeverity: Record<AlertItem["severity"], string> = {
+  info: "border-l-status-open/50",
+  warning: "border-l-status-conditional/60",
+  critical: "border-l-status-closed/55",
+};
+---
+
+<ul class="space-y-3 md:space-y-4" role="list">
+  {alerts.map((a) => (
+    <li
+      class:list={[
+        "rounded-2xl border border-line/80 border-l-4 bg-white/70 py-4 pl-5 pr-4 shadow-card backdrop-blur-sm md:py-5 md:pl-6",
+        borderForSeverity[a.severity],
+      ]}
+    >
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+        <h3 class="text-base font-semibold text-ink">{a.title}</h3>
+        <time class="shrink-0 text-xs text-ink-muted" datetime={a.issuedAt}>
+          {formatDateTime(a.issuedAt)}
+        </time>
+      </div>
+      <p class="mt-2 text-[15px] leading-relaxed text-ink-muted md:text-base">{a.detail}</p>
+    </li>
+  ))}
+</ul>

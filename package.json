@@ -1,0 +1,26 @@
+{
+  "name": "paso-chile-hoy",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web informativa del estado de pasos fronterizos Argentina–Chile (base frontend).",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^4.16.18",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.14.1"
+  }
+}

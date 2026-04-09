@@ -1,0 +1,57 @@
+---
+import "@/styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const siteName = "Paso Chile Hoy";
+const defaultDescription =
+  "Consultá el estado del Paso Cristo Redentor / Los Libertadores entre Mendoza y Chile. Información clara y base lista para futuras fuentes oficiales.";
+
+const { title = siteName, description = defaultDescription, canonicalPath = "/" } = Astro.props;
+const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
+const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="min-h-dvh bg-surface">
+    <a
+      href="#contenido-principal"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+    >
+      Ir al contenido
+    </a>
+    <div class="mx-auto flex min-h-dvh max-w-6xl flex-col px-4 pb-10 pt-6 sm:px-6 md:px-8 md:pb-14 md:pt-10 lg:px-10">
+      <header class="mb-10 md:mb-12">
+        <p class="text-xs font-medium uppercase tracking-[0.14em] text-ink-muted">{siteName}</p>
+        <p class="mt-1 text-sm text-ink-muted">Estado de pasos · Argentina y Chile</p>
+      </header>
+      <main id="contenido-principal" class="flex-1">
+        <slot />
+      </main>
+      <footer class="mt-16 border-t border-line/80 pt-8 text-center text-sm text-ink-muted md:mt-20">
+        <p>{siteName} — datos de demostración. Verificá siempre con fuentes oficiales antes de viajar.</p>
+      </footer>
+    </div>
+  </body>
+</html>

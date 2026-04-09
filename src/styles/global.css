@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --surface: 40 20% 99%;
+    --surface-muted: 220 14% 96%;
+    --ink: 222 25% 14%;
+    --ink-muted: 220 9% 46%;
+    --line: 220 13% 91%;
+    --shadow-card: 0 1px 2px hsl(222 25% 14% / 0.04),
+      0 8px 24px hsl(222 25% 14% / 0.06);
+
+    /* Estados: tonos apagados, legibles, no semáforo chillón */
+    --status-open: 152 32% 34%;
+    --status-closed: 350 18% 42%;
+    --status-conditional: 38 42% 42%;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans text-[15px] leading-relaxed md:text-base;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold tracking-tight text-ink;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h3 {
+    @apply text-lg md:text-xl;
+  }
+
+  ::selection {
+    @apply bg-ink/10 text-ink;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

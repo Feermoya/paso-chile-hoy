@@ -1,0 +1,44 @@
+---
+import type { PassStateSnapshot } from "@/types";
+import { formatDateTime } from "@/utils/format";
+import { riskLabel, statusAccentClass, statusLabel } from "@/utils/pass-ui";
+
+export interface Props {
+  snapshot: PassStateSnapshot;
+}
+
+const { snapshot } = Astro.props;
+const accent = statusAccentClass(snapshot.status);
+---
+
+<section class="relative overflow-hidden rounded-3xl border border-line/90 bg-white/80 p-6 shadow-card backdrop-blur-md md:p-10 lg:p-12" aria-labelledby="pass-status-heading">
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-surface-muted/50 via-transparent to-transparent" aria-hidden="true" />
+  <div class="relative">
+    <p class="text-sm text-ink-muted md:text-[15px]">
+      {snapshot.pass.regionArgentina} · {snapshot.pass.regionChile}
+    </p>
+    <h1 id="pass-status-heading" class="mt-2 text-balance text-3xl md:text-4xl lg:text-[2.5rem]">
+      {snapshot.pass.name}
+    </h1>
+    <p class="mt-4 max-w-2xl text-balance text-[15px] text-ink-muted md:text-base">
+      {snapshot.headline}
+    </p>
+    <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+      <span
+        class:list={[
+          "inline-flex w-fit items-center rounded-full px-4 py-2 text-sm font-medium ring-1 ring-inset",
+          accent,
+        ]}
+        role="status"
+      >
+        {statusLabel(snapshot.status)}
+      </span>
+      <p class="text-sm text-ink-muted">
+        Actualizado <time datetime={snapshot.updatedAt}>{formatDateTime(snapshot.updatedAt)}</time>
+      </p>
+    </div>
+    <p class="mt-6 text-sm text-ink-muted">
+      Riesgo estimado (referencia): <span class="font-medium text-ink">{riskLabel(snapshot.riskLevel)}</span>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import type { RequirementItem } from "@/types";
+
+export interface Props {
+  requirements: RequirementItem[];
+}
+
+const { requirements } = Astro.props;
+---
+
+<ul class="divide-y divide-line/80 rounded-2xl border border-line/80 bg-white/70 shadow-card backdrop-blur-sm" role="list">
+  {requirements.map((r) => (
+    <li class="flex gap-4 px-5 py-4 md:px-6 md:py-5">
+      <span
+        class="mt-1.5 inline-block h-2 w-2 shrink-0 rounded-full bg-ink/25"
+        aria-hidden="true"
+      />
+      <div class="min-w-0 flex-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <h3 class="text-[15px] font-medium text-ink md:text-base">{r.title}</h3>
+          {r.mandatory ? (
+            <span class="rounded-full bg-surface-muted px-2 py-0.5 text-xs font-medium text-ink-muted">
+              Obligatorio
+            </span>
+          ) : (
+            <span class="rounded-full border border-line px-2 py-0.5 text-xs font-medium text-ink-muted">
+              Según caso
+            </span>
+          )}
+        </div>
+        {r.detail && <p class="mt-1.5 text-sm text-ink-muted md:text-[15px]">{r.detail}</p>}
+      </div>
+    </li>
+  ))}
+</ul>
