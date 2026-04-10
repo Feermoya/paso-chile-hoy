@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.1.2](https://github.com/Feermoya/paso-chile-hoy/compare/v2.1.1...v2.1.2) (2026-04-10)
+
+### Correcciones
+
+* logo único, frescura snapshot, forecast icons, workflow scrape ([5d272a1](https://github.com/Feermoya/paso-chile-hoy/commit/5d272a1db4f494e2fccc27ac7cb594c51bc5d2b2))
+
 ## [2.1.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.1.0...v2.1.1) (2026-04-10)
 
 ### Correcciones
