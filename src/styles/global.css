@@ -261,7 +261,7 @@
   }
 
   .text-temperature {
-    font-size: clamp(4rem, 8vw, 6.5rem);
+    font-size: clamp(5rem, 10vw, 7rem);
   }
 
   .text-section-title {
@@ -276,6 +276,12 @@
 /* Status hero — ritmo interno */
 .status-hero-inner {
   padding: 20px 20px 24px;
+}
+
+@media (min-width: 768px) {
+  .status-hero-inner {
+    padding: 28px 32px 32px;
+  }
 }
 
 .status-eyebrow {
@@ -371,6 +377,18 @@
   height: 16px;
   color: var(--color-text-muted);
   flex-shrink: 0;
+}
+
+.stat-icon-sunrise {
+  width: 18px;
+  height: 18px;
+  color: #f5c842;
+  opacity: 0.95;
+}
+
+.desktop-sunrise-icon {
+  color: #f5c842;
+  opacity: 0.95;
 }
 
 .stat-label {
@@ -573,6 +591,20 @@
       max(16px, env(safe-area-inset-right, 0px));
   }
 
+  .header-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .header-logo-link:hover .header-name {
+    color: var(--color-accent);
+  }
+
   .header-logomark {
     flex-shrink: 0;
     display: flex;
@@ -580,12 +612,17 @@
     opacity: 0.9;
   }
 
+  .header-logomark-svg {
+    flex-shrink: 0;
+    display: block;
+  }
+
   .header-brand {
-    flex: 1;
     display: flex;
     align-items: baseline;
     gap: 8px;
     min-width: 0;
+    flex: 1;
   }
 
   .header-name {
@@ -727,11 +764,6 @@
     }
   }
 
-  @media (min-width: 1200px) {
-    .page-layout .col-side .forecast-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
 
   /* Desktop — clima expandido */
   .desktop-stats {
@@ -818,6 +850,259 @@
 
   .temp-warning-icon {
     margin-top: 2px;
+  }
+
+  /* Home — lista de pasos */
+  .home-layout {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 24px 16px;
+  }
+
+  @media (min-width: 375px) {
+    .home-layout {
+      padding-inline: 20px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .home-layout {
+      padding-inline: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .home-layout {
+      padding-inline: 32px;
+    }
+  }
+
+  .home-header {
+    margin-bottom: 24px;
+  }
+
+  .pasos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .pasos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .pasos-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .paso-card {
+    display: block;
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .paso-card:not(.paso-card--disabled):hover {
+    box-shadow: var(--shadow-card);
+    transform: translateY(-2px);
+  }
+
+  .paso-card:not(.paso-card--disabled):active {
+    transform: scale(0.98);
+  }
+
+  .paso-card-inner {
+    height: 100%;
+    padding: 18px 20px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  .paso-card--disabled .paso-card-inner {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .paso-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .paso-card-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .paso-status-badge {
+    padding: 3px 8px;
+    border: 1px solid;
+    border-radius: var(--radius-pill);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .paso-coming-badge {
+    padding: 3px 8px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-pill);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .paso-card-localities {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-card-altitude {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+
+  /* Fila superior del forecast: en mobile participa del flex del article (display: contents) */
+  .forecast-card-top {
+    display: contents;
+  }
+
+  /* Sidebar: forecast en columna — evita solapamiento tipográfico */
+  @media (min-width: 900px) {
+    .page-layout .col-side .forecast-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .page-layout .col-side .forecast-card-top {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .page-layout .col-side .forecast-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .page-layout .col-side .forecast-mid {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-layout .col-side .forecast-period-title {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .page-layout .col-side .forecast-line-mobile {
+      display: none !important;
+    }
+
+    .page-layout .col-side .forecast-data-inline {
+      display: flex;
+      max-width: 38%;
+      flex-shrink: 0;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 4px;
+      text-align: right;
+    }
+
+    .page-layout .col-side .forecast-data-inline span {
+      max-width: 100%;
+    }
+
+    .page-layout .col-side .forecast-meaning-desktop {
+      width: 100%;
+      padding-top: 8px;
+      margin-top: 0;
+      border-top: 1px solid var(--color-border-subtle);
+      flex-basis: auto;
+    }
+
+    .page-layout .col-side .pass-details-desktop {
+      border-top-width: 0;
+      padding-top: 0;
+    }
+
+    .page-layout .col-side .pass-details-root {
+      border-top: 1px solid var(--color-border-subtle);
+      padding-top: 1rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .pass-details-summary {
+      display: none;
+    }
+  }
+
+  /* Proveedores: nombre + fecha alineados sin cortes raros en desktop */
+  .provider-list-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 12px;
+    align-items: start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .provider-list-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .provider-list-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .provider-list-date {
+    justify-self: end;
+    text-align: right;
+    white-space: nowrap;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 360px) {
+    .provider-list-item {
+      grid-template-columns: 1fr;
+    }
+
+    .provider-list-date {
+      justify-self: start;
+      text-align: left;
+      white-space: normal;
+    }
   }
 }
 

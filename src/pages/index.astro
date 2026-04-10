@@ -1,120 +1,52 @@
 ---
 export const prerender = false;
 
-import AlertsBlock from "@/components/AlertsBlock.astro";
-import PassDetails from "@/components/PassDetails.astro";
-import StatusHero from "@/components/StatusHero.astro";
-import WeatherForecast from "@/components/WeatherForecast.astro";
-import WeatherNow from "@/components/WeatherNow.astro";
-import { defaultFeaturedPassSlug } from "@/lib/server/config/passes";
+import PasoCard from "@/components/PasoCard.astro";
+import { PASOS } from "@/data/pasos";
 import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
-import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
-import type { PassView } from "@/types/pass-view";
-import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
+import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
-import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
 
-function heroSchedule(v: PassView): string {
-  const o = v.operationalInfo;
-  const raw = o.schedule?.trim();
-  if (raw) return raw.replace(/^horario:\s*/i, "").trim();
-  if (o.scheduleFrom && o.scheduleTo) return `${o.scheduleFrom}–${o.scheduleTo} h`;
-  return "";
-}
+type CardEntry = {
+  slug: string;
+  status?: PassDisplayStatus;
+};
 
-let view: PassView | null = null;
-let loadError: string | null = null;
+const cards: CardEntry[] = await Promise.all(
+  PASOS.map(async (paso) => {
+    if (!paso.active) {
+      return { slug: paso.slug };
+    }
+    try {
+      const raw = await getSnapshotForApi(paso.slug);
+      const view = mapPassRawToView(raw);
+      return { slug: paso.slug, status: inferPassStatus(view) };
+    } catch {
+      return { slug: paso.slug, status: "sin_datos" };
+    }
+  }),
+);
 
-try {
-  const raw = await getSnapshotForApi(defaultFeaturedPassSlug);
-  view = mapPassRawToView(raw);
-  logPassPipelineDebug("index", { raw, view });
-} catch (e) {
-  loadError = e instanceof Error ? e.message : "Error al cargar el paso";
-}
-
-const w = view?.weather;
-const now = w?.now;
-const forecast = w?.forecast ?? [];
-const showNow = Boolean(now && weatherNowHasDisplayableContent(now));
-const showForecast = forecast.length > 0;
-
-const displayStatus = view ? inferPassStatus(view) : null;
-const scheduleText = view ? heroSchedule(view) : "";
-const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
-const officialUrl = view?.meta.sourceUrl;
+const statusBySlug = new Map(cards.map((c) => [c.slug, c.status]));
 ---
 
 <MainLayout
-  title="Inicio"
-  description="Estado inferido, clima y datos del Paso Cristo Redentor según Argentina.gob.ar. Verificá siempre la fuente oficial."
+  title="Paso Chile Hoy — Estado de pasos internacionales"
+  description="Estado inferido y clima de los pasos internacionales Mendoza–Chile. Datos públicos de Argentina.gob.ar."
+  canonicalPath="/"
 >
-  <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
-    {loadError && (
-      <div class="container-main">
-        <div
-          class="rounded-[var(--radius-xl)] border border-[var(--color-border-default)] bg-surface-raised p-6 shadow-card sm:p-8"
-          role="alert"
-        >
-          <p class="font-display text-lg font-semibold text-ink">No se pudieron cargar los datos del paso</p>
-          <p class="mt-2 text-sm text-ink-muted">{loadError}</p>
-          <p class="mt-4 text-sm leading-relaxed text-ink-muted">
-            Generá datos con{" "}
-            <code class="rounded-[var(--radius-sm)] bg-surface px-2 py-0.5 font-mono text-xs text-ink">
-              npm run update:pass -- {defaultFeaturedPassSlug}
-            </code>
-            .
-          </p>
-        </div>
-      </div>
-    )}
+  <div class="home-layout">
+    <div class="home-header">
+      <h1 class="text-section-title">Pasos a Chile</h1>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">Mendoza · Pasos internacionales con Chile</p>
+    </div>
 
-    {view && (
-      <div class="page-layout">
-        <div class="col-main flex min-w-0 flex-col gap-4 md:gap-6">
-          {displayStatus && (
-            <StatusHero
-              class="anim-section anim-delay-1"
-              status={displayStatus}
-              passName={view.title}
-              schedule={scheduleText}
-              lastUpdatedRelative={lastRel}
-              officialUrl={officialUrl}
-            />
-          )}
-
-          {showNow && now && (
-            <>
-              <div class="section-divider" aria-hidden="true" />
-              <WeatherNow
-                class="anim-section anim-delay-2"
-                weather={now}
-                updatedAt={now.providerNote}
-              />
-            </>
-          )}
-        </div>
-
-        <div class="col-side flex min-w-0 flex-col gap-4 md:gap-6">
-          {showForecast && (
-            <>
-              <div class="section-divider" aria-hidden="true" />
-              <section class="anim-section anim-delay-3 space-y-4" aria-labelledby="forecast-heading">
-                <h2 id="forecast-heading" class="text-section-title">
-                  Próximas horas
-                </h2>
-                <WeatherForecast forecast={forecast} />
-              </section>
-            </>
-          )}
-
-          <AlertsBlock class="anim-section anim-delay-4" alerts={view.alerts} />
-
-          <PassDetails class="anim-section anim-delay-5" view={view} />
-        </div>
-      </div>
-    )}
+    <div class="pasos-grid">
+      {PASOS.map((paso) => (
+        <PasoCard paso={paso} status={statusBySlug.get(paso.slug)} />
+      ))}
+    </div>
   </div>
 </MainLayout>

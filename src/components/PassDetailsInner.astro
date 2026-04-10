@@ -9,6 +9,26 @@ export interface Props {
 
 const { view } = Astro.props;
 const op = view.operationalInfo;
+
+function normalizeScheduleRaw(schedule: string): string {
+  let s = schedule.trim().replace(/^horario:\s*/i, "").replace(/\.\s*$/u, "").trim();
+  s = s.replace(/\s*-\s*/g, " – ").replace(/\s+–\s+/g, " – ");
+  if (!/\s+h\.?$/i.test(s)) s = `${s} h`;
+  return s;
+}
+
+function scheduleLine(): string | null {
+  if (op.schedule?.trim()) return normalizeScheduleRaw(op.schedule);
+  if (op.scheduleFrom && op.scheduleTo) return `${op.scheduleFrom} – ${op.scheduleTo} h`;
+  if (op.scheduleFrom || op.scheduleTo) {
+    const a = op.scheduleFrom ?? "";
+    const b = op.scheduleTo ?? "";
+    return b ? `${a} – ${b} h` : `${a} h`;
+  }
+  return null;
+}
+
+const horarioValor = scheduleLine();
 ---
 
 <div class="space-y-8 text-sm text-[var(--color-text-secondary)] md:text-[15px]">
@@ -26,17 +46,10 @@ const op = view.operationalInfo;
     </p>
   )}
 
-  {(op.schedule || op.scheduleFrom || op.scheduleTo) && (
+  {horarioValor && (
     <div>
       <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Horario</h3>
-      {op.schedule && <p class="mt-2 text-[17px] font-medium text-[var(--color-text-primary)] md:text-base">{op.schedule}</p>}
-      {(op.scheduleFrom || op.scheduleTo) && (
-        <p class="mt-1">
-          {op.scheduleFrom && op.scheduleTo ?
-            `${op.scheduleFrom} – ${op.scheduleTo}`
-          : op.scheduleFrom || op.scheduleTo}
-        </p>
-      )}
+      <p class="mt-2 text-[17px] font-medium text-[var(--color-text-primary)] md:text-base">{horarioValor}</p>
     </div>
   )}
 
@@ -105,11 +118,11 @@ const op = view.operationalInfo;
       <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
         Proveedores en la página oficial
       </h3>
-      <ul class="mt-3 space-y-2" role="list">
+      <ul class="provider-list mt-3" role="list">
         {view.providers.map((p) => (
-          <li class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-            <span class="text-[var(--color-text-primary)]">{p.name}</span>
-            <span class="font-mono text-xs text-[var(--color-text-muted)] sm:text-sm">
+          <li class="provider-list-item">
+            <span class="provider-list-name text-[var(--color-text-primary)]">{p.name}</span>
+            <span class="provider-list-date font-mono text-xs text-[var(--color-text-muted)] sm:text-sm">
               {p.lastUpdatedRaw || (p.lastUpdated ? formatDateTime(p.lastUpdated) : "—")}
             </span>
           </li>

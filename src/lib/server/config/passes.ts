@@ -1,31 +1,27 @@
 /**
  * Fuentes HTML públicas (Argentina.gob.ar — pasos internacionales).
  *
- * Actualización periódica: programar en el hosting el mismo comando que en local:
- * `npm run update:all-passes` (no requiere tocar parser ni API).
+ * Los pasos activos se definen en `@/data/pasos.ts` (URL derivada de routeId + routeSlug).
  */
+import { buildArgentinaPassSourceUrl, getActivePasos, type PasoConfig } from "@/data/pasos";
+
 export type PassSourceConfig = {
   slug: string;
   name: string;
   sourceUrl: string;
 };
 
-export const passes: PassSourceConfig[] = [
-  {
-    slug: "cristo-redentor",
-    name: "Sistema Cristo Redentor",
-    sourceUrl:
-      "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor",
-  },
-  {
-    slug: "las-lenas",
-    name: "Las Leñas",
-    sourceUrl:
-      "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/98/Las-Le%C3%B1as",
-  },
-];
+function pasoToSource(p: PasoConfig): PassSourceConfig {
+  return {
+    slug: p.slug,
+    name: p.name,
+    sourceUrl: buildArgentinaPassSourceUrl(p),
+  };
+}
 
-/** Slug del paso destacado en la página de inicio (primer ítem de `passes`). */
+export const passes: PassSourceConfig[] = getActivePasos().map(pasoToSource);
+
+/** Slug del paso por defecto (primer paso activo). */
 export const defaultFeaturedPassSlug: string = passes[0]?.slug ?? "cristo-redentor";
 
 export function getPassConfigBySlug(slug: string): PassSourceConfig | undefined {

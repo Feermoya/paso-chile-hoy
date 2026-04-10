@@ -1,0 +1,89 @@
+---
+import type { PasoConfig } from "@/data/pasos";
+import type { PassDisplayStatus } from "@/utils/inferPassStatus";
+
+export interface Props {
+  paso: PasoConfig;
+  status?: PassDisplayStatus;
+}
+
+const { paso, status = "sin_datos" } = Astro.props;
+
+const statusConfig: Record<
+  PassDisplayStatus,
+  {
+    label: string;
+    color: string;
+    bg: string;
+    border: string;
+  }
+> = {
+  abierto: {
+    label: "Abierto",
+    color: "var(--color-open)",
+    bg: "var(--color-open-subtle)",
+    border: "var(--color-open-border)",
+  },
+  condicionado: {
+    label: "Condicionado",
+    color: "var(--color-conditional)",
+    bg: "var(--color-conditional-subtle)",
+    border: "var(--color-conditional-border)",
+  },
+  cerrado: {
+    label: "Cerrado",
+    color: "var(--color-closed)",
+    bg: "var(--color-closed-subtle)",
+    border: "var(--color-closed-border)",
+  },
+  sin_datos: {
+    label: "Sin datos",
+    color: "var(--color-unknown)",
+    bg: "var(--color-unknown-subtle)",
+    border: "var(--color-unknown-border)",
+  },
+};
+
+const cfg = statusConfig[status];
+const href = paso.active ? `/paso/${paso.slug}` : undefined;
+---
+
+{
+  href ?
+    <a
+      href={href}
+      class="paso-card"
+      aria-label={`Ver estado de ${paso.shortName}`}
+    >
+      <div
+        class="paso-card-inner"
+        style={`background: ${cfg.bg}; border: 1px solid ${cfg.border}`}
+      >
+        <div class="paso-card-header">
+          <span class="paso-card-name">{paso.shortName}</span>
+          <span
+            class="paso-status-badge"
+            style={`color: ${cfg.color}; border-color: color-mix(in srgb, ${cfg.color} 20%, transparent)`}
+          >
+            {cfg.label}
+          </span>
+        </div>
+        <p class="paso-card-localities">
+          {paso.localityAR} (AR) — {paso.localityCL} (CL)
+        </p>
+        <p class="paso-card-altitude">{paso.altitudeM.toLocaleString("es-AR")} m s.n.m.</p>
+      </div>
+    </a>
+  : <div class="paso-card paso-card--disabled" aria-disabled="true">
+      <div class="paso-card-inner">
+        <div class="paso-card-header">
+          <span class="paso-card-name">{paso.shortName}</span>
+          <span class="paso-coming-badge">Próximamente</span>
+        </div>
+        <p class="paso-card-localities">
+          {paso.localityAR} (AR) — {paso.localityCL} (CL)
+        </p>
+        <p class="paso-card-altitude">{paso.altitudeM.toLocaleString("es-AR")} m s.n.m.</p>
+      </div>
+    </div>
+}

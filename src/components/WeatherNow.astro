@@ -15,6 +15,8 @@ export interface Props {
   /** Texto pie (p. ej. datetime SMN en bruto). */
   updatedAt?: string;
   class?: string;
+  /** Altitud del paso (advertencia de salud). Por defecto 3200. */
+  altitudeM?: number;
 }
 
 const MONTHS_SHORT = [
@@ -53,7 +55,7 @@ function formatSunriseDisplay(sunrise: string | undefined): string {
   return s;
 }
 
-const { weather: w, updatedAt, class: className } = Astro.props;
+const { weather: w, updatedAt, class: className, altitudeM = 3200 } = Astro.props;
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
@@ -135,7 +137,7 @@ const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transpar
       <span class="stat-value" style={`color: ${levelToColor(visData.level)}`}>{visData.label}</span>
     </div>
     <div class="weather-stat">
-      <Icon name="lucide:sunrise" class="stat-icon" aria-hidden="true" />
+      <Icon name="wi:sunrise" class="stat-icon stat-icon-sunrise" aria-hidden="true" />
       <span class="stat-label">Amanecer</span>
       <span class="stat-value">{sunriseDisplay}</span>
     </div>
@@ -174,7 +176,7 @@ const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transpar
       <div class="desktop-stat-divider" aria-hidden="true"></div>
       <div class="desktop-stat-block">
         <div class="desktop-stat-header">
-          <Icon name="lucide:sunrise" class="h-5 w-5 shrink-0 text-[var(--color-text-muted)]" aria-hidden="true" />
+          <Icon name="wi:sunrise" class="desktop-sunrise-icon h-6 w-6 shrink-0" aria-hidden="true" />
           <span class="desktop-stat-label">Amanecer</span>
         </div>
         <span class="desktop-stat-value">{sunriseDisplay}</span>
@@ -200,7 +202,7 @@ const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transpar
     )}
   </div>
 
-  <AltitudeWarning altitudeM={3200} />
+  <AltitudeWarning altitudeM={altitudeM} />
 
   {datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
 </article>

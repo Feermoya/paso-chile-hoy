@@ -15,10 +15,10 @@ const has = passDetailsHasContent(view);
 
 {
   has && (
-    <div class:list={[className]}>
+    <div class:list={["pass-details-root", className]}>
       <details class="pass-details-mobile group border-t border-[var(--color-border-subtle)] md:hidden">
         <summary
-          class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-3 text-sm font-medium text-[var(--color-text-secondary)]"
+          class="pass-details-summary flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-3 text-sm font-medium text-[var(--color-text-secondary)]"
         >
           <span>Más información del paso</span>
           <Icon
@@ -27,13 +27,13 @@ const has = passDetailsHasContent(view);
             aria-hidden="true"
           />
         </summary>
-        <div class="pb-6 pt-2">
+        <div class="pass-details-content pb-6 pt-2">
           <PassDetailsInner view={view} />
         </div>
       </details>
 
       <section
-        class="hidden border-t border-[var(--color-border-subtle)] pt-10 md:block md:pt-12"
+        class="pass-details-desktop hidden border-t border-[var(--color-border-subtle)] pt-6 md:block md:pt-6"
         aria-labelledby="pass-details-heading-desktop"
       >
         <h2
@@ -42,7 +42,7 @@ const has = passDetailsHasContent(view);
         >
           Datos del paso
         </h2>
-        <div class="mt-8">
+        <div class="pass-details-content mt-6 md:mt-5">
           <PassDetailsInner view={view} />
         </div>
       </section>

@@ -34,42 +34,69 @@ function formatForecastWind(wind: string | undefined): string | undefined {
     const windShown = formatForecastWind(slot.wind);
     const fVis = interpretVisibility(slot.visibility ?? null);
     const fWind = interpretWind(slot.wind ?? null);
+    const hasMeaningBlock =
+      Boolean(fVis.meaning) || (fWind.level === "strong" && Boolean(fWind.meaning));
     return (
       <article
-        class="forecast-card flex flex-row items-start gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] p-4 lg:flex-col lg:gap-3"
+        class="forecast-card flex flex-wrap items-start gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] p-4"
         role="listitem"
       >
-        <div class="flex shrink-0 items-center justify-center rounded-[14px] bg-[rgba(255,255,255,0.04)] p-2 lg:p-2.5">
-          <Icon
-            name={iconName}
-            style={`color: ${iconColor}`}
-            class="forecast-weather-icon shrink-0"
-            aria-hidden="true"
-          />
+        <div class="forecast-card-top">
+          <div class="forecast-icon-wrapper flex shrink-0 items-center justify-center rounded-[14px] bg-[rgba(255,255,255,0.04)] p-2">
+            <Icon
+              name={iconName}
+              style={`color: ${iconColor}`}
+              class="forecast-weather-icon shrink-0"
+              aria-hidden="true"
+            />
+          </div>
+          <div class="forecast-mid min-w-0 flex-1">
+            <div class="forecast-period-info">
+              {slot.period && (
+                <h3 class="forecast-period-title font-display text-sm font-semibold leading-snug text-[var(--color-text-primary)]">
+                  {slot.period}
+                </h3>
+              )}
+              {slot.description && (
+                <p class="mt-1 text-xs leading-relaxed text-[var(--color-text-secondary)]">{slot.description}</p>
+              )}
+            </div>
+            {(slot.temperatureC != null || windShown || slot.visibility) && (
+              <p class="forecast-line-mobile mt-3 text-sm leading-snug text-[var(--color-text-primary)]">
+                {slot.temperatureC != null && (
+                  <span class="text-lg font-bold tabular-nums">{slot.temperatureC}°C</span>
+                )}
+                {slot.temperatureC != null && (windShown || slot.visibility) && (
+                  <span class="text-[var(--color-text-muted)]"> · </span>
+                )}
+                {windShown && <span>{windShown}</span>}
+                {windShown && slot.visibility && <span class="text-[var(--color-text-muted)]"> · </span>}
+                {slot.visibility && (
+                  <span class:list={["font-medium", forecastVisibilityClass(slot.visibility)]}>{slot.visibility}</span>
+                )}
+              </p>
+            )}
+          </div>
+          <div class="forecast-data-inline hidden text-right">
+            {slot.temperatureC != null && (
+              <span class="block text-lg font-bold tabular-nums leading-tight text-[var(--color-text-primary)]">
+                {slot.temperatureC}°C
+              </span>
+            )}
+            {slot.visibility && (
+              <span
+                class:list={[
+                  "block max-w-[7rem] text-xs font-medium leading-tight sm:max-w-none sm:whitespace-nowrap",
+                  forecastVisibilityClass(slot.visibility),
+                ]}
+              >
+                {slot.visibility}
+              </span>
+            )}
+          </div>
         </div>
-        <div class="min-w-0 flex-1">
-          {slot.period && (
-            <h3 class="font-display text-sm font-semibold text-[var(--color-text-primary)]">{slot.period}</h3>
-          )}
-          {slot.description && (
-            <p class="mt-1 text-xs leading-relaxed text-[var(--color-text-secondary)]">{slot.description}</p>
-          )}
-          {(slot.temperatureC != null || windShown || slot.visibility) && (
-            <p class="mt-3 text-sm leading-snug text-[var(--color-text-primary)]">
-              {slot.temperatureC != null && (
-                <span class="text-lg font-bold tabular-nums">{slot.temperatureC}°C</span>
-              )}
-              {slot.temperatureC != null && (windShown || slot.visibility) && (
-                <span class="text-[var(--color-text-muted)]"> · </span>
-              )}
-              {windShown && <span>{windShown}</span>}
-              {windShown && slot.visibility && <span class="text-[var(--color-text-muted)]"> · </span>}
-              {slot.visibility && (
-                <span class:list={["font-medium", forecastVisibilityClass(slot.visibility)]}>{slot.visibility}</span>
-              )}
-            </p>
-          )}
-          <div class="mt-3 hidden border-t border-[var(--color-border-subtle)] pt-3 md:block">
+        {hasMeaningBlock && (
+          <div class="forecast-meaning-desktop hidden w-full flex-basis-full md:block">
             {fVis.meaning && (
               <p class="m-0 flex gap-1.5 text-[11px] leading-relaxed text-[var(--color-text-muted)]">
                 <Icon name="lucide:eye" class="mt-0.5 h-3 w-3 shrink-0 opacity-80" aria-hidden="true" />
@@ -86,7 +113,7 @@ function formatForecastWind(wind: string | undefined): string | undefined {
               </p>
             )}
           </div>
-        </div>
+        )}
       </article>
     );
   })}

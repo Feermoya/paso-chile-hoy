@@ -1,4 +1,5 @@
 ---
+import FirebaseAnalytics from "@/components/FirebaseAnalytics.astro";
 import Footer from "@/components/Footer.astro";
 import "@/styles/global.css";
 
@@ -6,15 +7,23 @@ export interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  /** Altitud mostrada en el badge del header (m s.n.m.). */
+  headerAltitudeM?: number;
 }
 
 const siteName = "Paso Chile Hoy";
 const defaultDescription =
   "Paso Cristo Redentor / Los Libertadores: clima, alertas y datos públicos de Argentina.gob.ar. Estado resumido inferido — verificá siempre la fuente oficial.";
 
-const { title = siteName, description = defaultDescription, canonicalPath = "/" } = Astro.props;
+const {
+  title = siteName,
+  description = defaultDescription,
+  canonicalPath = "/",
+  headerAltitudeM = 3200,
+} = Astro.props;
 const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
 const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
+const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nivel del mar`;
 ---
 
 <!doctype html>
@@ -59,48 +68,63 @@ const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
       </a>
       <header class="header-app">
         <div class="header-inner">
-          <div class="header-logomark" aria-hidden="true">
-            <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line
-                x1="0"
-                y1="2"
-                x2="20"
-                y2="2"
-                stroke="var(--color-copper)"
-                stroke-width="1.5"
-                stroke-linecap="round"></line>
-              <line
-                x1="3"
-                y1="8"
-                x2="17"
-                y2="8"
-                stroke="var(--color-accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"></line>
-              <line
-                x1="7"
-                y1="14"
-                x2="13"
-                y2="14"
-                stroke="var(--color-text-muted)"
-                stroke-width="1.5"
-                stroke-linecap="round"></line>
-            </svg>
-          </div>
-
-          <div class="header-brand">
-            <span class="header-name">Paso Chile Hoy</span>
-            <span class="header-location">
-              <span class="header-location-dot" aria-hidden="true"></span>
-              Mendoza · AR
+          <a href="/" class="header-logo-link" aria-label="Inicio — todos los pasos">
+            <span class="header-logomark">
+              <svg
+                width="28"
+                height="20"
+                viewBox="0 0 28 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="header-logomark-svg"
+              >
+                <polyline
+                  points="0,18 5,10 10,18"
+                  stroke="var(--color-text-muted)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                  opacity="0.6"></polyline>
+                <polyline
+                  points="7,18 14,6 21,18"
+                  stroke="var(--color-accent)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                  opacity="0.85"></polyline>
+                <polyline
+                  points="17,18 24,1 28,10"
+                  stroke="var(--color-copper)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"></polyline>
+                <line
+                  x1="0"
+                  y1="18"
+                  x2="28"
+                  y2="18"
+                  stroke="var(--color-border-default)"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  opacity="0.4"></line>
+              </svg>
             </span>
-          </div>
 
-          <div
-            class="header-altitude"
-            aria-label="Altitud del paso: 3200 metros sobre el nivel del mar"
-          >
-            <span class="header-altitude-number">3200</span>
+            <span class="header-brand">
+              <span class="header-name">Paso Chile Hoy</span>
+              <span class="header-location">
+                <span class="header-location-dot" aria-hidden="true"></span>
+                Mendoza · AR
+              </span>
+            </span>
+          </a>
+
+          <div class="header-altitude" aria-label={altitudeLabel}>
+            <span class="header-altitude-number">{headerAltitudeM}</span>
             <span class="header-altitude-unit">m</span>
           </div>
         </div>
@@ -110,5 +134,6 @@ const canonical = Astro.site ? new URL(canonicalPath, Astro.site).href : null;
       </main>
       <Footer />
     </div>
+    <FirebaseAnalytics />
   </body>
 </html>
