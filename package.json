@@ -65,7 +65,11 @@
   "engines": {
     "node": "22.x"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.14.0",
+    "@rollup/rollup-linux-x64-musl": "^4.14.0"
+  },
   "overrides": {
-    "rollup": "^4.0.0"
+    "rollup": "^4.14.0"
   }
 }
