@@ -9,10 +9,23 @@ export interface Props {
   lastUpdatedRelative: string;
   /** URL de la página oficial (enlace “Ver fuente oficial” solo en desktop). */
   officialUrl?: string;
+  /** Solo si cerrado por fuera de horario: minutos hasta la apertura. */
+  opensInMinutes?: number;
+  /** Nota breve sobre cómo se infirió el estado (honestidad / trazabilidad). */
+  statusDetail?: string;
   class?: string;
 }
 
-const { status, passName, schedule, lastUpdatedRelative, officialUrl, class: className } = Astro.props;
+const {
+  status,
+  passName,
+  schedule,
+  lastUpdatedRelative,
+  officialUrl,
+  opensInMinutes,
+  statusDetail,
+  class: className,
+} = Astro.props;
 
 const labels: Record<PassDisplayStatus, string> = {
   abierto: "ABIERTO",
@@ -66,6 +79,21 @@ const dotPulse = status === "abierto" ? "status-dot--open" : "";
         <p class="status-horario">
           <span class="text-[var(--color-text-muted)]">Horario · </span>
           {schedule}
+        </p>
+      )}
+
+      {status === "cerrado" && opensInMinutes != null && opensInMinutes > 0 && (
+        <p class="status-opens-at text-meta mt-1 flex items-center gap-1.5 text-[var(--color-text-secondary)]">
+          <Icon name="lucide:clock" class="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden="true" />
+          <span>
+            Abre en {Math.floor(opensInMinutes / 60)}h {opensInMinutes % 60}min
+          </span>
+        </p>
+      )}
+
+      {statusDetail && status !== "abierto" && (
+        <p class="status-detail text-[11px] leading-snug text-[var(--color-text-muted)] mt-1.5 max-w-prose">
+          {statusDetail}
         </p>
       )}
 

@@ -20,7 +20,7 @@ const cards: CardEntry[] = await Promise.all(
     try {
       const raw = await getSnapshotForApi(paso.slug);
       const view = mapPassRawToView(raw);
-      return { slug: paso.slug, status: inferPassStatus(view) };
+      return { slug: paso.slug, status: inferPassStatus(view).status };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
     }

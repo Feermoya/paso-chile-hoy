@@ -50,10 +50,26 @@ const forecast = w?.forecast ?? [];
 const showNow = Boolean(now && weatherNowHasDisplayableContent(now));
 const showForecast = forecast.length > 0;
 
-const displayStatus = view ? inferPassStatus(view) : null;
 const scheduleText = view ? heroSchedule(view) : "";
+const statusResult = view ? inferPassStatus(view) : null;
 const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
 const officialUrl = view?.meta.sourceUrl;
+
+if (import.meta.env.DEV && view && statusResult) {
+  console.log("=== PASO STATUS DEBUG ===");
+  console.log(
+    "Hora Argentina actual:",
+    new Date().toLocaleString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" }),
+  );
+  console.log("Schedule (UI):", scheduleText);
+  console.log("ScrapedAt:", view.meta.scrapedAt);
+  console.log("Alertas:", view.alerts);
+  console.log("Status inferido:", statusResult.status);
+  console.log("Razón:", statusResult.reason);
+  console.log("Confidence:", statusResult.confidence);
+  console.log("opensInMinutes:", statusResult.opensInMinutes);
+  console.log("=========================");
+}
 
 const pageTitle = pasoConfig.shortName;
 const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} según Argentina.gob.ar. Verificá siempre la fuente oficial.`;
@@ -88,14 +104,16 @@ const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} se
     {view && (
       <div class="page-layout">
         <div class="col-main flex min-w-0 flex-col gap-4 md:gap-6">
-          {displayStatus && (
+          {statusResult && (
             <StatusHero
               class="anim-section anim-delay-1"
-              status={displayStatus}
+              status={statusResult.status}
               passName={view.title}
               schedule={scheduleText}
               lastUpdatedRelative={lastRel}
               officialUrl={officialUrl}
+              opensInMinutes={statusResult.opensInMinutes}
+              statusDetail={statusResult.reason}
             />
           )}
 
@@ -107,6 +125,7 @@ const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} se
                 weather={now}
                 forecast={forecast}
                 updatedAt={now.providerNote}
+                scrapedAt={view.meta.scrapedAt}
               />
             </>
           )}

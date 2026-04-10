@@ -9,6 +9,7 @@ import {
   interpretWind,
   levelToColor,
 } from "@/utils/weatherInterpretation";
+import { assessSnapshotFreshness } from "@/utils/snapshotFreshness";
 
 export interface Props {
   weather: WeatherNowView;
@@ -16,6 +17,8 @@ export interface Props {
   forecast?: ForecastItemView[];
   /** Texto pie (p. ej. datetime SMN en bruto). */
   updatedAt?: string;
+  /** Momento del snapshot (JSON); para advertir si los datos son viejos. */
+  scrapedAt?: string;
   class?: string;
 }
 
@@ -55,7 +58,7 @@ function formatSunriseDisplay(sunrise: string | undefined): string {
   return s;
 }
 
-const { weather: w, forecast = [], updatedAt, class: className } = Astro.props;
+const { weather: w, forecast = [], updatedAt, scrapedAt, class: className } = Astro.props;
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
@@ -81,6 +84,8 @@ const drivingWeather = {
   visibilityKm: visInput,
   description: w.description ?? "",
 };
+
+const freshness = assessSnapshotFreshness(scrapedAt);
 ---
 
 <article
@@ -212,4 +217,51 @@ const drivingWeather = {
   <DrivingConditions weather={drivingWeather} forecast={forecast} />
 
   {datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
+
+  {
+    freshness.warningMessage && (
+      <div class="staleness-warning" data-level={freshness.level}>
+        <Icon name="lucide:clock-alert" class="staleness-warning-icon" aria-hidden="true" />
+        <span>{freshness.warningMessage}</span>
+      </div>
+    )
+  }
 </article>
+
+<style>
+  .staleness-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+
+  .staleness-warning-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .staleness-warning[data-level="stale"] {
+    background: rgba(240, 168, 48, 0.08);
+    border: 1px solid rgba(240, 168, 48, 0.2);
+    color: var(--color-conditional);
+  }
+
+  .staleness-warning[data-level="very_stale"] {
+    background: rgba(224, 85, 85, 0.08);
+    border: 1px solid rgba(224, 85, 85, 0.2);
+    color: var(--color-closed);
+  }
+
+  .staleness-warning[data-level="unknown"] {
+    background: rgba(168, 180, 204, 0.06);
+    border: 1px solid rgba(168, 180, 204, 0.15);
+    color: var(--color-text-muted);
+  }
+</style>
