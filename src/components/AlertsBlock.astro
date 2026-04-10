@@ -1,4 +1,6 @@
 ---
+import { shouldSuppressMotivoAlert } from "@/utils/motivoFilters";
+
 export interface Props {
   motivo: string | null;
   vialidadRuta: string;
@@ -51,10 +53,7 @@ const showObs =
   obs.length > 3;
 
 const m = motivo?.trim() ?? "";
-const showMotivo =
-  Boolean(m) &&
-  !m.toUpperCase().includes("HORARIO DE ATENCION") &&
-  m !== "-.-";
+const showMotivo = Boolean(m) && !shouldSuppressMotivoAlert(m);
 
 const isCorteTotal = estU === "CORTE TOTAL" || estU.includes("CORTE TOTAL");
 ---

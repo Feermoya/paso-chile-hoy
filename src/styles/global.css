@@ -262,6 +262,56 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   }
 }
 
+@keyframes slide-in-alert {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes alert-pulse-red {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(224, 85, 85, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(224, 85, 85, 0.15);
+  }
+}
+
+@keyframes icon-shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(-6deg);
+  }
+  80% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes badge-glow-amber {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(240, 168, 48, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px 2px rgba(240, 168, 48, 0.2);
+  }
+}
+
 @keyframes tempReveal {
   from {
     opacity: 0;
@@ -1287,14 +1337,6 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     .paso-col--sticky {
       position: sticky;
       top: calc(var(--header-height, 56px) + 36px);
-      max-height: calc(100dvh - var(--header-height, 56px) - 48px);
-      overflow-y: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .paso-col--sticky::-webkit-scrollbar {
-      display: none;
     }
   }
 
@@ -2336,14 +2378,17 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   border: 1px solid rgba(224, 85, 85, 0.2);
   border-left: 3px solid var(--color-closed);
   animation:
-    slide-in-up 0.25s ease both,
-    alert-border-pulse 2s ease-in-out 0.3s 3;
+    slide-in-alert 0.25s ease both,
+    alert-pulse-red 2.5s ease-in-out 0.4s 3;
 }
 
 .alert-card--warning {
   background: rgba(240, 168, 48, 0.06);
   border: 1px solid rgba(240, 168, 48, 0.2);
   border-left: 3px solid var(--color-conditional);
+  animation:
+    slide-in-alert 0.25s ease both,
+    alert-pulse-amber 2.5s ease-in-out 0.4s 2;
 }
 
 .alert-card-eyebrow {
@@ -2461,19 +2506,24 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     alert-pulse-amber 2.5s ease-in-out 0.5s infinite;
 }
 
-.driving-conditions.driving-condition-alert .alert-icon {
-  animation: wiggle 1.2s ease-in-out 1s 2;
+.driving-condition-alert .alert-icon,
+.driving-conditions .condition-icon {
+  animation: icon-shake 0.8s ease-in-out 1.5s 2;
 }
 
+.status-badge[data-status="condicionado"],
 .status-badge--condicionado {
-  animation: badge-glow 2s ease-in-out 1;
+  animation: badge-glow-amber 2s ease-in-out 0.5s 2;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .driving-conditions.driving-condition-alert,
   .driving-conditions.driving-condition-alert--cold,
-  .driving-conditions.driving-condition-alert .alert-icon,
+  .driving-condition-alert .alert-icon,
+  .driving-conditions .condition-icon,
   .alert-card--danger,
+  .alert-card--warning,
+  .status-badge[data-status="condicionado"],
   .status-badge--condicionado {
     animation: none;
   }

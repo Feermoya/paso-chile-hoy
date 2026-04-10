@@ -10,6 +10,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sync": "git pull --rebase origin main",
+    "prescrape": "git pull --rebase origin main || true",
     "scrape": "tsx scripts/scrape.ts",
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",

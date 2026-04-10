@@ -98,7 +98,8 @@ const closeCountdownInitial =
         aria-hidden="true"></span>
       <span
         id="status-hero-label"
-        class:list={["text-status", status === "condicionado" && "status-badge--condicionado"]}
+        class:list={["text-status", "status-badge", `status-badge--${status}`]}
+        data-status={status}
         data-hero-label
         style={{ color: titleColor }}
       >

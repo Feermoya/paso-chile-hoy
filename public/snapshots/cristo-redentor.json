@@ -4,17 +4,12 @@
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
-  "motivo": "0 hs 5 minutos",
-<<<<<<< Updated upstream
-  "vialidadEstado": "CORTE TOTAL",
-  "vialidadObservaciones": "Corte preventivo por nevadas",
-=======
+  "motivo": null,
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
   "vialidadEstado": "CORTE TOTAL",
   "vialidadObservaciones": "Corte preventivo por nevadas",
   "latestTweet": null,
->>>>>>> Stashed changes
   "weather": {
     "temperatureC": 17.1,
     "description": "Despejado",
@@ -28,11 +23,7 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-10T16:07:16.266Z",
-=======
-  "scrapedAt": "2026-04-10T16:15:41.431Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-10T16:38:17.593Z",
   "forecast": [
     {
       "period": "Hoy por la noche",

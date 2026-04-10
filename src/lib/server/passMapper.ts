@@ -1,4 +1,5 @@
 import { buildArgentinaPassSourceUrl, type PasoConfig } from "@/data/pasos";
+import { shouldFilterMotivoFragment } from "@/utils/motivoFilters";
 import type { ForecastPeriod } from "@/lib/server/forecastParser";
 import type { ClimaResponse, ConsolidadoResponse } from "@/lib/types/apiTypes";
 import type { ForecastItemView, PassLatestTweet, PassView } from "@/types/pass-view";
@@ -92,7 +93,7 @@ export function mapToSnapshot(
     est.demoras,
   ]
     .map((s) => s?.trim())
-    .filter((s) => s && s !== "-.-" && s !== "0 hs 0 minutos" && s.length > 2)
+    .filter((s) => Boolean(s) && !shouldFilterMotivoFragment(s))
     .join(" · ")
     .trim() || null;
 

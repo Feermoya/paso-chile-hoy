@@ -4,12 +4,9 @@
   "schedule": "09:00-19:00",
   "scheduleRaw": "TOLERANCIA HASTA LAS 21:00 HS",
   "rawStatus": "ABIERTO",
-  "motivo": "0 hs 5 minutos",
-<<<<<<< Updated upstream
-=======
+  "motivo": null,
   "vialidadRuta": "150",
   "vialidadTramo": "Arrequintin - Lte. Con Chile",
->>>>>>> Stashed changes
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Transitable",
   "latestTweet": null,
@@ -26,11 +23,7 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-10T16:07:24.201Z",
-=======
-  "scrapedAt": "2026-04-10T16:19:16.532Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-10T16:38:25.248Z",
   "forecast": [
     {
       "period": "Hoy por la noche",
