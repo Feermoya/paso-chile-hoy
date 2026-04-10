@@ -1,0 +1,104 @@
+---
+const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
+---
+
+<section class="support-section" aria-label="Apoyar el proyecto">
+  <div class="support-card">
+    <div class="support-shimmer" aria-hidden="true"></div>
+
+    <div class="support-top">
+      <div class="support-icon-wrap" aria-hidden="true">
+        <svg
+          class="support-heart"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="support-text">
+        <p class="support-eyebrow">Proyecto independiente · sin publicidad</p>
+        <h2 class="support-title">¿Te ayudó a planificar tu viaje?</h2>
+        <p class="support-desc">
+          Este sitio lo desarrollo y mantengo solo, gratis, para todos los mendocinos que cruzan la
+          cordillera. Cualquier aporte ayuda a seguir mejorándolo.
+        </p>
+      </div>
+    </div>
+
+    <div class="support-stats" aria-label="Por qué apoyar">
+      <div class="support-stat">
+        <span class="support-stat-num">24/7</span>
+        <span class="support-stat-label">Disponible</span>
+      </div>
+      <div class="support-stat">
+        <span class="support-stat-num">0</span>
+        <span class="support-stat-label">Publicidades</span>
+      </div>
+      <div class="support-stat">
+        <span class="support-stat-num">$0</span>
+        <span class="support-stat-label">Costo para vos</span>
+      </div>
+    </div>
+
+    <a
+      href={MP_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="support-btn"
+      aria-label="Apoyar el proyecto vía Mercado Pago"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+        ></path>
+      </svg>
+      Apoyar el proyecto
+    </a>
+
+    <p class="support-footer-note">Mercado Pago · Seguro · Lo que quieras · Sin obligación</p>
+  </div>
+</section>
+
+<script>
+  function setupSupportCardReveal() {
+    const card = document.querySelector(".support-section .support-card");
+    if (!card || !(card instanceof HTMLElement)) return;
+    if (card.dataset.supportAnimInit === "1") return;
+    card.dataset.supportAnimInit = "1";
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    card.style.opacity = "0";
+    card.style.animationPlayState = "paused";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+            entry.target.style.opacity = "";
+            entry.target.style.animationPlayState = "running";
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(card);
+  }
+
+  setupSupportCardReveal();
+  document.addEventListener("astro:page-load", setupSupportCardReveal);
+</script>

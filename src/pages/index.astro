@@ -1,5 +1,6 @@
 ---
 import PasoCard from "@/components/PasoCard.astro";
+import SupportBlock from "@/components/SupportBlock.astro";
 import { PASOS } from "@/data/pasos";
 import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
@@ -70,4 +71,6 @@ const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
       })}
     </div>
   </div>
+
+  <SupportBlock slot="before-footer" />
 </MainLayout>

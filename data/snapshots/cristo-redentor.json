@@ -23,30 +23,30 @@
   },
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -5,
-      "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Despejado",
       "temperatureC": 3,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Lluvias y nevadas",
       "temperatureC": 2,
       "wind": "NO a 23-31 km/h",
       "visibility": "Regular"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": 1,
+      "wind": "SO a 7-12 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -5,
       "wind": "SO a 7-12 km/h",
       "visibility": "Mala"
     }
@@ -90,6 +90,6 @@
       "lastUpdated": "2026-04-10T00:00:00.000Z"
     }
   ],
-  "scrapedAt": "2026-04-10T03:23:50.736Z",
+  "scrapedAt": "2026-04-10T03:34:00.213Z",
   "sourceUrl": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor"
 }

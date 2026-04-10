@@ -2,6 +2,7 @@
 import AlertsBlock from "@/components/AlertsBlock.astro";
 import PassDetails from "@/components/PassDetails.astro";
 import StatusHero from "@/components/StatusHero.astro";
+import SupportBlock from "@/components/SupportBlock.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
 import { getActivePasos, getPasoBySlug } from "@/data/pasos";
@@ -233,4 +234,6 @@ const attractionJsonLd: Record<string, unknown> = {
       </div>
     )}
   </div>
+
+  <SupportBlock slot="before-footer" />
 </MainLayout>
