@@ -1,7 +1,18 @@
 {
+  "framework": "astro",
+  "buildCommand": "astro build",
+  "outputDirectory": ".vercel/output",
   "build": {
     "env": {
-      "NODE_VERSION": "22"
+      "NODE_VERSION": "20"
+    }
+  },
+  "functions": {
+    "api/**": {
+      "runtime": "nodejs20.x"
+    },
+    ".vercel/output/functions/**": {
+      "runtime": "nodejs20.x"
     }
   },
   "headers": [
@@ -33,7 +44,7 @@
       ]
     },
     {
-      "source": "/(.*).(png|jpg|jpeg|svg|ico|webmanifest|woff2|woff)",
+      "source": "/(.*).(png|jpg|jpeg|svg|ico|webmanifest|woff|woff2)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -12,6 +12,8 @@ export default defineConfig({
   adapter: vercel({
     functionPerRoute: false,
     edgeMiddleware: false,
+    imageService: false,
+    devImageService: "sharp",
     webAnalytics: { enabled: false },
     speedInsights: { enabled: false },
   }),
