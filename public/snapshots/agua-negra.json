@@ -12,23 +12,16 @@
     "description": "Parcialmente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "07:51",
-    "sunset": "19:25",
+    "sunrise": "07:52",
+    "sunset": "19:24",
     "updatedAt": "2026-04-10T09:00:00-03:00"
   },
   "contact": "(2647) 420473",
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T14:35:17.255Z",
+  "scrapedAt": "2026-04-10T15:07:11.841Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 21,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Tormentas aisladas",
@@ -47,6 +40,13 @@
       "period": "Mañana por la mañana",
       "description": "Algo nublado",
       "temperatureC": 16,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Algo nublado",
+      "temperatureC": 23,
       "wind": "SO a 0-2 km/h",
       "visibility": "Buena"
     }

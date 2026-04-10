@@ -5,8 +5,8 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
-  "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "Corte preventivo por nevadas",
   "weather": {
     "temperatureC": 5.8,
     "description": "Despejado",
@@ -20,15 +20,8 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-10T14:35:13.123Z",
+  "scrapedAt": "2026-04-10T15:07:02.080Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 2,
-      "wind": "NO a 23-31 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -47,6 +40,13 @@
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -6,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Algo nublado",
+      "temperatureC": 5,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
