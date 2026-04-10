@@ -23,7 +23,11 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-10T21:20:41.579Z",
+=======
+  "scrapedAt": "2026-04-10T21:04:50.202Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Mañana por la madrugada",

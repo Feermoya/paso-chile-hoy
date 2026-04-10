@@ -1,3 +1,4 @@
+import type { WeatherNowView } from "@/types/pass-view";
 import {
   interpretVisibility,
   interpretWind,
@@ -26,6 +27,22 @@ export interface DrivingForecastItemInput {
   wind?: string | null;
   visibility?: string | null;
   description?: string;
+}
+
+/** `WeatherNow` → entrada de `DrivingConditions` (evita duplicar en la página del paso). */
+export function weatherNowToDrivingInput(now: WeatherNowView): DrivingWeatherInput {
+  const visInput: number | string | null =
+    typeof now.visibilityKm === "number"
+      ? now.visibilityKm
+      : now.visibilityText?.trim()
+        ? now.visibilityText.trim()
+        : null;
+  return {
+    temperatureC: now.temperatureC ?? null,
+    wind: now.wind ?? null,
+    visibilityKm: visInput,
+    description: now.description ?? "",
+  };
 }
 
 function forecastAssessment(

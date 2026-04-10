@@ -1185,9 +1185,28 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   .header-logo-img {
     width: 36px;
     height: 36px;
+    border-radius: 8px;
+    object-fit: contain;
     flex-shrink: 0;
     display: block;
     transition: transform 0.2s ease;
+  }
+
+  @media (max-width: 480px) {
+    .header-logo-img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .header-version-desktop {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .header-version-desktop {
+      display: inline-flex;
+    }
   }
 
   .header-brand {
@@ -1534,6 +1553,22 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     .pasos-grid {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .home-twitter-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .home-twitter-heading {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 12px;
   }
 
   .paso-card {

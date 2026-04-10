@@ -1,6 +1,7 @@
 import { getPasoBySlug } from "@/data/pasos";
 import { snapshotFreshMs } from "@/lib/server/config/snapshotPolicy";
 import { fetchConsolidado, fetchClima, fetchDetailHTML } from "@/lib/server/apiClient";
+import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import { getLatestPassTweet } from "@/utils/twitterScraper";
@@ -78,7 +79,8 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
   ]);
 
   const forecast = parseForecastFromHTML(htmlDetail);
-  const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast);
+  const htmlAlerts = extractAlertsFromDetailHTML(htmlDetail);
+  const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast, { htmlAlerts });
 
   try {
     const latestTweet = await getLatestPassTweet(slug);

@@ -1,8 +1,11 @@
 ---
 import { shouldSuppressMotivoAlert } from "@/utils/motivoFilters";
+import { dedupeHtmlAlertsAgainstJson } from "@/utils/dedupeHtmlAlerts";
 
 export interface Props {
   motivo: string | null;
+  motivoExtra?: string | null;
+  htmlAlerts?: string[];
   vialidadRuta: string;
   vialidadTramo: string;
   vialidadEstado: string;
@@ -12,6 +15,8 @@ export interface Props {
 
 const {
   motivo,
+  motivoExtra,
+  htmlAlerts,
   vialidadRuta,
   vialidadTramo,
   vialidadEstado,
@@ -55,11 +60,23 @@ const showObs =
 const m = motivo?.trim() ?? "";
 const showMotivo = Boolean(m) && !shouldSuppressMotivoAlert(m);
 
+const extra = motivoExtra?.trim() ?? "";
+const showMotivoExtra = Boolean(extra);
+
+const htmlExtra = dedupeHtmlAlertsAgainstJson(htmlAlerts, {
+  motivo: m || null,
+  motivoExtra: extra || null,
+  vialidadObservaciones: obs || null,
+});
+
 const isCorteTotal = estU === "CORTE TOTAL" || estU.includes("CORTE TOTAL");
+
+const showRegion =
+  showVialidad || showMotivo || showMotivoExtra || htmlExtra.length > 0;
 ---
 
 {
-  (showVialidad || showMotivo) && (
+  showRegion && (
     <div class:list={["alerts-section", className]} role="region" aria-label="Información operativa">
       {showVialidad && (
         <div
@@ -73,12 +90,24 @@ const isCorteTotal = estU === "CORTE TOTAL" || estU.includes("CORTE TOTAL");
           {showObs && <p class="alert-card-detail">{obs}</p>}
         </div>
       )}
+      {showMotivoExtra && (
+        <div class="alert-card alert-card--warning">
+          <p class="alert-card-eyebrow">Atención</p>
+          <p class="alert-card-title">{extra}</p>
+        </div>
+      )}
       {showMotivo && (
         <div class="alert-card alert-card--warning">
           <p class="alert-card-eyebrow">Atención</p>
           <p class="alert-card-title">{m}</p>
         </div>
       )}
+      {htmlExtra.map((text) => (
+        <div class="alert-card alert-card--warning alert-card--html-source">
+          <p class="alert-card-eyebrow">Atención</p>
+          <p class="alert-card-title">{text}</p>
+        </div>
+      ))}
     </div>
   )
 }

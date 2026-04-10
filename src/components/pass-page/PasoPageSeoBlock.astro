@@ -1,0 +1,24 @@
+---
+import type { PasoConfig } from "@/data/pasos";
+
+export interface Props {
+  paso: PasoConfig;
+  class?: string;
+}
+
+const { paso, class: className } = Astro.props;
+---
+
+<section class:list={["paso-page-seo seo-content seo-content--pass", className]} aria-label={`Información sobre ${paso.name}`}>
+  <h2 class="paso-page-seo-title">Sobre el {paso.name}</h2>
+  <p class="paso-page-seo-lead">
+    El {paso.name} conecta {paso.localityAR} ({paso.provinceAR},
+    Argentina) con {paso.localityCL} (Chile). Se encuentra a{" "}
+    {paso.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de
+    los Andes.
+  </p>
+  <p class="paso-page-seo-note">
+    Esta página muestra el estado actual del paso según el mismo API público que usa el sitio oficial del
+    Ministerio de Seguridad de la Nación Argentina. La información se actualiza automáticamente.
+  </p>
+</section>

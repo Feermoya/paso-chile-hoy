@@ -1,0 +1,66 @@
+---
+import AlertsBlock from "@/components/AlertsBlock.astro";
+import LatestTweet from "@/components/LatestTweet.astro";
+import StatusGuide from "@/components/StatusGuide.astro";
+import StatusHero from "@/components/StatusHero.astro";
+import TwitterAlerts from "@/components/TwitterAlerts.astro";
+import type { PassView } from "@/types/pass-view";
+import type { PassStatusResult } from "@/utils/inferPassStatus";
+
+export interface Props {
+  slug: string;
+  view: PassView;
+  statusResult: PassStatusResult;
+  scheduleText: string;
+  lastUpdatedRelative: string;
+  officialUrl?: string;
+  class?: string;
+}
+
+const {
+  slug,
+  view,
+  statusResult,
+  scheduleText,
+  lastUpdatedRelative,
+  officialUrl,
+  class: className,
+} = Astro.props;
+
+const op = view.operationalInfo;
+---
+
+<section
+  class:list={["paso-page-operational paso-col", className]}
+  aria-label="Estado operativo"
+>
+  <StatusHero
+    class="anim-section anim-delay-1"
+    slug={slug}
+    status={statusResult.status}
+    displayLabel={statusResult.displayLabel}
+    passName={view.title}
+    schedule={scheduleText}
+    lastUpdatedRelative={lastUpdatedRelative}
+    officialUrl={officialUrl}
+    opensInMinutes={statusResult.opensInMinutes}
+    closesInMinutes={statusResult.closesInMinutes}
+  />
+
+  <StatusGuide />
+
+  <AlertsBlock
+    class="anim-section anim-delay-2"
+    motivo={op.motivo ?? null}
+    motivoExtra={op.motivoExtra ?? null}
+    htmlAlerts={op.htmlAlerts}
+    vialidadRuta={op.vialidadRuta ?? ""}
+    vialidadTramo={op.vialidadTramo ?? ""}
+    vialidadEstado={op.vialidadEstado ?? "HABILITADA"}
+    vialidadObservaciones={op.vialidadObservaciones ?? ""}
+  />
+
+  <LatestTweet tweet={view.meta.latestTweet} />
+
+  <TwitterAlerts passSlug={slug} />
+</section>

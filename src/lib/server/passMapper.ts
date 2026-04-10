@@ -36,7 +36,15 @@ export interface PassSnapshot {
   scrapedAt: string;
   /** Pronóstico 24 h desde el HTML de detalle. */
   forecast: ForecastPeriod[];
+  /** Texto informativo oficial (p. ej. horario de atención en cabina); no define cierre. */
+  motivoExtra?: string | null;
+  /** Alertas crudas extraídas del HTML de detalle (complemento al JSON). */
+  htmlAlerts?: string[];
 }
+
+export type MapToSnapshotOptions = {
+  htmlAlerts?: string[];
+};
 
 export function isPassSnapshotShape(o: unknown): o is PassSnapshot {
   if (!o || typeof o !== "object") return false;
@@ -79,23 +87,27 @@ export function mapToSnapshot(
   consolidado: ConsolidadoResponse,
   clima: ClimaResponse,
   forecast: ForecastPeriod[] = [],
+  options: MapToSnapshotOptions = {},
 ): PassSnapshot {
   const det = consolidado.detalle;
   const est = det.estado;
   const vial = consolidado.vialidad;
   const temp = clima.temperatura;
 
-  const motivo = [
-    est.motivo_cierre_extraordinario,
-    est.motivo_cierre,
-    est.motivo_demora,
-    est.observaciones,
-    est.demoras,
-  ]
-    .map((s) => s?.trim())
-    .filter((s) => Boolean(s) && !shouldFilterMotivoFragment(s))
-    .join(" · ")
-    .trim() || null;
+  const motivo =
+    [est.motivo_cierre, est.motivo_demora, est.observaciones, est.demoras]
+      .map((s) => s?.trim())
+      .filter((s) => Boolean(s) && !shouldFilterMotivoFragment(s))
+      .join(" · ")
+      .trim() || null;
+
+  const rawExtra = est.motivo_cierre_extraordinario?.trim();
+  const motivoExtra =
+    rawExtra && rawExtra !== "-.-" && rawExtra.length > 3 ? rawExtra : null;
+
+  const htmlAlerts = Array.isArray(options.htmlAlerts)
+    ? options.htmlAlerts.filter((x) => typeof x === "string" && x.trim().length > 8)
+    : [];
 
   const windStr =
     temp.wind.direction === "Calma" || temp.wind.speed == null || temp.wind.speed === 0
@@ -111,6 +123,8 @@ export function mapToSnapshot(
     scheduleRaw: typeof det.horario_atencion === "string" ? det.horario_atencion : "",
     rawStatus: est.estado,
     motivo,
+    motivoExtra,
+    htmlAlerts,
     vialidadRuta: typeof vial.ruta === "string" ? vial.ruta.trim() : "",
     vialidadTramo: typeof vial.tramo === "string" ? vial.tramo.trim() : "",
     vialidadEstado: typeof vial.estado === "string" ? vial.estado.trim() : "",
@@ -189,6 +203,10 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
       scheduleRaw: snapshot.scheduleRaw,
       rawStatus: snapshot.rawStatus,
       motivo: snapshot.motivo ?? undefined,
+      motivoExtra: snapshot.motivoExtra ?? undefined,
+      ...(snapshot.htmlAlerts && snapshot.htmlAlerts.length > 0
+        ? { htmlAlerts: [...snapshot.htmlAlerts] }
+        : {}),
       vialidadEstado: snapshot.vialidadEstado,
       vialidadObservaciones: snapshot.vialidadObservaciones,
       vialidadRuta: snapshot.vialidadRuta ?? "",

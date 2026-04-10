@@ -1,0 +1,66 @@
+---
+import PasoFullwidthSection from "@/components/pass-page/PasoFullwidthSection.astro";
+import PasoOperationalSection from "@/components/pass-page/PasoOperationalSection.astro";
+import PasoWeatherSection from "@/components/pass-page/PasoWeatherSection.astro";
+import type { ForecastItemView, PassView, WeatherNowView } from "@/types/pass-view";
+import type { PassStatusResult } from "@/utils/inferPassStatus";
+
+export interface Props {
+  slug: string;
+  view: PassView;
+  statusResult: PassStatusResult;
+  scheduleText: string;
+  lastUpdatedRelative: string;
+  officialUrl?: string;
+  now?: WeatherNowView;
+  forecast: ForecastItemView[];
+  showNow: boolean;
+  showForecast: boolean;
+  hideScheduleInDetails: boolean;
+  class?: string;
+}
+
+const {
+  slug,
+  view,
+  statusResult,
+  scheduleText,
+  lastUpdatedRelative,
+  officialUrl,
+  now,
+  forecast,
+  showNow,
+  showForecast,
+  hideScheduleInDetails,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={["paso-page-shell paso-page-wrapper", className]}>
+  <div class="paso-page-grid paso-grid">
+    <PasoOperationalSection
+      slug={slug}
+      view={view}
+      statusResult={statusResult}
+      scheduleText={scheduleText}
+      lastUpdatedRelative={lastUpdatedRelative}
+      officialUrl={officialUrl}
+    />
+
+    <PasoWeatherSection
+      now={now}
+      forecast={forecast}
+      scrapedAt={view.meta.scrapedAt}
+      showNow={showNow}
+      showForecast={showForecast}
+    />
+  </div>
+
+  <PasoFullwidthSection
+    view={view}
+    now={now}
+    forecast={forecast}
+    showNow={showNow}
+    hideScheduleInDetails={hideScheduleInDetails}
+  />
+</div>

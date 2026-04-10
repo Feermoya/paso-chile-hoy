@@ -185,6 +185,48 @@ export async function getLatestPassTweet(slug: string): Promise<PassLatestTweet 
   return null;
 }
 
+/**
+ * Primer ítem del RSS (sin filtrar por paso) para la home.
+ */
+export async function getLatestTweetForHome(): Promise<PassLatestTweet | null> {
+  for (const mirror of NITTER_MIRRORS) {
+    try {
+      const res = await fetch(`${mirror}/PasoCRMza/rss`, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; PasoChileHoy/1.0)",
+          Accept: "application/rss+xml, application/xml, text/xml",
+        },
+        signal: AbortSignal.timeout(8000),
+      });
+      if (!res.ok) continue;
+      const xml = await res.text();
+      const tweet = parseFirstRssItemToTweet(xml);
+      if (tweet) return tweet;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
+function parseFirstRssItemToTweet(xml: string): PassLatestTweet | null {
+  const itemMatch = xml.match(/<item>([\s\S]*?)<\/item>/i);
+  if (!itemMatch) return null;
+  const itemInner = itemMatch[1];
+  const text = extractTitleFromItem(itemInner);
+  if (!text || text.length < 10) return null;
+  const linkMatch = itemInner.match(/<link>([\s\S]*?)<\/link>/i);
+  const dateMatch = itemInner.match(/<pubDate>([\s\S]*?)<\/pubDate>/i);
+  const url = linkMatch?.[1]?.trim() ?? "";
+  const date = dateMatch?.[1]?.trim() ?? "";
+  return {
+    text,
+    date,
+    url: toXComUrl(url),
+    sentiment: tweetSentiment(text),
+  };
+}
+
 function pickFirstRelevantTweet(xml: string, slug: string): PassLatestTweet | null {
   const keywords = SLUG_KEYWORDS[slug] ?? [];
   const itemRegex = /<item>([\s\S]*?)<\/item>/gi;

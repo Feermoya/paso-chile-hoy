@@ -1,10 +1,12 @@
 ---
 export const prerender = false;
 
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import LatestTweet from "@/components/LatestTweet.astro";
 import PasoCard from "@/components/PasoCard.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
-import VersionBadge from "@/components/VersionBadge.astro";
 import { PASOS } from "@/data/pasos";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
@@ -12,6 +14,20 @@ import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
+import type { PassLatestTweet } from "@/types/pass-view";
+
+let homeLatestTweet: PassLatestTweet | null = null;
+try {
+  const tweetsPath = join(process.cwd(), "public", "snapshots", "tweets.json");
+  if (existsSync(tweetsPath)) {
+    const data = JSON.parse(readFileSync(tweetsPath, "utf-8")) as {
+      latestTweet?: PassLatestTweet | null;
+    };
+    homeLatestTweet = data.latestTweet ?? null;
+  }
+} catch {
+  homeLatestTweet = null;
+}
 
 type CardEntry = {
   slug: string;
@@ -69,9 +85,6 @@ const homeSchema = {
 <MainLayout {...meta} structuredData={homeSchema}>
   <div class="home-layout">
     <div class="home-hero">
-      <div class="mb-1 flex justify-end sm:hidden">
-        <VersionBadge compact />
-      </div>
       <div class="home-hero-text">
         <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
         <p class="home-subtitle">
@@ -106,6 +119,15 @@ const homeSchema = {
         );
       })}
     </div>
+
+    {
+      homeLatestTweet && (
+        <section class="home-twitter-section" aria-label="Últimas novedades oficiales en X">
+          <h2 class="home-twitter-heading">Últimas novedades oficiales</h2>
+          <LatestTweet tweet={homeLatestTweet} />
+        </section>
+      )
+    }
   </div>
 
   <SupportBlock />

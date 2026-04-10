@@ -1,0 +1,45 @@
+---
+export interface Props {
+  officialPassUrl: string;
+  slug: string;
+  class?: string;
+}
+
+const { officialPassUrl, slug, class: className } = Astro.props;
+---
+
+<div class:list={["paso-page-load-error container-main", className]}>
+  <div
+    class="paso-page-load-error-card rounded-[var(--radius-xl)] border border-[var(--color-border-default)] bg-surface-raised p-6 shadow-card sm:p-8"
+    role="alert"
+  >
+    <h2 class="paso-page-load-error-title font-display text-lg font-semibold text-ink">
+      Datos temporalmente no disponibles
+    </h2>
+    <p class="paso-page-load-error-text mt-2 text-sm leading-relaxed text-ink-muted">
+      No pudimos obtener la información del paso en este momento. Podés verificar el estado en la fuente
+      oficial.
+    </p>
+    <p class="paso-page-load-error-cta mt-4">
+      <a
+        href={officialPassUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-branded text-sm font-semibold"
+      >
+        Ver en la fuente oficial →
+      </a>
+    </p>
+    {
+      import.meta.env.DEV && (
+        <p class="paso-page-load-error-dev mt-4 text-xs leading-relaxed text-ink-muted">
+          Desarrollo: generá snapshot con{" "}
+          <code class="rounded-[var(--radius-sm)] bg-surface px-2 py-0.5 font-mono text-ink">
+            npm run update:pass -- {slug}
+          </code>
+          .
+        </p>
+      )
+    }
+  </div>
+</div>

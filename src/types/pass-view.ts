@@ -96,6 +96,10 @@ export interface PassView {
     /** Estado oficial del API (`ABIERTO` / `CERRADO` / `CONDICIONADO`). */
     rawStatus?: string;
     motivo?: string;
+    /** Informativo (API `motivo_cierre_extraordinario`); no altera el estado inferido. */
+    motivoExtra?: string;
+    /** Fragmentos “Atención” del HTML de detalle; deduplicados en UI respecto al JSON. */
+    htmlAlerts?: string[];
     vialidadEstado?: string;
     vialidadObservaciones?: string;
     /** Ruta nacional (p. ej. `7`) — Vialidad Nacional, informativo. */

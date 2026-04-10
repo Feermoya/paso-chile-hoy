@@ -6,7 +6,7 @@ import { writeFileSync } from "node:fs";
 import { createJiti } from "jiti";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { getPassCRTweets } from "../src/utils/twitterScraper.ts";
+import { getLatestTweetForHome, getPassCRTweets } from "../src/utils/twitterScraper.ts";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const jiti = createJiti(import.meta.url, {
@@ -55,14 +55,26 @@ async function main(): Promise<void> {
 
   try {
     console.log("[scrape] Fetching tweets from @PasoCRMza…");
-    const tweets = await getPassCRTweets();
+    const [tweets, latestTweet] = await Promise.all([getPassCRTweets(), getLatestTweetForHome()]);
     const outPath = path.join(root, "public", "snapshots", "tweets.json");
+    const updatedAt = new Date().toISOString();
     writeFileSync(
       outPath,
-      JSON.stringify({ tweets, fetchedAt: new Date().toISOString() }, null, 2),
+      JSON.stringify(
+        {
+          tweets,
+          latestTweet: latestTweet ?? null,
+          fetchedAt: updatedAt,
+          updatedAt,
+        },
+        null,
+        2,
+      ),
       "utf-8",
     );
-    console.log(`[scrape] tweets.json saved (${tweets.length} items)`);
+    console.log(
+      `[scrape] tweets.json saved (${tweets.length} items${latestTweet ? `, home tweet: ${latestTweet.text.slice(0, 48)}…` : ""})`,
+    );
   } catch (err) {
     console.error("[scrape] Twitter fetch failed (non-critical):", err);
   }

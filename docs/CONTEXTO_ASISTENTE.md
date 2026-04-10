@@ -32,10 +32,12 @@ public/snapshots/{slug}.json
 | Archivo | Rol |
 |--------|-----|
 | `src/layouts/MainLayout.astro` | `<html>`, meta, PWA, **`header` + `site-header`**, **`ticker-wrapper` + AlertTicker**, `<main>` con `<slot />`, scripts (SW, altura header, pull-refresh). |
-| `src/pages/[slug].astro` | Página de cada paso: carga snapshot, `inferPassStatus`, estructura **`paso-page-wrapper` → `paso-grid` → dos `section.paso-col` (izq / der con `paso-col--sticky`) → `paso-fullwidth`** (DrivingConditions, PassDetails, SupportBlock). |
+| `src/pages/[slug].astro` | Orquesta datos (snapshot, meta, JSON-LD). El markup por sección vive en **`src/components/pass-page/`** (`PasoPageShell`, columnas, error, SEO). |
 | `src/pages/index.astro` | Home: cards por paso, otro uso de SupportBlock; **no** repite el grid de `[slug].astro`. |
 
-**Importante**: `WeatherForecast` y `WeatherNow` solo viven en la **columna derecha** sticky en `[slug].astro` (salvo que en el futuro se muevan).
+**Importante**: `WeatherForecast` y `WeatherNow` se montan desde **`PasoWeatherSection.astro`** (columna sticky del paso).
+
+**`src/components/pass-page/`** (página de cada paso): `PasoPageVersionRow`, `PasoPageLoadError`, `PasoOperationalSection`, `PasoWeatherSection`, `PasoFullwidthSection`, `PasoPageShell` (wrapper grid + fullwidth), `PasoPageSeoBlock`. Estilos por bloque: clases con prefijo `paso-page-*` en cada `.astro` para poder afinar sin tocar `[slug].astro`.
 
 ---
 

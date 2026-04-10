@@ -1,32 +1,20 @@
 ---
-import AlertsBlock from "@/components/AlertsBlock.astro";
-import DrivingConditions from "@/components/DrivingConditions.astro";
-import LatestTweet from "@/components/LatestTweet.astro";
-import StatusGuide from "@/components/StatusGuide.astro";
-import VersionBadge from "@/components/VersionBadge.astro";
-import PassDetails from "@/components/PassDetails.astro";
-import StatusHero from "@/components/StatusHero.astro";
-import SupportBlock from "@/components/SupportBlock.astro";
-import TwitterAlerts from "@/components/TwitterAlerts.astro";
-import WeatherForecast from "@/components/WeatherForecast.astro";
-import WeatherNow from "@/components/WeatherNow.astro";
+import PasoPageLoadError from "@/components/pass-page/PasoPageLoadError.astro";
+import PasoPageSeoBlock from "@/components/pass-page/PasoPageSeoBlock.astro";
+import PasoPageShell from "@/components/pass-page/PasoPageShell.astro";
+import PasoPageVersionRow from "@/components/pass-page/PasoPageVersionRow.astro";
 import { buildArgentinaPassSourceUrl, getPasoBySlug } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
-import type { PassView, WeatherNowView } from "@/types/pass-view";
-import type { DrivingWeatherInput } from "@/utils/drivingConditions";
+import type { PassView } from "@/types/pass-view";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 import { inferPassStatus } from "@/utils/inferPassStatus";
+import { buildPassTouristAttractionSchema } from "@/utils/passPageSchema";
 import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
-import {
-  buildPassPageMeta,
-  passAlternateNames,
-  SITE_URL,
-  type PassStatus,
-} from "@/utils/seo";
+import { buildPassPageMeta, type PassStatus } from "@/utils/seo";
 
 export const prerender = false;
 
@@ -111,77 +99,11 @@ const meta = buildPassPageMeta({
   regionLabel: regionLabelForMeta,
 });
 
-function openingHoursSpecs(schedule: string): Array<Record<string, unknown>> {
-  const s = schedule.trim();
-  if (!s) return [];
-  const cleaned = s.replace(/\s*h\.?\s*$/i, "").trim();
-  const parts = cleaned.split(/[-–]/).map((p) => p.trim()).filter(Boolean);
-  if (parts.length < 2 || !parts[0] || !parts[1]) return [];
-  return [
-    {
-      "@type": "OpeningHoursSpecification",
-      opens: parts[0],
-      closes: parts[1],
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-    },
-  ];
-}
-
-function buildDrivingWeatherInput(now: WeatherNowView): DrivingWeatherInput {
-  const visInput: number | string | null =
-    typeof now.visibilityKm === "number"
-      ? now.visibilityKm
-      : now.visibilityText?.trim()
-        ? now.visibilityText.trim()
-        : null;
-  return {
-    temperatureC: now.temperatureC ?? null,
-    wind: now.wind ?? null,
-    visibilityKm: visInput,
-    description: now.description ?? "",
-  };
-}
-
-const passSchema: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "TouristAttraction",
-  name: pasoConfig.name,
-  alternateName: passAlternateNames(pasoConfig.slug, pasoConfig.shortName, pasoConfig.name),
-  description: `Paso internacional entre ${pasoConfig.localityAR} (Argentina) y ${pasoConfig.localityCL} (Chile). Estado en tiempo real del cruce fronterizo.`,
-  url: `${SITE_URL}/${pasoConfig.slug}`,
-  image: `${SITE_URL}/og-image.png`,
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: pasoConfig.lat,
-    longitude: pasoConfig.lng,
-    elevation: pasoConfig.altitudeM,
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: pasoConfig.localityAR,
-    addressRegion: pasoConfig.provinceAR,
-    addressCountry: "AR",
-  },
-  openingHoursSpecification: openingHoursSpecs(scheduleText),
-  ...(displayStatus !== "sin_datos" && {
-    offers: {
-      "@type": "Offer",
-      name: `Estado actual: ${displayStatus}`,
-      availability:
-        displayStatus === "abierto"
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
-    },
-  }),
-};
+const passSchema = buildPassTouristAttractionSchema({
+  paso: pasoConfig,
+  scheduleText,
+  displayStatus,
+});
 ---
 
 <MainLayout
@@ -193,129 +115,29 @@ const passSchema: Record<string, unknown> = {
   geoPlacename={geoPlacename}
   geoPosition={geoPositionMeta}
 >
-  <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
-    <div class="container-main flex justify-end sm:hidden">
-      <VersionBadge compact />
-    </div>
-    {snapshotLoadFailed && (
-      <div class="container-main">
-        <div
-          class="rounded-[var(--radius-xl)] border border-[var(--color-border-default)] bg-surface-raised p-6 shadow-card sm:p-8"
-          role="alert"
-        >
-          <h2 class="font-display text-lg font-semibold text-ink">Datos temporalmente no disponibles</h2>
-          <p class="mt-2 text-sm leading-relaxed text-ink-muted">
-            No pudimos obtener la información del paso en este momento. Podés verificar el estado en la fuente
-            oficial.
-          </p>
-          <p class="mt-4">
-            <a
-              href={officialPassUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link-branded text-sm font-semibold"
-            >
-              Ver en la fuente oficial →
-            </a>
-          </p>
-          {import.meta.env.DEV && (
-            <p class="mt-4 text-xs leading-relaxed text-ink-muted">
-              Desarrollo: generá snapshot con{" "}
-              <code class="rounded-[var(--radius-sm)] bg-surface px-2 py-0.5 font-mono text-ink">
-                npm run update:pass -- {slug}
-              </code>
-              .
-            </p>
-          )}
-        </div>
-      </div>
-    )}
+  <div class="paso-page-root flex w-full min-w-0 flex-col gap-4 md:gap-6">
+    <PasoPageVersionRow />
 
-    {view && (
-      <div class="paso-page-wrapper">
-        <div class="paso-grid">
-          <section class="paso-col" aria-label="Estado operativo">
-            {statusResult && (
-              <StatusHero
-                class="anim-section anim-delay-1"
-                slug={slug}
-                status={statusResult.status}
-                displayLabel={statusResult.displayLabel}
-                passName={view.title}
-                schedule={scheduleText}
-                lastUpdatedRelative={lastRel}
-                officialUrl={officialUrl}
-                opensInMinutes={statusResult.opensInMinutes}
-                closesInMinutes={statusResult.closesInMinutes}
-              />
-            )}
+    {snapshotLoadFailed && <PasoPageLoadError officialPassUrl={officialPassUrl} slug={slug} />}
 
-            <StatusGuide />
-
-            <AlertsBlock
-              class="anim-section anim-delay-2"
-              motivo={view.operationalInfo.motivo ?? null}
-              vialidadRuta={view.operationalInfo.vialidadRuta ?? ""}
-              vialidadTramo={view.operationalInfo.vialidadTramo ?? ""}
-              vialidadEstado={view.operationalInfo.vialidadEstado ?? "HABILITADA"}
-              vialidadObservaciones={view.operationalInfo.vialidadObservaciones ?? ""}
-            />
-
-            <LatestTweet tweet={view.meta.latestTweet} />
-
-            <TwitterAlerts passSlug={slug} />
-          </section>
-
-          <section class="paso-col paso-col--sticky" aria-label="Condiciones climáticas">
-            {showNow && now && (
-              <WeatherNow
-                class="anim-section anim-delay-3"
-                weather={now}
-                forecast={forecast}
-                updatedAt={now.providerNote}
-                scrapedAt={view.meta.scrapedAt}
-                includeDriving={false}
-              />
-            )}
-
-            {showForecast && (
-              <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />
-            )}
-          </section>
-        </div>
-
-        <div class="paso-fullwidth">
-          {showNow && now && (
-            <DrivingConditions
-              class="anim-section anim-delay-3"
-              weather={buildDrivingWeatherInput(now)}
-              forecast={forecast}
-            />
-          )}
-
-          <PassDetails
-            class="anim-section anim-delay-5"
-            view={view}
-            hideScheduleInDetails={Boolean(scheduleText.trim())}
-          />
-
-          <SupportBlock />
-        </div>
-      </div>
-    )}
+    {
+      view && statusResult && (
+        <PasoPageShell
+          slug={slug}
+          view={view}
+          statusResult={statusResult}
+          scheduleText={scheduleText}
+          lastUpdatedRelative={lastRel}
+          officialUrl={officialUrl}
+          now={now}
+          forecast={forecast}
+          showNow={showNow}
+          showForecast={showForecast}
+          hideScheduleInDetails={Boolean(scheduleText.trim())}
+        />
+      )
+    }
   </div>
 
-  <section class="seo-content seo-content--pass">
-    <h2>Sobre el {pasoConfig.name}</h2>
-    <p>
-      El {pasoConfig.name} conecta {pasoConfig.localityAR} ({pasoConfig.provinceAR},
-      Argentina) con {pasoConfig.localityCL} (Chile). Se encuentra a{" "}
-      {pasoConfig.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de
-      los Andes.
-    </p>
-    <p>
-      Esta página muestra el estado actual del paso según el mismo API público que usa el sitio oficial del
-      Ministerio de Seguridad de la Nación Argentina. La información se actualiza automáticamente.
-    </p>
-  </section>
+  <PasoPageSeoBlock paso={pasoConfig} />
 </MainLayout>

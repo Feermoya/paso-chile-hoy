@@ -1,0 +1,36 @@
+---
+import WeatherForecast from "@/components/WeatherForecast.astro";
+import WeatherNow from "@/components/WeatherNow.astro";
+import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
+
+export interface Props {
+  now?: WeatherNowView;
+  forecast: ForecastItemView[];
+  scrapedAt?: string;
+  showNow: boolean;
+  showForecast: boolean;
+  class?: string;
+}
+
+const { now, forecast, scrapedAt, showNow, showForecast, class: className } = Astro.props;
+---
+
+<section
+  class:list={["paso-page-weather paso-col paso-col--sticky", className]}
+  aria-label="Condiciones climáticas"
+>
+  {
+    showNow && now && (
+      <WeatherNow
+        class="anim-section anim-delay-3"
+        weather={now}
+        forecast={forecast}
+        updatedAt={now.providerNote}
+        scrapedAt={scrapedAt}
+        includeDriving={false}
+      />
+    )
+  }
+
+  {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
+</section>
