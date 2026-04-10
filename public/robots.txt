@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# No indexar la página legal ni rutas de API
+Disallow: /legal
+Disallow: /api/
+Disallow: /_astro/
+
 Sitemap: https://pasochilehoy.com/sitemap.xml

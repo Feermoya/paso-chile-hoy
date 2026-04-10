@@ -2,9 +2,10 @@
 import PasoCard from "@/components/PasoCard.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
 import { PASOS } from "@/data/pasos";
+import MainLayout from "@/layouts/MainLayout.astro";
 import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
-import MainLayout from "@/layouts/MainLayout.astro";
+import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 
@@ -37,14 +38,33 @@ const cards: CardEntry[] = await Promise.all(
 );
 
 const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
+
+const meta = buildHomeMeta();
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Pasos internacionales Mendoza a Chile",
+  description:
+    "Lista de pasos internacionales entre Mendoza, Argentina y Chile con estado en tiempo real.",
+  numberOfItems: PASOS.filter((p) => p.active).length,
+  itemListElement: PASOS.filter((p) => p.active).map((paso, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: paso.name,
+    url: `${SITE_URL}/${paso.slug}`,
+  })),
+};
 ---
 
 <MainLayout
-  htmlTitle="Paso Chile Hoy — Estado de pasos internacionales Mendoza–Chile"
-  description="Estado en tiempo real del Paso Cristo Redentor y pasos internacionales entre Mendoza y Chile. Horario, clima y condiciones según fuentes públicas de Argentina.gob.ar."
-  canonicalPath="/"
-  ogTitle="Paso Chile Hoy — Pasos a Chile"
-  ogDescription="Estado inferido y clima de los pasos internacionales Mendoza–Chile. Datos públicos de Argentina.gob.ar."
+  title={meta.title}
+  description={meta.description}
+  ogTitle={meta.ogTitle}
+  ogDescription={meta.ogDescription}
+  ogImage={meta.ogImage}
+  canonical={meta.canonical}
+  structuredData={homeSchema}
 >
   <div class="home-layout">
     <div class="home-hero">
@@ -71,6 +91,32 @@ const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
       })}
     </div>
   </div>
+
+  <section class="seo-content seo-content--home" aria-label="Información sobre los pasos a Chile">
+    <h2>Pasos internacionales entre Mendoza y Chile</h2>
+    <p>
+      Paso Chile Hoy muestra el estado en tiempo real de los principales pasos internacionales entre la
+      provincia de Mendoza, Argentina, y Chile. El <strong>Paso Sistema Cristo Redentor</strong> (también
+      conocido como Paso Los Libertadores) es el principal cruce terrestre entre ambos países, ubicado a
+      3.200 metros sobre el nivel del mar entre Villa Las Cuevas (AR) y Los Andes (CL).
+    </p>
+    <p>
+      El estado del paso, su horario de funcionamiento, las condiciones climáticas y las alertas de
+      Vialidad Nacional y Gendarmería Nacional se actualizan automáticamente desde la fuente oficial del
+      Ministerio de Seguridad de la Nación Argentina.
+    </p>
+    <h3>¿Cuándo está abierto el Paso Cristo Redentor?</h3>
+    <p>
+      El horario habitual es de 09:00 a 21:00 h desde el lado argentino. Durante el verano puede operar
+      las 24 horas. El paso puede cerrarse sin previo aviso por nevadas, vientos fuertes o condiciones
+      meteorológicas adversas en la alta montaña.
+    </p>
+    <h3>Otros pasos desde Mendoza</h3>
+    <p>
+      El <strong>Paso Pehuenche</strong> conecta Malargüe (AR) con Talca (CL) y el{" "}
+      <strong>Paso El Sosneado</strong> une San Rafael con Curicó. Próximamente disponibles en esta web.
+    </p>
+  </section>
 
   <SupportBlock slot="before-footer" />
 </MainLayout>

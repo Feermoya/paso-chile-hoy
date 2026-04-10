@@ -1,40 +1,20 @@
 ---
 import FirebaseAnalytics from "@/components/FirebaseAnalytics.astro";
 import Footer from "@/components/Footer.astro";
+import { SITE_NAME } from "@/utils/seo";
 import "@/styles/global.css";
 
 export interface Props {
-  /** Título corto (p. ej. nombre del paso); si no pasás `htmlTitle`, se concatena con el nombre del sitio. */
-  title?: string;
-  description?: string;
-  canonicalPath?: string;
-  headerAltitudeM?: number;
+  title: string;
+  description: string;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
-  /** Contenido exacto de `<title>` (recomendado para SEO fino). */
-  htmlTitle?: string;
+  canonical?: string;
   noindex?: boolean;
-  /** JSON-LD adicional (p. ej. TouristAttraction en página de paso). */
-  headJsonLd?: Record<string, unknown>[];
+  structuredData?: Record<string, unknown>;
+  headerAltitudeM?: number;
 }
-
-const siteName = import.meta.env.PUBLIC_SITE_NAME?.trim() || "Paso Chile Hoy";
-const defaultDescription =
-  "Estado en tiempo real del Paso Cristo Redentor y pasos internacionales entre Mendoza y Chile. Horario, clima y condiciones de la ruta.";
-
-const {
-  title = siteName,
-  description = defaultDescription,
-  canonicalPath = "/",
-  headerAltitudeM = 3200,
-  ogTitle,
-  ogDescription,
-  ogImage: ogImageProp,
-  htmlTitle,
-  noindex = false,
-  headJsonLd = [],
-} = Astro.props;
 
 function baseUrl(): string {
   const env = import.meta.env.PUBLIC_SITE_URL?.trim();
@@ -45,30 +25,42 @@ function baseUrl(): string {
 }
 
 const siteUrl = baseUrl();
-const pathNorm = canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`;
-const canonical = `${siteUrl}${pathNorm === "//" ? "/" : pathNorm}`;
 
-const pageTitleCompound = title === siteName ? siteName : `${title} · ${siteName}`;
-const documentTitle = htmlTitle ?? pageTitleCompound;
+const {
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogImage: ogImageProp,
+  canonical: canonicalProp,
+  noindex = false,
+  structuredData,
+  headerAltitudeM = 3200,
+} = Astro.props;
 
-const ogTitleFinal = ogTitle ?? (htmlTitle ?? pageTitleCompound);
-const ogDescriptionFinal = ogDescription ?? description;
-
-const ogImageFinal = ogImageProp ?? `${siteUrl}/logo.png`;
+const canonical = canonicalProp ?? `${siteUrl}/`;
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDesc = ogDescription ?? description;
+const ogImageFinal = ogImageProp ?? `${siteUrl}/og-image.png`;
 const ogImageAltDefault = "Paso Chile Hoy — Estado del paso a Chile";
 
-const websiteJsonLd = {
+const websiteSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: siteName,
+  name: SITE_NAME,
   url: `${siteUrl}/`,
   description:
-    "Estado en tiempo real del Paso Cristo Redentor y pasos internacionales entre Mendoza y Chile.",
+    "Estado en tiempo real del Paso Cristo Redentor y pasos internacionales Mendoza-Chile.",
   inLanguage: "es-AR",
   publisher: {
     "@type": "Person",
     name: "Fernando Moya",
     email: "fmoya97.fm@gmail.com",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteUrl}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -84,16 +76,33 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
 
-    <title>{documentTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta
+        name="robots"
+        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      />
+    )}
+
+    <meta name="geo.region" content="AR-M" />
+    <meta name="geo.placename" content="Mendoza, Argentina" />
+    <meta name="geo.position" content="-32.8211;-69.9232" />
+    <meta name="ICBM" content="-32.8211, -69.9232" />
+
+    <meta http-equiv="content-language" content="es-AR" />
+    <link rel="alternate" hreflang="es-AR" href={canonical} />
+    <link rel="alternate" hreflang="es" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={siteName} />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={ogTitleFinal} />
-    <meta property="og:description" content={ogDescriptionFinal} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDesc} />
     <meta property="og:image" content={ogImageFinal} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -101,8 +110,8 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
     <meta property="og:locale" content="es_AR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={ogTitleFinal} />
-    <meta name="twitter:description" content={ogDescriptionFinal} />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDesc} />
     <meta name="twitter:image" content={ogImageFinal} />
 
     <meta name="theme-color" content="#0A0C10" />
@@ -110,11 +119,12 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Paso Chile" />
-    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any" />
+    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon_io/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="/favicon_io/favicon-32x32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon_io/site.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -125,10 +135,10 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
 
     <meta name="generator" content={Astro.generator} />
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
-    {headJsonLd.map((obj) => (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(obj)} />
-    ))}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {structuredData && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
   </head>
   <body class="min-h-dvh bg-page">
     <div class="relative z-[1] flex min-h-dvh flex-col">

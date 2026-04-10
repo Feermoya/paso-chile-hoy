@@ -3,41 +3,36 @@ import { PASOS } from "@/data/pasos";
 
 export const prerender = true;
 
-function siteOrigin(): string {
-  const env = import.meta.env.PUBLIC_SITE_URL?.trim();
-  if (env) return env.replace(/\/$/, "");
-  if (import.meta.env.SITE) return String(import.meta.env.SITE).replace(/\/$/, "");
-  return "https://pasochilehoy.com";
+const SITE = "https://pasochilehoy.com";
+
+function url(path: string, priority: string, changefreq: string, lastmod?: string) {
+  return `
+  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+    ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}
+  </url>`;
 }
 
 export const GET: APIRoute = () => {
-  const base = siteOrigin();
-  const urls = [
-    { loc: `${base}/`, priority: "1.0", changefreq: "hourly" as const },
-    ...PASOS.filter((p) => p.active).map((p) => ({
-      loc: `${base}/${p.slug}`,
-      priority: "0.9",
-      changefreq: "hourly" as const,
-    })),
-  ];
+  const today = new Date().toISOString().split("T")[0];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (u) => `  <url>
-    <loc>${u.loc}</loc>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`,
-  )
-  .join("\n")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+${url("/", "1.0", "hourly", today)}
+${PASOS.filter((p) => p.active)
+  .map((p) => url(`/${p.slug}`, "0.9", "hourly", today))
+  .join("")}
 </urlset>`;
 
-  return new Response(xml, {
+  return new Response(xml.trim(), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
     },
   });
 };

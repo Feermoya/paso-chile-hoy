@@ -14,6 +14,12 @@ import type { PassView } from "@/types/pass-view";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
+import {
+  buildPassPageMeta,
+  passAlternateNames,
+  SITE_URL,
+  type PassStatus,
+} from "@/utils/seo";
 
 export async function getStaticPaths() {
   return getActivePasos().map((p) => ({ params: { slug: p.slug } }));
@@ -73,75 +79,60 @@ if (import.meta.env.DEV && view && statusResult) {
   console.log("=========================");
 }
 
-function siteBase(): string {
-  const env = import.meta.env.PUBLIC_SITE_URL?.trim();
-  if (env) return env.replace(/\/$/, "");
-  const site = import.meta.env.SITE?.trim();
-  if (site) return site.replace(/\/$/, "");
-  return "https://pasochilehoy.com";
-}
+const displayStatus = (statusResult?.status ?? "sin_datos") as PassStatus;
 
-const baseUrl = siteBase();
+const scheduleForMeta = scheduleText
+  ? scheduleText.replace(/\s+h\.?\s*$/i, "").trim() || null
+  : null;
 
-const displayStatus = statusResult?.status ?? "sin_datos";
-const statusLabel: Record<string, string> = {
-  abierto: "ABIERTO",
-  condicionado: "CONDICIONADO",
-  cerrado: "CERRADO",
-  sin_datos: "Sin datos",
-};
+const tempC =
+  now?.temperatureC != null && Number.isFinite(now.temperatureC) ? now.temperatureC : null;
+const weatherDescMeta = now?.description?.trim() || null;
 
-const pageHtmlTitle = `${pasoConfig.shortName} — ${statusLabel[displayStatus] ?? "Sin datos"} | Paso Chile Hoy`;
+const freshnessLabel = lastRel || "cuando hay datos nuevos";
 
-const weatherDesc = now?.description?.trim() || "—";
-const weatherTemp =
-  now?.temperatureC != null && Number.isFinite(now.temperatureC) ? `${now.temperatureC}°C` : "";
-const freshnessLabel = lastRel || "sin datos de actualización";
+const meta = buildPassPageMeta({
+  passName: pasoConfig.name,
+  passSlug: pasoConfig.slug,
+  status: displayStatus,
+  schedule: scheduleForMeta,
+  tempC,
+  weatherDesc: weatherDescMeta,
+  freshnessLabel,
+});
 
-const pageMetaDescription = `Estado actual del ${pasoConfig.name}: ${statusLabel[displayStatus] ?? "Sin datos"}. Horario ${scheduleText || "no disponible"}. Clima: ${weatherDesc}${weatherTemp ? ` ${weatherTemp}` : ""}. Actualizado hace ${freshnessLabel}.`;
-
-const statusEmoji: Record<string, string> = {
-  abierto: "✅",
-  condicionado: "⚠️",
-  cerrado: "🔴",
-  sin_datos: "⚪",
-};
-const statusOgLabel: Record<string, string> = {
-  abierto: "ABIERTO",
-  condicionado: "CONDICIONADO",
-  cerrado: "CERRADO",
-  sin_datos: "SIN DATOS",
-};
-const ogTitlePass =
-  view && statusResult
-    ? `${statusEmoji[statusResult.status] ?? "⚪"} ${pasoConfig.shortName} — ${statusOgLabel[statusResult.status] ?? "ESTADO"}`
-    : `${pasoConfig.shortName} — Paso Chile Hoy`;
-
-const ogDescriptionPass = view
-  ? `Horario: ${scheduleText || "No disponible"} · Clima: ${weatherDesc}${weatherTemp ? ` ${weatherTemp}` : ""}`
-  : pageMetaDescription;
-
-function openingHoursFromSchedule(schedule: string): Array<Record<string, string>> {
+function openingHoursSpecs(schedule: string): Array<Record<string, unknown>> {
   const s = schedule.trim();
   if (!s) return [];
-  const sep = s.includes("–") ? "–" : "-";
-  const parts = s.split(sep).map((p) => p.trim()).filter(Boolean);
+  const cleaned = s.replace(/\s*h\.?\s*$/i, "").trim();
+  const parts = cleaned.split(/[-–]/).map((p) => p.trim()).filter(Boolean);
   if (parts.length < 2 || !parts[0] || !parts[1]) return [];
   return [
     {
       "@type": "OpeningHoursSpecification",
       opens: parts[0],
       closes: parts[1],
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
     },
   ];
 }
 
-const attractionJsonLd: Record<string, unknown> = {
+const passSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
   name: pasoConfig.name,
-  description: `Estado y condiciones del ${pasoConfig.name} entre Mendoza, Argentina y Chile`,
-  url: `${baseUrl}/${pasoConfig.slug}`,
+  alternateName: passAlternateNames(pasoConfig.slug, pasoConfig.shortName, pasoConfig.name),
+  description: `Paso internacional entre ${pasoConfig.localityAR} (Argentina) y ${pasoConfig.localityCL} (Chile). Estado en tiempo real del cruce fronterizo.`,
+  url: `${SITE_URL}/${pasoConfig.slug}`,
+  image: `${SITE_URL}/og-image.png`,
   geo: {
     "@type": "GeoCoordinates",
     latitude: pasoConfig.lat,
@@ -154,18 +145,29 @@ const attractionJsonLd: Record<string, unknown> = {
     addressRegion: "Mendoza",
     addressCountry: "AR",
   },
-  openingHoursSpecification: openingHoursFromSchedule(scheduleText),
+  openingHoursSpecification: openingHoursSpecs(scheduleText),
+  ...(displayStatus !== "sin_datos" && {
+    offers: {
+      "@type": "Offer",
+      name: `Estado actual: ${displayStatus}`,
+      availability:
+        displayStatus === "abierto"
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+    },
+  }),
 };
 ---
 
 <MainLayout
-  htmlTitle={pageHtmlTitle}
-  description={pageMetaDescription}
-  canonicalPath={`/${slug}`}
+  title={meta.title}
+  description={meta.description}
+  ogTitle={meta.ogTitle}
+  ogDescription={meta.ogDescription}
+  ogImage={meta.ogImage}
+  canonical={meta.canonical}
+  structuredData={passSchema}
   headerAltitudeM={pasoConfig.altitudeM}
-  ogTitle={ogTitlePass}
-  ogDescription={ogDescriptionPass}
-  headJsonLd={[attractionJsonLd]}
 >
   <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
     {loadError && (
@@ -234,6 +236,21 @@ const attractionJsonLd: Record<string, unknown> = {
       </div>
     )}
   </div>
+
+  <section class="seo-content seo-content--pass">
+    <h2>Sobre el {pasoConfig.name}</h2>
+    <p>
+      El {pasoConfig.name} es el principal paso internacional entre {pasoConfig.localityAR}, Mendoza,
+      Argentina, y {pasoConfig.localityCL}, Chile. Se encuentra a{" "}
+      {pasoConfig.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de
+      los Andes.
+    </p>
+    <p>
+      Esta página muestra el estado actual del paso inferido a partir de la información publicada por
+      Gendarmería Nacional y Vialidad Nacional en el sitio oficial del Ministerio de Seguridad de la
+      Nación Argentina. La información se actualiza automáticamente.
+    </p>
+  </section>
 
   <SupportBlock slot="before-footer" />
 </MainLayout>
