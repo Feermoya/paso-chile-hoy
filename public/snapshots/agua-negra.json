@@ -15,46 +15,46 @@
   "vialidadObservaciones": "Transitable",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 22.5,
-    "description": "Parcialmente nublado con humo",
-    "wind": "Este 4 km/h",
+    "temperatureC": 16,
+    "description": "Soleado",
+    "wind": "E 20 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:52",
-    "sunset": "19:24",
-    "updatedAt": "2026-04-10T15:00:00-03:00"
+    "sunrise": "07:54",
+    "sunset": "19:23",
+    "updatedAt": "2026-04-10T22:29:23.254Z"
   },
   "contact": "(2647) 420473",
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T22:02:51.404Z",
+  "scrapedAt": "2026-04-10T22:29:23.254Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": 10,
-      "wind": "SO a 0-2 km/h",
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 13,
+      "wind": "NE 10 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Algo nublado",
-      "temperatureC": 16,
-      "wind": "SO a 0-2 km/h",
+      "description": "Despejado",
+      "temperatureC": 9,
+      "wind": "WNW 5 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 15,
+      "wind": "SE 6 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": 23,
-      "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Algo nublado",
-      "temperatureC": 14,
-      "wind": "SE a 7-12 km/h",
+      "description": "Soleado",
+      "temperatureC": 19,
+      "wind": "ENE 9 km/h",
       "visibility": "Buena"
     }
   ]

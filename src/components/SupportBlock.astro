@@ -1,11 +1,9 @@
 ---
 const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
-/** Base mostrada la primera vez en este navegador (podés subirlo cuando quieras). */
-const baseLikes = 47;
 ---
 
 <section class="support-block-section" aria-label="Apoyo al proyecto">
-  <div class="support-block" id="support-block" data-base-likes={baseLikes}>
+  <div class="support-block" id="support-block">
     <div class="support-main">
       <div class="support-text">
         <p class="support-title">¿Te fue útil?</p>
@@ -53,67 +51,70 @@ const baseLikes = 47;
 
 <script>
   (function () {
-    const LIKES_KEY = "paso-chile-hoy-likes";
-    const USER_LIKED_KEY = "paso-chile-hoy-user-liked";
+    const USER_LIKED_KEY = "pch-liked";
 
-    function init() {
+    async function init() {
       const btn = document.getElementById("support-like-btn");
       const countEl = document.getElementById("support-like-count");
-      const block = document.getElementById("support-block");
-      if (!btn || !countEl || !block || !(btn instanceof HTMLButtonElement)) return;
+      if (!btn || !countEl || !(btn instanceof HTMLButtonElement)) return;
 
-      const base = parseInt(block.getAttribute("data-base-likes") ?? "0", 10) || 0;
-
-      function readCount() {
-        const v = localStorage.getItem(LIKES_KEY);
-        if (v != null) {
-          const n = parseInt(v, 10);
-          if (!Number.isNaN(n)) return n;
+      async function loadCount(el: HTMLElement) {
+        try {
+          const res = await fetch("/api/likes");
+          const data = (await res.json()) as { likes?: number };
+          const n = typeof data.likes === "number" ? data.likes : 0;
+          el.textContent = n > 0 ? String(n) : "0";
+        } catch {
+          el.textContent = "···";
         }
-        return base;
       }
 
-      function writeCount(n: number) {
-        localStorage.setItem(LIKES_KEY, String(n));
-      }
+      await loadCount(countEl);
 
-      function hasUserLiked(): boolean {
-        return localStorage.getItem(USER_LIKED_KEY) === "true";
-      }
-
-      function setUserLiked() {
-        localStorage.setItem(USER_LIKED_KEY, "true");
-      }
-
-      const current = readCount();
-      countEl.textContent = String(current);
-
-      if (hasUserLiked()) {
+      if (localStorage.getItem(USER_LIKED_KEY)) {
         btn.classList.add("support-like-btn--active");
         btn.setAttribute("aria-label", "Ya marcaste esto como útil");
         btn.disabled = true;
+      } else {
+        btn.classList.remove("support-like-btn--active");
+        btn.setAttribute("aria-label", "Marcar como útil");
+        btn.disabled = false;
       }
 
-      btn.addEventListener("click", () => {
-        if (hasUserLiked()) return;
+      if (btn.dataset.pchLikesBound === "1") return;
+      btn.dataset.pchLikesBound = "1";
 
-        const newCount = readCount() + 1;
-        writeCount(newCount);
-        setUserLiked();
+      btn.addEventListener("click", async () => {
+        if (localStorage.getItem(USER_LIKED_KEY)) return;
 
-        countEl.textContent = String(newCount);
-        btn.classList.add("support-like-btn--active");
-        btn.setAttribute("aria-label", "Ya marcaste esto como útil");
         btn.disabled = true;
+        btn.classList.add("support-like-btn--active");
 
-        btn.style.transform = "scale(1.12)";
-        setTimeout(() => {
-          btn.style.transform = "";
-        }, 200);
+        try {
+          const res = await fetch("/api/likes", { method: "POST" });
+          const data = (await res.json()) as { likes?: number };
+          if (typeof data.likes === "number") {
+            countEl.textContent = String(data.likes);
+          }
+          localStorage.setItem(USER_LIKED_KEY, "true");
+          btn.setAttribute("aria-label", "Ya marcaste esto como útil");
+
+          btn.animate(
+            [
+              { transform: "scale(1)" },
+              { transform: "scale(1.25)" },
+              { transform: "scale(1)" },
+            ],
+            { duration: 300, easing: "ease-out" },
+          );
+        } catch {
+          btn.disabled = false;
+          btn.classList.remove("support-like-btn--active");
+        }
       });
     }
 
-    init();
-    document.addEventListener("astro:page-load", init);
+    void init();
+    document.addEventListener("astro:page-load", () => void init());
   })();
 </script>

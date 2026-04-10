@@ -12,6 +12,10 @@ export interface PasoConfig {
   lng: number;
   active: boolean;
   comingSoon?: boolean;
+  /** Fuente de clima para el snapshot (por defecto SMN vía API oficial). */
+  climaSource?: "smn" | "wttr";
+  /** Query para wttr.in (ej. `Las+Flores,San+Juan,Argentina`). */
+  wttrQuery?: string;
 }
 
 export const PASOS: PasoConfig[] = [
@@ -58,6 +62,8 @@ export const PASOS: PasoConfig[] = [
     lng: -69.23614,
     active: true,
     comingSoon: false,
+    climaSource: "wttr",
+    wttrQuery: "Las+Flores,San+Juan,Argentina",
   },
 ];
 

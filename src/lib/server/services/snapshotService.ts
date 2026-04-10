@@ -1,6 +1,7 @@
 import { getPasoBySlug } from "@/data/pasos";
 import { snapshotFreshMs } from "@/lib/server/config/snapshotPolicy";
 import { fetchConsolidado, fetchClima, fetchDetailHTML } from "@/lib/server/apiClient";
+import { fetchWttrClimaForPaso } from "@/lib/server/wttrClient";
 import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
@@ -72,14 +73,29 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
     throw new Error("UNKNOWN_SLUG");
   }
 
-  const [consolidado, clima, htmlDetail] = await Promise.all([
+  const [consolidado, htmlDetail] = await Promise.all([
     fetchConsolidado(cfg.routeId),
-    fetchClima(String(cfg.lat), String(cfg.lng)),
     fetchDetailHTML(cfg.routeId, cfg.routeSlug),
   ]);
 
-  const forecast = parseForecastFromHTML(htmlDetail);
+  const forecastFromHtml = parseForecastFromHTML(htmlDetail);
   const htmlAlerts = extractAlertsFromDetailHTML(htmlDetail);
+
+  let clima: Awaited<ReturnType<typeof fetchClima>>;
+  let forecast = forecastFromHtml;
+
+  if (cfg.climaSource === "wttr" && cfg.wttrQuery) {
+    const wttr = await fetchWttrClimaForPaso(cfg.wttrQuery, cfg.lat, cfg.lng);
+    if (wttr) {
+      clima = wttr.clima;
+      forecast = wttr.forecast.length ? wttr.forecast : forecastFromHtml;
+    } else {
+      clima = await fetchClima(String(cfg.lat), String(cfg.lng));
+    }
+  } else {
+    clima = await fetchClima(String(cfg.lat), String(cfg.lng));
+  }
+
   const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast, { htmlAlerts });
 
   try {
