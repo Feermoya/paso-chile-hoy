@@ -12,7 +12,7 @@ export const SITE_NAME =
   import.meta.env.PUBLIC_SITE_NAME?.trim() || "Paso Chile Hoy";
 
 export const SITE_DESCRIPTION =
-  "Estado en tiempo real del Paso Cristo Redentor y pasos internacionales entre Mendoza y Chile. Horario, clima y condiciones actualizados.";
+  "Estado en tiempo real del Cristo Redentor, Pehuenche, Agua Negra y pasos internacionales entre Argentina y Chile. Horario, clima y condiciones actualizados.";
 
 export type PassStatus = "abierto" | "cerrado" | "condicionado" | "sin_datos";
 
@@ -38,8 +38,11 @@ export function buildPassPageMeta(opts: {
   tempC: number | null;
   weatherDesc: string | null;
   freshnessLabel: string;
+  /** Provincia para el snippet (ej. Mendoza o San Juan). */
+  regionLabel?: string;
 }) {
   const { passName, passSlug, status, schedule, tempC, weatherDesc, freshnessLabel } = opts;
+  const region = opts.regionLabel ?? "Mendoza, Argentina";
 
   const emoji = STATUS_EMOJI[status];
   const label = STATUS_LABEL[status];
@@ -53,7 +56,7 @@ export function buildPassPageMeta(opts: {
 
   const description =
     `Estado actual del ${passName}: ${label}.${horarioPart}${climaPart} ` +
-    `Información actualizada ${freshnessLabel} — Mendoza, Argentina.`;
+    `Información actualizada ${freshnessLabel} — ${region}.`;
 
   const ogTitle = `${emoji} ${passName} — ${label}`;
   const ogDescription = description;
@@ -65,7 +68,7 @@ export function buildPassPageMeta(opts: {
 
 export function buildHomeMeta() {
   return {
-    title: `${SITE_NAME} — Estado de pasos internacionales Mendoza a Chile`,
+    title: `${SITE_NAME} — Estado de pasos internacionales Argentina–Chile`,
     description: SITE_DESCRIPTION,
     ogTitle: "🏔️ Paso Chile Hoy — ¿Está abierto el paso a Chile?",
     ogDescription: SITE_DESCRIPTION,
@@ -87,7 +90,24 @@ export function passAlternateNames(slug: string, shortName: string, name: string
         "ruta 7 mendoza chile",
       ];
     case "pehuenche":
-      return ["Paso Pehuenche", "Pehuenche", "Malargüe", "Talca", "paso pehuenche mendoza"];
+      return [
+        "Paso Pehuenche",
+        "Paso El Pehuenche",
+        "Pehuenche",
+        "Malargüe",
+        "Talca",
+        "Cruce Malargüe Talca",
+        "paso pehuenche mendoza",
+      ];
+    case "agua-negra":
+      return [
+        "Paso Agua Negra",
+        "Paso de Agua Negra",
+        "Las Flores",
+        "Huanta",
+        "San Juan Chile",
+        "Cruce San Juan Coquimbo",
+      ];
     case "el-sosneado":
       return ["Paso El Sosneado", "El Sosneado", "San Rafael", "Curicó"];
     default:

@@ -23,6 +23,8 @@ export interface AlertView {
   title?: string;
   description?: string;
   detail?: string;
+  /** Texto completo del bloque Atención (scraping). */
+  rawText?: string;
 }
 
 export interface WeatherNowView {
@@ -77,6 +79,13 @@ export interface PassView {
     schedule?: string;
     scheduleFrom?: string;
     scheduleTo?: string;
+    /** Texto libre de horario (p. ej. API `horario_atencion`). */
+    scheduleRaw?: string;
+    /** Estado oficial del API (`ABIERTO` / `CERRADO` / `CONDICIONADO`). */
+    rawStatus?: string;
+    motivo?: string;
+    vialidadEstado?: string;
+    vialidadObservaciones?: string;
     contact?: ContactView;
     gps?: GpsView;
   };

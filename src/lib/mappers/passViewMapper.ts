@@ -1,3 +1,5 @@
+import type { PasoConfig } from "@/data/pasos";
+import { isPassSnapshotShape, mapPassSnapshotToView, type PassSnapshot } from "@/lib/server/passMapper";
 import type {
   AlertRaw,
   ContactRaw,
@@ -49,11 +51,12 @@ function mapAlert(r: AlertRaw): AlertView {
     title: cleanString(r.title),
     description: cleanString(r.description),
     detail: cleanString(r.detail),
+    rawText: cleanString(r.rawText),
   };
 }
 
 function isNonEmptyAlert(a: AlertView): boolean {
-  return Boolean(a.source || a.title || a.description || a.detail);
+  return Boolean(a.source || a.title || a.description || a.detail || a.rawText);
 }
 
 function mapWeatherNow(raw?: WeatherNowRaw): WeatherNowView | undefined {
@@ -236,4 +239,22 @@ export function mapPassRawToViewSafe(
     return emptyPassView(fallbackSlug);
   }
   return mapPassRawToView(raw);
+}
+
+/** Snapshot persistido (API oficial o legado HTML) → vista de UI. */
+export function mapPersistedSnapshotToView(raw: PassRaw | PassSnapshot, paso: PasoConfig): PassView {
+  if (isPassSnapshotShape(raw)) {
+    return mapPassSnapshotToView(raw, paso);
+  }
+  return mapPassRawToView(raw);
+}
+
+export function mapPersistedSnapshotToViewSafe(
+  raw: PassRaw | PassSnapshot | null | undefined,
+  paso: PasoConfig,
+): PassView {
+  if (raw == null) {
+    return emptyPassView(paso.slug);
+  }
+  return mapPersistedSnapshotToView(raw, paso);
 }

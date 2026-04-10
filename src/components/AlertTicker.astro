@@ -1,0 +1,143 @@
+---
+import { PASOS } from "@/data/pasos";
+import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
+import { readPassSnapshotFile } from "@/lib/server/storage/jsonSnapshotStore";
+import { inferPassStatus } from "@/utils/inferPassStatus";
+
+const STATUS_LABEL: Record<string, string> = {
+  abierto: "ABIERTO",
+  cerrado: "CERRADO",
+  condicionado: "CONDICIONADO",
+  sin_datos: "SIN DATOS",
+};
+
+const emoji: Record<string, string> = {
+  abierto: "✅",
+  cerrado: "🔴",
+  condicionado: "⚠️",
+  sin_datos: "⚪",
+};
+
+const tickerItems: string[] = [];
+
+for (const paso of PASOS.filter((p) => p.active)) {
+  try {
+    const raw = await readPassSnapshotFile(paso.slug);
+    if (!raw) continue;
+
+    const view = mapPersistedSnapshotToView(raw, paso);
+    const result = inferPassStatus(view);
+
+    const em = emoji[result.status] ?? "⚪";
+    const label = STATUS_LABEL[result.status] ?? result.status.toUpperCase();
+    let item = `${em} ${paso.shortName}: ${label}`;
+
+    const motivo = view.operationalInfo.motivo?.trim();
+    if (motivo) item += ` — ${motivo}`;
+
+    tickerItems.push(item);
+  } catch {
+    /* skip */
+  }
+}
+
+if (tickerItems.length === 0) {
+  return null;
+}
+
+const allItems = [...tickerItems, ...tickerItems, ...tickerItems];
+---
+
+<div class="alert-ticker" role="region" aria-label="Estado de los pasos" aria-live="polite">
+  <div class="ticker-label">EN VIVO</div>
+  <div class="ticker-track">
+    <div class="ticker-content">
+      {
+        allItems.map((item, i) => (
+          <span class="ticker-item-wrap">
+            <span class="ticker-item">{item}</span>
+            {i < allItems.length - 1 ? <span class="ticker-sep">·</span> : null}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .alert-ticker {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    background: rgba(91, 174, 255, 0.06);
+    border-bottom: 1px solid rgba(91, 174, 255, 0.15);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ticker-label {
+    flex-shrink: 0;
+    padding: 0 12px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--brand);
+    background: rgba(91, 174, 255, 0.1);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(91, 174, 255, 0.2);
+    white-space: nowrap;
+  }
+
+  .ticker-track {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  }
+
+  @keyframes ticker-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  .ticker-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    white-space: nowrap;
+    width: max-content;
+    animation: ticker-scroll 25s linear infinite;
+  }
+
+  .ticker-content:hover {
+    animation-play-state: paused;
+  }
+
+  .ticker-item-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .ticker-item {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+
+  .ticker-sep {
+    color: var(--color-text-disabled);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-content {
+      animation: none;
+    }
+  }
+</style>

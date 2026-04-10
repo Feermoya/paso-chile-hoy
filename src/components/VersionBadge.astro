@@ -28,18 +28,13 @@ if (releasedAt) {
     year: "numeric",
   });
 }
-
-const releasesUrl = "https://github.com/Feermoya/paso-chile-hoy/releases";
 ---
 
-<a
-  href={releasesUrl}
-  target="_blank"
-  rel="noopener noreferrer"
+<span
   class="version-badge"
-  title={releasedAt ? `Publicado el ${releaseDateLabel}` : "Historial de versiones en GitHub"}
-  aria-label={`Versión ${version} de Paso Chile Hoy`}
+  title={releasedAt ? `Publicado el ${releaseDateLabel}` : "Versión actual"}
+  aria-label={`Versión ${version}`}
 >
   <span class="version-dot" aria-hidden="true"></span>
   <span class="version-label">v{version}</span>
-</a>
+</span>

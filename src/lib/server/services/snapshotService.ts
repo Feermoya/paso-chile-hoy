@@ -1,7 +1,8 @@
+import { getPasoBySlug } from "@/data/pasos";
 import { snapshotFreshMs } from "@/lib/server/config/snapshotPolicy";
-import { getPassConfigBySlug } from "@/lib/server/config/passes";
-import { parseArgentinaPassHtml } from "@/lib/server/parsers/argentinaPassParser";
-import { fetchPublicHtml } from "@/lib/server/sources/argentinaPassHtmlSource";
+import { fetchConsolidado, fetchClima, fetchDetailHTML } from "@/lib/server/apiClient";
+import { parseForecastFromHTML } from "@/lib/server/forecastParser";
+import { mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import {
   readPassSnapshotFile,
   writePassSnapshotFile,
@@ -13,12 +14,10 @@ function isDevRuntime(): boolean {
   return typeof process !== "undefined" && process.env.NODE_ENV !== "production";
 }
 
-/** En Vercel (build y runtime) no se hace scraping: solo JSON en repo / GitHub Actions. */
 function isVercelEnv(): boolean {
   return typeof process !== "undefined" && Boolean(process.env.VERCEL);
 }
 
-/** Scrape en vivo solo en local, sin `VERCEL`. */
 function allowLiveScrape(): boolean {
   return isDevRuntime() && !isVercelEnv();
 }
@@ -33,18 +32,18 @@ function snapshotAgeMs(scrapedAt: string): number {
   return Date.now() - t;
 }
 
-function isFresh(snapshot: PassRaw, maxAgeMs: number): boolean {
+function isFresh(snapshot: PassRaw | PassSnapshot, maxAgeMs: number): boolean {
   const at = snapshot.scrapedAt?.trim();
   if (!at) return false;
   return snapshotAgeMs(at) < maxAgeMs;
 }
 
 /** Lee el último snapshot persistido (JSON en `public/snapshots`). */
-export async function readPersistedSnapshot(slug: string): Promise<PassRaw | null> {
+export async function readPersistedSnapshot(slug: string): Promise<PassRaw | PassSnapshot | null> {
   return readPassSnapshotFile(slug);
 }
 
-async function tryWriteSnapshot(slug: string, snapshot: PassRaw): Promise<void> {
+async function tryWriteSnapshot(slug: string, snapshot: PassRaw | PassSnapshot): Promise<void> {
   try {
     await writePassSnapshotFile(slug, snapshot);
   } catch (e) {
@@ -56,25 +55,22 @@ async function tryWriteSnapshot(slug: string, snapshot: PassRaw): Promise<void> 
 }
 
 /**
- * Obtiene HTML público, parsea y persiste cuando el filesystem es escribible (local / CI).
+ * Obtiene datos del API oficial y persiste cuando el filesystem es escribible (local / CI).
  */
-export async function refreshAndPersistSnapshot(slug: string): Promise<PassRaw> {
-  const cfg = getPassConfigBySlug(slug);
-  if (!cfg) {
+export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnapshot> {
+  const cfg = getPasoBySlug(slug);
+  if (!cfg?.active) {
     throw new Error("UNKNOWN_SLUG");
   }
 
-  const { html, statusCode, finalUrl } = await fetchPublicHtml(cfg.sourceUrl, { slug });
-  if (statusCode >= 400) {
-    throw new Error(`HTTP_${statusCode}`);
-  }
+  const [consolidado, clima, htmlDetail] = await Promise.all([
+    fetchConsolidado(cfg.routeId),
+    fetchClima(String(cfg.lat), String(cfg.lng)),
+    fetchDetailHTML(cfg.routeId, cfg.routeSlug),
+  ]);
 
-  const scrapedAt = new Date().toISOString();
-  const snapshot = parseArgentinaPassHtml(html, {
-    slug,
-    sourceUrl: finalUrl || cfg.sourceUrl,
-    scrapedAt,
-  });
+  const forecast = parseForecastFromHTML(htmlDetail);
+  const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast);
 
   await tryWriteSnapshot(slug, snapshot);
   return snapshot;
@@ -82,11 +78,11 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassRaw> 
 
 /**
  * Producción / Vercel: solo lee `public/snapshots/{slug}.json`.
- * Desarrollo local: puede scrapear si falta el archivo o está vencido.
+ * Desarrollo local: puede refrescar desde el API si falta el archivo o está vencido.
  */
-export async function getSnapshotForApi(slug: string): Promise<PassRaw> {
-  const cfg = getPassConfigBySlug(slug);
-  if (!cfg) {
+export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSnapshot> {
+  const cfg = getPasoBySlug(slug);
+  if (!cfg?.active) {
     throw new Error("UNKNOWN_SLUG");
   }
 

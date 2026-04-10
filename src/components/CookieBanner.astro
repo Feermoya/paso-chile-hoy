@@ -1,0 +1,60 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-label="Política de cookies"
+  aria-hidden="true"
+>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-icon" aria-hidden="true">🍪</div>
+    <div class="cookie-banner-text">
+      <p>Usamos cookies para mejorar tu experiencia.</p>
+      <a href="/legal" class="cookie-policy-link">Política de privacidad</a>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" id="cookie-reject" class="cookie-btn cookie-btn--secondary">Rechazar</button>
+      <button type="button" id="cookie-accept" class="cookie-btn cookie-btn--primary">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById("cookie-banner");
+    var acceptBtn = document.getElementById("cookie-accept");
+    var rejectBtn = document.getElementById("cookie-reject");
+
+    if (!localStorage.getItem("cookie-consent")) {
+      setTimeout(function () {
+        if (banner) {
+          banner.removeAttribute("aria-hidden");
+          banner.classList.add("visible");
+        }
+      }, 2000);
+    }
+
+    function dismiss(consent) {
+      localStorage.setItem("cookie-consent", consent);
+      if (banner) {
+        banner.classList.remove("visible");
+        setTimeout(function () {
+          banner.setAttribute("aria-hidden", "true");
+        }, 400);
+      }
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function () {
+        dismiss("accepted");
+      });
+    }
+    if (rejectBtn) {
+      rejectBtn.addEventListener("click", function () {
+        dismiss("rejected");
+      });
+    }
+  })();
+</script>

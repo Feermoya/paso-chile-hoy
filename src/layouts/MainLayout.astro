@@ -1,5 +1,8 @@
 ---
+import AlertTicker from "@/components/AlertTicker.astro";
+import CookieBanner from "@/components/CookieBanner.astro";
 import Footer from "@/components/Footer.astro";
+import VersionBadge from "@/components/VersionBadge.astro";
 import { SITE_NAME } from "@/utils/seo";
 import "@/styles/global.css";
 
@@ -13,6 +16,13 @@ export interface Props {
   noindex?: boolean;
   structuredData?: Record<string, unknown>;
   headerAltitudeM?: number;
+  /** Texto bajo la marca (ej. Mendoza · AR / San Juan · AR). */
+  headerRegionLabel?: string;
+  /** Meta geo.region (ej. AR-M, AR-J). */
+  geoRegionCode?: string;
+  geoPlacename?: string;
+  /** Meta geo.position: "lat;lng" */
+  geoPosition?: string;
 }
 
 function baseUrl(): string {
@@ -35,6 +45,10 @@ const {
   noindex = false,
   structuredData,
   headerAltitudeM = 3200,
+  headerRegionLabel = "Mendoza · AR",
+  geoRegionCode = "AR-M",
+  geoPlacename = "Mendoza, Argentina",
+  geoPosition = "-32.8211;-69.9232",
 } = Astro.props;
 
 const canonical = canonicalProp ?? `${siteUrl}/`;
@@ -49,7 +63,7 @@ const websiteSchema: Record<string, unknown> = {
   name: SITE_NAME,
   url: `${siteUrl}/`,
   description:
-    "Estado en tiempo real del Paso Cristo Redentor y pasos internacionales Mendoza-Chile.",
+    "Estado en tiempo real del Cristo Redentor, Pehuenche, Agua Negra y pasos internacionales Argentina–Chile.",
   inLanguage: "es-AR",
   publisher: {
     "@type": "Person",
@@ -64,6 +78,13 @@ const websiteSchema: Record<string, unknown> = {
 };
 
 const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nivel del mar`;
+
+const icbmContent = geoPosition.includes(";")
+  ? geoPosition
+      .split(";")
+      .map((s) => s.trim())
+      .join(", ")
+  : geoPosition;
 ---
 
 <!doctype html>
@@ -87,10 +108,10 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
       />
     )}
 
-    <meta name="geo.region" content="AR-M" />
-    <meta name="geo.placename" content="Mendoza, Argentina" />
-    <meta name="geo.position" content="-32.8211;-69.9232" />
-    <meta name="ICBM" content="-32.8211, -69.9232" />
+    <meta name="geo.region" content={geoRegionCode} />
+    <meta name="geo.placename" content={geoPlacename} />
+    <meta name="geo.position" content={geoPosition} />
+    <meta name="ICBM" content={icbmContent} />
 
     <meta http-equiv="content-language" content="es-AR" />
     <link rel="alternate" hreflang="es-AR" href={canonical} />
@@ -162,23 +183,28 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
               <span class="header-name">Paso Chile Hoy</span>
               <span class="header-location">
                 <span class="header-location-dot" aria-hidden="true"></span>
-                Mendoza · AR
+                {headerRegionLabel}
               </span>
             </span>
           </a>
 
-          <div class="header-altitude" aria-label={altitudeLabel}>
-            <span class="header-altitude-number">{headerAltitudeM}</span>
-            <span class="header-altitude-unit">m</span>
+          <div class="header-right">
+            <VersionBadge />
+            <div class="header-altitude" aria-label={altitudeLabel}>
+              <span class="header-altitude-number">{headerAltitudeM}</span>
+              <span class="header-altitude-unit">m</span>
+            </div>
           </div>
         </div>
       </header>
+      <AlertTicker />
       <main id="contenido-principal" class="min-w-0 flex-1 pb-4 pt-2 md:pt-4">
         <slot />
       </main>
       <slot name="before-footer" />
       <Footer />
     </div>
+    <CookieBanner />
     <script>
       (function () {
         let startY = 0;

@@ -9,6 +9,11 @@
 }
 
 :root {
+  /* Marca — azul andino (uso en jerarquía, links, acentos) */
+  --brand: #5baeff;
+  --brand-dim: rgba(91, 174, 255, 0.15);
+  --brand-border: rgba(91, 174, 255, 0.3);
+
   /* === FONDOS === */
   --color-bg-base: #0a0c10;
   --color-bg-secondary: #10131a;
@@ -99,6 +104,42 @@
   /* Puente legado Tailwind (hsl sin función, solo referencia si algo quedara) */
   --surface: 218 24% 6%;
   --ink-muted: 217 17% 70%;
+}
+
+/* Enlaces por defecto con marca (excepciones en header/footer explícitas) */
+a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn)) {
+  color: var(--brand);
+}
+
+a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn)):hover {
+  color: #7ccbff;
+}
+
+.link-branded {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.link-branded:hover {
+  border-bottom-color: var(--brand);
+}
+
+.section-title-branded {
+  color: var(--color-text-primary);
+  position: relative;
+}
+
+.section-title-branded::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--brand);
+  border-radius: 2px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 @keyframes pulse-ring {
@@ -395,6 +436,11 @@
 
 .status-eyebrow {
   margin-bottom: 14px;
+  color: var(--brand);
+}
+
+.weather-eyebrow {
+  color: var(--brand);
 }
 
 .status-main {
@@ -520,37 +566,30 @@
   }
 }
 
-/* Badge de versión (footer) */
-.footer-bottom-row {
+/* Versión (header) */
+.header-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .version-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 3px 9px;
+  padding: 3px 10px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border-subtle);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--color-text-disabled);
+  border: 1px solid rgba(91, 174, 255, 0.25);
+  background: rgba(91, 174, 255, 0.08);
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.05em;
-  text-decoration: none;
-  transition:
-    border-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.version-badge:hover {
-  border-color: var(--color-border-default);
-  color: var(--color-text-muted);
+  color: var(--color-accent);
+  cursor: default;
+  user-select: none;
 }
 
 .version-dot {
@@ -558,7 +597,7 @@
   height: 5px;
   border-radius: 50%;
   background: var(--color-accent);
-  opacity: 0.5;
+  opacity: 0.7;
   flex-shrink: 0;
 }
 
@@ -1259,10 +1298,16 @@
   }
 
   .paso-card-weather {
-    margin: 8px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 0;
+  }
+
+  .paso-card-weather-desc {
     font-size: 12px;
     line-height: 1.4;
-    color: var(--color-text-secondary);
+    color: var(--color-text-muted);
   }
 
   /* Fila superior del forecast: en mobile participa del flex del article (display: contents) */
@@ -1640,8 +1685,8 @@
 }
 
 .seo-content strong {
-  color: var(--color-text-secondary);
-  font-weight: 600;
+  color: var(--brand);
+  font-weight: 700;
 }
 
 @media (max-width: 767px) {
@@ -1655,6 +1700,193 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+}
+
+/* ===== ALERTAS TWITTER (@PasoCRMza) — fuente secundaria ===== */
+.twitter-alerts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.twitter-alerts-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.twitter-alerts-x-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.twitter-alerts-disclaimer {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-disabled);
+  margin-left: auto;
+}
+
+.twitter-alert-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  border-left-width: 3px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.twitter-alert-text {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.twitter-alert-type-icon {
+  margin-right: 6px;
+}
+
+.twitter-alert-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.twitter-alert-date {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.twitter-alert-link {
+  font-size: 11px;
+  color: var(--color-accent);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.twitter-alert-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Cookie banner ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  z-index: 100;
+  width: calc(100% - 32px);
+  max-width: 520px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cookie-banner.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.cookie-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cookie-banner-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.cookie-banner-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cookie-banner-text p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0 0 2px;
+  line-height: 1.4;
+}
+
+.cookie-policy-link {
+  font-size: 12px;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    transform 0.1s;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.cookie-btn:active {
+  transform: scale(0.97);
+}
+
+.cookie-btn--primary {
+  background: var(--brand);
+  color: #0a0c10;
+  border: none;
+}
+
+.cookie-btn--primary:hover {
+  background: #7ccbff;
+}
+
+.cookie-btn--secondary {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-default);
+}
+
+.cookie-btn--secondary:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 480px) {
+  .cookie-banner-inner {
+    flex-wrap: wrap;
+  }
+
+  .cookie-banner-actions {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 

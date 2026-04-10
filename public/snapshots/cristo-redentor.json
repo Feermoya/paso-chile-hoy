@@ -1,5 +1,6 @@
 {
   "slug": "cristo-redentor",
+<<<<<<< Updated upstream
   "routeId": 29,
   "name": "Paso Sistema Cristo Redentor",
   "localityAR": "Villa Las Cuevas",
@@ -26,7 +27,29 @@
     "visibilityKm": 15,
     "sunset": "19:25 h",
     "providerNote": "2026-04-10T09:00:00-03:00"
+=======
+  "name": "Sistema Cristo Redentor",
+  "schedule": "09:00-21:00",
+  "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
+  "rawStatus": "ABIERTO",
+  "motivo": null,
+  "vialidadEstado": "HABILITADA",
+  "vialidadObservaciones": "",
+  "weather": {
+    "temperatureC": 5.8,
+    "description": "Despejado",
+    "wind": "Calma",
+    "visibilityKm": 15,
+    "sunrise": "07:56",
+    "sunset": "19:25",
+    "updatedAt": "2026-04-10T09:00:00-03:00"
+>>>>>>> Stashed changes
   },
+  "contact": "(2624) 420094",
+  "lat": -32.8211,
+  "lng": -69.9232,
+  "altitudeM": 3200,
+  "scrapedAt": "2026-04-10T14:21:23.420Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -56,6 +79,7 @@
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
+<<<<<<< Updated upstream
   ],
   "usefulLinks": [
     {
@@ -98,4 +122,7 @@
   ],
   "scrapedAt": "2026-04-10T14:03:51.797Z",
   "sourceUrl": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor"
+=======
+  ]
+>>>>>>> Stashed changes
 }

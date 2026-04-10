@@ -28,16 +28,22 @@ if (!slug) {
   process.exit(1);
 }
 
+const { getPasoBySlug } = jiti(path.join(root, "src/data/pasos.ts"));
 const { getSnapshotForApi } = jiti(
   path.join(root, "src/lib/server/services/snapshotService.ts"),
 );
-const { mapPassRawToView } = jiti(
+const { mapPersistedSnapshotToView } = jiti(
   path.join(root, "src/lib/mappers/passViewMapper.ts"),
 );
 
 try {
+  const paso = getPasoBySlug(slug);
+  if (!paso?.active) {
+    console.error(JSON.stringify({ ok: false, error: "slug_inactivo_o_desconocido" }, null, 2));
+    process.exit(1);
+  }
   const raw = await getSnapshotForApi(slug);
-  const view = mapPassRawToView(raw);
+  const view = mapPersistedSnapshotToView(raw, paso);
   console.log(JSON.stringify(view, null, 2));
   process.exit(0);
 } catch (e) {

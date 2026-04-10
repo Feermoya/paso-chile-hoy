@@ -1,7 +1,8 @@
 import type { APIRoute } from "astro";
 import { getPasoBySlug } from "@/data/pasos";
-import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
+import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi, refreshAndPersistSnapshot } from "@/lib/server/services/snapshotService";
+import type { PassSnapshot } from "@/lib/server/passMapper";
 import type { PassRaw } from "@/types/pass-raw";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
@@ -25,8 +26,8 @@ function jsonHeaders(): HeadersInit {
   };
 }
 
-function buildPayload(raw: PassRaw) {
-  const view = mapPassRawToView(raw);
+function buildPayload(raw: PassRaw | PassSnapshot, paso: NonNullable<ReturnType<typeof getPasoBySlug>>) {
+  const view = mapPersistedSnapshotToView(raw, paso);
   const st = inferPassStatus(view);
   const scrapedAt = raw.scrapedAt ?? "";
   return {
@@ -60,7 +61,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   try {
     const raw = await getSnapshotForApi(slug);
-    return new Response(JSON.stringify(buildPayload(raw)), { status: 200, headers: jsonHeaders() });
+    return new Response(JSON.stringify(buildPayload(raw, paso)), { status: 200, headers: jsonHeaders() });
   } catch {
     return new Response(JSON.stringify({ error: "Snapshot failed" }), { status: 503, headers: jsonHeaders() });
   }
@@ -83,7 +84,7 @@ export const POST: APIRoute = async ({ params, request }) => {
 
   try {
     const raw = await refreshAndPersistSnapshot(slug);
-    return new Response(JSON.stringify(buildPayload(raw)), { status: 200, headers: jsonHeaders() });
+    return new Response(JSON.stringify(buildPayload(raw, paso)), { status: 200, headers: jsonHeaders() });
   } catch {
     return new Response(JSON.stringify({ error: "Refresh failed" }), { status: 503, headers: jsonHeaders() });
   }

@@ -1,0 +1,54 @@
+{
+  "slug": "pehuenche",
+  "name": "Pehuenche",
+  "schedule": "09:00-19:00",
+  "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
+  "rawStatus": "CERRADO",
+  "motivo": null,
+  "vialidadEstado": "HABILITADA",
+  "vialidadObservaciones": "",
+  "weather": {
+    "temperatureC": 11.2,
+    "description": "Despejado",
+    "wind": "Calma",
+    "visibilityKm": 20,
+    "sunrise": "07:59",
+    "sunset": "19:23",
+    "updatedAt": "2026-04-10T10:00:00-03:00"
+  },
+  "contact": "(260) 4471063",
+  "lat": -35.79497,
+  "lng": -70.14326,
+  "altitudeM": 2553,
+  "scrapedAt": "2026-04-10T14:21:27.097Z",
+  "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 10,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": 9,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": 5,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Buena"
+    }
+  ]
+}

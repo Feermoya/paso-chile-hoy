@@ -40,7 +40,7 @@ export function parseScheduleLine(
   if (!line) return {};
   const full = normalizeText(line);
   const value = full.replace(/^horario:\s*/i, "").trim();
-  const range = value.match(/^(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})$/);
+  const range = value.match(/^(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})\s*h?\.?\s*$/i);
   if (range) {
     return {
       schedule: full,

@@ -2,6 +2,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import type { PassPageSnapshot } from "@/lib/server/types/pass";
+import { isPassSnapshotShape, type PassSnapshot } from "@/lib/server/passMapper";
 import { parseProviderDateToIso } from "@/lib/server/utils/parseHelpers";
 import type {
   ForecastItemRaw,
@@ -35,7 +36,9 @@ function isLegacyPassPageSnapshot(o: Record<string, unknown>): o is PassPageSnap
 }
 
 function isPassRawShape(o: Record<string, unknown>): boolean {
-  if (typeof o.slug !== "string" || typeof o.sourceUrl !== "string") return false;
+  if (typeof o.slug !== "string") return false;
+  if (isPassSnapshotShape(o)) return false;
+  if (typeof o.sourceUrl !== "string") return false;
   if (typeof o.scrapedAt !== "string" && typeof o.fetchedAt !== "string") return false;
   if (isLegacyPassPageSnapshot(o)) return false;
   return true;
@@ -150,7 +153,7 @@ export async function ensureSnapshotsDir(): Promise<string> {
   return dir;
 }
 
-export async function writePassSnapshotFile(slug: string, snapshot: PassRaw): Promise<void> {
+export async function writePassSnapshotFile(slug: string, snapshot: PassRaw | PassSnapshot): Promise<void> {
   if (snapshot.slug !== slug) {
     throw new Error("SNAPSHOT_SLUG_MISMATCH");
   }
@@ -160,7 +163,7 @@ export async function writePassSnapshotFile(slug: string, snapshot: PassRaw): Pr
   await writeFile(filePath, body, "utf8");
 }
 
-export async function readPassSnapshotFile(slug: string): Promise<PassRaw | null> {
+export async function readPassSnapshotFile(slug: string): Promise<PassRaw | PassSnapshot | null> {
   try {
     const rawFile = await readFile(pathForSlug(slug), "utf8");
     const parsed: unknown = JSON.parse(rawFile);
@@ -169,6 +172,14 @@ export async function readPassSnapshotFile(slug: string): Promise<PassRaw | null
 
     if (isLegacyPassPageSnapshot(o)) {
       return enrichPassRaw(migrateLegacyToPassRaw(o));
+    }
+
+    if (isPassSnapshotShape(parsed)) {
+      const s = parsed as PassSnapshot;
+      return {
+        ...s,
+        forecast: Array.isArray(s.forecast) ? s.forecast : [],
+      };
     }
 
     if (!isPassRawShape(o)) return null;

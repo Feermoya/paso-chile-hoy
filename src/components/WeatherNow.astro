@@ -40,12 +40,30 @@ const MONTHS_SHORT = [
 function formatDatosAl(note: string | undefined): string | null {
   if (!note?.trim()) return null;
   const s = note.trim();
+  const iso = Date.parse(s);
+  if (!Number.isNaN(iso)) {
+    const d = new Date(iso);
+    const parts = new Intl.DateTimeFormat("es-AR", {
+      timeZone: "America/Argentina/Buenos_Aires",
+      day: "numeric",
+      month: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).formatToParts(d);
+    const day = parts.find((p) => p.type === "day")?.value ?? "";
+    const month = parts.find((p) => p.type === "month")?.value ?? "";
+    const hour = parts.find((p) => p.type === "hour")?.value ?? "";
+    const minute = parts.find((p) => p.type === "minute")?.value ?? "";
+    const mo = month.replace(/\.$/, "").toLowerCase();
+    return `Datos al ${day} ${mo} · ${hour}:${minute} h`;
+  }
   const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s*[-–]\s*(\d{1,2}):(\d{2})/);
   if (m) {
-    const d = parseInt(m[1], 10);
+    const day = parseInt(m[1], 10);
     const mo = parseInt(m[2], 10);
     const month = MONTHS_SHORT[mo - 1] ?? m[2];
-    return `Datos al ${d} ${month} · ${m[4]}:${m[5]} h`;
+    return `Datos al ${day} ${month} · ${m[4]}:${m[5]} h`;
   }
   return `Datos al ${s}`;
 }
@@ -95,7 +113,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
   ]}
   aria-labelledby="weather-now-heading"
 >
-  <p class="text-eyebrow text-[var(--color-text-muted)]">Clima en el paso</p>
+  <p class="text-eyebrow weather-eyebrow">Clima en el paso</p>
   <h2 id="weather-now-heading" class="text-section-title mt-2">Ahora</h2>
 
   {w.description && (

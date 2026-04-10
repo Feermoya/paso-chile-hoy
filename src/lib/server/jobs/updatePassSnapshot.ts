@@ -1,9 +1,9 @@
 import { listPassSlugs } from "@/lib/server/config/passes";
 import { refreshAndPersistSnapshot } from "@/lib/server/services/snapshotService";
-import type { PassRaw } from "@/types/pass-raw";
+import type { PassSnapshot } from "@/lib/server/passMapper";
 
 export type UpdatePassResult =
-  | { ok: true; slug: string; snapshot: PassRaw }
+  | { ok: true; slug: string; snapshot: PassSnapshot }
   | { ok: false; slug: string; error: string };
 
 /**

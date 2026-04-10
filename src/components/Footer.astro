@@ -1,176 +1,180 @@
 ---
-import VersionBadge from "@/components/VersionBadge.astro";
-
 const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 ---
 
-<footer class="site-footer mt-auto">
-  <div class="footer-inner">
-    <div class="footer-columns">
-      <div class="footer-col-main">
-        <div class="footer-brand">
-          <img
-            src="/logo.png"
-            alt="Paso Chile Hoy"
-            width="24"
-            height="24"
-            class="footer-logo-img"
-            loading="lazy"
-          />
-          <span class="footer-brand-name">Paso Chile Hoy</span>
-        </div>
-
-        <p class="footer-legal">
-          Servicio independiente de información pública. Los datos provienen de
-          <a href={official} target="_blank" rel="noopener noreferrer">{official}</a>
-          — Gendarmería Nacional, Vialidad Nacional, SMN. Procesados automáticamente con fines
-          informativos. Este sitio no está afiliado a ningún organismo oficial. Verificá siempre en la
-          fuente oficial antes de viajar.{" "}
-          <a href="/legal" class="footer-legal-link">Aviso legal</a>
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-top-inner">
+      <div class="footer-brand-col">
+        <a href="/" class="footer-logo-link">
+          <img src="/logo.png" alt="Paso Chile Hoy" width="40" height="40" class="footer-logo-img" loading="lazy" />
+          <span class="footer-logo-name">Paso Chile Hoy</span>
+        </a>
+        <p class="footer-tagline">
+          Estado en tiempo real de los pasos internacionales entre Argentina y Chile. Gratis, sin publicidad,
+          hecho en Mendoza.
+        </p>
+        <p class="footer-made-in">
+          Desarrollado por <a href="mailto:fmoya97.fm@gmail.com" class="footer-dev-link">Fernando Moya</a>
         </p>
       </div>
 
-      <div class="footer-contact">
-        <p class="footer-contact-label">Desarrollado por</p>
-        <p class="footer-contact-name">Fernando Moya</p>
-        <a
-          href="mailto:fmoya97.fm@gmail.com"
-          class="footer-contact-link"
-          aria-label="Enviar mail a Fernando Moya"
-        >
-          fmoya97.fm@gmail.com
-        </a>
+      <div class="footer-links-col">
+        <p class="footer-col-title">Pasos</p>
+        <a href="/cristo-redentor" class="footer-link">Cristo Redentor</a>
+        <a href="/pehuenche" class="footer-link">Pehuenche</a>
+        <a href="/agua-negra" class="footer-link">Agua Negra</a>
+      </div>
+
+      <div class="footer-links-col">
+        <p class="footer-col-title">Recursos</p>
+        <a href={official} target="_blank" rel="noopener noreferrer" class="footer-link">Fuente oficial</a>
+        <a href="/legal" class="footer-link">Aviso legal</a>
+        <a href="mailto:fmoya97.fm@gmail.com" class="footer-link">Contacto</a>
       </div>
     </div>
+  </div>
 
-    <div class="footer-bottom-row">
-      <p class="footer-geo">32°S · 3200 m s.n.m. · Cordillera de los Andes</p>
-      <VersionBadge />
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p class="footer-legal-short">
+        Servicio independiente. No afiliado al gobierno argentino ni chileno. Verificá siempre en la{" "}
+        <a href={official} target="_blank" rel="noopener noreferrer">fuente oficial</a>.
+      </p>
+      <p class="footer-geo">32°S · Cordillera de los Andes</p>
     </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    width: 100%;
-    margin-top: 48px;
+    margin-top: 64px;
     border-top: 1px solid var(--color-border-subtle);
-    background: var(--color-bg-secondary);
   }
 
-  .footer-inner {
+  .footer-top {
+    background: var(--color-bg-secondary);
+    padding: 48px 0 40px;
+  }
+
+  .footer-top-inner {
     max-width: 960px;
     margin-inline: auto;
-    padding: 28px 20px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    padding-inline: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
   }
 
-  .footer-columns {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  @media (min-width: 768px) {
-    .footer-columns {
-      display: grid;
-      grid-template-columns: 1fr auto;
+  @media (max-width: 640px) {
+    .footer-top-inner {
+      grid-template-columns: 1fr;
       gap: 32px;
-      align-items: start;
     }
   }
 
-  .footer-brand {
+  .footer-logo-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 16px;
   }
 
   .footer-logo-img {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    display: block;
-    opacity: 0.75;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
   }
 
-  .footer-brand-name {
+  .footer-logo-name {
     font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-text-muted);
+    color: var(--color-text-primary);
   }
 
-  .footer-legal {
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: 280px;
+  }
+
+  .footer-made-in {
     font-size: 12px;
-    line-height: 1.65;
-    color: var(--color-text-muted);
+    color: var(--color-text-disabled);
     margin: 0;
-    max-width: 680px;
   }
 
-  .footer-legal a {
-    color: var(--color-accent);
+  .footer-dev-link {
+    color: var(--brand);
     text-decoration: none;
-    word-break: break-all;
   }
 
-  .footer-legal a:hover {
-    text-decoration: underline;
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 16px;
   }
 
-  .footer-legal-link {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    font-size: 11px;
-  }
-
-  .footer-legal-link:hover {
-    text-decoration: underline;
-  }
-
-  .footer-contact {
+  .footer-links-col {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    flex-shrink: 0;
+    gap: 10px;
   }
 
-  .footer-contact-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-
-  .footer-contact-name {
+  .footer-link {
     font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .footer-contact-link {
-    font-size: 12px;
-    color: var(--color-accent);
+    color: var(--color-text-muted);
     text-decoration: none;
+    transition: color var(--transition-fast);
   }
 
-  .footer-contact-link:hover {
-    text-decoration: underline;
+  .footer-link:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .footer-bottom {
+    background: var(--color-bg-base);
+    border-top: 1px solid var(--color-border-subtle);
+    padding: 16px 0;
+  }
+
+  .footer-bottom-inner {
+    max-width: 960px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal-short {
+    font-size: 11px;
+    color: var(--color-text-disabled);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 560px;
+  }
+
+  .footer-legal-short a {
+    color: var(--brand);
+    text-decoration: none;
   }
 
   .footer-geo {
     font-family: var(--font-mono);
     font-size: 10px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-text-disabled);
     margin: 0;

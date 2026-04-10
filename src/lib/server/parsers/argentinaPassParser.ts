@@ -66,39 +66,107 @@ function collectFollowingSiblings(start: HTMLElement, stopTags: string[]): HTMLE
   return out;
 }
 
+/** Agua Negra: un solo h5 con “Motivo del cierre…” y luego “Vialidad informa…” — separar en dos alertas. */
+function splitAlertParagraphGroups(paragraphs: HTMLElement[]): HTMLElement[][] {
+  if (paragraphs.length <= 1) return [paragraphs];
+  const t0 = normalizeText(paragraphs[0].textContent).toLowerCase();
+  if (!t0.includes("motivo del cierre")) return [paragraphs];
+  const idx = paragraphs.findIndex(
+    (p, i) => i > 0 && /\binforma\s*:/i.test(normalizeText(p.textContent)),
+  );
+  if (idx >= 1) {
+    return [paragraphs.slice(0, idx), paragraphs.slice(idx)];
+  }
+  return [paragraphs];
+}
+
+/**
+ * El bloque de script incluye `estadoVialidad` (HABILITADA / RESTRINGIDA / CORTE TOTAL).
+ * No usamos `estadoPrioridad`: en varios pasos figura "CERRADO" aun con horario normal
+ * (p. ej. Agua Negra) y rompería el inferido basado en horario + alertas HTML.
+ */
+function parseInlinePassStateAlerts(html: string): AlertRaw[] {
+  const out: AlertRaw[] = [];
+  const ev = html.match(/var\s+estadoVialidad\s*=\s*"([^"]*)"/i);
+  const vialidad = ev?.[1]?.trim().toUpperCase();
+
+  if (vialidad === "RESTRINGIDA" || vialidad === "CORTE TOTAL") {
+    out.push({
+      title: "Atención",
+      source: "Vialidad Nacional",
+      description: `Estado vialidad: ${vialidad}`,
+      rawText:
+        vialidad === "CORTE TOTAL"
+          ? "Estado vialidad: restricción total de circulación"
+          : "Estado vialidad: circulación restringida",
+    });
+  }
+
+  return out;
+}
+
 function parseAlerts(scope: HTMLElement | null): AlertRaw[] {
   if (!scope) return [];
   const alerts: AlertRaw[] = [];
+
   for (const h5 of scope.querySelectorAll("h5")) {
     if (normalizeText(h5.textContent) !== "Atención") continue;
+
     const siblings = collectFollowingSiblings(h5, ["h5", "h3", "h2", "section"]);
-    let source: string | undefined;
-    let description: string | undefined;
-    let detail: string | undefined;
+    const paragraphs: HTMLElement[] = [];
     for (const el of siblings) {
-      if (el.tagName.toLowerCase() !== "p") continue;
-      const full = normalizeText(el.textContent);
-      if (!full) continue;
-      const m = full.match(/^(.+?)\s+informa:\s*(.+)$/i);
-      if (!m) continue;
-      source = opt(m[1]);
-      const afterInforma = m[2].trim();
-      const strong = el.querySelector("strong");
-      if (strong) {
-        description = opt(strong.textContent);
-        const ds = normalizeText(strong.textContent);
-        let rest = normalizeText(afterInforma.replace(ds, ""));
-        rest = rest.replace(/^[\s,.;:-]+/, "").trim();
-        detail = opt(rest);
-      } else {
-        detail = opt(afterInforma);
-      }
-      break;
+      if (el.tagName.toLowerCase() === "p" && normalizeText(el.textContent)) paragraphs.push(el);
     }
-    if (source || description || detail) {
-      alerts.push({ source, title: "Atención", description, detail });
+    if (paragraphs.length === 0) continue;
+
+    const groups = splitAlertParagraphGroups(paragraphs);
+
+    for (const paragraphGroup of groups) {
+      let source: string | undefined;
+      let description: string | undefined;
+      const detailParts: string[] = [];
+      const rawParts: string[] = [];
+
+      for (const p of paragraphGroup) {
+        const full = normalizeText(p.textContent);
+        if (!full) continue;
+        rawParts.push(full);
+
+        const informa = full.match(/^(.+?)\s+informa:\s*(.*)$/i);
+        if (informa) {
+          source = opt(informa[1]);
+          const afterInforma = informa[2].trim();
+          const strong = p.querySelector("strong");
+          if (strong) {
+            description = opt(normalizeText(strong.textContent));
+            const ds = normalizeText(strong.textContent);
+            let rest = normalizeText(afterInforma.replace(ds, "").trim());
+            rest = rest.replace(/^[\s,.;:-]+/, "").trim();
+            if (rest) detailParts.push(rest);
+          } else if (afterInforma) {
+            description = description ?? opt(afterInforma);
+          }
+          continue;
+        }
+
+        detailParts.push(full);
+      }
+
+      const rawText = rawParts.join(" ").replace(/\s+/g, " ").trim();
+      const detailJoined = detailParts.length ? detailParts.join(" ").replace(/\s+/g, " ").trim() : undefined;
+
+      if (rawText.length > 3) {
+        alerts.push({
+          source,
+          title: "Atención",
+          description,
+          detail: opt(detailJoined),
+          rawText,
+        });
+      }
     }
   }
+
   return alerts;
 }
 
@@ -157,9 +225,8 @@ function parseGps(main: HTMLElement | null): GpsRaw | undefined {
   };
 }
 
-function parseCurrentWeather(section: HTMLElement | null): WeatherNowRaw | undefined {
-  if (!section) return undefined;
-
+/** Cristo Redentor / Pehuenche: bold en cabecera + `dl.weather__info-item`. */
+function parseWeatherClassicStructure(section: HTMLElement): WeatherNowRaw | undefined {
   const smnTime = section.querySelector("details.pi-tooltip time[datetime]");
   const providerNote = opt(smnTime?.getAttribute("datetime"));
 
@@ -218,6 +285,135 @@ function parseCurrentWeather(section: HTMLElement | null): WeatherNowRaw | undef
     sunset,
     providerNote,
   };
+}
+
+/**
+ * Agua Negra y variantes: listas `Temperatura: …`, `Condición: …` sin el bloque .header-weather clásico.
+ */
+function parseWeatherAlternateStructure(section: HTMLElement): WeatherNowRaw | undefined {
+  const smnTime = section.querySelector("details.pi-tooltip time[datetime]");
+  const providerNote = opt(smnTime?.getAttribute("datetime"));
+
+  let temperatureC: number | undefined;
+  let description: string | undefined;
+  let wind: string | undefined;
+  let sunrise: string | undefined;
+  let sunset: string | undefined;
+  let visibilityKm: number | undefined;
+  let visibilityText: string | undefined;
+
+  for (const dl of section.querySelectorAll("dl")) {
+    for (const dt of dl.querySelectorAll("dt")) {
+      if ((dt as HTMLElement).parentNode !== dl) continue;
+      const label = normalizeText(dt.textContent)
+        .replace(/:$/, "")
+        .toLowerCase();
+      const dd = dt.nextElementSibling as HTMLElement | null;
+      if (!dd || dd.tagName.toLowerCase() !== "dd") continue;
+      const val = normalizeText(dd.textContent);
+      if (!val) continue;
+      if (label.includes("temperatura")) {
+        const t = parseTemperatureC(val);
+        if (t != null) temperatureC = t;
+      } else if (label.includes("condici")) {
+        description = description ?? val;
+      } else if (label.includes("viento")) {
+        wind = opt(val);
+      } else if (label.includes("visibilidad")) {
+        const km = parseVisibilityKm(val);
+        if (km != null) visibilityKm = km;
+        else visibilityText = val;
+      } else if (label.includes("salida del sol")) {
+        sunrise = val;
+      } else if (label.includes("puesta del sol")) {
+        sunset = val;
+      }
+    }
+  }
+
+  const blob = normalizeText(section.textContent);
+  if (temperatureC == null) {
+    const tm = blob.match(/temperatura\s*:?\s*(-?\d+(?:[.,]\d+)?)\s*°?\s*c/i);
+    if (tm) {
+      const n = Number(tm[1].replace(",", "."));
+      if (Number.isFinite(n)) temperatureC = n;
+    }
+  }
+  if (description == null) {
+    const cm = blob.match(/condici[oó]n\s*:?\s*([^\n]+?)(?=\s*(?:viento|visibilidad|salida|puesta)|$)/i);
+    if (cm) description = normalizeText(cm[1]);
+  }
+  if (wind == null) {
+    const wm = blob.match(/viento\s*:?\s*([^\n]+)/i);
+    if (wm) wind = normalizeText(wm[1]);
+  }
+  if (visibilityKm == null && visibilityText == null) {
+    const vm = blob.match(/visibilidad\s*:?\s*([^\n]+)/i);
+    if (vm) {
+      const raw = normalizeText(vm[1]);
+      const km = parseVisibilityKm(raw);
+      if (km != null) visibilityKm = km;
+      else visibilityText = raw;
+    }
+  }
+  if (sunset == null) {
+    const pm = blob.match(/puesta del sol\s*:?\s*([0-9]{1,2}:[0-9]{2})/i);
+    if (pm) sunset = pm[1];
+  }
+  if (sunrise == null) {
+    const sm = blob.match(/salida del sol\s*:?\s*([0-9]{1,2}:[0-9]{2})/i);
+    if (sm) sunrise = sm[1];
+  }
+
+  if (
+    description == null &&
+    wind == null &&
+    sunrise == null &&
+    sunset == null &&
+    visibilityKm == null &&
+    visibilityText == null &&
+    temperatureC == null &&
+    providerNote == null
+  ) {
+    return undefined;
+  }
+
+  return {
+    description,
+    temperatureC,
+    wind,
+    visibilityKm,
+    visibilityText,
+    sunrise,
+    sunset,
+    providerNote,
+  };
+}
+
+function mergeWeatherNow(
+  classic: WeatherNowRaw | undefined,
+  alternate: WeatherNowRaw | undefined,
+): WeatherNowRaw | undefined {
+  if (!classic && !alternate) return undefined;
+  const a = alternate ?? {};
+  const c = classic ?? {};
+  return {
+    description: c.description ?? a.description,
+    temperatureC: c.temperatureC ?? a.temperatureC,
+    wind: c.wind ?? a.wind,
+    visibilityKm: c.visibilityKm ?? a.visibilityKm,
+    visibilityText: c.visibilityText ?? a.visibilityText,
+    sunrise: c.sunrise ?? a.sunrise,
+    sunset: c.sunset ?? a.sunset,
+    providerNote: c.providerNote ?? a.providerNote,
+  };
+}
+
+function parseCurrentWeather(section: HTMLElement | null): WeatherNowRaw | undefined {
+  if (!section) return undefined;
+  const classic = parseWeatherClassicStructure(section);
+  const alternate = parseWeatherAlternateStructure(section);
+  return mergeWeatherNow(classic, alternate);
 }
 
 function forecastWindParts(windDd: HTMLElement | null): {
@@ -367,7 +563,7 @@ export function parseArgentinaPassHtml(html: string, ctx: ParseContext): PassRaw
 
   const contact = parseContact(main);
   const gps = parseGps(main);
-  const alerts = parseAlerts(main);
+  const alerts = [...parseAlerts(main), ...parseInlinePassStateAlerts(html)];
 
   const climaSection = main?.querySelector("section.clima-pasos");
   const currentWeather = parseCurrentWeather(climaSection ?? null);

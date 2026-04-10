@@ -2,45 +2,46 @@ name: Scrape pasos internacionales
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: scrape-pasos
-  cancel-in-progress: false
+    - cron: "*/15 * * * *" # cada 15 minutos
+  workflow_dispatch: # permite correrlo manualmente desde GitHub UI
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
+
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: npm
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Run scraper
-        run: npm run scrape
+        run: npx tsx scripts/scrape.ts
+        env:
+          NODE_ENV: production
 
-      - name: Commit and push if changed
+      - name: Commit snapshots if changed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add public/snapshots/
           if git diff --staged --quiet; then
-            echo "No snapshot changes."
-            exit 0
+            echo "No changes to snapshots, skipping commit"
+          else
+            git commit -m "chore: update snapshots [skip ci]"
+            git push
           fi
-          git commit -m "chore: update paso snapshots"
-          git push

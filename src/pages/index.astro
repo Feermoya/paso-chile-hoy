@@ -5,7 +5,7 @@ import PasoCard from "@/components/PasoCard.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
 import { PASOS } from "@/data/pasos";
 import MainLayout from "@/layouts/MainLayout.astro";
-import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
+import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
@@ -25,7 +25,7 @@ const cards: CardEntry[] = await Promise.all(
     }
     try {
       const raw = await getSnapshotForApi(paso.slug);
-      const view = mapPassRawToView(raw);
+      const view = mapPersistedSnapshotToView(raw, paso);
       const n = view.weather?.now;
       return {
         slug: paso.slug,
@@ -46,9 +46,9 @@ const meta = buildHomeMeta();
 const homeSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Pasos internacionales Mendoza a Chile",
+  name: "Pasos internacionales Argentina y Chile",
   description:
-    "Lista de pasos internacionales entre Mendoza, Argentina y Chile con estado en tiempo real.",
+    "Lista de pasos internacionales entre Argentina y Chile (Mendoza, San Juan) con estado en tiempo real.",
   numberOfItems: PASOS.filter((p) => p.active).length,
   itemListElement: PASOS.filter((p) => p.active).map((paso, i) => ({
     "@type": "ListItem",
@@ -73,8 +73,8 @@ const homeSchema = {
       <div class="home-hero-text">
         <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
         <p class="home-subtitle">
-          Estado en tiempo real del Paso Cristo Redentor y los principales pasos internacionales entre
-          Mendoza y Chile. Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
+          Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y Chile.
+          Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
         </p>
       </div>
     </div>
@@ -97,12 +97,13 @@ const homeSchema = {
   <SupportBlock />
 
   <section class="seo-content seo-content--home" aria-label="Información sobre los pasos a Chile">
-    <h2>Pasos internacionales entre Mendoza y Chile</h2>
+    <h2>Pasos internacionales entre Argentina y Chile</h2>
     <p>
-      Paso Chile Hoy muestra el estado en tiempo real de los principales pasos internacionales entre la
-      provincia de Mendoza, Argentina, y Chile. El <strong>Paso Sistema Cristo Redentor</strong> (también
-      conocido como Paso Los Libertadores) es el principal cruce terrestre entre ambos países, ubicado a
-      3.200 metros sobre el nivel del mar entre Villa Las Cuevas (AR) y Los Andes (CL).
+      Paso Chile Hoy muestra el estado en tiempo real de pasos internacionales entre Argentina y Chile,
+      incluyendo el <strong>Paso Sistema Cristo Redentor</strong> (también
+      conocido como Paso Los Libertadores) entre Mendoza y la región de Valparaíso, el{" "}
+      <strong>Paso Pehuenche</strong> conectando Malargüe con Talca, y el <strong>Paso Agua Negra</strong>{" "}
+      entre San Juan y la región de Coquimbo.
     </p>
     <p>
       El estado del paso, su horario de funcionamiento, las condiciones climáticas y las alertas de
@@ -115,10 +116,11 @@ const homeSchema = {
       las 24 horas. El paso puede cerrarse sin previo aviso por nevadas, vientos fuertes o condiciones
       meteorológicas adversas en la alta montaña.
     </p>
-    <h3>Otros pasos desde Mendoza</h3>
+    <h3>Otros pasos</h3>
     <p>
-      El <strong>Paso Pehuenche</strong> conecta Malargüe (AR) con Talca (CL) y el{" "}
-      <strong>Paso El Sosneado</strong> une San Rafael con Curicó. Próximamente disponibles en esta web.
+      El <strong>Paso Pehuenche</strong> conecta Malargüe (Mendoza) con Talca y el{" "}
+      <strong>Paso Agua Negra</strong> une Las Flores (San Juan) con Huanta. Los horarios y condiciones
+      pueden variar según la temporada y el estado de la ruta.
     </p>
   </section>
 </MainLayout>

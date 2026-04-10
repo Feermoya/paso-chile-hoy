@@ -3,10 +3,11 @@ import AlertsBlock from "@/components/AlertsBlock.astro";
 import PassDetails from "@/components/PassDetails.astro";
 import StatusHero from "@/components/StatusHero.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
+import TwitterAlerts from "@/components/TwitterAlerts.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
 import { getPasoBySlug } from "@/data/pasos";
-import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
+import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
@@ -36,7 +37,7 @@ let loadError: string | null = null;
 
 try {
   const raw = await getSnapshotForApi(slug);
-  view = mapPassRawToView(raw);
+  view = mapPersistedSnapshotToView(raw, pasoConfig);
   logPassPipelineDebug(`/${slug}`, { raw, view });
 } catch (e) {
   loadError = e instanceof Error ? e.message : "Error al cargar el paso";
@@ -61,7 +62,7 @@ if (import.meta.env.DEV && view && statusResult) {
   );
   console.log("Schedule (UI):", scheduleText);
   console.log("ScrapedAt:", view.meta.scrapedAt);
-  console.log("Alertas:", view.alerts);
+  console.log("Motivo / vialidad:", view.operationalInfo.motivo, view.operationalInfo.vialidadEstado);
   console.log("Status inferido:", statusResult.status);
   console.log("Razón:", statusResult.reason);
   console.log("Confidence:", statusResult.confidence);
@@ -82,6 +83,13 @@ const weatherDescMeta = now?.description?.trim() || null;
 
 const freshnessLabel = lastRel || "cuando hay datos nuevos";
 
+const regionLabelForMeta =
+  pasoConfig.provinceAR === "San Juan" ? "San Juan, Argentina" : "Mendoza, Argentina";
+const headerRegionLabel = pasoConfig.provinceAR === "San Juan" ? "San Juan · AR" : "Mendoza · AR";
+const geoRegionCode = pasoConfig.provinceAR === "San Juan" ? "AR-J" : "AR-M";
+const geoPlacename = regionLabelForMeta;
+const geoPositionMeta = `${pasoConfig.lat};${pasoConfig.lng}`;
+
 const meta = buildPassPageMeta({
   passName: pasoConfig.name,
   passSlug: pasoConfig.slug,
@@ -90,6 +98,7 @@ const meta = buildPassPageMeta({
   tempC,
   weatherDesc: weatherDescMeta,
   freshnessLabel,
+  regionLabel: regionLabelForMeta,
 });
 
 function openingHoursSpecs(schedule: string): Array<Record<string, unknown>> {
@@ -133,7 +142,7 @@ const passSchema: Record<string, unknown> = {
   address: {
     "@type": "PostalAddress",
     addressLocality: pasoConfig.localityAR,
-    addressRegion: "Mendoza",
+    addressRegion: pasoConfig.provinceAR,
     addressCountry: "AR",
   },
   openingHoursSpecification: openingHoursSpecs(scheduleText),
@@ -159,6 +168,10 @@ const passSchema: Record<string, unknown> = {
   canonical={meta.canonical}
   structuredData={passSchema}
   headerAltitudeM={pasoConfig.altitudeM}
+  headerRegionLabel={headerRegionLabel}
+  geoRegionCode={geoRegionCode}
+  geoPlacename={geoPlacename}
+  geoPosition={geoPositionMeta}
 >
   <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
     {loadError && (
@@ -197,11 +210,21 @@ const passSchema: Record<string, unknown> = {
             />
           )}
 
+          <AlertsBlock
+            class="anim-section anim-delay-2"
+            motivo={view.operationalInfo.motivo ?? null}
+            vialidadEstado={view.operationalInfo.vialidadEstado ?? "HABILITADA"}
+            vialidadObservaciones={view.operationalInfo.vialidadObservaciones ?? ""}
+            status={displayStatus}
+          />
+
+          <TwitterAlerts passSlug={slug} />
+
           {showNow && now && (
             <>
-              <div class="section-divider anim-section anim-delay-2" aria-hidden="true"></div>
+              <div class="section-divider anim-section anim-delay-3" aria-hidden="true"></div>
               <WeatherNow
-                class="anim-section anim-delay-2"
+                class="anim-section anim-delay-3"
                 weather={now}
                 forecast={forecast}
                 updatedAt={now.providerNote}
@@ -209,8 +232,6 @@ const passSchema: Record<string, unknown> = {
               />
             </>
           )}
-
-          <AlertsBlock class="anim-section anim-delay-3" alerts={view.alerts} />
         </div>
 
         <div class="col-side flex min-w-0 flex-col gap-4 md:gap-6">
@@ -234,15 +255,14 @@ const passSchema: Record<string, unknown> = {
   <section class="seo-content seo-content--pass">
     <h2>Sobre el {pasoConfig.name}</h2>
     <p>
-      El {pasoConfig.name} es el principal paso internacional entre {pasoConfig.localityAR}, Mendoza,
-      Argentina, y {pasoConfig.localityCL}, Chile. Se encuentra a{" "}
+      El {pasoConfig.name} conecta {pasoConfig.localityAR} ({pasoConfig.provinceAR},
+      Argentina) con {pasoConfig.localityCL} (Chile). Se encuentra a{" "}
       {pasoConfig.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de
       los Andes.
     </p>
     <p>
-      Esta página muestra el estado actual del paso inferido a partir de la información publicada por
-      Gendarmería Nacional y Vialidad Nacional en el sitio oficial del Ministerio de Seguridad de la
-      Nación Argentina. La información se actualiza automáticamente.
+      Esta página muestra el estado actual del paso según el mismo API público que usa el sitio oficial del
+      Ministerio de Seguridad de la Nación Argentina. La información se actualiza automáticamente.
     </p>
   </section>
 </MainLayout>

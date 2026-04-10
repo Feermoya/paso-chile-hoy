@@ -1,6 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { PasoConfig } from "@/data/pasos";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
+import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
 
 export interface Props {
   paso: PasoConfig;
@@ -74,20 +76,31 @@ const href = paso.active ? `/${paso.slug}` : undefined;
         <p class="paso-card-localities">
           {paso.localityAR} (AR) — {paso.localityCL} (CL)
         </p>
+        {(weatherDesc?.trim() || weatherTempC != null) && (
+          <div class="paso-card-weather">
+            {weatherDesc?.trim() && (
+              <Icon
+                name={getWeatherIcon(weatherDesc)}
+                width={14}
+                height={14}
+                style={`color: ${getWeatherIconColor(weatherDesc)}; flex-shrink: 0`}
+                aria-hidden="true"
+              />
+            )}
+            <span class="paso-card-weather-desc">
+              {[
+                weatherDesc?.trim(),
+                weatherTempC != null ? `${weatherTempC}°C` : null,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </span>
+          </div>
+        )}
         <div class="paso-card-meta">
           <span class="paso-card-province">{paso.provinceAR}</span>
           <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
         </div>
-        {(weatherDesc?.trim() || weatherTempC != null) && (
-          <p class="paso-card-weather">
-            {[
-              weatherDesc?.trim(),
-              weatherTempC != null ? `${weatherTempC}°C` : null,
-            ]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        )}
       </div>
     </a>
   : <div class="paso-card paso-card--disabled" aria-disabled="true">

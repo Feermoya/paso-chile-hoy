@@ -1,0 +1,54 @@
+{
+  "slug": "agua-negra",
+  "name": "Agua Negra",
+  "schedule": "07:00-17:00",
+  "scheduleRaw": "TOLERANCIA HASTA LAS 21:00 HS",
+  "rawStatus": "CERRADO",
+  "motivo": "HORARIO DE ATENCION AL USUARIO DE 09:00 HS A 17:00 HS.-",
+  "vialidadEstado": "HABILITADA",
+  "vialidadObservaciones": "Transitable",
+  "weather": {
+    "temperatureC": 11.3,
+    "description": "Parcialmente nublado",
+    "wind": "Calma",
+    "visibilityKm": 15,
+    "sunrise": "07:51",
+    "sunset": "19:25",
+    "updatedAt": "2026-04-10T09:00:00-03:00"
+  },
+  "contact": "(2647) 420473",
+  "lat": -30.32783,
+  "lng": -69.23614,
+  "altitudeM": 4765,
+  "scrapedAt": "2026-04-10T14:21:30.826Z",
+  "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 21,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Tormentas aisladas",
+      "temperatureC": 17,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Tormentas aisladas",
+      "temperatureC": 13,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Algo nublado",
+      "temperatureC": 16,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
+    }
+  ]
+}

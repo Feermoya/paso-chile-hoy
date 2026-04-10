@@ -26,8 +26,10 @@ export interface AlertRaw {
   title?: string;
   /** Texto principal (suele ir en strong) */
   description?: string;
-  /** Texto complementario */
+  /** Texto complementario (párrafos siguientes, p. ej. “Apertura demorada…”) */
   detail?: string;
+  /** Texto completo del bloque (inferencia de estado / búsqueda de keywords). */
+  rawText?: string;
 }
 
 export interface WeatherNowRaw {
