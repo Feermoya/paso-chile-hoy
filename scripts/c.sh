@@ -11,6 +11,16 @@ echo -e "${BLUE}┌────────────────────�
 echo -e "${BLUE}│     Paso Chile Hoy · Commit      │${NC}"
 echo -e "${BLUE}└─────────────────────────────────┘${NC}"
 echo ""
+
+# Fetch inmediato: actualiza refs de origin antes de cualquier paso (evita push rechazado)
+if git rev-parse --git-dir >/dev/null 2>&1; then
+  echo -e "${BLUE}→ git fetch origin${NC}"
+  git fetch origin || {
+    echo -e "${YELLOW}Advertencia: git fetch falló (¿sin red?). Seguís igual; el pull final puede fallar.${NC}"
+  }
+  echo ""
+fi
+
 echo -e "Tipo de cambio:"
 echo -e "  ${GREEN}1${NC} feat     → nueva funcionalidad"
 echo -e "  ${GREEN}2${NC} fix      → corrección de bug"
@@ -50,6 +60,30 @@ read -p "¿Confirmar? (Enter = sí, n = no): " CONFIRM
 if [ "$CONFIRM" = "n" ]; then
   echo "Cancelado."
   exit 0
+fi
+
+set -e
+
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "Error: no estás dentro de un repositorio git."
+  exit 1
+fi
+
+echo ""
+echo -e "${BLUE}→ git fetch origin (último estado antes del commit)${NC}"
+git fetch origin
+
+echo -e "${BLUE}→ Integrando cambios remotos (pull --rebase)...${NC}"
+BRANCH=$(git branch --show-current)
+if [ -z "$BRANCH" ]; then
+  echo "Error: no hay rama activa."
+  exit 1
+fi
+
+if git show-ref --verify --quiet "refs/remotes/origin/${BRANCH}"; then
+  git pull --rebase --autostash origin "$BRANCH"
+else
+  echo -e "${YELLOW}Rama «${BRANCH}» aún no existe en origin: se omite pull (primer push).${NC}"
 fi
 
 git add .
