@@ -4,11 +4,15 @@ import { fetchConsolidado, fetchClima, fetchDetailHTML } from "@/lib/server/apiC
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import { getLatestPassTweet } from "@/utils/twitterScraper";
+import { checkSnapshotFreshness } from "@/lib/server/utils/snapshotFreshnessCheck";
 import {
   readPassSnapshotFile,
   writePassSnapshotFile,
 } from "@/lib/server/storage/jsonSnapshotStore";
 import type { PassRaw } from "@/types/pass-raw";
+
+/** En producción, si el JSON tiene más de esto, se intenta refrescar desde la API. */
+const SNAPSHOT_STALE_MAX_MINUTES = 120;
 
 /** Error interno cuando no hay snapshot persistido y el scrape en vivo también falla (no mostrar al usuario). */
 export const PASS_DATA_UNAVAILABLE = "PASS_DATA_UNAVAILABLE";
@@ -100,6 +104,10 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSna
 
   const persisted = await readPassSnapshotFile(slug);
 
+  if (persisted) {
+    checkSnapshotFreshness(persisted);
+  }
+
   if (allowLiveScrape()) {
     if (!persisted) {
       return refreshAndPersistSnapshot(slug);
@@ -115,6 +123,21 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSna
   }
 
   if (persisted) {
+    const at = persisted.scrapedAt?.trim();
+    if (at) {
+      const ageMin = snapshotAgeMs(at) / 60000;
+      if (ageMin > SNAPSHOT_STALE_MAX_MINUTES) {
+        console.warn(
+          `[snapshot] ${slug} tiene ${Math.round(ageMin)} min — intentando live scrape`,
+        );
+        try {
+          return await refreshAndPersistSnapshot(slug);
+        } catch (e) {
+          console.error(`[snapshot] Live scrape falló para ${slug}:`, e);
+          return persisted;
+        }
+      }
+    }
     return persisted;
   }
 

@@ -875,17 +875,17 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 10px;
   flex-shrink: 0;
 }
 
 .fcard-icon-wrap svg {
-  width: 22px;
-  height: 22px;
-  color: inherit;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .fcard-meta {

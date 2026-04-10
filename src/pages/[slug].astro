@@ -62,21 +62,23 @@ const statusResult = view ? inferPassStatus(view) : null;
 const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
 const officialUrl = view?.meta.sourceUrl;
 
-if (import.meta.env.DEV && view && statusResult) {
-  console.log("=== PASO STATUS DEBUG ===");
-  console.log(
-    "Hora Argentina actual:",
-    new Date().toLocaleString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" }),
-  );
-  console.log("Schedule (UI):", scheduleText);
-  console.log("ScrapedAt:", view.meta.scrapedAt);
-  console.log("Motivo / vialidad:", view.operationalInfo.motivo, view.operationalInfo.vialidadEstado);
+const debugPass =
+  import.meta.env.DEV || (typeof process !== "undefined" && process.env.DEBUG_PASS === "true");
+
+if (debugPass && view && statusResult) {
+  console.log(`\n=== DEBUG ${slug.toUpperCase()} ===`);
+  console.log("Snapshot scrapedAt:", view.meta?.scrapedAt ?? "N/A");
+  console.log("rawStatus (del JSON):", view.operationalInfo?.rawStatus ?? "N/A");
+  console.log("vialidadEstado:", view.operationalInfo?.vialidadEstado ?? "N/A");
+  console.log("motivo:", view.operationalInfo?.motivo ?? "N/A");
   console.log("Status inferido:", statusResult.status);
+  console.log("displayLabel:", statusResult.displayLabel ?? "N/A");
+  console.log("Source:", statusResult.source ?? "N/A");
   console.log("Razón:", statusResult.reason);
   console.log("Confidence:", statusResult.confidence);
-  console.log("opensInMinutes:", statusResult.opensInMinutes);
-  console.log("closesInMinutes:", statusResult.closesInMinutes);
-  console.log("=========================");
+  console.log("opensInMinutes:", statusResult.opensInMinutes ?? "N/A");
+  console.log("closesInMinutes:", statusResult.closesInMinutes ?? "N/A");
+  console.log("===================\n");
 }
 
 const displayStatus = (statusResult?.status ?? "sin_datos") as PassStatus;

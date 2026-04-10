@@ -20,13 +20,13 @@ function getForecastDate(period: string): string {
   });
 }
 
-/** Fondo ~10% opacidad; el color del ícono va en `<Icon style>` (igual que WeatherNow). */
+/** Fondo suave (#RRGGBB + alpha en hex); color en `<Icon>` (astro-icon / `<use>` no hereda currentColor del wrapper). */
 function fcardIconWrapStyle(weatherColor: string): string {
   const c = weatherColor.trim();
   if (/^#[0-9a-fA-F]{6}$/.test(c)) {
-    return `background-color: ${c}1a;`;
+    return `background-color: ${c}20;`;
   }
-  return `background-color: color-mix(in srgb, ${c} 10%, transparent);`;
+  return `background-color: color-mix(in srgb, ${c} 12%, transparent);`;
 }
 ---
 
@@ -44,9 +44,10 @@ function fcardIconWrapStyle(weatherColor: string): string {
               <span class="fcard-icon-wrap" aria-hidden="true" style={fcardIconWrapStyle(iconColor)}>
                 <Icon
                   name={getWeatherIcon(descRaw)}
-                  width="22"
-                  height="22"
-                  style={`color: ${iconColor};`}
+                  width="24"
+                  height="24"
+                  style={`color: ${iconColor}; display: block;`}
+                  aria-hidden="true"
                 />
               </span>
               <div class="fcard-meta">

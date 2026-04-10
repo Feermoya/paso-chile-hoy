@@ -3,7 +3,7 @@ name: Scrape pasos internacionales
 on:
   schedule:
     - cron: "*/15 * * * *" # cada 15 minutos
-  workflow_dispatch: # permite correrlo manualmente desde GitHub UI
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -19,6 +19,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
+          ref: main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,33 +35,27 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Verify snapshots exist
+      - name: Validate snapshots
         run: |
-          MISSING=0
+          echo "Validando snapshots..."
           for slug in cristo-redentor pehuenche agua-negra; do
-            if [ ! -f "public/snapshots/$slug.json" ]; then
-              echo "❌ Missing snapshot: $slug"
-              MISSING=1
-            else
-              echo "✅ Found snapshot: $slug"
-              node -e "JSON.parse(require('fs').readFileSync('public/snapshots/' + process.argv[1] + '.json', 'utf8'))" "$slug" \
-                && echo "   JSON valid" \
-                || { echo "   ⚠️ JSON invalid for $slug"; MISSING=1; }
+            FILE="public/snapshots/$slug.json"
+            if [ ! -f "$FILE" ]; then
+              echo "❌ Missing: $FILE"
+              exit 1
             fi
+            node -e "const j=JSON.parse(require('fs').readFileSync('$FILE','utf8')); console.log('✅', '$slug', '→ rawStatus:', j.rawStatus, '| scrapedAt:', j.scrapedAt);" \
+              || { echo "❌ JSON inválido: $FILE"; exit 1; }
           done
-          if [ "$MISSING" -eq 1 ]; then
-            echo "Some snapshots are missing or invalid — scrape failed"
-            exit 1
-          fi
 
-      - name: Commit snapshots if changed
+      - name: Commit if changed
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add public/snapshots/
           if git diff --staged --quiet; then
-            echo "No changes to snapshots, skipping commit"
+            echo "Sin cambios en snapshots"
           else
             git commit -m "chore: update snapshots [skip ci]"
-            git push
+            git push origin main
           fi
