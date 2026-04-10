@@ -11,19 +11,19 @@
   "vialidadObservaciones": "Transitable",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.3,
-    "description": "Parcialmente nublado",
-    "wind": "Calma",
-    "visibilityKm": 15,
+    "temperatureC": 22.5,
+    "description": "Parcialmente nublado con humo",
+    "wind": "Este 4 km/h",
+    "visibilityKm": 10,
     "sunrise": "07:52",
     "sunset": "19:24",
-    "updatedAt": "2026-04-10T09:00:00-03:00"
+    "updatedAt": "2026-04-10T15:00:00-03:00"
   },
   "contact": "(2647) 420473",
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T18:00:55.623Z",
+  "scrapedAt": "2026-04-10T19:12:19.952Z",
   "forecast": [
     {
       "period": "Hoy por la noche",
