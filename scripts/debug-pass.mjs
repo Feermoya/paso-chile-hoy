@@ -1,9 +1,26 @@
 #!/usr/bin/env node
 /**
- * Requiere `npm run dev` en otra terminal (servidor Astro en marcha).
+ * Lee el snapshot local y muestra el PassView (misma lógica que la página /paso/[slug]).
  * Uso: node scripts/debug-pass.mjs cristo-redentor
- *      BASE_URL=http://127.0.0.1:4321 node scripts/debug-pass.mjs las-lenas
+ *      npm run update:pass -- <slug>  (si falta snapshot)
  */
+import { createJiti } from "jiti";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+if (typeof globalThis.fetch !== "function") {
+  const { fetch } = await import("undici");
+  globalThis.fetch = fetch;
+}
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const jiti = createJiti(import.meta.url, {
+  interopDefault: true,
+  tsconfig: path.join(root, "tsconfig.json"),
+  alias: {
+    "@": path.join(root, "src"),
+  },
+});
 
 const slug = process.argv[2];
 if (!slug) {
@@ -11,14 +28,20 @@ if (!slug) {
   process.exit(1);
 }
 
-const base = process.env.BASE_URL ?? "http://127.0.0.1:4321";
-const url = `${base.replace(/\/$/, "")}/api/pass/${encodeURIComponent(slug)}`;
+const { getSnapshotForApi } = jiti(
+  path.join(root, "src/lib/server/services/snapshotService.ts"),
+);
+const { mapPassRawToView } = jiti(
+  path.join(root, "src/lib/mappers/passViewMapper.ts"),
+);
 
-const res = await fetch(url);
-const body = await res.text();
-console.log("HTTP", res.status, url);
 try {
-  console.log(JSON.stringify(JSON.parse(body), null, 2));
-} catch {
-  console.log(body);
+  const raw = await getSnapshotForApi(slug);
+  const view = mapPassRawToView(raw);
+  console.log(JSON.stringify(view, null, 2));
+  process.exit(0);
+} catch (e) {
+  const message = e instanceof Error ? e.message : String(e);
+  console.error(JSON.stringify({ ok: false, error: message }, null, 2));
+  process.exit(1);
 }

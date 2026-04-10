@@ -81,7 +81,7 @@ Nuevos campos del HTML: primero ampliar **`PassRaw`** y documentarlos aquí; lue
 
 ## Relación con el snapshot en disco
 
-El parser (`argentinaPassParser`) persiste **`PassRaw`** en `data/snapshots/<slug>.json`. Los archivos antiguos en formato **`PassPageSnapshot`** se migran al leer (`jsonSnapshotStore`). La API `/api/pass/[slug]` devuelve **`PassView`** (`mapPassRawToView`).
+El parser (`argentinaPassParser`) persiste **`PassRaw`** en `data/snapshots/<slug>.json`. Los archivos antiguos en formato **`PassPageSnapshot`** se migran al leer (`jsonSnapshotStore`). En build estático, las páginas usan **`PassView`** vía `getSnapshotForApi` + `mapPassRawToView`.
 
 ## Ejemplo
 

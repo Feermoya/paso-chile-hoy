@@ -1,12 +1,10 @@
 ---
-export const prerender = false;
-
 import AlertsBlock from "@/components/AlertsBlock.astro";
 import PassDetails from "@/components/PassDetails.astro";
 import StatusHero from "@/components/StatusHero.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
-import { getPasoBySlug } from "@/data/pasos";
+import { getActivePasos, getPasoBySlug } from "@/data/pasos";
 import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
@@ -15,6 +13,10 @@ import type { PassView } from "@/types/pass-view";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
+
+export async function getStaticPaths() {
+  return getActivePasos().map((p) => ({ params: { slug: p.slug } }));
+}
 
 const slug = Astro.params.slug ?? "";
 const pasoConfig = getPasoBySlug(slug);

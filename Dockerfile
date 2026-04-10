@@ -1,16 +1,10 @@
-# Astro + @astrojs/node (standalone). Node 20 como en local.
-FROM node:20-alpine
-
+# Build estático (Astro → dist/). Para Firebase Hosting: npm run build && firebase deploy --only hosting
+# Opcional: imagen nginx con el sitio ya construido
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Dependencias
 COPY package.json package-lock.json ./
 RUN npm ci
-
-# Código y variables de build (Astro inyecta PUBLIC_* en el cliente)
 COPY . .
-
-# En build en la nube: pasá los mismos PUBLIC_FIREBASE_* que en .env
 ARG PUBLIC_FIREBASE_API_KEY
 ARG PUBLIC_FIREBASE_AUTH_DOMAIN
 ARG PUBLIC_FIREBASE_PROJECT_ID
@@ -25,13 +19,8 @@ ENV PUBLIC_FIREBASE_STORAGE_BUCKET=$PUBLIC_FIREBASE_STORAGE_BUCKET
 ENV PUBLIC_FIREBASE_MESSAGING_SENDER_ID=$PUBLIC_FIREBASE_MESSAGING_SENDER_ID
 ENV PUBLIC_FIREBASE_APP_ID=$PUBLIC_FIREBASE_APP_ID
 ENV PUBLIC_FIREBASE_MEASUREMENT_ID=$PUBLIC_FIREBASE_MEASUREMENT_ID
-
 RUN npm run build
 
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=8080
-
-EXPOSE 8080
-
-CMD ["node", "./dist/server/entry.mjs"]
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
