@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.1.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.1.0...v2.1.1) (2026-04-10)
+
+### Correcciones
+
+* demoras 0h, sticky, forecast icons, alert animations ([e6933d5](https://github.com/Feermoya/paso-chile-hoy/commit/e6933d504940615df8ae744c1d81e60048e43b03))
+
 ## [2.1.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.0.1...v2.1.0) (2026-04-10)
 
 ### Nuevas funcionalidades
