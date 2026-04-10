@@ -1,0 +1,45 @@
+---
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
+
+let version = "0.1.0";
+let releasedAt = "";
+
+try {
+  const versionPath = join(process.cwd(), "public", "version.json");
+  if (existsSync(versionPath)) {
+    const data = JSON.parse(readFileSync(versionPath, "utf-8")) as {
+      version?: string;
+      releasedAt?: string;
+    };
+    version = data.version ?? "0.1.0";
+    releasedAt = data.releasedAt ?? "";
+  }
+} catch {
+  // fallback silencioso
+}
+
+let releaseDateLabel = "";
+if (releasedAt) {
+  const d = new Date(releasedAt);
+  releaseDateLabel = d.toLocaleDateString("es-AR", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+const releasesUrl = "https://github.com/Feermoya/paso-chile-hoy/releases";
+---
+
+<a
+  href={releasesUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="version-badge"
+  title={releasedAt ? `Publicado el ${releaseDateLabel}` : "Historial de versiones en GitHub"}
+  aria-label={`Versión ${version} de Paso Chile Hoy`}
+>
+  <span class="version-dot" aria-hidden="true"></span>
+  <span class="version-label">v{version}</span>
+</a>

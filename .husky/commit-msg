@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Husky 9+: no hace falta source _/husky.sh (está deprecado y solo imprime avisos).
+npx commitlint --edit "$1"

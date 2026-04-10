@@ -1,4 +1,6 @@
 ---
+import VersionBadge from "@/components/VersionBadge.astro";
+
 const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 ---
 
@@ -41,7 +43,10 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
       </div>
     </div>
 
-    <p class="footer-geo">32°S · 3200 m s.n.m. · Cordillera de los Andes</p>
+    <div class="footer-bottom-row">
+      <p class="footer-geo">32°S · 3200 m s.n.m. · Cordillera de los Andes</p>
+      <VersionBadge />
+    </div>
   </div>
 </footer>
 

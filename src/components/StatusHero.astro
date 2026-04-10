@@ -60,8 +60,19 @@ const showOpenCountdown =
 const showCloseCountdown =
   (status === "abierto" || status === "condicionado") &&
   closesInMinutes != null &&
-  closesInMinutes <= 60 &&
   closesInMinutes > 0;
+
+function formatMinutesShort(minutes: number): string {
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m > 0 ? `${h}h ${m}min` : `${h}h`;
+}
+
+const closeCountdownInitial =
+  closesInMinutes != null && closesInMinutes > 0
+    ? formatMinutesShort(closesInMinutes)
+    : "";
 ---
 
 <section
@@ -138,7 +149,7 @@ const showCloseCountdown =
             />
             <span class="countdown-label countdown-label--warning">Cierra en</span>
             <span class="countdown-value countdown-value--warning">
-              {closesInMinutes}min
+              {closeCountdownInitial}
             </span>
           </div>
         )

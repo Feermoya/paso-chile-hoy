@@ -13,7 +13,22 @@
     "scrape": "tsx scripts/scrape.ts",
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",
-    "update:all-passes": "node scripts/update-all-passes.mjs"
+    "update:all-passes": "node scripts/update-all-passes.mjs",
+    "c": "bash scripts/c.sh",
+    "commit": "cz",
+    "c:feat": "git add . && git commit -m",
+    "c:fix": "git add . && git commit -m",
+    "c:chore": "git add . && git commit -m",
+    "c:style": "git add . && git commit -m",
+    "c:refactor": "git add . && git commit -m",
+    "c:perf": "git add . && git commit -m",
+    "c:docs": "git add . && git commit -m",
+    "prepare": "husky"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.4",
@@ -27,13 +42,30 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@types/node": "^20.19.39",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@types/node": "^22.15.0",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-conventionalcommits": "^9.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
+    "semantic-release": "^24.2.9",
     "tsx": "^4.19.3",
     "typescript": "^5.7.2",
     "undici": "^5.28.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
+  },
+  "overrides": {
+    "rollup": "^4.0.0"
   }
 }

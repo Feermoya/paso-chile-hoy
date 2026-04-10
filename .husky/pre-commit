@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Sin tests automatizados aún; el hook evita fallos si no existe `npm test`.
+exit 0
