@@ -222,6 +222,30 @@ const icbmContent = geoPosition.includes(";")
       <Footer />
     </div>
     <CookieBanner />
+
+    <div id="pwa-banner" class="pwa-banner" hidden aria-live="polite">
+      <div class="pwa-banner-inner">
+        <img src="/logo.png" alt="" width="36" height="36" class="pwa-banner-logo" />
+        <div class="pwa-banner-text">
+          <strong>Instalá la app</strong>
+          <span>Acceso rápido al estado de los pasos</span>
+        </div>
+        <div class="pwa-banner-actions">
+          <button id="pwa-install-btn" class="pwa-btn pwa-btn--primary" type="button">
+            Instalar
+          </button>
+          <button
+            id="pwa-dismiss-btn"
+            class="pwa-btn pwa-btn--ghost"
+            type="button"
+            aria-label="Cerrar"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script is:inline>
       function updateHeaderHeight() {
         const header = document.querySelector(".site-header");
@@ -238,14 +262,79 @@ const icbmContent = geoPosition.includes(";")
       document.addEventListener("astro:page-load", updateHeaderHeight);
     </script>
     <script is:inline>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then(() => {})
-            .catch(() => {});
+      (function () {
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function () {
+            navigator.serviceWorker
+              .register("/sw.js")
+              .then(function (reg) {
+                console.log("[PWA] SW registrado:", reg.scope);
+              })
+              .catch(function (err) {
+                console.warn("[PWA] SW:", err);
+              });
+          });
+        }
+
+        var deferredPrompt = null;
+
+        window.addEventListener("beforeinstallprompt", function (e) {
+          e.preventDefault();
+          deferredPrompt = e;
         });
-      }
+
+        function isStandalone() {
+          return (
+            window.matchMedia("(display-mode: standalone)").matches ||
+            window.navigator.standalone === true
+          );
+        }
+
+        function hideBanner() {
+          var banner = document.getElementById("pwa-banner");
+          if (!banner) return;
+          banner.classList.remove("pwa-banner--visible");
+          setTimeout(function () {
+            banner.setAttribute("hidden", "");
+          }, 400);
+        }
+
+        function showInstallBanner() {
+          if (localStorage.getItem("pwa-dismissed") === "true") return;
+          if (isStandalone()) return;
+          var banner = document.getElementById("pwa-banner");
+          if (!banner) return;
+          banner.removeAttribute("hidden");
+          requestAnimationFrame(function () {
+            banner.classList.add("pwa-banner--visible");
+          });
+        }
+
+        setTimeout(showInstallBanner, 3000);
+
+        document.addEventListener("click", function (e) {
+          var t = e.target;
+          if (!(t && t.closest)) return;
+
+          if (t.closest("#pwa-install-btn")) {
+            if (deferredPrompt) {
+              deferredPrompt.prompt();
+              deferredPrompt.userChoice.then(function () {
+                deferredPrompt = null;
+                hideBanner();
+              });
+            } else {
+              hideBanner();
+            }
+            return;
+          }
+
+          if (t.closest("#pwa-dismiss-btn")) {
+            localStorage.setItem("pwa-dismissed", "true");
+            hideBanner();
+          }
+        });
+      })();
     </script>
     <script>
       (function () {

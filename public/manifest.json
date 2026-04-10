@@ -1,13 +1,14 @@
 {
   "name": "Paso Chile Hoy",
-  "short_name": "PasoChile",
+  "short_name": "Paso Chile",
   "description": "Estado en tiempo real de los pasos internacionales Argentina-Chile",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0C10",
   "theme_color": "#0A0C10",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "lang": "es-AR",
+  "categories": ["travel", "navigation", "weather"],
   "icons": [
     {
       "src": "/favicon_io/android-chrome-192x192.png",
@@ -20,23 +21,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/og-image.png",
-      "sizes": "1200x630",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
-  "categories": ["travel", "navigation", "weather"],
-  "shortcuts": [
-    {
-      "name": "Cristo Redentor",
-      "short_name": "Cristo Red.",
-      "url": "/cristo-redentor",
-      "icons": [{ "src": "/favicon_io/android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ]
 }

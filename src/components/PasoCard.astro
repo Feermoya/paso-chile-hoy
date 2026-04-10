@@ -7,7 +7,9 @@ import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
 export interface Props {
   paso: PasoConfig;
   status?: PassDisplayStatus;
-  /** Clima actual del snapshot (solo pasos activos con datos). */
+  displayLabel?: string;
+  closesInMinutes?: number;
+  opensInMinutes?: number;
   weatherDesc?: string;
   weatherTempC?: number | null;
   vialidadEstado?: string;
@@ -17,13 +19,34 @@ export interface Props {
 const {
   paso,
   status = "sin_datos",
+  displayLabel,
+  closesInMinutes,
+  opensInMinutes,
   weatherDesc,
   weatherTempC,
   vialidadEstado,
   vialidadObservaciones,
 } = Astro.props;
 
+function formatCountdown(minutes: number): string {
+  if (minutes <= 0) return "";
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m > 0 ? `${h}h ${m}min` : `${h}h`;
+}
+
 const showCorteVial = isVialidadCorteTotal(vialidadEstado);
+
+const isOpen =
+  status === "abierto" ||
+  (status === "condicionado" && displayLabel?.trim().toUpperCase() === "ABIERTO");
+const isClosed = status === "cerrado";
+const showClosesIn =
+  isOpen && closesInMinutes != null && closesInMinutes > 0;
+const showOpensIn =
+  isClosed && opensInMinutes != null && opensInMinutes > 0;
+const closingSoon = showClosesIn && closesInMinutes! <= 60;
 
 const statusConfig: Record<
   PassDisplayStatus,
@@ -61,14 +84,15 @@ const statusConfig: Record<
 };
 
 const cfg = statusConfig[status];
+const badgeText = (displayLabel?.trim() || cfg.label).toUpperCase();
 const href = paso.active ? `/${paso.slug}` : undefined;
 ---
 
 {
-  href ?
+  href ? (
     <a
       href={href}
-      class="paso-card"
+      class:list={["paso-card", `paso-card--${status}`]}
       aria-label={`Ver estado de ${paso.shortName}`}
     >
       <div
@@ -76,86 +100,135 @@ const href = paso.active ? `/${paso.slug}` : undefined;
         style={`background: ${cfg.bg}; border: 1px solid ${cfg.border}`}
       >
         <div class="paso-card-content">
-        <div class="paso-card-header">
-          <span class="paso-card-name">{paso.shortName}</span>
-          <div class="paso-card-right">
-            <span
-              class="paso-status-badge"
-              style={`color: ${cfg.color}; border-color: color-mix(in srgb, ${cfg.color} 20%, transparent)`}
-            >
-              {cfg.label}
-            </span>
-            <svg
-              class="paso-card-arrow"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </div>
-        </div>
-        <p class="paso-card-localities">
-          {paso.localityAR} (AR) — {paso.localityCL} (CL)
-        </p>
-        {(weatherDesc?.trim() || weatherTempC != null) && (
-          <div class="paso-card-weather">
-            {weatherDesc?.trim() && (
-              <Icon
-                name={getWeatherIcon(weatherDesc)}
-                width={14}
-                height={14}
-                style={`color: ${getWeatherIconColor(weatherDesc)}; flex-shrink: 0`}
+          <div class="paso-card-header">
+            <span class="paso-card-name">{paso.shortName}</span>
+            <div class="paso-card-header-right">
+              <span
+                class:list={["status-badge-sm", `status-badge-sm--${status}`]}
+                style={`color: ${cfg.color}; border-color: color-mix(in srgb, ${cfg.color} 28%, transparent)`}
+              >
+                {badgeText}
+              </span>
+              <svg
+                class="paso-card-arrow"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
                 aria-hidden="true"
-              />
-            )}
-            <span class="paso-card-weather-desc">
-              {[
-                weatherDesc?.trim(),
-                weatherTempC != null ? `${weatherTempC}°C` : null,
-              ]
-                .filter(Boolean)
-                .join(" · ")}
-            </span>
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </div>
           </div>
-        )}
-        {showCorteVial && (
-          <div class="paso-card-vialidad-alert">
-            <span>⚠ Corte vial</span>
-            {vialidadObservaciones?.trim() && (
-              <span class="paso-card-vialidad-obs">{vialidadObservaciones.trim()}</span>
-            )}
-          </div>
-        )}
-        <p class="paso-card-cta">Ver estado completo →</p>
+          <p class="paso-card-localities">
+            {paso.localityAR} (AR) — {paso.localityCL} (CL)
+          </p>
+          {(weatherDesc?.trim() || weatherTempC != null) && (
+            <div class="paso-card-weather">
+              {weatherDesc?.trim() && (
+                <Icon
+                  name={getWeatherIcon(weatherDesc)}
+                  width={14}
+                  height={14}
+                  style={`color: ${getWeatherIconColor(weatherDesc)}; flex-shrink: 0`}
+                  aria-hidden="true"
+                />
+              )}
+              <span class="paso-card-weather-desc">
+                {[
+                  weatherDesc?.trim(),
+                  weatherTempC != null ? `${weatherTempC}°C` : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </span>
+            </div>
+          )}
+          {showClosesIn && (
+            <div
+              class:list={[
+                "paso-card-countdown",
+                closingSoon && "paso-card-countdown--urgent",
+              ]}
+            >
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              <span>Cierra en {formatCountdown(closesInMinutes!)}</span>
+            </div>
+          )}
+          {showOpensIn && (
+            <div class="paso-card-countdown paso-card-countdown--opens">
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              <span>Abre en {formatCountdown(opensInMinutes!)}</span>
+            </div>
+          )}
+          {showCorteVial && (
+            <div class="paso-card-vialidad-alert">
+              <span class="pcva-badge">⚠ Corte vial</span>
+              {vialidadObservaciones?.trim() && (
+                <span class="pcva-obs">{vialidadObservaciones.trim()}</span>
+              )}
+            </div>
+          )}
         </div>
         <div class="paso-card-footer">
-          <span class="paso-card-province">{paso.provinceAR}</span>
-          <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
+          <span class="paso-card-cta">Ver estado completo →</span>
+          <span class="paso-card-meta">
+            {paso.provinceAR.toUpperCase()}{" "}
+            <span class="paso-card-altitude">
+              {paso.altitudeM.toLocaleString("es-AR")} m
+            </span>
+          </span>
         </div>
       </div>
     </a>
-  : <div class="paso-card paso-card--disabled" aria-disabled="true">
+  ) : (
+    <div class="paso-card paso-card--disabled" aria-disabled="true">
       <div class="paso-card-inner">
         <div class="paso-card-content">
-        <div class="paso-card-header">
-          <span class="paso-card-name">{paso.shortName}</span>
-          <span class="paso-coming-badge">Próximamente</span>
-        </div>
-        <p class="paso-card-localities">
-          {paso.localityAR} (AR) — {paso.localityCL} (CL)
-        </p>
+          <div class="paso-card-header">
+            <span class="paso-card-name">{paso.shortName}</span>
+            <span class="paso-coming-badge">Próximamente</span>
+          </div>
+          <p class="paso-card-localities">
+            {paso.localityAR} (AR) — {paso.localityCL} (CL)
+          </p>
         </div>
         <div class="paso-card-footer">
-          <span class="paso-card-province">{paso.provinceAR}</span>
-          <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
+          <span class="paso-card-meta">
+            {paso.provinceAR.toUpperCase()}{" "}
+            <span class="paso-card-altitude">
+              {paso.altitudeM.toLocaleString("es-AR")} m
+            </span>
+          </span>
         </div>
       </div>
     </div>
+  )
 }

@@ -35,6 +35,9 @@ try {
 type CardEntry = {
   slug: string;
   status?: PassDisplayStatus;
+  displayLabel?: string;
+  closesInMinutes?: number;
+  opensInMinutes?: number;
   weatherDesc?: string;
   weatherTempC?: number | null;
   vialidadEstado?: string;
@@ -51,9 +54,13 @@ const cards: CardEntry[] = await Promise.all(
       const view = mapPersistedSnapshotToView(raw, paso);
       const n = view.weather?.now;
       const op = view.operationalInfo;
+      const statusResult = inferPassStatus(view);
       return {
         slug: paso.slug,
-        status: inferPassStatus(view).status,
+        status: statusResult.status,
+        displayLabel: statusResult.displayLabel,
+        closesInMinutes: statusResult.closesInMinutes,
+        opensInMinutes: statusResult.opensInMinutes,
         weatherDesc: n?.description?.trim(),
         weatherTempC: n?.temperatureC ?? null,
         vialidadEstado: op.vialidadEstado,
@@ -99,7 +106,7 @@ const homeSchema = {
           />
         </div>
         <div class="home-hero-text">
-          <h1 class="home-hero-title">¿Está abierto el paso a Chile?</h1>
+          <h1 class="home-hero-title">Está abierto el paso a Chile?</h1>
           <p class="home-hero-subtitle">
             Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y
             Chile. Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
@@ -125,6 +132,9 @@ const homeSchema = {
           <PasoCard
             paso={paso}
             status={c?.status}
+            displayLabel={c?.displayLabel}
+            closesInMinutes={c?.closesInMinutes}
+            opensInMinutes={c?.opensInMinutes}
             weatherDesc={c?.weatherDesc}
             weatherTempC={c?.weatherTempC}
             vialidadEstado={c?.vialidadEstado}
