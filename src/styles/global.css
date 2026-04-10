@@ -1461,13 +1461,34 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     gap: 20px;
   }
 
-  .home-hero-logo {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
-    object-fit: contain;
+  /**
+   * Slot fijo en el flex (poco ancho) + imagen más grande centrada.
+   * Si el PNG tiene mucho transparente, `contain` en una caja grande solo agranda el “marco”;
+   * acá el dibujo útil escala respecto al centro sin reservar más hueco en la fila.
+   */
+  .home-hero-logo-wrap {
+    position: relative;
+    width: 52px;
+    height: 52px;
     flex-shrink: 0;
     margin-top: 4px;
+    overflow: visible;
+  }
+
+  .home-hero-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 88px;
+    height: 88px;
+    margin: 0;
+    border-radius: 18px;
+    object-fit: contain;
+    object-position: center;
+    transform: translate(-50%, -50%);
+    max-width: none;
+    pointer-events: none;
+    user-select: none;
   }
 
   .home-hero-text {
@@ -1499,11 +1520,16 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
       gap: 14px;
     }
 
-    .home-hero-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+    .home-hero-logo-wrap {
+      width: 40px;
+      height: 40px;
       margin-top: 2px;
+    }
+
+    .home-hero-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
     }
 
     .home-hero-title {
