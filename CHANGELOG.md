@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.4.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.3.4...v2.4.0) (2026-04-10)
+
+### Nuevas funcionalidades
+
+* Cambio de color, mejora visuales, nuevo camino agua negra ([eb0820e](https://github.com/Feermoya/paso-chile-hoy/commit/eb0820efeb5a3bbda53a84081992af23ccce3259))
+
 ## [2.3.4](https://github.com/Feermoya/paso-chile-hoy/compare/v2.3.3...v2.3.4) (2026-04-10)
 
 ### Refactoring
