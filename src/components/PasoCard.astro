@@ -5,9 +5,12 @@ import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 export interface Props {
   paso: PasoConfig;
   status?: PassDisplayStatus;
+  /** Clima actual del snapshot (solo pasos activos con datos). */
+  weatherDesc?: string;
+  weatherTempC?: number | null;
 }
 
-const { paso, status = "sin_datos" } = Astro.props;
+const { paso, status = "sin_datos", weatherDesc, weatherTempC } = Astro.props;
 
 const statusConfig: Record<
   PassDisplayStatus,
@@ -45,7 +48,7 @@ const statusConfig: Record<
 };
 
 const cfg = statusConfig[status];
-const href = paso.active ? `/paso/${paso.slug}` : undefined;
+const href = paso.active ? `/${paso.slug}` : undefined;
 ---
 
 {
@@ -71,7 +74,20 @@ const href = paso.active ? `/paso/${paso.slug}` : undefined;
         <p class="paso-card-localities">
           {paso.localityAR} (AR) — {paso.localityCL} (CL)
         </p>
-        <p class="paso-card-altitude">{paso.altitudeM.toLocaleString("es-AR")} m s.n.m.</p>
+        <div class="paso-card-meta">
+          <span class="paso-card-province">{paso.provinceAR}</span>
+          <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
+        </div>
+        {(weatherDesc?.trim() || weatherTempC != null) && (
+          <p class="paso-card-weather">
+            {[
+              weatherDesc?.trim(),
+              weatherTempC != null ? `${weatherTempC}°C` : null,
+            ]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        )}
       </div>
     </a>
   : <div class="paso-card paso-card--disabled" aria-disabled="true">
@@ -83,7 +99,10 @@ const href = paso.active ? `/paso/${paso.slug}` : undefined;
         <p class="paso-card-localities">
           {paso.localityAR} (AR) — {paso.localityCL} (CL)
         </p>
-        <p class="paso-card-altitude">{paso.altitudeM.toLocaleString("es-AR")} m s.n.m.</p>
+        <div class="paso-card-meta">
+          <span class="paso-card-province">{paso.provinceAR}</span>
+          <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
+        </div>
       </div>
     </div>
 }

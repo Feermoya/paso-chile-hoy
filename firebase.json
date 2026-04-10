@@ -5,6 +5,13 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/paso/:slug",
+        "destination": "/:slug",
+        "type": 301
+      }
     ]
   }
 }

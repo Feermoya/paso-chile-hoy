@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Lee el snapshot local y muestra el PassView (misma lógica que la página /paso/[slug]).
+ * Lee el snapshot local y muestra el PassView (misma lógica que la página /[slug]).
  * Uso: node scripts/debug-pass.mjs cristo-redentor
  *      npm run update:pass -- <slug>  (si falta snapshot)
  */

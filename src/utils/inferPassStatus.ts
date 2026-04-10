@@ -13,6 +13,8 @@ export interface PassStatusResult {
   confidence: "high" | "medium" | "low";
   /** Solo si `cerrado` por fuera de horario (no por alerta textual). */
   opensInMinutes?: number;
+  /** Si `abierto` por horario: minutos hasta el cierre (countdown “cierra en”). */
+  closesInMinutes?: number;
 }
 
 function stripDiacritics(s: string): string {
@@ -126,12 +128,14 @@ function evaluateSameDayWindow(
         status: "condicionado",
         reason: `Cierra en ${minutesUntilClose} minutos (a las ${pad2(closeH)}:${pad2(closeM)})`,
         confidence: "high",
+        closesInMinutes: minutesUntilClose,
       };
     }
     return {
       status: "abierto",
       reason: `Dentro del horario operativo ${scheduleLabel} (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
       confidence: "high",
+      closesInMinutes: minutesUntilClose > 0 ? minutesUntilClose : undefined,
     };
   }
 
@@ -180,12 +184,14 @@ function evaluateOvernightWindow(
         status: "condicionado",
         reason: `Cierra en ${minutesUntilClose} minutos (a las ${pad2(closeH)}:${pad2(closeM)})`,
         confidence: "high",
+        closesInMinutes: minutesUntilClose,
       };
     }
     return {
       status: "abierto",
       reason: `Dentro del horario operativo ${scheduleLabel} (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
       confidence: "high",
+      closesInMinutes: minutesUntilClose > 0 ? minutesUntilClose : undefined,
     };
   }
 

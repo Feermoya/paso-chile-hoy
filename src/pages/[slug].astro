@@ -39,7 +39,7 @@ let loadError: string | null = null;
 try {
   const raw = await getSnapshotForApi(slug);
   view = mapPassRawToView(raw);
-  logPassPipelineDebug(`paso/${slug}`, { raw, view });
+  logPassPipelineDebug(`/${slug}`, { raw, view });
 } catch (e) {
   loadError = e instanceof Error ? e.message : "Error al cargar el paso";
 }
@@ -68,18 +68,45 @@ if (import.meta.env.DEV && view && statusResult) {
   console.log("Razón:", statusResult.reason);
   console.log("Confidence:", statusResult.confidence);
   console.log("opensInMinutes:", statusResult.opensInMinutes);
+  console.log("closesInMinutes:", statusResult.closesInMinutes);
   console.log("=========================");
 }
 
 const pageTitle = pasoConfig.shortName;
 const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} según Argentina.gob.ar. Verificá siempre la fuente oficial.`;
+
+const statusEmoji: Record<string, string> = {
+  abierto: "✅",
+  condicionado: "⚠️",
+  cerrado: "🔴",
+  sin_datos: "⚪",
+};
+const statusOgLabel: Record<string, string> = {
+  abierto: "ABIERTO",
+  condicionado: "CONDICIONADO",
+  cerrado: "CERRADO",
+  sin_datos: "SIN DATOS",
+};
+const ogTitlePass =
+  view && statusResult
+    ? `${statusEmoji[statusResult.status] ?? "⚪"} ${pasoConfig.shortName} — ${statusOgLabel[statusResult.status] ?? "ESTADO"}`
+    : `${pasoConfig.shortName} — Paso Chile Hoy`;
+
+const weatherDesc = now?.description?.trim() || "—";
+const weatherTemp =
+  now?.temperatureC != null && Number.isFinite(now.temperatureC) ? `${now.temperatureC}°C` : "";
+const ogDescriptionPass = view
+  ? `Horario: ${scheduleText || "No disponible"} · Clima: ${weatherDesc}${weatherTemp ? ` ${weatherTemp}` : ""}`
+  : pageDescription;
 ---
 
 <MainLayout
   title={pageTitle}
   description={pageDescription}
-  canonicalPath={`/paso/${slug}`}
+  canonicalPath={`/${slug}`}
   headerAltitudeM={pasoConfig.altitudeM}
+  ogTitle={ogTitlePass}
+  ogDescription={ogDescriptionPass}
 >
   <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
     {loadError && (
@@ -113,7 +140,7 @@ const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} se
               lastUpdatedRelative={lastRel}
               officialUrl={officialUrl}
               opensInMinutes={statusResult.opensInMinutes}
-              statusDetail={statusResult.reason}
+              closesInMinutes={statusResult.closesInMinutes}
             />
           )}
 

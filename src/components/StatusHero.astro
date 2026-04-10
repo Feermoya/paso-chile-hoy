@@ -7,12 +7,9 @@ export interface Props {
   passName: string;
   schedule: string;
   lastUpdatedRelative: string;
-  /** URL de la página oficial (enlace “Ver fuente oficial” solo en desktop). */
   officialUrl?: string;
-  /** Solo si cerrado por fuera de horario: minutos hasta la apertura. */
   opensInMinutes?: number;
-  /** Nota breve sobre cómo se infirió el estado (honestidad / trazabilidad). */
-  statusDetail?: string;
+  closesInMinutes?: number;
   class?: string;
 }
 
@@ -23,7 +20,7 @@ const {
   lastUpdatedRelative,
   officialUrl,
   opensInMinutes,
-  statusDetail,
+  closesInMinutes,
   class: className,
 } = Astro.props;
 
@@ -45,7 +42,24 @@ const titleColor =
   status === "sin_datos" ? "var(--color-text-secondary)" : dotColors[status];
 
 const label = labels[status];
-const dotPulse = status === "abierto" ? "status-dot--open" : "";
+
+const dotModifier =
+  status === "abierto"
+    ? "status-dot--open"
+    : status === "condicionado"
+      ? "status-dot--condicionado"
+      : status === "cerrado"
+        ? "status-dot--cerrado"
+        : "status-dot--unknown";
+
+const showOpenCountdown =
+  status === "cerrado" && opensInMinutes != null && opensInMinutes > 0;
+
+const showCloseCountdown =
+  (status === "abierto" || status === "condicionado") &&
+  closesInMinutes != null &&
+  closesInMinutes <= 60 &&
+  closesInMinutes > 0;
 ---
 
 <section
@@ -60,11 +74,7 @@ const dotPulse = status === "abierto" ? "status-dot--open" : "";
     <p class="status-eyebrow text-eyebrow text-[var(--color-text-muted)]">{passName}</p>
 
     <div class="status-main">
-      <span
-        class:list={["status-dot", dotPulse]}
-        style={dotPulse ? undefined : { backgroundColor: dotColors[status] }}
-        aria-hidden="true"
-      />
+      <span class:list={["status-dot", dotModifier]} aria-hidden="true" />
       <span
         id="status-hero-label"
         class="text-status"
@@ -82,20 +92,49 @@ const dotPulse = status === "abierto" ? "status-dot--open" : "";
         </p>
       )}
 
-      {status === "cerrado" && opensInMinutes != null && opensInMinutes > 0 && (
-        <p class="status-opens-at text-meta mt-1 flex items-center gap-1.5 text-[var(--color-text-secondary)]">
-          <Icon name="lucide:clock" class="h-3.5 w-3.5 shrink-0 opacity-90" aria-hidden="true" />
-          <span>
-            Abre en {Math.floor(opensInMinutes / 60)}h {opensInMinutes % 60}min
-          </span>
-        </p>
-      )}
+      {
+        showOpenCountdown && (
+          <div
+            class="status-countdown"
+            data-status-countdown-root
+            data-minutes={opensInMinutes}
+            data-direction="opens"
+          >
+            <Icon
+              name="lucide:clock"
+              class="status-countdown-icon"
+              style="color: var(--color-text-muted)"
+              aria-hidden="true"
+            />
+            <span class="countdown-label">Abre en</span>
+            <span class="countdown-value">
+              {Math.floor(opensInMinutes! / 60)}h {opensInMinutes! % 60}min
+            </span>
+          </div>
+        )
+      }
 
-      {statusDetail && status !== "abierto" && (
-        <p class="status-detail text-[11px] leading-snug text-[var(--color-text-muted)] mt-1.5 max-w-prose">
-          {statusDetail}
-        </p>
-      )}
+      {
+        showCloseCountdown && (
+          <div
+            class="status-countdown status-countdown--warning"
+            data-status-countdown-root
+            data-minutes={closesInMinutes}
+            data-direction="closes"
+          >
+            <Icon
+              name="lucide:clock"
+              class="status-countdown-icon"
+              style="color: var(--color-conditional)"
+              aria-hidden="true"
+            />
+            <span class="countdown-label countdown-label--warning">Cierra en</span>
+            <span class="countdown-value countdown-value--warning">
+              {closesInMinutes}min
+            </span>
+          </div>
+        )
+      }
 
       {lastUpdatedRelative && (
         <p class="status-timestamp text-meta">
@@ -124,3 +163,95 @@ const dotPulse = status === "abierto" ? "status-dot--open" : "";
     </div>
   </div>
 </section>
+
+<style>
+  .status-countdown {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .status-countdown-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .countdown-label {
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+
+  .countdown-label--warning {
+    color: var(--color-conditional);
+  }
+
+  .countdown-value {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    min-width: 70px;
+    animation: countdownAppear 0.4s ease-out both;
+  }
+
+  .countdown-value--warning {
+    color: var(--color-conditional);
+  }
+
+  @keyframes countdownAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  function startCountdown(root: Element) {
+    const found = root.querySelector(".countdown-value");
+    if (!(found instanceof HTMLElement)) return;
+    const countdownEl = found;
+
+    const startMinutes = parseInt(root.getAttribute("data-minutes") ?? "0", 10);
+    if (!Number.isFinite(startMinutes) || startMinutes <= 0) return;
+
+    const targetMs = Date.now() + startMinutes * 60 * 1000;
+
+    function update() {
+      const diffMs = targetMs - Date.now();
+      if (diffMs <= 0) {
+        window.location.reload();
+        return;
+      }
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      if (hours > 0) {
+        countdownEl.textContent = `${hours}h ${minutes.toString().padStart(2, "0")}m`;
+      } else if (minutes > 0) {
+        countdownEl.textContent = `${minutes}m ${seconds.toString().padStart(2, "0")}s`;
+      } else {
+        countdownEl.textContent = `${seconds}s`;
+      }
+    }
+
+    update();
+    const interval = window.setInterval(update, 1000);
+
+    const clear = () => window.clearInterval(interval);
+    document.addEventListener("astro:before-swap", clear, { once: true });
+  }
+
+  document.querySelectorAll("[data-status-countdown-root]").forEach(startCountdown);
+</script>

@@ -2,43 +2,177 @@
 const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 ---
 
-<footer
-  class="mt-auto border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-secondary)] px-4 py-8 text-center min-[375px]:px-5 md:mt-12 md:px-8 md:py-12"
->
-  <div class="mx-auto max-w-3xl text-[0.75rem] leading-relaxed text-[var(--color-text-muted)]">
-    <p>
-      <strong class="font-semibold text-[var(--color-text-secondary)]">Paso Chile Hoy</strong> es un servicio
-      independiente que recopila y organiza información pública proveniente de fuentes oficiales del Estado
-      argentino, incluyendo organismos como Gendarmería Nacional, Vialidad Nacional y el Servicio Meteorológico
-      Nacional.
-    </p>
-    <p class="mt-4">
-      La información se obtiene de{" "}
-      <a
-        href={official}
-        class="text-[var(--color-accent)] underline underline-offset-2 transition-opacity hover:opacity-90"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        sitios oficiales de acceso público
-      </a>{" "}
-      y es procesada automáticamente con fines informativos.
-    </p>
-    <p class="mt-4">
-      Este sitio no pertenece ni está afiliado a ningún organismo gubernamental de Argentina o Chile.
-    </p>
-    <p class="mt-4">
-      El estado del paso (abierto, cerrado o condicionado) es una interpretación basada en los datos disponibles
-      y puede no reflejar la situación en tiempo real.
-    </p>
-    <p class="mt-4">
-      El usuario es responsable de verificar la información en las fuentes oficiales antes de tomar decisiones
-      de viaje.
-    </p>
-    <p
-      class="mt-4 text-[10px] uppercase tracking-widest text-[var(--color-text-disabled)]"
-    >
-      32°S · 3200 m s.n.m. · Cordillera de los Andes
-    </p>
+<footer class="site-footer mt-auto">
+  <div class="footer-inner">
+    <div class="footer-columns">
+      <div class="footer-col-main">
+        <div class="footer-brand">
+          <svg
+            width="20"
+            height="17"
+            viewBox="0 0 48 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="footer-logomark-svg"
+          >
+            <ellipse cx="40" cy="8" rx="7" ry="7" fill="#F5C842" opacity="0.12"></ellipse>
+            <ellipse cx="40" cy="8" rx="4" ry="4" fill="#F5C842" opacity="0.9"></ellipse>
+            <polygon points="0,36 10,16 20,36" fill="#2A3A52"></polygon>
+            <polygon points="6,36 10,16 14,36" fill="#1A2840"></polygon>
+            <polygon points="10,36 22,6 34,36" fill="#3D6B9A"></polygon>
+            <polygon points="22,6 34,36 28,36" fill="#2A5080"></polygon>
+            <polygon points="22,6 20,11 24,11" fill="rgba(255,255,255,0.85)"></polygon>
+            <polygon points="27,36 38,3 48,18" fill="#C07830"></polygon>
+            <polygon points="38,3 48,18 48,36 44,36" fill="#8A5220"></polygon>
+            <polygon points="38,3 35,9 41,9" fill="rgba(255,255,255,0.9)"></polygon>
+            <line
+              x1="0"
+              y1="36"
+              x2="48"
+              y2="36"
+              stroke="rgba(255,255,255,0.07)"
+              stroke-width="0.75"></line>
+          </svg>
+          <span class="footer-brand-name">Paso Chile Hoy</span>
+        </div>
+
+        <p class="footer-legal">
+          Servicio independiente de información pública. Los datos provienen de
+          <a href={official} target="_blank" rel="noopener noreferrer">{official}</a>
+          — Gendarmería Nacional, Vialidad Nacional, SMN. Procesados automáticamente con fines
+          informativos. Este sitio no está afiliado a ningún organismo oficial. Verificá siempre en la
+          fuente oficial antes de viajar.
+        </p>
+      </div>
+
+      <div class="footer-contact">
+        <p class="footer-contact-label">Desarrollado por</p>
+        <p class="footer-contact-name">Fernando Moya</p>
+        <a
+          href="mailto:fmoya97.fm@gmail.com"
+          class="footer-contact-link"
+          aria-label="Enviar mail a Fernando Moya"
+        >
+          fmoya97.fm@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <p class="footer-geo">32°S · 3200 m s.n.m. · Cordillera de los Andes</p>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    margin-top: 48px;
+    border-top: 1px solid var(--color-border-subtle);
+    background: var(--color-bg-secondary);
+  }
+
+  .footer-inner {
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 28px 20px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .footer-logomark-svg {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .footer-legal {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 680px;
+  }
+
+  .footer-legal a {
+    color: var(--color-accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .footer-legal a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+
+  .footer-contact-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-contact-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .footer-contact-link {
+    font-size: 12px;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .footer-contact-link:hover {
+    text-decoration: underline;
+  }
+
+  .footer-geo {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-disabled);
+    margin: 0;
+  }
+</style>

@@ -10,6 +10,8 @@ import { inferPassStatus } from "@/utils/inferPassStatus";
 type CardEntry = {
   slug: string;
   status?: PassDisplayStatus;
+  weatherDesc?: string;
+  weatherTempC?: number | null;
 };
 
 const cards: CardEntry[] = await Promise.all(
@@ -20,31 +22,52 @@ const cards: CardEntry[] = await Promise.all(
     try {
       const raw = await getSnapshotForApi(paso.slug);
       const view = mapPassRawToView(raw);
-      return { slug: paso.slug, status: inferPassStatus(view).status };
+      const n = view.weather?.now;
+      return {
+        slug: paso.slug,
+        status: inferPassStatus(view).status,
+        weatherDesc: n?.description?.trim(),
+        weatherTempC: n?.temperatureC ?? null,
+      };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
     }
   }),
 );
 
-const statusBySlug = new Map(cards.map((c) => [c.slug, c.status]));
+const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
 ---
 
 <MainLayout
   title="Paso Chile Hoy — Estado de pasos internacionales"
   description="Estado inferido y clima de los pasos internacionales Mendoza–Chile. Datos públicos de Argentina.gob.ar."
   canonicalPath="/"
+  ogTitle="Paso Chile Hoy — Pasos a Chile"
+  ogDescription="Estado inferido y clima de los pasos internacionales Mendoza–Chile. Datos públicos de Argentina.gob.ar."
 >
   <div class="home-layout">
-    <div class="home-header">
-      <h1 class="text-section-title">Pasos a Chile</h1>
-      <p class="mt-1 text-sm text-[var(--color-text-muted)]">Mendoza · Pasos internacionales con Chile</p>
+    <div class="home-hero">
+      <div class="home-hero-text">
+        <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
+        <p class="home-subtitle">
+          Estado en tiempo real del Paso Cristo Redentor y los principales pasos internacionales entre
+          Mendoza y Chile. Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
+        </p>
+      </div>
     </div>
 
     <div class="pasos-grid">
-      {PASOS.map((paso) => (
-        <PasoCard paso={paso} status={statusBySlug.get(paso.slug)} />
-      ))}
+      {PASOS.map((paso) => {
+        const c = cardBySlug.get(paso.slug);
+        return (
+          <PasoCard
+            paso={paso}
+            status={c?.status}
+            weatherDesc={c?.weatherDesc}
+            weatherTempC={c?.weatherTempC}
+          />
+        );
+      })}
     </div>
   </div>
 </MainLayout>
