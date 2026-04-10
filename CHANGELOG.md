@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.3.3](https://github.com/Feermoya/paso-chile-hoy/compare/v2.3.2...v2.3.3) (2026-04-10)
+
+### Estilos
+
+* mejora logo ([94ca324](https://github.com/Feermoya/paso-chile-hoy/commit/94ca3246e3815a394f8a610734bf491d79009cbc))
+
 ## [2.3.2](https://github.com/Feermoya/paso-chile-hoy/compare/v2.3.1...v2.3.2) (2026-04-10)
 
 ### Estilos
