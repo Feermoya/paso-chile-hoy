@@ -38,3 +38,9 @@ coverage/
 # Misc
 *.local
 .cache/
+
+# Snapshots JSON (deben versionarse en git para SSR en producción)
+# public/snapshots/*.json no se ignora: no agregar reglas que los excluyan.
+# Si en el futuro se ignora `public/` o `*.json`, descomentar:
+# !public/snapshots/
+# !public/snapshots/*.json

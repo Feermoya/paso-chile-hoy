@@ -34,6 +34,25 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Verify snapshots exist
+        run: |
+          MISSING=0
+          for slug in cristo-redentor pehuenche agua-negra; do
+            if [ ! -f "public/snapshots/$slug.json" ]; then
+              echo "❌ Missing snapshot: $slug"
+              MISSING=1
+            else
+              echo "✅ Found snapshot: $slug"
+              node -e "JSON.parse(require('fs').readFileSync('public/snapshots/' + process.argv[1] + '.json', 'utf8'))" "$slug" \
+                && echo "   JSON valid" \
+                || { echo "   ⚠️ JSON invalid for $slug"; MISSING=1; }
+            fi
+          done
+          if [ "$MISSING" -eq 1 ]; then
+            echo "Some snapshots are missing or invalid — scrape failed"
+            exit 1
+          fi
+
       - name: Commit snapshots if changed
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

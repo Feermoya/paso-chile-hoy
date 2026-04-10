@@ -9,6 +9,9 @@ import {
 } from "@/lib/server/storage/jsonSnapshotStore";
 import type { PassRaw } from "@/types/pass-raw";
 
+/** Error interno cuando no hay snapshot persistido y el scrape en vivo también falla (no mostrar al usuario). */
+export const PASS_DATA_UNAVAILABLE = "PASS_DATA_UNAVAILABLE";
+
 /** Solo entorno local (no build ni runtime en Vercel). */
 function isDevRuntime(): boolean {
   return typeof process !== "undefined" && process.env.NODE_ENV !== "production";
@@ -106,5 +109,13 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSna
     return persisted;
   }
 
-  throw new Error("SNAPSHOT_MISSING");
+  console.warn(
+    `[snapshot] No persisted snapshot for "${slug}" (missing from deploy or repo); attempting live scrape...`,
+  );
+  try {
+    return await refreshAndPersistSnapshot(slug);
+  } catch (e) {
+    console.error(`[snapshot] Live scrape failed for "${slug}":`, e);
+    throw new Error(PASS_DATA_UNAVAILABLE);
+  }
 }
