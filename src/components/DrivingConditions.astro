@@ -1,0 +1,118 @@
+---
+import { Icon } from "astro-icon/components";
+import {
+  assessDrivingConditions,
+  type DrivingForecastItemInput,
+  type DrivingWeatherInput,
+} from "@/utils/drivingConditions";
+
+interface Props {
+  weather: DrivingWeatherInput;
+  forecast?: DrivingForecastItemInput[];
+}
+
+const { weather, forecast = [] } = Astro.props;
+const assessment = assessDrivingConditions(weather, forecast);
+
+if (assessment.level === "normal") {
+  return null;
+}
+---
+
+<div
+  class="driving-conditions"
+  style={`
+      --dc-color: ${assessment.color};
+      border-left-color: ${assessment.color};
+      background: ${assessment.bgColor};
+    `}
+  role="alert"
+  aria-label="Condiciones de manejo"
+>
+  <div class="dc-header">
+    <Icon name={assessment.icon} class="dc-icon" style={`color: ${assessment.color}`} />
+    <span class="dc-title" style={`color: ${assessment.color}`}>
+      {assessment.title}
+    </span>
+  </div>
+
+  <p class="dc-message">{assessment.message}</p>
+
+  {
+    assessment.tips.length > 0 && (
+      <ul class="dc-tips">
+        {assessment.tips.map((tip) => (
+          <li class="dc-tip">
+            <span class="dc-tip-dot" style={`background: ${assessment.color}`} />
+            {tip}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</div>
+
+<style>
+  .driving-conditions {
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid var(--dc-color, var(--color-conditional));
+    padding: 14px 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dc-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .dc-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .dc-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .dc-message {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .dc-tips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .dc-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .dc-tip-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+</style>

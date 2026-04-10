@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import AltitudeWarning from "@/components/AltitudeWarning.astro";
-import type { WeatherNowView } from "@/types/pass-view";
+import DrivingConditions from "@/components/DrivingConditions.astro";
+import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
 import {
   interpretTemperature,
@@ -12,11 +12,11 @@ import {
 
 export interface Props {
   weather: WeatherNowView;
+  /** Pronóstico para anticipar nieve/lluvia aunque ahora esté despejado. */
+  forecast?: ForecastItemView[];
   /** Texto pie (p. ej. datetime SMN en bruto). */
   updatedAt?: string;
   class?: string;
-  /** Altitud del paso (advertencia de salud). Por defecto 3200. */
-  altitudeM?: number;
 }
 
 const MONTHS_SHORT = [
@@ -55,7 +55,7 @@ function formatSunriseDisplay(sunrise: string | undefined): string {
   return s;
 }
 
-const { weather: w, updatedAt, class: className, altitudeM = 3200 } = Astro.props;
+const { weather: w, forecast = [], updatedAt, class: className } = Astro.props;
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
@@ -74,6 +74,13 @@ const sunriseDisplay = formatSunriseDisplay(w.sunrise);
 const datosAlLine = formatDatosAl(updatedAt);
 
 const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transparent)`;
+
+const drivingWeather = {
+  temperatureC: w.temperatureC ?? null,
+  wind: w.wind ?? null,
+  visibilityKm: visInput,
+  description: w.description ?? "",
+};
 ---
 
 <article
@@ -202,7 +209,7 @@ const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transpar
     )}
   </div>
 
-  <AltitudeWarning altitudeM={altitudeM} />
+  <DrivingConditions weather={drivingWeather} forecast={forecast} />
 
   {datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
 </article>

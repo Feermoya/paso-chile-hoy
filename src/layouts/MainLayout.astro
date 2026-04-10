@@ -72,45 +72,62 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
             <span class="header-logomark">
               <svg
                 width="28"
-                height="20"
-                viewBox="0 0 28 20"
+                height="21"
+                viewBox="0 0 32 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="header-logomark-svg"
               >
-                <polyline
-                  points="0,18 5,10 10,18"
-                  stroke="var(--color-text-muted)"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"
-                  opacity="0.6"></polyline>
-                <polyline
-                  points="7,18 14,6 21,18"
-                  stroke="var(--color-accent)"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"
-                  opacity="0.85"></polyline>
-                <polyline
-                  points="17,18 24,1 28,10"
-                  stroke="var(--color-copper)"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"></polyline>
+                <defs>
+                  <linearGradient
+                    id="header-peak-main"
+                    x1="24"
+                    y1="0"
+                    x2="24"
+                    y2="22"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0%" stop-color="#E8934A"></stop>
+                    <stop offset="100%" stop-color="#A05C28"></stop>
+                  </linearGradient>
+                  <linearGradient
+                    id="header-peak-mid"
+                    x1="16"
+                    y1="4"
+                    x2="16"
+                    y2="22"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0%" stop-color="#5BAEFF"></stop>
+                    <stop offset="100%" stop-color="#2A6099"></stop>
+                  </linearGradient>
+                  <linearGradient
+                    id="header-peak-left"
+                    x1="7"
+                    y1="10"
+                    x2="7"
+                    y2="22"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0%" stop-color="#3A4560"></stop>
+                    <stop offset="100%" stop-color="#1C2130"></stop>
+                  </linearGradient>
+                </defs>
+                <polygon points="0,22 7,10 14,22" fill="url(#header-peak-left)"></polygon>
+                <polygon points="6,22 16,4 26,22" fill="url(#header-peak-mid)"></polygon>
+                <polygon points="16,4 26,22 21,22" fill="rgba(0,0,0,0.15)"></polygon>
+                <polygon points="18,22 26,0 32,12" fill="url(#header-peak-main)"></polygon>
+                <polygon points="26,0 32,12 32,22 29,22" fill="rgba(0,0,0,0.12)"></polygon>
+                <polygon points="26,0 23,6 29,6" fill="rgba(255,255,255,0.7)"></polygon>
+                <polygon points="16,4 14,8 18,8" fill="rgba(255,255,255,0.5)"></polygon>
                 <line
                   x1="0"
-                  y1="18"
-                  x2="28"
-                  y2="18"
-                  stroke="var(--color-border-default)"
-                  stroke-width="1"
-                  stroke-linecap="round"
-                  opacity="0.4"></line>
+                  y1="22"
+                  x2="32"
+                  y2="22"
+                  stroke="rgba(255,255,255,0.08)"
+                  stroke-width="0.75"></line>
               </svg>
             </span>
 
