@@ -11,23 +11,19 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 17.7,
+    "temperatureC": 19,
     "description": "Despejado",
-    "wind": "Este 10 km/h",
+    "wind": "Sudeste 8 km/h",
     "visibilityKm": 20,
     "sunrise": "07:59",
     "sunset": "19:23",
-    "updatedAt": "2026-04-10T13:00:00-03:00"
+    "updatedAt": "2026-04-10T14:00:00-03:00"
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-10T17:07:36.389Z",
-=======
-  "scrapedAt": "2026-04-10T17:37:20.443Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-10T18:00:51.127Z",
   "forecast": [
     {
       "period": "Hoy por la noche",
