@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.5.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.4.1...v2.5.0) (2026-04-10)
+
+### Nuevas funcionalidades
+
+* Nuevo paso Aguas negras san juan ok ([e73c20f](https://github.com/Feermoya/paso-chile-hoy/commit/e73c20ff0f38ccba253315e98405b7c0bc8d1a7b))
+
 ## [2.4.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.4.0...v2.4.1) (2026-04-10)
 
 ### Estilos
