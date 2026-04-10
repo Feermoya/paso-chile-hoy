@@ -16,17 +16,20 @@ import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import type { PassLatestTweet } from "@/types/pass-view";
 
-let homeLatestTweet: PassLatestTweet | null = null;
+let latestTweet: PassLatestTweet | null = null;
 try {
   const tweetsPath = join(process.cwd(), "public", "snapshots", "tweets.json");
   if (existsSync(tweetsPath)) {
     const data = JSON.parse(readFileSync(tweetsPath, "utf-8")) as {
       latestTweet?: PassLatestTweet | null;
     };
-    homeLatestTweet = data.latestTweet ?? null;
+    const t = data.latestTweet;
+    if (t?.text?.trim() && t.text.trim().length > 10) {
+      latestTweet = t;
+    }
   }
 } catch {
-  homeLatestTweet = null;
+  latestTweet = null;
 }
 
 type CardEntry = {
@@ -86,6 +89,15 @@ const homeSchema = {
   <div class="home-layout">
     <div class="home-hero">
       <div class="home-hero-text">
+        <img
+          src="/logo.png"
+          alt="Paso Chile Hoy"
+          class="home-logo"
+          width="72"
+          height="72"
+          loading="eager"
+          decoding="async"
+        />
         <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
         <p class="home-subtitle">
           Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y Chile.
@@ -121,10 +133,10 @@ const homeSchema = {
     </div>
 
     {
-      homeLatestTweet && (
-        <section class="home-twitter-section" aria-label="Últimas novedades oficiales en X">
-          <h2 class="home-twitter-heading">Últimas novedades oficiales</h2>
-          <LatestTweet tweet={homeLatestTweet} />
+      latestTweet && (
+        <section class="home-twitter" aria-label="Últimas novedades">
+          <p class="section-label">Últimas novedades de @PasoCRMza</p>
+          <LatestTweet tweet={latestTweet} />
         </section>
       )
     }

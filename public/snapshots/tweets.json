@@ -1,4 +1,11 @@
 {
   "tweets": [],
-  "fetchedAt": "2026-04-10T21:20:56.626Z"
+  "latestTweet": {
+    "text": "Paso Cristo Redentor: HABILITADO. Se disipó el frente de inestabilidad.",
+    "date": "Fri, 10 Apr 2026 12:00:00 +0000",
+    "url": "https://x.com/PasoCRMza",
+    "sentiment": "habilitado"
+  },
+  "fetchedAt": "2026-04-10T12:00:00.000Z",
+  "updatedAt": "2026-04-10T12:00:00.000Z"
 }

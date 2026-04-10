@@ -5,13 +5,13 @@ export function dedupeHtmlAlertsAgainstJson(
   htmlAlerts: string[] | undefined,
   ctx: {
     motivo?: string | null;
-    motivoExtra?: string | null;
+    motivoInfo?: string | null;
     vialidadObservaciones?: string | null;
   },
 ): string[] {
   if (!htmlAlerts?.length) return [];
 
-  const bucket = [ctx.motivo, ctx.motivoExtra, ctx.vialidadObservaciones]
+  const bucket = [ctx.motivo, ctx.motivoInfo, ctx.vialidadObservaciones]
     .filter(Boolean)
     .join(" ")
     .replace(/\s+/g, " ")

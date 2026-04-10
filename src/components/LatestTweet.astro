@@ -7,8 +7,8 @@ export interface Props {
 
 const { tweet } = Astro.props;
 
-if (!tweet?.text?.trim()) {
-  return null;
+if (!tweet?.text || tweet.text.trim().length < 10) {
+  return;
 }
 
 function timeAgo(d: string): string {

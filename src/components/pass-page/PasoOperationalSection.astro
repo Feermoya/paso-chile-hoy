@@ -28,6 +28,8 @@ const {
 } = Astro.props;
 
 const op = view.operationalInfo;
+const latestTweet = view.meta?.latestTweet;
+const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().length >= 10);
 ---
 
 <section
@@ -52,7 +54,7 @@ const op = view.operationalInfo;
   <AlertsBlock
     class="anim-section anim-delay-2"
     motivo={op.motivo ?? null}
-    motivoExtra={op.motivoExtra ?? null}
+    motivoInfo={op.motivoInfo ?? null}
     htmlAlerts={op.htmlAlerts}
     vialidadRuta={op.vialidadRuta ?? ""}
     vialidadTramo={op.vialidadTramo ?? ""}
@@ -60,7 +62,7 @@ const op = view.operationalInfo;
     vialidadObservaciones={op.vialidadObservaciones ?? ""}
   />
 
-  <LatestTweet tweet={view.meta.latestTweet} />
+  {showLatestTweet && <LatestTweet tweet={latestTweet} />}
 
   <TwitterAlerts passSlug={slug} />
 </section>

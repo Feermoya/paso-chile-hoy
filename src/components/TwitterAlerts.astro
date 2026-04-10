@@ -25,6 +25,10 @@ if (existsSync(tweetsPath)) {
   }
 }
 
+if (relevantAlerts.length === 0) {
+  return;
+}
+
 const alertColors: Record<
   PassAlert["alertType"],
   { border: string; bg: string; icon: string }
@@ -52,62 +56,58 @@ const alertColors: Record<
 };
 ---
 
-{
-  relevantAlerts.length > 0 && (
-    <section class="twitter-alerts-section anim-section anim-delay-2" aria-label="Alertas de @PasoCRMza">
-      <div class="twitter-alerts-header">
-        <svg
-          width="13"
-          height="13"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
-          class="twitter-alerts-x-icon"
+<section class="twitter-alerts-section anim-section anim-delay-2" aria-label="Alertas de @PasoCRMza">
+  <div class="twitter-alerts-header">
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      class="twitter-alerts-x-icon"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+    <span>Alertas de @PasoCRMza</span>
+    <span class="twitter-alerts-disclaimer">Fuente complementaria — verificar en gob.ar</span>
+  </div>
+
+  {
+    relevantAlerts.map((alert) => {
+      const colors = alertColors[alert.alertType];
+      const xUrl = toXComUrl(alert.url);
+      const dateParsed = alert.date ? Date.parse(alert.date) : NaN;
+      const dateLabel =
+        Number.isFinite(dateParsed) && !Number.isNaN(dateParsed)
+          ? new Date(dateParsed).toLocaleString("es-AR", {
+              day: "numeric",
+              month: "short",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : null;
+
+      return (
+        <div
+          class="twitter-alert-card"
+          style={`border-left-color: ${colors.border}; background: ${colors.bg}`}
         >
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-        <span>Alertas de @PasoCRMza</span>
-        <span class="twitter-alerts-disclaimer">Fuente complementaria — verificar en gob.ar</span>
-      </div>
-
-      {relevantAlerts.map((alert) => {
-        const colors = alertColors[alert.alertType];
-        const xUrl = toXComUrl(alert.url);
-        const dateParsed = alert.date ? Date.parse(alert.date) : NaN;
-        const dateLabel =
-          Number.isFinite(dateParsed) && !Number.isNaN(dateParsed)
-            ? new Date(dateParsed).toLocaleString("es-AR", {
-                day: "numeric",
-                month: "short",
-                hour: "2-digit",
-                minute: "2-digit",
-              })
-            : null;
-
-        return (
-          <div
-            class="twitter-alert-card"
-            style={`border-left-color: ${colors.border}; background: ${colors.bg}`}
-          >
-            <p class="twitter-alert-text">
-              <span class="twitter-alert-type-icon" aria-hidden="true">
-                {colors.icon}
-              </span>
-              {alert.text}
-            </p>
-            <div class="twitter-alert-meta">
-              {dateLabel && <span class="twitter-alert-date">{dateLabel}</span>}
-              {xUrl ? (
-                <a href={xUrl} target="_blank" rel="noopener noreferrer" class="twitter-alert-link">
-                  Ver en X →
-                </a>
-              ) : (
-                <span />
-              )}
-            </div>
+          <p class="twitter-alert-text">
+            <span class="twitter-alert-type-icon" aria-hidden="true">
+              {colors.icon}
+            </span>
+            {alert.text}
+          </p>
+          <div class="twitter-alert-meta">
+            {dateLabel && <span class="twitter-alert-date">{dateLabel}</span>}
+            {xUrl ? (
+              <a href={xUrl} target="_blank" rel="noopener noreferrer" class="twitter-alert-link">
+                Ver en X →
+              </a>
+            ) : null}
           </div>
-        );
-      })}
-    </section>
-  )
-}
+        </div>
+      );
+    })
+  }
+</section>

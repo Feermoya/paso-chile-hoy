@@ -5,6 +5,10 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
+  "motivoInfo": null,
+  "htmlAlerts": [
+    "Vialidad Nacional informa: Corte total RN 7 tramo Tunel Internacional Corte preventivo por nevadas Contacto: (2624) 420094"
+  ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
   "vialidadEstado": "CORTE TOTAL",
@@ -23,17 +27,20 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-10T21:20:41.579Z",
-=======
-  "scrapedAt": "2026-04-10T21:04:50.202Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-10T21:32:09.403Z",
   "forecast": [
+    {
+      "period": "Hoy por la noche",
+      "description": "Nevadas",
+      "temperatureC": 1,
+      "wind": "SO a 7-12 km/h",
+      "visibility": "Mala"
+    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
       "temperatureC": -5,
-      "wind": "O a 23-31 km/h",
+      "wind": "SO a 7-12 km/h",
       "visibility": "Mala"
     },
     {
@@ -45,16 +52,9 @@
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
+      "description": "Algo nublado",
       "temperatureC": 5,
       "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Algo nublado",
-      "temperatureC": -5,
-      "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     }
   ]

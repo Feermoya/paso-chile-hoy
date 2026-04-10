@@ -36,11 +36,14 @@ export interface PassSnapshot {
   scrapedAt: string;
   /** Pronóstico 24 h desde el HTML de detalle. */
   forecast: ForecastPeriod[];
-  /** Texto informativo oficial (p. ej. horario de atención en cabina); no define cierre. */
-  motivoExtra?: string | null;
+  /** Informativo (p. ej. horario de atención); no afecta inferPassStatus. */
+  motivoInfo?: string | null;
   /** Alertas crudas extraídas del HTML de detalle (complemento al JSON). */
   htmlAlerts?: string[];
 }
+
+/** Snapshots antiguos pueden traer `motivoExtra` en lugar de `motivoInfo`. */
+export type SnapshotJson = PassSnapshot & { motivoExtra?: string | null };
 
 export type MapToSnapshotOptions = {
   htmlAlerts?: string[];
@@ -101,9 +104,9 @@ export function mapToSnapshot(
       .join(" · ")
       .trim() || null;
 
-  const rawExtra = est.motivo_cierre_extraordinario?.trim();
-  const motivoExtra =
-    rawExtra && rawExtra !== "-.-" && rawExtra.length > 3 ? rawExtra : null;
+  const rawMotivoInfo = est.motivo_cierre_extraordinario?.trim();
+  const motivoInfo =
+    rawMotivoInfo && rawMotivoInfo !== "-.-" && rawMotivoInfo.length > 3 ? rawMotivoInfo : null;
 
   const htmlAlerts = Array.isArray(options.htmlAlerts)
     ? options.htmlAlerts.filter((x) => typeof x === "string" && x.trim().length > 8)
@@ -123,7 +126,7 @@ export function mapToSnapshot(
     scheduleRaw: typeof det.horario_atencion === "string" ? det.horario_atencion : "",
     rawStatus: est.estado,
     motivo,
-    motivoExtra,
+    motivoInfo,
     htmlAlerts,
     vialidadRuta: typeof vial.ruta === "string" ? vial.ruta.trim() : "",
     vialidadTramo: typeof vial.tramo === "string" ? vial.tramo.trim() : "",
@@ -149,6 +152,8 @@ export function mapToSnapshot(
 }
 
 export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig): PassView {
+  const snap = snapshot as SnapshotJson;
+  const motivoInfoResolved = snap.motivoInfo ?? snap.motivoExtra ?? undefined;
   const bounds = parseScheduleBounds(snapshot.schedule);
   const contact = contactFromString(snapshot.contact);
   const w = snapshot.weather;
@@ -203,7 +208,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
       scheduleRaw: snapshot.scheduleRaw,
       rawStatus: snapshot.rawStatus,
       motivo: snapshot.motivo ?? undefined,
-      motivoExtra: snapshot.motivoExtra ?? undefined,
+      motivoInfo: motivoInfoResolved,
       ...(snapshot.htmlAlerts && snapshot.htmlAlerts.length > 0
         ? { htmlAlerts: [...snapshot.htmlAlerts] }
         : {}),

@@ -180,18 +180,8 @@ const icbmContent = geoPosition.includes(";")
       <header class="header-app site-header">
         <div class="header-inner">
           <a href="/" class="header-logo-link" aria-label="Inicio — todos los pasos">
-            <img
-              src="/logo.png"
-              alt="Paso Chile Hoy"
-              width="36"
-              height="36"
-              class="header-logo-img"
-              loading="eager"
-              decoding="async"
-            />
-
             <span class="header-brand">
-              <span class="header-name">Paso Chile Hoy</span>
+              <span class="header-brand-name">PASO CHILE HOY</span>
               <span class="header-location">
                 <span class="header-location-dot" aria-hidden="true"></span>
                 {headerRegionLabel}
@@ -200,7 +190,7 @@ const icbmContent = geoPosition.includes(";")
           </a>
 
           <div class="header-right">
-            <span class="header-version-desktop items-center">
+            <span class="header-version-wrap items-center">
               <VersionBadge />
             </span>
             <div class="header-altitude" aria-label={altitudeLabel}>

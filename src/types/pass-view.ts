@@ -97,7 +97,7 @@ export interface PassView {
     rawStatus?: string;
     motivo?: string;
     /** Informativo (API `motivo_cierre_extraordinario`); no altera el estado inferido. */
-    motivoExtra?: string;
+    motivoInfo?: string | null;
     /** Fragmentos “Atención” del HTML de detalle; deduplicados en UI respecto al JSON. */
     htmlAlerts?: string[];
     vialidadEstado?: string;

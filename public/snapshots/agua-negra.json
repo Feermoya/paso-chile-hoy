@@ -5,6 +5,10 @@
   "scheduleRaw": "TOLERANCIA HASTA LAS 21:00 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
+  "motivoInfo": null,
+  "htmlAlerts": [
+    "Motivo del cierre: HORARIO DE ATENCION AL USUARIO DE 09:00 HS A 17:00 HS.- Vialidad Nacional informa: RN 150 tramo Arrequintin - Lte. Con Chile Transitable Contacto: (2647) 420473"
+  ],
   "vialidadRuta": "150",
   "vialidadTramo": "Arrequintin - Lte. Con Chile",
   "vialidadEstado": "HABILITADA",
@@ -23,18 +27,21 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-10T21:20:52.958Z",
-=======
-  "scrapedAt": "2026-04-10T21:04:50.207Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-10T21:32:00.821Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": 10,
+      "period": "Hoy por la noche",
+      "description": "Tormentas aisladas",
+      "temperatureC": 17,
       "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Tormentas aisladas",
+      "temperatureC": 13,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Regular"
     },
     {
       "period": "Mañana por la mañana",
@@ -48,13 +55,6 @@
       "description": "Algo nublado",
       "temperatureC": 23,
       "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Algo nublado",
-      "temperatureC": 14,
-      "wind": "SE a 7-12 km/h",
       "visibility": "Buena"
     }
   ]
