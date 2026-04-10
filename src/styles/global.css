@@ -690,8 +690,8 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   }
 }
 
-/* Versión (header) */
-.header-right {
+/* Versión + altitud (header) */
+.header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1161,8 +1161,9 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
 
   .header-logo-link {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 8px;
     flex: 1;
     min-width: 0;
     text-decoration: none;
@@ -1178,19 +1179,6 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     color: var(--color-accent);
   }
 
-  .header-version-wrap {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .header-brand {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    min-width: 0;
-    flex: 1;
-  }
-
   .header-brand-name {
     font-family: var(--font-display);
     font-size: 13px;
@@ -1201,34 +1189,25 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     white-space: nowrap;
   }
 
+  .header-location-sep {
+    color: var(--color-copper);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
   .header-location {
-    display: none;
+    display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
     white-space: nowrap;
   }
 
-  @media (min-width: 640px) {
-    .header-location {
-      display: flex;
-    }
-  }
-
-  .header-location-dot {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--color-copper);
-    flex-shrink: 0;
-    opacity: 0.7;
-  }
-
   .header-altitude {
-    display: none;
     flex-shrink: 0;
     align-items: baseline;
     gap: 2px;
@@ -1238,8 +1217,12 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     border: 1px solid rgba(200, 121, 65, 0.18);
   }
 
+  .header-altitude--desktop {
+    display: none;
+  }
+
   @media (min-width: 640px) {
-    .header-altitude {
+    .header-altitude--desktop {
       display: flex;
     }
   }
@@ -1467,43 +1450,70 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     padding: 24px 16px;
   }
 
+  /* ===== HOME HERO ===== */
   .home-hero {
-    padding: 32px 0 24px;
+    padding: 20px 0 20px;
   }
 
-  .home-logo {
-    width: 72px;
-    height: 72px;
-    border-radius: 18px;
+  .home-hero-brand {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .home-hero-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
     object-fit: contain;
-    display: block;
-    margin-bottom: 20px;
+    flex-shrink: 0;
+    margin-top: 4px;
   }
 
-  @media (max-width: 640px) {
-    .home-logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-    }
+  .home-hero-text {
+    flex: 1;
+    min-width: 0;
   }
 
-  .home-title {
+  .home-hero-title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 5vw, 2.4rem);
-    font-weight: 800;
-    color: var(--color-text-primary);
-    line-height: 1.15;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
     letter-spacing: -0.02em;
+    color: var(--color-text-primary);
     margin: 0 0 12px;
   }
 
-  .home-subtitle {
-    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  .home-hero-subtitle {
+    font-size: 15px;
     color: var(--color-text-secondary);
     line-height: 1.6;
-    max-width: 560px;
     margin: 0;
+    max-width: 580px;
+  }
+
+  @media (max-width: 480px) {
+    .home-hero-brand {
+      flex-direction: row;
+      gap: 14px;
+    }
+
+    .home-hero-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      margin-top: 2px;
+    }
+
+    .home-hero-title {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .home-hero-subtitle {
+      font-size: 14px;
+    }
   }
 
   .cards-hint {
@@ -1512,7 +1522,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     gap: 5px;
     font-size: 12px;
     color: var(--color-text-muted);
-    margin: -8px 0 16px;
+    margin: 0 0 16px;
     line-height: 1.4;
   }
 
@@ -1574,7 +1584,9 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   }
 
   .paso-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
     border-radius: var(--radius-xl);
     text-decoration: none;
     cursor: pointer;
@@ -1602,11 +1614,21 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   }
 
   .paso-card-inner {
-    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
     padding: 18px 20px;
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-xl);
     background: var(--color-surface);
+  }
+
+  .paso-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
 
   .paso-card--disabled .paso-card-inner {
@@ -1672,11 +1694,12 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     color: var(--color-text-secondary);
   }
 
-  .paso-card-meta {
+  .paso-card-footer {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 2px;
+    margin-top: auto;
+    padding-top: 10px;
   }
 
   .paso-card-province {
@@ -1727,17 +1750,19 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
 
   .paso-card-vialidad-alert {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    flex-wrap: wrap;
     font-size: 11px;
     font-weight: 700;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(224, 85, 85, 0.15);
+    border: 1px solid rgba(224, 85, 85, 0.3);
     color: var(--color-closed);
-    margin-top: 6px;
-    padding: 4px 8px;
-    border-radius: var(--radius-sm);
-    background: rgba(224, 85, 85, 0.1);
-    border: 1px solid rgba(224, 85, 85, 0.2);
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 8px;
   }
 
   .paso-card-vialidad-obs {
@@ -2513,6 +2538,17 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.tweet-stale-warning {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-conditional);
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(240, 168, 48, 0.08);
+  border: 1px solid rgba(240, 168, 48, 0.22);
 }
 
 .tweet-footer {

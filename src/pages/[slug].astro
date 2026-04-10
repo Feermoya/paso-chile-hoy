@@ -97,6 +97,7 @@ const meta = buildPassPageMeta({
   weatherDesc: weatherDescMeta,
   freshnessLabel,
   regionLabel: regionLabelForMeta,
+  statusHeadline: statusResult?.displayLabel ?? null,
 });
 
 const passSchema = buildPassTouristAttractionSchema({

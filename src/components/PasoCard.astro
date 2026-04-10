@@ -75,6 +75,7 @@ const href = paso.active ? `/${paso.slug}` : undefined;
         class="paso-card-inner"
         style={`background: ${cfg.bg}; border: 1px solid ${cfg.border}`}
       >
+        <div class="paso-card-content">
         <div class="paso-card-header">
           <span class="paso-card-name">{paso.shortName}</span>
           <div class="paso-card-right">
@@ -133,7 +134,8 @@ const href = paso.active ? `/${paso.slug}` : undefined;
           </div>
         )}
         <p class="paso-card-cta">Ver estado completo →</p>
-        <div class="paso-card-meta">
+        </div>
+        <div class="paso-card-footer">
           <span class="paso-card-province">{paso.provinceAR}</span>
           <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
         </div>
@@ -141,6 +143,7 @@ const href = paso.active ? `/${paso.slug}` : undefined;
     </a>
   : <div class="paso-card paso-card--disabled" aria-disabled="true">
       <div class="paso-card-inner">
+        <div class="paso-card-content">
         <div class="paso-card-header">
           <span class="paso-card-name">{paso.shortName}</span>
           <span class="paso-coming-badge">Próximamente</span>
@@ -148,7 +151,8 @@ const href = paso.active ? `/${paso.slug}` : undefined;
         <p class="paso-card-localities">
           {paso.localityAR} (AR) — {paso.localityCL} (CL)
         </p>
-        <div class="paso-card-meta">
+        </div>
+        <div class="paso-card-footer">
           <span class="paso-card-province">{paso.provinceAR}</span>
           <span class="paso-card-alt">{paso.altitudeM.toLocaleString("es-AR")} m</span>
         </div>

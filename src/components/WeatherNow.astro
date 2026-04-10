@@ -70,6 +70,20 @@ function formatDatosAl(note: string | undefined): string | null {
   return `Datos al ${s}`;
 }
 
+/** Prioriza “hace X min” si el snapshot es reciente. */
+function formatWeatherDataLine(note: string | undefined, scrapedAt: string | undefined): string | null {
+  if (scrapedAt?.trim()) {
+    const t = Date.parse(scrapedAt.trim());
+    if (!Number.isNaN(t)) {
+      const diffMin = Math.floor((Date.now() - t) / 60000);
+      if (diffMin >= 0 && diffMin < 60) {
+        return `Datos de hace ${diffMin} min`;
+      }
+    }
+  }
+  return formatDatosAl(note);
+}
+
 function formatSunriseDisplay(sunrise: string | undefined): string {
   if (!sunrise?.trim()) return "—";
   let s = sunrise.trim();
@@ -101,7 +115,7 @@ const tempData = interpretTemperature(w.temperatureC ?? null);
 
 const sunriseDisplay = formatSunriseDisplay(w.sunrise);
 
-const datosAlLine = formatDatosAl(updatedAt);
+const datosAlLine = formatWeatherDataLine(updatedAt, scrapedAt);
 
 const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transparent)`;
 

@@ -68,12 +68,15 @@ export function buildPassPageMeta(opts: {
   freshnessLabel: string;
   /** Provincia para el snippet (ej. Mendoza o San Juan). */
   regionLabel?: string;
+  /** Texto de estado para OG (p. ej. displayLabel de inferPassStatus). */
+  statusHeadline?: string | null;
 }) {
   const { passName, passSlug, status, schedule, tempC, weatherDesc, freshnessLabel } = opts;
   const region = opts.regionLabel ?? "Mendoza, Argentina";
 
   const emoji = STATUS_EMOJI[status];
   const label = STATUS_LABEL[status];
+  const headline = opts.statusHeadline?.trim() || label;
 
   /** `<title>` estable por URL (evita reindexaciones por cada cambio de estado). El estado visible está en la página. */
   const title = `${passName} | ${SITE_NAME}`;
@@ -86,10 +89,10 @@ export function buildPassPageMeta(opts: {
   /** Open Graph / compartir: puede incluir estado para mejor CTR en redes. */
   const ogTitle = `${emoji} ${passName} — ${label}`;
   const climaPart =
-    weatherDesc && tempC !== null ? ` Clima: ${weatherDesc}, ${tempC}°C.` : "";
+    weatherDesc && tempC !== null ? ` ${weatherDesc} · ${tempC}°C.` : weatherDesc ? ` ${weatherDesc}.` : "";
   const horarioPart = schedule ? ` Horario: ${schedule} h.` : "";
   const ogDescription =
-    `Estado: ${label}.${horarioPart}${climaPart} Información ${freshnessLabel} — ${region}.`;
+    `${passName}: ${headline.toUpperCase()} ahora.${horarioPart}${climaPart} ${freshnessLabel} — ${region}.`;
 
   const ogImage = DEFAULT_OG_IMAGE;
   const canonical = `${SITE_URL}/${passSlug}`;

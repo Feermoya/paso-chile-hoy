@@ -9,10 +9,12 @@ import {
 interface Props {
   weather: DrivingWeatherInput;
   forecast?: DrivingForecastItemInput[];
+  /** Card al ancho de la columna (p. ej. junto al clima), no full-bleed. */
+  compact?: boolean;
   class?: string;
 }
 
-const { weather, forecast = [], class: className } = Astro.props;
+const { weather, forecast = [], compact = false, class: className } = Astro.props;
 const assessment = assessDrivingConditions(weather, forecast);
 
 if (assessment.level === "normal") {
@@ -26,7 +28,7 @@ const alertAnim =
 ---
 
 <div
-  class:list={["driving-conditions", alertAnim, className]}
+  class:list={["driving-conditions", compact && "driving-conditions--compact", alertAnim, className]}
   style={`
       --dc-color: ${assessment.color};
       border-left-color: ${assessment.color};
@@ -120,5 +122,17 @@ const alertAnim =
     border-radius: 50%;
     flex-shrink: 0;
     margin-top: 5px;
+  }
+
+  .driving-conditions--compact {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 767px) {
+    .driving-conditions--compact {
+      width: 100%;
+    }
   }
 </style>

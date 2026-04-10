@@ -21,9 +21,10 @@ export interface Props {
   twitterCard?: "summary" | "summary_large_image";
   noindex?: boolean;
   structuredData?: Record<string, unknown>;
-  headerAltitudeM?: number;
-  /** Texto bajo la marca (ej. Mendoza · AR / San Juan · AR). */
-  headerRegionLabel?: string;
+  /** Solo en página de paso; si no se pasa, no se muestra el badge de altitud. */
+  headerAltitudeM?: number | null;
+  /** Ej. Mendoza · AR / San Juan · AR; si no se pasa, no se muestra región bajo la marca (home, legal). */
+  headerRegionLabel?: string | null;
   /** Meta geo.region (ej. AR-M, AR-J). */
   geoRegionCode?: string;
   geoPlacename?: string;
@@ -52,8 +53,8 @@ const {
   twitterCard = "summary_large_image",
   noindex = false,
   structuredData,
-  headerAltitudeM = 3200,
-  headerRegionLabel = "Mendoza · AR",
+  headerAltitudeM,
+  headerRegionLabel,
   geoRegionCode = "AR-M",
   geoPlacename = "Mendoza, Argentina",
   geoPosition = "-32.8211;-69.9232",
@@ -86,7 +87,12 @@ const websiteSchema: Record<string, unknown> = {
   },
 };
 
-const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nivel del mar`;
+const showHeaderRegion = Boolean(headerRegionLabel?.trim());
+const showHeaderAltitude =
+  typeof headerAltitudeM === "number" && Number.isFinite(headerAltitudeM);
+const altitudeLabel = showHeaderAltitude
+  ? `Altitud del paso: ${headerAltitudeM} metros sobre el nivel del mar`
+  : "";
 
 const icbmContent = geoPosition.includes(";")
   ? geoPosition
@@ -180,30 +186,36 @@ const icbmContent = geoPosition.includes(";")
       <header class="header-app site-header">
         <div class="header-inner">
           <a href="/" class="header-logo-link" aria-label="Inicio — todos los pasos">
-            <span class="header-brand">
-              <span class="header-brand-name">PASO CHILE HOY</span>
-              <span class="header-location">
-                <span class="header-location-dot" aria-hidden="true"></span>
-                {headerRegionLabel}
-              </span>
-            </span>
+            <span class="header-brand-name">PASO CHILE HOY</span>
+            {
+              showHeaderRegion && (
+                <>
+                  <span class="header-location-sep" aria-hidden="true">
+                    ·
+                  </span>
+                  <span class="header-location">{headerRegionLabel}</span>
+                </>
+              )
+            }
           </a>
 
-          <div class="header-right">
-            <span class="header-version-wrap items-center">
-              <VersionBadge />
-            </span>
-            <div class="header-altitude" aria-label={altitudeLabel}>
-              <span class="header-altitude-number">{headerAltitudeM}</span>
-              <span class="header-altitude-unit">m</span>
-            </div>
+          <div class="header-actions">
+            <VersionBadge />
+            {
+              showHeaderAltitude && (
+                <div class="header-altitude header-altitude--desktop" aria-label={altitudeLabel}>
+                  <span class="header-altitude-number">{headerAltitudeM}</span>
+                  <span class="header-altitude-unit">m</span>
+                </div>
+              )
+            }
           </div>
         </div>
       </header>
       <div class="ticker-wrapper">
         <AlertTicker />
       </div>
-      <main id="contenido-principal" class="min-w-0 flex-1 pb-4 pt-2 md:pt-4">
+      <main id="contenido-principal" class="min-w-0 flex-1 pb-4 pt-1 md:pt-4">
         <slot />
       </main>
       <slot name="before-footer" />

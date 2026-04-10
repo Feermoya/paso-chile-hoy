@@ -1,7 +1,9 @@
 ---
+import DrivingConditions from "@/components/DrivingConditions.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
+import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
 
 export interface Props {
   now?: WeatherNowView;
@@ -33,4 +35,15 @@ const { now, forecast, scrapedAt, showNow, showForecast, class: className } = As
   }
 
   {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
+
+  {
+    showNow && now && (
+      <DrivingConditions
+        class="anim-section anim-delay-3"
+        weather={weatherNowToDrivingInput(now)}
+        forecast={forecast}
+        compact
+      />
+    )
+  }
 </section>

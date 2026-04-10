@@ -1,33 +1,18 @@
 ---
-import DrivingConditions from "@/components/DrivingConditions.astro";
 import PassDetails from "@/components/PassDetails.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
-import type { ForecastItemView, PassView, WeatherNowView } from "@/types/pass-view";
-import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
+import type { PassView } from "@/types/pass-view";
 
 export interface Props {
   view: PassView;
-  now?: WeatherNowView;
-  forecast: ForecastItemView[];
-  showNow: boolean;
   hideScheduleInDetails: boolean;
   class?: string;
 }
 
-const { view, now, forecast, showNow, hideScheduleInDetails, class: className } = Astro.props;
+const { view, hideScheduleInDetails, class: className } = Astro.props;
 ---
 
 <div class:list={["paso-page-fullwidth paso-fullwidth", className]}>
-  {
-    showNow && now && (
-      <DrivingConditions
-        class="anim-section anim-delay-3"
-        weather={weatherNowToDrivingInput(now)}
-        forecast={forecast}
-      />
-    )
-  }
-
   <PassDetails
     class="anim-section anim-delay-5"
     view={view}

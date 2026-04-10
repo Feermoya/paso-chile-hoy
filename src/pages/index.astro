@@ -88,21 +88,23 @@ const homeSchema = {
 <MainLayout {...meta} structuredData={homeSchema}>
   <div class="home-layout">
     <div class="home-hero">
-      <div class="home-hero-text">
+      <div class="home-hero-brand">
         <img
           src="/logo.png"
           alt="Paso Chile Hoy"
-          class="home-logo"
-          width="72"
-          height="72"
+          class="home-hero-logo"
+          width="64"
+          height="64"
           loading="eager"
           decoding="async"
         />
-        <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
-        <p class="home-subtitle">
-          Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y Chile.
-          Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
-        </p>
+        <div class="home-hero-text">
+          <h1 class="home-hero-title">¿Está abierto el paso a Chile?</h1>
+          <p class="home-hero-subtitle">
+            Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y
+            Chile. Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
+          </p>
+        </div>
       </div>
     </div>
 

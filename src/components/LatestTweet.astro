@@ -11,6 +11,10 @@ if (!tweet?.text || tweet.text.trim().length < 10) {
   return;
 }
 
+const tweetAgeMs = Date.now() - new Date(tweet.date).getTime();
+const isOlderThan6Hours =
+  Number.isFinite(tweetAgeMs) && tweetAgeMs > 6 * 60 * 60 * 1000;
+
 function timeAgo(d: string): string {
   const ms = Date.now() - new Date(d).getTime();
   if (!Number.isFinite(ms)) return "";
@@ -61,6 +65,13 @@ const color = {
     }
   </div>
   <p class="tweet-text">{tweet.text}</p>
+  {
+    isOlderThan6Hours && (
+      <p class="tweet-stale-warning">
+        Este aviso tiene más de 6 horas. Verificá en gob.ar
+      </p>
+    )
+  }
   <div class="tweet-footer">
     <span class="tweet-disclaimer">Fuente complementaria · verificar en gob.ar</span>
     <span class="tweet-cta">Ver en X →</span>
