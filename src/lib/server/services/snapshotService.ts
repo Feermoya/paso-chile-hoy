@@ -8,9 +8,19 @@ import {
 } from "@/lib/server/storage/jsonSnapshotStore";
 import type { PassRaw } from "@/types/pass-raw";
 
-/** Compatible con Astro (Vite) y con scripts Node (jiti/tsx sin `import.meta`). */
+/** Solo entorno local (no build ni runtime en Vercel). */
 function isDevRuntime(): boolean {
   return typeof process !== "undefined" && process.env.NODE_ENV !== "production";
+}
+
+/** En Vercel (build y runtime) no se hace scraping: solo JSON en repo / GitHub Actions. */
+function isVercelEnv(): boolean {
+  return typeof process !== "undefined" && Boolean(process.env.VERCEL);
+}
+
+/** Scrape en vivo solo en local, sin `VERCEL`. */
+function allowLiveScrape(): boolean {
+  return isDevRuntime() && !isVercelEnv();
 }
 
 function isVercelRuntime(): boolean {
@@ -71,8 +81,8 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassRaw> 
 }
 
 /**
- * Producción (Vercel): solo lee `public/snapshots/{slug}.json` (actualizado por GitHub Actions).
- * Desarrollo: puede scrapear si falta el archivo o está vencido.
+ * Producción / Vercel: solo lee `public/snapshots/{slug}.json`.
+ * Desarrollo local: puede scrapear si falta el archivo o está vencido.
  */
 export async function getSnapshotForApi(slug: string): Promise<PassRaw> {
   const cfg = getPassConfigBySlug(slug);
@@ -82,7 +92,7 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw> {
 
   const persisted = await readPassSnapshotFile(slug);
 
-  if (isDevRuntime()) {
+  if (allowLiveScrape()) {
     if (!persisted) {
       return refreshAndPersistSnapshot(slug);
     }

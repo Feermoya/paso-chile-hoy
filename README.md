@@ -20,7 +20,7 @@ Mostrar en la home datos **reales** del detalle público de pasos en Argentina.g
 
 ## Requisitos
 
-- Node.js **20** (alineado con Vercel y `engines` del proyecto)
+- Node.js **18.x** (alineado con `engines` y build en Vercel)
 
 ## Despliegue (Vercel)
 
