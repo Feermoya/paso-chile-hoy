@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.0.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.0.0...v2.0.1) (2026-04-10)
+
+### Correcciones
+
+* snapshot ausente en prod con fallback y CI ([638513e](https://github.com/Feermoya/paso-chile-hoy/commit/638513e6f76c86ab1cf98c543646cbdae05d5043))
+
 ## [1.2.0](https://github.com/Feermoya/paso-chile-hoy/compare/v1.1.1...v1.2.0) (2026-04-10)
 
 ### Nuevas funcionalidades
