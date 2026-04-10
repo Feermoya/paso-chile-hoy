@@ -44,7 +44,7 @@ const showClosesIn = isOpen && closesInMinutes != null && closesInMinutes > 0;
 const showOpensIn = isClosed && opensInMinutes != null && opensInMinutes > 0;
 const closingSoon = showClosesIn && closesInMinutes! <= 60;
 
-const badgeText = (displayLabel?.trim() || status.toUpperCase()).toUpperCase();
+const badgeLabel = displayLabel?.trim() || status.toUpperCase();
 const href = paso.active ? `/${paso.slug}` : undefined;
 ---
 
@@ -56,7 +56,7 @@ const href = paso.active ? `/${paso.slug}` : undefined;
       aria-label={`Ver estado de ${paso.shortName}`}
     >
       <div class="pcv2-status-row">
-        <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>{badgeText}</span>
+        <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>{badgeLabel}</span>
         {showClosesIn && (
           <span
             class:list={[

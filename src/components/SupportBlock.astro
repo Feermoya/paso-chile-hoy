@@ -34,6 +34,7 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
             <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
           </svg>
           <span id="support-like-count" class="support-like-count">···</span>
+          <span class="like-burst" id="like-burst" aria-hidden="true"></span>
         </button>
 
         <a
@@ -52,6 +53,32 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
 <script>
   (function () {
     const USER_LIKED_KEY = "pch-liked";
+
+    function createBurst(btn: HTMLButtonElement) {
+      const burst = btn.querySelector(".like-burst");
+      if (!(burst instanceof HTMLElement)) return;
+
+      const colors = ["#5BAEFF", "#3DD68C", "#F0A830", "#E05555", "#C87941"];
+      const count = 12;
+
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement("span");
+        particle.className = "like-particle";
+
+        const angle = (i / count) * 360;
+        const distance = 30 + Math.random() * 20;
+        const tx = Math.cos((angle * Math.PI) / 180) * distance;
+        const ty = Math.sin((angle * Math.PI) / 180) * distance;
+
+        particle.style.setProperty("--tx", `${tx}px`);
+        particle.style.setProperty("--ty", `${ty}px`);
+        particle.style.background = colors[i % colors.length] ?? "#5BAEFF";
+        particle.style.animationDelay = `${Math.random() * 0.1}s`;
+
+        burst.appendChild(particle);
+        setTimeout(() => particle.remove(), 700);
+      }
+    }
 
     async function init() {
       const btn = document.getElementById("support-like-btn");
@@ -89,6 +116,7 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
 
         btn.disabled = true;
         btn.classList.add("support-like-btn--active");
+        createBurst(btn);
 
         try {
           const res = await fetch("/api/likes", { method: "POST" });
@@ -98,15 +126,6 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
           }
           localStorage.setItem(USER_LIKED_KEY, "true");
           btn.setAttribute("aria-label", "Ya marcaste esto como útil");
-
-          btn.animate(
-            [
-              { transform: "scale(1)" },
-              { transform: "scale(1.25)" },
-              { transform: "scale(1)" },
-            ],
-            { duration: 300, easing: "ease-out" },
-          );
         } catch {
           btn.disabled = false;
           btn.classList.remove("support-like-btn--active");

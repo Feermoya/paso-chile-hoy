@@ -43,19 +43,35 @@ const dotColors: Record<PassDisplayStatus, string> = {
   sin_datos: "var(--color-unknown)",
 };
 
-const titleColor =
-  status === "sin_datos" ? "var(--color-text-secondary)" : dotColors[status];
-
 const label = displayLabel?.trim() || labels[status];
+const upperLabel = label.trim().toUpperCase();
+
+/** Color del título según lo que se muestra (p. ej. ABIERTO en verde aunque el estado técnico sea condicionado). */
+const titleColor =
+  upperLabel === "ABIERTO"
+    ? "var(--color-open)"
+    : upperLabel === "CERRADO"
+      ? "var(--color-closed)"
+      : upperLabel === "CONDICIONADO"
+        ? "var(--color-conditional)"
+        : status === "sin_datos"
+          ? "var(--color-text-secondary)"
+          : dotColors[status];
 
 const dotModifier =
-  status === "abierto"
+  upperLabel === "ABIERTO"
     ? "status-dot--open"
-    : status === "condicionado"
-      ? "status-dot--condicionado"
-      : status === "cerrado"
-        ? "status-dot--cerrado"
-        : "status-dot--unknown";
+    : upperLabel === "CERRADO"
+      ? "status-dot--cerrado"
+      : upperLabel === "CONDICIONADO"
+        ? "status-dot--condicionado"
+        : status === "abierto"
+          ? "status-dot--open"
+          : status === "condicionado"
+            ? "status-dot--condicionado"
+            : status === "cerrado"
+              ? "status-dot--cerrado"
+              : "status-dot--unknown";
 
 const showOpenCountdown =
   status === "cerrado" && opensInMinutes != null && opensInMinutes > 0;
@@ -407,13 +423,26 @@ const closeCountdownInitial =
         }
         if (data.status) {
           section.setAttribute("data-pass-status", data.status);
-          const dc = DOT_CLASS[data.status] ?? "status-dot--unknown";
+          const upper = (data.statusLabel?.trim() || labelEl.textContent || "")
+            .trim()
+            .toUpperCase();
+          let dc = DOT_CLASS[data.status] ?? "status-dot--unknown";
+          let col = LABEL_COLOR[data.status] ?? "var(--color-text-secondary)";
+          if (upper === "ABIERTO") {
+            dc = "status-dot--open";
+            col = "var(--color-open)";
+          } else if (upper === "CERRADO") {
+            dc = "status-dot--cerrado";
+            col = "var(--color-closed)";
+          } else if (upper === "CONDICIONADO") {
+            dc = "status-dot--condicionado";
+            col = "var(--color-conditional)";
+          } else if (data.status === "sin_datos") {
+            col = "var(--color-text-secondary)";
+          }
           dot.className = `status-dot ${dc}`;
-          const col = LABEL_COLOR[data.status] ?? "var(--color-text-secondary)";
-          if (data.status === "sin_datos") {
-            (labelEl as HTMLElement).style.color = "var(--color-text-secondary)";
-          } else {
-            (labelEl as HTMLElement).style.color = col;
+          if (labelEl instanceof HTMLElement) {
+            labelEl.style.color = col;
           }
         }
 

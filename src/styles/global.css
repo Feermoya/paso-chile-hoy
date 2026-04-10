@@ -128,15 +128,249 @@
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-status: 0 0 0 1px var(--color-border-subtle), 0 8px 28px rgba(0, 0, 0, 0.08);
+
+  /* Hero / superficies por estado — legibles sobre fondo claro (no usar verdes casi negros del tema oscuro) */
+  --color-open-subtle: #ecfdf5;
+  --color-open-border: #34d399;
+  --color-conditional-subtle: #fffbeb;
+  --color-conditional-border: #f59e0b;
+  --color-closed-subtle: #fef2f2;
+  --color-closed-border: #f87171;
+  --color-unknown-subtle: #f3f4f6;
+  --color-unknown-border: #9ca3af;
+
+  --shadow-glow-open: 0 0 20px rgba(16, 185, 129, 0.18);
+  --shadow-glow-closed: 0 0 20px rgba(239, 68, 68, 0.14);
+  --shadow-glow-conditional: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+/* Header y ticker — modo claro (`.alert-ticker` vive en el layout; mayor especificidad que estilos del componente) */
+:root[data-theme="light"] .site-header,
+:root[data-theme="light"] .header-app {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+:root[data-theme="light"] .header-brand-name {
+  color: #0d1117;
+}
+
+:root[data-theme="light"] .header-location {
+  color: #6b7280;
+}
+
+:root[data-theme="light"] .ticker-wrapper {
+  background: #f8f9fb;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+:root[data-theme="light"] .alert-ticker {
+  background: rgba(91, 174, 255, 0.06);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .alert-ticker .ticker-label {
+  background: rgba(91, 174, 255, 0.12);
+  color: #185fa5;
+  border-right-color: rgba(91, 174, 255, 0.22);
+}
+
+:root[data-theme="light"] .alert-ticker .ticker-item {
+  color: #374151;
 }
 
 /* Enlaces por defecto con marca (excepciones en header/footer explícitas) */
-a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn)) {
+a[href]:where(
+    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2)
+  ) {
   color: var(--brand);
 }
 
-a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn)):hover {
+a[href]:where(
+    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2)
+  ):hover {
   color: #7ccbff;
+}
+
+/*
+ * Cards de la home: son <a>; sin esto, el color de marca heredado deja badges y títulos en azul.
+ * Sin @layer para ganar a cualquier regla en capas inferiores.
+ */
+a.paso-card-v2,
+a.paso-card-v2:visited {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+a.paso-card-v2:hover,
+a.paso-card-v2:focus-visible {
+  color: var(--color-text-primary);
+}
+
+a.paso-card-v2 .pcv2-more {
+  color: var(--brand);
+}
+
+a.paso-card-v2:hover .pcv2-more,
+a.paso-card-v2:focus-visible .pcv2-more {
+  color: #7ccbff;
+}
+
+/* Fondos, borde, sombra y badges de las cards home (fuera de @layer → gana a Tailwind capas) */
+a.paso-card-v2 {
+  box-sizing: border-box;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] a.paso-card-v2 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+a.paso-card-v2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+a.paso-card-v2.paso-card-v2--abierto::before {
+  background: var(--color-open);
+}
+
+a.paso-card-v2.paso-card-v2--cerrado::before {
+  background: var(--color-closed);
+}
+
+a.paso-card-v2.paso-card-v2--condicionado::before {
+  background: var(--color-conditional);
+}
+
+a.paso-card-v2.paso-card-v2--sin_datos::before {
+  background: var(--color-unknown);
+}
+
+a.paso-card-v2.paso-card-v2--abierto {
+  background: rgba(61, 214, 140, 0.08);
+  border: 1.5px solid rgba(61, 214, 140, 0.25);
+}
+
+a.paso-card-v2.paso-card-v2--cerrado {
+  background: rgba(224, 85, 85, 0.08);
+  border: 1.5px solid rgba(224, 85, 85, 0.25);
+}
+
+a.paso-card-v2.paso-card-v2--condicionado {
+  background: rgba(240, 168, 48, 0.08);
+  border: 1.5px solid rgba(240, 168, 48, 0.25);
+}
+
+a.paso-card-v2.paso-card-v2--sin_datos {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid var(--color-border-default);
+}
+
+:root[data-theme="light"] a.paso-card-v2.paso-card-v2--abierto {
+  background: #f0fbf6;
+  border: 1.5px solid #3dd68c;
+}
+
+:root[data-theme="light"] a.paso-card-v2.paso-card-v2--cerrado {
+  background: #fef2f2;
+  border: 1.5px solid #e05555;
+}
+
+:root[data-theme="light"] a.paso-card-v2.paso-card-v2--condicionado {
+  background: #fffbeb;
+  border: 1.5px solid #f0a830;
+}
+
+:root[data-theme="light"] a.paso-card-v2.paso-card-v2--sin_datos {
+  background: #f9fafb;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+}
+
+a.paso-card-v2 .pcv2-badge--abierto {
+  color: #3dd68c;
+  background: rgba(61, 214, 140, 0.15);
+  border: 1px solid rgba(61, 214, 140, 0.3);
+}
+
+a.paso-card-v2 .pcv2-badge--abierto::before {
+  background: #3dd68c;
+}
+
+a.paso-card-v2 .pcv2-badge--cerrado {
+  color: #e05555;
+  background: rgba(224, 85, 85, 0.15);
+  border: 1px solid rgba(224, 85, 85, 0.3);
+}
+
+a.paso-card-v2 .pcv2-badge--cerrado::before {
+  background: #e05555;
+}
+
+a.paso-card-v2 .pcv2-badge--condicionado {
+  color: #f0a830;
+  background: rgba(240, 168, 48, 0.15);
+  border: 1px solid rgba(240, 168, 48, 0.3);
+}
+
+a.paso-card-v2 .pcv2-badge--condicionado::before {
+  background: #f0a830;
+}
+
+a.paso-card-v2 .pcv2-badge--sin_datos {
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-subtle);
+}
+
+a.paso-card-v2 .pcv2-badge--sin_datos::before {
+  background: var(--color-text-muted);
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--abierto {
+  color: #065f46;
+  background: #d1fae5;
+  border-color: #34d399;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--abierto::before {
+  background: #10b981;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--cerrado {
+  color: #991b1b;
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--cerrado::before {
+  background: #ef4444;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--condicionado {
+  color: #92400e;
+  background: #fef3c7;
+  border-color: #fbbf24;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--condicionado::before {
+  background: #f59e0b;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--sin_datos {
+  color: #374151;
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--sin_datos::before {
+  background: #6b7280;
 }
 
 .link-branded {
@@ -291,6 +525,68 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes alert-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes card-enter {
+  from {
+    transform: translateY(12px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes badge-pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@keyframes countdown-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes badge-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes particle-fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
   }
 }
 
@@ -483,6 +779,11 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   letter-spacing: -0.01em;
   font-family: var(--font-display);
   line-height: 1;
+}
+
+.status-badge,
+.status-badge-sm {
+  animation: badge-scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .text-temperature {
@@ -770,6 +1071,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   color: var(--color-accent);
   cursor: default;
   user-select: none;
+  animation: card-enter 0.4s ease 0.1s both;
 }
 
 .version-dot {
@@ -1908,73 +2210,125 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   /* Paso cards — home v2 */
   .paso-card-v2 {
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-height: 180px;
+    gap: 8px;
+    min-height: 200px;
     transition:
       transform 0.15s ease,
       box-shadow 0.15s ease;
-    border: 1.5px solid transparent;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+    animation: card-enter 0.3s ease both;
+    /* Evita que el fondo del enlace quede por debajo del estado */
+    background-clip: padding-box;
+  }
+
+  .paso-card-v2:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .paso-card-v2:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .paso-card-v2:nth-child(3) {
+    animation-delay: 0.15s;
   }
 
   .paso-card-v2:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  :root[data-theme="light"] .paso-card-v2:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   .paso-card-v2:active {
     transform: scale(0.98);
   }
 
+  /* Fondo y borde siempre visibles (no solo en hover) */
   .paso-card-v2--abierto {
     background: rgba(61, 214, 140, 0.08);
-    border-color: rgba(61, 214, 140, 0.25);
+    border: 1.5px solid rgba(61, 214, 140, 0.25);
   }
 
   .paso-card-v2--cerrado {
     background: rgba(224, 85, 85, 0.08);
-    border-color: rgba(224, 85, 85, 0.25);
+    border: 1.5px solid rgba(224, 85, 85, 0.25);
   }
 
   .paso-card-v2--condicionado {
     background: rgba(240, 168, 48, 0.08);
-    border-color: rgba(240, 168, 48, 0.25);
+    border: 1.5px solid rgba(240, 168, 48, 0.25);
   }
 
   .paso-card-v2--sin_datos {
-    background: rgba(92, 106, 130, 0.1);
-    border-color: rgba(92, 106, 130, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid var(--color-border-default);
   }
 
   .paso-card-v2--disabled {
     cursor: not-allowed;
     opacity: 0.55;
     background: var(--color-surface-raised);
-    border-color: var(--color-border-subtle);
+    border: 1.5px solid var(--color-border-subtle);
   }
 
   :root[data-theme="light"] .paso-card-v2--abierto {
-    background: #e8faf2;
-    border-color: #3dd68c;
+    background: #f0fbf6;
+    border: 1.5px solid #3dd68c;
   }
 
   :root[data-theme="light"] .paso-card-v2--cerrado {
-    background: #fdeaea;
-    border-color: #e05555;
+    background: #fef2f2;
+    border: 1.5px solid #e05555;
   }
 
   :root[data-theme="light"] .paso-card-v2--condicionado {
-    background: #fdf5e0;
-    border-color: #f0a830;
+    background: #fffbeb;
+    border: 1.5px solid #f0a830;
   }
 
   :root[data-theme="light"] .paso-card-v2--sin_datos {
-    background: #f1f3f7;
-    border-color: #9ca3af;
+    background: #f9fafb;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .paso-card-v2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .paso-card-v2--abierto::before {
+    background: var(--color-open);
+  }
+
+  .paso-card-v2--cerrado::before {
+    background: var(--color-closed);
+  }
+
+  .paso-card-v2--condicionado::before {
+    background: var(--color-conditional);
+  }
+
+  .paso-card-v2--sin_datos::before {
+    background: var(--color-unknown);
+  }
+
+  .paso-card-v2--disabled::before {
+    display: none;
   }
 
   .pcv2-status-row {
@@ -1987,29 +2341,103 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   .pcv2-badge {
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 4px 10px;
     border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid transparent;
+  }
+
+  .pcv2-badge::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
   .pcv2-badge--abierto {
-    background: var(--color-open);
-    color: #04342c;
+    background: rgba(61, 214, 140, 0.15);
+    color: #3dd68c;
+    border: 1px solid rgba(61, 214, 140, 0.3);
+  }
+
+  .pcv2-badge--abierto::before {
+    background: #3dd68c;
   }
 
   .pcv2-badge--cerrado {
-    background: var(--color-closed);
-    color: #fff;
+    background: rgba(224, 85, 85, 0.15);
+    color: #e05555;
+    border: 1px solid rgba(224, 85, 85, 0.3);
+  }
+
+  .pcv2-badge--cerrado::before {
+    background: #e05555;
   }
 
   .pcv2-badge--condicionado {
-    background: var(--color-conditional);
-    color: #412402;
+    background: rgba(240, 168, 48, 0.15);
+    color: #f0a830;
+    border: 1px solid rgba(240, 168, 48, 0.3);
+    animation: badge-pulse-soft 2s ease-in-out infinite;
+  }
+
+  .pcv2-badge--condicionado::before {
+    background: #f0a830;
   }
 
   .pcv2-badge--sin_datos {
-    background: var(--color-unknown);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .pcv2-badge--sin_datos::before {
+    background: var(--color-text-muted);
+  }
+
+  :root[data-theme="light"] .pcv2-badge--abierto {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #34d399;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--abierto::before {
+    background: #10b981;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--cerrado {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #f87171;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--cerrado::before {
+    background: #ef4444;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--condicionado {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fbbf24;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--condicionado::before {
+    background: #f59e0b;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--sin_datos {
+    background: #e5e7eb;
+    color: #374151;
+    border-color: #9ca3af;
+  }
+
+  :root[data-theme="light"] .pcv2-badge--sin_datos::before {
+    background: #6b7280;
   }
 
   .pcv2-countdown {
@@ -2020,6 +2448,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
 
   .pcv2-countdown--urgent {
     color: var(--color-conditional);
+    animation: countdown-blink 1s ease-in-out infinite;
   }
 
   .pcv2-countdown--opens {
@@ -2201,6 +2630,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
 }
 
 .support-like-btn {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -2218,6 +2648,37 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     color 0.15s,
     background 0.15s;
   -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+}
+
+.like-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.like-particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  opacity: 1;
+  animation: particle-fly 0.6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .like-particle {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 .support-like-btn:hover:not(:disabled) {
@@ -2248,19 +2709,33 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
 }
 
 .support-donate-btn {
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
   background: var(--brand);
   color: #0a0c10;
+  font-weight: 800;
+  border: none;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
   font-size: 13px;
-  font-weight: 700;
   text-decoration: none;
-  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  transition:
+    background 0.15s,
+    transform 0.1s;
   white-space: nowrap;
 }
 
 .support-donate-btn:hover {
   background: #7ccbff;
+  color: #0a0c10;
+}
+
+.support-donate-btn:active {
+  transform: scale(0.97);
+}
+
+:root[data-theme="light"] .support-donate-btn {
+  background: var(--brand);
   color: #0a0c10;
 }
 
@@ -2747,6 +3222,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   display: flex;
   flex-direction: column;
   gap: 4px;
+  animation: alert-slide-in 0.25s ease both;
 }
 
 .alert-card--danger {
@@ -2754,7 +3230,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   border: 1px solid rgba(224, 85, 85, 0.2);
   border-left: 3px solid var(--color-closed);
   animation:
-    slide-in-alert 0.25s ease both,
+    alert-slide-in 0.25s ease 0.05s both,
     alert-pulse-red 2.5s ease-in-out 0.4s 3;
 }
 
@@ -2763,7 +3239,7 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   border: 1px solid rgba(240, 168, 48, 0.2);
   border-left: 3px solid var(--color-conditional);
   animation:
-    slide-in-alert 0.25s ease both,
+    alert-slide-in 0.25s ease 0.1s both,
     alert-pulse-amber 2.5s ease-in-out 0.4s 2;
 }
 
@@ -2949,5 +3425,21 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+  }
+}
+
+/* Reducir movimiento — micro-animaciones y cards */
+@media (prefers-reduced-motion: reduce) {
+  .paso-card-v2,
+  .alert-card,
+  .status-badge,
+  .status-badge-sm,
+  .version-badge {
+    animation: none;
+  }
+
+  .pcv2-badge--condicionado,
+  .pcv2-countdown--urgent {
+    animation: none;
   }
 }

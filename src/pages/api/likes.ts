@@ -1,42 +1,45 @@
 import type { APIRoute } from "astro";
-import { kv } from "@vercel/kv";
-
-const LIKES_KEY = "paso-chile-hoy:likes";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 export const prerender = false;
 
-export const GET: APIRoute = async () => {
+const LIKES_FILE = "/tmp/pch-likes.json";
+
+function readLikes(): number {
   try {
-    const count = (await kv.get<number>(LIKES_KEY)) ?? 0;
-    return new Response(JSON.stringify({ likes: count }), {
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-store",
-      },
-    });
+    if (existsSync(LIKES_FILE)) {
+      const data = JSON.parse(readFileSync(LIKES_FILE, "utf-8")) as { likes?: unknown };
+      const n = Number(data.likes);
+      if (Number.isFinite(n) && n >= 0) return Math.floor(n);
+    }
   } catch {
-    return new Response(JSON.stringify({ likes: 0 }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    /* ignore */
   }
+  return 0;
+}
+
+function writeLikes(n: number): void {
+  try {
+    writeFileSync(LIKES_FILE, JSON.stringify({ likes: n }), "utf-8");
+  } catch (err) {
+    console.error("[likes] Write error:", err);
+  }
+}
+
+const headers = {
+  "Content-Type": "application/json",
+  "Cache-Control": "no-store",
+  "Access-Control-Allow-Origin": "*",
+};
+
+export const GET: APIRoute = async () => {
+  const likes = readLikes();
+  return new Response(JSON.stringify({ likes }), { headers });
 };
 
 export const POST: APIRoute = async () => {
-  try {
-    const current = (await kv.get<number>(LIKES_KEY)) ?? 0;
-    const newCount = current + 1;
-    await kv.set(LIKES_KEY, newCount);
-    return new Response(JSON.stringify({ likes: newCount }), {
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-store",
-      },
-    });
-  } catch {
-    return new Response(JSON.stringify({ error: "Failed" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+  const current = readLikes();
+  const newCount = current + 1;
+  writeLikes(newCount);
+  return new Response(JSON.stringify({ likes: newCount }), { headers });
 };

@@ -85,11 +85,18 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
   let forecast = forecastFromHtml;
 
   if (cfg.climaSource === "wttr" && cfg.wttrQuery) {
+    console.log(`[snapshot] 🌤 wttr.in para ${cfg.slug}…`);
     const wttr = await fetchWttrClimaForPaso(cfg.wttrQuery, cfg.lat, cfg.lng);
     if (wttr) {
+      const t = wttr.clima.temperatura.temperature;
+      const desc = wttr.clima.temperatura.weather?.description;
+      console.log(
+        `[snapshot] ✅ wttr OK ${cfg.slug}: ${t}°C ${desc ?? ""} — forecast ${wttr.forecast.length} ítems`,
+      );
       clima = wttr.clima;
       forecast = wttr.forecast.length ? wttr.forecast : forecastFromHtml;
     } else {
+      console.warn(`[snapshot] ⚠️ wttr falló para ${cfg.slug}, usando SMN`);
       clima = await fetchClima(String(cfg.lat), String(cfg.lng));
     }
   } else {

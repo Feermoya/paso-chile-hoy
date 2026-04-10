@@ -237,18 +237,31 @@ export async function fetchWttrClimaForPaso(
   lat: number,
   lng: number,
 ): Promise<{ clima: ClimaResponse; forecast: ForecastPeriod[] } | null> {
+  const url = `https://wttr.in/${query}?format=j1&lang=es`;
+  console.log(`[wttr] Fetching: ${url}`);
+
   try {
-    const url = `https://wttr.in/${query}?format=j1&lang=es`;
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "paso-chile-hoy/1.0 (pasochilehoy.com)",
+        "User-Agent": "paso-chile-hoy/2.0 (pasochilehoy.com)",
         Accept: "application/json",
       },
       signal: AbortSignal.timeout(10_000),
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    if (!res.ok) {
+      console.error(`[wttr] HTTP ${res.status} for ${url}`);
+      return null;
+    }
+
     const data = (await res.json()) as unknown;
-    return wttrJ1ToClimaAndForecast(data, lat, lng);
+    const parsed = wttrJ1ToClimaAndForecast(data, lat, lng);
+    if (parsed) {
+      const t = parsed.clima.temperatura.temperature;
+      const desc = parsed.clima.temperatura.weather?.description;
+      console.log(`[wttr] OK ${query}: ${t}°C — ${desc ?? "?"}`);
+    }
+    return parsed;
   } catch (err) {
     console.error("[wttr] Error fetching clima:", err);
     return null;
