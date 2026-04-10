@@ -1,6 +1,8 @@
 # Modelo de datos — Paso Chile Hoy
 
-Contrato entre **ingesta** (HTML → snapshot) y **UI** (Astro). Objetivo: cero ambigüedad y escalabilidad a más pasos.
+Contrato entre **ingesta** (API/HTML → snapshot) y **UI** (Astro). Objetivo: cero ambigüedad y escalabilidad a más pasos.
+
+**Flujo operativo actual (lectura, snapshots, inferencia de estado):** ver [`flujo-de-datos.md`](./flujo-de-datos.md). **Rutas internas y API:** [`endpoints-internos.md`](./endpoints-internos.md).
 
 ## RAW vs VIEW
 
@@ -13,12 +15,12 @@ El **mapper** (`src/lib/mappers/passViewMapper.ts`) es la única puerta recomend
 
 ## Estado operativo (abierto / cerrado)
 
-El HTML oficial **no expone** un campo estructurado y fiable de “estado del paso”. Por eso:
+En el pipeline **actual** (snapshot tipo `PassSnapshot` desde la API oficial):
 
-- **No** hay `status` en `PassView`.
-- **No** el mapper infiere abierto/cerrado ni genera textos al respecto.
+- En **`PassView`**, el estado de Gendarmería llega como **`operationalInfo.rawStatus`** (p. ej. `ABIERTO`, `CERRADO`).
+- La UI **no** muestra ese string crudo: el badge usa **`inferPassStatus(view)`** (`src/utils/inferPassStatus.ts`). Con `rawStatus` presente, se prioriza la rama **`inferFromOfficialApi`** (ver `flujo-de-datos.md`).
 
-Si en el futuro se incorpora una fuente explícita (otro campo en RAW con procedencia clara), se documentará aquí y se añadirá al VIEW de forma acotada.
+Los snapshots **legados** (`PassRaw` sin campos de API) pueden no tener `rawStatus`; ahí aplica la inferencia antigua (alertas + horario).
 
 ## Campos principales
 
@@ -81,7 +83,7 @@ Nuevos campos del HTML: primero ampliar **`PassRaw`** y documentarlos aquí; lue
 
 ## Relación con el snapshot en disco
 
-El parser (`argentinaPassParser`) persiste **`PassRaw`** en `data/snapshots/<slug>.json`. Los archivos antiguos en formato **`PassPageSnapshot`** se migran al leer (`jsonSnapshotStore`). En build estático, las páginas usan **`PassView`** vía `getSnapshotForApi` + `mapPassRawToView`.
+Los JSON versionados viven en **`public/snapshots/{slug}.json`**. La forma preferida es **`PassSnapshot`** (API oficial + clima + pronóstico). Formatos antiguos pueden migrarse al leer (`jsonSnapshotStore`). En runtime SSR, **`getSnapshotForApi`** + **`mapPersistedSnapshotToView`** producen **`PassView`**.
 
 ## Ejemplo
 
