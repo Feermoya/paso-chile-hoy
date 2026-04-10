@@ -185,12 +185,7 @@ const passSchema: Record<string, unknown> = {
 ---
 
 <MainLayout
-  title={meta.title}
-  description={meta.description}
-  ogTitle={meta.ogTitle}
-  ogDescription={meta.ogDescription}
-  ogImage={meta.ogImage}
-  canonical={meta.canonical}
+  {...meta}
   structuredData={passSchema}
   headerAltitudeM={pasoConfig.altitudeM}
   headerRegionLabel={headerRegionLabel}
@@ -298,7 +293,11 @@ const passSchema: Record<string, unknown> = {
             />
           )}
 
-          <PassDetails class="anim-section anim-delay-5" view={view} />
+          <PassDetails
+            class="anim-section anim-delay-5"
+            view={view}
+            hideScheduleInDetails={Boolean(scheduleText.trim())}
+          />
 
           <SupportBlock />
         </div>

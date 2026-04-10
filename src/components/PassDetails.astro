@@ -7,18 +7,20 @@ import { passDetailsHasContent } from "@/utils/passViewGuards";
 export interface Props {
   view: PassView;
   class?: string;
+  /** Si true, el horario ya está en StatusHero — no duplicar en este bloque. */
+  hideScheduleInDetails?: boolean;
 }
 
-const { view, class: className } = Astro.props;
-const has = passDetailsHasContent(view);
+const { view, class: className, hideScheduleInDetails = false } = Astro.props;
+const has = passDetailsHasContent(view, { treatScheduleAsHidden: hideScheduleInDetails });
 ---
 
 {
   has && (
     <div class:list={["pass-details-root", className]}>
-      <details class="pass-details-mobile group border-t border-[var(--color-border-subtle)] md:hidden">
+      <details class="pass-details-panel group border-t border-[var(--color-border-subtle)]" data-pass-details>
         <summary
-          class="pass-details-summary flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-3 text-sm font-medium text-[var(--color-text-secondary)]"
+          class="pass-details-summary flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-3 text-sm font-medium text-[var(--color-text-secondary)] md:hidden"
         >
           <span>Más información del paso</span>
           <Icon
@@ -27,25 +29,23 @@ const has = passDetailsHasContent(view);
             aria-hidden="true"
           />
         </summary>
-        <div class="pass-details-content pb-6 pt-2">
-          <PassDetailsInner view={view} />
-        </div>
-      </details>
-
-      <section
-        class="pass-details-desktop hidden border-t border-[var(--color-border-subtle)] pt-6 md:block md:pt-6"
-        aria-labelledby="pass-details-heading-desktop"
-      >
         <h2
-          id="pass-details-heading-desktop"
-          class="font-display text-lg font-semibold text-[var(--color-text-primary)] md:text-xl"
+          id="pass-details-heading"
+          class="hidden scroll-mt-24 font-display text-lg font-semibold text-[var(--color-text-primary)] md:mb-5 md:mt-6 md:block md:text-xl"
         >
           Datos del paso
         </h2>
-        <div class="pass-details-content mt-6 md:mt-5">
-          <PassDetailsInner view={view} />
+        <div class="pass-details-content pb-6 pt-2 md:pt-0">
+          <PassDetailsInner view={view} hideSchedule={hideScheduleInDetails} />
         </div>
-      </section>
+      </details>
     </div>
   )
 }
+
+<script>
+  import { initPassDetailsPanels } from "@/scripts/pass-details-panel.client.ts";
+
+  initPassDetailsPanels();
+  document.addEventListener("astro:page-load", initPassDetailsPanels);
+</script>

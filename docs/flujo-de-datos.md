@@ -72,6 +72,12 @@ Se usa **`inferLegacyHtmlSnapshot`**:
 
 Esto explica discrepancias históricas: **sin `rawStatus` en el VIEW**, la UI no refleja el consolidado `estado.estado`.
 
+## 5.1 Bloque “Datos del paso” (una sola vez en DOM)
+
+- Componente: `PassDetails.astro` + `PassDetailsInner.astro`.
+- **Un solo** `PassDetailsInner` por página: el panel responsive usa `<details>` con script (`pass-details-panel.client.ts`) para abrir en `md+` y colapsar en móvil, en lugar de duplicar el mismo HTML en desktop.
+- El **horario** en el hero (`StatusHero`) no se repite en `PassDetailsInner` cuando `hideScheduleInDetails` es true (`passDetailsHasContent` puede ignorar el horario al decidir si hay contenido).
+
 ## 5. Dónde se consume el flujo
 
 | Destino | Archivo | Notas |
@@ -88,7 +94,23 @@ El bloque **clima detallado** (temperatura, “Parcialmente nublado”, visibili
 
 El **badge rojo/verde** no se calcula desde el JSON de clima solo: viene de **`inferPassStatus`** y del campo **`rawStatus`** (y en legado, de horario/alertas).
 
-## 7. Checklist si “la API dice ABIERTO pero la UI dice Cerrado”
+## 7. Metadatos SSR (head) — OG, Twitter, favicon
+
+- **Tipo** `LayoutSeoBundle` y builders en `src/utils/seo.ts`: `buildHomeMeta`, `buildPassPageMeta`, `buildLegalPageMeta`, `buildNotFoundMeta`, `buildServerErrorMeta`.
+- Las páginas pasan `{...seo}` a `MainLayout` (sin duplicar tags a mano). El `<head>` se renderiza en el servidor.
+- Incluye: `title`, `description`, `canonical`, `og:title`, `og:description`, `og:url`, `og:image`, `og:image:width/height/alt`, `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`.
+- **Imagen OG**: `DEFAULT_OG_IMAGE` (`/og-image.png` absoluta) hasta tener OG dinámica.
+- **Favicon / apple-touch-icon**: constantes `SITE_FAVICON` en `seo.ts`, usadas solo en `MainLayout`.
+- **`<title>`** en paso: estable por URL; **descripción** estable; **OG** del paso puede incluir estado/clima para previews en WhatsApp, Telegram, X, etc.
+
+## 7.1 SEO en páginas de paso (contenido)
+
+- `buildPassPageMeta` en `src/utils/seo.ts`.
+- **`<title>`**: `{Nombre del paso} | {SITE_NAME}` — estable para la misma URL (el estado visible está en el hero).
+- **`<meta name="description">`**: única por paso, texto estable (sin “ABIERTO/CERRADO” que cambie cada request).
+- **Open Graph** (`og:title`, `og:description`): pueden incluir estado, horario y clima para mejor CTR al compartir.
+
+## 9. Checklist si “la API dice ABIERTO pero la UI dice Cerrado”
 
 1. Confirmar que estás mirando **esta** app (`pasochilehoy.com` / tu deploy), no el **mapa del sitio oficial** argentina.gob.ar (otro front distinto).
 2. Abrir `public/snapshots/agua-negra.json` y verificar **`rawStatus`** y **`scrapedAt`**.

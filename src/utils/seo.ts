@@ -14,6 +14,34 @@ export const SITE_NAME =
 export const SITE_DESCRIPTION =
   "Estado en tiempo real del Cristo Redentor, Pehuenche, Agua Negra y pasos internacionales entre Argentina y Chile. Horario, clima y condiciones actualizados.";
 
+/** Imagen Open Graph por defecto (absoluta). Sin generación dinámica por URL. */
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+
+/** Iconos en `public/favicon_io/` — un solo lugar para el layout. */
+export const SITE_FAVICON = {
+  ico: "/favicon_io/favicon.ico",
+  png16: "/favicon_io/favicon-16x16.png",
+  png32: "/favicon_io/favicon-32x32.png",
+  appleTouch: "/favicon_io/apple-touch-icon.png",
+} as const;
+
+/**
+ * Metadatos SSR que consume `MainLayout` (title, description, canonical, OG, Twitter).
+ * Todo absoluto; sin depender de hidratación.
+ */
+export interface LayoutSeoBundle {
+  title: string;
+  /** Única por URL; texto estable (evitar ruido que cambie cada request). */
+  description: string;
+  canonical: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  /** Accesibilidad en previews (Twitter / algunos crawlers). */
+  ogImageAlt: string;
+  twitterCard: "summary" | "summary_large_image";
+}
+
 export type PassStatus = "abierto" | "cerrado" | "condicionado" | "sin_datos";
 
 const STATUS_EMOJI: Record<PassStatus, string> = {
@@ -47,33 +75,95 @@ export function buildPassPageMeta(opts: {
   const emoji = STATUS_EMOJI[status];
   const label = STATUS_LABEL[status];
 
-  const title = `${passName} — ${emoji} ${label} | ${SITE_NAME}`;
+  /** `<title>` estable por URL (evita reindexaciones por cada cambio de estado). El estado visible está en la página. */
+  const title = `${passName} | ${SITE_NAME}`;
 
+  /** Meta description estable: única por paso, sin volatilidad minuto a minuto. */
+  const description =
+    `${passName}: horario, estado y clima en la cordillera (${region}). ` +
+    `Datos actualizados desde la fuente oficial; consultá el estado en vivo en la página.`;
+
+  /** Open Graph / compartir: puede incluir estado para mejor CTR en redes. */
+  const ogTitle = `${emoji} ${passName} — ${label}`;
   const climaPart =
     weatherDesc && tempC !== null ? ` Clima: ${weatherDesc}, ${tempC}°C.` : "";
-
   const horarioPart = schedule ? ` Horario: ${schedule} h.` : "";
+  const ogDescription =
+    `Estado: ${label}.${horarioPart}${climaPart} Información ${freshnessLabel} — ${region}.`;
 
-  const description =
-    `Estado actual del ${passName}: ${label}.${horarioPart}${climaPart} ` +
-    `Información actualizada ${freshnessLabel} — ${region}.`;
-
-  const ogTitle = `${emoji} ${passName} — ${label}`;
-  const ogDescription = description;
-  const ogImage = `${SITE_URL}/og-image.png`;
+  const ogImage = DEFAULT_OG_IMAGE;
   const canonical = `${SITE_URL}/${passSlug}`;
+  const ogImageAlt = `${passName}: estado, horario y clima — ${SITE_NAME}`;
 
-  return { title, description, ogTitle, ogDescription, ogImage, canonical };
+  return {
+    title,
+    description,
+    canonical,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogImageAlt,
+    twitterCard: "summary_large_image" as const,
+  };
 }
 
-export function buildHomeMeta() {
+export function buildHomeMeta(): LayoutSeoBundle {
   return {
     title: `${SITE_NAME} — Estado de pasos internacionales Argentina–Chile`,
     description: SITE_DESCRIPTION,
-    ogTitle: "🏔️ Paso Chile Hoy — ¿Está abierto el paso a Chile?",
-    ogDescription: SITE_DESCRIPTION,
-    ogImage: `${SITE_URL}/og-image.png`,
     canonical: `${SITE_URL}/`,
+    ogTitle: "Paso Chile Hoy — ¿Está abierto el paso a Chile?",
+    ogDescription: SITE_DESCRIPTION,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: `${SITE_NAME}: Cristo Redentor, Pehuenche y Agua Negra — mapa de estado y clima`,
+    twitterCard: "summary_large_image",
+  };
+}
+
+/** `/legal` — descripción única; OG alineado sin depender del título del documento. */
+export function buildLegalPageMeta(): LayoutSeoBundle {
+  const title = `Aviso legal — ${SITE_NAME}`;
+  const description =
+    "Condiciones de uso, fuentes de datos oficiales y limitación de responsabilidad de Paso Chile Hoy (pasochilehoy.com). Servicio informativo independiente.";
+  return {
+    title,
+    description,
+    canonical: `${SITE_URL}/legal`,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: `Aviso legal — ${SITE_NAME}`,
+    twitterCard: "summary_large_image",
+  };
+}
+
+export function buildNotFoundMeta(): LayoutSeoBundle {
+  const description =
+    "La página que buscás no existe en Paso Chile Hoy. Volvé al inicio para ver el estado de los pasos a Chile.";
+  return {
+    title: `Página no encontrada — ${SITE_NAME}`,
+    description,
+    canonical: `${SITE_URL}/404`,
+    ogTitle: `No encontrado — ${SITE_NAME}`,
+    ogDescription: description,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: `${SITE_NAME} — página no encontrada`,
+    twitterCard: "summary_large_image",
+  };
+}
+
+export function buildServerErrorMeta(): LayoutSeoBundle {
+  const description =
+    "Hubo un error al cargar Paso Chile Hoy. Intentá de nuevo más tarde o consultá la fuente oficial de pasos internacionales.";
+  return {
+    title: `Error temporal — ${SITE_NAME}`,
+    description,
+    canonical: `${SITE_URL}/500`,
+    ogTitle: `Error — ${SITE_NAME}`,
+    ogDescription: description,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: `${SITE_NAME} — error temporal`,
+    twitterCard: "summary_large_image",
   };
 }
 

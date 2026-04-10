@@ -86,10 +86,10 @@ const closeCountdownInitial =
   data-pass-status={status}
   data-status-hero-root
   data-hero-slug={slug}
-  aria-labelledby="status-hero-label"
+  aria-labelledby="status-hero-heading"
 >
   <div class="status-hero-inner mx-auto w-full max-w-[900px]">
-    <p class="status-eyebrow text-eyebrow">{passName}</p>
+    <h1 id="status-hero-heading" class="status-eyebrow text-eyebrow">{passName}</h1>
 
     <div class="status-main">
       <span
@@ -101,6 +101,8 @@ const closeCountdownInitial =
         class:list={["text-status", "status-badge", `status-badge--${status}`]}
         data-status={status}
         data-hero-label
+        role="status"
+        aria-live="polite"
         style={{ color: titleColor }}
       >
         {label}

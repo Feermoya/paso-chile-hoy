@@ -5,9 +5,11 @@ import { formatDateTime } from "@/utils/format";
 
 export interface Props {
   view: PassView;
+  /** Si el horario ya se muestra en el hero, no repetir el bloque Horario aquí. */
+  hideSchedule?: boolean;
 }
 
-const { view } = Astro.props;
+const { view, hideSchedule = false } = Astro.props;
 const op = view.operationalInfo;
 
 function normalizeScheduleRaw(schedule: string): string {
@@ -46,7 +48,7 @@ const horarioValor = scheduleLine();
     </p>
   )}
 
-  {horarioValor && (
+  {horarioValor && !hideSchedule && (
     <div>
       <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Horario</h3>
       <p class="mt-2 text-[17px] font-medium text-[var(--color-text-primary)] md:text-base">{horarioValor}</p>

@@ -557,6 +557,12 @@ a[href]:where(:not(.header-logo-link):not(.footer-logo-link):not(.footer-link):n
   color: var(--brand);
 }
 
+/* Un solo <h1> en el hero: anula márgenes por defecto del agente de usuario */
+.status-hero h1.status-eyebrow.text-eyebrow {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
 .weather-eyebrow {
   color: var(--brand);
 }

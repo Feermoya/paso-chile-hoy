@@ -2,15 +2,12 @@
 export const prerender = true;
 
 import MainLayout from "@/layouts/MainLayout.astro";
-import { SITE_URL } from "@/utils/seo";
+import { buildNotFoundMeta } from "@/utils/seo";
+
+const seo = buildNotFoundMeta();
 ---
 
-<MainLayout
-  title="Página no encontrada — Paso Chile Hoy"
-  description="La página que buscás no existe."
-  noindex={true}
-  canonical={`${SITE_URL}/404`}
->
+<MainLayout {...seo} noindex={true}>
   <div class="error-page container-main">
     <h1 class="error-page-title">Página no encontrada</h1>
     <p class="error-page-text">

@@ -2,15 +2,12 @@
 export const prerender = true;
 
 import MainLayout from "@/layouts/MainLayout.astro";
-import { SITE_URL } from "@/utils/seo";
+import { buildLegalPageMeta } from "@/utils/seo";
+
+const seo = buildLegalPageMeta();
 ---
 
-<MainLayout
-  title="Aviso legal — Paso Chile Hoy"
-  description="Información legal sobre el uso y los datos de Paso Chile Hoy."
-  noindex={true}
-  canonical={`${SITE_URL}/legal`}
->
+<MainLayout {...seo} noindex={true}>
   <div class="legal-page container-main">
     <h1>Aviso legal</h1>
     <p class="legal-updated">Última actualización: abril de 2026</p>

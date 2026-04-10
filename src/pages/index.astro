@@ -66,15 +66,7 @@ const homeSchema = {
 };
 ---
 
-<MainLayout
-  title={meta.title}
-  description={meta.description}
-  ogTitle={meta.ogTitle}
-  ogDescription={meta.ogDescription}
-  ogImage={meta.ogImage}
-  canonical={meta.canonical}
-  structuredData={homeSchema}
->
+<MainLayout {...meta} structuredData={homeSchema}>
   <div class="home-layout">
     <div class="home-hero">
       <div class="mb-1 flex justify-end sm:hidden">

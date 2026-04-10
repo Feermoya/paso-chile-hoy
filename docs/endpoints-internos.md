@@ -28,6 +28,10 @@ Si existe **`SCRAPE_SECRET`** en el entorno, los endpoints que lo requieran vali
 | Snapshots | `public/snapshots/*.json` |
 | `manifest.json`, `robots.txt`, `sw.js` | `public/` |
 
+## Metadatos SSR (OG / Twitter)
+
+Ver `src/utils/seo.ts`: tipo `LayoutSeoBundle`, `DEFAULT_OG_IMAGE`, `SITE_FAVICON` y builders por página. El `<head>` se arma en `MainLayout.astro` solo con props (sin JS cliente).
+
 ## Variables de entorno útiles
 
 | Variable | Uso |

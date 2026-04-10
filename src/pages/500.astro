@@ -2,15 +2,12 @@
 export const prerender = true;
 
 import MainLayout from "@/layouts/MainLayout.astro";
-import { SITE_URL } from "@/utils/seo";
+import { buildServerErrorMeta } from "@/utils/seo";
+
+const seo = buildServerErrorMeta();
 ---
 
-<MainLayout
-  title="Error — Paso Chile Hoy"
-  description="Ocurrió un error inesperado."
-  noindex={true}
-  canonical={`${SITE_URL}/500`}
->
+<MainLayout {...seo} noindex={true}>
   <div class="error-page container-main">
     <h1 class="error-page-title">Error temporal</h1>
     <p class="error-page-text">
