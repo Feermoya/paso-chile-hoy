@@ -1,33 +1,5 @@
 {
   "slug": "cristo-redentor",
-<<<<<<< Updated upstream
-  "routeId": 29,
-  "name": "Paso Sistema Cristo Redentor",
-  "localityAR": "Villa Las Cuevas",
-  "localityCL": "Los Andes",
-  "provinceAR": "MENDOZA",
-  "countryCL": "CHILE",
-  "routeDescription": "Villa Las Cuevas (AR) - Los Andes (CL)",
-  "schedule": "Horario: 09:00-21:00 h.",
-  "contact": {
-    "phone": "(2624) 420094",
-    "telHref": "tel:+542624420094"
-  },
-  "alerts": [
-    {
-      "source": "Vialidad Nacional",
-      "title": "Atención",
-      "detail": "Corte total RN 7 tramo Tunel Internacional"
-    }
-  ],
-  "currentWeather": {
-    "description": "Despejado",
-    "temperatureC": 5.8,
-    "wind": "Calma km/h",
-    "visibilityKm": 15,
-    "sunset": "19:25 h",
-    "providerNote": "2026-04-10T09:00:00-03:00"
-=======
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
@@ -43,13 +15,12 @@
     "sunrise": "07:56",
     "sunset": "19:25",
     "updatedAt": "2026-04-10T09:00:00-03:00"
->>>>>>> Stashed changes
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-10T14:21:23.420Z",
+  "scrapedAt": "2026-04-10T14:31:53.323Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -79,50 +50,5 @@
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
-<<<<<<< Updated upstream
-  ],
-  "usefulLinks": [
-    {
-      "text": "Conocé los requisitos para entrar o salir de la Argentina.",
-      "url": "https://www.argentina.gob.ar/interior/migraciones/entrada-y-salida-del-pais"
-    },
-    {
-      "text": "Si viajás con menores de edad, conocé los requisitos.",
-      "url": "https://www.argentina.gob.ar/servicio/autorizacion-de-viaje-para-menores-de-edad"
-    },
-    {
-      "text": "Conocé el estado de la ruta nacional más cercana.",
-      "url": "https://www.argentina.gob.ar/obras-publicas/vialidad-nacional/estado-de-las-rutas#ruta7"
-    },
-    {
-      "text": "¿Cuáles alimentos podés traer y cuáles están prohibidos?",
-      "url": "https://www.argentina.gob.ar/senasa/informacion-al-viajero/ingresar-o-regresar-al-pais"
-    },
-    {
-      "text": "Agendate el contacto de el consulado argentino más cercano en Chile.",
-      "url": "https://www.cancilleria.gob.ar/es/representaciones/cvalp"
-    }
-  ],
-  "providers": [
-    {
-      "name": "Gendarmería Nacional",
-      "lastUpdatedRaw": "08/04/2026 - 22:15 h",
-      "lastUpdated": "2026-04-09T01:15:00.000Z"
-    },
-    {
-      "name": "Vialidad Nacional",
-      "lastUpdatedRaw": "10/04/2026 - 7:30",
-      "lastUpdated": "2026-04-10T10:30:00.000Z"
-    },
-    {
-      "name": "Servicio Meteorológico Nacional",
-      "lastUpdatedRaw": "10/04/2026 - 09:00 h",
-      "lastUpdated": "2026-04-10T12:00:00.000Z"
-    }
-  ],
-  "scrapedAt": "2026-04-10T14:03:51.797Z",
-  "sourceUrl": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor"
-=======
   ]
->>>>>>> Stashed changes
 }
