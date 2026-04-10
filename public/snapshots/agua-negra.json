@@ -23,21 +23,14 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T20:34:01.206Z",
+  "scrapedAt": "2026-04-10T21:20:52.958Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Tormentas aisladas",
-      "temperatureC": 17,
-      "wind": "SO a 0-2 km/h",
-      "visibility": "Regular"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Tormentas aisladas",
-      "temperatureC": 13,
+      "description": "Mayormente nublado",
+      "temperatureC": 10,
       "wind": "SO a 0-2 km/h",
-      "visibility": "Regular"
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
@@ -51,6 +44,13 @@
       "description": "Algo nublado",
       "temperatureC": 23,
       "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Algo nublado",
+      "temperatureC": 14,
+      "wind": "SE a 7-12 km/h",
       "visibility": "Buena"
     }
   ]
