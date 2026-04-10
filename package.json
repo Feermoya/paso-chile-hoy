@@ -1,7 +1,7 @@
 {
   "name": "paso-chile-hoy",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Web informativa del estado de pasos fronterizos Argentina–Chile (base frontend).",
   "scripts": {
