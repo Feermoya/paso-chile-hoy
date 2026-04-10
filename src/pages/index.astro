@@ -44,6 +44,7 @@ const showForecast = forecast.length > 0;
 const displayStatus = view ? inferPassStatus(view) : null;
 const scheduleText = view ? heroSchedule(view) : "";
 const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
+const officialUrl = view?.meta.sourceUrl;
 ---
 
 <MainLayout
@@ -70,45 +71,50 @@ const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt
       </div>
     )}
 
-    {view && displayStatus && (
-      <div class="container-main">
-        <StatusHero
-          class="anim-section anim-delay-1"
-          status={displayStatus}
-          passName={view.title}
-          schedule={scheduleText}
-          lastUpdatedRelative={lastRel}
-        />
+    {view && (
+      <div class="page-layout">
+        <div class="col-main flex min-w-0 flex-col gap-4 md:gap-6">
+          {displayStatus && (
+            <StatusHero
+              class="anim-section anim-delay-1"
+              status={displayStatus}
+              passName={view.title}
+              schedule={scheduleText}
+              lastUpdatedRelative={lastRel}
+              officialUrl={officialUrl}
+            />
+          )}
+
+          {showNow && now && (
+            <>
+              <div class="section-divider" aria-hidden="true" />
+              <WeatherNow
+                class="anim-section anim-delay-2"
+                weather={now}
+                updatedAt={now.providerNote}
+              />
+            </>
+          )}
+        </div>
+
+        <div class="col-side flex min-w-0 flex-col gap-4 md:gap-6">
+          {showForecast && (
+            <>
+              <div class="section-divider" aria-hidden="true" />
+              <section class="anim-section anim-delay-3 space-y-4" aria-labelledby="forecast-heading">
+                <h2 id="forecast-heading" class="text-section-title">
+                  Próximas horas
+                </h2>
+                <WeatherForecast forecast={forecast} />
+              </section>
+            </>
+          )}
+
+          <AlertsBlock class="anim-section anim-delay-4" alerts={view.alerts} />
+
+          <PassDetails class="anim-section anim-delay-5" view={view} />
+        </div>
       </div>
     )}
-
-    <div class="container-main flex w-full min-w-0 flex-col gap-4 md:gap-6">
-      {showNow && now && (
-        <>
-          <div class="section-divider" aria-hidden="true" />
-          <WeatherNow
-            class="anim-section anim-delay-2"
-            weather={now}
-            updatedAt={now.providerNote}
-          />
-        </>
-      )}
-
-      {showForecast && (
-        <>
-          <div class="section-divider" aria-hidden="true" />
-          <section class="anim-section anim-delay-3 space-y-4" aria-labelledby="forecast-heading">
-            <h2 id="forecast-heading" class="text-section-title">
-              Próximas horas
-            </h2>
-            <WeatherForecast forecast={forecast} />
-          </section>
-        </>
-      )}
-
-      {view && <AlertsBlock class="anim-section anim-delay-4" alerts={view.alerts} />}
-
-      {view && <PassDetails class="anim-section anim-delay-5" view={view} />}
-    </div>
   </div>
 </MainLayout>

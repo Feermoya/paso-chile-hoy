@@ -3,6 +3,12 @@ import { Icon } from "astro-icon/components";
 import AltitudeWarning from "@/components/AltitudeWarning.astro";
 import type { WeatherNowView } from "@/types/pass-view";
 import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
+import {
+  interpretTemperature,
+  interpretVisibility,
+  interpretWind,
+  levelToColor,
+} from "@/utils/weatherInterpretation";
 
 export interface Props {
   weather: WeatherNowView;
@@ -39,13 +45,6 @@ function formatDatosAl(note: string | undefined): string | null {
   return `Datos al ${s}`;
 }
 
-function formatWindDisplay(wind: string | undefined): string {
-  if (!wind?.trim()) return "—";
-  const t = wind.trim();
-  if (/^calma\b/i.test(t)) return "Calma";
-  return t;
-}
-
 function formatSunriseDisplay(sunrise: string | undefined): string {
   if (!sunrise?.trim()) return "—";
   let s = sunrise.trim();
@@ -58,14 +57,21 @@ const { weather: w, updatedAt, class: className } = Astro.props;
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
-const windDisplay = formatWindDisplay(w.wind);
-const visibilityDisplay =
+const visInput: number | string | null =
   typeof w.visibilityKm === "number"
-    ? `${w.visibilityKm} km`
-    : (w.visibilityText?.trim() || "—");
+    ? w.visibilityKm
+    : w.visibilityText?.trim()
+      ? w.visibilityText.trim()
+      : null;
+const visData = interpretVisibility(visInput);
+const windData = interpretWind(w.wind ?? null);
+const tempData = interpretTemperature(w.temperatureC ?? null);
+
 const sunriseDisplay = formatSunriseDisplay(w.sunrise);
 
 const datosAlLine = formatDatosAl(updatedAt);
+
+const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transparent)`;
 ---
 
 <article
@@ -93,28 +99,105 @@ const datosAlLine = formatDatosAl(updatedAt);
   )}
 
   {w.temperatureC != null && (
-    <p class="mt-4 flex flex-wrap items-start gap-x-1 gap-y-0">
-      <span class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums">{w.temperatureC}</span>
-      <span class="mt-2 font-display text-lg font-medium text-[var(--color-text-secondary)] md:text-2xl">°C</span>
-    </p>
+    <>
+      <p class="mt-4 flex flex-wrap items-start gap-x-1 gap-y-0">
+        <span class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums">
+          {w.temperatureC}
+        </span>
+        <span class="mt-2 font-display text-lg font-medium text-[var(--color-text-secondary)] md:text-2xl">
+          °C
+        </span>
+      </p>
+      {tempData.meaning && (
+        <p class="temp-warning md:hidden">
+          <Icon
+            name="lucide:triangle-alert"
+            class="temp-warning-icon h-3 w-3 shrink-0"
+            style={`color: ${levelToColor(tempData.level)}`}
+            aria-hidden="true"
+          />
+          <span style={`color: ${levelToColor(tempData.level)}`}>{tempData.meaning}</span>
+        </p>
+      )}
+    </>
   )}
 
-  <div class="weather-stats-grid">
+  <!-- Mobile: grilla compacta 3 cols -->
+  <div class="weather-stats-grid md:hidden">
     <div class="weather-stat">
       <Icon name="lucide:wind" class="stat-icon" aria-hidden="true" />
       <span class="stat-label">Viento</span>
-      <span class="stat-value">{windDisplay}</span>
+      <span class="stat-value" style={`color: ${levelToColor(windData.level)}`}>{windData.label}</span>
     </div>
     <div class="weather-stat">
       <Icon name="lucide:eye" class="stat-icon" aria-hidden="true" />
       <span class="stat-label">Visib.</span>
-      <span class="stat-value">{visibilityDisplay}</span>
+      <span class="stat-value" style={`color: ${levelToColor(visData.level)}`}>{visData.label}</span>
     </div>
     <div class="weather-stat">
       <Icon name="lucide:sunrise" class="stat-icon" aria-hidden="true" />
       <span class="stat-label">Amanecer</span>
       <span class="stat-value">{sunriseDisplay}</span>
     </div>
+  </div>
+
+  <!-- Desktop: stats expandidos -->
+  <div class="weather-desktop-expanded hidden md:block">
+    <div class="desktop-stats">
+      <div class="desktop-stat-block">
+        <div class="desktop-stat-header">
+          <Icon
+            name="lucide:wind"
+            class="h-5 w-5 shrink-0"
+            style={`color: ${levelToColor(windData.level)}`}
+            aria-hidden="true"
+          />
+          <span class="desktop-stat-label">Viento</span>
+        </div>
+        <span class="desktop-stat-value">{windData.label}</span>
+        {windData.meaning && <p class="desktop-stat-meaning">{windData.meaning}</p>}
+      </div>
+      <div class="desktop-stat-divider" aria-hidden="true"></div>
+      <div class="desktop-stat-block">
+        <div class="desktop-stat-header">
+          <Icon
+            name="lucide:eye"
+            class="h-5 w-5 shrink-0"
+            style={`color: ${levelToColor(visData.level)}`}
+            aria-hidden="true"
+          />
+          <span class="desktop-stat-label">Visibilidad</span>
+        </div>
+        <span class="desktop-stat-value">{visData.label}</span>
+        {visData.meaning && <p class="desktop-stat-meaning">{visData.meaning}</p>}
+      </div>
+      <div class="desktop-stat-divider" aria-hidden="true"></div>
+      <div class="desktop-stat-block">
+        <div class="desktop-stat-header">
+          <Icon name="lucide:sunrise" class="h-5 w-5 shrink-0 text-[var(--color-text-muted)]" aria-hidden="true" />
+          <span class="desktop-stat-label">Amanecer</span>
+        </div>
+        <span class="desktop-stat-value">{sunriseDisplay}</span>
+        <p class="desktop-stat-meaning">Primera luz en la cordillera</p>
+      </div>
+    </div>
+
+    {tempData.meaning && (
+      <div
+        class="desktop-temp-warning"
+        style={`border-color: ${levelToColor(tempData.level)}; background: ${tempBg}; border-left-color: ${levelToColor(tempData.level)}`}
+      >
+        <Icon
+          name="lucide:thermometer-snowflake"
+          class="h-4 w-4 shrink-0"
+          style={`color: ${levelToColor(tempData.level)}`}
+          aria-hidden="true"
+        />
+        <p class="m-0 text-sm leading-snug" style={`color: ${levelToColor(tempData.level)}`}>
+          {tempData.meaning}
+        </p>
+      </div>
+    )}
   </div>
 
   <AltitudeWarning altitudeM={3200} />

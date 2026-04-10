@@ -255,6 +255,24 @@
   font-variant-numeric: tabular-nums;
 }
 
+@media (min-width: 768px) {
+  .text-status {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .text-temperature {
+    font-size: clamp(4rem, 8vw, 6.5rem);
+  }
+
+  .text-section-title {
+    font-size: 24px;
+  }
+
+  .text-weather-desc {
+    font-size: 20px;
+  }
+}
+
 /* Status hero — ritmo interno */
 .status-hero-inner {
   padding: 20px 20px 24px;
@@ -665,6 +683,141 @@
     margin: 0;
     line-height: 1.4;
     color: var(--color-text-secondary);
+  }
+
+  /* ===== PAGE LAYOUT (desktop 2 columnas) ===== */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  @media (min-width: 375px) {
+    .page-layout {
+      padding-inline: 20px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .page-layout {
+      padding-inline: 24px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .page-layout {
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      align-items: start;
+      max-width: 960px;
+    }
+
+    .page-layout .col-side .forecast-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-layout {
+      padding-inline: 32px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .page-layout .col-side .forecast-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Desktop — clima expandido */
+  .desktop-stats {
+    display: flex;
+    gap: 0;
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+  }
+
+  .desktop-stat-block {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: var(--color-surface);
+  }
+
+  .desktop-stat-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .desktop-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .desktop-stat-value {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-stat-value {
+      font-size: 20px;
+    }
+  }
+
+  .desktop-stat-meaning {
+    font-size: 12px;
+    margin: 0;
+    margin-top: 4px;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
+  .desktop-stat-divider {
+    flex-shrink: 0;
+    width: 1px;
+    background: var(--color-border-subtle);
+  }
+
+  .desktop-temp-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: 1px solid transparent;
+    border-left-width: 3px;
+    border-radius: var(--radius-md);
+  }
+
+  .temp-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .temp-warning-icon {
+    margin-top: 2px;
   }
 }
 
