@@ -103,26 +103,34 @@ const icbmContent = geoPosition.includes(";")
 ---
 
 <!doctype html>
-<html lang="es-AR">
+<html lang="es-AR" data-theme="light">
   <head>
-    <script is:inline>
-      (function () {
-        try {
-          var t = localStorage.getItem("pch-theme");
-          document.documentElement.setAttribute(
-            "data-theme",
-            t === "light" ? "light" : "dark",
-          );
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      })();
-    </script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+    <meta name="theme-color" content="#f8f9fb" id="pch-theme-color" />
+    <script is:inline>
+      (function () {
+        var theme = "light";
+        try {
+          var t = localStorage.getItem("pch-theme");
+          theme = t === "dark" ? "dark" : "light";
+        } catch (e) {
+          theme = "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+        try {
+          var mc = document.getElementById("pch-theme-color");
+          if (mc) {
+            mc.setAttribute("content", theme === "light" ? "#f8f9fb" : "#0A0C10");
+          }
+        } catch (e2) {
+          /* ignore */
+        }
+      })();
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -163,7 +171,6 @@ const icbmContent = geoPosition.includes(";")
     <meta name="twitter:image" content={ogImageFinal} />
     <meta name="twitter:image:alt" content={ogImageAltResolved} />
 
-    <meta name="theme-color" content="#0A0C10" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -407,10 +414,14 @@ const icbmContent = geoPosition.includes(";")
           } catch (e) {
             /* ignore */
           }
+          const mc = document.getElementById("pch-theme-color");
+          if (mc) {
+            mc.setAttribute("content", next === "light" ? "#f8f9fb" : "#0A0C10");
+          }
         }
 
         toggle?.addEventListener("click", function () {
-          const cur = root.getAttribute("data-theme") || "dark";
+          const cur = root.getAttribute("data-theme") || "light";
           applyTheme(cur === "dark" ? "light" : "dark");
         });
 
@@ -422,7 +433,7 @@ const icbmContent = geoPosition.includes(";")
               return null;
             }
           })();
-          applyTheme(saved === "light" ? "light" : "dark");
+          applyTheme(saved === "dark" ? "dark" : "light");
         });
       })();
     </script>
