@@ -21,21 +21,14 @@
     "visibilityKm": 10,
     "sunrise": "07:54",
     "sunset": "19:23",
-    "updatedAt": "2026-04-10T22:29:23.254Z"
+    "updatedAt": "2026-04-10T22:56:46.100Z"
   },
   "contact": "(2647) 420473",
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T22:29:23.254Z",
+  "scrapedAt": "2026-04-10T22:56:46.101Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 13,
-      "wind": "NE 10 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
@@ -55,6 +48,13 @@
       "description": "Soleado",
       "temperatureC": 19,
       "wind": "ENE 9 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 17,
+      "wind": "NE 5 km/h",
       "visibility": "Buena"
     }
   ]
