@@ -27,20 +27,13 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-10T21:42:18.123Z",
+  "scrapedAt": "2026-04-10T22:02:45.780Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": 1,
-      "wind": "SO a 7-12 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
       "temperatureC": -5,
-      "wind": "SO a 7-12 km/h",
+      "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     },
     {
@@ -52,9 +45,16 @@
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Algo nublado",
+      "description": "Parcialmente nublado",
       "temperatureC": 5,
       "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Algo nublado",
+      "temperatureC": -5,
+      "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     }
   ]
