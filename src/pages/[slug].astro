@@ -72,8 +72,32 @@ if (import.meta.env.DEV && view && statusResult) {
   console.log("=========================");
 }
 
-const pageTitle = pasoConfig.shortName;
-const pageDescription = `Estado inferido, clima y datos de ${pasoConfig.name} según Argentina.gob.ar. Verificá siempre la fuente oficial.`;
+function siteBase(): string {
+  const env = import.meta.env.PUBLIC_SITE_URL?.trim();
+  if (env) return env.replace(/\/$/, "");
+  const site = import.meta.env.SITE?.trim();
+  if (site) return site.replace(/\/$/, "");
+  return "https://pasochilehoy.com";
+}
+
+const baseUrl = siteBase();
+
+const displayStatus = statusResult?.status ?? "sin_datos";
+const statusLabel: Record<string, string> = {
+  abierto: "ABIERTO",
+  condicionado: "CONDICIONADO",
+  cerrado: "CERRADO",
+  sin_datos: "Sin datos",
+};
+
+const pageHtmlTitle = `${pasoConfig.shortName} — ${statusLabel[displayStatus] ?? "Sin datos"} | Paso Chile Hoy`;
+
+const weatherDesc = now?.description?.trim() || "—";
+const weatherTemp =
+  now?.temperatureC != null && Number.isFinite(now.temperatureC) ? `${now.temperatureC}°C` : "";
+const freshnessLabel = lastRel || "sin datos de actualización";
+
+const pageMetaDescription = `Estado actual del ${pasoConfig.name}: ${statusLabel[displayStatus] ?? "Sin datos"}. Horario ${scheduleText || "no disponible"}. Clima: ${weatherDesc}${weatherTemp ? ` ${weatherTemp}` : ""}. Actualizado hace ${freshnessLabel}.`;
 
 const statusEmoji: Record<string, string> = {
   abierto: "✅",
@@ -92,21 +116,55 @@ const ogTitlePass =
     ? `${statusEmoji[statusResult.status] ?? "⚪"} ${pasoConfig.shortName} — ${statusOgLabel[statusResult.status] ?? "ESTADO"}`
     : `${pasoConfig.shortName} — Paso Chile Hoy`;
 
-const weatherDesc = now?.description?.trim() || "—";
-const weatherTemp =
-  now?.temperatureC != null && Number.isFinite(now.temperatureC) ? `${now.temperatureC}°C` : "";
 const ogDescriptionPass = view
   ? `Horario: ${scheduleText || "No disponible"} · Clima: ${weatherDesc}${weatherTemp ? ` ${weatherTemp}` : ""}`
-  : pageDescription;
+  : pageMetaDescription;
+
+function openingHoursFromSchedule(schedule: string): Array<Record<string, string>> {
+  const s = schedule.trim();
+  if (!s) return [];
+  const sep = s.includes("–") ? "–" : "-";
+  const parts = s.split(sep).map((p) => p.trim()).filter(Boolean);
+  if (parts.length < 2 || !parts[0] || !parts[1]) return [];
+  return [
+    {
+      "@type": "OpeningHoursSpecification",
+      opens: parts[0],
+      closes: parts[1],
+    },
+  ];
+}
+
+const attractionJsonLd: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: pasoConfig.name,
+  description: `Estado y condiciones del ${pasoConfig.name} entre Mendoza, Argentina y Chile`,
+  url: `${baseUrl}/${pasoConfig.slug}`,
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: pasoConfig.lat,
+    longitude: pasoConfig.lng,
+    elevation: pasoConfig.altitudeM,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: pasoConfig.localityAR,
+    addressRegion: "Mendoza",
+    addressCountry: "AR",
+  },
+  openingHoursSpecification: openingHoursFromSchedule(scheduleText),
+};
 ---
 
 <MainLayout
-  title={pageTitle}
-  description={pageDescription}
+  htmlTitle={pageHtmlTitle}
+  description={pageMetaDescription}
   canonicalPath={`/${slug}`}
   headerAltitudeM={pasoConfig.altitudeM}
   ogTitle={ogTitlePass}
   ogDescription={ogDescriptionPass}
+  headJsonLd={[attractionJsonLd]}
 >
   <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
     {loadError && (

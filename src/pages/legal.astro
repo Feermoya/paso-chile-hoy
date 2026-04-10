@@ -1,0 +1,128 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout
+  htmlTitle="Aviso legal — Paso Chile Hoy"
+  title="Aviso legal"
+  description="Información legal sobre el uso y los datos de Paso Chile Hoy."
+  canonicalPath="/legal"
+  noindex={true}
+>
+  <div class="legal-page container-main">
+    <h1>Aviso legal</h1>
+    <p class="legal-updated">Última actualización: abril de 2026</p>
+
+    <section>
+      <h2>1. Naturaleza del servicio</h2>
+      <p>
+        Paso Chile Hoy (<strong>pasochilehoy.com</strong>) es un servicio de información independiente, sin
+        fines de lucro, desarrollado y mantenido por Fernando Moya como proyecto personal. No pertenece ni
+        está afiliado a ningún organismo gubernamental de Argentina ni de Chile.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Fuentes de los datos</h2>
+      <p>
+        La información publicada en este sitio proviene exclusivamente de fuentes oficiales de acceso
+        público del Estado argentino, específicamente del sitio
+        <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener">
+          argentina.gob.ar/seguridad/pasosinternacionales
+        </a>
+        (Ministerio de Seguridad de la Nación), que incluye datos publicados por Gendarmería Nacional,
+        Vialidad Nacional y el Servicio Meteorológico Nacional.
+      </p>
+      <p>
+        Los datos son recopilados de forma automática de páginas de acceso público, sin acceder a sistemas
+        privados ni utilizar APIs no autorizadas. Se presentan con fines exclusivamente informativos y sin
+        modificación del contenido original.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Exactitud de la información</h2>
+      <p>
+        El estado del paso (abierto, cerrado o condicionado) mostrado en este sitio es una
+        <strong>interpretación automática</strong> basada en el horario oficial publicado y las alertas
+        textuales disponibles en la fuente. Esta interpretación puede no reflejar la situación en tiempo
+        real.
+      </p>
+      <p>
+        <strong
+          >El usuario es responsable de verificar la información en las fuentes oficiales antes de tomar
+          cualquier decisión de viaje.</strong
+        >
+        Ante cualquier duda, comunicarse directamente con Gendarmería Nacional al teléfono publicado en la
+        página oficial del paso.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Limitación de responsabilidad</h2>
+      <p>
+        Este sitio se provee &quot;tal cual&quot;, sin garantías de ningún tipo. El desarrollador no asume
+        responsabilidad por decisiones tomadas en base a la información aquí publicada, ni por
+        interrupciones del servicio, errores en los datos o desactualizaciones de la información.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Propiedad intelectual</h2>
+      <p>
+        El diseño, el código y la lógica de interpretación de este sitio son propiedad de Fernando Moya. Los
+        datos mostrados son de dominio público, publicados por organismos del Estado argentino.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. Contacto</h2>
+      <p>
+        Consultas, sugerencias o reportes de errores:{" "}
+        <a href="mailto:fmoya97.fm@gmail.com">fmoya97.fm@gmail.com</a>
+      </p>
+    </section>
+  </div>
+</MainLayout>
+
+<style>
+  .legal-page {
+    max-width: 680px;
+    margin-inline: auto;
+    padding: 40px 0 80px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .legal-page h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 6px;
+  }
+
+  .legal-updated {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 40px;
+  }
+
+  .legal-page h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+
+  .legal-page a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .legal-page a:hover {
+    text-decoration: underline;
+  }
+</style>

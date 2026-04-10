@@ -1,4 +1,6 @@
 ---
+import SupportButton from "@/components/SupportButton.astro";
+
 const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 ---
 
@@ -42,7 +44,8 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
           <a href={official} target="_blank" rel="noopener noreferrer">{official}</a>
           — Gendarmería Nacional, Vialidad Nacional, SMN. Procesados automáticamente con fines
           informativos. Este sitio no está afiliado a ningún organismo oficial. Verificá siempre en la
-          fuente oficial antes de viajar.
+          fuente oficial antes de viajar.{" "}
+          <a href="/legal" class="footer-legal-link">Aviso legal</a>
         </p>
       </div>
 
@@ -58,6 +61,8 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
         </a>
       </div>
     </div>
+
+    <SupportButton />
 
     <p class="footer-geo">32°S · 3200 m s.n.m. · Cordillera de los Andes</p>
   </div>
@@ -131,6 +136,16 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
   }
 
   .footer-legal a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-legal-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 11px;
+  }
+
+  .footer-legal-link:hover {
     text-decoration: underline;
   }
 
