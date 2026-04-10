@@ -1,10 +1,10 @@
 {
   "slug": "agua-negra",
   "name": "Agua Negra",
-  "schedule": "07:00-17:00",
+  "schedule": "09:00-19:00",
   "scheduleRaw": "TOLERANCIA HASTA LAS 21:00 HS",
-  "rawStatus": "CERRADO",
-  "motivo": "HORARIO DE ATENCION AL USUARIO DE 09:00 HS A 17:00 HS.-",
+  "rawStatus": "ABIERTO",
+  "motivo": "0 hs 5 minutos",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Transitable",
   "weather": {
@@ -20,7 +20,7 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T15:07:11.841Z",
+  "scrapedAt": "2026-04-10T16:07:24.201Z",
   "forecast": [
     {
       "period": "Hoy por la noche",
