@@ -1,5 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
@@ -7,7 +8,11 @@ import icon from "astro-icon";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  output: "static",
+  output: "server",
+  adapter: vercel({
+    webAnalytics: { enabled: false },
+    speedInsights: { enabled: false },
+  }),
   site: "https://pasochilehoy.com",
   compressHTML: true,
   server: {

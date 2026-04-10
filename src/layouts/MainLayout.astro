@@ -1,5 +1,4 @@
 ---
-import FirebaseAnalytics from "@/components/FirebaseAnalytics.astro";
 import Footer from "@/components/Footer.astro";
 import { SITE_NAME } from "@/utils/seo";
 import "@/styles/global.css";
@@ -180,7 +179,6 @@ const altitudeLabel = `Altitud del paso: ${headerAltitudeM} metros sobre el nive
       <slot name="before-footer" />
       <Footer />
     </div>
-    <FirebaseAnalytics />
     <script>
       (function () {
         let startY = 0;

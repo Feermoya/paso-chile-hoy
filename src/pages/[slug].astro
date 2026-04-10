@@ -5,13 +5,14 @@ import StatusHero from "@/components/StatusHero.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
-import { getActivePasos, getPasoBySlug } from "@/data/pasos";
+import { getPasoBySlug } from "@/data/pasos";
 import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
 import type { PassView } from "@/types/pass-view";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
+import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
 import {
@@ -21,23 +22,13 @@ import {
   type PassStatus,
 } from "@/utils/seo";
 
-export async function getStaticPaths() {
-  return getActivePasos().map((p) => ({ params: { slug: p.slug } }));
-}
+export const prerender = false;
 
 const slug = Astro.params.slug ?? "";
 const pasoConfig = getPasoBySlug(slug);
 
 if (!pasoConfig || !pasoConfig.active) {
   return new Response(null, { status: 404, statusText: "Not Found" });
-}
-
-function heroSchedule(v: PassView): string {
-  const o = v.operationalInfo;
-  const raw = o.schedule?.trim();
-  if (raw) return raw.replace(/^horario:\s*/i, "").trim();
-  if (o.scheduleFrom && o.scheduleTo) return `${o.scheduleFrom}–${o.scheduleTo} h`;
-  return "";
 }
 
 let view: PassView | null = null;
@@ -57,7 +48,7 @@ const forecast = w?.forecast ?? [];
 const showNow = Boolean(now && weatherNowHasDisplayableContent(now));
 const showForecast = forecast.length > 0;
 
-const scheduleText = view ? heroSchedule(view) : "";
+const scheduleText = view ? heroScheduleFromView(view) : "";
 const statusResult = view ? inferPassStatus(view) : null;
 const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
 const officialUrl = view?.meta.sourceUrl;
@@ -195,6 +186,7 @@ const passSchema: Record<string, unknown> = {
           {statusResult && (
             <StatusHero
               class="anim-section anim-delay-1"
+              slug={slug}
               status={statusResult.status}
               passName={view.title}
               schedule={scheduleText}

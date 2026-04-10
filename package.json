@@ -10,17 +10,18 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "scrape": "tsx scripts/scrape.ts",
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",
     "update:all-passes": "node scripts/update-all-passes.mjs"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/vercel": "^7.8.2",
     "@iconify-json/lucide": "^1.2.101",
     "@iconify-json/wi": "^1.2.1",
     "astro": "^4.16.18",
     "astro-icon": "^1.1.5",
-    "firebase": "^11.10.0",
     "node-html-parser": "^7.1.0",
     "tailwindcss": "^3.4.17"
   },
@@ -28,10 +29,11 @@
     "@astrojs/check": "^0.9.4",
     "@types/node": "^20.19.39",
     "jiti": "^2.6.1",
+    "tsx": "^4.19.3",
     "typescript": "^5.7.2",
     "undici": "^5.28.4"
   },
   "engines": {
-    "node": ">=18.14.1"
+    "node": "20"
   }
 }

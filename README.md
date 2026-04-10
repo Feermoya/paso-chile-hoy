@@ -20,7 +20,13 @@ Mostrar en la home datos **reales** del detalle público de pasos en Argentina.g
 
 ## Requisitos
 
-- Node.js **18.14.1** o superior (recomendado LTS actual)
+- Node.js **20** (alineado con Vercel y `engines` del proyecto)
+
+## Despliegue (Vercel)
+
+- Conectá el repo en [Vercel](https://vercel.com): framework **Astro**, build `npm run build`, sin config extra (usa `@astrojs/vercel`).
+- Variables: `PUBLIC_SITE_URL`, `PUBLIC_SITE_NAME` (ver [`.env.example`](.env.example)).
+- Los datos en producción salen de **`public/snapshots/<slug>.json`** (versionados en Git).
 
 ## Scripts
 
@@ -30,12 +36,13 @@ Mostrar en la home datos **reales** del detalle público de pasos en Argentina.g
 | `npm run dev` | Servidor de desarrollo     |
 | `npm run build` | Compila para producción (`astro check` + build) |
 | `npm run preview` | Previsualiza el build localmente |
-| `npm run update:pass -- <slug>` | Descarga HTML, parsea y guarda `data/snapshots/<slug>.json` |
+| `npm run scrape` | Descarga HTML, parsea y guarda `public/snapshots/<slug>.json` (pasos activos) |
+| `npm run update:pass -- <slug>` | Atajo vía job (mismo parser) |
 | `npm run update:all-passes` | Igual para todos los pasos configurados |
 
 ## Actualización periódica
 
-El sitio **no** incluye cron interno. Para datos frescos, programá `npm run update:all-passes` cada **10–15 minutos** con el scheduler del host (cron, systemd, panel, GitHub Actions, etc.). Detalle y ejemplo en [`docs/scheduler.md`](docs/scheduler.md).
+GitHub Actions (`.github/workflows/scrape.yml`) ejecuta **`npm run scrape`** cada **15 minutos**, hace commit de `public/snapshots/` y empuja al repo; Vercel redeploya con el nuevo commit. En local podés usar `npm run scrape` o `update:all-passes`. Más detalle en [`docs/scheduler.md`](docs/scheduler.md).
 
 ## Depuración
 
@@ -57,7 +64,7 @@ Pipeline de scraping y snapshots operativo; la home prioriza datos reales y una 
 - `src/components/ui` — piezas de interfaz genéricas
 - `src/components/pass` — bloques de la home / paso (hero, clima, operativa, etc.)
 - `src/components/pass-status` — componentes heredados (no usados en la home actual)
-- `data/snapshots` — JSON persistido (`PassRaw`)
+- `public/snapshots` — JSON persistido (`PassRaw`), leído por el SSR en producción
 - `src/types` — modelos TypeScript (RAW / VIEW / legado UI)
 - `src/utils` — formateo y helpers de presentación
 - `src/lib/server` — fetch HTML, parser, snapshots, API

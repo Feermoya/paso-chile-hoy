@@ -1,8 +1,8 @@
 /**
  * Middleware de seguridad (rate limit, CSP, cabeceras).
  * Con `output: "static"` no registrar `src/middleware.ts`: Astro avisa por `Astro.request.headers`
- * y en Firebase igual no corre; los headers efectivos están en `firebase.json`.
- * Para SSR (adapter Node, etc.), crear `src/middleware.ts` con:
+ * En Vercel, cabeceras adicionales pueden definirse en `vercel.json`.
+ * Para SSR, opcional: crear `src/middleware.ts` con:
  *   import { sequence } from "astro:middleware";
  *   import { securityMiddleware } from "@/lib/server/httpSecurityMiddleware";
  *   export const onRequest = sequence(securityMiddleware);
@@ -44,7 +44,7 @@ if (typeof setInterval !== "undefined") {
   }, 5 * 60_000);
 }
 
-/** CSP: Firebase Analytics + Google Fonts + scripts inline del HTML. Duplicar en firebase.json para hosting estático. */
+/** CSP: fuentes + scripts inline; alinear con `vercel.json` si ajustás assets. */
 export const SECURITY_CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googletagmanager.com",

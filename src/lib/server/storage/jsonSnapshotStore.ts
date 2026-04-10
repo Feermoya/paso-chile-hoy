@@ -11,9 +11,9 @@ import type {
   WeatherNowRaw,
 } from "@/types/pass-raw";
 
-/** Raíz del repo: scripts y Astro deben ejecutarse con cwd en el proyecto. */
+/** Snapshots versionados en el repo (GitHub Actions + lectura en Vercel SSR). */
 function resolveSnapshotsDir(): string {
-  return path.join(process.cwd(), "data", "snapshots");
+  return path.join(process.cwd(), "public", "snapshots");
 }
 
 function pathForSlug(slug: string): string {
