@@ -13,11 +13,25 @@ export interface PassSnapshot {
   schedule: string | null;
   scheduleRaw: string;
   rawStatus: string;
+  /** Detalle operativo (p. ej. San Juan: “Cerrado para egreso”). */
+  statusDetail?: string | null;
+  /** Horario legible tal como en la fuente (p. ej. “09:00 a 17:00 hs”). */
+  scheduleText?: string | null;
+  /** Texto de días de apertura desde la fuente regional. */
+  scheduleDays?: string | null;
   motivo: string | null;
   vialidadRuta: string;
   vialidadTramo: string;
   vialidadEstado: string;
   vialidadObservaciones: string;
+  restriccionPasajeros?: string | null;
+  restriccionVelocidad?: string | null;
+  /** Origen de datos por bloque (p. ej. Agua Negra: San Juan + wttr.in). */
+  sources?: {
+    status: string;
+    clima: string;
+    statusUpdatedAt?: string | null;
+  };
   /** Complementario (RSS @PasoCRMza); no define el estado del paso. */
   latestTweet: PassLatestTweet | null;
   weather: {
@@ -28,6 +42,8 @@ export interface PassSnapshot {
     sunrise: string | null;
     sunset: string | null;
     updatedAt: string | null;
+    feelsLikeC?: number | null;
+    humidity?: number | null;
   };
   contact: string | null;
   lat: number;
@@ -62,7 +78,7 @@ export function isPassSnapshotShape(o: unknown): o is PassSnapshot {
   );
 }
 
-function extractTimeFromIso(iso: string | null): string | null {
+export function extractTimeFromIso(iso: string | null): string | null {
   if (!iso) return null;
   const m = iso.match(/T(\d{2}):(\d{2})/);
   if (!m) return null;
@@ -158,6 +174,11 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
   const contact = contactFromString(snapshot.contact);
   const w = snapshot.weather;
 
+  const sourceUrl =
+    snap.sources?.status === "aguanegra.sanjuan.gob.ar"
+      ? "https://aguanegra.sanjuan.gob.ar/estado-del-paso"
+      : buildArgentinaPassSourceUrl(paso);
+
   const forecastItems: ForecastItemView[] = (snapshot.forecast ?? []).map((f) => ({
     period: f.period,
     description: f.description,
@@ -229,7 +250,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
     providers: [],
     meta: {
       scrapedAt: snapshot.scrapedAt,
-      sourceUrl: buildArgentinaPassSourceUrl(paso),
+      sourceUrl,
       latestTweet: snapshot.latestTweet ?? null,
     },
   };
