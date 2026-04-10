@@ -1,30 +1,13 @@
 import type { HtmlFetchResult } from "@/lib/server/types/source";
+import { officialPageFetchHeaders } from "@/utils/scraper";
 
-const DEFAULT_TIMEOUT_MS = 20_000;
+const DEFAULT_TIMEOUT_MS = 10_000;
 const RETRY_DELAY_MS = 1000;
 const MAX_ATTEMPTS = 2;
 
-/** UA de Chrome estable (Windows); reduce rechazos frente a reglas tipo “solo navegador”. */
-const CHROME_USER_AGENT =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
-
-function browserLikeHeaders(): Record<string, string> {
-  return {
-    Accept:
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-    "Accept-Language": "es-AR,es;q=0.9,en;q=0.5",
-    "Cache-Control": "no-cache",
-    Pragma: "no-cache",
-    Connection: "keep-alive",
-    "Upgrade-Insecure-Requests": "1",
-    "User-Agent": CHROME_USER_AGENT,
-    Referer: "https://www.argentina.gob.ar/seguridad/pasosinternacionales",
-  };
-}
-
 export type FetchHtmlOptions = {
   timeoutMs?: number;
-  /** Para logs ante fallo (403/429/timeout, etc.). */
+  /** Solo para diagnóstico en desarrollo (sin URL ni datos sensibles en prod). */
   slug?: string;
 };
 
@@ -34,6 +17,7 @@ function logFetchFailure(
   reason: string,
   attempt: number,
 ): void {
+  if (!import.meta.env.DEV) return;
   const st = statusCode === null ? "—" : String(statusCode);
   console.warn(
     `[paso-chile-hoy][fetch] slug=${slug} attempt=${attempt}/${MAX_ATTEMPTS} status=${st} reason=${reason}`,
@@ -52,13 +36,10 @@ async function doOneFetch(
   url: string,
   timeoutMs: number,
 ): Promise<{ ok: true; result: HtmlFetchResult } | { ok: false; error: "timeout" | "http"; result: HtmlFetchResult }> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-
   try {
     const res = await fetch(url, {
-      signal: controller.signal,
-      headers: browserLikeHeaders(),
+      signal: AbortSignal.timeout(timeoutMs),
+      headers: officialPageFetchHeaders(),
       redirect: "follow",
       cache: "no-store",
     });
@@ -74,7 +55,8 @@ async function doOneFetch(
     return { ok: true, result };
   } catch (e) {
     const isAbort =
-      e instanceof Error && (e.name === "AbortError" || e.message.includes("aborted"));
+      e instanceof Error &&
+      (e.name === "AbortError" || e.name === "TimeoutError" || e.message.includes("aborted"));
     if (isAbort) {
       return {
         ok: false,
@@ -83,8 +65,6 @@ async function doOneFetch(
       };
     }
     throw e;
-  } finally {
-    clearTimeout(timer);
   }
 }
 

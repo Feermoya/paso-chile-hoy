@@ -1,0 +1,47 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { SITE_URL } from "@/utils/seo";
+---
+
+<MainLayout
+  title="Página no encontrada — Paso Chile Hoy"
+  description="La página que buscás no existe."
+  noindex={true}
+  canonical={`${SITE_URL}/404`}
+>
+  <div class="error-page container-main">
+    <h1 class="error-page-title">Página no encontrada</h1>
+    <p class="error-page-text">
+      Volvé al <a href="/" class="error-page-link">inicio</a>.
+    </p>
+  </div>
+</MainLayout>
+
+<style>
+  .error-page {
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .error-page-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .error-page-text {
+    color: var(--color-text-muted);
+    margin-top: 12px;
+  }
+
+  .error-page-link {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .error-page-link:hover {
+    text-decoration: underline;
+  }
+</style>

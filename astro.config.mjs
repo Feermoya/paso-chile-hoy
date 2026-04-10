@@ -8,13 +8,28 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   output: "static",
-  /* Cambiá al dominio real de Firebase Hosting para canonical, OG y URLs absolutas. */
   site: "https://pasochilehoy.com",
+  compressHTML: true,
+  server: {
+    host: false,
+  },
+  build: {
+    assets: "_app",
+  },
   integrations: [tailwind({ applyBaseStyles: false }), icon()],
   vite: {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),
+      },
+    },
+    build: {
+      sourcemap: false,
+    },
+    server: {
+      headers: {
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
       },
     },
   },

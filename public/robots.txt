@@ -1,9 +1,35 @@
 User-agent: *
 Allow: /
-
-# No indexar la página legal ni rutas de API
-Disallow: /legal
 Disallow: /api/
-Disallow: /_astro/
+Disallow: /snapshots/
+Disallow: /data/
+Disallow: /.env
+Disallow: /src/
+Disallow: /legal
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /snapshots/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /snapshots/
 
 Sitemap: https://pasochilehoy.com/sitemap.xml
