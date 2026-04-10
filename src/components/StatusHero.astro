@@ -1,0 +1,78 @@
+---
+import { Icon } from "astro-icon/components";
+import type { PassDisplayStatus } from "@/utils/inferPassStatus";
+
+export interface Props {
+  status: PassDisplayStatus;
+  passName: string;
+  schedule: string;
+  lastUpdatedRelative: string;
+  class?: string;
+}
+
+const { status, passName, schedule, lastUpdatedRelative, class: className } = Astro.props;
+
+const labels: Record<PassDisplayStatus, string> = {
+  abierto: "ABIERTO",
+  condicionado: "CONDICIONADO",
+  cerrado: "CERRADO",
+  sin_datos: "Estado no disponible",
+};
+
+const dotColors: Record<PassDisplayStatus, string> = {
+  abierto: "var(--color-open)",
+  condicionado: "var(--color-conditional)",
+  cerrado: "var(--color-closed)",
+  sin_datos: "var(--color-unknown)",
+};
+
+const titleColor =
+  status === "sin_datos" ? "var(--color-text-secondary)" : dotColors[status];
+
+const label = labels[status];
+const dotPulse = status === "abierto" ? "status-dot--open" : "";
+---
+
+<section
+  class:list={[
+    "status-hero w-full min-h-[160px] px-0 py-0 md:min-h-[180px]",
+    className,
+  ]}
+  data-pass-status={status}
+  aria-labelledby="status-hero-label"
+>
+  <div class="status-hero-inner mx-auto w-full max-w-[900px]">
+    <p class="status-eyebrow text-eyebrow text-[var(--color-text-muted)]">{passName}</p>
+
+    <div class="status-main">
+      <span
+        class:list={["status-dot", dotPulse]}
+        style={dotPulse ? undefined : { backgroundColor: dotColors[status] }}
+        aria-hidden="true"
+      />
+      <span
+        id="status-hero-label"
+        class="text-status"
+        style={{ color: titleColor }}
+      >
+        {label}
+      </span>
+    </div>
+
+    <div class="status-secondary">
+      {schedule && (
+        <p class="status-horario">
+          <span class="text-[var(--color-text-muted)]">Horario · </span>
+          {schedule}
+        </p>
+      )}
+
+      {lastUpdatedRelative && (
+        <p class="status-timestamp text-meta">
+          <Icon name="lucide:clock-3" class="h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
+          <span>Actualizado {lastUpdatedRelative}</span>
+        </p>
+      )}
+    </div>
+  </div>
+</section>

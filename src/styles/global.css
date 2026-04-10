@@ -2,55 +2,686 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --surface: 40 20% 99%;
-    --surface-muted: 220 14% 96%;
-    --ink: 222 25% 14%;
-    --ink-muted: 220 9% 46%;
-    --line: 220 13% 91%;
-    --shadow-card: 0 1px 2px hsl(222 25% 14% / 0.04),
-      0 8px 24px hsl(222 25% 14% / 0.06);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-    /* Estados: tonos apagados, legibles, no semáforo chillón */
-    --status-open: 152 32% 34%;
-    --status-closed: 350 18% 42%;
-    --status-conditional: 38 42% 42%;
+:root {
+  /* === FONDOS === */
+  --color-bg-base: #0a0c10;
+  --color-bg-secondary: #10131a;
+  --color-surface: #161a23;
+  --color-surface-raised: #1c2130;
+  --color-surface-overlay: #222840;
+
+  /* === BORDES === */
+  --color-border-subtle: #1f2535;
+  --color-border-default: #2a3347;
+  --color-border-strong: #3a4560;
+
+  /* === TEXTO === */
+  --color-text-primary: #ecf0f9;
+  --color-text-secondary: #a8b4cc;
+  --color-text-muted: #5c6a82;
+  --color-text-disabled: #3a4255;
+
+  /* === ACENTO PRINCIPAL — Azul Andino === */
+  --color-accent: #5baeff;
+  --color-accent-soft: #3d7acc;
+  --color-accent-muted: #1a3a5c;
+  --color-accent-subtle: #0f2035;
+
+  /* === COBRE SOL DE MONTAÑA === */
+  --color-copper: #c87941;
+  --color-copper-soft: #e8934a;
+  --color-copper-subtle: #2a1a0a;
+
+  /* === ESTADOS DEL PASO === */
+  --color-open: #3dd68c;
+  --color-open-soft: #22a066;
+  --color-open-muted: #0d3d26;
+  --color-open-subtle: #071f13;
+  --color-open-border: #1a5c38;
+
+  --color-conditional: #f0a830;
+  --color-conditional-soft: #c07818;
+  --color-conditional-muted: #3d2800;
+  --color-conditional-subtle: #1f1400;
+  --color-conditional-border: #5c3d00;
+
+  --color-closed: #e05555;
+  --color-closed-soft: #b03030;
+  --color-closed-muted: #3d0f0f;
+  --color-closed-subtle: #1f0808;
+  --color-closed-border: #5c1a1a;
+
+  --color-unknown: #5c6a82;
+  --color-unknown-subtle: #161a23;
+  --color-unknown-border: #2a3347;
+
+  /* === TIPOGRAFÍA === */
+  --font-display: "Sora", "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+
+  /* === SPACING === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* === RADIOS === */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-pill: 9999px;
+
+  /* === SOMBRAS === */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-status: 0 0 0 1px var(--color-border-subtle), 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow-open: 0 0 24px rgba(61, 214, 140, 0.12);
+  --shadow-glow-closed: 0 0 24px rgba(224, 85, 85, 0.12);
+  --shadow-glow-conditional: 0 0 24px rgba(240, 168, 48, 0.12);
+
+  /* === TRANSICIONES === */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Puente legado Tailwind (hsl sin función, solo referencia si algo quedara) */
+  --surface: 218 24% 6%;
+  --ink-muted: 217 17% 70%;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(61, 214, 140, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px rgba(61, 214, 140, 0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tempReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes dividerGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 32px;
+    opacity: 0.5;
+  }
+}
+
+.status-dot--open {
+  animation: pulse-dot 2.5s ease-in-out infinite;
+  background: var(--color-open) !important;
+}
+
+.anim-section {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.anim-delay-1 {
+  animation-delay: 0.05s;
+}
+
+.anim-delay-2 {
+  animation-delay: 0.15s;
+}
+
+.anim-delay-3 {
+  animation-delay: 0.25s;
+}
+
+.anim-delay-4 {
+  animation-delay: 0.35s;
+}
+
+.anim-delay-5 {
+  animation-delay: 0.45s;
+}
+
+.temperature-display {
+  animation: tempReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.weather-icon-main,
+.forecast-weather-icon {
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+/* === Escala tipográfica mobile (base ~390px) === */
+.text-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+}
+
+.text-status {
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+.text-temperature {
+  font-size: clamp(3.2rem, 14vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+}
+
+.text-weather-desc {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.text-data-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.text-data-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.text-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status hero — ritmo interno */
+.status-hero-inner {
+  padding: 20px 20px 24px;
+}
+
+.status-eyebrow {
+  margin-bottom: 14px;
+}
+
+.status-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-horario {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.status-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* Clima — ícono protagonista + grilla de datos */
+.weather-icon-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.weather-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.weather-icon-main {
+  width: 32px;
+  height: 32px;
+}
+
+.forecast-weather-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.weather-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.weather-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  background: var(--color-surface);
+  text-align: center;
+  min-width: 0;
+}
+
+.stat-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.stat-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.forecast-card {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-2px);
+  background: var(--color-surface-overlay);
+  border-color: var(--color-border-default);
+}
+
+.forecast-card:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
-    @apply scroll-smooth antialiased;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    @apply antialiased;
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-surface text-ink font-sans text-[15px] leading-relaxed md:text-base;
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-bg-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
   }
 
   h1,
   h2,
   h3 {
-    @apply font-semibold tracking-tight text-ink;
-  }
-
-  h1 {
-    @apply text-3xl md:text-4xl;
-  }
-
-  h2 {
-    @apply text-xl md:text-2xl;
-  }
-
-  h3 {
-    @apply text-lg md:text-xl;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
   }
 
   ::selection {
-    @apply bg-ink/10 text-ink;
+    background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer components {
+  .status-hero {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-status);
+    transition: border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .status-hero[data-pass-status="abierto"] {
+    background: var(--color-open-subtle);
+    border-color: var(--color-open-border);
+    box-shadow: var(--shadow-status), var(--shadow-glow-open);
+  }
+
+  .status-hero[data-pass-status="condicionado"] {
+    background: var(--color-conditional-subtle);
+    border-color: var(--color-conditional-border);
+    box-shadow: var(--shadow-status), var(--shadow-glow-conditional);
+  }
+
+  .status-hero[data-pass-status="cerrado"] {
+    background: var(--color-closed-subtle);
+    border-color: var(--color-closed-border);
+    box-shadow: var(--shadow-status), var(--shadow-glow-closed);
+  }
+
+  .status-hero[data-pass-status="sin_datos"] {
+    background: var(--color-unknown-subtle);
+    border-color: var(--color-unknown-border);
+  }
+
+  .section-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--color-copper);
+    opacity: 0.5;
+    border-radius: 1px;
+    flex-shrink: 0;
+    animation: dividerGrow 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .container-main {
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  @media (min-width: 375px) {
+    .container-main {
+      padding-inline: 20px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .container-main {
+      padding-inline: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-main {
+      max-width: 960px;
+      padding-inline: 32px;
+    }
+  }
+
+  details.pass-details-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.pass-details-mobile summary {
+    list-style: none;
+  }
+
+  /* ===== HEADER ===== */
+  .header-app {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 12, 16, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 12px max(16px, env(safe-area-inset-left, 0px)) 12px
+      max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .header-logomark {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
+  }
+
+  .header-brand {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .header-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+  }
+
+  .header-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .header-location-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-copper);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .header-altitude {
+    flex-shrink: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(200, 121, 65, 0.08);
+    border: 1px solid rgba(200, 121, 65, 0.18);
+  }
+
+  .header-altitude-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-copper);
+    letter-spacing: 0.02em;
+  }
+
+  .header-altitude-unit {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--color-copper);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+  }
+
+  .altitude-warning {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    margin-top: 16px;
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid color-mix(in srgb, var(--aw-color) 25%, transparent);
+    border-left: 3px solid var(--aw-color);
+  }
+
+  .altitude-warning-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .aw-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--aw-color);
+    flex-shrink: 0;
+  }
+
+  .aw-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--aw-color);
+    letter-spacing: 0.04em;
+  }
+
+  .aw-message {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }

@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components";
+import type { PassView } from "@/types/pass-view";
+import { formatDateTime } from "@/utils/format";
+
+export interface Props {
+  view: PassView;
+}
+
+const { view } = Astro.props;
+const op = view.operationalInfo;
+---
+
+<div class="space-y-8 text-sm text-[var(--color-text-secondary)] md:text-[15px]">
+  {view.meta.sourceUrl?.trim() && (
+    <p>
+      <a
+        href={view.meta.sourceUrl}
+        class="inline-flex min-h-12 items-center gap-2 font-medium text-[var(--color-accent)] hover:underline md:min-h-0"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Página oficial del paso
+        <Icon name="lucide:external-link" class="h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
+      </a>
+    </p>
+  )}
+
+  {(op.schedule || op.scheduleFrom || op.scheduleTo) && (
+    <div>
+      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Horario</h3>
+      {op.schedule && <p class="mt-2 text-[17px] font-medium text-[var(--color-text-primary)] md:text-base">{op.schedule}</p>}
+      {(op.scheduleFrom || op.scheduleTo) && (
+        <p class="mt-1">
+          {op.scheduleFrom && op.scheduleTo ?
+            `${op.scheduleFrom} – ${op.scheduleTo}`
+          : op.scheduleFrom || op.scheduleTo}
+        </p>
+      )}
+    </div>
+  )}
+
+  {(op.contact?.phone || op.contact?.telHref) && (
+    <div>
+      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Contacto</h3>
+      <p class="mt-2 flex min-h-12 items-center gap-2 md:min-h-0">
+        <Icon name="lucide:phone" class="h-5 w-5 shrink-0 text-[var(--color-text-muted)]" aria-hidden="true" />
+        {op.contact.telHref && op.contact.phone ?
+          <a href={op.contact.telHref} class="font-medium text-[var(--color-accent)] hover:underline">
+            {op.contact.phone}
+          </a>
+        : <span class="text-[var(--color-text-primary)]">{op.contact.phone}</span>}
+      </p>
+    </div>
+  )}
+
+  {(op.gps?.openInMapsHref || (op.gps?.lat != null && op.gps?.lng != null)) && (
+    <div>
+      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Ubicación</h3>
+      {op.gps.lat != null && op.gps.lng != null && (
+        <p class="mt-2 font-mono text-xs tabular-nums text-[var(--color-text-muted)]">
+          {op.gps.lat.toFixed(4)}, {op.gps.lng.toFixed(4)}
+        </p>
+      )}
+      {op.gps.openInMapsHref && (
+        <p class="mt-2">
+          <a
+            href={op.gps.openInMapsHref}
+            class="inline-flex min-h-12 items-center text-[var(--color-accent)] hover:underline md:min-h-0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir en mapas (geo:)
+          </a>
+        </p>
+      )}
+    </div>
+  )}
+
+  {view.usefulLinks.length > 0 && (
+    <div>
+      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Enlaces útiles</h3>
+      <ul class="mt-3 space-y-1" role="list">
+        {view.usefulLinks.map((l) => (
+          <li>
+            {l.url ?
+              <a
+                href={l.url}
+                class="inline-flex min-h-12 w-full max-w-full items-center justify-between gap-2 py-1 text-[var(--color-accent)] hover:underline md:min-h-0 md:inline-flex md:w-auto md:py-0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="min-w-0 flex-1">{l.text}</span>
+                <Icon name="lucide:external-link" class="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+              </a>
+            : <span>{l.text}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {view.providers.length > 0 && (
+    <div>
+      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
+        Proveedores en la página oficial
+      </h3>
+      <ul class="mt-3 space-y-2" role="list">
+        {view.providers.map((p) => (
+          <li class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+            <span class="text-[var(--color-text-primary)]">{p.name}</span>
+            <span class="font-mono text-xs text-[var(--color-text-muted)] sm:text-sm">
+              {p.lastUpdatedRaw || (p.lastUpdated ? formatDateTime(p.lastUpdated) : "—")}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {view.meta.scrapedAt && (
+    <p class="text-xs text-[var(--color-text-muted)]">
+      Datos guardados en este sitio:{" "}
+      <time datetime={view.meta.scrapedAt}>{formatDateTime(view.meta.scrapedAt)}</time>
+    </p>
+  )}
+</div>

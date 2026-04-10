@@ -1,0 +1,35 @@
+---
+const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
+---
+
+<footer
+  class="mt-auto border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-secondary)] px-4 py-8 text-center min-[375px]:px-5 md:mt-12 md:px-8 md:py-12"
+>
+  <div class="mx-auto max-w-3xl text-[0.75rem] leading-relaxed text-[var(--color-text-muted)]">
+    <p>
+      <strong class="font-semibold text-[var(--color-text-secondary)]">Paso Chile Hoy</strong> es un servicio
+      independiente de información pública. Los datos mostrados se obtienen de la página oficial{" "}
+      <a
+        href={official}
+        class="text-[var(--color-accent)] underline underline-offset-2 transition-opacity hover:opacity-90"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        argentina.gob.ar/seguridad/pasosinternacionales
+      </a>
+      , sitio de acceso público del Ministerio de Seguridad de la Nación Argentina, y se presentan con fines
+      informativos sin modificación del contenido original.
+    </p>
+    <p class="mt-4">
+      Esta web no es un sitio oficial del gobierno argentino ni chileno. El estado resumido (abierto / cerrado /
+      condicionado) se <strong class="text-[var(--color-text-secondary)]">infiere</strong> a partir de textos
+      publicados y puede no coincidir con la realidad en tiempo real. Para decisiones de viaje, verificá siempre
+      la fuente oficial.
+    </p>
+    <p
+      class="mt-4 text-[10px] uppercase tracking-widest text-[var(--color-text-disabled)]"
+    >
+      32°S · 3200 m s.n.m. · Cordillera de los Andes
+    </p>
+  </div>
+</footer>

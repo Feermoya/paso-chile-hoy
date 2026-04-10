@@ -11,8 +11,8 @@ const { snapshot } = Astro.props;
 const accent = statusAccentClass(snapshot.status);
 ---
 
-<section class="relative overflow-hidden rounded-3xl border border-line/90 bg-white/80 p-6 shadow-card backdrop-blur-md md:p-10 lg:p-12" aria-labelledby="pass-status-heading">
-  <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-surface-muted/50 via-transparent to-transparent" aria-hidden="true" />
+<section class="relative overflow-hidden rounded-3xl border border-line/90 bg-surface-raised p-6 shadow-card md:p-10 lg:p-12" aria-labelledby="pass-status-heading">
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-surface-muted/35 via-transparent to-transparent" aria-hidden="true" />
   <div class="relative">
     <p class="text-sm text-ink-muted md:text-[15px]">
       {snapshot.pass.regionArgentina} · {snapshot.pass.regionChile}

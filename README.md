@@ -10,14 +10,13 @@ Web informativa para consultar el estado del Paso Cristo Redentor / Los Libertad
 
 ## Objetivo actual
 
-Construir una base frontend moderna, minimalista, responsive y escalable.
+Mostrar en la home datos **reales** del detalle público de pasos en Argentina.gob.ar (HTML → snapshot → API / SSR), sin inventar estado operativo (abierto/cerrado).
 
 ## Visión futura
 
-- Integración con fuentes oficiales
-- Actualización automática del estado
-- Soporte para múltiples pasos fronterizos
-- Alertas y requisitos para cruzar
+- Más pasos en catálogo y mejor multi-paso en UI
+- Otras fuentes cuando haya contrato claro
+- Alertas y requisitos enriquecidos (sin suposiciones)
 
 ## Requisitos
 
@@ -31,20 +30,37 @@ Construir una base frontend moderna, minimalista, responsive y escalable.
 | `npm run dev` | Servidor de desarrollo     |
 | `npm run build` | Compila para producción (`astro check` + build) |
 | `npm run preview` | Previsualiza el build localmente |
+| `npm run update:pass -- <slug>` | Descarga HTML, parsea y guarda `data/snapshots/<slug>.json` |
+| `npm run update:all-passes` | Igual para todos los pasos configurados |
+
+## Actualización periódica
+
+El sitio **no** incluye cron interno. Para datos frescos, programá `npm run update:all-passes` cada **10–15 minutos** con el scheduler del host (cron, systemd, panel, GitHub Actions, etc.). Detalle y ejemplo en [`docs/scheduler.md`](docs/scheduler.md).
+
+## Depuración
+
+Variable opcional `DEBUG_PASSES=1` (o `true`): vuelca `PassRaw` / `PassView` en consola al atender la API o la home. Ver [`.env.example`](.env.example). No dejar activa en producción.
+
+## Documentación
+
+- [`docs/home.md`](docs/home.md) — bloques de la home y qué campos consume
+- [`docs/data-model.md`](docs/data-model.md) — RAW vs VIEW y mapper
+- [`docs/design/`](docs/design/) — tokens, tipografía, componentes y principios visuales
 
 ## Estado del proyecto
 
-**Fase inicial de construcción.** Los datos mostrados son **mock** con fines de diseño y arquitectura; no reflejan el estado real del paso. Antes de viajar, consultá siempre fuentes oficiales.
+Pipeline de scraping y snapshots operativo; la home prioriza datos reales y una presentación neutra frente al estado del paso.
 
 ## Estructura (resumen)
 
 - `src/layouts` — layouts y shell de página
 - `src/components/ui` — piezas de interfaz genéricas
-- `src/components/pass-status` — UI del dominio “estado del paso”
-- `src/data` — datos mock (reemplazables por API más adelante)
-- `src/types` — modelos TypeScript
+- `src/components/pass` — bloques de la home / paso (hero, clima, operativa, etc.)
+- `src/components/pass-status` — componentes heredados (no usados en la home actual)
+- `data/snapshots` — JSON persistido (`PassRaw`)
+- `src/types` — modelos TypeScript (RAW / VIEW / legado UI)
 - `src/utils` — formateo y helpers de presentación
-- `src/content` — reservado para contenido estático (Markdown, etc.)
+- `src/lib/server` — fetch HTML, parser, snapshots, API
 
 ## Licencia
 

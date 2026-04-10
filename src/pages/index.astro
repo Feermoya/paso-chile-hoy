@@ -1,86 +1,114 @@
 ---
-import InfoCard from "@/components/ui/InfoCard.astro";
-import SectionTitle from "@/components/ui/SectionTitle.astro";
-import AlertList from "@/components/pass-status/AlertList.astro";
-import RequirementsList from "@/components/pass-status/RequirementsList.astro";
-import StatusHero from "@/components/pass-status/StatusHero.astro";
-import { cristoRedentorSnapshot } from "@/data/mock-passes";
-import MainLayout from "@/layouts/MainLayout.astro";
-import { confidenceLabel } from "@/utils/pass-ui";
+export const prerender = false;
 
-const snapshot = cristoRedentorSnapshot;
-const { weather } = snapshot;
+import AlertsBlock from "@/components/AlertsBlock.astro";
+import PassDetails from "@/components/PassDetails.astro";
+import StatusHero from "@/components/StatusHero.astro";
+import WeatherForecast from "@/components/WeatherForecast.astro";
+import WeatherNow from "@/components/WeatherNow.astro";
+import { defaultFeaturedPassSlug } from "@/lib/server/config/passes";
+import { mapPassRawToView } from "@/lib/mappers/passViewMapper";
+import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
+import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
+import MainLayout from "@/layouts/MainLayout.astro";
+import type { PassView } from "@/types/pass-view";
+import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
+import { inferPassStatus } from "@/utils/inferPassStatus";
+import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
+
+function heroSchedule(v: PassView): string {
+  const o = v.operationalInfo;
+  const raw = o.schedule?.trim();
+  if (raw) return raw.replace(/^horario:\s*/i, "").trim();
+  if (o.scheduleFrom && o.scheduleTo) return `${o.scheduleFrom}–${o.scheduleTo} h`;
+  return "";
+}
+
+let view: PassView | null = null;
+let loadError: string | null = null;
+
+try {
+  const raw = await getSnapshotForApi(defaultFeaturedPassSlug);
+  view = mapPassRawToView(raw);
+  logPassPipelineDebug("index", { raw, view });
+} catch (e) {
+  loadError = e instanceof Error ? e.message : "Error al cargar el paso";
+}
+
+const w = view?.weather;
+const now = w?.now;
+const forecast = w?.forecast ?? [];
+const showNow = Boolean(now && weatherNowHasDisplayableContent(now));
+const showForecast = forecast.length > 0;
+
+const displayStatus = view ? inferPassStatus(view) : null;
+const scheduleText = view ? heroSchedule(view) : "";
+const lastRel = view?.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
 ---
 
 <MainLayout
   title="Inicio"
-  description="Estado referencial del Paso Cristo Redentor / Los Libertadores, clima resumido, alertas y requisitos (datos mock)."
+  description="Estado inferido, clima y datos del Paso Cristo Redentor según Argentina.gob.ar. Verificá siempre la fuente oficial."
 >
-  <div class="flex flex-col gap-12 md:gap-16 lg:gap-20">
-    <StatusHero snapshot={snapshot} />
-
-    <section aria-labelledby="resumen-cards">
-      <h2 id="resumen-cards" class="sr-only">Resumen rápido</h2>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-        <InfoCard title="Clima en zona de paso" eyebrow="Ambiente">
-          <p>
-            <span class="font-medium text-ink">{weather.conditions}</span>
+  <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
+    {loadError && (
+      <div class="container-main">
+        <div
+          class="rounded-[var(--radius-xl)] border border-[var(--color-border-default)] bg-surface-raised p-6 shadow-card sm:p-8"
+          role="alert"
+        >
+          <p class="font-display text-lg font-semibold text-ink">No se pudieron cargar los datos del paso</p>
+          <p class="mt-2 text-sm text-ink-muted">{loadError}</p>
+          <p class="mt-4 text-sm leading-relaxed text-ink-muted">
+            Generá datos con{" "}
+            <code class="rounded-[var(--radius-sm)] bg-surface px-2 py-0.5 font-mono text-xs text-ink">
+              npm run update:pass -- {defaultFeaturedPassSlug}
+            </code>
+            .
           </p>
-          <dl class="mt-3 space-y-1 text-sm">
-            <div class="flex justify-between gap-4">
-              <dt>Temperatura</dt>
-              <dd class="font-medium text-ink">{weather.temperatureC}°C</dd>
-            </div>
-            {weather.feelsLikeC != null && (
-              <div class="flex justify-between gap-4">
-                <dt>Sensación</dt>
-                <dd class="font-medium text-ink">{weather.feelsLikeC}°C</dd>
-              </div>
-            )}
-            {weather.windKmh != null && (
-              <div class="flex justify-between gap-4">
-                <dt>Viento</dt>
-                <dd class="font-medium text-ink">{weather.windKmh} km/h</dd>
-              </div>
-            )}
-            {weather.visibilityKm != null && (
-              <div class="flex justify-between gap-4">
-                <dt>Visibilidad</dt>
-                <dd class="font-medium text-ink">{weather.visibilityKm} km</dd>
-              </div>
-            )}
-          </dl>
-        </InfoCard>
-
-        <InfoCard title="Horario" eyebrow="Referencia">
-          <p>{snapshot.scheduleSummary}</p>
-        </InfoCard>
-
-        <InfoCard title="Confianza del dato" eyebrow="Calidad" className="sm:col-span-2 lg:col-span-1">
-          <p>
-            Nivel <span class="font-medium text-ink">{confidenceLabel(snapshot.confidence)}</span>: información
-            simulada para desarrollo. La versión final priorizará fuentes oficiales y timestamp verificable.
-          </p>
-        </InfoCard>
+        </div>
       </div>
-    </section>
+    )}
 
-    <section aria-labelledby="alertas-titulo">
-      <SectionTitle
-        id="alertas-titulo"
-        title="Alertas recientes"
-        subtitle="Avisos orientativos basados en el mock actual. No sustituyen comunicados de autoridades."
-      />
-      <AlertList alerts={snapshot.alerts} />
-    </section>
+    {view && displayStatus && (
+      <div class="container-main">
+        <StatusHero
+          class="anim-section anim-delay-1"
+          status={displayStatus}
+          passName={view.title}
+          schedule={scheduleText}
+          lastUpdatedRelative={lastRel}
+        />
+      </div>
+    )}
 
-    <section aria-labelledby="requisitos-titulo">
-      <SectionTitle
-        id="requisitos-titulo"
-        title="Requisitos para cruzar"
-        subtitle="Lista general de referencia. Confirmá documentación y normativa vigente antes del viaje."
-      />
-      <RequirementsList requirements={snapshot.requirements} />
-    </section>
+    <div class="container-main flex w-full min-w-0 flex-col gap-4 md:gap-6">
+      {showNow && now && (
+        <>
+          <div class="section-divider" aria-hidden="true" />
+          <WeatherNow
+            class="anim-section anim-delay-2"
+            weather={now}
+            updatedAt={now.providerNote}
+          />
+        </>
+      )}
+
+      {showForecast && (
+        <>
+          <div class="section-divider" aria-hidden="true" />
+          <section class="anim-section anim-delay-3 space-y-4" aria-labelledby="forecast-heading">
+            <h2 id="forecast-heading" class="text-section-title">
+              Próximas horas
+            </h2>
+            <WeatherForecast forecast={forecast} />
+          </section>
+        </>
+      )}
+
+      {view && <AlertsBlock class="anim-section anim-delay-4" alerts={view.alerts} />}
+
+      {view && <PassDetails class="anim-section anim-delay-5" view={view} />}
+    </div>
   </div>
 </MainLayout>

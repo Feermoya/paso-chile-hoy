@@ -4,36 +4,50 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
+        sans: ["DM Sans", "system-ui", "Segoe UI", "sans-serif"],
+        display: ["Sora", "DM Sans", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       colors: {
+        page: {
+          DEFAULT: "var(--color-bg-base)",
+          secondary: "var(--color-bg-secondary)",
+        },
         surface: {
-          DEFAULT: "hsl(var(--surface) / <alpha-value>)",
-          muted: "hsl(var(--surface-muted) / <alpha-value>)",
+          DEFAULT: "var(--color-surface)",
+          raised: "var(--color-surface-raised)",
+          overlay: "var(--color-surface-overlay)",
         },
         ink: {
-          DEFAULT: "hsl(var(--ink) / <alpha-value>)",
-          muted: "hsl(var(--ink-muted) / <alpha-value>)",
+          DEFAULT: "var(--color-text-primary)",
+          muted: "var(--color-text-secondary)",
+          faint: "var(--color-text-muted)",
         },
-        line: "hsl(var(--line) / <alpha-value>)",
+        line: "var(--color-border-default)",
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          soft: "var(--color-accent-soft)",
+        },
+        copper: {
+          DEFAULT: "var(--color-copper)",
+          soft: "var(--color-copper-soft)",
+          subtle: "var(--color-copper-subtle)",
+        },
+        pass: {
+          open: "var(--color-open)",
+          conditional: "var(--color-conditional)",
+          closed: "var(--color-closed)",
+          unknown: "var(--color-unknown)",
+        },
         status: {
-          open: "hsl(var(--status-open) / <alpha-value>)",
-          closed: "hsl(var(--status-closed) / <alpha-value>)",
-          conditional: "hsl(var(--status-conditional) / <alpha-value>)",
+          open: "var(--color-open)",
+          closed: "var(--color-closed)",
+          conditional: "var(--color-conditional)",
         },
       },
       boxShadow: {
         card: "var(--shadow-card)",
+        status: "var(--shadow-status)",
       },
     },
   },

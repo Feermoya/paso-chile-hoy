@@ -19,13 +19,13 @@ const borderForSeverity: Record<AlertItem["severity"], string> = {
   {alerts.map((a) => (
     <li
       class:list={[
-        "rounded-2xl border border-line/80 border-l-4 bg-white/70 py-4 pl-5 pr-4 shadow-card backdrop-blur-sm md:py-5 md:pl-6",
+        "rounded-2xl border border-line/80 border-l-4 bg-surface-raised py-4 pl-5 pr-4 shadow-card md:py-5 md:pl-6",
         borderForSeverity[a.severity],
       ]}
     >
       <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
         <h3 class="text-base font-semibold text-ink">{a.title}</h3>
-        <time class="shrink-0 text-xs text-ink-muted" datetime={a.issuedAt}>
+        <time class="shrink-0 text-xs text-ink-faint" datetime={a.issuedAt}>
           {formatDateTime(a.issuedAt)}
         </time>
       </div>
