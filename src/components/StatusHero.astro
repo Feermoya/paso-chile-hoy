@@ -11,6 +11,8 @@ export interface Props {
   officialUrl?: string;
   opensInMinutes?: number;
   closesInMinutes?: number;
+  /** Texto del badge (p. ej. ABIERTO) cuando el color es otro (p. ej. alerta vial → ámbar). */
+  displayLabel?: string;
   class?: string;
 }
 
@@ -23,6 +25,7 @@ const {
   officialUrl,
   opensInMinutes,
   closesInMinutes,
+  displayLabel,
   class: className,
 } = Astro.props;
 
@@ -43,7 +46,7 @@ const dotColors: Record<PassDisplayStatus, string> = {
 const titleColor =
   status === "sin_datos" ? "var(--color-text-secondary)" : dotColors[status];
 
-const label = labels[status];
+const label = displayLabel?.trim() || labels[status];
 
 const dotModifier =
   status === "abierto"
@@ -95,7 +98,7 @@ const closeCountdownInitial =
         aria-hidden="true"></span>
       <span
         id="status-hero-label"
-        class="text-status"
+        class:list={["text-status", status === "condicionado" && "status-badge--condicionado"]}
         data-hero-label
         style={{ color: titleColor }}
       >

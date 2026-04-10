@@ -9,18 +9,24 @@ import {
 interface Props {
   weather: DrivingWeatherInput;
   forecast?: DrivingForecastItemInput[];
+  class?: string;
 }
 
-const { weather, forecast = [] } = Astro.props;
+const { weather, forecast = [], class: className } = Astro.props;
 const assessment = assessDrivingConditions(weather, forecast);
 
 if (assessment.level === "normal") {
   return null;
 }
+
+const alertAnim =
+  assessment.level === "danger"
+    ? "driving-condition-alert"
+    : "driving-condition-alert driving-condition-alert--cold";
 ---
 
 <div
-  class="driving-conditions"
+  class:list={["driving-conditions", alertAnim, className]}
   style={`
       --dc-color: ${assessment.color};
       border-left-color: ${assessment.color};
@@ -30,7 +36,7 @@ if (assessment.level === "normal") {
   aria-label="Condiciones de manejo"
 >
   <div class="dc-header">
-    <Icon name={assessment.icon} class="dc-icon" style={`color: ${assessment.color}`} />
+    <Icon name={assessment.icon} class="dc-icon alert-icon" style={`color: ${assessment.color}`} />
     <span class="dc-title" style={`color: ${assessment.color}`}>
       {assessment.title}
     </span>
@@ -58,7 +64,7 @@ if (assessment.level === "normal") {
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-left: 3px solid var(--dc-color, var(--color-conditional));
     padding: 14px 16px;
-    margin-top: 16px;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
     gap: 8px;

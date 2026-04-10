@@ -6,6 +6,10 @@ export interface PassStatusResult {
   status: PassDisplayStatus;
   reason: string;
   confidence: "high" | "medium" | "low";
+  /** Origen del estado inferido (solo Gendarmería u horario; la vialidad no define el estado del paso). */
+  source?: "gendarmeria" | "horario";
+  /** Si el badge es ámbar (condicionado) pero el texto debe seguir siendo el de Gendarmería (p. ej. ABIERTO). */
+  displayLabel?: string;
   opensInMinutes?: number;
   closesInMinutes?: number;
 }
@@ -124,6 +128,7 @@ function evaluateSameDayWindow(
         status: "condicionado",
         reason: `Cierra en ${minutesUntilClose} minutos (a las ${pad2(closeH)}:${pad2(closeM)})`,
         confidence: "high",
+        source: "horario",
         closesInMinutes: minutesUntilClose,
       };
     }
@@ -131,6 +136,7 @@ function evaluateSameDayWindow(
       status: "abierto",
       reason: `Dentro del horario operativo ${scheduleLabel} (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
       confidence: "high",
+      source: "horario",
       closesInMinutes: minutesUntilClose > 0 ? minutesUntilClose : undefined,
     };
   }
@@ -148,6 +154,7 @@ function evaluateSameDayWindow(
     status: "cerrado",
     reason: `Fuera del horario operativo ${scheduleLabel}. Abre en ${hoursUntil}h ${minsUntil}min (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
     confidence: "high",
+    source: "horario",
     opensInMinutes: opensIn,
   };
 }
@@ -177,6 +184,7 @@ function evaluateOvernightWindow(
         status: "condicionado",
         reason: `Cierra en ${minutesUntilClose} minutos (a las ${pad2(closeH)}:${pad2(closeM)})`,
         confidence: "high",
+        source: "horario",
         closesInMinutes: minutesUntilClose,
       };
     }
@@ -184,6 +192,7 @@ function evaluateOvernightWindow(
       status: "abierto",
       reason: `Dentro del horario operativo ${scheduleLabel} (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
       confidence: "high",
+      source: "horario",
       closesInMinutes: minutesUntilClose > 0 ? minutesUntilClose : undefined,
     };
   }
@@ -195,6 +204,7 @@ function evaluateOvernightWindow(
     status: "cerrado",
     reason: `Fuera del horario operativo ${scheduleLabel}. Abre en ${hoursUntil}h ${minsUntil}min (hora AR: ${pad2(currentH)}:${pad2(currentM)})`,
     confidence: "high",
+    source: "horario",
     opensInMinutes: opensIn,
   };
 }
@@ -218,6 +228,7 @@ function evaluateSchedule(schedule: string, now: Date = new Date()): PassStatusR
       status: "cerrado",
       reason: "Horario publicado indica cierre o restricción",
       confidence: "high",
+      source: "horario",
     };
   }
 
@@ -260,6 +271,7 @@ function evaluateSchedule(schedule: string, now: Date = new Date()): PassStatusR
           status: "abierto",
           reason: "Paso habilitado según texto oficial (horario no interpretable)",
           confidence: "medium",
+          source: "horario",
         };
       }
 
@@ -272,6 +284,7 @@ function evaluateSchedule(schedule: string, now: Date = new Date()): PassStatusR
           status: "abierto",
           reason: "Paso habilitado según texto oficial",
           confidence: "medium",
+          source: "horario",
         };
       }
 
@@ -285,6 +298,7 @@ function evaluateSchedule(schedule: string, now: Date = new Date()): PassStatusR
       status: "abierto",
       reason: "Paso habilitado según texto oficial",
       confidence: "medium",
+      source: "horario",
     };
   }
 
@@ -292,10 +306,9 @@ function evaluateSchedule(schedule: string, now: Date = new Date()): PassStatusR
 }
 
 function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
+  const motivo = view.operationalInfo.motivo?.trim() ?? null;
   const raw = view.operationalInfo.rawStatus!.trim();
   const rs = stripDiacritics(raw.toUpperCase());
-  const motivo = view.operationalInfo.motivo?.trim() ?? null;
-  const vialidad = view.operationalInfo.vialidadEstado?.toUpperCase().trim();
   const schedule = scheduleForInference(view);
 
   if (rs === "CERRADO") {
@@ -303,6 +316,7 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
       status: "cerrado",
       reason: motivo ? `Cerrado: ${motivo}` : "Estado oficial: CERRADO",
       confidence: "high",
+      source: "gendarmeria",
     };
   }
 
@@ -311,24 +325,18 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
       status: "condicionado",
       reason: motivo ? `Condicionado: ${motivo}` : "Estado oficial: CONDICIONADO",
       confidence: "high",
+      source: "gendarmeria",
     };
   }
 
   if (rs === "ABIERTO") {
-    if (vialidad === "CORTADA") {
-      return {
-        status: "cerrado",
-        reason: "Ruta de acceso cortada (Vialidad Nacional)",
-        confidence: "high",
-      };
-    }
-    if (vialidad === "RESTRINGIDA") {
-      return {
-        status: "condicionado",
-        reason: "Ruta de acceso restringida (Vialidad Nacional)",
-        confidence: "high",
-      };
-    }
+    const vialRaw = view.operationalInfo.vialidadEstado?.trim() ?? "";
+    const vial = stripDiacritics(vialRaw.toUpperCase());
+    const vialidadAlertaRuta =
+      vial === "CORTE TOTAL" ||
+      vial.includes("CORTE TOTAL") ||
+      vial === "RESTRINGIDA" ||
+      vial.includes("RESTRIC");
 
     let closesInMinutes: number | undefined;
     if (schedule) {
@@ -338,10 +346,22 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
       }
     }
 
+    if (vialidadAlertaRuta) {
+      return {
+        status: "condicionado",
+        reason: "ABIERTO con alerta de Vialidad Nacional",
+        confidence: "high",
+        displayLabel: "ABIERTO",
+        source: "gendarmeria",
+        closesInMinutes,
+      };
+    }
+
     return {
       status: "abierto",
       reason: "Estado oficial: ABIERTO",
       confidence: "high",
+      source: "gendarmeria",
       closesInMinutes,
     };
   }
@@ -350,6 +370,7 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
     status: "sin_datos",
     reason: `Estado oficial no reconocido: ${raw}`,
     confidence: "low",
+    source: "gendarmeria",
   };
 }
 
@@ -372,6 +393,7 @@ function inferLegacyHtmlSnapshot(view: PassView, now: Date): PassStatusResult {
       status: "cerrado",
       reason: `Alerta textual: se detectó "${kw}" en las alertas`,
       confidence: "high",
+      source: "gendarmeria",
     };
   }
 
@@ -382,6 +404,7 @@ function inferLegacyHtmlSnapshot(view: PassView, now: Date): PassStatusResult {
         status: "condicionado",
         reason: `Alerta textual: se detectó "${kw}" en las alertas`,
         confidence: "high",
+        source: "gendarmeria",
       };
     }
   }
@@ -391,6 +414,7 @@ function inferLegacyHtmlSnapshot(view: PassView, now: Date): PassStatusResult {
       status: "cerrado",
       reason: "Horario publicado indica cierre permanente",
       confidence: "high",
+      source: "horario",
     };
   }
 
@@ -407,6 +431,7 @@ function inferLegacyHtmlSnapshot(view: PassView, now: Date): PassStatusResult {
         status: "abierto",
         reason: "Paso con horario 24 horas",
         confidence: "high",
+        source: "horario",
       };
     }
   }
@@ -442,4 +467,10 @@ export function inferPassStatus(view: PassView, now: Date = new Date()): PassSta
     return inferFromOfficialApi(view, now);
   }
   return inferLegacyHtmlSnapshot(view, now);
+}
+
+/** Para UI (cards, ticker): coincide con la regla de inferencia de corte total. */
+export function isVialidadCorteTotal(estado?: string | null): boolean {
+  const v = stripDiacritics((estado ?? "").toUpperCase());
+  return v === "CORTE TOTAL" || v.includes("CORTE TOTAL");
 }

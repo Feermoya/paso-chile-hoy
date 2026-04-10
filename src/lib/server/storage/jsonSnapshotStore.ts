@@ -179,6 +179,9 @@ export async function readPassSnapshotFile(slug: string): Promise<PassRaw | Pass
       return {
         ...s,
         forecast: Array.isArray(s.forecast) ? s.forecast : [],
+        vialidadRuta: typeof s.vialidadRuta === "string" ? s.vialidadRuta : "",
+        vialidadTramo: typeof s.vialidadTramo === "string" ? s.vialidadTramo : "",
+        latestTweet: s.latestTweet ?? null,
       };
     }
 

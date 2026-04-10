@@ -3,6 +3,7 @@ import { snapshotFreshMs } from "@/lib/server/config/snapshotPolicy";
 import { fetchConsolidado, fetchClima, fetchDetailHTML } from "@/lib/server/apiClient";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
+import { getLatestPassTweet } from "@/utils/twitterScraper";
 import {
   readPassSnapshotFile,
   writePassSnapshotFile,
@@ -74,6 +75,14 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
 
   const forecast = parseForecastFromHTML(htmlDetail);
   const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast);
+
+  try {
+    const latestTweet = await getLatestPassTweet(slug);
+    snapshot.latestTweet = latestTweet;
+  } catch (e) {
+    console.warn(`[snapshot] latestTweet for ${slug}:`, e);
+    snapshot.latestTweet = null;
+  }
 
   await tryWriteSnapshot(slug, snapshot);
   return snapshot;

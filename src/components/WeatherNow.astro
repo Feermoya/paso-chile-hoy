@@ -19,6 +19,8 @@ export interface Props {
   updatedAt?: string;
   /** Momento del snapshot (JSON); para advertir si los datos son viejos. */
   scrapedAt?: string;
+  /** Si es false, no incluye DrivingConditions (p. ej. se muestra a ancho completo en la página del paso). */
+  includeDriving?: boolean;
   class?: string;
 }
 
@@ -76,7 +78,14 @@ function formatSunriseDisplay(sunrise: string | undefined): string {
   return s;
 }
 
-const { weather: w, forecast = [], updatedAt, scrapedAt, class: className } = Astro.props;
+const {
+  weather: w,
+  forecast = [],
+  updatedAt,
+  scrapedAt,
+  includeDriving = true,
+  class: className,
+} = Astro.props;
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
@@ -158,18 +167,28 @@ const freshness = assessSnapshotFreshness(scrapedAt);
   <div class="weather-stats-grid md:hidden">
     <div class="weather-stat">
       <Icon name="lucide:wind" class="stat-icon" aria-hidden="true" />
-      <span class="stat-label">Viento</span>
-      <span class="stat-value" style={`color: ${levelToColor(windData.level)}`}>{windData.label}</span>
+      <span class="stat-label weather-label">Viento</span>
+      <span
+        class="stat-value weather-value weather-meta-value"
+        style={`color: ${levelToColor(windData.level)}`}
+      >
+        {windData.label}
+      </span>
     </div>
     <div class="weather-stat">
       <Icon name="lucide:eye" class="stat-icon" aria-hidden="true" />
-      <span class="stat-label">Visib.</span>
-      <span class="stat-value" style={`color: ${levelToColor(visData.level)}`}>{visData.label}</span>
+      <span class="stat-label weather-label">Visib.</span>
+      <span
+        class="stat-value weather-value weather-meta-value"
+        style={`color: ${levelToColor(visData.level)}`}
+      >
+        {visData.label}
+      </span>
     </div>
     <div class="weather-stat">
       <Icon name="wi:sunrise" class="stat-icon stat-icon-sunrise" aria-hidden="true" />
-      <span class="stat-label">Amanecer</span>
-      <span class="stat-value">{sunriseDisplay}</span>
+      <span class="stat-label weather-label">Amanecer</span>
+      <span class="stat-value weather-value weather-meta-value">{sunriseDisplay}</span>
     </div>
   </div>
 
@@ -184,9 +203,9 @@ const freshness = assessSnapshotFreshness(scrapedAt);
             style={`color: ${levelToColor(windData.level)}`}
             aria-hidden="true"
           />
-          <span class="desktop-stat-label">Viento</span>
+          <span class="desktop-stat-label weather-label">Viento</span>
         </div>
-        <span class="desktop-stat-value">{windData.label}</span>
+        <span class="desktop-stat-value weather-meta-value">{windData.label}</span>
         {windData.meaning && <p class="desktop-stat-meaning">{windData.meaning}</p>}
       </div>
       <div class="desktop-stat-divider" aria-hidden="true"></div>
@@ -198,18 +217,18 @@ const freshness = assessSnapshotFreshness(scrapedAt);
             style={`color: ${levelToColor(visData.level)}`}
             aria-hidden="true"
           />
-          <span class="desktop-stat-label">Visibilidad</span>
+          <span class="desktop-stat-label weather-label">Visibilidad</span>
         </div>
-        <span class="desktop-stat-value">{visData.label}</span>
+        <span class="desktop-stat-value weather-meta-value">{visData.label}</span>
         {visData.meaning && <p class="desktop-stat-meaning">{visData.meaning}</p>}
       </div>
       <div class="desktop-stat-divider" aria-hidden="true"></div>
       <div class="desktop-stat-block">
         <div class="desktop-stat-header">
           <Icon name="wi:sunrise" class="desktop-sunrise-icon h-6 w-6 shrink-0" aria-hidden="true" />
-          <span class="desktop-stat-label">Amanecer</span>
+          <span class="desktop-stat-label weather-label">Amanecer</span>
         </div>
-        <span class="desktop-stat-value">{sunriseDisplay}</span>
+        <span class="desktop-stat-value weather-meta-value">{sunriseDisplay}</span>
         <p class="desktop-stat-meaning">Primera luz en la cordillera</p>
       </div>
     </div>
@@ -232,7 +251,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
     )}
   </div>
 
-  <DrivingConditions weather={drivingWeather} forecast={forecast} />
+  {includeDriving && <DrivingConditions weather={drivingWeather} forecast={forecast} />}
 
   {datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
 

@@ -1,73 +1,85 @@
 ---
-import { Icon } from "astro-icon/components";
-import type { PassDisplayStatus } from "@/utils/inferPassStatus";
-
 export interface Props {
   motivo: string | null;
+  vialidadRuta: string;
+  vialidadTramo: string;
   vialidadEstado: string;
   vialidadObservaciones: string;
-  status: PassDisplayStatus;
   class?: string;
 }
 
-const { motivo, vialidadEstado, vialidadObservaciones, status, class: className } = Astro.props;
+const {
+  motivo,
+  vialidadRuta,
+  vialidadTramo,
+  vialidadEstado,
+  vialidadObservaciones,
+  class: className,
+} = Astro.props;
+
+function buildVialidadTitle(estado: string, ruta: string, tramo: string): string {
+  const parts: string[] = [];
+  const e = estado.trim();
+  if (e && e.toUpperCase() !== "HABILITADA") {
+    parts.push(
+      e
+        .split(/\s+/)
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(" "),
+    );
+  }
+  const rn = ruta.trim();
+  if (rn) parts.push(`RN ${rn}`);
+  const tr = tramo.trim();
+  if (tr) parts.push(`Tramo: ${tr}`);
+  return parts.join(", ");
+}
+
+const estU = (vialidadEstado ?? "").trim().toUpperCase();
+const showVialidad = Boolean(estU && estU !== "HABILITADA");
+
+const vialidadTitle = buildVialidadTitle(
+  vialidadEstado ?? "",
+  vialidadRuta ?? "",
+  vialidadTramo ?? "",
+);
+
+const obs = (vialidadObservaciones ?? "").trim();
+const showObs =
+  Boolean(obs) &&
+  obs.toLowerCase() !== "transitable" &&
+  obs.length > 3;
 
 const m = motivo?.trim() ?? "";
 const showMotivo =
   Boolean(m) &&
-  !m.toLowerCase().includes("horario de atencion") &&
+  !m.toUpperCase().includes("HORARIO DE ATENCION") &&
   m !== "-.-";
 
-const obs = vialidadObservaciones?.trim() ?? "";
-const showVialidad =
-  vialidadEstado.toUpperCase() !== "HABILITADA" ||
-  (obs.length > 0 && obs.toLowerCase() !== "transitable" && obs.length > 3);
-
-const show = showMotivo || showVialidad;
+const isCorteTotal = estU === "CORTE TOTAL" || estU.includes("CORTE TOTAL");
 ---
 
 {
-  show && (
-    <section
-      class:list={[
-        "rounded-[var(--radius-xl)] border border-[var(--color-border-subtle)] border-l-[3px] border-l-[var(--color-copper)] bg-[var(--color-copper-subtle)] p-5 md:p-6",
-        className,
-      ]}
-      aria-labelledby="alerts-heading"
-    >
-      <div class="flex gap-3">
-        <Icon
-          name="lucide:triangle-alert"
-          class="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-copper-soft)]"
-          aria-hidden="true"
-        />
-        <div class="min-w-0 flex-1">
-          <h2 id="alerts-heading" class="font-display text-lg font-semibold text-[var(--color-copper-soft)]">
-            Información operativa
-          </h2>
-          <ul class="mt-4 space-y-5" role="list">
-            {showMotivo && (
-              <li>
-                <h3 class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-copper-soft)]">
-                  {status === "cerrado" ? "Motivo del cierre" : "Condición"}
-                </h3>
-                <p class="mt-2 text-sm text-[var(--color-text-secondary)] md:text-[15px]">{motivo}</p>
-              </li>
-            )}
-            {showVialidad && (
-              <li>
-                <h3 class="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-copper-soft)]">
-                  Vialidad Nacional — RN
-                </h3>
-                <p class="mt-2 text-sm text-[var(--color-text-muted)] md:text-[15px]">
-                  {vialidadEstado.toUpperCase() !== "HABILITADA" ? `${vialidadEstado}: ` : ""}
-                  {obs || "—"}
-                </p>
-              </li>
-            )}
-          </ul>
+  (showVialidad || showMotivo) && (
+    <div class:list={["alerts-section", className]} role="region" aria-label="Información operativa">
+      {showVialidad && (
+        <div
+          class:list={[
+            "alert-card",
+            isCorteTotal ? "alert-card--danger" : "alert-card--warning",
+          ]}
+        >
+          <p class="alert-card-eyebrow">Atención</p>
+          <p class="alert-card-title">{vialidadTitle}</p>
+          {showObs && <p class="alert-card-detail">{obs}</p>}
         </div>
-      </div>
-    </section>
+      )}
+      {showMotivo && (
+        <div class="alert-card alert-card--warning">
+          <p class="alert-card-eyebrow">Atención</p>
+          <p class="alert-card-title">{m}</p>
+        </div>
+      )}
+    </div>
   )
 }

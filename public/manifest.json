@@ -1,7 +1,7 @@
 {
   "name": "Paso Chile Hoy",
-  "short_name": "Paso Chile",
-  "description": "Estado del Paso Cristo Redentor y pasos internacionales Mendoza-Chile",
+  "short_name": "PasoChile",
+  "description": "Estado en tiempo real de los pasos internacionales Argentina-Chile",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0C10",
@@ -13,13 +13,21 @@
       "src": "/favicon_io/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "/favicon_io/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ],
   "categories": ["travel", "navigation", "weather"],

@@ -2,7 +2,7 @@
 import { PASOS } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { readPassSnapshotFile } from "@/lib/server/storage/jsonSnapshotStore";
-import { inferPassStatus } from "@/utils/inferPassStatus";
+import { inferPassStatus, isVialidadCorteTotal } from "@/utils/inferPassStatus";
 
 const STATUS_LABEL: Record<string, string> = {
   abierto: "ABIERTO",
@@ -27,13 +27,20 @@ for (const paso of PASOS.filter((p) => p.active)) {
 
     const view = mapPersistedSnapshotToView(raw, paso);
     const result = inferPassStatus(view);
+    const vialEst = view.operationalInfo.vialidadEstado;
+    const vialObs = view.operationalInfo.vialidadObservaciones?.trim() ?? "";
+    const motivo = view.operationalInfo.motivo?.trim();
 
     const em = emoji[result.status] ?? "⚪";
     const label = STATUS_LABEL[result.status] ?? result.status.toUpperCase();
     let item = `${em} ${paso.shortName}: ${label}`;
 
-    const motivo = view.operationalInfo.motivo?.trim();
-    if (motivo) item += ` — ${motivo}`;
+    if (isVialidadCorteTotal(vialEst) && vialObs) {
+      item += ` — ⛔ ${vialObs}`;
+    }
+    if (motivo && result.status !== "abierto") {
+      item += ` — ${motivo}`;
+    }
 
     tickerItems.push(item);
   } catch {

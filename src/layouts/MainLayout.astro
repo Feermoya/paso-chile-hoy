@@ -139,12 +139,13 @@ const icbmContent = geoPosition.includes(";")
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Paso Chile" />
-    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+    <link rel="manifest" href="/manifest.json" />
 
     <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon_io/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="/favicon_io/favicon-32x32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="/favicon_io/apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -166,7 +167,7 @@ const icbmContent = geoPosition.includes(";")
       >
         Ir al contenido
       </a>
-      <header class="header-app">
+      <header class="header-app site-header">
         <div class="header-inner">
           <a href="/" class="header-logo-link" aria-label="Inicio — todos los pasos">
             <img
@@ -189,7 +190,9 @@ const icbmContent = geoPosition.includes(";")
           </a>
 
           <div class="header-right">
-            <VersionBadge />
+            <span class="hidden items-center sm:inline-flex">
+              <VersionBadge />
+            </span>
             <div class="header-altitude" aria-label={altitudeLabel}>
               <span class="header-altitude-number">{headerAltitudeM}</span>
               <span class="header-altitude-unit">m</span>
@@ -197,7 +200,9 @@ const icbmContent = geoPosition.includes(";")
           </div>
         </div>
       </header>
-      <AlertTicker />
+      <div class="ticker-wrapper">
+        <AlertTicker />
+      </div>
       <main id="contenido-principal" class="min-w-0 flex-1 pb-4 pt-2 md:pt-4">
         <slot />
       </main>
@@ -205,6 +210,31 @@ const icbmContent = geoPosition.includes(";")
       <Footer />
     </div>
     <CookieBanner />
+    <script is:inline>
+      function updateHeaderHeight() {
+        const header = document.querySelector(".site-header");
+        if (header) {
+          document.documentElement.style.setProperty(
+            "--header-height",
+            header.offsetHeight + "px",
+          );
+        }
+      }
+      updateHeaderHeight();
+      window.addEventListener("resize", updateHeaderHeight);
+      window.addEventListener("load", updateHeaderHeight);
+      document.addEventListener("astro:page-load", updateHeaderHeight);
+    </script>
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(() => {})
+            .catch(() => {});
+        });
+      }
+    </script>
     <script>
       (function () {
         let startY = 0;
@@ -248,7 +278,7 @@ const icbmContent = geoPosition.includes(";")
         });
 
         function bindForecastHaptics() {
-          document.querySelectorAll(".forecast-card").forEach((card) => {
+          document.querySelectorAll(".forecast-section details.fcard").forEach((card) => {
             card.addEventListener(
               "touchstart",
               () => {

@@ -5,8 +5,11 @@
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
+  "vialidadRuta": "145",
+  "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "",
+  "latestTweet": null,
   "weather": {
     "temperatureC": 15.6,
     "description": "Despejado",
@@ -20,7 +23,11 @@
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-10T16:07:20.077Z",
+=======
+  "scrapedAt": "2026-04-10T16:19:16.468Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy por la noche",

@@ -35,7 +35,7 @@ function buildPayload(raw: PassRaw | PassSnapshot, paso: NonNullable<ReturnType<
     scrapedAt,
     lastUpdatedRelative: scrapedAt ? formatRelativeTimeAgo(scrapedAt) : "",
     status: st.status,
-    statusLabel: STATUS_LABELS[st.status],
+    statusLabel: st.displayLabel ?? STATUS_LABELS[st.status],
     schedule: heroScheduleFromView(view),
     opensInMinutes: st.opensInMinutes ?? null,
     closesInMinutes: st.closesInMinutes ?? null,

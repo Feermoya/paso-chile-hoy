@@ -2,7 +2,9 @@
 export const prerender = false;
 
 import PasoCard from "@/components/PasoCard.astro";
+import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
+import VersionBadge from "@/components/VersionBadge.astro";
 import { PASOS } from "@/data/pasos";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
@@ -16,6 +18,8 @@ type CardEntry = {
   status?: PassDisplayStatus;
   weatherDesc?: string;
   weatherTempC?: number | null;
+  vialidadEstado?: string;
+  vialidadObservaciones?: string;
 };
 
 const cards: CardEntry[] = await Promise.all(
@@ -27,11 +31,14 @@ const cards: CardEntry[] = await Promise.all(
       const raw = await getSnapshotForApi(paso.slug);
       const view = mapPersistedSnapshotToView(raw, paso);
       const n = view.weather?.now;
+      const op = view.operationalInfo;
       return {
         slug: paso.slug,
         status: inferPassStatus(view).status,
         weatherDesc: n?.description?.trim(),
         weatherTempC: n?.temperatureC ?? null,
+        vialidadEstado: op.vialidadEstado,
+        vialidadObservaciones: op.vialidadObservaciones,
       };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
@@ -70,6 +77,9 @@ const homeSchema = {
 >
   <div class="home-layout">
     <div class="home-hero">
+      <div class="mb-1 flex justify-end sm:hidden">
+        <VersionBadge compact />
+      </div>
       <div class="home-hero-text">
         <h1 class="home-title">¿Está abierto el paso a Chile?</h1>
         <p class="home-subtitle">
@@ -78,6 +88,16 @@ const homeSchema = {
         </p>
       </div>
     </div>
+
+    <p class="cards-hint">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 8v4m0 4h.01"></path>
+      </svg>
+      Tocá cualquier paso para ver el estado completo, clima y alertas
+    </p>
+
+    <StatusGuide />
 
     <div class="pasos-grid">
       {PASOS.map((paso) => {
@@ -88,6 +108,8 @@ const homeSchema = {
             status={c?.status}
             weatherDesc={c?.weatherDesc}
             weatherTempC={c?.weatherTempC}
+            vialidadEstado={c?.vialidadEstado}
+            vialidadObservaciones={c?.vialidadObservaciones}
           />
         );
       })}

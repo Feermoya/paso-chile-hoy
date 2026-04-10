@@ -2,6 +2,13 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
+export interface Props {
+  /** Badge más chico, sin borde fuerte — para móvil arriba a la derecha del título */
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
 let version = "0.1.0";
 let releasedAt = "";
 
@@ -31,7 +38,7 @@ if (releasedAt) {
 ---
 
 <span
-  class="version-badge"
+  class:list={["version-badge", compact && "version-badge--compact"]}
   title={releasedAt ? `Publicado el ${releaseDateLabel}` : "Versión actual"}
   aria-label={`Versión ${version}`}
 >

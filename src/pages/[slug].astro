@@ -1,5 +1,9 @@
 ---
 import AlertsBlock from "@/components/AlertsBlock.astro";
+import DrivingConditions from "@/components/DrivingConditions.astro";
+import LatestTweet from "@/components/LatestTweet.astro";
+import StatusGuide from "@/components/StatusGuide.astro";
+import VersionBadge from "@/components/VersionBadge.astro";
 import PassDetails from "@/components/PassDetails.astro";
 import StatusHero from "@/components/StatusHero.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
@@ -11,7 +15,8 @@ import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
-import type { PassView } from "@/types/pass-view";
+import type { PassView, WeatherNowView } from "@/types/pass-view";
+import type { DrivingWeatherInput } from "@/utils/drivingConditions";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 import { inferPassStatus } from "@/utils/inferPassStatus";
@@ -128,6 +133,21 @@ function openingHoursSpecs(schedule: string): Array<Record<string, unknown>> {
   ];
 }
 
+function buildDrivingWeatherInput(now: WeatherNowView): DrivingWeatherInput {
+  const visInput: number | string | null =
+    typeof now.visibilityKm === "number"
+      ? now.visibilityKm
+      : now.visibilityText?.trim()
+        ? now.visibilityText.trim()
+        : null;
+  return {
+    temperatureC: now.temperatureC ?? null,
+    wind: now.wind ?? null,
+    visibilityKm: visInput,
+    description: now.description ?? "",
+  };
+}
+
 const passSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
@@ -177,6 +197,9 @@ const passSchema: Record<string, unknown> = {
   geoPosition={geoPositionMeta}
 >
   <div class="flex w-full min-w-0 flex-col gap-4 md:gap-6">
+    <div class="container-main flex justify-end sm:hidden">
+      <VersionBadge compact />
+    </div>
     {snapshotLoadFailed && (
       <div class="container-main">
         <div
@@ -212,63 +235,74 @@ const passSchema: Record<string, unknown> = {
     )}
 
     {view && (
-      <div class="page-layout">
-        <div class="col-main flex min-w-0 flex-col gap-4 md:gap-6">
-          {statusResult && (
-            <StatusHero
-              class="anim-section anim-delay-1"
-              slug={slug}
-              status={statusResult.status}
-              passName={view.title}
-              schedule={scheduleText}
-              lastUpdatedRelative={lastRel}
-              officialUrl={officialUrl}
-              opensInMinutes={statusResult.opensInMinutes}
-              closesInMinutes={statusResult.closesInMinutes}
+      <div class="paso-page-wrapper">
+        <div class="paso-grid">
+          <section class="paso-col" aria-label="Estado operativo">
+            {statusResult && (
+              <StatusHero
+                class="anim-section anim-delay-1"
+                slug={slug}
+                status={statusResult.status}
+                displayLabel={statusResult.displayLabel}
+                passName={view.title}
+                schedule={scheduleText}
+                lastUpdatedRelative={lastRel}
+                officialUrl={officialUrl}
+                opensInMinutes={statusResult.opensInMinutes}
+                closesInMinutes={statusResult.closesInMinutes}
+              />
+            )}
+
+            <StatusGuide />
+
+            <AlertsBlock
+              class="anim-section anim-delay-2"
+              motivo={view.operationalInfo.motivo ?? null}
+              vialidadRuta={view.operationalInfo.vialidadRuta ?? ""}
+              vialidadTramo={view.operationalInfo.vialidadTramo ?? ""}
+              vialidadEstado={view.operationalInfo.vialidadEstado ?? "HABILITADA"}
+              vialidadObservaciones={view.operationalInfo.vialidadObservaciones ?? ""}
             />
-          )}
 
-          <AlertsBlock
-            class="anim-section anim-delay-2"
-            motivo={view.operationalInfo.motivo ?? null}
-            vialidadEstado={view.operationalInfo.vialidadEstado ?? "HABILITADA"}
-            vialidadObservaciones={view.operationalInfo.vialidadObservaciones ?? ""}
-            status={displayStatus}
-          />
+            <LatestTweet tweet={view.meta.latestTweet} />
 
-          <TwitterAlerts passSlug={slug} />
+            <TwitterAlerts passSlug={slug} />
+          </section>
 
-          {showNow && now && (
-            <>
-              <div class="section-divider anim-section anim-delay-3" aria-hidden="true"></div>
+          <section class="paso-col paso-col--sticky" aria-label="Condiciones climáticas">
+            {showNow && now && (
               <WeatherNow
                 class="anim-section anim-delay-3"
                 weather={now}
                 forecast={forecast}
                 updatedAt={now.providerNote}
                 scrapedAt={view.meta.scrapedAt}
+                includeDriving={false}
               />
-            </>
-          )}
+            )}
+
+            {showForecast && (
+              <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />
+            )}
+          </section>
         </div>
 
-        <div class="col-side flex min-w-0 flex-col gap-4 md:gap-6">
-          {showForecast && (
-            <section class="anim-section anim-delay-2 space-y-4" aria-labelledby="forecast-heading">
-              <h2 id="forecast-heading" class="text-section-title">
-                Próximas horas
-              </h2>
-              <WeatherForecast class="anim-section anim-delay-3" forecast={forecast} />
-            </section>
+        <div class="paso-fullwidth">
+          {showNow && now && (
+            <DrivingConditions
+              class="anim-section anim-delay-3"
+              weather={buildDrivingWeatherInput(now)}
+              forecast={forecast}
+            />
           )}
 
           <PassDetails class="anim-section anim-delay-5" view={view} />
+
+          <SupportBlock />
         </div>
       </div>
     )}
   </div>
-
-  <SupportBlock />
 
   <section class="seo-content seo-content--pass">
     <h2>Sobre el {pasoConfig.name}</h2>

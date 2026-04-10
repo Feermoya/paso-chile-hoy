@@ -41,6 +41,8 @@ export interface WeatherNowView {
 
 export interface ForecastItemView {
   period?: string;
+  /** Fecha legible si el backend la envía; si no, la UI deriva la fecha del período. */
+  date?: string;
   description?: string;
   temperatureC?: number;
   wind?: string;
@@ -56,6 +58,16 @@ export interface ProviderView {
   name: string;
   lastUpdated?: string;
   lastUpdatedRaw?: string;
+}
+
+/** Tweet reciente de @PasoCRMza (RSS); complementario al estado oficial. */
+export type PassTweetSentiment = "habilitado" | "cerrado" | "condicionado" | "info";
+
+export interface PassLatestTweet {
+  text: string;
+  date: string;
+  url: string;
+  sentiment: PassTweetSentiment;
 }
 
 export interface PassView {
@@ -86,6 +98,10 @@ export interface PassView {
     motivo?: string;
     vialidadEstado?: string;
     vialidadObservaciones?: string;
+    /** Ruta nacional (p. ej. `7`) — Vialidad Nacional, informativo. */
+    vialidadRuta?: string;
+    /** Tramo (p. ej. túnel) — informativo. */
+    vialidadTramo?: string;
     contact?: ContactView;
     gps?: GpsView;
   };
@@ -105,5 +121,7 @@ export interface PassView {
   meta: {
     scrapedAt?: string;
     sourceUrl?: string;
+    /** Último tweet relevante de @PasoCRMza (RSS); no sustituye al estado oficial. */
+    latestTweet?: PassLatestTweet | null;
   };
 }

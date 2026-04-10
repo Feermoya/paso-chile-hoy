@@ -1,7 +1,7 @@
 import { buildArgentinaPassSourceUrl, type PasoConfig } from "@/data/pasos";
 import type { ForecastPeriod } from "@/lib/server/forecastParser";
 import type { ClimaResponse, ConsolidadoResponse } from "@/lib/types/apiTypes";
-import type { ForecastItemView, PassView } from "@/types/pass-view";
+import type { ForecastItemView, PassLatestTweet, PassView } from "@/types/pass-view";
 
 export type { ForecastPeriod } from "@/lib/server/forecastParser";
 
@@ -13,8 +13,12 @@ export interface PassSnapshot {
   scheduleRaw: string;
   rawStatus: string;
   motivo: string | null;
+  vialidadRuta: string;
+  vialidadTramo: string;
   vialidadEstado: string;
   vialidadObservaciones: string;
+  /** Complementario (RSS @PasoCRMza); no define el estado del paso. */
+  latestTweet: PassLatestTweet | null;
   weather: {
     temperatureC: number | null;
     description: string | null;
@@ -106,8 +110,11 @@ export function mapToSnapshot(
     scheduleRaw: typeof det.horario_atencion === "string" ? det.horario_atencion : "",
     rawStatus: est.estado,
     motivo,
-    vialidadEstado: vial.estado,
+    vialidadRuta: typeof vial.ruta === "string" ? vial.ruta.trim() : "",
+    vialidadTramo: typeof vial.tramo === "string" ? vial.tramo.trim() : "",
+    vialidadEstado: typeof vial.estado === "string" ? vial.estado.trim() : "",
     vialidadObservaciones: vial.observaciones?.trim() ?? "",
+    latestTweet: null,
     weather: {
       temperatureC: Number.isFinite(temp.temperature) ? temp.temperature : null,
       description: temp.weather?.description?.trim() ?? null,
@@ -183,6 +190,8 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
       motivo: snapshot.motivo ?? undefined,
       vialidadEstado: snapshot.vialidadEstado,
       vialidadObservaciones: snapshot.vialidadObservaciones,
+      vialidadRuta: snapshot.vialidadRuta ?? "",
+      vialidadTramo: snapshot.vialidadTramo ?? "",
       contact,
       gps: {
         lat: paso.lat,
@@ -197,6 +206,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
     meta: {
       scrapedAt: snapshot.scrapedAt,
       sourceUrl: buildArgentinaPassSourceUrl(paso),
+      latestTweet: snapshot.latestTweet ?? null,
     },
   };
 }
