@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.5.4](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.3...v2.5.4) (2026-04-11)
+
+### Refactoring
+
+* Mejora pwa ([9f6ab1e](https://github.com/Feermoya/paso-chile-hoy/commit/9f6ab1eb4ea12f4462a8b4f2439c0bfc70326608))
+
 ## [2.5.3](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.2...v2.5.3) (2026-04-11)
 
 ### Rendimiento
