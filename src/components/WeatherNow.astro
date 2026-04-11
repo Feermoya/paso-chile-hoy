@@ -149,6 +149,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
     className,
   ]}
   aria-labelledby="weather-now-heading"
+  data-paso-weather-now-card
 >
   <p class="text-eyebrow weather-eyebrow weather-eyebrow--live">
     <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
@@ -174,14 +175,17 @@ const freshness = assessSnapshotFreshness(scrapedAt);
           aria-hidden="true"
         />
       </div>
-      <span class="text-weather-desc min-w-0">{w.description}</span>
+      <span class="text-weather-desc min-w-0" data-wn-desc>{w.description}</span>
     </div>
   )}
 
   {w.temperatureC != null && (
     <>
       <p class="mt-4 flex flex-wrap items-start gap-x-1 gap-y-0">
-        <span class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums">
+        <span
+          class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums"
+          data-wn-temp
+        >
           {w.temperatureC}
         </span>
         <span class="mt-2 font-display text-lg font-medium text-[var(--color-text-secondary)] md:text-2xl">

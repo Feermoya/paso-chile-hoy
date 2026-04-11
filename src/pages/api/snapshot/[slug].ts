@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { getPasoBySlug } from "@/data/pasos";
 import {
-  buildPassRefreshPayload,
+  buildPassSnapshotApiEnvelope,
   type PassSnapshotApiEnvelope,
 } from "@/lib/server/passRefreshPayload";
 import {
@@ -24,16 +24,11 @@ const STALE_REFRESH_MESSAGE =
   "No se pudo refrescar ahora; mostrando el último dato disponible.";
 
 function envelope(
-  raw: Parameters<typeof buildPassRefreshPayload>[0],
+  raw: Parameters<typeof buildPassSnapshotApiEnvelope>[0],
   paso: NonNullable<ReturnType<typeof getPasoBySlug>>,
   flags: Pick<PassSnapshotApiEnvelope, "stale" | "refreshFailed"> & { message?: string },
 ): PassSnapshotApiEnvelope {
-  return {
-    ...buildPassRefreshPayload(raw, paso),
-    stale: flags.stale,
-    refreshFailed: flags.refreshFailed,
-    ...(flags.message ? { message: flags.message } : {}),
-  };
+  return buildPassSnapshotApiEnvelope(raw, paso, flags);
 }
 
 function jsonBody(body: PassSnapshotApiEnvelope | Record<string, unknown>, status: number): Response {

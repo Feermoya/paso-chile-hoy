@@ -175,8 +175,10 @@ export function wttrJ1ToClimaAndForecast(
       humidity: string;
       FeelsLikeC: string;
       lang_es?: { value: string }[];
+      localObsDateTime?: string;
     }>;
     weather?: Array<{
+      date?: string;
       hourly?: WttrHourly[];
       astronomy?: Array<{ sunrise: string; sunset: string }>;
     }>;
@@ -198,9 +200,21 @@ export function wttrJ1ToClimaAndForecast(
   const salida_sol = astro?.sunrise ? wttrClockToIsoToday(astro.sunrise) : "";
   const puesta_sol = astro?.sunset ? wttrClockToIsoToday(astro.sunset) : "";
 
+  const dateLine =
+    typeof today.date === "string" && today.date.trim()
+      ? (() => {
+          const lodt = current.localObsDateTime?.trim();
+          if (lodt) {
+            const tail = lodt.includes(" ") ? lodt.split(/\s+/).slice(1).join(" ") : lodt;
+            return `${today.date} ${tail}`.trim();
+          }
+          return today.date.trim();
+        })()
+      : new Date().toISOString();
+
   const clima: ClimaResponse = {
     temperatura: {
-      date: new Date().toISOString(),
+      date: dateLine,
       humidity: Number.isFinite(humidity) ? humidity : 0,
       pressure: 0,
       feels_like: Number.isFinite(feels) ? feels : null,

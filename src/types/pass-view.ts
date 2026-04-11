@@ -129,5 +129,16 @@ export interface PassView {
     sourceUrl?: string;
     /** Último tweet relevante de @PasoCRMza (RSS); no sustituye al estado oficial. */
     latestTweet?: PassLatestTweet | null;
+    /** Metadatos de fuentes (snapshot persistido). */
+    sources?: {
+      status: string;
+      clima: string;
+      statusUpdatedAt?: string | null;
+      forecastSource?: string;
+    };
+    lastKnownGoodAt?: string;
+    scrapeError?: string;
+    /** Falló la fuente primaria de estado (p. ej. consolidado). */
+    operationalStale?: boolean;
   };
 }

@@ -13,33 +13,21 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-<<<<<<< Updated upstream
-    "temperatureC": 8.2,
+    "temperatureC": 16.4,
     "description": "Ligeramente nublado",
-    "wind": "Sudoeste 10 km/h",
+    "wind": "Norte 6 km/h",
     "visibilityKm": 20,
-    "sunrise": "07:59",
-    "sunset": "19:23",
-    "updatedAt": "2026-04-11T07:00:00-03:00"
-=======
-    "temperatureC": 13.4,
-    "description": "Ligeramente nublado",
-    "wind": "Sur 6 km/h",
-    "visibilityKm": 20,
-    "sunrise": "07:59",
-    "sunset": "19:23",
-    "updatedAt": "2026-04-11T10:00:00-03:00"
->>>>>>> Stashed changes
+    "sunrise": "08:00",
+    "sunset": "19:22",
+    "updatedAt": "2026-04-11T11:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 62
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-11T10:56:22.008Z",
-=======
-  "scrapedAt": "2026-04-11T13:55:13.015Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-11T14:43:56.334Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -69,5 +57,12 @@
       "wind": "N a 7-12 km/h",
       "visibility": "Buena"
     }
-  ]
+  ],
+  "sources": {
+    "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
+    "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
+    "statusUpdatedAt": "11/4/2026 09:36:44"
+  },
+  "operationalStale": false,
+  "lastKnownGoodAt": "2026-04-11T14:43:56.334Z"
 }

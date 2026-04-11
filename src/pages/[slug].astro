@@ -11,6 +11,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import type { PassView } from "@/types/pass-view";
 import { buildPassTouristAttractionSchema } from "@/utils/passPageSchema";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
+import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { buildPassPageMeta, type PassStatus } from "@/utils/seo";
 
 export const prerender = false;
@@ -86,6 +87,11 @@ const weatherDescMeta = now?.description?.trim() || null;
 
 const freshnessLabel = lastRel || "cuando hay datos nuevos";
 
+const lastKnownGoodRelative =
+  view?.meta?.lastKnownGoodAt?.trim() != null && view.meta.lastKnownGoodAt.trim() !== ""
+    ? formatRelativeTimeAgo(view.meta.lastKnownGoodAt.trim())
+    : "";
+
 const regionLabelForMeta =
   pasoConfig.provinceAR === "San Juan" ? "San Juan, Argentina" : "Mendoza, Argentina";
 const headerRegionLabel = pasoConfig.provinceAR === "San Juan" ? "San Juan · AR" : "Mendoza · AR";
@@ -135,6 +141,7 @@ const passSchema = buildPassTouristAttractionSchema({
           scheduleText={scheduleText}
           lastUpdatedRelative={lastRel}
           officialUrl={officialUrl}
+          lastKnownGoodRelative={lastKnownGoodRelative || undefined}
           now={now}
           forecast={forecast}
           showNow={showNow}

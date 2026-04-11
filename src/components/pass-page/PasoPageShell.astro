@@ -12,6 +12,7 @@ export interface Props {
   scheduleText: string;
   lastUpdatedRelative: string;
   officialUrl?: string;
+  lastKnownGoodRelative?: string;
   now?: WeatherNowView;
   forecast: ForecastItemView[];
   showNow: boolean;
@@ -27,6 +28,7 @@ const {
   scheduleText,
   lastUpdatedRelative,
   officialUrl,
+  lastKnownGoodRelative,
   now,
   forecast,
   showNow,
@@ -55,9 +57,11 @@ const {
       scheduleText={scheduleText}
       lastUpdatedRelative={lastUpdatedRelative}
       officialUrl={officialUrl}
+      lastKnownGoodRelative={lastKnownGoodRelative}
     />
 
     <PasoWeatherSection
+      slug={slug}
       now={now}
       forecast={forecast}
       scrapedAt={view.meta.scrapedAt}

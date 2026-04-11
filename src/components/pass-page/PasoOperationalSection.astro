@@ -14,6 +14,7 @@ export interface Props {
   scheduleText: string;
   lastUpdatedRelative: string;
   officialUrl?: string;
+  lastKnownGoodRelative?: string;
   class?: string;
 }
 
@@ -24,6 +25,7 @@ const {
   scheduleText,
   lastUpdatedRelative,
   officialUrl,
+  lastKnownGoodRelative,
   class: className,
 } = Astro.props;
 
@@ -47,6 +49,10 @@ const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().len
     officialUrl={officialUrl}
     opensInMinutes={statusResult.opensInMinutes}
     closesInMinutes={statusResult.closesInMinutes}
+    rawStatus={op.rawStatus}
+    scrapeError={view.meta.scrapeError}
+    operationalStale={view.meta.operationalStale}
+    lastKnownGoodRelative={lastKnownGoodRelative}
   />
 
   <StatusGuide />

@@ -13,6 +13,11 @@ export interface Props {
   closesInMinutes?: number;
   /** Texto del badge (p. ej. ABIERTO) cuando el color es otro (p. ej. alerta vial → ámbar). */
   displayLabel?: string;
+  /** Estado crudo del snapshot (p. ej. SIN_DATOS). */
+  rawStatus?: string;
+  scrapeError?: string | null;
+  operationalStale?: boolean;
+  lastKnownGoodRelative?: string;
   class?: string;
 }
 
@@ -26,6 +31,10 @@ const {
   opensInMinutes,
   closesInMinutes,
   displayLabel,
+  rawStatus: rawStatusProp,
+  scrapeError,
+  operationalStale,
+  lastKnownGoodRelative,
   class: className,
 } = Astro.props;
 
@@ -33,7 +42,7 @@ const labels: Record<PassDisplayStatus, string> = {
   abierto: "ABIERTO",
   condicionado: "CONDICIONADO",
   cerrado: "CERRADO",
-  sin_datos: "Estado no disponible",
+  sin_datos: "SIN DATOS",
 };
 
 const dotColors: Record<PassDisplayStatus, string> = {
@@ -81,6 +90,15 @@ const showCloseCountdown =
   closesInMinutes != null &&
   closesInMinutes > 0;
 
+const rawStatus = rawStatusProp?.trim() ?? "";
+const showSinDatosDetail =
+  rawStatus === "SIN_DATOS" &&
+  Boolean(scrapeError?.trim() || operationalStale);
+const sinDatosSubtext =
+  scrapeError?.trim() ||
+  "No pudimos obtener el estado actual. Verificá la fuente oficial.";
+const showPulseDot = status !== "sin_datos" && rawStatus !== "SIN_DATOS";
+
 function formatMinutesShort(minutes: number): string {
   if (minutes < 60) return `${minutes} min`;
   const h = Math.floor(minutes / 60);
@@ -109,7 +127,7 @@ const closeCountdownInitial =
 
     <div class="status-main">
       <span
-        class:list={["status-dot", "status-dot--live-pulse", dotModifier]}
+        class:list={["status-dot", showPulseDot && "status-dot--live-pulse", dotModifier]}
         data-hero-dot
         aria-hidden="true"></span>
       <span
@@ -176,6 +194,40 @@ const closeCountdownInitial =
           </div>
         )
       }
+
+      <div
+        class:list={[
+          "mt-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3 py-2.5 text-[13px] leading-snug text-[var(--color-text-secondary)]",
+          !showSinDatosDetail && "hidden",
+        ]}
+        data-hero-sin-datos-msg
+        role="status"
+      >
+        <p class="m-0" data-hero-sin-datos-sub>
+          {showSinDatosDetail ? sinDatosSubtext : ""}
+        </p>
+        {
+          officialUrl && (
+            <a
+              href={officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-2 inline-flex text-[var(--color-accent)] hover:underline"
+              data-hero-sin-datos-link
+            >
+              Ver fuente oficial
+            </a>
+          )
+        }
+        <p
+          class:list={["mt-2 mb-0 text-meta text-[var(--color-text-muted)]", !lastKnownGoodRelative && "hidden"]}
+          data-hero-last-known
+        >
+          {lastKnownGoodRelative
+            ? `Último dato confiable: hace ${lastKnownGoodRelative}`
+            : ""}
+        </p>
+      </div>
 
       <div class="status-refresh-row">
         {lastUpdatedRelative && (
@@ -383,10 +435,13 @@ const closeCountdownInitial =
       setState("loading", "Actualizando…");
 
       try {
-        const res = await fetch(`/api/snapshot/${slug}`, {
+        const { applyPassRefreshToPage } = await import("@/client/applyPassRefresh");
+
+        const res = await fetch(`/api/refresh/${slug}`, {
           method: "POST",
           cache: "no-store",
           headers: { "Cache-Control": "no-cache", Pragma: "no-cache" },
+          signal: AbortSignal.timeout(15_000),
         });
 
         let data: Record<string, unknown> = {};
@@ -403,11 +458,11 @@ const closeCountdownInitial =
               ? data.message
               : typeof data.error === "string"
                 ? data.error
-                : "No se pudo actualizar.";
+                : "No se pudo actualizar. Intentá de nuevo.";
           throw new Error(msg);
         }
 
-        if (data.view == null) {
+        if (data.view == null || data.statusResult == null) {
           throw new Error("Respuesta inválida del servidor.");
         }
 
@@ -417,10 +472,15 @@ const closeCountdownInitial =
           sessionStorage.removeItem(staleKey);
         }
 
+        applyPassRefreshToPage(
+          slug,
+          data as unknown as import("@/client/applyPassRefresh").PassRefreshEnvelope,
+        );
+
+        document.querySelectorAll("[data-status-countdown-root]").forEach(startCountdown);
+
         setState("success", data.stale === true ? "Listo" : "¡Listo!");
-        window.setTimeout(() => {
-          window.location.reload();
-        }, data.stale === true ? 400 : 200);
+        window.setTimeout(() => setState("idle", "Actualizar"), 2800);
       } catch (e) {
         sessionStorage.removeItem(staleKey);
         console.warn("[StatusHero] Refresh falló:", slug, e);

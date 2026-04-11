@@ -6,6 +6,19 @@ import type { ForecastItemView, PassLatestTweet, PassView } from "@/types/pass-v
 
 export type { ForecastPeriod } from "@/lib/server/forecastParser";
 
+/** Bloque clima en snapshot (null = fuente falló o no aplica en este scrape). */
+export type WeatherSnapshot = {
+  temperatureC: number | null;
+  description: string | null;
+  wind: string | null;
+  visibilityKm: number | null;
+  sunrise: string | null;
+  sunset: string | null;
+  updatedAt: string | null;
+  feelsLikeC?: number | null;
+  humidity?: number | null;
+};
+
 /** Snapshot persistido en `public/snapshots/{slug}.json` (API oficial). */
 export interface PassSnapshot {
   slug: string;
@@ -31,20 +44,11 @@ export interface PassSnapshot {
     status: string;
     clima: string;
     statusUpdatedAt?: string | null;
+    forecastSource?: string;
   };
   /** Complementario (RSS @PasoCRMza); no define el estado del paso. */
   latestTweet: PassLatestTweet | null;
-  weather: {
-    temperatureC: number | null;
-    description: string | null;
-    wind: string | null;
-    visibilityKm: number | null;
-    sunrise: string | null;
-    sunset: string | null;
-    updatedAt: string | null;
-    feelsLikeC?: number | null;
-    humidity?: number | null;
-  };
+  weather: WeatherSnapshot | null;
   contact: string | null;
   lat: number;
   lng: number;
@@ -56,6 +60,12 @@ export interface PassSnapshot {
   motivoInfo?: string | null;
   /** Alertas crudas extraídas del HTML de detalle (complemento al JSON). */
   htmlAlerts?: string[];
+  /** Error de red/parsing en este scrape (no reutilizar estado como vigente). */
+  scrapeError?: string;
+  /** Último scrape con estado operativo confiable (ISO). */
+  lastKnownGoodAt?: string;
+  /** true si falló detalle_consolidado (Pehuenche) u operación equivalente. */
+  operationalStale?: boolean;
 }
 
 /** Snapshots antiguos pueden traer `motivoExtra` en lugar de `motivoInfo`. */
@@ -72,8 +82,7 @@ export function isPassSnapshotShape(o: unknown): o is PassSnapshot {
     typeof r.slug === "string" &&
     typeof r.rawStatus === "string" &&
     typeof r.scrapedAt === "string" &&
-    r.weather !== null &&
-    typeof r.weather === "object" &&
+    (r.weather === null || typeof r.weather === "object") &&
     typeof r.vialidadEstado === "string"
   );
 }
@@ -83,6 +92,26 @@ export function extractTimeFromIso(iso: string | null): string | null {
   const m = iso.match(/T(\d{2}):(\d{2})/);
   if (!m) return null;
   return `${m[1]}:${m[2]}`;
+}
+
+export function weatherSnapshotFromClima(clima: ClimaResponse): WeatherSnapshot {
+  const temp = clima.temperatura;
+  const windStr =
+    temp.wind.direction === "Calma" || temp.wind.speed == null || temp.wind.speed === 0
+      ? "Calma"
+      : `${temp.wind.direction} ${temp.wind.speed} km/h`;
+  return {
+    temperatureC: Number.isFinite(temp.temperature) ? temp.temperature : null,
+    description: temp.weather?.description?.trim() ?? null,
+    wind: windStr,
+    visibilityKm: Number.isFinite(temp.visibility) ? temp.visibility : null,
+    sunrise: extractTimeFromIso(clima.salida_sol),
+    sunset: extractTimeFromIso(clima.puesta_sol),
+    updatedAt: temp.date?.trim() ?? null,
+    feelsLikeC:
+      temp.feels_like != null && Number.isFinite(temp.feels_like) ? temp.feels_like : null,
+    humidity: Number.isFinite(temp.humidity) ? temp.humidity : null,
+  };
 }
 
 function contactFromString(contact: string | null): { phone: string; telHref: string } | undefined {
@@ -111,7 +140,6 @@ export function mapToSnapshot(
   const det = consolidado.detalle;
   const est = det.estado;
   const vial = consolidado.vialidad;
-  const temp = clima.temperatura;
 
   const motivo =
     [est.motivo_cierre, est.motivo_demora, est.observaciones, est.demoras]
@@ -127,11 +155,6 @@ export function mapToSnapshot(
   const htmlAlerts = Array.isArray(options.htmlAlerts)
     ? options.htmlAlerts.filter((x) => typeof x === "string" && x.trim().length > 8)
     : [];
-
-  const windStr =
-    temp.wind.direction === "Calma" || temp.wind.speed == null || temp.wind.speed === 0
-      ? "Calma"
-      : `${temp.wind.direction} ${temp.wind.speed} km/h`;
 
   const fechaSchema = det.fecha_schema?.trim() || null;
 
@@ -149,15 +172,7 @@ export function mapToSnapshot(
     vialidadEstado: typeof vial.estado === "string" ? vial.estado.trim() : "",
     vialidadObservaciones: vial.observaciones?.trim() ?? "",
     latestTweet: null,
-    weather: {
-      temperatureC: Number.isFinite(temp.temperature) ? temp.temperature : null,
-      description: temp.weather?.description?.trim() ?? null,
-      wind: windStr,
-      visibilityKm: Number.isFinite(temp.visibility) ? temp.visibility : null,
-      sunrise: extractTimeFromIso(clima.salida_sol),
-      sunset: extractTimeFromIso(clima.puesta_sol),
-      updatedAt: temp.date?.trim() ?? null,
-    },
+    weather: weatherSnapshotFromClima(clima),
     contact: det.contacto?.trim() || null,
     lat: paso.lat,
     lng: paso.lng,
@@ -187,26 +202,31 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
     visibility: f.visibility ?? undefined,
   }));
 
-  const now = {
-    description: w.description ?? undefined,
-    temperatureC: w.temperatureC ?? undefined,
-    feelsLikeC: w.feelsLikeC != null && Number.isFinite(w.feelsLikeC) ? w.feelsLikeC : undefined,
-    wind: w.wind ?? undefined,
-    visibilityKm: w.visibilityKm ?? undefined,
-    sunrise: w.sunrise ?? undefined,
-    sunset: w.sunset ?? undefined,
-    providerNote: w.updatedAt ?? undefined,
-  };
+  const now =
+    w != null
+      ? {
+          description: w.description ?? undefined,
+          temperatureC: w.temperatureC ?? undefined,
+          feelsLikeC:
+            w.feelsLikeC != null && Number.isFinite(w.feelsLikeC) ? w.feelsLikeC : undefined,
+          wind: w.wind ?? undefined,
+          visibilityKm: w.visibilityKm ?? undefined,
+          sunrise: w.sunrise ?? undefined,
+          sunset: w.sunset ?? undefined,
+          providerNote: w.updatedAt ?? undefined,
+        }
+      : null;
 
   const hasNow =
-    Boolean(now.description) ||
-    now.temperatureC != null ||
-    now.feelsLikeC != null ||
-    Boolean(now.wind) ||
-    now.visibilityKm != null ||
-    Boolean(now.sunrise) ||
-    Boolean(now.sunset) ||
-    Boolean(now.providerNote);
+    now != null &&
+    (Boolean(now.description) ||
+      now.temperatureC != null ||
+      now.feelsLikeC != null ||
+      Boolean(now.wind) ||
+      now.visibilityKm != null ||
+      Boolean(now.sunrise) ||
+      Boolean(now.sunset) ||
+      Boolean(now.providerNote));
 
   const hasWeatherBlock = hasNow || forecastItems.length > 0;
 
@@ -247,13 +267,17 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
       },
     },
     alerts: [],
-    weather: hasWeatherBlock ? { now: hasNow ? now : undefined, forecast: forecastItems } : undefined,
+    weather: hasWeatherBlock ? { now: hasNow ? now! : undefined, forecast: forecastItems } : undefined,
     usefulLinks: [],
     providers: [],
     meta: {
       scrapedAt: snapshot.scrapedAt,
       sourceUrl,
       latestTweet: snapshot.latestTweet ?? null,
+      sources: snapshot.sources,
+      lastKnownGoodAt: snapshot.lastKnownGoodAt,
+      scrapeError: snapshot.scrapeError,
+      operationalStale: snapshot.operationalStale === true,
     },
   };
 }

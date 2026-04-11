@@ -6,6 +6,7 @@ import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
 
 export interface Props {
+  slug: string;
   now?: WeatherNowView;
   forecast: ForecastItemView[];
   scrapedAt?: string;
@@ -14,13 +15,24 @@ export interface Props {
   class?: string;
 }
 
-const { now, forecast, scrapedAt, showNow, showForecast, class: className } = Astro.props;
+const { slug, now, forecast, scrapedAt, showNow, showForecast, class: className } = Astro.props;
 ---
 
 <section
   class:list={["paso-page-weather paso-col paso-col--sticky", className]}
   aria-label="Condiciones climáticas"
+  data-paso-weather-section
+  data-weather-slug={slug}
 >
+  <p
+    class:list={[
+      "mb-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3 py-2 text-[13px] text-[var(--color-text-secondary)]",
+      showNow && now && "hidden",
+    ]}
+    data-paso-weather-unavailable
+  >
+    Clima no disponible
+  </p>
   {
     showNow && now && (
       <WeatherNow

@@ -21,17 +21,15 @@
     "visibilityKm": 15,
     "sunrise": "07:57",
     "sunset": "19:23",
-    "updatedAt": "2026-04-11T09:00:00-03:00"
+    "updatedAt": "2026-04-11T09:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 82
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-11T10:56:19.967Z",
-=======
-  "scrapedAt": "2026-04-11T13:48:51.255Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-11T14:43:56.750Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",

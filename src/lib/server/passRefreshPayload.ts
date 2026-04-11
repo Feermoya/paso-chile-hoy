@@ -1,5 +1,5 @@
 import type { PasoConfig } from "@/data/pasos";
-import type { PassSnapshot } from "@/lib/server/passMapper";
+import { isPassSnapshotShape, type PassSnapshot } from "@/lib/server/passMapper";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import type { PassView } from "@/types/pass-view";
 import type { PassRaw } from "@/types/pass-raw";
@@ -20,11 +20,15 @@ export interface PassPageRefreshPayload {
   hideScheduleInDetails: boolean;
 }
 
-/** Respuesta JSON de GET/POST `/api/snapshot/[slug]` (mismo contrato). */
+/** Respuesta JSON de GET/POST `/api/snapshot/[slug]` y `/api/refresh/[slug]`. */
 export interface PassSnapshotApiEnvelope extends PassPageRefreshPayload {
   stale: boolean;
   refreshFailed: boolean;
   message?: string;
+  /** Snapshot persistido tal como se guardó (Redis/archivo). */
+  snapshot?: PassRaw | PassSnapshot;
+  /** Relativo a `lastKnownGoodAt` del snapshot. */
+  lastKnownGoodRelative?: string;
 }
 
 export function buildPassRefreshPayload(
@@ -50,5 +54,33 @@ export function buildPassRefreshPayload(
     showNow,
     showForecast,
     hideScheduleInDetails: Boolean(scheduleText.trim()),
+  };
+}
+
+export function buildPassSnapshotApiEnvelope(
+  raw: PassRaw | PassSnapshot,
+  paso: PasoConfig,
+  flags: {
+    stale?: boolean;
+    refreshFailed?: boolean;
+    message?: string;
+  } = {},
+): PassSnapshotApiEnvelope {
+  const base = buildPassRefreshPayload(raw, paso);
+  const snapShape = isPassSnapshotShape(raw);
+  const stale =
+    flags.stale === true || (snapShape && raw.operationalStale === true);
+  const lastKnownGoodRelative =
+    snapShape && raw.lastKnownGoodAt?.trim()
+      ? formatRelativeTimeAgo(raw.lastKnownGoodAt.trim())
+      : undefined;
+
+  return {
+    ...base,
+    stale,
+    refreshFailed: flags.refreshFailed === true,
+    ...(flags.message ? { message: flags.message } : {}),
+    snapshot: raw,
+    ...(lastKnownGoodRelative ? { lastKnownGoodRelative } : {}),
   };
 }

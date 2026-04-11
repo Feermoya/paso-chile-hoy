@@ -5,13 +5,22 @@ import { fetchWttrClimaForPaso } from "@/lib/server/wttrClient";
 import { scrapeAguaNegraStatus } from "@/lib/server/aguaNegraScraper";
 import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
-import { extractTimeFromIso, mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
+import {
+  extractTimeFromIso,
+  isPassSnapshotShape,
+  mapToSnapshot,
+  weatherSnapshotFromClima,
+  type PassSnapshot,
+} from "@/lib/server/passMapper";
+import { refreshPehuencheSnapshot } from "@/lib/server/pehuencheSnapshot";
 import { checkSnapshotFreshness } from "@/lib/server/utils/snapshotFreshnessCheck";
 import {
   readPassSnapshot,
   writePassSnapshot,
 } from "@/lib/server/storage/passSnapshotStorage";
 import type { PassRaw } from "@/types/pass-raw";
+
+const GOV_AR = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 
 /** En producción, si el JSON tiene más de esto, se intenta refrescar desde la API. */
 const SNAPSHOT_STALE_MAX_MINUTES = 120;
@@ -49,42 +58,110 @@ export async function readPersistedSnapshot(slug: string): Promise<PassRaw | Pas
   return readPassSnapshot(slug);
 }
 
-/** Agua Negra: solo sitio de San Juan + wttr.in (sin API nacional ni SMN). */
+/**
+ * Agua Negra: estado solo desde San Juan; clima wttr.in (fallback SMN); pronóstico wttr o HTML ruta/27;
+ * vialidad desde San Juan o, si falta, solo bloque vialidad de Argentina.gob.ar (nunca rawStatus desde AR).
+ */
 async function refreshAguaNegraFromSanJuan(cfg: PasoConfig): Promise<PassSnapshot> {
-  console.log("\n[snapshot] === AGUA NEGRA (San Juan) ===");
+  console.log("\n[snapshot] === AGUA NEGRA (San Juan + fallbacks) ===");
+  const prevRaw = await readPassSnapshot(cfg.slug);
+  const prev = prevRaw && isPassSnapshotShape(prevRaw) ? prevRaw : null;
+
   const sjData = await scrapeAguaNegraStatus();
+  const scrapedAt = new Date().toISOString();
+  const statusFailed = Boolean(sjData.scrapeError);
 
   let wttr: Awaited<ReturnType<typeof fetchWttrClimaForPaso>> = null;
   if (cfg.wttrQuery) {
     wttr = await fetchWttrClimaForPaso(cfg.wttrQuery, cfg.lat, cfg.lng);
   }
-  if (!wttr) {
-    console.warn("[snapshot] wttr.in falló para agua-negra — clima sin datos");
+
+  let weather: PassSnapshot["weather"] = null;
+  let forecast = wttr?.forecast ?? [];
+  let climaLabel = "sin_datos";
+  let forecastSource: string | undefined;
+
+  if (!statusFailed) {
+    if (wttr) {
+      const temp = wttr.clima.temperatura;
+      const windStr =
+        temp.wind.direction === "Calma" || temp.wind.speed == null || temp.wind.speed === 0
+          ? "Calma"
+          : `${temp.wind.direction} a ${temp.wind.speed} km/h`;
+      weather = {
+        temperatureC: Number.isFinite(temp.temperature) ? temp.temperature : null,
+        description: temp.weather?.description?.trim() ?? null,
+        wind: windStr,
+        visibilityKm: Number.isFinite(temp.visibility) ? temp.visibility : null,
+        sunrise: extractTimeFromIso(wttr.clima.salida_sol),
+        sunset: extractTimeFromIso(wttr.clima.puesta_sol),
+        updatedAt: temp.date?.trim() ?? null,
+        feelsLikeC:
+          temp.feels_like != null && Number.isFinite(temp.feels_like) ? temp.feels_like : null,
+        humidity: Number.isFinite(temp.humidity) ? temp.humidity : null,
+      };
+      climaLabel = "https://wttr.in";
+    } else {
+      console.warn("[snapshot] wttr.in falló para agua-negra — intentando SMN");
+      try {
+        const smn = await fetchClima(String(cfg.lat), String(cfg.lng));
+        weather = weatherSnapshotFromClima(smn);
+        climaLabel = `${GOV_AR}/detalle_clima/${cfg.lat}/${cfg.lng}`;
+      } catch {
+        weather = null;
+      }
+    }
   }
 
-  const scrapedAt = new Date().toISOString();
-  const temp = wttr?.clima.temperatura;
+  if (!statusFailed && forecast.length === 0) {
+    try {
+      const htmlArg = await fetchDetailHTML(27, "Agua-Negra");
+      const fromHtml = parseForecastFromHTML(htmlArg);
+      if (fromHtml.length) {
+        forecast = fromHtml;
+        forecastSource = `${GOV_AR}/detalle/ruta/27/Agua-Negra`;
+      }
+    } catch {
+      /* ignore */
+    }
+  }
 
-  const windStr =
-    !temp ||
-    temp.wind.direction === "Calma" ||
-    temp.wind.speed == null ||
-    temp.wind.speed === 0
-      ? "Calma"
-      : `${temp.wind.direction} a ${temp.wind.speed} km/h`;
+  let vialidadRuta = sjData.vialidadRuta?.replace(/^RN\s+/i, "").trim() ?? "";
+  let vialidadTramo = "";
+  let vialidadEstado = sjData.vialidadEstado?.trim() || "";
+  let vialidadObservaciones = sjData.vialidadObs?.trim() ?? "";
 
-  const rutaNum = sjData.vialidadRuta?.replace(/^RN\s+/i, "").trim() ?? "";
+  if (!vialidadEstado || vialidadEstado === "") {
+    try {
+      const cons = await fetchConsolidado(27);
+      const v = cons.vialidad;
+      if (!vialidadRuta && typeof v.ruta === "string") vialidadRuta = v.ruta.trim();
+      if (!vialidadEstado && typeof v.estado === "string") vialidadEstado = v.estado.trim();
+      if (!vialidadTramo && typeof v.tramo === "string") vialidadTramo = v.tramo.trim();
+      if (!vialidadObservaciones) vialidadObservaciones = v.observaciones?.trim() ?? "";
+    } catch {
+      /* ignore */
+    }
+  }
 
   const htmlAlerts: string[] = [];
-  if (sjData.statusDetail?.trim()) htmlAlerts.push(sjData.statusDetail.trim());
-  if (sjData.scheduleDays?.trim()) {
-    htmlAlerts.push(`Días de apertura: ${sjData.scheduleDays.trim()}`);
-  }
-  if (sjData.restriccionPasajeros?.trim()) htmlAlerts.push(sjData.restriccionPasajeros.trim());
-  if (sjData.restriccionVelocidad?.trim()) {
-    htmlAlerts.push(`Velocidad ${sjData.restriccionVelocidad.trim()}`);
+  if (!statusFailed) {
+    if (sjData.statusDetail?.trim()) htmlAlerts.push(sjData.statusDetail.trim());
+    if (sjData.scheduleDays?.trim()) {
+      htmlAlerts.push(`Días de apertura: ${sjData.scheduleDays.trim()}`);
+    }
+    if (sjData.restriccionPasajeros?.trim()) htmlAlerts.push(sjData.restriccionPasajeros.trim());
+    if (sjData.restriccionVelocidad?.trim()) {
+      htmlAlerts.push(`Velocidad ${sjData.restriccionVelocidad.trim()}`);
+    }
   }
   const htmlAlertsFiltered = htmlAlerts.filter((x) => x.trim().length > 8);
+
+  const lastKnownGoodAt =
+    !statusFailed && sjData.rawStatus !== "SIN_DATOS"
+      ? scrapedAt
+      : prev?.lastKnownGoodAt ??
+        (prev?.rawStatus && prev.rawStatus !== "SIN_DATOS" ? prev.scrapedAt : undefined);
 
   const snapshot: PassSnapshot = {
     slug: cfg.slug,
@@ -98,43 +175,33 @@ async function refreshAguaNegraFromSanJuan(cfg: PasoConfig): Promise<PassSnapsho
     motivo: null,
     motivoInfo: null,
     htmlAlerts: htmlAlertsFiltered.length ? htmlAlertsFiltered : undefined,
-    vialidadRuta: rutaNum,
-    vialidadTramo: "",
-    vialidadEstado: sjData.vialidadEstado?.trim() || "",
-    vialidadObservaciones: sjData.vialidadObs?.trim() ?? "",
-    restriccionPasajeros: sjData.restriccionPasajeros,
-    restriccionVelocidad: sjData.restriccionVelocidad,
+    vialidadRuta,
+    vialidadTramo,
+    vialidadEstado,
+    vialidadObservaciones,
+    restriccionPasajeros: statusFailed ? null : sjData.restriccionPasajeros,
+    restriccionVelocidad: statusFailed ? null : sjData.restriccionVelocidad,
     latestTweet: null,
-    weather: {
-      temperatureC: temp && Number.isFinite(temp.temperature) ? temp.temperature : null,
-      description: temp?.weather?.description?.trim() ?? null,
-      wind: wttr ? windStr : null,
-      visibilityKm: temp && Number.isFinite(temp.visibility) ? temp.visibility : null,
-      sunrise: extractTimeFromIso(wttr?.clima.salida_sol ?? null),
-      sunset: extractTimeFromIso(wttr?.clima.puesta_sol ?? null),
-      updatedAt: temp?.date?.trim() ?? null,
-      feelsLikeC:
-        temp && temp.feels_like != null && Number.isFinite(temp.feels_like)
-          ? temp.feels_like
-          : null,
-      humidity: temp && Number.isFinite(temp.humidity) ? temp.humidity : null,
-    },
+    weather: statusFailed ? null : weather,
     contact: null,
     lat: cfg.lat,
     lng: cfg.lng,
     altitudeM: cfg.altitudeM,
     scrapedAt,
-    forecast: wttr?.forecast ?? [],
+    forecast: statusFailed ? [] : forecast,
     sources: {
-      status: sjData.rawStatus !== "SIN_DATOS" ? "aguanegra.sanjuan.gob.ar" : "sin_datos",
-      clima: wttr ? "wttr.in" : "sin_datos",
+      status: "aguanegra.sanjuan.gob.ar",
+      clima: climaLabel,
       statusUpdatedAt: sjData.statusUpdatedAt,
+      ...(forecastSource ? { forecastSource } : {}),
     },
+    scrapeError: sjData.scrapeError ?? undefined,
+    lastKnownGoodAt,
   };
 
   await writePassSnapshot(cfg.slug, snapshot);
   console.log(
-    `[snapshot] agua-negra ✅ status=${snapshot.rawStatus} | temp=${snapshot.weather?.temperatureC}°C | schedule=${snapshot.schedule}`,
+    `[snapshot] agua-negra ✅ status=${snapshot.rawStatus} | temp=${snapshot.weather?.temperatureC ?? "—"}°C | schedule=${snapshot.schedule}`,
   );
   return snapshot;
 }
@@ -150,6 +217,12 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
 
   if (slug === "agua-negra") {
     return refreshAguaNegraFromSanJuan(cfg);
+  }
+
+  if (slug === "pehuenche") {
+    const snap = await refreshPehuencheSnapshot(cfg);
+    await writePassSnapshot(slug, snap);
+    return snap;
   }
 
   const [consolidado, htmlDetail] = await Promise.all([
