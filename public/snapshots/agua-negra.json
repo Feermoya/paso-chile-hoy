@@ -29,7 +29,7 @@
     "visibilityKm": 10,
     "sunrise": "07:54",
     "sunset": "19:23",
-    "updatedAt": "2026-04-11T01:05:37.934Z",
+    "updatedAt": "2026-04-11T01:23:47.118Z",
     "feelsLikeC": 13,
     "humidity": 54
   },
@@ -37,7 +37,7 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-11T01:05:37.934Z",
+  "scrapedAt": "2026-04-11T01:23:47.118Z",
   "forecast": [
     {
       "period": "Mañana por la mañana",

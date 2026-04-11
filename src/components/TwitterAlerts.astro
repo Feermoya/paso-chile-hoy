@@ -1,8 +1,7 @@
 ---
-import { readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
-import type { PassAlert } from "@/utils/twitterScraper";
-import { toXComUrl } from "@/utils/twitterScraper";
+import type { PassTwitterAlert } from "@/lib/server/social/twitterTypes";
+import { readTweetsSnapshotFile } from "@/lib/server/social/twitterSnapshotFile";
+import { toXComUrl } from "@/lib/server/social/twitterUrl";
 
 interface Props {
   passSlug: string;
@@ -10,27 +9,18 @@ interface Props {
 
 const { passSlug } = Astro.props;
 
-const tweetsPath = join(process.cwd(), "public", "snapshots", "tweets.json");
-let relevantAlerts: PassAlert[] = [];
-
-if (existsSync(tweetsPath)) {
-  try {
-    const data = JSON.parse(readFileSync(tweetsPath, "utf-8")) as {
-      tweets?: PassAlert[];
-    };
-    const tweets = data.tweets ?? [];
-    relevantAlerts = tweets.filter((t) => t.passesmentioned.includes(passSlug)).slice(0, 2);
-  } catch {
-    /* fuente secundaria */
-  }
-}
+const snap = readTweetsSnapshotFile();
+const pool = snap?.passAlerts ?? [];
+let relevantAlerts: PassTwitterAlert[] = pool
+  .filter((t) => t.passesmentioned.includes(passSlug))
+  .slice(0, 2);
 
 if (relevantAlerts.length === 0) {
   return;
 }
 
 const alertColors: Record<
-  PassAlert["alertType"],
+  PassTwitterAlert["alertType"],
   { border: string; bg: string; icon: string }
 > = {
   cierre: {

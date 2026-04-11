@@ -1,12 +1,13 @@
 /**
  * Scraper standalone para GitHub Actions / local.
- * Escribe `public/snapshots/{slug}.json` (API oficial consolidado + clima).
+ * 1) Snapshot de @PasoCRMza → `public/snapshots/tweets.json`
+ * 2) Por cada paso: `public/snapshots/{slug}.json`
  */
 import { writeFileSync } from "node:fs";
 import { createJiti } from "jiti";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { fetchTweetsSnapshotForScrape } from "../src/utils/twitterScraper.ts";
+import { fetchLatestTweetSnapshot } from "../src/lib/server/social/twitterLatestScraper.ts";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const jiti = createJiti(import.meta.url, {
@@ -30,6 +31,31 @@ const { refreshAndPersistSnapshot } = jiti(
 };
 
 async function main(): Promise<void> {
+  try {
+    console.log("[scrape] Fetching @PasoCRMza snapshot…");
+    const { latestTweet, passAlerts } = await fetchLatestTweetSnapshot();
+    const outPath = path.join(root, "public", "snapshots", "tweets.json");
+    const updatedAt = new Date().toISOString();
+    writeFileSync(
+      outPath,
+      JSON.stringify(
+        {
+          latestTweet: latestTweet ?? null,
+          updatedAt,
+          passAlerts,
+        },
+        null,
+        2,
+      ),
+      "utf-8",
+    );
+    console.log(
+      `[scrape] tweets.json saved (latestTweet=${latestTweet ? "yes" : "null"}, passAlerts=${passAlerts.length})`,
+    );
+  } catch (err) {
+    console.error("[scrape] Twitter snapshot failed (non-critical):", err);
+  }
+
   const slugs = listPassSlugs();
   let failed = false;
 
@@ -51,32 +77,6 @@ async function main(): Promise<void> {
 
   if (failed) {
     process.exit(1);
-  }
-
-  try {
-    console.log("[scrape] Fetching tweets from @PasoCRMza…");
-    const { tweets, latestTweet } = await fetchTweetsSnapshotForScrape();
-    const outPath = path.join(root, "public", "snapshots", "tweets.json");
-    const updatedAt = new Date().toISOString();
-    writeFileSync(
-      outPath,
-      JSON.stringify(
-        {
-          tweets,
-          latestTweet: latestTweet ?? null,
-          fetchedAt: updatedAt,
-          updatedAt,
-        },
-        null,
-        2,
-      ),
-      "utf-8",
-    );
-    console.log(
-      `[scrape] tweets.json saved (${tweets.length} items${latestTweet ? `, home tweet: ${latestTweet.text.slice(0, 48)}…` : ""})`,
-    );
-  } catch (err) {
-    console.error("[scrape] Twitter fetch failed (non-critical):", err);
   }
 
   console.log("[scrape] Done.");

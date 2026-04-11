@@ -1,0 +1,77 @@
+---
+import type { LatestTweetSnapshot } from "@/lib/server/social/twitterTypes";
+import { tweetSentiment } from "@/utils/tweetSentiment";
+
+export interface Props {
+  tweet: LatestTweetSnapshot;
+}
+
+const { tweet } = Astro.props;
+
+const sentiment = tweetSentiment(tweet.text);
+const tweetAgeMs = Date.now() - new Date(tweet.date).getTime();
+const isOlderThan6Hours =
+  Number.isFinite(tweetAgeMs) && tweetAgeMs > 6 * 60 * 60 * 1000;
+
+function timeAgo(d: string): string {
+  const ms = Date.now() - new Date(d).getTime();
+  if (!Number.isFinite(ms)) return "";
+  const min = Math.floor(ms / 60000);
+  const h = Math.floor(ms / 3600000);
+  if (h < 1) return `hace ${min}min`;
+  if (h < 24) return `hace ${h}h`;
+  return `hace ${Math.floor(h / 24)}d`;
+}
+
+const color = {
+  habilitado: "var(--color-open)",
+  cerrado: "var(--color-closed)",
+  condicionado: "var(--color-conditional)",
+  info: "var(--color-accent)",
+}[sentiment];
+---
+
+<a
+  href={tweet.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="tweet-card anim-section"
+>
+  <div class="tweet-card-header">
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      style={`color:${color}`}
+    >
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      />
+    </svg>
+    <span class="tweet-handle">@PasoCRMza</span>
+    <span class="tweet-ago">{timeAgo(tweet.date)}</span>
+    {
+      sentiment !== "info" && (
+        <span class="tweet-sentiment" style={`color:${color}`}>
+          {sentiment === "habilitado" && "✓ Habilitado"}
+          {sentiment === "cerrado" && "✕ Cerrado"}
+          {sentiment === "condicionado" && "⚠ Condicionado"}
+        </span>
+      )
+    }
+  </div>
+  <p class="tweet-text">{tweet.text}</p>
+  {
+    isOlderThan6Hours && (
+      <p class="tweet-stale-warning">
+        Este aviso tiene más de 6 horas. Verificá en gob.ar
+      </p>
+    )
+  }
+  <div class="tweet-footer">
+    <span class="tweet-disclaimer">Fuente complementaria a la información oficial · verificar en gob.ar</span>
+    <span class="tweet-cta">Ver en X →</span>
+  </div>
+</a>

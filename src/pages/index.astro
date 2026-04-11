@@ -1,10 +1,8 @@
 ---
 export const prerender = false;
 
-import { readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
-import LatestTweet from "@/components/LatestTweet.astro";
-import TwitterHomeFallback from "@/components/TwitterHomeFallback.astro";
+import HomeLatestTweetCard from "@/components/home/HomeLatestTweetCard.astro";
+import HomeLatestTweetFallback from "@/components/home/HomeLatestTweetFallback.astro";
 import PasoCard from "@/components/PasoCard.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
@@ -15,30 +13,9 @@ import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
-import type { PassLatestTweet } from "@/types/pass-view";
-import {
-  fetchHomeLatestTweetLive,
-  resolveHomeLatestTweet,
-  type PassAlert,
-} from "@/utils/twitterScraper";
+import { readHomeLatestTweetFromSnapshot } from "@/lib/server/social/twitterSnapshotFile";
 
-let latestTweet: PassLatestTweet | null = null;
-try {
-  const tweetsPath = join(process.cwd(), "public", "snapshots", "tweets.json");
-  if (existsSync(tweetsPath)) {
-    const data = JSON.parse(readFileSync(tweetsPath, "utf-8")) as {
-      latestTweet?: PassLatestTweet | null;
-      tweets?: PassAlert[];
-    };
-    latestTweet = resolveHomeLatestTweet(data);
-  }
-} catch {
-  latestTweet = null;
-}
-
-if (!latestTweet) {
-  latestTweet = await fetchHomeLatestTweetLive();
-}
+const latestTweet = readHomeLatestTweetFromSnapshot();
 
 type CardEntry = {
   slug: string;
@@ -154,7 +131,7 @@ const homeSchema = {
 
     <section class="home-twitter" aria-label="Últimas novedades">
       <p class="section-label">Últimas novedades de @PasoCRMza</p>
-      {latestTweet ? <LatestTweet tweet={latestTweet} /> : <TwitterHomeFallback />}
+      {latestTweet ? <HomeLatestTweetCard tweet={latestTweet} /> : <HomeLatestTweetFallback />}
     </section>
   </div>
 
