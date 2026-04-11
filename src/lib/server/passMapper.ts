@@ -190,6 +190,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
   const now = {
     description: w.description ?? undefined,
     temperatureC: w.temperatureC ?? undefined,
+    feelsLikeC: w.feelsLikeC != null && Number.isFinite(w.feelsLikeC) ? w.feelsLikeC : undefined,
     wind: w.wind ?? undefined,
     visibilityKm: w.visibilityKm ?? undefined,
     sunrise: w.sunrise ?? undefined,
@@ -200,6 +201,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
   const hasNow =
     Boolean(now.description) ||
     now.temperatureC != null ||
+    now.feelsLikeC != null ||
     Boolean(now.wind) ||
     now.visibilityKm != null ||
     Boolean(now.sunrise) ||

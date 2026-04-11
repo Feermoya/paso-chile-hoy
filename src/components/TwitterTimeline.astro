@@ -1,166 +1,44 @@
 ---
-// Widget oficial de X/Twitter — se actualiza solo, sin scraping
-// https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview
+// Card estática hacia @PasoCRMza — sin widgets.js, sin 429
 ---
 
-<section class="twitter-section" aria-label="Últimas novedades de @PasoCRMza">
-  <div class="twitter-section-header">
-    <div class="twitter-section-label">
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        class="twitter-x-icon"
-        aria-hidden="true"
-      >
+<section class="twitter-section-x" aria-label="Novedades en X">
+  <a
+    href="https://x.com/PasoCRMza"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="x-card"
+    aria-label="Ver actualizaciones oficiales de @PasoCRMza en X"
+  >
+    <div class="x-card-icon-wrap" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="x-card-x-logo">
         <path
           d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
         ></path>
       </svg>
-      <span class="live-pulse-dot live-pulse-dot--brand" aria-hidden="true"></span>
-      <span>Últimas novedades de @PasoCRMza</span>
-    </div>
-  </div>
-
-  <div class="twitter-widget-wrap" id="twitter-widget-wrap">
-    <div class="twitter-skeleton" id="twitter-skeleton" aria-hidden="true">
-      <div class="twitter-skeleton-tweet">
-        <div class="sk-line sk-line--short"></div>
-        <div class="sk-line sk-line--long"></div>
-        <div class="sk-line sk-line--medium"></div>
-        <div class="sk-line sk-line--short"></div>
-      </div>
-      <div class="twitter-skeleton-tweet">
-        <div class="sk-line sk-line--long"></div>
-        <div class="sk-line sk-line--medium"></div>
-        <div class="sk-line sk-line--short"></div>
-      </div>
     </div>
 
-    <a
-      class="twitter-timeline"
-      id="twitter-timeline-embed"
-      href="https://twitter.com/PasoCRMza"
-      data-tweet-limit="3"
-      data-chrome="noheader nofooter noborders transparent"
-      data-link-color="#5BAEFF"
-      data-border-color="transparent"
-      data-dnt="true"
-      data-lang="es"
-      data-height="420"
-      aria-label="Timeline de @PasoCRMza en X"
-    >
-      Tweets de @PasoCRMza
-    </a>
-  </div>
+    <div class="x-card-body">
+      <p class="x-card-handle">@PasoCRMza</p>
+      <p class="x-card-desc">
+        Seguí las novedades oficiales del paso en X. Alertas, habilitaciones y actualizaciones en tiempo
+        real.
+      </p>
+    </div>
 
-  <p class="twitter-fallback-link" id="twitter-fallback" hidden>
-    <a
-      href="https://x.com/PasoCRMza"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="twitter-direct-link"
-    >
-      Ver actualizaciones en X →
-    </a>
-  </p>
+    <div class="x-card-cta" aria-hidden="true">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M7 17L17 7M17 7H7M17 7v10"></path>
+      </svg>
+    </div>
+  </a>
 </section>
-
-<script is:inline>
-  (function () {
-    const embed = document.getElementById("twitter-timeline-embed");
-    const skeleton = document.getElementById("twitter-skeleton");
-    const fallback = document.getElementById("twitter-fallback");
-
-    if (!embed) return;
-
-    function getCurrentTheme() {
-      const htmlTheme = document.documentElement.getAttribute("data-theme");
-      if (htmlTheme === "light" || htmlTheme === "dark") return htmlTheme;
-      try {
-        const t = localStorage.getItem("pch-theme");
-        if (t === "light" || t === "dark") return t;
-      } catch (e) {
-        /* ignore */
-      }
-      return "light";
-    }
-
-    const theme = getCurrentTheme();
-    embed.setAttribute("data-theme", theme);
-
-    const TIMEOUT_MS = 10000;
-    let loaded = false;
-
-    const timeout = setTimeout(function () {
-      if (!loaded) {
-        if (skeleton) skeleton.style.display = "none";
-        if (fallback) fallback.hidden = false;
-        console.warn("[twitter] Widget tardó demasiado — mostrando link de respaldo");
-      }
-    }, TIMEOUT_MS);
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.defer = true;
-    script.src = "https://platform.twitter.com/widgets.js";
-
-    script.onload = function () {
-      loaded = true;
-      clearTimeout(timeout);
-
-      if (window.twttr && window.twttr.ready) {
-        window.twttr.ready(function (twttr) {
-          twttr.events.bind("rendered", function () {
-            if (skeleton) {
-              skeleton.style.opacity = "0";
-              setTimeout(function () {
-                skeleton.style.display = "none";
-              }, 300);
-            }
-          });
-        });
-      } else {
-        setTimeout(function () {
-          if (skeleton) skeleton.style.display = "none";
-        }, 2000);
-      }
-    };
-
-    script.onerror = function () {
-      loaded = true;
-      clearTimeout(timeout);
-      if (skeleton) skeleton.style.display = "none";
-      if (fallback) fallback.hidden = false;
-      console.warn("[twitter] No se pudo cargar el widget de X");
-    };
-
-    document.body.appendChild(script);
-
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        if (mutation.attributeName === "data-theme") {
-          const newTheme = document.documentElement.getAttribute("data-theme") || "light";
-          embed.setAttribute("data-theme", newTheme);
-
-          const wrap = document.getElementById("twitter-widget-wrap");
-          if (!wrap || !window.twttr || !window.twttr.widgets) {
-            return;
-          }
-
-          const iframe = wrap.querySelector("iframe");
-          if (iframe) iframe.remove();
-          embed.setAttribute("data-theme", newTheme);
-          try {
-            window.twttr.widgets.load(wrap);
-          } catch (e) {
-            console.warn("[twitter] No se pudo recargar el widget:", e);
-          }
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, { attributes: true });
-  })();
-</script>

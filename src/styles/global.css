@@ -195,7 +195,6 @@ a[href]:where(
 
 /*
  * Cards de la home: son <a>; sin esto, el color de marca heredado deja badges y títulos en azul.
- * Sin @layer para ganar a cualquier regla en capas inferiores.
  */
 a.paso-card-v2,
 a.paso-card-v2:visited {
@@ -208,169 +207,13 @@ a.paso-card-v2:focus-visible {
   color: var(--color-text-primary);
 }
 
-a.paso-card-v2 .pcv2-more {
+a.paso-card-v2 .pcv2-cta {
   color: var(--brand);
 }
 
-a.paso-card-v2:hover .pcv2-more,
-a.paso-card-v2:focus-visible .pcv2-more {
+a.paso-card-v2:hover .pcv2-cta,
+a.paso-card-v2:focus-visible .pcv2-cta {
   color: #7ccbff;
-}
-
-/* Fondos, borde, sombra y badges de las cards home (fuera de @layer → gana a Tailwind capas) */
-a.paso-card-v2 {
-  box-sizing: border-box;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
-}
-
-:root[data-theme="light"] a.paso-card-v2 {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-a.paso-card-v2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 16px;
-  bottom: 16px;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-}
-
-a.paso-card-v2.paso-card-v2--abierto::before {
-  background: var(--color-open);
-}
-
-a.paso-card-v2.paso-card-v2--cerrado::before {
-  background: var(--color-closed);
-}
-
-a.paso-card-v2.paso-card-v2--condicionado::before {
-  background: var(--color-conditional);
-}
-
-a.paso-card-v2.paso-card-v2--sin_datos::before {
-  background: var(--color-unknown);
-}
-
-a.paso-card-v2.paso-card-v2--abierto {
-  background: rgba(61, 214, 140, 0.08);
-  border: 1.5px solid rgba(61, 214, 140, 0.25);
-}
-
-a.paso-card-v2.paso-card-v2--cerrado {
-  background: rgba(224, 85, 85, 0.08);
-  border: 1.5px solid rgba(224, 85, 85, 0.25);
-}
-
-a.paso-card-v2.paso-card-v2--condicionado {
-  background: rgba(240, 168, 48, 0.08);
-  border: 1.5px solid rgba(240, 168, 48, 0.25);
-}
-
-a.paso-card-v2.paso-card-v2--sin_datos {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1.5px solid var(--color-border-default);
-}
-
-:root[data-theme="light"] a.paso-card-v2.paso-card-v2--abierto {
-  background: #f0fbf6;
-  border: 1.5px solid #3dd68c;
-}
-
-:root[data-theme="light"] a.paso-card-v2.paso-card-v2--cerrado {
-  background: #fef2f2;
-  border: 1.5px solid #e05555;
-}
-
-:root[data-theme="light"] a.paso-card-v2.paso-card-v2--condicionado {
-  background: #fffbeb;
-  border: 1.5px solid #f0a830;
-}
-
-:root[data-theme="light"] a.paso-card-v2.paso-card-v2--sin_datos {
-  background: #f9fafb;
-  border: 1.5px solid rgba(0, 0, 0, 0.12);
-}
-
-a.paso-card-v2 .pcv2-badge--abierto {
-  color: #3dd68c;
-  background: rgba(61, 214, 140, 0.15);
-  border: 1px solid rgba(61, 214, 140, 0.3);
-}
-
-a.paso-card-v2 .pcv2-badge--abierto::before {
-  background: #3dd68c;
-}
-
-a.paso-card-v2 .pcv2-badge--cerrado {
-  color: #e05555;
-  background: rgba(224, 85, 85, 0.15);
-  border: 1px solid rgba(224, 85, 85, 0.3);
-}
-
-a.paso-card-v2 .pcv2-badge--cerrado::before {
-  background: #e05555;
-}
-
-a.paso-card-v2 .pcv2-badge--condicionado {
-  color: #f0a830;
-  background: rgba(240, 168, 48, 0.15);
-  border: 1px solid rgba(240, 168, 48, 0.3);
-}
-
-a.paso-card-v2 .pcv2-badge--condicionado::before {
-  background: #f0a830;
-}
-
-a.paso-card-v2 .pcv2-badge--sin_datos {
-  color: var(--color-text-muted);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-border-subtle);
-}
-
-a.paso-card-v2 .pcv2-badge--sin_datos::before {
-  background: var(--color-text-muted);
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--abierto {
-  color: #065f46;
-  background: #d1fae5;
-  border-color: #34d399;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--abierto::before {
-  background: #10b981;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--cerrado {
-  color: #991b1b;
-  background: #fee2e2;
-  border-color: #f87171;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--cerrado::before {
-  background: #ef4444;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--condicionado {
-  color: #92400e;
-  background: #fef3c7;
-  border-color: #fbbf24;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--condicionado::before {
-  background: #f59e0b;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--sin_datos {
-  color: #374151;
-  background: #e5e7eb;
-  border-color: #9ca3af;
-}
-
-:root[data-theme="light"] a.paso-card-v2 .pcv2-badge--sin_datos::before {
-  background: #6b7280;
 }
 
 .link-branded {
@@ -541,10 +384,48 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
 
 @keyframes card-enter {
   from {
-    transform: translateY(12px);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.88);
+  }
+}
+
+@keyframes dot-pulse-green {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+}
+
+@keyframes dot-pulse-amber {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.75);
   }
 }
 
@@ -1937,26 +1818,23 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     }
   }
 
-  .pasos-grid {
+  .pasos-grid.pcv2-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  @media (min-width: 640px) {
-    .pasos-grid {
-      grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 480px) {
+    .pasos-grid.pcv2-cards-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
     }
   }
 
   @media (min-width: 900px) {
-    .pasos-grid {
+    .pasos-grid.pcv2-cards-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
-
-  .pasos-grid.pcv2-cards-grid {
-    gap: 16px;
   }
 
   .home-twitter {
@@ -2213,22 +2091,24 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
 
   /* Paso cards — home v2 */
   .paso-card-v2 {
-    border-radius: 20px;
-    padding: 24px;
-    text-decoration: none;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    min-height: 200px;
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease;
+    gap: 10px;
+    padding: 20px 20px 16px;
+    border-radius: 20px;
+    border: 1.5px solid transparent;
+    text-decoration: none;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.18s ease,
+      border-color 0.18s ease;
+    min-height: 220px;
     position: relative;
     overflow: hidden;
     animation: card-enter 0.3s ease both;
-    /* Evita que el fondo del enlace quede por debajo del estado */
     background-clip: padding-box;
   }
 
@@ -2245,37 +2125,64 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
   }
 
   .paso-card-v2:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-
-  :root[data-theme="light"] .paso-card-v2:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
   }
 
   .paso-card-v2:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 
-  /* Fondo y borde siempre visibles (no solo en hover) */
+  a.paso-card-v2:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
+
+  a.paso-card-v2:active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  :root[data-theme="light"] a.paso-card-v2:active::after {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
   .paso-card-v2--abierto {
-    background: rgba(61, 214, 140, 0.08);
-    border: 1.5px solid rgba(61, 214, 140, 0.25);
+    background: rgba(61, 214, 140, 0.07);
+    border-color: rgba(61, 214, 140, 0.3);
+  }
+
+  .paso-card-v2--abierto:hover {
+    box-shadow: 0 8px 32px rgba(61, 214, 140, 0.15);
+    border-color: rgba(61, 214, 140, 0.5);
   }
 
   .paso-card-v2--cerrado {
-    background: rgba(224, 85, 85, 0.08);
-    border: 1.5px solid rgba(224, 85, 85, 0.25);
+    background: rgba(224, 85, 85, 0.07);
+    border-color: rgba(224, 85, 85, 0.3);
+  }
+
+  .paso-card-v2--cerrado:hover {
+    box-shadow: 0 8px 32px rgba(224, 85, 85, 0.15);
+    border-color: rgba(224, 85, 85, 0.5);
   }
 
   .paso-card-v2--condicionado {
-    background: rgba(240, 168, 48, 0.08);
-    border: 1.5px solid rgba(240, 168, 48, 0.25);
+    background: rgba(240, 168, 48, 0.07);
+    border-color: rgba(240, 168, 48, 0.3);
+  }
+
+  .paso-card-v2--condicionado:hover {
+    box-shadow: 0 8px 32px rgba(240, 168, 48, 0.15);
+    border-color: rgba(240, 168, 48, 0.5);
   }
 
   .paso-card-v2--sin_datos {
     background: rgba(255, 255, 255, 0.03);
-    border: 1.5px solid var(--color-border-default);
+    border-color: var(--color-border-subtle);
   }
 
   .paso-card-v2--disabled {
@@ -2285,46 +2192,63 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     border: 1.5px solid var(--color-border-subtle);
   }
 
+  .paso-card-v2--disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
   :root[data-theme="light"] .paso-card-v2--abierto {
     background: #f0fbf6;
-    border: 1.5px solid #3dd68c;
+    border-color: #3dd68c;
+  }
+
+  :root[data-theme="light"] .paso-card-v2--abierto:hover {
+    box-shadow: 0 6px 24px rgba(61, 214, 140, 0.2);
   }
 
   :root[data-theme="light"] .paso-card-v2--cerrado {
     background: #fef2f2;
-    border: 1.5px solid #e05555;
+    border-color: #e05555;
+  }
+
+  :root[data-theme="light"] .paso-card-v2--cerrado:hover {
+    box-shadow: 0 6px 24px rgba(224, 85, 85, 0.18);
   }
 
   :root[data-theme="light"] .paso-card-v2--condicionado {
     background: #fffbeb;
-    border: 1.5px solid #f0a830;
+    border-color: #f0a830;
+  }
+
+  :root[data-theme="light"] .paso-card-v2--condicionado:hover {
+    box-shadow: 0 6px 24px rgba(240, 168, 48, 0.2);
   }
 
   :root[data-theme="light"] .paso-card-v2--sin_datos {
-    background: #f9fafb;
-    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    background: #f8f9fb;
+    border-color: rgba(0, 0, 0, 0.06);
   }
 
   .paso-card-v2::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 16px;
-    bottom: 16px;
+    top: 20px;
+    bottom: 20px;
     width: 3px;
     border-radius: 0 3px 3px 0;
   }
 
   .paso-card-v2--abierto::before {
-    background: var(--color-open);
+    background: #3dd68c;
   }
 
   .paso-card-v2--cerrado::before {
-    background: var(--color-closed);
+    background: #e05555;
   }
 
   .paso-card-v2--condicionado::before {
-    background: var(--color-conditional);
+    background: #f0a830;
   }
 
   .paso-card-v2--sin_datos::before {
@@ -2335,72 +2259,86 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     display: none;
   }
 
-  .pcv2-status-row {
+  .pcv2-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .pcv2-tap-hint {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand);
+    opacity: 0.7;
+    flex-shrink: 0;
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .paso-card-v2:hover .pcv2-tap-hint {
+    opacity: 1;
+    transform: translateX(3px);
   }
 
   .pcv2-badge {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 100px;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    border: 1px solid transparent;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 6px 14px 6px 10px;
+    border-radius: 100px;
+    border: 1.5px solid transparent;
   }
 
-  .pcv2-badge::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
+  .pcv2-badge-dot {
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     flex-shrink: 0;
   }
 
   .pcv2-badge--abierto {
-    background: rgba(61, 214, 140, 0.15);
+    background: rgba(61, 214, 140, 0.2);
     color: #3dd68c;
-    border: 1px solid rgba(61, 214, 140, 0.3);
+    border-color: rgba(61, 214, 140, 0.4);
   }
 
-  .pcv2-badge--abierto::before {
+  .pcv2-badge--abierto .pcv2-badge-dot {
     background: #3dd68c;
+    animation: dot-pulse-green 2s ease-in-out infinite;
   }
 
   .pcv2-badge--cerrado {
-    background: rgba(224, 85, 85, 0.15);
-    color: #e05555;
-    border: 1px solid rgba(224, 85, 85, 0.3);
+    background: rgba(224, 85, 85, 0.2);
+    color: #ff7b7b;
+    border-color: rgba(224, 85, 85, 0.4);
   }
 
-  .pcv2-badge--cerrado::before {
+  .pcv2-badge--cerrado .pcv2-badge-dot {
     background: #e05555;
   }
 
   .pcv2-badge--condicionado {
-    background: rgba(240, 168, 48, 0.15);
+    background: rgba(240, 168, 48, 0.2);
     color: #f0a830;
-    border: 1px solid rgba(240, 168, 48, 0.3);
-    animation: badge-pulse-soft 2s ease-in-out infinite;
+    border-color: rgba(240, 168, 48, 0.4);
   }
 
-  .pcv2-badge--condicionado::before {
+  .pcv2-badge--condicionado .pcv2-badge-dot {
     background: #f0a830;
+    animation: dot-pulse-amber 2s ease-in-out infinite;
   }
 
   .pcv2-badge--sin_datos {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--color-text-muted);
-    border: 1px solid var(--color-border-subtle);
+    border-color: var(--color-border-subtle);
   }
 
-  .pcv2-badge--sin_datos::before {
+  .pcv2-badge--sin_datos .pcv2-badge-dot {
     background: var(--color-text-muted);
   }
 
@@ -2410,7 +2348,7 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     border-color: #34d399;
   }
 
-  :root[data-theme="light"] .pcv2-badge--abierto::before {
+  :root[data-theme="light"] .pcv2-badge--abierto .pcv2-badge-dot {
     background: #10b981;
   }
 
@@ -2420,17 +2358,17 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     border-color: #f87171;
   }
 
-  :root[data-theme="light"] .pcv2-badge--cerrado::before {
+  :root[data-theme="light"] .pcv2-badge--cerrado .pcv2-badge-dot {
     background: #ef4444;
   }
 
   :root[data-theme="light"] .pcv2-badge--condicionado {
     background: #fef3c7;
-    color: #92400e;
+    color: #78350f;
     border-color: #fbbf24;
   }
 
-  :root[data-theme="light"] .pcv2-badge--condicionado::before {
+  :root[data-theme="light"] .pcv2-badge--condicionado .pcv2-badge-dot {
     background: #f59e0b;
   }
 
@@ -2440,94 +2378,196 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     border-color: #9ca3af;
   }
 
-  :root[data-theme="light"] .pcv2-badge--sin_datos::before {
+  :root[data-theme="light"] .pcv2-badge--sin_datos .pcv2-badge-dot {
     background: #6b7280;
   }
 
-  .pcv2-countdown {
-    font-size: 11px;
-    font-weight: 600;
+  .pcv2-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  :root[data-theme="light"] .pcv2-name {
+    color: #0d1117;
+  }
+
+  .pcv2-weather-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pcv2-temp {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-family: var(--font-mono);
+    color: var(--color-text-primary);
+  }
+
+  .pcv2-temp--na {
     color: var(--color-text-muted);
+    font-size: 32px;
+  }
+
+  .pcv2-weather-desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+    max-width: 140px;
+  }
+
+  :root[data-theme="light"] .pcv2-temp {
+    color: #0d1117;
+  }
+
+  :root[data-theme="light"] .pcv2-weather-desc {
+    color: #6b7280;
+  }
+
+  .pcv2-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #3dd68c;
+    background: rgba(61, 214, 140, 0.08);
+    padding: 3px 10px 3px 7px;
+    border-radius: 100px;
+    width: fit-content;
+  }
+
+  .pcv2-countdown svg {
+    flex-shrink: 0;
+    opacity: 0.9;
   }
 
   .pcv2-countdown--urgent {
-    color: var(--color-conditional);
+    color: #f0a830;
+    background: rgba(240, 168, 48, 0.08);
     animation: countdown-blink 1s ease-in-out infinite;
   }
 
   .pcv2-countdown--opens {
     color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  .pcv2-name {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--color-text-primary);
-    margin: 0;
-    line-height: 1.2;
+  :root[data-theme="light"] .pcv2-countdown {
+    background: rgba(61, 214, 140, 0.1);
   }
 
-  .pcv2-temp-row {
+  :root[data-theme="light"] .pcv2-countdown--urgent {
+    background: rgba(240, 168, 48, 0.1);
+  }
+
+  :root[data-theme="light"] .pcv2-countdown--opens {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .pcv2-vialidad-alert {
     display: flex;
-    align-items: baseline;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .pcv2-temp {
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--color-text-primary);
-    font-family: var(--font-mono);
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-
-  .pcv2-weather-desc {
-    font-size: 14px;
-    color: var(--color-text-muted);
-    line-height: 1.3;
-    max-width: 100%;
-  }
-
-  .pcv2-alert {
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--color-closed);
-    background: rgba(224, 85, 85, 0.1);
-    border-radius: 6px;
+    color: #e05555;
+    background: rgba(224, 85, 85, 0.08);
+    border: 1px solid rgba(224, 85, 85, 0.2);
     padding: 5px 10px;
+    border-radius: 8px;
     width: fit-content;
     max-width: 100%;
-    line-height: 1.35;
   }
 
-  :root[data-theme="light"] .pcv2-alert {
-    background: rgba(224, 85, 85, 0.12);
+  .pcv2-vialidad-alert svg {
+    flex-shrink: 0;
+  }
+
+  .pcv2-vialidad-alert span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  :root[data-theme="light"] .pcv2-vialidad-alert {
+    background: rgba(224, 85, 85, 0.06);
+    border-color: rgba(224, 85, 85, 0.25);
   }
 
   .pcv2-footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  :root[data-theme="light"] .pcv2-footer {
+    border-top-color: rgba(0, 0, 0, 0.06);
   }
 
   .pcv2-locality {
     font-size: 11px;
     color: var(--color-text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     min-width: 0;
   }
 
-  .pcv2-more {
-    font-size: 11px;
-    font-weight: 600;
+  .pcv2-cta {
+    font-size: 12px;
+    font-weight: 700;
     color: var(--brand);
     flex-shrink: 0;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .paso-card-v2:hover .pcv2-cta {
+    color: #7ccbff;
+  }
+
+  @media (max-width: 480px) {
+    .paso-card-v2 {
+      min-height: auto;
+      padding: 16px 16px 14px;
+      border-radius: 16px;
+    }
+
+    .pcv2-temp {
+      font-size: 34px;
+    }
+
+    .pcv2-name {
+      font-size: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .paso-card-v2 {
+      animation: none;
+    }
+
+    .pcv2-badge--condicionado .pcv2-badge-dot {
+      animation: none;
+    }
+
+    .pcv2-countdown--urgent {
+      animation: none;
+    }
   }
 
   @media (min-width: 900px) {
@@ -3483,168 +3523,343 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
   box-shadow: 0 0 5px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
-.pcv2-badge--live-data::before {
-  animation: live-data-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.pcv2-badge--live-data--muted::before {
-  animation-duration: 4.2s;
-  opacity: 0.75;
-}
-
 .status-hero .status-dot--live-pulse {
   animation: live-data-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite !important;
 }
 
-/* ===== TWITTER TIMELINE WIDGET ===== */
+/* ===== X CARD (home — link a @PasoCRMza, sin widgets.js) ===== */
 
-.twitter-section {
+.twitter-section-x {
+  margin-top: 24px;
+}
+
+.x-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-xl, 16px);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.x-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border-color: var(--brand);
+}
+
+.x-card:active {
+  transform: scale(0.98);
+}
+
+.x-card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(91, 174, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.x-card-x-logo {
+  color: var(--brand);
+  width: 24px;
+  height: 24px;
+}
+
+.x-card-body {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 3px;
 }
 
-.twitter-section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.x-card-handle {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
 }
 
-.twitter-section-label {
-  display: flex;
+.x-card-desc {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.x-card-cta {
+  color: var(--brand);
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.x-card:hover .x-card-cta {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+:root[data-theme="light"] .x-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .x-card:hover {
+  border-color: var(--brand);
+  box-shadow: 0 4px 16px rgba(91, 174, 255, 0.15);
+}
+
+:root[data-theme="light"] .x-card-icon-wrap {
+  background: rgba(91, 174, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-pulse-dot,
+  .status-hero .status-dot--live-pulse {
+    animation: none !important;
+    opacity: 0.85;
+  }
+}
+
+/* ============================================
+   SISTEMA SEMÁFORO — Weather Translate
+   ============================================ */
+
+:root {
+  --wt-good-bg: rgba(61, 214, 140, 0.12);
+  --wt-good-text: #3dd68c;
+  --wt-good-border: rgba(61, 214, 140, 0.3);
+
+  --wt-regular-bg: rgba(240, 168, 48, 0.12);
+  --wt-regular-text: #f0a830;
+  --wt-regular-border: rgba(240, 168, 48, 0.3);
+
+  --wt-bad-bg: rgba(224, 85, 85, 0.12);
+  --wt-bad-text: #ff7b7b;
+  --wt-bad-border: rgba(224, 85, 85, 0.3);
+
+  --wt-neutral-bg: rgba(255, 255, 255, 0.06);
+  --wt-neutral-text: var(--color-text-muted);
+  --wt-neutral-border: var(--color-border-subtle);
+}
+
+:root[data-theme="light"] {
+  --wt-good-bg: #d1fae5;
+  --wt-good-text: #065f46;
+  --wt-good-border: #34d399;
+
+  --wt-regular-bg: #fef3c7;
+  --wt-regular-text: #78350f;
+  --wt-regular-border: #fbbf24;
+
+  --wt-bad-bg: #fee2e2;
+  --wt-bad-text: #991b1b;
+  --wt-bad-border: #f87171;
+
+  --wt-neutral-bg: rgba(0, 0, 0, 0.04);
+  --wt-neutral-text: #6b7280;
+  --wt-neutral-border: rgba(0, 0, 0, 0.1);
+}
+
+.wn-badge,
+.fcard-value-badge {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.wn-badge.wt-good,
+.fcard-value-badge.wt-good {
+  background: var(--wt-good-bg);
+  color: var(--wt-good-text);
+  border: 1px solid var(--wt-good-border);
+}
+
+.wn-badge.wt-regular,
+.fcard-value-badge.wt-regular {
+  background: var(--wt-regular-bg);
+  color: var(--wt-regular-text);
+  border: 1px solid var(--wt-regular-border);
+}
+
+.wn-badge.wt-bad,
+.fcard-value-badge.wt-bad {
+  background: var(--wt-bad-bg);
+  color: var(--wt-bad-text);
+  border: 1px solid var(--wt-bad-border);
+}
+
+.wn-badge.wt-neutral,
+.fcard-value-badge.wt-neutral {
+  background: var(--wt-neutral-bg);
+  color: var(--wt-neutral-text);
+  border: 1px solid var(--wt-neutral-border);
+}
+
+.wn-driving-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.wn-driving-summary--good {
+  background: var(--wt-good-bg);
+  border: 1px solid var(--wt-good-border);
+}
+
+.wn-driving-summary--regular {
+  background: var(--wt-regular-bg);
+  border: 1px solid var(--wt-regular-border);
+}
+
+.wn-driving-summary--bad {
+  background: var(--wt-bad-bg);
+  border: 1px solid var(--wt-bad-border);
+}
+
+.wn-ds-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wn-driving-summary--good .wn-ds-dot {
+  background: var(--wt-good-text);
+}
+
+.wn-driving-summary--regular .wn-ds-dot {
+  background: var(--wt-regular-text);
+}
+
+.wn-driving-summary--bad .wn-ds-dot {
+  background: var(--wt-bad-text);
+}
+
+.wn-ds-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wn-driving-summary--good .wn-ds-label {
+  color: var(--wt-good-text);
+}
+
+.wn-driving-summary--regular .wn-ds-label {
+  color: var(--wt-regular-text);
+}
+
+.wn-driving-summary--bad .wn-ds-label {
+  color: var(--wt-bad-text);
+}
+
+.wn-ds-sub {
+  display: block;
+  font-size: 11px;
   color: var(--color-text-muted);
 }
 
-.twitter-x-icon {
-  width: 13px;
-  height: 13px;
+.wn-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wn-stat-label {
+  font-size: 12px;
   color: var(--color-text-muted);
   flex-shrink: 0;
 }
 
-.twitter-widget-wrap {
-  border-radius: var(--radius-xl, 16px);
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-surface);
-  overflow: hidden;
-  min-height: 200px;
-  position: relative;
-  transition: border-color 0.2s;
-}
-
-.twitter-widget-wrap:hover {
-  border-color: var(--color-border-default);
-}
-
-.twitter-timeline {
-  display: block;
-  width: 100%;
-}
-
-.twitter-widget-wrap iframe {
-  border-radius: var(--radius-xl, 16px) !important;
-  border: none !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.twitter-skeleton {
-  padding: 16px;
+.wn-stat-value-group {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  transition: opacity 0.3s ease;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.twitter-skeleton-tweet {
+.wn-stat-detail {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.fcard-cond-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-left: 4px;
 }
 
-.twitter-skeleton-tweet:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.fcard-cond-badge--good {
+  background: var(--wt-good-bg);
+  color: var(--wt-good-text);
 }
 
-.sk-line {
-  height: 12px;
-  border-radius: 6px;
-  background: var(--color-border-subtle);
-  animation: sk-shimmer 1.5s ease-in-out infinite;
+.fcard-cond-badge--regular {
+  background: var(--wt-regular-bg);
+  color: var(--wt-regular-text);
 }
 
-.sk-line--short {
-  width: 35%;
+.fcard-cond-badge--bad {
+  background: var(--wt-bad-bg);
+  color: var(--wt-bad-text);
 }
 
-.sk-line--medium {
-  width: 65%;
+.fcard-cond-badge--neutral {
+  display: none;
 }
 
-.sk-line--long {
-  width: 90%;
-}
-
-@keyframes sk-shimmer {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.twitter-fallback-link {
-  text-align: right;
-  padding: 4px 0;
-}
-
-.twitter-fallback-link:not([hidden]) {
-  display: block;
-}
-
-.twitter-direct-link {
-  font-size: 13px;
+.fcard-warning {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--brand);
-  text-decoration: none;
+  color: var(--wt-bad-text);
+  background: var(--wt-bad-bg);
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-top: 4px;
 }
 
-.twitter-direct-link:hover {
-  text-decoration: underline;
-}
-
-:root[data-theme="light"] .twitter-widget-wrap {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.06);
-}
-
-:root[data-theme="light"] .sk-line {
-  background: rgba(0, 0, 0, 0.06);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sk-line {
-    animation: none;
-    opacity: 0.5;
+@media (max-width: 768px) {
+  .fcard[open] .fcard-body {
+    display: flex;
   }
 
-  .live-pulse-dot,
-  .pcv2-badge--live-data::before,
-  .status-hero .status-dot--live-pulse {
-    animation: none !important;
-    opacity: 0.85;
+  .fcard-value-badge {
+    font-size: 12px;
+    padding: 4px 10px;
   }
 }
 
@@ -3687,7 +3902,7 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
     animation: none;
   }
 
-  .pcv2-badge--condicionado,
+  .pcv2-badge-dot,
   .pcv2-countdown--urgent {
     animation: none;
   }

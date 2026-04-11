@@ -35,6 +35,7 @@ export interface AlertRaw {
 export interface WeatherNowRaw {
   description?: string;
   temperatureC?: number;
+  feelsLikeC?: number;
   wind?: string;
   visibilityKm?: number;
   /** Cuando la visibilidad no es numérica (p. ej. “Muy buena”) */

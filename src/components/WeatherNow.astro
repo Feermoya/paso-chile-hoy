@@ -3,13 +3,16 @@ import { Icon } from "astro-icon/components";
 import DrivingConditions from "@/components/DrivingConditions.astro";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
-import {
-  interpretTemperature,
-  interpretVisibility,
-  interpretWind,
-  levelToColor,
-} from "@/utils/weatherInterpretation";
+import { interpretTemperature, levelToColor } from "@/utils/weatherInterpretation";
 import { assessSnapshotFreshness } from "@/utils/snapshotFreshness";
+import {
+  getDrivingSummary,
+  levelClass,
+  parseWindKmhFromString,
+  translateTemp,
+  translateVisibility,
+  translateWindWithDir,
+} from "@/utils/weatherTranslate";
 
 export interface Props {
   weather: WeatherNowView;
@@ -103,14 +106,22 @@ const {
 const iconName = getWeatherIcon(w.description);
 const iconColor = getWeatherIconColor(w.description);
 
-const visInput: number | string | null =
-  typeof w.visibilityKm === "number"
+const visPrimary: number | string | null =
+  w.visibilityKm != null && Number.isFinite(w.visibilityKm)
     ? w.visibilityKm
-    : w.visibilityText?.trim()
-      ? w.visibilityText.trim()
-      : null;
-const visData = interpretVisibility(visInput);
-const windData = interpretWind(w.wind ?? null);
+    : w.visibilityText?.trim() || null;
+const visTranslated = translateVisibility(visPrimary);
+const windTranslated = translateWindWithDir(w.wind ?? null);
+const windKmh = parseWindKmhFromString(w.wind);
+const drivingSummary = getDrivingSummary({
+  description: w.description,
+  visibilityKm: w.visibilityKm ?? null,
+  visibilityText: w.visibilityText ?? null,
+  windKmph: windKmh,
+  temperatureC: w.temperatureC ?? null,
+});
+const tempFeelTranslated =
+  w.feelsLikeC != null && Number.isFinite(w.feelsLikeC) ? translateTemp(w.feelsLikeC) : null;
 const tempData = interpretTemperature(w.temperatureC ?? null);
 
 const sunriseDisplay = formatSunriseDisplay(w.sunrise);
@@ -122,7 +133,10 @@ const tempBg = `color-mix(in srgb, ${levelToColor(tempData.level)} 10%, transpar
 const drivingWeather = {
   temperatureC: w.temperatureC ?? null,
   wind: w.wind ?? null,
-  visibilityKm: visInput,
+  visibilityKm:
+    w.visibilityKm != null && Number.isFinite(w.visibilityKm)
+      ? w.visibilityKm
+      : w.visibilityText?.trim() ?? null,
   description: w.description ?? "",
 };
 
@@ -141,6 +155,14 @@ const freshness = assessSnapshotFreshness(scrapedAt);
     Clima en el paso
   </p>
   <h2 id="weather-now-heading" class="text-section-title mt-2">Ahora</h2>
+
+  <div class:list={["wn-driving-summary", `wn-driving-summary--${drivingSummary.level}`]}>
+    <span class="wn-ds-dot" aria-hidden="true"></span>
+    <div>
+      <span class="wn-ds-label">{drivingSummary.label}</span>
+      <span class="wn-ds-sub">{drivingSummary.sublabel}</span>
+    </div>
+  </div>
 
   {w.description && (
     <div class="weather-icon-block mt-4">
@@ -180,79 +202,46 @@ const freshness = assessSnapshotFreshness(scrapedAt);
     </>
   )}
 
-  <!-- Mobile: grilla compacta 3 cols -->
-  <div class="weather-stats-grid md:hidden">
-    <div class="weather-stat">
-      <Icon name="lucide:wind" class="stat-icon" aria-hidden="true" />
-      <span class="stat-label weather-label">Viento</span>
-      <span
-        class="stat-value weather-value weather-meta-value"
-        style={`color: ${levelToColor(windData.level)}`}
-      >
-        {windData.label}
-      </span>
+  <div class="wn-translated-stats mt-4 flex flex-col gap-3">
+    <div class="wn-stat-row">
+      <span class="wn-stat-label">Visibilidad</span>
+      <div class="wn-stat-value-group">
+        <span class:list={["wn-badge", levelClass(visTranslated.level)]}>{visTranslated.label}</span>
+        {visTranslated.detail && <span class="wn-stat-detail">{visTranslated.detail}</span>}
+      </div>
     </div>
-    <div class="weather-stat">
-      <Icon name="lucide:eye" class="stat-icon" aria-hidden="true" />
-      <span class="stat-label weather-label">Visib.</span>
-      <span
-        class="stat-value weather-value weather-meta-value"
-        style={`color: ${levelToColor(visData.level)}`}
-      >
-        {visData.label}
-      </span>
+    <div class="wn-stat-row">
+      <span class="wn-stat-label">Viento</span>
+      <div class="wn-stat-value-group">
+        <span class:list={["wn-badge", levelClass(windTranslated.level)]}>{windTranslated.label}</span>
+      </div>
     </div>
-    <div class="weather-stat">
-      <Icon name="wi:sunrise" class="stat-icon stat-icon-sunrise" aria-hidden="true" />
-      <span class="stat-label weather-label">Amanecer</span>
-      <span class="stat-value weather-value weather-meta-value">{sunriseDisplay}</span>
+    <div class="wn-stat-row">
+      <span class="wn-stat-label">Amanecer</span>
+      <div class="wn-stat-value-group">
+        <span class="wn-stat-detail m-0 font-semibold text-[var(--color-text-secondary)]">{sunriseDisplay}</span>
+        <span class="wn-stat-detail">Primera luz en la cordillera</span>
+      </div>
     </div>
+    {
+      tempFeelTranslated && w.feelsLikeC != null && (
+        <div class="wn-stat-row">
+          <span class="wn-stat-label">Sensación</span>
+          <div class="wn-stat-value-group">
+            <span class:list={["wn-badge", levelClass(tempFeelTranslated.level)]}>
+              {w.feelsLikeC}° · {tempFeelTranslated.label}
+            </span>
+            {tempFeelTranslated.detail && <span class="wn-stat-detail">{tempFeelTranslated.detail}</span>}
+          </div>
+        </div>
+      )
+    }
   </div>
 
-  <!-- Desktop: stats expandidos -->
-  <div class="weather-desktop-expanded hidden md:block">
-    <div class="desktop-stats">
-      <div class="desktop-stat-block">
-        <div class="desktop-stat-header">
-          <Icon
-            name="lucide:wind"
-            class="h-5 w-5 shrink-0"
-            style={`color: ${levelToColor(windData.level)}`}
-            aria-hidden="true"
-          />
-          <span class="desktop-stat-label weather-label">Viento</span>
-        </div>
-        <span class="desktop-stat-value weather-meta-value">{windData.label}</span>
-        {windData.meaning && <p class="desktop-stat-meaning">{windData.meaning}</p>}
-      </div>
-      <div class="desktop-stat-divider" aria-hidden="true"></div>
-      <div class="desktop-stat-block">
-        <div class="desktop-stat-header">
-          <Icon
-            name="lucide:eye"
-            class="h-5 w-5 shrink-0"
-            style={`color: ${levelToColor(visData.level)}`}
-            aria-hidden="true"
-          />
-          <span class="desktop-stat-label weather-label">Visibilidad</span>
-        </div>
-        <span class="desktop-stat-value weather-meta-value">{visData.label}</span>
-        {visData.meaning && <p class="desktop-stat-meaning">{visData.meaning}</p>}
-      </div>
-      <div class="desktop-stat-divider" aria-hidden="true"></div>
-      <div class="desktop-stat-block">
-        <div class="desktop-stat-header">
-          <Icon name="wi:sunrise" class="desktop-sunrise-icon h-6 w-6 shrink-0" aria-hidden="true" />
-          <span class="desktop-stat-label weather-label">Amanecer</span>
-        </div>
-        <span class="desktop-stat-value weather-meta-value">{sunriseDisplay}</span>
-        <p class="desktop-stat-meaning">Primera luz en la cordillera</p>
-      </div>
-    </div>
-
-    {tempData.meaning && (
+  {
+    tempData.meaning && (
       <div
-        class="desktop-temp-warning"
+        class="desktop-temp-warning mt-4 hidden md:block"
         style={`border-color: ${levelToColor(tempData.level)}; background: ${tempBg}; border-left-color: ${levelToColor(tempData.level)}`}
       >
         <Icon
@@ -265,8 +254,8 @@ const freshness = assessSnapshotFreshness(scrapedAt);
           {tempData.meaning}
         </p>
       </div>
-    )}
-  </div>
+    )
+  }
 
   {includeDriving && <DrivingConditions weather={drivingWeather} forecast={forecast} />}
 

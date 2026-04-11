@@ -71,6 +71,10 @@ function mapWeatherNow(raw?: WeatherNowRaw): WeatherNowView | undefined {
     typeof raw.temperatureC === "number" && Number.isFinite(raw.temperatureC)
       ? raw.temperatureC
       : undefined;
+  const feelsLikeC =
+    typeof raw.feelsLikeC === "number" && Number.isFinite(raw.feelsLikeC)
+      ? raw.feelsLikeC
+      : undefined;
   const visibilityKm =
     typeof raw.visibilityKm === "number" && Number.isFinite(raw.visibilityKm)
       ? raw.visibilityKm
@@ -84,6 +88,7 @@ function mapWeatherNow(raw?: WeatherNowRaw): WeatherNowView | undefined {
     visibilityText == null &&
     providerNote == null &&
     temperatureC == null &&
+    feelsLikeC == null &&
     visibilityKm == null
   ) {
     return undefined;
@@ -92,6 +97,7 @@ function mapWeatherNow(raw?: WeatherNowRaw): WeatherNowView | undefined {
   return {
     description,
     temperatureC,
+    feelsLikeC,
     wind,
     visibilityKm,
     visibilityText,

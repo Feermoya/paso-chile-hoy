@@ -26,15 +26,12 @@ const {
   vialidadObservaciones,
 } = Astro.props;
 
-function formatCountdown(minutes: number): string {
-  if (minutes <= 0) return "";
-  if (minutes < 60) return `${minutes} min`;
-  const h = Math.floor(minutes / 60);
-  const m = minutes % 60;
+function fmtMinutes(min: number): string {
+  if (min < 60) return `${min} min`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
   return m > 0 ? `${h}h ${m}min` : `${h}h`;
 }
-
-const showCorteVial = isVialidadCorteTotal(vialidadEstado);
 
 const isOpen =
   status === "abierto" ||
@@ -44,7 +41,14 @@ const showClosesIn = isOpen && closesInMinutes != null && closesInMinutes > 0;
 const showOpensIn = isClosed && opensInMinutes != null && opensInMinutes > 0;
 const closingSoon = showClosesIn && closesInMinutes! <= 60;
 
-const badgeLabel = displayLabel?.trim() || status.toUpperCase();
+const estU = (vialidadEstado ?? "").trim().toUpperCase();
+const hasVialidad =
+  Boolean(estU && !estU.includes("HABILITADA")) &&
+  (isVialidadCorteTotal(vialidadEstado) ||
+    estU.includes("RESTRINGIDA") ||
+    estU.includes("CORTE"));
+
+const label = displayLabel?.trim() || status.toUpperCase();
 const href = paso.active ? `/${paso.slug}` : undefined;
 ---
 
@@ -55,41 +59,81 @@ const href = paso.active ? `/${paso.slug}` : undefined;
       class:list={["paso-card-v2", `paso-card-v2--${status}`]}
       aria-label={`Ver estado de ${paso.shortName}`}
     >
-      <div class="pcv2-status-row">
-        <span class:list={["pcv2-badge", `pcv2-badge--${status}`, "pcv2-badge--live-data"]}>
-          {badgeLabel}
+      <div class="pcv2-header">
+        <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>
+          <span class="pcv2-badge-dot" aria-hidden="true" />
+          {label}
         </span>
-        {showClosesIn && (
-          <span
-            class:list={[
-              "pcv2-countdown",
-              closingSoon && "pcv2-countdown--urgent",
-            ]}
-          >
-            Cierra en {formatCountdown(closesInMinutes!)}
-          </span>
-        )}
-        {showOpensIn && (
-          <span class="pcv2-countdown pcv2-countdown--opens">
-            Abre en {formatCountdown(opensInMinutes!)}
-          </span>
-        )}
+        <span class="pcv2-tap-hint" aria-hidden="true">Ver →</span>
       </div>
 
       <h3 class="pcv2-name">{paso.shortName}</h3>
 
-      {(weatherTempC != null || weatherDesc?.trim()) && (
-        <div class="pcv2-temp-row">
-          {weatherTempC != null && <span class="pcv2-temp">{weatherTempC}°</span>}
-          {weatherDesc?.trim() && (
-            <span class="pcv2-weather-desc">{weatherDesc.trim()}</span>
-          )}
+      {weatherTempC != null ? (
+        <div class="pcv2-weather-row">
+          <span class="pcv2-temp">{weatherTempC}°</span>
+          {weatherDesc?.trim() && <span class="pcv2-weather-desc">{weatherDesc.trim()}</span>}
+        </div>
+      ) : (
+        <div class="pcv2-weather-row">
+          <span class="pcv2-temp pcv2-temp--na">—°</span>
+          {weatherDesc?.trim() && <span class="pcv2-weather-desc">{weatherDesc.trim()}</span>}
         </div>
       )}
 
-      {showCorteVial && (
-        <div class="pcv2-alert">
-          ⚠ {vialidadObservaciones?.trim() || "Corte vial"}
+      {showClosesIn && (
+        <div class:list={["pcv2-countdown", closingSoon && "pcv2-countdown--urgent"]}>
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          Cierra en {fmtMinutes(closesInMinutes!)}
+        </div>
+      )}
+      {showOpensIn && (
+        <div class="pcv2-countdown pcv2-countdown--opens">
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          Abre en {fmtMinutes(opensInMinutes!)}
+        </div>
+      )}
+
+      {hasVialidad && (
+        <div class="pcv2-vialidad-alert">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span>{vialidadObservaciones?.trim() || "Alerta vial activa"}</span>
         </div>
       )}
 
@@ -97,17 +141,21 @@ const href = paso.active ? `/${paso.slug}` : undefined;
         <span class="pcv2-locality">
           {paso.localityAR} → {paso.localityCL}
         </span>
-        <span class="pcv2-more">Ver más →</span>
+        <span class="pcv2-cta">Ver más →</span>
       </div>
     </a>
   ) : (
-    <div class="paso-card-v2 paso-card-v2--disabled" aria-disabled="true">
-      <div class="pcv2-status-row">
-        <span class="pcv2-badge pcv2-badge--sin_datos pcv2-badge--live-data pcv2-badge--live-data--muted">
+    <div class="paso-card-v2 paso-card-v2--disabled paso-card-v2--sin_datos" aria-disabled="true">
+      <div class="pcv2-header">
+        <span class="pcv2-badge pcv2-badge--sin_datos">
+          <span class="pcv2-badge-dot" aria-hidden="true" />
           PRÓXIMAMENTE
         </span>
       </div>
       <h3 class="pcv2-name">{paso.shortName}</h3>
+      <div class="pcv2-weather-row">
+        <span class="pcv2-temp pcv2-temp--na">—°</span>
+      </div>
       <div class="pcv2-footer">
         <span class="pcv2-locality">
           {paso.localityAR} → {paso.localityCL}

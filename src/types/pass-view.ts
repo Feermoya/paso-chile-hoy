@@ -30,6 +30,8 @@ export interface AlertView {
 export interface WeatherNowView {
   description?: string;
   temperatureC?: number;
+  /** Sensación térmica si la fuente la envía (p. ej. wttr.in / snapshot). */
+  feelsLikeC?: number;
   wind?: string;
   visibilityKm?: number;
   visibilityText?: string;

@@ -2,6 +2,12 @@
 import { Icon } from "astro-icon/components";
 import type { ForecastItemView } from "@/types/pass-view";
 import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
+import {
+  levelClass,
+  translateConditionLevel,
+  translateForecastVisibilityLabel,
+  translateWindWithDir,
+} from "@/utils/weatherTranslate";
 
 export interface Props {
   forecast: ForecastItemView[];
@@ -41,14 +47,18 @@ function fcardIconWrapStyle(weatherColor: string): string {
         const descRaw = period.description?.trim() || "Despejado";
         const iconColor = getWeatherIconColor(descRaw);
         const dateLine = period.date?.trim() || getForecastDate(period.period ?? "");
+        const condLevel = translateConditionLevel(period.description);
+        const windTranslated = translateWindWithDir(period.wind ?? null);
+        const visTranslated = translateForecastVisibilityLabel(period.visibility ?? null);
+        const condSymbol = condLevel === "good" ? "✓" : condLevel === "bad" ? "!" : "~";
         return (
           <details class="fcard" open={i === 0}>
             <summary class="fcard-summary">
               <span class="fcard-icon-wrap" aria-hidden="true" style={fcardIconWrapStyle(iconColor)}>
                 <Icon
                   name={getWeatherIcon(descRaw)}
-                  width="24"
-                  height="24"
+                  width="22"
+                  height="22"
                   style={`color: ${iconColor}; display: block;`}
                   aria-hidden="true"
                 />
@@ -60,19 +70,46 @@ function fcardIconWrapStyle(weatherColor: string): string {
               <span class="fcard-temp">
                 {period.temperatureC != null ? `${period.temperatureC}°` : "—"}
               </span>
+              <span class:list={["fcard-cond-badge", `fcard-cond-badge--${condLevel}`]} aria-hidden="true">
+                {condSymbol}
+              </span>
             </summary>
             <div class="fcard-body">
               <p class="fcard-desc">{period.description?.trim() || "—"}</p>
               {period.wind && (
                 <div class="fcard-row">
                   <span class="fcard-label">Viento</span>
-                  <span class="fcard-value">{period.wind}</span>
+                  <span class:list={["fcard-value-badge", levelClass(windTranslated.level)]}>
+                    {windTranslated.label}
+                  </span>
                 </div>
               )}
-              {period.visibility && (
+              {period.visibility && visTranslated && (
                 <div class="fcard-row">
                   <span class="fcard-label">Visibilidad</span>
-                  <span class="fcard-value">{period.visibility}</span>
+                  <span class:list={["fcard-value-badge", levelClass(visTranslated.level)]}>
+                    {visTranslated.label}
+                  </span>
+                </div>
+              )}
+              {condLevel === "bad" && (
+                <div class="fcard-warning">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                  Condiciones adversas en esta franja
                 </div>
               )}
             </div>
