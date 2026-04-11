@@ -6,7 +6,7 @@ import { writeFileSync } from "node:fs";
 import { createJiti } from "jiti";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { getLatestTweetForHome, getPassCRTweets } from "../src/utils/twitterScraper.ts";
+import { fetchTweetsSnapshotForScrape } from "../src/utils/twitterScraper.ts";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const jiti = createJiti(import.meta.url, {
@@ -55,7 +55,7 @@ async function main(): Promise<void> {
 
   try {
     console.log("[scrape] Fetching tweets from @PasoCRMza…");
-    const [tweets, latestTweet] = await Promise.all([getPassCRTweets(), getLatestTweetForHome()]);
+    const { tweets, latestTweet } = await fetchTweetsSnapshotForScrape();
     const outPath = path.join(root, "public", "snapshots", "tweets.json");
     const updatedAt = new Date().toISOString();
     writeFileSync(

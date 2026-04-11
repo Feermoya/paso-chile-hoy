@@ -4,6 +4,7 @@ export const prerender = false;
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import LatestTweet from "@/components/LatestTweet.astro";
+import TwitterHomeFallback from "@/components/TwitterHomeFallback.astro";
 import PasoCard from "@/components/PasoCard.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
@@ -15,6 +16,11 @@ import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import type { PassLatestTweet } from "@/types/pass-view";
+import {
+  fetchHomeLatestTweetLive,
+  resolveHomeLatestTweet,
+  type PassAlert,
+} from "@/utils/twitterScraper";
 
 let latestTweet: PassLatestTweet | null = null;
 try {
@@ -22,14 +28,16 @@ try {
   if (existsSync(tweetsPath)) {
     const data = JSON.parse(readFileSync(tweetsPath, "utf-8")) as {
       latestTweet?: PassLatestTweet | null;
+      tweets?: PassAlert[];
     };
-    const t = data.latestTweet;
-    if (t?.text?.trim() && t.text.trim().length > 10) {
-      latestTweet = t;
-    }
+    latestTweet = resolveHomeLatestTweet(data);
   }
 } catch {
   latestTweet = null;
+}
+
+if (!latestTweet) {
+  latestTweet = await fetchHomeLatestTweetLive();
 }
 
 type CardEntry = {
@@ -144,14 +152,10 @@ const homeSchema = {
       })}
     </div>
 
-    {
-      latestTweet && (
-        <section class="home-twitter" aria-label="Últimas novedades">
-          <p class="section-label">Últimas novedades de @PasoCRMza</p>
-          <LatestTweet tweet={latestTweet} />
-        </section>
-      )
-    }
+    <section class="home-twitter" aria-label="Últimas novedades">
+      <p class="section-label">Últimas novedades de @PasoCRMza</p>
+      {latestTweet ? <LatestTweet tweet={latestTweet} /> : <TwitterHomeFallback />}
+    </section>
   </div>
 
   <SupportBlock />
