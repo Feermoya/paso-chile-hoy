@@ -13,15 +13,6 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-<<<<<<< Updated upstream
-    "temperatureC": 16.6,
-    "description": "Algo nublado",
-    "wind": "Noroeste 6 km/h",
-    "visibilityKm": 20,
-    "sunrise": "07:59",
-    "sunset": "19:23",
-    "updatedAt": "2026-04-10T20:00:00-03:00"
-=======
     "temperatureC": 16,
     "description": "Algo nublado",
     "wind": "Calma",
@@ -29,17 +20,12 @@
     "sunrise": "07:59",
     "sunset": "19:23",
     "updatedAt": "2026-04-10T21:00:00-03:00"
->>>>>>> Stashed changes
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-11T00:05:29.807Z",
-=======
-  "scrapedAt": "2026-04-11T00:29:31.841Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-11T00:39:34.227Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",
