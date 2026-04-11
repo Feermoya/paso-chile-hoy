@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.5.18](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.17...v2.5.18) (2026-04-11)
+
+### Correcciones
+
+* Bug agua negra fix ([a91a8f0](https://github.com/Feermoya/paso-chile-hoy/commit/a91a8f029fccfb8e2126c45111145b16c3f6f66b))
+
 ## [2.5.17](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.16...v2.5.17) (2026-04-11)
 
 ### Correcciones
