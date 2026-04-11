@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.5.12](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.11...v2.5.12) (2026-04-11)
+
+### Estilos
+
+* twitter nuevo ([5af6477](https://github.com/Feermoya/paso-chile-hoy/commit/5af647739b81a0a91adf62c0cf3f53c84c6c76f0))
+
 ## [2.5.11](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.10...v2.5.11) (2026-04-11)
 
 ### Correcciones
