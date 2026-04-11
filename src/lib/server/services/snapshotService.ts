@@ -186,7 +186,10 @@ async function refreshAguaNegraFromSanJuan(cfg: PasoConfig): Promise<PassSnapsho
     contact: null,
     lat: cfg.lat,
     lng: cfg.lng,
-    altitudeM: cfg.altitudeM,
+    altitudeM:
+      sjData.altitudeMFromPage != null && Number.isFinite(sjData.altitudeMFromPage)
+        ? sjData.altitudeMFromPage
+        : cfg.altitudeM,
     scrapedAt,
     forecast: statusFailed ? [] : forecast,
     sources: {

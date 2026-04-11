@@ -36,8 +36,8 @@
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
-  "altitudeM": 4765,
-  "scrapedAt": "2026-04-11T14:36:47.821Z",
+  "altitudeM": 4780,
+  "scrapedAt": "2026-04-11T14:46:57.084Z",
   "forecast": [
     {
       "period": "Hoy al mediodía",
@@ -73,5 +73,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "11 de abril de 2026 • 09:31 hs"
   },
-  "lastKnownGoodAt": "2026-04-11T14:36:47.821Z"
+  "lastKnownGoodAt": "2026-04-11T14:46:57.084Z"
 }

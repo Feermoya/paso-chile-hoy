@@ -1,6 +1,10 @@
 /**
  * Estado operativo del Paso Agua Negra desde el sitio oficial de San Juan.
  * https://aguanegra.sanjuan.gob.ar/estado-del-paso
+ *
+ * El estado operativo debe leerse del bloque **Estado del Paso**, no de palabras sueltas
+ * en vialidad (“Habilitada”), clima ni pie de página. El clima del HTML estático no se usa;
+ * el snapshot sigue armando clima con wttr.in en snapshotService.
  */
 
 export interface AguaNegraData {
@@ -15,9 +19,10 @@ export interface AguaNegraData {
   vialidadObs: string | null;
   restriccionPasajeros: string | null;
   restriccionVelocidad: string | null;
+  /** Altitud en msnm si aparece en la página (p. ej. Alt. 4.780 msnm). */
+  altitudeMFromPage: number | null;
   scrapedAt: string;
   source: "aguanegra.sanjuan.gob.ar";
-  /** Error de red o estado no interpretable en HTML. */
   scrapeError?: string | null;
 }
 
@@ -36,20 +41,176 @@ function emptyData(scrapedAt: string): AguaNegraData {
     vialidadObs: null,
     restriccionPasajeros: null,
     restriccionVelocidad: null,
+    altitudeMFromPage: null,
     scrapedAt,
     source: "aguanegra.sanjuan.gob.ar",
     scrapeError: null,
   };
 }
 
-/**
- * El sitio de San Juan usa **HABILITADO** y “Tránsito normal” en la tarjeta principal,
- * no la palabra “ABIERTO”. Si no se detecta eso primero, un “cerrado para egreso” suelto
- * en otra parte del HTML (accesibilidad, texto legal, otro bloque) puede dar CERRADO falso.
- *
- * Orden: señales claras de apertura (HABILITADO / tránsito normal) → etiquetas CERRADO/CONDICIONADO/ABIERTO
- * → contexto “estado” → frases operativas (positivas antes que cerrado para egreso).
- */
+/** Recorte HTML de la tarjeta “Estado del Paso” hasta el siguiente bloque grande (evita vialidad/clima). */
+function extractEstadoDelPasoCard(html: string): string {
+  const m = html.match(/Estado\s+del\s+Paso/i);
+  if (!m || m.index === undefined) return "";
+  const tail = html.slice(m.index);
+  const endRel = tail.search(
+    /\bHorarios?\s+de\s+egreso\b|\bClima\s+en\s+el\b|\bVialidad\b|\bRN\s+\d{2,4}\b/i,
+  );
+  const max = 4500;
+  const len = endRel === -1 ? max : Math.min(endRel + 80, max);
+  return tail.slice(0, len);
+}
+
+/** HTML para timestamps: cortar antes de “Recomendaciones” (fecha al pie no es la del estado). */
+function htmlForStatusTimestamp(html: string): string {
+  const idx = html.search(/\brecomendaciones\b/i);
+  return idx === -1 ? html : html.slice(0, idx);
+}
+
+function inferFromEstadoCard(card: string): { raw: AguaNegraData["rawStatus"]; detail: string } | null {
+  const c = card;
+  if (!c.trim()) return null;
+
+  if (/Cerrado\s+para\s+egreso/i.test(c)) {
+    return { raw: "CERRADO", detail: "Cerrado para egreso" };
+  }
+  if (/Cerrado\s+para\s+ingreso/i.test(c)) {
+    return { raw: "CERRADO", detail: "Cerrado para ingreso" };
+  }
+  if (/Condicionado\s+para\s+egreso/i.test(c)) {
+    return { raw: "CONDICIONADO", detail: "Condicionado para egreso" };
+  }
+  if (/Habilitado\s+para\s+egreso/i.test(c)) {
+    return { raw: "ABIERTO", detail: "Habilitado para egreso" };
+  }
+  if (/Abierto\s+para\s+egreso/i.test(c)) {
+    return { raw: "ABIERTO", detail: "Abierto para egreso" };
+  }
+
+  if (/>\s*CERRADO\s*</i.test(c)) {
+    const line = c.match(/Cerrado\s+para\s+[^<\n]{3,80}/i);
+    return { raw: "CERRADO", detail: line?.[0]?.trim() ?? "CERRADO" };
+  }
+  if (/>\s*CONDICIONADO\s*</i.test(c)) {
+    return { raw: "CONDICIONADO", detail: "CONDICIONADO" };
+  }
+  if (/>\s*HABILITADO\s*</i.test(c) || />\s*ABIERTO\s*</i.test(c)) {
+    if (/tr[aá]nsito\s+normal/i.test(c)) {
+      return { raw: "ABIERTO", detail: "Tránsito normal" };
+    }
+    return { raw: "ABIERTO", detail: "Habilitado" };
+  }
+
+  if (/\bCerrado\b/i.test(c)) {
+    const line = c.match(/Cerrado\s+para\s+[^<\n]{3,80}/i);
+    return { raw: "CERRADO", detail: line?.[0]?.trim() ?? "Cerrado" };
+  }
+  if (/\bCondicionado\b/i.test(c)) {
+    return { raw: "CONDICIONADO", detail: "Condicionado" };
+  }
+  if (/\bHabilitado\b/i.test(c) && !/\b(inhabilitado|deshabilitado)\b/i.test(c)) {
+    if (/tr[aá]nsito\s+normal/i.test(c)) {
+      return { raw: "ABIERTO", detail: "Tránsito normal" };
+    }
+    return { raw: "ABIERTO", detail: "Habilitado" };
+  }
+  if (/\bAbierto\b/i.test(c)) {
+    return { raw: "ABIERTO", detail: "Abierto" };
+  }
+
+  return null;
+}
+
+/** Mini-header / líneas tipo “Abierto – para egreso” o Cerró / Abrió hs. */
+function inferFromFallbacks(html: string): { raw: AguaNegraData["rawStatus"]; detail: string } | null {
+  const mini = html.match(
+    /\b(Abierto|Cerrado|Habilitado|Condicionado)\b\s*[-–]\s*para\s*(ingreso|egreso|todo\s+tipo(?:\s+de\s+tr[aá]nsito)?)/i,
+  );
+  if (mini) {
+    const w = mini[1].toLowerCase();
+    const leg = `${mini[1]} para ${mini[2].trim()}`;
+    if (w === "cerrado") return { raw: "CERRADO", detail: leg };
+    if (w === "condicionado") return { raw: "CONDICIONADO", detail: leg };
+    return { raw: "ABIERTO", detail: leg };
+  }
+
+  const cerró = html.match(/Cerró\s+(\d{2}:\d{2})\s*hs/i);
+  if (cerró) {
+    return { raw: "CERRADO", detail: `Cerró ${cerró[1]} hs` };
+  }
+  const abrió = html.match(/Abrió\s+(\d{2}:\d{2})\s*hs/i);
+  if (abrió) {
+    return { raw: "ABIERTO", detail: `Abrió ${abrió[1]} hs` };
+  }
+
+  return null;
+}
+
+function parseStatusUpdatedAt(estadoCard: string, htmlSafe: string): string | null {
+  const datePattern = /(\d{1,2}\s+de\s+\w+\s+de\s+\d{4})\s*[•·]\s*(\d{2}:\d{2})\s*hs/i;
+  const inCard = estadoCard.match(datePattern);
+  if (inCard) {
+    return `${inCard[1]} • ${inCard[2]} hs`;
+  }
+  const inBody = htmlSafe.match(datePattern);
+  if (inBody) {
+    return `${inBody[1]} • ${inBody[2]} hs`;
+  }
+  const todayPattern = /Actualizado:\s*Hoy[,\s]+(\d{2}:\d{2})\s*hs/i;
+  const todayAlt = /Hoy[,\s]+(\d{2}:\d{2})\s*hs/i;
+  const t1 = htmlSafe.match(todayPattern);
+  if (t1) return `Hoy, ${t1[1]} hs`;
+  const t2 = htmlSafe.match(todayAlt);
+  if (t2) return `Hoy, ${t2[1]} hs`;
+  return null;
+}
+
+function parseAltitudeM(html: string): number | null {
+  const m = html.match(/Alt\.?\s*([\d.,]+)\s*msnm/i);
+  if (!m) return null;
+  const t = m[1].trim();
+  const parts = t.split(".");
+  let s: string;
+  if (parts.length === 2 && parts[1].length === 3 && /^\d+$/.test(parts[0]) && /^\d+$/.test(parts[1])) {
+    s = `${parts[0]}${parts[1]}`;
+  } else {
+    s = t.replace(/\./g, "").replace(",", ".");
+  }
+  const n = parseFloat(s);
+  if (!Number.isFinite(n) || n < 1000 || n > 7000) return null;
+  return Math.round(n);
+}
+
+function parseVialidadNearRn(html: string): {
+  vialidadRuta: string | null;
+  vialidadEstado: string | null;
+  vialidadObs: string | null;
+} {
+  const rn = html.match(/\bRN\s*(\d{2,4})\b/i);
+  if (!rn || rn.index === undefined) {
+    return { vialidadRuta: null, vialidadEstado: null, vialidadObs: null };
+  }
+  const rutaNum = rn[1];
+  const chunk = html.slice(rn.index, rn.index + 520);
+  let vialidadEstado: string | null = null;
+  if (/\bHabilitada\b/i.test(chunk)) vialidadEstado = "HABILITADA";
+  else if (/\bCortada\b/i.test(chunk)) vialidadEstado = "CORTE TOTAL";
+  else if (/\bRestringida\b/i.test(chunk)) vialidadEstado = "RESTRINGIDA";
+  else if (/\bCerrada\b/i.test(chunk)) vialidadEstado = "CERRADA";
+
+  let vialidadObs: string | null = null;
+  const trans = chunk.match(/Transitable[^.<\n]{0,120}[.<\n]/i);
+  if (trans) {
+    vialidadObs = trans[0].replace(/[.<\n]$/, "").trim();
+  }
+
+  return {
+    vialidadRuta: `RN ${rutaNum}`,
+    vialidadEstado,
+    vialidadObs,
+  };
+}
+
 export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
   const scrapedAt = new Date().toISOString();
   const empty = emptyData(scrapedAt);
@@ -73,7 +234,7 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
       console.error(`[aguanegra] HTTP ${res.status}`);
       return {
         ...empty,
-        scrapeError: `Error de red (HTTP ${res.status}) al leer la fuente oficial`,
+        scrapeError: `Error al conectar con aguanegra.sanjuan.gob.ar: HTTP ${res.status}`,
       };
     }
 
@@ -83,91 +244,25 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
     console.error("[aguanegra] Error en fetch:", err);
     return {
       ...empty,
-      scrapeError: `Error de red: ${msg}`,
+      scrapeError: `Error al conectar con aguanegra.sanjuan.gob.ar: ${msg}`,
     };
   }
+
+  const estadoCard = extractEstadoDelPasoCard(html);
+  const htmlSafeTs = htmlForStatusTimestamp(html);
 
   let rawStatus: AguaNegraData["rawStatus"] = "SIN_DATOS";
   let statusDetail: string | null = null;
 
-  /** En el JSON/vista usamos ABIERTO (misma convención que Gendarmería e inferPassStatus). */
-  const openFromSanJuan = (detail: string) => {
-    rawStatus = "ABIERTO";
-    statusDetail = detail;
-  };
-
-  // 1) Tarjeta principal del sitio: HABILITADO / Tránsito normal (no usar “habilitado” suelto: aparece en clases CSS, etc.).
-  if (
-    />[\s]*HABILITADO[\s]*</i.test(html) ||
-    /\bHABILITADO\b/i.test(html) ||
-    /"estado"\s*:\s*"HABILITADO"/i.test(html)
-  ) {
-    openFromSanJuan("Habilitado");
-  } else if (/tr[aá]nsito\s+normal/i.test(html)) {
-    openFromSanJuan("Tránsito normal");
-  }
-
-  const exactTagPatterns: Array<{
-    regex: RegExp;
-    status: AguaNegraData["rawStatus"];
-    detail: string;
-  }> = [
-    { regex: />\s*HABILITADO\s*</i, status: "ABIERTO", detail: "Habilitado" },
-    { regex: />\s*ABIERTO\s*</i, status: "ABIERTO", detail: "ABIERTO" },
-    { regex: />\s*CONDICIONADO\s*</i, status: "CONDICIONADO", detail: "CONDICIONADO" },
-    { regex: />\s*CERRADO\s*</i, status: "CERRADO", detail: "CERRADO" },
-  ];
-
-  if (rawStatus === "SIN_DATOS") {
-    for (const { regex, status, detail } of exactTagPatterns) {
-      if (regex.test(html)) {
-        rawStatus = status;
-        statusDetail = detail;
-        break;
-      }
-    }
-  }
-
-  if (rawStatus === "SIN_DATOS") {
-    const estadoCtx =
-      /estado[^a-záéíóúñ]{0,120}(HABILITADO|ABIERTO|CERRADO|CONDICIONADO)\b/i.exec(html);
-    if (estadoCtx) {
-      const w = estadoCtx[1].toUpperCase();
-      if (w === "HABILITADO") {
-        openFromSanJuan("Habilitado");
-      } else if (w === "ABIERTO" || w === "CERRADO" || w === "CONDICIONADO") {
-        rawStatus = w;
-        statusDetail = w;
-      }
-    }
-  }
-
-  if (rawStatus === "SIN_DATOS") {
-    const phrasePatterns: Array<{
-      regex: RegExp;
-      status: AguaNegraData["rawStatus"];
-      detail: string;
-    }> = [
-      { regex: /habilitado\s+para\s+egreso/i, status: "ABIERTO", detail: "Habilitado para egreso" },
-      { regex: /abierto\s+para\s+egreso/i, status: "ABIERTO", detail: "Abierto para egreso" },
-      { regex: /habilitado\s+para\s+ingreso/i, status: "ABIERTO", detail: "Habilitado para ingreso" },
-      {
-        regex: /condicionado\s+para\s+egreso/i,
-        status: "CONDICIONADO",
-        detail: "Condicionado para egreso",
-      },
-      { regex: /paso\s+abierto/i, status: "ABIERTO", detail: "Paso abierto" },
-      { regex: /cerrado\s+para\s+egreso/i, status: "CERRADO", detail: "Cerrado para egreso" },
-      { regex: /cerrado\s+para\s+ingreso/i, status: "CERRADO", detail: "Cerrado para ingreso" },
-      { regex: /paso\s+cerrado/i, status: "CERRADO", detail: "Paso cerrado" },
-    ];
-
-    for (const { regex, status, detail } of phrasePatterns) {
-      if (regex.test(html)) {
-        rawStatus = status;
-        statusDetail = detail;
-        break;
-      }
+  const fromCard = inferFromEstadoCard(estadoCard);
+  if (fromCard) {
+    rawStatus = fromCard.raw;
+    statusDetail = fromCard.detail;
+  } else {
+    const fb = inferFromFallbacks(html);
+    if (fb) {
+      rawStatus = fb.raw;
+      statusDetail = fb.detail;
     }
   }
 
@@ -177,16 +272,7 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
       "No se pudo determinar el estado desde aguanegra.sanjuan.gob.ar (HTML no reconocido)";
   }
 
-  let statusUpdatedAt: string | null = null;
-  const datePattern = /(\d{1,2}\s+de\s+\w+\s+de\s+\d{4})\s*[•·]\s*(\d{2}:\d{2})\s*hs/i;
-  const todayPattern = /Hoy[,\s]+(\d{2}:\d{2})\s*hs/i;
-  const dateMatch = html.match(datePattern);
-  const todayMatch = html.match(todayPattern);
-  if (dateMatch) {
-    statusUpdatedAt = `${dateMatch[1]} • ${dateMatch[2]} hs`;
-  } else if (todayMatch) {
-    statusUpdatedAt = `Hoy, ${todayMatch[1]} hs`;
-  }
+  const statusUpdatedAt = parseStatusUpdatedAt(estadoCard, htmlSafeTs);
 
   let scheduleText: string | null = null;
   let scheduleNormalized: string | null = null;
@@ -200,25 +286,7 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
   const daysMatch = html.match(/D[ií]as de apertura[^:]*:\s*([^<\n]+)/i);
   if (daysMatch) scheduleDays = daysMatch[1].trim();
 
-  let vialidadRuta: string | null = null;
-  let vialidadEstado: string | null = null;
-  let vialidadObs: string | null = null;
-
-  const rnMatch = html.match(/RN\s+(\d+)/i);
-  if (rnMatch) vialidadRuta = `RN ${rnMatch[1]}`;
-
-  if (/\bHabilitada\b/i.test(html)) vialidadEstado = "HABILITADA";
-  else if (/\bCortada\b/i.test(html)) vialidadEstado = "CORTE TOTAL";
-  else if (/\bRestringida\b/i.test(html)) vialidadEstado = "RESTRINGIDA";
-
-  const obsPatterns = [/Transitable[^.<]*[.<]/i, /Sin restricciones[^.<]*[.<]/i];
-  for (const p of obsPatterns) {
-    const m = html.match(p);
-    if (m) {
-      vialidadObs = m[0].replace(/[.<]$/, "").trim();
-      break;
-    }
-  }
+  const { vialidadRuta, vialidadEstado, vialidadObs } = parseVialidadNearRn(html);
 
   let restriccionPasajeros: string | null = null;
   let restriccionVelocidad: string | null = null;
@@ -229,16 +297,10 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
   const velMatch = html.match(/Velocidad\s*\n?\s*([a-záéíóúñ\s]+)/i);
   if (velMatch) restriccionVelocidad = velMatch[1].trim();
 
-  const htmlAlertsCandidates: string[] = [];
-  if (statusDetail?.trim()) htmlAlertsCandidates.push(statusDetail.trim());
-  if (scheduleDays?.trim()) htmlAlertsCandidates.push(`Días de apertura: ${scheduleDays.trim()}`);
-  if (restriccionPasajeros?.trim()) htmlAlertsCandidates.push(restriccionPasajeros.trim());
-  if (restriccionVelocidad?.trim()) {
-    htmlAlertsCandidates.push(`Velocidad ${restriccionVelocidad.trim()}`);
-  }
+  const altitudeMFromPage = parseAltitudeM(html);
 
   console.log(
-    `[aguanegra] ✅ rawStatus=${rawStatus} | schedule=${scheduleNormalized} | updatedAt=${statusUpdatedAt} | err=${scrapeError ?? "—"}`,
+    `[aguanegra] ✅ rawStatus=${rawStatus} | detail=${statusDetail ?? "—"} | schedule=${scheduleNormalized} | updatedAt=${statusUpdatedAt ?? "—"} | err=${scrapeError ?? "—"}`,
   );
 
   return {
@@ -253,6 +315,7 @@ export async function scrapeAguaNegraStatus(): Promise<AguaNegraData> {
     vialidadObs,
     restriccionPasajeros,
     restriccionVelocidad,
+    altitudeMFromPage,
     scrapedAt,
     source: "aguanegra.sanjuan.gob.ar",
     scrapeError,
