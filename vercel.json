@@ -1,12 +1,6 @@
 {
   "framework": "astro",
   "buildCommand": "astro build",
-  "crons": [
-    {
-      "path": "/api/cron/twitter-refresh",
-      "schedule": "*/30 * * * *"
-    }
-  ],
   "headers": [
     {
       "source": "/_app/(.*)",
