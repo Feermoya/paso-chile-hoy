@@ -1,6 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { PasoConfig } from "@/data/pasos";
 import { isVialidadCorteTotal, type PassDisplayStatus } from "@/utils/inferPassStatus";
+import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
 
 export interface Props {
   paso: PasoConfig;
@@ -52,6 +54,9 @@ const label = displayLabel?.trim() || status.toUpperCase();
 const href = paso.active ? `/${paso.slug}` : undefined;
 const desc = weatherDesc?.trim() ?? "";
 const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
+const weatherIconName = desc ? getWeatherIcon(desc) : null;
+const weatherIconColor = desc ? getWeatherIconColor(desc) : undefined;
+const tempStr = weatherTempC != null ? String(weatherTempC) : null;
 ---
 
 {
@@ -64,18 +69,42 @@ const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
       <div class="pcv2-top">
         <h3 class="pcv2-name">{paso.shortName}</h3>
         <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>
-          <span class="pcv2-badge-dot" aria-hidden="true" />
+          <span class:list={["pcv2-badge-dot", status !== "sin_datos" && "pcv2-badge-dot--pulse"]} aria-hidden="true" />
           <span class="pcv2-badge-label">{label}</span>
         </span>
       </div>
 
       <div class="pcv2-metric">
-        {weatherTempC != null ? (
-          <span class="pcv2-temp">{weatherTempC}°</span>
-        ) : (
-          <span class="pcv2-temp pcv2-temp--na">—°</span>
-        )}
-        {desc ? <p class="pcv2-weather-desc">{desc}</p> : null}
+        <div class="pcv2-temp-line">
+          {tempStr != null ? (
+            <>
+              <span class="pcv2-temp-value">{tempStr}</span>
+              <sup class="pcv2-temp-unit">°</sup>
+            </>
+          ) : (
+            <>
+              <span class="pcv2-temp-value pcv2-temp-value--na">—</span>
+              <sup class="pcv2-temp-unit pcv2-temp-unit--na">°</sup>
+            </>
+          )}
+        </div>
+        {desc && weatherIconName ? (
+          <div class="pcv2-weather-line">
+            <Icon
+              name={weatherIconName}
+              class="pcv2-weather-icon"
+              width="20"
+              height="20"
+              style={weatherIconColor ? `color: ${weatherIconColor}` : undefined}
+              aria-hidden="true"
+            />
+            <span class="pcv2-weather-text">{desc}</span>
+          </div>
+        ) : desc ? (
+          <div class="pcv2-weather-line">
+            <span class="pcv2-weather-text">{desc}</span>
+          </div>
+        ) : null}
       </div>
 
       {(showClosesIn || showOpensIn) && (
@@ -92,15 +121,25 @@ const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
       )}
 
       {hasVialidad && (
-        <p class="pcv2-notice">
-          <span class="pcv2-notice-mark" aria-hidden="true">!</span>
-          {vialidadObservaciones?.trim() || "Alerta vial activa"}
-        </p>
+        <div class="pcv2-alert-banner" role="alert">
+          <span class="pcv2-alert-dot" aria-hidden="true" />
+          <Icon name="lucide:triangle-alert" class="pcv2-alert-icon" width="18" height="18" aria-hidden="true" />
+          <span class="pcv2-alert-text">{vialidadObservaciones?.trim() || "Alerta vial activa"}</span>
+        </div>
       )}
 
       <div class="pcv2-footer">
-        <span class="pcv2-route">{routeLabel}</span>
-        <span class="pcv2-disclosure" aria-hidden="true" />
+        <div class="pcv2-route-wrap">
+          <Icon name="lucide:route" class="pcv2-route-icon" width="15" height="15" aria-hidden="true" />
+          <span class="pcv2-route">{routeLabel}</span>
+        </div>
+        <Icon
+          name="lucide:chevron-right"
+          class:list={["pcv2-footer-chevron", `pcv2-footer-chevron--${status}`]}
+          width="18"
+          height="18"
+          aria-hidden="true"
+        />
       </div>
     </a>
   ) : (
@@ -113,10 +152,16 @@ const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
         </span>
       </div>
       <div class="pcv2-metric">
-        <span class="pcv2-temp pcv2-temp--na">—°</span>
+        <div class="pcv2-temp-line">
+          <span class="pcv2-temp-value pcv2-temp-value--na">—</span>
+          <sup class="pcv2-temp-unit pcv2-temp-unit--na">°</sup>
+        </div>
       </div>
       <div class="pcv2-footer">
-        <span class="pcv2-route">{routeLabel}</span>
+        <div class="pcv2-route-wrap">
+          <Icon name="lucide:route" class="pcv2-route-icon" width="15" height="15" aria-hidden="true" />
+          <span class="pcv2-route">{routeLabel}</span>
+        </div>
       </div>
     </div>
   )

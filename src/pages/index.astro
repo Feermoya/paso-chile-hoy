@@ -89,22 +89,32 @@ const homeSchema = {
         <div class="home-hero-text">
           <h1 class="home-hero-title">Está abierto el paso a Chile?</h1>
           <p class="home-hero-subtitle">
-            Estado en tiempo real del Cristo Redentor, Pehuenche y Agua Negra: pasos entre Argentina y
-            Chile. Antes de salir, revisá el horario, el clima y las condiciones de la ruta.
+            Cristo Redentor, Pehuenche y Agua Negra: estado, clima y alertas en tiempo real.
           </p>
         </div>
       </div>
     </div>
 
-    <p class="cards-hint">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M12 8v4m0 4h.01"></path>
+    <p class="cards-hint cards-hint--pill">
+      <svg class="cards-hint-touch" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3.5c-1.1 0-2 .9-2 2v6.5c0 .3-.2.5-.5.5S9 12.3 9 12V8.5c0-.8-.7-1.5-1.5-1.5S6 7.7 6 8.5v7.8c0 .4-.5.6-.8.3l-1.1-1.1c-.6-.6-1.5-.6-2.1 0s-.6 1.5 0 2.1l4.2 4.2c.4.4.9.6 1.5.6h6.6c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2h-1z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path d="M15 3.5v4M13 5.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
       </svg>
-      Tocá cualquier paso para ver el estado completo, clima y alertas
+      <span class="cards-hint-text">Tocá un paso para ver el detalle completo</span>
     </p>
 
     <StatusGuide />
+
+    <div class="home-live-pill" aria-live="polite">
+      <span class="home-live-dot" aria-hidden="true"></span>
+      <span class="home-live-label">En vivo</span>
+    </div>
 
     <div class="pasos-grid pcv2-cards-grid">
       {PASOS.map((paso) => {

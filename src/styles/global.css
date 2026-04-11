@@ -207,15 +207,15 @@ a.paso-card-v2:focus-visible {
   color: var(--color-text-primary);
 }
 
-/* Disclosure en cards home: sin color de link genérico */
-a.paso-card-v2 .pcv2-disclosure {
-  color: inherit;
-  opacity: 0.35;
+/* Chevron Lucide: mantiene color de estado; leve énfasis al hover */
+a.paso-card-v2 .pcv2-footer-chevron {
+  opacity: 0.88;
+  transition: opacity 200ms ease;
 }
 
-a.paso-card-v2:hover .pcv2-disclosure,
-a.paso-card-v2:focus-visible .pcv2-disclosure {
-  opacity: 0.55;
+a.paso-card-v2:hover .pcv2-footer-chevron,
+a.paso-card-v2:focus-visible .pcv2-footer-chevron {
+  opacity: 1;
 }
 
 .link-branded {
@@ -1697,41 +1697,34 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
 
   /* ===== HOME HERO ===== */
   .home-hero {
-    padding: 20px 0 20px;
+    padding: 20px 0 16px;
   }
 
   .home-hero-brand {
+    --home-hero-title-size: clamp(26px, 5vw, 48px);
     display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    align-items: center;
+    gap: clamp(12px, 3vw, 20px);
   }
 
-  /**
-   * Slot fijo en el flex (poco ancho) + imagen más grande centrada.
-   * Si el PNG tiene mucho transparente, `contain` en una caja grande solo agranda el “marco”;
-   * acá el dibujo útil escala respecto al centro sin reservar más hueco en la fila.
-   */
   .home-hero-logo-wrap {
     position: relative;
-    width: 52px;
-    height: 52px;
+    width: calc(var(--home-hero-title-size) * 1.15);
+    height: calc(var(--home-hero-title-size) * 1.15);
+    max-width: 72px;
+    max-height: 72px;
     flex-shrink: 0;
-    margin-top: 4px;
-    overflow: visible;
+    overflow: hidden;
+    border-radius: calc(var(--home-hero-title-size) * 0.22);
   }
 
   .home-hero-logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 88px;
-    height: 88px;
+    display: block;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    border-radius: 18px;
     object-fit: contain;
     object-position: center;
-    transform: translate(-50%, -50%);
-    max-width: none;
     pointer-events: none;
     user-select: none;
   }
@@ -1743,63 +1736,114 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
 
   .home-hero-title {
     font-family: var(--font-display);
-    font-size: clamp(28px, 5vw, 52px);
+    font-size: var(--home-hero-title-size);
     font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
-    margin: 0 0 12px;
+    margin: 0 0 6px;
   }
 
   .home-hero-subtitle {
-    font-size: 15px;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--color-text-muted);
     margin: 0;
-    max-width: 580px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media (max-width: 480px) {
     .home-hero-brand {
-      flex-direction: row;
-      gap: 14px;
-    }
-
-    .home-hero-logo-wrap {
-      width: 40px;
-      height: 40px;
-      margin-top: 2px;
-    }
-
-    .home-hero-logo {
-      width: 68px;
-      height: 68px;
-      border-radius: 14px;
+      --home-hero-title-size: clamp(24px, 6.5vw, 30px);
     }
 
     .home-hero-title {
-      font-size: 26px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .home-hero-subtitle {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 
   .cards-hint {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     font-size: 12px;
     color: var(--color-text-muted);
-    margin: 0 0 16px;
-    line-height: 1.4;
+    margin: 0 0 12px;
+    line-height: 1.35;
   }
 
-  .cards-hint svg {
+  .cards-hint--pill {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    padding: 8px 12px 8px 10px;
+    margin-bottom: 14px;
+    border-radius: 100px;
+    background: color-mix(in srgb, var(--color-surface-raised) 88%, var(--color-text-muted) 6%);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+  }
+
+  .cards-hint-touch {
     flex-shrink: 0;
     opacity: 0.85;
+    color: var(--color-text-muted);
+  }
+
+  .cards-hint-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  :root[data-theme="light"] .cards-hint--pill {
+    background: #f3f4f6;
+    border-color: rgba(0, 0, 0, 0.07);
+    color: #4b5563;
+  }
+
+  .home-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 11px 5px 9px;
+    margin: 0 0 14px;
+    border-radius: 100px;
+    border: 1px solid color-mix(in srgb, #ef4444 45%, transparent);
+    background: transparent;
+  }
+
+  .home-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #ef4444;
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  .home-live-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f87171;
+  }
+
+  :root[data-theme="light"] .home-live-pill {
+    border-color: rgba(220, 38, 38, 0.45);
+  }
+
+  :root[data-theme="light"] .home-live-label {
+    color: #dc2626;
   }
 
   @media (min-width: 375px) {
@@ -1823,19 +1867,19 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   .pasos-grid.pcv2-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 14px;
   }
 
-  @media (min-width: 480px) {
+  @media (min-width: 640px) {
     .pasos-grid.pcv2-cards-grid {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1024px) {
     .pasos-grid.pcv2-cards-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
@@ -3416,6 +3460,19 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
 }
 
 /* Reducir movimiento — micro-animaciones y cards */
+@keyframes pulse-live {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1.5);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .paso-card-v2,
   .alert-card,
@@ -3426,14 +3483,17 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   }
 
   .pcv2-badge-dot,
+  .pcv2-badge-dot--pulse,
+  .pcv2-alert-dot,
+  .home-live-dot,
   .pcv2-chip--urgent {
     animation: none;
   }
 }
 
 /* =============================================================================
-   Home — PasoCard v3 (sin @layer). Módulo tipo app: superficie neutra única,
-   estado solo en badge fino, sin barra lateral ni tintes de panel.
+   Home — PasoCard v3 (sin @layer). Tiempo real: badges saturados, temp + clima,
+   alerta vial, hover y borde según estado.
    ============================================================================= */
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 {
@@ -3453,55 +3513,56 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   overflow: hidden;
   background: var(--color-surface);
   box-shadow:
-    0 0 0 0.5px color-mix(in srgb, var(--color-border-default) 65%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-border-default) 55%, transparent),
     0 1px 2px rgba(0, 0, 0, 0.04),
-    0 10px 28px rgba(0, 0, 0, 0.07);
+    0 8px 22px rgba(0, 0, 0, 0.07);
   transition:
-    transform 0.22s cubic-bezier(0.25, 0.8, 0.25, 1),
-    box-shadow 0.22s ease,
-    border-color 0.2s ease;
-  animation: card-enter 0.32s ease both;
-}
-
-.pasos-grid.pcv2-cards-grid .paso-card-v2:nth-child(1) {
-  animation-delay: 0.03s;
-}
-
-.pasos-grid.pcv2-cards-grid .paso-card-v2:nth-child(2) {
-  animation-delay: 0.06s;
-}
-
-.pasos-grid.pcv2-cards-grid .paso-card-v2:nth-child(3) {
-  animation-delay: 0.09s;
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 {
   background: #fff;
-  border-color: rgba(0, 0, 0, 0.07);
+  border-color: #e5e7eb;
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.05),
-    0 1px 2px rgba(0, 0, 0, 0.03),
-    0 8px 24px rgba(0, 0, 0, 0.06);
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.pasos-grid.pcv2-cards-grid .paso-card-v2:hover {
-  transform: translateY(-1px);
-  border-color: var(--color-border-default);
+.pasos-grid.pcv2-cards-grid a.paso-card-v2:hover {
+  transform: translateY(-4px);
   box-shadow:
-    0 0 0 0.5px color-mix(in srgb, var(--color-border-strong) 50%, transparent),
-    0 4px 12px rgba(0, 0, 0, 0.06),
-    0 16px 40px rgba(0, 0, 0, 0.09);
+    0 0 0 1px color-mix(in srgb, var(--color-border-strong) 35%, transparent),
+    0 6px 16px rgba(0, 0, 0, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
-:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2:hover {
+.pasos-grid.pcv2-cards-grid a.paso-card-v2--abierto:hover {
+  border-color: #16a34a;
+}
+
+.pasos-grid.pcv2-cards-grid a.paso-card-v2--cerrado:hover {
+  border-color: #dc2626;
+}
+
+.pasos-grid.pcv2-cards-grid a.paso-card-v2--condicionado:hover {
+  border-color: #d97706;
+}
+
+.pasos-grid.pcv2-cards-grid a.paso-card-v2--sin_datos:hover {
+  border-color: color-mix(in srgb, var(--color-text-muted) 40%, var(--color-border-default));
+}
+
+:root[data-theme="light"] .pasos-grid.pcv2-cards-grid a.paso-card-v2:hover {
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.06),
-    0 4px 12px rgba(0, 0, 0, 0.04),
-    0 16px 40px rgba(0, 0, 0, 0.08);
+    0 0 0 1px rgba(0, 0, 0, 0.07),
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    0 18px 44px rgba(0, 0, 0, 0.1);
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2:active {
-  transform: translateY(0) scale(0.995);
+  transform: translateY(-2px) scale(0.997);
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2--disabled {
@@ -3537,21 +3598,22 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   min-width: 0;
 }
 
-/* Badge compacto, sistema, sin mayúsculas forzadas */
+/* Badge estado: saturado + dot 8px + pulso en vivo */
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
   flex-shrink: 1;
   min-width: 0;
-  max-width: min(148px, 50%);
+  max-width: min(160px, 52%);
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 1.2;
-  padding: 3px 9px 3px 7px;
+  padding: 4px 10px 4px 8px;
   border-radius: 100px;
   border: 1px solid transparent;
+  text-transform: uppercase;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge-label {
@@ -3562,46 +3624,53 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge-dot {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
+.pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge-dot--pulse {
+  animation: pulse-live 2s ease-in-out infinite;
+}
+
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--abierto {
-  color: #6ee7b7;
-  background: color-mix(in srgb, #3dd68c 9%, var(--color-surface));
-  border-color: color-mix(in srgb, #3dd68c 22%, var(--color-border-subtle));
+  color: #86efac;
+  background: color-mix(in srgb, #16a34a 24%, var(--color-surface));
+  border-color: #16a34a;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--abierto .pcv2-badge-dot {
-  background: #34d399;
+  background: #16a34a;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--cerrado {
-  color: #fca5a5;
-  background: color-mix(in srgb, #e05555 8%, var(--color-surface));
-  border-color: color-mix(in srgb, #e05555 20%, var(--color-border-subtle));
+  color: #fecaca;
+  background: color-mix(in srgb, #dc2626 22%, var(--color-surface));
+  border-color: #dc2626;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--cerrado .pcv2-badge-dot {
-  background: #f87171;
+  background: #dc2626;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--condicionado {
-  color: #fcd34d;
-  background: color-mix(in srgb, #f59e0b 9%, var(--color-surface));
-  border-color: color-mix(in srgb, #f59e0b 22%, var(--color-border-subtle));
+  color: #fde68a;
+  background: color-mix(in srgb, #d97706 22%, var(--color-surface));
+  border-color: #d97706;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--condicionado .pcv2-badge-dot {
-  background: #fbbf24;
+  background: #d97706;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--sin_datos {
   color: var(--color-text-muted);
-  background: color-mix(in srgb, var(--color-text-muted) 6%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-text-muted) 8%, var(--color-surface));
   border-color: var(--color-border-default);
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--sin_datos .pcv2-badge-dot {
@@ -3610,83 +3679,113 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--abierto {
-  color: #047857;
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.22);
+  color: #15803d;
+  background: #dcfce7;
+  border-color: #16a34a;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--abierto .pcv2-badge-dot {
-  background: #10b981;
+  background: #16a34a;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--cerrado {
-  color: #b91c1c;
-  background: rgba(239, 68, 68, 0.07);
-  border-color: rgba(239, 68, 68, 0.2);
+  color: #991b1b;
+  background: #fee2e2;
+  border-color: #dc2626;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--cerrado .pcv2-badge-dot {
-  background: #ef4444;
+  background: #dc2626;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--condicionado {
-  color: #b45309;
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.22);
+  color: #92400e;
+  background: #fef3c7;
+  border-color: #d97706;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--condicionado .pcv2-badge-dot {
-  background: #f59e0b;
+  background: #d97706;
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--sin_datos {
   color: #6b7280;
   background: #f3f4f6;
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 :root[data-theme="light"] .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge--sin_datos .pcv2-badge-dot {
   background: #9ca3af;
 }
 
-/* Métrica: temperatura + clima en una composición */
+/* Métrica: temperatura dominante + clima debajo */
 .pasos-grid.pcv2-cards-grid .pcv2-metric {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 10px 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   margin-top: 14px;
 }
 
-.pasos-grid.pcv2-cards-grid .pcv2-temp {
+.pasos-grid.pcv2-cards-grid .pcv2-temp-line {
+  display: inline-flex;
+  align-items: flex-start;
   font-family: var(--font-mono);
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
+  line-height: 0.9;
 }
 
-.pasos-grid.pcv2-cards-grid .pcv2-temp--na {
-  font-size: 2rem;
-  font-weight: 500;
+.pasos-grid.pcv2-cards-grid .pcv2-temp-value {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--color-text-primary);
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-temp-value--na {
+  font-size: 2.25rem;
+  font-weight: 600;
   color: var(--color-text-muted);
 }
 
-.pasos-grid.pcv2-cards-grid .pcv2-weather-desc {
-  flex: 1 1 108px;
+.pasos-grid.pcv2-cards-grid .pcv2-temp-unit {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+  vertical-align: super;
+  position: relative;
+  top: 0.35em;
+  margin-left: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-temp-unit--na {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-weather-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   min-width: 0;
-  margin: 0 0 3px;
-  font-size: 0.8125rem;
-  font-weight: 400;
-  line-height: 1.38;
+  max-width: 100%;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-weather-icon {
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-weather-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
   color: var(--color-text-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 /* Chips secundarios (cierre / apertura) */
@@ -3732,43 +3831,58 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   border-color: #fde68a;
 }
 
-/* Aviso vial: capa secundaria, sin caja pesada */
-.pasos-grid.pcv2-cards-grid .pcv2-notice {
+/* Alerta vial crítica: banda rota + dot en vivo (pulso más rápido) */
+.pasos-grid.pcv2-cards-grid .pcv2-alert-banner {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
-  margin: 11px 0 0;
-  padding: 0;
-  font-size: 10.5px;
-  font-weight: 400;
-  line-height: 1.42;
-  color: var(--color-text-secondary);
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 8px 10px 8px 11px;
+  border-radius: 8px;
+  background: color-mix(in srgb, #fee2e2 55%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, #dc2626 22%, var(--color-border-subtle));
+  border-left: 3px solid #dc2626;
 }
 
-.pasos-grid.pcv2-cards-grid .pcv2-notice-mark {
-  flex: 0 0 15px;
-  width: 15px;
-  height: 15px;
-  margin-top: 1px;
+.pasos-grid.pcv2-cards-grid .pcv2-alert-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  font-size: 9px;
-  font-weight: 700;
-  line-height: 15px;
-  text-align: center;
-  color: color-mix(in srgb, #e05555 85%, white);
-  background: color-mix(in srgb, #e05555 12%, transparent);
+  flex-shrink: 0;
+  margin-top: 5px;
+  background: #dc2626;
+  animation: pulse-live 1.5s ease-in-out infinite;
 }
 
-:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-notice {
-  color: #4b5563;
+.pasos-grid.pcv2-cards-grid .pcv2-alert-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #f87171;
 }
 
-:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-notice-mark {
-  color: #b91c1c;
-  background: rgba(239, 68, 68, 0.1);
+.pasos-grid.pcv2-cards-grid .pcv2-alert-text {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fecaca;
+  min-width: 0;
 }
 
-/* Pie: ruta discreta + chevron (lista nativa) */
+:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-alert-banner {
+  background: #fee2e2;
+  border-color: rgba(220, 38, 38, 0.2);
+  border-left-color: #dc2626;
+}
+
+:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-alert-icon {
+  color: #dc2626;
+}
+
+:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-alert-text {
+  color: #991b1b;
+}
+
+/* Pie: ruta + chevron Lucide por estado */
 .pasos-grid.pcv2-cards-grid .pcv2-footer {
   display: flex;
   align-items: center;
@@ -3778,31 +3892,55 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   padding-top: 13px;
 }
 
+.pasos-grid.pcv2-cards-grid .pcv2-route-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-route-icon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  opacity: 0.9;
+}
+
 .pasos-grid.pcv2-cards-grid .pcv2-route {
-  font-size: 10.5px;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
 }
 
-.pasos-grid.pcv2-cards-grid .pcv2-disclosure {
-  flex-shrink: 0;
-  width: 7px;
-  height: 7px;
-  margin: 0 1px 1px 0;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(-45deg);
-  opacity: 0.32;
-  transition: opacity 0.15s ease;
+:root[data-theme="light"] .pasos-grid.pcv2-cards-grid .pcv2-route {
+  color: #374151;
 }
 
-.pasos-grid.pcv2-cards-grid a.paso-card-v2:hover .pcv2-disclosure {
-  opacity: 0.48;
+.pasos-grid.pcv2-cards-grid .pcv2-footer-chevron {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-footer-chevron--abierto {
+  color: #16a34a;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-footer-chevron--cerrado {
+  color: #dc2626;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-footer-chevron--condicionado {
+  color: #d97706;
+}
+
+.pasos-grid.pcv2-cards-grid .pcv2-footer-chevron--sin_datos {
+  color: var(--color-text-muted);
 }
 
 .pasos-grid.pcv2-cards-grid a.paso-card-v2:focus-visible {
@@ -3830,8 +3968,12 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
     border-radius: 14px;
   }
 
-  .pasos-grid.pcv2-cards-grid .pcv2-temp {
-    font-size: 2.125rem;
+  .pasos-grid.pcv2-cards-grid .pcv2-temp-value {
+    font-size: 2.5rem;
+  }
+
+  .pasos-grid.pcv2-cards-grid .pcv2-temp-value--na {
+    font-size: 1.875rem;
   }
 
   .pasos-grid.pcv2-cards-grid .pcv2-name {
@@ -3839,17 +3981,13 @@ a.paso-card-v2:focus-visible .pcv2-disclosure {
   }
 
   .pasos-grid.pcv2-cards-grid .paso-card-v2 .pcv2-badge {
-    max-width: min(132px, 46%);
-    font-size: 9.5px;
-    padding: 3px 8px 3px 6px;
+    max-width: min(140px, 48%);
+    font-size: 9px;
+    padding: 4px 9px 4px 7px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pasos-grid.pcv2-cards-grid .paso-card-v2 {
-    animation: none;
-  }
-
   .pasos-grid.pcv2-cards-grid .pcv2-chip--urgent {
     animation: none;
   }
