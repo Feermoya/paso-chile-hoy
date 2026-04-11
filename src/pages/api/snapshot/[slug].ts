@@ -1,7 +1,11 @@
 import type { APIRoute } from "astro";
 import { getPasoBySlug } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
-import { getSnapshotForApi, refreshAndPersistSnapshot } from "@/lib/server/services/snapshotService";
+import {
+  getSnapshotForApi,
+  readPersistedSnapshot,
+  refreshAndPersistSnapshot,
+} from "@/lib/server/services/snapshotService";
 import type { PassSnapshot } from "@/lib/server/passMapper";
 import type { PassRaw } from "@/types/pass-raw";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
@@ -26,6 +30,9 @@ function jsonHeaders(): HeadersInit {
   };
 }
 
+const STALE_REFRESH_MESSAGE =
+  "No se pudo refrescar ahora; mostrando el último dato disponible.";
+
 function buildPayload(raw: PassRaw | PassSnapshot, paso: NonNullable<ReturnType<typeof getPasoBySlug>>) {
   const view = mapPersistedSnapshotToView(raw, paso);
   const st = inferPassStatus(view);
@@ -40,6 +47,13 @@ function buildPayload(raw: PassRaw | PassSnapshot, paso: NonNullable<ReturnType<
     opensInMinutes: st.opensInMinutes ?? null,
     closesInMinutes: st.closesInMinutes ?? null,
   };
+}
+
+function jsonBody(
+  body: Record<string, unknown>,
+  status: number,
+): Response {
+  return new Response(JSON.stringify(body), { status, headers: jsonHeaders() });
 }
 
 function verifyRefreshAuth(request: Request): boolean {
@@ -84,8 +98,36 @@ export const POST: APIRoute = async ({ params, request }) => {
 
   try {
     const raw = await refreshAndPersistSnapshot(slug);
-    return new Response(JSON.stringify(buildPayload(raw, paso)), { status: 200, headers: jsonHeaders() });
-  } catch {
-    return new Response(JSON.stringify({ error: "Refresh failed" }), { status: 503, headers: jsonHeaders() });
+    return jsonBody(
+      {
+        ...buildPayload(raw, paso),
+        stale: false,
+        refreshFailed: false,
+      },
+      200,
+    );
+  } catch (err) {
+    console.error(`[snapshot-api] POST refresh failed for "${slug}":`, err);
+    const persisted = await readPersistedSnapshot(slug);
+    if (persisted) {
+      return jsonBody(
+        {
+          ...buildPayload(persisted, paso),
+          stale: true,
+          refreshFailed: true,
+          message: STALE_REFRESH_MESSAGE,
+        },
+        200,
+      );
+    }
+    return jsonBody(
+      {
+        error: "Refresh failed",
+        refreshFailed: true,
+        stale: false,
+        message: STALE_REFRESH_MESSAGE,
+      },
+      503,
+    );
   }
 };

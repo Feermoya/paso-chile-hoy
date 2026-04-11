@@ -214,6 +214,13 @@ const closeCountdownInitial =
           <span data-refresh-label>Actualizar</span>
         </button>
       </div>
+
+      <p
+        class="status-refresh-stale-hint mt-1.5 mb-0 hidden text-[12px] leading-snug text-[var(--color-text-muted)]"
+        data-hero-stale-hint
+        role="status"
+        aria-live="polite"
+      ></p>
     </div>
 
     <div class="hidden md:block md:mt-4 md:border-t md:border-[var(--color-border-subtle)] md:pt-4">
@@ -356,6 +363,7 @@ const closeCountdownInitial =
     const scheduleText = section.querySelector("[data-hero-schedule-text]");
     const icon = section.querySelector("[data-refresh-icon]");
     const refreshLabel = section.querySelector("[data-refresh-label]");
+    const staleHint = section.querySelector("[data-hero-stale-hint]");
 
     if (
       !(btn instanceof HTMLButtonElement) ||
@@ -416,7 +424,17 @@ const closeCountdownInitial =
           statusLabel?: string;
           lastUpdatedRelative?: string;
           schedule?: string;
+          stale?: boolean;
+          refreshFailed?: boolean;
+          message?: string;
         };
+
+        const isStaleResponse = data.stale === true;
+
+        if (staleHint instanceof HTMLElement) {
+          staleHint.classList.add("hidden");
+          staleHint.textContent = "";
+        }
 
         if (data.statusLabel && labelEl instanceof HTMLElement) {
           labelEl.textContent = data.statusLabel;
@@ -461,12 +479,26 @@ const closeCountdownInitial =
 
         window.dispatchEvent(
           new CustomEvent("paso-data-refreshed", {
-            detail: { slug, data },
+            detail: { slug, data, stale: isStaleResponse },
           }),
         );
 
-        setState("success", "¡Listo!");
-        setTimeout(() => setState("idle", "Actualizar"), 2500);
+        if (isStaleResponse) {
+          console.warn("[StatusHero] Refresh usó último snapshot:", slug, data.message);
+          if (staleHint instanceof HTMLElement) {
+            staleHint.textContent =
+              data.message?.trim() ||
+              "No se pudo refrescar ahora; mostrando el último dato disponible.";
+            staleHint.classList.remove("hidden");
+            window.setTimeout(() => {
+              staleHint.classList.add("hidden");
+              staleHint.textContent = "";
+            }, 10000);
+          }
+        }
+
+        setState("success", isStaleResponse ? "Dato anterior" : "¡Listo!");
+        setTimeout(() => setState("idle", "Actualizar"), isStaleResponse ? 3200 : 2500);
       } catch {
         setState("error", "Error");
         setTimeout(() => setState("idle", "Actualizar"), 3000);
