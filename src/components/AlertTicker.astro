@@ -1,24 +1,103 @@
 ---
+import { Icon } from "astro-icon/components";
 import { PASOS } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
+import type { PassView } from "@/types/pass-view";
 import { readPassSnapshot } from "@/lib/server/storage/passSnapshotStorage";
-import { inferPassStatus, isVialidadCorteTotal } from "@/utils/inferPassStatus";
+import {
+  inferPassStatus,
+  isVialidadCorteTotal,
+  type PassDisplayStatus,
+  type PassStatusResult,
+} from "@/utils/inferPassStatus";
 
-const STATUS_LABEL: Record<string, string> = {
+type AlertSeverity = "critical" | "warning";
+type BarTone = "critical" | "warn" | "calm";
+
+const STATUS_BADGE: Record<PassDisplayStatus, string> = {
   abierto: "ABIERTO",
   cerrado: "CERRADO",
   condicionado: "CONDICIONADO",
   sin_datos: "SIN DATOS",
 };
 
-const emoji: Record<string, string> = {
-  abierto: "✅",
-  cerrado: "🔴",
-  condicionado: "⚠️",
-  sin_datos: "⚪",
-};
+interface PassStrip {
+  slug: string;
+  shortName: string;
+  status: PassDisplayStatus;
+  badgeLabel: string;
+  corteTotal: boolean;
+}
 
-const tickerItems: string[] = [];
+interface TickerAlert {
+  severity: AlertSeverity;
+  text: string;
+}
+
+function badgeForResult(status: PassDisplayStatus, displayLabel?: string): string {
+  if (status === "condicionado") return "CONDICIONADO";
+  return displayLabel?.trim() || STATUS_BADGE[status];
+}
+
+function vialidadParcialAlerta(estado?: string | null): boolean {
+  const u = (estado ?? "").trim().toUpperCase();
+  if (!u || u.includes("HABILITADA")) return false;
+  if (isVialidadCorteTotal(estado)) return false;
+  return u.includes("RESTRINGIDA") || u.includes("CORTE");
+}
+
+function collectTickerAlerts(
+  paso: (typeof PASOS)[number],
+  view: PassView,
+  result: PassStatusResult,
+): TickerAlert[] {
+  const out: TickerAlert[] = [];
+  const vialEst = view.operationalInfo.vialidadEstado;
+  const vialObs = view.operationalInfo.vialidadObservaciones?.trim() ?? "";
+  const motivo = view.operationalInfo.motivo?.trim() ?? "";
+
+  if (isVialidadCorteTotal(vialEst) && vialObs) {
+    out.push({ severity: "critical", text: `${paso.shortName}: ${vialObs}` });
+  }
+
+  if (result.status === "cerrado") {
+    const text = motivo ? `${paso.shortName}: ${motivo}` : `${paso.shortName}: Paso cerrado`;
+    out.push({ severity: "critical", text });
+  }
+
+  if (vialidadParcialAlerta(vialEst) && vialObs) {
+    out.push({ severity: "warning", text: `${paso.shortName}: ${vialObs}` });
+  }
+
+  if (result.status === "condicionado") {
+    const body = motivo || vialObs || "Condicionado";
+    out.push({ severity: "warning", text: `${paso.shortName}: ${body}` });
+  }
+
+  return out;
+}
+
+function dedupeAlerts(items: TickerAlert[]): TickerAlert[] {
+  const seen = new Set<string>();
+  const r: TickerAlert[] = [];
+  for (const it of items) {
+    const k = it.text.replace(/\s+/g, " ").trim().toLowerCase();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    r.push(it);
+  }
+  return r;
+}
+
+function computeBarTone(passes: { status: PassDisplayStatus; corteTotal: boolean }[]): BarTone {
+  const anyCrit = passes.some((p) => p.status === "cerrado" || p.corteTotal);
+  if (anyCrit) return "critical";
+  if (passes.some((p) => p.status === "condicionado")) return "warn";
+  return "calm";
+}
+
+const passStrips: PassStrip[] = [];
+const allAlerts: TickerAlert[] = [];
 
 for (const paso of PASOS.filter((p) => p.active)) {
   try {
@@ -27,128 +106,607 @@ for (const paso of PASOS.filter((p) => p.active)) {
 
     const view = mapPersistedSnapshotToView(raw, paso);
     const result = inferPassStatus(view);
-    const vialEst = view.operationalInfo.vialidadEstado;
-    const vialObs = view.operationalInfo.vialidadObservaciones?.trim() ?? "";
-    const motivo = view.operationalInfo.motivo?.trim();
+    const corteTotal = isVialidadCorteTotal(view.operationalInfo.vialidadEstado);
 
-    const em = emoji[result.status] ?? "⚪";
-    const label = STATUS_LABEL[result.status] ?? result.status.toUpperCase();
-    let item = `${em} ${paso.shortName}: ${label}`;
+    passStrips.push({
+      slug: paso.slug,
+      shortName: paso.shortName,
+      status: result.status,
+      badgeLabel: badgeForResult(result.status, result.displayLabel),
+      corteTotal,
+    });
 
-    if (isVialidadCorteTotal(vialEst) && vialObs) {
-      item += ` — ⛔ ${vialObs}`;
-    }
-    if (motivo && result.status !== "abierto") {
-      item += ` — ${motivo}`;
-    }
-
-    tickerItems.push(item);
+    allAlerts.push(...collectTickerAlerts(paso, view, result));
   } catch {
     /* skip */
   }
 }
 
-if (tickerItems.length === 0) {
+if (passStrips.length === 0) {
   return null;
 }
 
-const allItems = [...tickerItems, ...tickerItems, ...tickerItems];
+const alerts = dedupeAlerts(allAlerts);
+const barToneFinal = computeBarTone(
+  passStrips.map((p) => ({ status: p.status, corteTotal: p.corteTotal })),
+);
+
+const alertSignature = alerts.map((a) => `${a.severity}:${a.text}`).join("|");
+const tripleAlerts = [...alerts, ...alerts, ...alerts];
+
+const mobileParts: string[] = [
+  ...passStrips.map((p) => `${p.shortName} ${p.badgeLabel}`),
+  ...(alerts.length > 0 ? alerts.map((a) => a.text) : ["Sin alertas activas"]),
+];
+const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
 ---
 
-<div class="alert-ticker" role="region" aria-label="Estado de los pasos" aria-live="polite">
-  <div class="ticker-label">
-    <span class="live-pulse-dot live-pulse-dot--brand" aria-hidden="true"></span>
-    EN VIVO
-  </div>
-  <div class="ticker-track">
-    <div class="ticker-content">
+<div
+  class:list={["status-bar", `status-bar--tone-${barToneFinal}`]}
+  role="region"
+  aria-label="Estado de los pasos y alertas"
+  aria-live="polite"
+  data-bar-tone={barToneFinal}
+>
+  <div class="status-bar-desktop">
+    <div class="status-bar-left">
+      <div class="status-bar-live-pill">
+        <span class="status-bar-live-dot" aria-hidden="true"></span>
+        <span class="status-bar-live-label">EN VIVO</span>
+      </div>
+      <span class="status-bar-vsep status-bar-vsep--soft" aria-hidden="true"></span>
+      <div class="status-bar-passes">
+        {
+          passStrips.map((p, i) => (
+            <span class="status-bar-pass-unit">
+              {i > 0 ? <span class="status-bar-pipe" aria-hidden="true">|</span> : null}
+              <span class="status-bar-pass">
+                <span
+                  class:list={[
+                    "status-bar-pass-dot",
+                    `status-bar-pass-dot--${p.status}`,
+                    p.status !== "sin_datos" && "status-bar-pass-dot--pulse",
+                  ]}
+                  aria-hidden="true"
+                />
+                <span class="status-bar-pass-name">{p.shortName}</span>
+                <span class:list={["status-bar-pass-badge", `status-bar-pass-badge--${p.status}`]}>
+                  {p.badgeLabel}
+                </span>
+              </span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="status-bar-center">
+      <Icon name="lucide:megaphone" class="status-bar-megaphone" width="14" height="14" aria-hidden="true" />
+      <span class="status-bar-vsep status-bar-vsep--mid" aria-hidden="true"></span>
+    </div>
+
+    <div class="status-bar-right" data-alert-sig={alertSignature}>
       {
-        allItems.map((item, i) => (
-          <span class="ticker-item-wrap">
-            <span class="ticker-item">{item}</span>
-            {i < allItems.length - 1 ? <span class="ticker-sep">·</span> : null}
-          </span>
-        ))
+        alerts.length === 0 ? (
+          <div class="status-bar-no-alerts">
+            <Icon name="lucide:check" class="status-bar-check-icon" width="14" height="14" aria-hidden="true" />
+            <span>Sin alertas activas</span>
+          </div>
+        ) : (
+          <div class="status-bar-alert-track">
+            <div class="status-bar-alert-content">
+              {
+                tripleAlerts.map((a, idx) => (
+                  <span class="status-bar-alert-unit">
+                    {idx > 0 ? <span class="status-bar-alert-dot-sep" aria-hidden="true">·</span> : null}
+                    <span class:list={["status-bar-alert-item", `status-bar-alert--${a.severity}`]}>
+                      <span class="status-bar-alert-emoji" aria-hidden="true">
+                        ⚠️
+                      </span>
+                      {a.text}
+                    </span>
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        )
       }
+    </div>
+  </div>
+
+  <div class="status-bar-mobile">
+    <div class="status-bar-live-pill status-bar-live-pill--compact">
+      <span class="status-bar-live-dot" aria-hidden="true"></span>
+      <span class="status-bar-live-label">EN VIVO</span>
+    </div>
+    <span class="status-bar-vsep status-bar-vsep--soft" aria-hidden="true"></span>
+    <div class="status-bar-mobile-track">
+      <div class="status-bar-mobile-content">
+        {
+          mobileScrollItems.map((chunk, idx) => (
+            <span class="status-bar-mobile-unit">
+              {idx > 0 ? <span class="status-bar-mobile-sep" aria-hidden="true">·</span> : null}
+              <span class="status-bar-mobile-item">{chunk}</span>
+            </span>
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>
 
+<script>
+  (function () {
+    function run() {
+      const right = document.querySelector(".status-bar-right[data-alert-sig]");
+      if (!(right instanceof HTMLElement)) return;
+      const sig = right.getAttribute("data-alert-sig") ?? "";
+      const k = "pch-status-bar-alert-sig";
+      try {
+        const prev = sessionStorage.getItem(k);
+        if (prev != null && prev !== sig) {
+          right.classList.add("status-bar-right--flash");
+          setTimeout(() => right.classList.remove("status-bar-right--flash"), 520);
+        }
+        sessionStorage.setItem(k, sig);
+      } catch {
+        /* private mode */
+      }
+    }
+    run();
+    document.addEventListener("astro:page-load", run);
+  })();
+</script>
+
 <style>
-  .alert-ticker {
+  .status-bar {
     display: flex;
-    align-items: center;
-    height: 36px;
-    background: rgba(91, 174, 255, 0.06);
-    border-bottom: 1px solid rgba(91, 174, 255, 0.15);
+    flex-direction: column;
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     overflow: hidden;
     position: relative;
+    transition: background 1.5s ease;
   }
 
-  .ticker-label {
+  :root[data-theme="dark"] .status-bar {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .status-bar--tone-critical {
+    background: linear-gradient(to right, #fff1f2 0%, #ffffff 72%, #ffffff 100%);
+  }
+
+  .status-bar--tone-warn {
+    background: linear-gradient(to right, #fffbeb 0%, #ffffff 72%, #ffffff 100%);
+  }
+
+  .status-bar--tone-calm {
+    background: linear-gradient(to right, #f0fdf4 0%, #ffffff 72%, #ffffff 100%);
+  }
+
+  :root[data-theme="dark"] .status-bar--tone-critical {
+    background: linear-gradient(to right, rgba(254, 202, 202, 0.12) 0%, var(--ticker-surface) 78%);
+  }
+
+  :root[data-theme="dark"] .status-bar--tone-warn {
+    background: linear-gradient(to right, rgba(253, 230, 138, 0.1) 0%, var(--ticker-surface) 78%);
+  }
+
+  :root[data-theme="dark"] .status-bar--tone-calm {
+    background: linear-gradient(to right, rgba(187, 247, 208, 0.1) 0%, var(--ticker-surface) 78%);
+  }
+
+  .status-bar-desktop {
+    display: none;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .status-bar-desktop {
+      display: flex;
+    }
+
+    .status-bar-mobile {
+      display: none;
+    }
+  }
+
+  .status-bar-left {
+    flex: 0 0 60%;
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 6px;
+    min-width: 0;
+  }
+
+  .status-bar-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     flex-shrink: 0;
-    padding: 0 12px;
+    padding: 0 8px 0 6px;
+    border-radius: 100px;
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    background: transparent;
+    height: 26px;
+  }
+
+  .status-bar-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ef4444;
+    flex-shrink: 0;
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  .status-bar-live-label {
     font-size: 9px;
     font-weight: 800;
-    letter-spacing: 0.15em;
-    color: var(--brand);
-    background: rgba(91, 174, 255, 0.1);
-    height: 100%;
+    letter-spacing: 0.12em;
+    color: #dc2626;
+  }
+
+  :root[data-theme="dark"] .status-bar-live-label {
+    color: #f87171;
+  }
+
+  :root[data-theme="dark"] .status-bar-live-pill {
+    border-color: rgba(248, 113, 113, 0.45);
+  }
+
+  .status-bar-vsep {
+    display: inline-block;
+    width: 1px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .status-bar-vsep--soft {
+    height: 60%;
+    max-height: 18px;
+    background: currentColor;
+    opacity: 0.3;
+  }
+
+  .status-bar-vsep--mid {
+    height: 60%;
+    max-height: 18px;
+    background: var(--color-text-muted);
+    opacity: 0.4;
+  }
+
+  .status-bar-passes {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .status-bar-pass-unit {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .status-bar-pipe {
+    margin: 0 8px;
+    opacity: 0.3;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .status-bar-pass {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .status-bar-pass-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-text-muted);
+  }
+
+  .status-bar-pass-dot--pulse {
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  .status-bar-pass-dot--abierto {
+    background: #16a34a;
+  }
+
+  .status-bar-pass-dot--cerrado {
+    background: #dc2626;
+  }
+
+  .status-bar-pass-dot--condicionado {
+    background: #d97706;
+  }
+
+  .status-bar-pass-dot--sin_datos {
+    background: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  .status-bar-pass-dot--sin_datos.status-bar-pass-dot--pulse {
+    animation: none;
+  }
+
+  .status-bar-pass-name {
+    color: var(--color-text-primary);
+  }
+
+  .status-bar-pass-badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .status-bar-pass-badge--abierto {
+    color: #15803d;
+    background: #dcfce7;
+    border-color: #16a34a;
+  }
+
+  .status-bar-pass-badge--cerrado {
+    color: #991b1b;
+    background: #fee2e2;
+    border-color: #dc2626;
+  }
+
+  .status-bar-pass-badge--condicionado {
+    color: #92400e;
+    background: #fef3c7;
+    border-color: #d97706;
+  }
+
+  .status-bar-pass-badge--sin_datos {
+    color: var(--color-text-muted);
+    background: var(--color-surface-raised);
+    border-color: var(--color-border-default);
+  }
+
+  :root[data-theme="dark"] .status-bar-pass-badge--abierto {
+    color: #86efac;
+    background: color-mix(in srgb, #16a34a 22%, var(--color-surface));
+    border-color: #16a34a;
+  }
+
+  :root[data-theme="dark"] .status-bar-pass-badge--cerrado {
+    color: #fecaca;
+    background: color-mix(in srgb, #dc2626 22%, var(--color-surface));
+    border-color: #dc2626;
+  }
+
+  :root[data-theme="dark"] .status-bar-pass-badge--condicionado {
+    color: #fde68a;
+    background: color-mix(in srgb, #d97706 22%, var(--color-surface));
+    border-color: #d97706;
+  }
+
+  .status-bar-center {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+  }
+
+  .status-bar-megaphone {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    opacity: 0.85;
+  }
+
+  .status-bar-right {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    padding-left: 4px;
+  }
+
+  .status-bar-right--flash .status-bar-alert-content {
+    animation: status-bar-alert-flash 0.5s ease forwards;
+  }
+
+  @keyframes status-bar-alert-flash {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .status-bar-no-alerts {
     display: flex;
     align-items: center;
     gap: 6px;
-    border-right: 1px solid rgba(91, 174, 255, 0.2);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
     white-space: nowrap;
   }
 
-  .ticker-track {
-    flex: 1;
-    overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  .status-bar-check-icon {
+    flex-shrink: 0;
+    color: #16a34a;
+    opacity: 0.85;
   }
 
-  @keyframes ticker-scroll {
+  .status-bar-alert-track {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+  }
+
+  @keyframes status-bar-alert-scroll {
     from {
       transform: translateX(0);
     }
+
     to {
-      transform: translateX(-33.33%);
+      transform: translateX(-33.333%);
     }
   }
 
-  .ticker-content {
+  .status-bar-alert-content {
     display: flex;
     align-items: center;
-    gap: 24px;
     white-space: nowrap;
     width: max-content;
-    animation: ticker-scroll 25s linear infinite;
+    font-size: 0.78rem;
+    font-weight: 500;
+    animation: status-bar-alert-scroll 20s linear infinite;
   }
 
-  .ticker-content:hover {
+  .status-bar-alert-content:hover {
     animation-play-state: paused;
   }
 
-  .ticker-item-wrap {
+  .status-bar-alert-unit {
     display: inline-flex;
     align-items: center;
-    gap: 24px;
+    flex-shrink: 0;
   }
 
-  .ticker-item {
-    font-size: 12px;
+  .status-bar-alert-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .status-bar-alert--critical {
+    color: #b91c1c;
+  }
+
+  .status-bar-alert--warning {
+    color: #c2410c;
+  }
+
+  :root[data-theme="dark"] .status-bar-alert--critical {
+    color: #fca5a5;
+  }
+
+  :root[data-theme="dark"] .status-bar-alert--warning {
+    color: #fdba74;
+  }
+
+  .status-bar-alert-dot-sep {
+    margin: 0 6px;
+    opacity: 0.45;
+    color: var(--color-text-muted);
+  }
+
+  .status-bar-alert-emoji {
+    font-size: 0.75rem;
+  }
+
+  .status-bar-mobile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  @media (min-width: 640px) {
+    .status-bar-mobile {
+      display: none;
+    }
+  }
+
+  .status-bar-live-pill--compact {
+    height: 24px;
+    padding: 0 6px 0 5px;
+  }
+
+  .status-bar-mobile-track {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+  }
+
+  @keyframes status-bar-mobile-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  .status-bar-mobile-content {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: max-content;
+    font-size: 0.78rem;
     font-weight: 500;
     color: var(--color-text-secondary);
-    white-space: nowrap;
+    animation: status-bar-mobile-scroll 22s linear infinite;
   }
 
-  .ticker-sep {
-    color: var(--color-text-disabled);
+  .status-bar-mobile-content:hover {
+    animation-play-state: paused;
+  }
+
+  .status-bar-mobile-unit {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .status-bar-mobile-sep {
+    margin: 0 6px;
+    opacity: 0.35;
+    color: var(--color-text-muted);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ticker-content {
+    .status-bar-live-dot,
+    .status-bar-pass-dot--pulse {
       animation: none;
+    }
+
+    .status-bar-alert-content,
+    .status-bar-mobile-content {
+      animation: none;
+    }
+
+    .status-bar-right--flash .status-bar-alert-content {
+      animation: none;
+      opacity: 1;
     }
   }
 </style>

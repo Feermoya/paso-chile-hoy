@@ -50,7 +50,15 @@ const hasVialidad =
     estU.includes("RESTRINGIDA") ||
     estU.includes("CORTE"));
 
-const label = displayLabel?.trim() || status.toUpperCase();
+const defaultBadgeLabel: Record<PassDisplayStatus, string> = {
+  abierto: "ABIERTO",
+  cerrado: "CERRADO",
+  condicionado: "CONDICIONADO",
+  sin_datos: "SIN DATOS",
+};
+/** CONDICIONADO siempre en badge naranja; no reutilizar "ABIERTO" de Gendarmería cuando el estado inferido es condicionado. */
+const label =
+  status === "condicionado" ? "CONDICIONADO" : (displayLabel?.trim() || defaultBadgeLabel[status]);
 const href = paso.active ? `/${paso.slug}` : undefined;
 const desc = weatherDesc?.trim() ?? "";
 const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;

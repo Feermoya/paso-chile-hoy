@@ -1,44 +1,50 @@
 ---
-// Card estática hacia @PasoCRMza — sin widgets.js, sin 429
+const FOLLOW_URL = "https://x.com/intent/follow?screen_name=PasoCRMza";
+const PROFILE_URL = "https://x.com/PasoCRMza";
+
+const rawFollowers = import.meta.env.PUBLIC_X_FOLLOWERS_COUNT;
+let followersSuffix = "";
+if (typeof rawFollowers === "string" && rawFollowers.trim() !== "") {
+  const n = parseInt(rawFollowers.replace(/\s/g, ""), 10);
+  if (Number.isFinite(n) && n >= 0) {
+    followersSuffix = ` · ${new Intl.NumberFormat("es-AR").format(n)} seguidores`;
+  }
+}
 ---
 
 <section class="twitter-section-x" aria-label="Novedades en X">
-  <a
-    href="https://x.com/PasoCRMza"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="x-card"
-    aria-label="Ver actualizaciones oficiales de @PasoCRMza en X"
-  >
-    <div class="x-card-icon-wrap" aria-hidden="true">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="x-card-x-logo">
-        <path
-          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-        ></path>
-      </svg>
-    </div>
+  <div class="x-card">
+    <a
+      href={PROFILE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="x-card-main"
+      aria-label="Ver actualizaciones oficiales de @PasoCRMza en X"
+    >
+      <div class="x-card-icon-wrap" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="x-card-x-logo">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          ></path>
+        </svg>
+      </div>
 
-    <div class="x-card-body">
-      <p class="x-card-handle">@PasoCRMza</p>
-      <p class="x-card-desc">
-        Seguí las novedades oficiales del paso en X. Alertas, habilitaciones y actualizaciones en tiempo
-        real.
-      </p>
-    </div>
+      <div class="x-card-body">
+        <p class="x-card-handle">@PasoCRMza</p>
+        <p class="x-card-desc">
+          Seguí las novedades oficiales del paso en X. Alertas, habilitaciones y actualizaciones en tiempo
+          real.{followersSuffix}
+        </p>
+      </div>
+    </a>
 
-    <div class="x-card-cta" aria-hidden="true">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M7 17L17 7M17 7H7M17 7v10"></path>
-      </svg>
-    </div>
-  </a>
+    <a
+      href={FOLLOW_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="x-card-follow-btn"
+    >
+      Seguir en X →
+    </a>
+  </div>
 </section>

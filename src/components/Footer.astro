@@ -1,13 +1,23 @@
 ---
 import VersionBadge from "@/components/VersionBadge.astro";
+import { Icon } from "astro-icon/components";
 
+const year = new Date().getFullYear();
 const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
+const mail = "fmoya97.fm@gmail.com";
+const mailto = `mailto:${mail}`;
+const suggestionsHref = `mailto:${mail}?subject=${encodeURIComponent("Sugerencia — Paso Chile Hoy")}`;
+const xUrl = "https://x.com/PasoCRMza";
+
+const linkedinUrl =
+  import.meta.env.PUBLIC_LINKEDIN_URL?.trim() || "https://www.linkedin.com/in/fernando-moya-1997-/";
+const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
 ---
 
 <footer class="site-footer">
   <div class="footer-top">
     <div class="footer-top-inner">
-      <div class="footer-brand-col">
+      <div class="footer-col footer-col--identity">
         <a href="/" class="footer-logo-link">
           <img
             src="/logo.png"
@@ -23,27 +33,94 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
             <span class="footer-brand-tagline">Estado en tiempo real · Argentina–Chile</span>
           </div>
         </a>
-        <p class="footer-tagline">
-          Estado en tiempo real de los pasos internacionales entre Argentina y Chile. Gratis, sin publicidad,
-          hecho en Mendoza.
-        </p>
-        <p class="footer-made-in">
-          Desarrollado por <a href="mailto:fmoya97.fm@gmail.com" class="footer-dev-link">Fernando Moya</a>
-        </p>
+
+        <hr class="footer-hr" />
+
+        <div class="footer-dev-block">
+          <p class="footer-dev-label">Diseñado y desarrollado por</p>
+          <div class="footer-dev-row">
+            <span class="footer-dev-name">Fernando Moya</span>
+            <span class="footer-dev-icons">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-icon-link"
+                aria-label="Fernando Moya en LinkedIn"
+              >
+                <Icon name="lucide:linkedin" width="16" height="16" aria-hidden="true" />
+              </a>
+              <a href={mailto} class="footer-icon-link" aria-label={`Enviar correo a ${mail}`}>
+                <Icon name="lucide:mail" width="16" height="16" aria-hidden="true" />
+              </a>
+            </span>
+          </div>
+          <p class="footer-dev-cta">Abierto a consultas y proyectos</p>
+        </div>
       </div>
 
-      <div class="footer-links-col">
-        <p class="footer-col-title">Pasos</p>
-        <a href="/cristo-redentor" class="footer-link">Cristo Redentor</a>
-        <a href="/pehuenche" class="footer-link">Pehuenche</a>
-        <a href="/agua-negra" class="footer-link">Agua Negra</a>
+      <div class="footer-col footer-col--nav">
+        <div class="footer-nav-group">
+          <p class="footer-col-title">Pasos</p>
+          <nav class="footer-nav-list" aria-label="Pasos fronterizos">
+            <a href="/cristo-redentor" class="footer-link">Cristo Redentor</a>
+            <a href="/pehuenche" class="footer-link">Pehuenche</a>
+            <a href="/agua-negra" class="footer-link">Agua Negra</a>
+          </nav>
+        </div>
+        <div class="footer-nav-group">
+          <p class="footer-col-title">Legal</p>
+          <nav class="footer-nav-list" aria-label="Legal y fuentes">
+            <a href={official} target="_blank" rel="noopener noreferrer" class="footer-link">Fuente oficial</a>
+            <a href="/legal" class="footer-link">Aviso legal</a>
+            <a href={mailto} class="footer-link">Contacto</a>
+          </nav>
+        </div>
       </div>
 
-      <div class="footer-links-col">
-        <p class="footer-col-title">Recursos</p>
-        <a href={official} target="_blank" rel="noopener noreferrer" class="footer-link">Fuente oficial</a>
-        <a href="/legal" class="footer-link">Aviso legal</a>
-        <a href="mailto:fmoya97.fm@gmail.com" class="footer-link">Contacto</a>
+      <div class="footer-col footer-col--social">
+        <div class="footer-social-block">
+          <p class="footer-col-title">Seguinos</p>
+          <nav class="footer-nav-list" aria-label="Redes sociales">
+            <a href={xUrl} target="_blank" rel="noopener noreferrer" class="footer-link footer-link--with-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="footer-x-icon" aria-hidden="true">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                ></path>
+              </svg>
+              @PasoCRMza en X
+            </a>
+            {
+              instagramUrl ? (
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer-link footer-link--with-icon"
+                >
+                  <Icon name="lucide:instagram" width="16" height="16" aria-hidden="true" />
+                  Instagram
+                </a>
+              ) : null
+            }
+            <a href={mailto} class="footer-link footer-link--with-icon">
+              <Icon name="lucide:mail" width="16" height="16" aria-hidden="true" />
+              {mail}
+            </a>
+          </nav>
+        </div>
+
+        <hr class="footer-hr footer-hr--in-col" />
+
+        <div class="footer-project-block">
+          <p class="footer-col-title">Proyecto</p>
+          <div class="footer-project-version">
+            <VersionBadge compact />
+          </div>
+          <nav class="footer-nav-list" aria-label="Proyecto">
+            <a href={suggestionsHref} class="footer-link">Sugerencias</a>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -54,10 +131,9 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
         Servicio independiente. No afiliado al gobierno argentino ni chileno. Verificá siempre en la{" "}
         <a href={official} target="_blank" rel="noopener noreferrer">fuente oficial</a>.
       </p>
-      <div class="footer-bottom-right">
-        <VersionBadge compact />
-        <p class="footer-geo">32°S · Cordillera de los Andes</p>
-      </div>
+      <p class="footer-copy-line">
+        © {year} · Paso Chile Hoy · Hecho en Mendoza 🏔️
+      </p>
     </div>
   </div>
 </footer>
@@ -65,27 +141,51 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 <style>
   .site-footer {
     margin-top: 64px;
-    border-top: 1px solid var(--color-border-subtle);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :root[data-theme="dark"] .site-footer {
+    border-top-color: var(--color-border-subtle);
   }
 
   .footer-top {
+    background: #f1f5f9;
+    padding: 48px 0 44px;
+  }
+
+  :root[data-theme="dark"] .footer-top {
     background: var(--color-bg-secondary);
-    padding: 48px 0 40px;
   }
 
   .footer-top-inner {
-    max-width: 960px;
+    max-width: 1100px;
     margin-inline: auto;
     padding-inline: 20px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: 48px 80px;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .footer-top-inner {
+      gap: 40px 48px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-col--identity {
+      grid-column: 1 / -1;
+    }
   }
 
   @media (max-width: 640px) {
     .footer-top-inner {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 36px;
+    }
+
+    .footer-col--identity {
+      grid-column: auto;
     }
   }
 
@@ -94,7 +194,7 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
 
   .footer-logo {
@@ -118,104 +218,226 @@ const official = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    color: #0f172a;
+  }
+
+  :root[data-theme="dark"] .footer-logo-name {
     color: var(--color-text-primary);
   }
 
   .footer-brand-tagline {
     font-size: 12px;
-    color: var(--color-text-muted);
-    line-height: 1.3;
+    color: #64748b;
+    line-height: 1.35;
   }
 
-  .footer-tagline {
-    font-size: 13px;
+  :root[data-theme="dark"] .footer-brand-tagline {
     color: var(--color-text-muted);
-    line-height: 1.6;
-    margin: 0 0 12px;
-    max-width: 280px;
   }
 
-  .footer-made-in {
+  .footer-hr {
+    border: none;
+    height: 1px;
+    margin: 16px 0;
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  .footer-hr--in-col {
+    margin: 20px 0;
+  }
+
+  .footer-dev-block {
+    max-width: 320px;
+  }
+
+  .footer-dev-label {
     font-size: 12px;
-    color: var(--color-text-disabled);
-    margin: 0;
+    color: #64748b;
+    margin: 0 0 6px;
+    line-height: 1.4;
   }
 
-  .footer-dev-link {
-    color: var(--brand);
+  :root[data-theme="dark"] .footer-dev-label {
+    color: var(--color-text-muted);
+  }
+
+  .footer-dev-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+  }
+
+  .footer-dev-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+  }
+
+  :root[data-theme="dark"] .footer-dev-name {
+    color: var(--color-text-primary);
+  }
+
+  .footer-dev-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-icon-link {
+    display: inline-flex;
+    color: #64748b;
+    transition: color 150ms ease;
     text-decoration: none;
   }
 
+  .footer-icon-link:hover {
+    color: #2563eb;
+  }
+
+  :root[data-theme="dark"] .footer-icon-link {
+    color: var(--color-text-muted);
+  }
+
+  :root[data-theme="dark"] .footer-icon-link:hover {
+    color: #60a5fa;
+  }
+
+  .footer-dev-cta {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #94a3b8;
+    margin: 10px 0 0;
+    line-height: 1.45;
+  }
+
+  :root[data-theme="dark"] .footer-dev-cta {
+    color: var(--color-text-disabled);
+  }
+
   .footer-col-title {
-    font-size: 10px;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--brand);
+    color: #2563eb;
     margin: 0 0 16px;
   }
 
-  .footer-links-col {
+  :root[data-theme="dark"] .footer-col-title {
+    color: #5baeff;
+  }
+
+  .footer-nav-group + .footer-nav-group {
+    margin-top: 16px;
+  }
+
+  .footer-nav-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
   .footer-link {
-    font-size: 13px;
-    color: var(--color-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: color 150ms ease;
   }
 
   .footer-link:hover {
+    color: #2563eb;
+  }
+
+  :root[data-theme="dark"] .footer-link {
     color: var(--color-text-secondary);
   }
 
+  :root[data-theme="dark"] .footer-link:hover {
+    color: #60a5fa;
+  }
+
+  .footer-link--with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-x-icon {
+    flex-shrink: 0;
+  }
+
+  .footer-project-version {
+    margin-bottom: 12px;
+  }
+
   .footer-bottom {
-    background: var(--color-bg-base);
-    border-top: 1px solid var(--color-border-subtle);
+    background: #e8edf3;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding: 16px 0;
   }
 
+  :root[data-theme="dark"] .footer-bottom {
+    background: var(--color-bg-base);
+    border-top-color: var(--color-border-subtle);
+  }
+
   .footer-bottom-inner {
-    max-width: 960px;
+    max-width: 1100px;
     margin-inline: auto;
     padding-inline: 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding-top: 4px;
-  }
-
-  .footer-bottom-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 16px 24px;
     flex-wrap: wrap;
   }
 
   .footer-legal-short {
     font-size: 11px;
-    color: var(--color-text-disabled);
+    color: #64748b;
     margin: 0;
     line-height: 1.5;
     max-width: 560px;
+    flex: 1 1 280px;
+  }
+
+  :root[data-theme="dark"] .footer-legal-short {
+    color: var(--color-text-disabled);
   }
 
   .footer-legal-short a {
-    color: var(--brand);
+    color: #2563eb;
     text-decoration: none;
+    transition: color 150ms ease;
   }
 
-  .footer-geo {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-text-disabled);
+  .footer-legal-short a:hover {
+    color: #1d4ed8;
+  }
+
+  .footer-copy-line {
+    font-size: 0.72rem;
+    color: #94a3b8;
     margin: 0;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  :root[data-theme="dark"] .footer-copy-line {
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .footer-bottom-inner {
+      flex-direction: column;
+    }
+
+    .footer-copy-line {
+      white-space: normal;
+    }
   }
 </style>

@@ -8,7 +8,7 @@ export interface PassStatusResult {
   confidence: "high" | "medium" | "low";
   /** Origen del estado inferido (solo Gendarmería u horario; la vialidad no define el estado del paso). */
   source?: "gendarmeria" | "horario";
-  /** Si el badge es ámbar (condicionado) pero el texto debe seguir siendo el de Gendarmería (p. ej. ABIERTO). */
+  /** Señal auxiliar (p. ej. Gendarmería «ABIERTO» con alerta de vialidad): no reemplaza el badge CONDICIONADO en UI. */
   displayLabel?: string;
   opensInMinutes?: number;
   closesInMinutes?: number;

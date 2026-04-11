@@ -103,6 +103,8 @@
 
   /* Sticky ticker debajo del header (actualizado por JS) */
   --header-height: 56px;
+  /** Fondo del ticker (debajo del navbar) */
+  --ticker-surface: #121820;
 
   /* Puente legado Tailwind (hsl sin función, solo referencia si algo quedara) */
   --surface: 218 24% 6%;
@@ -142,6 +144,8 @@
   --shadow-glow-open: 0 0 20px rgba(16, 185, 129, 0.18);
   --shadow-glow-closed: 0 0 20px rgba(239, 68, 68, 0.14);
   --shadow-glow-conditional: 0 0 20px rgba(245, 158, 11, 0.2);
+
+  --ticker-surface: #f1f5f9;
 }
 
 /* Header y ticker — modo claro (`.alert-ticker` vive en el layout; mayor especificidad que estilos del componente) */
@@ -161,23 +165,12 @@
 }
 
 :root[data-theme="light"] .ticker-wrapper {
-  background: #f8f9fb;
+  background: var(--ticker-surface);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-:root[data-theme="light"] .alert-ticker {
-  background: rgba(91, 174, 255, 0.06);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
-}
-
-:root[data-theme="light"] .alert-ticker .ticker-label {
-  background: rgba(91, 174, 255, 0.12);
-  color: #185fa5;
-  border-right-color: rgba(91, 174, 255, 0.22);
-}
-
-:root[data-theme="light"] .alert-ticker .ticker-item {
-  color: #374151;
+:root[data-theme="light"] .ticker-wrapper .status-bar {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 /* Enlaces por defecto con marca (excepciones en header/footer explícitas) */
@@ -961,9 +954,10 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--color-accent);
-  opacity: 0.7;
+  background: #22c55e;
   flex-shrink: 0;
+  animation: pulse-live 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 35%, transparent);
 }
 
 .version-badge--compact {
@@ -1387,10 +1381,10 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     position: sticky;
     top: var(--header-height, 56px);
     z-index: 40;
-    background: var(--color-bg-base);
+    background: var(--ticker-surface);
   }
 
-  .ticker-wrapper .alert-ticker {
+  .ticker-wrapper .status-bar {
     border-bottom: 1px solid rgba(91, 174, 255, 0.12);
   }
 
@@ -1697,41 +1691,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   /* ===== HOME HERO ===== */
   .home-hero {
-    padding: 20px 0 16px;
-  }
-
-  .home-hero-brand {
     --home-hero-title-size: clamp(26px, 5vw, 48px);
-    display: flex;
-    align-items: center;
-    gap: clamp(12px, 3vw, 20px);
-  }
-
-  .home-hero-logo-wrap {
-    position: relative;
-    width: calc(var(--home-hero-title-size) * 1.15);
-    height: calc(var(--home-hero-title-size) * 1.15);
-    max-width: 72px;
-    max-height: 72px;
-    flex-shrink: 0;
-    overflow: hidden;
-    border-radius: calc(var(--home-hero-title-size) * 0.22);
-  }
-
-  .home-hero-logo {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    object-fit: contain;
-    object-position: center;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .home-hero-text {
-    flex: 1;
-    min-width: 0;
+    padding: 18px 0 12px;
   }
 
   .home-hero-title {
@@ -1755,9 +1716,32 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     text-overflow: ellipsis;
   }
 
+  .home-hero-updated {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 0;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: var(--color-text-muted);
+  }
+
+  .home-hero-updated-icon {
+    flex-shrink: 0;
+    opacity: 0.85;
+    color: var(--color-text-muted);
+  }
+
+  .home-hero-updated-time {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+
   @media (max-width: 480px) {
-    .home-hero-brand {
-      --home-hero-title-size: clamp(24px, 6.5vw, 30px);
+    .home-hero {
+      --home-hero-title-size: clamp(22px, 6.5vw, 30px);
+      padding-top: 12px;
     }
 
     .home-hero-title {
@@ -1775,7 +1759,7 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     gap: 8px;
     font-size: 12px;
     color: var(--color-text-muted);
-    margin: 0 0 12px;
+    margin: 0 0 10px;
     line-height: 1.35;
   }
 
@@ -1784,11 +1768,50 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     width: fit-content;
     max-width: 100%;
     padding: 8px 12px 8px 10px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     border-radius: 100px;
     background: color-mix(in srgb, var(--color-surface-raised) 88%, var(--color-text-muted) 6%);
     border: 1px solid var(--color-border-subtle);
     color: var(--color-text-secondary);
+  }
+
+  /* Guía de estados + pill EN VIVO en una fila */
+  .home-guide-live-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px 16px;
+    margin-bottom: 14px;
+  }
+
+  .home-guide-live-row .status-guide {
+    width: fit-content;
+    max-width: 320px;
+    flex: 0 1 auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .home-guide-live-row .home-live-pill {
+    margin: 0;
+    align-self: center;
+  }
+
+  @media (max-width: 480px) {
+    .home-guide-live-row {
+      flex-direction: column;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    .home-guide-live-row .status-guide {
+      max-width: 100%;
+    }
+
+    .home-guide-live-row .home-live-pill {
+      align-self: flex-start;
+    }
   }
 
   .cards-hint-touch {
@@ -1810,12 +1833,17 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     color: #4b5563;
   }
 
+  :root[data-theme="light"] .home-hero-updated,
+  :root[data-theme="light"] .home-hero-updated-icon {
+    color: #6b7280;
+  }
+
   .home-live-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 5px 11px 5px 9px;
-    margin: 0 0 14px;
+    margin: 0;
     border-radius: 100px;
     border: 1px solid color-mix(in srgb, #ef4444 45%, transparent);
     background: transparent;
@@ -2184,6 +2212,32 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 }
 
+@keyframes support-thumb-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes support-plusone-rise {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -26px);
+  }
+}
+
 /* ===== SUPPORT BLOCK ===== */
 
 .support-block-section {
@@ -2203,15 +2257,23 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border-subtle);
   background: var(--color-surface);
-  padding: 20px 24px;
+  padding: 32px 28px;
 }
 
-.support-main {
+.support-main--split {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+}
+
+@media (min-width: 900px) {
+  .support-main--split {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 28px 32px;
+  }
 }
 
 .support-text {
@@ -2219,40 +2281,57 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   min-width: 0;
 }
 
-.support-title {
-  font-size: 15px;
+.support-line-strong {
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-text-primary);
-  margin: 0 0 2px;
+  margin: 0 0 8px;
+  line-height: 1.35;
 }
 
-.support-subtitle {
-  font-size: 12px;
+.support-line-muted {
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.5;
+  max-width: 42rem;
 }
 
-.support-actions {
+.support-actions--stack {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 12px;
+}
+
+@media (min-width: 900px) {
+  .support-actions--stack {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    min-width: 0;
+  }
 }
 
 .support-like-btn {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border-default);
-  background: transparent;
+  border: 1px solid rgba(91, 174, 255, 0.38);
+  background: #ffffff;
   color: var(--color-text-secondary);
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   font-family: var(--font-body);
   transition:
     border-color 0.15s,
@@ -2260,6 +2339,43 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     background 0.15s;
   -webkit-tap-highlight-color: transparent;
   overflow: visible;
+}
+
+@media (min-width: 900px) {
+  .support-like-btn {
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
+:root[data-theme="dark"] .support-like-btn {
+  background: var(--color-surface);
+  border-color: color-mix(in srgb, var(--brand) 45%, var(--color-border-default));
+}
+
+.support-like-thumb {
+  flex-shrink: 0;
+}
+
+.support-like-thumb--pop {
+  animation: support-thumb-pop 0.3s ease-out;
+}
+
+.support-plusone-float {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 4px;
+  transform: translate(-50%, 0);
+  font-size: 13px;
+  font-weight: 800;
+  color: #16a34a;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.support-plusone-float--visible {
+  animation: support-plusone-rise 0.42s ease-out forwards;
 }
 
 .like-burst {
@@ -2290,6 +2406,15 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     animation: none;
     opacity: 0;
   }
+
+  .support-like-thumb--pop,
+  .support-plusone-float--visible {
+    animation: none;
+  }
+
+  .support-plusone-float.support-plusone-float--visible {
+    opacity: 0;
+  }
 }
 
 .support-like-btn:hover:not(:disabled) {
@@ -2303,9 +2428,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   color: var(--brand);
 }
 
-.support-like-btn--active svg {
-  fill: var(--brand);
-  stroke: var(--brand);
+.support-like-btn--active .support-like-thumb {
+  color: var(--brand);
 }
 
 .support-like-btn:disabled {
@@ -2320,34 +2444,48 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 }
 
 .support-donate-btn {
-  background: var(--brand);
-  color: #0a0c10;
-  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
   border: none;
-  padding: 9px 18px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
   transition:
-    background 0.15s,
-    transform 0.1s;
+    filter 150ms ease,
+    transform 150ms ease;
   white-space: nowrap;
 }
 
+@media (min-width: 900px) {
+  .support-donate-btn {
+    width: auto;
+  }
+}
+
+.support-donate-heart {
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
 .support-donate-btn:hover {
-  background: #7ccbff;
-  color: #0a0c10;
+  filter: brightness(1.1);
+  transform: scale(1.02);
 }
 
 .support-donate-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.99);
 }
 
 :root[data-theme="light"] .support-donate-btn {
-  background: var(--brand);
-  color: #0a0c10;
+  color: #ffffff;
 }
 
 /* ===== PWA INSTALL BANNER ===== */
@@ -3103,12 +3241,12 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 .x-card {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 14px;
   padding: 18px 20px;
   border-radius: var(--radius-xl, 16px);
   border: 1px solid var(--color-border-default);
   background: var(--color-surface);
-  text-decoration: none;
   color: inherit;
   transition:
     transform 0.15s ease,
@@ -3123,8 +3261,51 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   border-color: var(--brand);
 }
 
-.x-card:active {
-  transform: scale(0.98);
+.x-card-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.x-card-main:hover .x-card-handle {
+  color: var(--brand);
+}
+
+.x-card-follow-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: #0f1419;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.x-card-follow-btn:hover {
+  background: #1a222e;
+  transform: translateY(-1px);
+}
+
+:root[data-theme="light"] .x-card-follow-btn {
+  background: #000000;
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="light"] .x-card-follow-btn:hover {
+  background: #1f2937;
 }
 
 .x-card-icon-wrap {
@@ -3166,20 +3347,6 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   line-height: 1.4;
 }
 
-.x-card-cta {
-  color: var(--brand);
-  flex-shrink: 0;
-  opacity: 0.7;
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease;
-}
-
-.x-card:hover .x-card-cta {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
 :root[data-theme="light"] .x-card {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
@@ -3192,6 +3359,17 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
 :root[data-theme="light"] .x-card-icon-wrap {
   background: rgba(91, 174, 255, 0.08);
+}
+
+@media (max-width: 520px) {
+  .x-card {
+    flex-wrap: wrap;
+  }
+
+  .x-card-follow-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3486,6 +3664,9 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   .pcv2-badge-dot--pulse,
   .pcv2-alert-dot,
   .home-live-dot,
+  .status-bar-live-dot,
+  .status-bar-pass-dot--pulse,
+  .version-dot,
   .pcv2-chip--urgent {
     animation: none;
   }
