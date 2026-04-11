@@ -3431,6 +3431,223 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
   font-weight: 700;
 }
 
+.section-label--live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Latido suave — datos automáticos / en vivo (home + pasos) */
+@keyframes live-data-heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  22% {
+    transform: scale(1.05);
+    opacity: 0.97;
+  }
+  44% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  58% {
+    transform: scale(1.035);
+    opacity: 0.98;
+  }
+  78%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.live-pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: live-data-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  vertical-align: middle;
+}
+
+.live-pulse-dot--brand {
+  background: var(--brand);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+.live-pulse-dot--sky {
+  background: var(--color-accent);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.pcv2-badge--live-data::before {
+  animation: live-data-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.pcv2-badge--live-data--muted::before {
+  animation-duration: 4.2s;
+  opacity: 0.75;
+}
+
+.status-hero .status-dot--live-pulse {
+  animation: live-data-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite !important;
+}
+
+/* ===== TWITTER TIMELINE WIDGET ===== */
+
+.twitter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.twitter-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.twitter-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.twitter-x-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.twitter-widget-wrap {
+  border-radius: var(--radius-xl, 16px);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+  overflow: hidden;
+  min-height: 200px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.twitter-widget-wrap:hover {
+  border-color: var(--color-border-default);
+}
+
+.twitter-timeline {
+  display: block;
+  width: 100%;
+}
+
+.twitter-widget-wrap iframe {
+  border-radius: var(--radius-xl, 16px) !important;
+  border: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.twitter-skeleton {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.twitter-skeleton-tweet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.twitter-skeleton-tweet:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sk-line {
+  height: 12px;
+  border-radius: 6px;
+  background: var(--color-border-subtle);
+  animation: sk-shimmer 1.5s ease-in-out infinite;
+}
+
+.sk-line--short {
+  width: 35%;
+}
+
+.sk-line--medium {
+  width: 65%;
+}
+
+.sk-line--long {
+  width: 90%;
+}
+
+@keyframes sk-shimmer {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.twitter-fallback-link {
+  text-align: right;
+  padding: 4px 0;
+}
+
+.twitter-fallback-link:not([hidden]) {
+  display: block;
+}
+
+.twitter-direct-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.twitter-direct-link:hover {
+  text-decoration: underline;
+}
+
+:root[data-theme="light"] .twitter-widget-wrap {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+:root[data-theme="light"] .sk-line {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-line {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .live-pulse-dot,
+  .pcv2-badge--live-data::before,
+  .status-hero .status-dot--live-pulse {
+    animation: none !important;
+    opacity: 0.85;
+  }
+}
+
 /* Clima — valores legibles */
 .weather-label {
   color: var(--color-text-muted);

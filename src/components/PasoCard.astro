@@ -56,7 +56,9 @@ const href = paso.active ? `/${paso.slug}` : undefined;
       aria-label={`Ver estado de ${paso.shortName}`}
     >
       <div class="pcv2-status-row">
-        <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>{badgeLabel}</span>
+        <span class:list={["pcv2-badge", `pcv2-badge--${status}`, "pcv2-badge--live-data"]}>
+          {badgeLabel}
+        </span>
         {showClosesIn && (
           <span
             class:list={[
@@ -101,7 +103,9 @@ const href = paso.active ? `/${paso.slug}` : undefined;
   ) : (
     <div class="paso-card-v2 paso-card-v2--disabled" aria-disabled="true">
       <div class="pcv2-status-row">
-        <span class="pcv2-badge pcv2-badge--sin_datos">PRÓXIMAMENTE</span>
+        <span class="pcv2-badge pcv2-badge--sin_datos pcv2-badge--live-data pcv2-badge--live-data--muted">
+          PRÓXIMAMENTE
+        </span>
       </div>
       <h3 class="pcv2-name">{paso.shortName}</h3>
       <div class="pcv2-footer">

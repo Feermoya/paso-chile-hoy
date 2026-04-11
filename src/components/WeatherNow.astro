@@ -136,7 +136,10 @@ const freshness = assessSnapshotFreshness(scrapedAt);
   ]}
   aria-labelledby="weather-now-heading"
 >
-  <p class="text-eyebrow weather-eyebrow">Clima en el paso</p>
+  <p class="text-eyebrow weather-eyebrow weather-eyebrow--live">
+    <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
+    Clima en el paso
+  </p>
   <h2 id="weather-now-heading" class="text-section-title mt-2">Ahora</h2>
 
   {w.description && (
@@ -280,6 +283,12 @@ const freshness = assessSnapshotFreshness(scrapedAt);
 </article>
 
 <style>
+  .weather-eyebrow--live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   .staleness-warning {
     display: flex;
     align-items: flex-start;

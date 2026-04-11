@@ -56,7 +56,10 @@ const allItems = [...tickerItems, ...tickerItems, ...tickerItems];
 ---
 
 <div class="alert-ticker" role="region" aria-label="Estado de los pasos" aria-live="polite">
-  <div class="ticker-label">EN VIVO</div>
+  <div class="ticker-label">
+    <span class="live-pulse-dot live-pulse-dot--brand" aria-hidden="true"></span>
+    EN VIVO
+  </div>
   <div class="ticker-track">
     <div class="ticker-content">
       {
@@ -93,6 +96,7 @@ const allItems = [...tickerItems, ...tickerItems, ...tickerItems];
     height: 100%;
     display: flex;
     align-items: center;
+    gap: 6px;
     border-right: 1px solid rgba(91, 174, 255, 0.2);
     white-space: nowrap;
   }

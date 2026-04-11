@@ -31,7 +31,10 @@ function fcardIconWrapStyle(weatherColor: string): string {
 ---
 
 <section class:list={["forecast-section", className]} aria-labelledby="forecast-heading">
-  <h2 id="forecast-heading" class="text-section-title section-label">Próximas horas</h2>
+  <h2 id="forecast-heading" class="text-section-title section-label section-label--live">
+    <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
+    Próximas horas
+  </h2>
   <div class="forecast-grid">
     {
       forecast.map((period, i) => {
