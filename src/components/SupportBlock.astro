@@ -1,4 +1,6 @@
 ---
+import LikeButton from "@/components/LikeButton.astro";
+
 const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
 ---
 
@@ -13,30 +15,6 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
       </div>
 
       <div class="support-actions">
-        <button
-          class="support-like-btn"
-          id="support-like-btn"
-          type="button"
-          aria-label="Marcar como útil"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-            <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-          </svg>
-          <span id="support-like-count" class="support-like-count">···</span>
-          <span class="like-burst" id="like-burst" aria-hidden="true"></span>
-        </button>
-
         <a
           href={MP_LINK}
           target="_blank"
@@ -47,93 +25,7 @@ const MP_LINK = "https://link.mercadopago.com.ar/pasochilehoy";
         </a>
       </div>
     </div>
+
+    <LikeButton embedded />
   </div>
 </section>
-
-<script>
-  (function () {
-    const USER_LIKED_KEY = "pch-liked";
-
-    function createBurst(btn: HTMLButtonElement) {
-      const burst = btn.querySelector(".like-burst");
-      if (!(burst instanceof HTMLElement)) return;
-
-      const colors = ["#5BAEFF", "#3DD68C", "#F0A830", "#E05555", "#C87941"];
-      const count = 12;
-
-      for (let i = 0; i < count; i++) {
-        const particle = document.createElement("span");
-        particle.className = "like-particle";
-
-        const angle = (i / count) * 360;
-        const distance = 30 + Math.random() * 20;
-        const tx = Math.cos((angle * Math.PI) / 180) * distance;
-        const ty = Math.sin((angle * Math.PI) / 180) * distance;
-
-        particle.style.setProperty("--tx", `${tx}px`);
-        particle.style.setProperty("--ty", `${ty}px`);
-        particle.style.background = colors[i % colors.length] ?? "#5BAEFF";
-        particle.style.animationDelay = `${Math.random() * 0.1}s`;
-
-        burst.appendChild(particle);
-        setTimeout(() => particle.remove(), 700);
-      }
-    }
-
-    async function init() {
-      const btn = document.getElementById("support-like-btn");
-      const countEl = document.getElementById("support-like-count");
-      if (!btn || !countEl || !(btn instanceof HTMLButtonElement)) return;
-
-      async function loadCount(el: HTMLElement) {
-        try {
-          const res = await fetch("/api/likes");
-          const data = (await res.json()) as { likes?: number };
-          const n = typeof data.likes === "number" ? data.likes : 0;
-          el.textContent = n > 0 ? String(n) : "0";
-        } catch {
-          el.textContent = "···";
-        }
-      }
-
-      await loadCount(countEl);
-
-      if (localStorage.getItem(USER_LIKED_KEY)) {
-        btn.classList.add("support-like-btn--active");
-        btn.setAttribute("aria-label", "Ya marcaste esto como útil");
-        btn.disabled = true;
-      } else {
-        btn.classList.remove("support-like-btn--active");
-        btn.setAttribute("aria-label", "Marcar como útil");
-        btn.disabled = false;
-      }
-
-      if (btn.dataset.pchLikesBound === "1") return;
-      btn.dataset.pchLikesBound = "1";
-
-      btn.addEventListener("click", async () => {
-        if (localStorage.getItem(USER_LIKED_KEY)) return;
-
-        btn.disabled = true;
-        btn.classList.add("support-like-btn--active");
-        createBurst(btn);
-
-        try {
-          const res = await fetch("/api/likes", { method: "POST" });
-          const data = (await res.json()) as { likes?: number };
-          if (typeof data.likes === "number") {
-            countEl.textContent = String(data.likes);
-          }
-          localStorage.setItem(USER_LIKED_KEY, "true");
-          btn.setAttribute("aria-label", "Ya marcaste esto como útil");
-        } catch {
-          btn.disabled = false;
-          btn.classList.remove("support-like-btn--active");
-        }
-      });
-    }
-
-    void init();
-    document.addEventListener("astro:page-load", () => void init());
-  })();
-</script>

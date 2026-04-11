@@ -1,0 +1,172 @@
+---
+export interface Props {
+  /** Sin borde superior ni padding extra (p. ej. dentro de SupportBlock). */
+  embedded?: boolean;
+}
+
+const { embedded = false } = Astro.props;
+
+const buttonId = `like-btn-${Math.random().toString(36).slice(2)}`;
+const countId = `like-count-${Math.random().toString(36).slice(2)}`;
+const statusId = `like-status-${Math.random().toString(36).slice(2)}`;
+---
+
+<div class:list={["like-widget", embedded && "like-widget--embedded"]}>
+  <p class="like-widget__count">
+    <span id={countId}>0</span> personas dijeron que esta web les sirvió
+  </p>
+
+  <button id={buttonId} type="button" class="like-widget__button">
+    Me sirvió
+  </button>
+
+  <p id={statusId} class="like-widget__status" aria-live="polite"></p>
+</div>
+
+<script is:inline define:vars={{ buttonId, countId, statusId }}>
+  const button = document.getElementById(buttonId);
+  const count = document.getElementById(countId);
+  const status = document.getElementById(statusId);
+  const storageKey = "pch-liked";
+
+  async function loadLikes() {
+    try {
+      const response = await fetch("/api/likes", {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+
+      const data = await response.json();
+
+      if (count && typeof data.likes === "number") {
+        count.textContent = String(data.likes);
+      }
+    } catch (error) {
+      console.error("Error loading likes", error);
+      if (status) status.textContent = "No se pudo cargar el contador.";
+    }
+  }
+
+  function alreadyVoted() {
+    const v = localStorage.getItem(storageKey);
+    return v === "1" || v === "true";
+  }
+
+  function applyLikedState() {
+    const alreadyLiked = alreadyVoted();
+
+    if (alreadyLiked && button) {
+      button.disabled = true;
+      button.textContent = "Gracias";
+      if (status) status.textContent = "Ya marcaste que te sirvió.";
+    }
+  }
+
+  async function handleLike() {
+    if (alreadyVoted()) return;
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Enviando...";
+    }
+
+    try {
+      const response = await fetch("/api/likes", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data = await response.json();
+
+      if (count && typeof data.likes === "number") {
+        count.textContent = String(data.likes);
+      }
+
+      localStorage.setItem(storageKey, "1");
+
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Gracias";
+      }
+
+      if (status) {
+        status.textContent = "Gracias por apoyar la web.";
+      }
+    } catch (error) {
+      console.error("Error sending like", error);
+
+      if (button) {
+        button.disabled = false;
+        button.textContent = "Me sirvió";
+      }
+
+      if (status) {
+        status.textContent = "No se pudo registrar tu respuesta. Intentá de nuevo.";
+      }
+    }
+  }
+
+  loadLikes();
+  applyLikedState();
+
+  button?.addEventListener("click", handleLike);
+</script>
+
+<style>
+  .like-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-border-subtle);
+    margin-top: var(--space-4);
+  }
+
+  .like-widget--embedded {
+    border-top: 1px solid var(--color-border-subtle);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    padding-bottom: 0;
+  }
+
+  .like-widget__count {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .like-widget__button {
+    appearance: none;
+    border: 1px solid var(--color-border-default);
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .like-widget__button:hover:not(:disabled) {
+    border-color: var(--color-accent);
+    background: var(--color-surface-overlay);
+  }
+
+  .like-widget__button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .like-widget__status {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+</style>
