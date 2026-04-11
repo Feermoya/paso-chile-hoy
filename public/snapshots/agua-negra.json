@@ -1,11 +1,11 @@
 {
   "slug": "agua-negra",
   "name": "Paso Agua Negra",
-  "schedule": null,
-  "scheduleRaw": "Todos los días de la semana, incluidos feriados.",
+  "schedule": "09:00-17:00",
+  "scheduleRaw": "09:00 a 17:00 hs",
   "rawStatus": "CERRADO",
   "statusDetail": "Cerrado para egreso",
-  "scheduleText": null,
+  "scheduleText": "09:00 a 17:00 hs",
   "scheduleDays": "Todos los días de la semana, incluidos feriados.",
   "motivo": null,
   "motivoInfo": null,
@@ -18,11 +18,12 @@
   "vialidadRuta": "150",
   "vialidadTramo": "",
   "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "Transitable con normalidad",
+  "vialidadObservaciones": "",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
+<<<<<<< Updated upstream
     "temperatureC": 7,
     "description": "Despejado",
     "wind": "WNW a 4 km/h",
@@ -32,12 +33,27 @@
     "updatedAt": "2026-04-11T10:56:25.329Z",
     "feelsLikeC": 7,
     "humidity": 68
+=======
+    "temperatureC": 12,
+    "description": "Soleado",
+    "wind": "SE a 4 km/h",
+    "visibilityKm": 10,
+    "sunrise": "07:54",
+    "sunset": "19:22",
+    "updatedAt": "2026-04-11T13:54:24.636Z",
+    "feelsLikeC": 12,
+    "humidity": 51
+>>>>>>> Stashed changes
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-11T10:56:25.329Z",
+=======
+  "scrapedAt": "2026-04-11T13:54:24.636Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy al mediodía",
@@ -71,6 +87,6 @@
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "wttr.in",
-    "statusUpdatedAt": "10 de abril de 2026 • 17:00 hs"
+    "statusUpdatedAt": "11 de abril de 2026 • 09:31 hs"
   }
 }

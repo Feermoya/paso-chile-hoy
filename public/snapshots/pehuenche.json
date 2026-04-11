@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
@@ -13,6 +13,7 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
+<<<<<<< Updated upstream
     "temperatureC": 8.2,
     "description": "Ligeramente nublado",
     "wind": "Sudoeste 10 km/h",
@@ -20,12 +21,25 @@
     "sunrise": "07:59",
     "sunset": "19:23",
     "updatedAt": "2026-04-11T07:00:00-03:00"
+=======
+    "temperatureC": 13.4,
+    "description": "Ligeramente nublado",
+    "wind": "Sur 6 km/h",
+    "visibilityKm": 20,
+    "sunrise": "07:59",
+    "sunset": "19:23",
+    "updatedAt": "2026-04-11T10:00:00-03:00"
+>>>>>>> Stashed changes
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-11T10:56:22.008Z",
+=======
+  "scrapedAt": "2026-04-11T13:55:13.015Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy por la tarde",
