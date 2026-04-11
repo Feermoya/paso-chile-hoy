@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.5.7](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.6...v2.5.7) (2026-04-11)
+
+### Refactoring
+
+* Fix twitter cron ([7390b59](https://github.com/Feermoya/paso-chile-hoy/commit/7390b5976279154351a9c53f365062fbbf6ee07e))
+
 ## [2.5.6](https://github.com/Feermoya/paso-chile-hoy/compare/v2.5.5...v2.5.6) (2026-04-11)
 
 ### Correcciones
