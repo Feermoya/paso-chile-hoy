@@ -27,15 +27,8 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-11T04:26:50.433Z",
+  "scrapedAt": "2026-04-11T10:56:19.967Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -6,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
@@ -55,6 +48,13 @@
       "description": "Despejado",
       "temperatureC": -4,
       "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": 1,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ]

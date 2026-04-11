@@ -23,48 +23,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
-    "description": "Lluvia  moderada a intervalos",
-    "wind": "N a 4 km/h",
+    "temperatureC": 7,
+    "description": "Despejado",
+    "wind": "WNW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "07:54",
     "sunset": "19:22",
-    "updatedAt": "2026-04-11T04:26:52.667Z",
-    "feelsLikeC": 11,
-    "humidity": 64
+    "updatedAt": "2026-04-11T10:56:25.329Z",
+    "feelsLikeC": 7,
+    "humidity": 68
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-11T04:26:52.668Z",
+  "scrapedAt": "2026-04-11T10:56:25.329Z",
   "forecast": [
-    {
-      "period": "Hoy por la madrugada",
-      "description": "Despejado",
-      "temperatureC": 10,
-      "wind": "WNW 5 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la mañana",
-      "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "WNW 3 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 14,
-      "wind": "ESE 5 km/h",
+      "temperatureC": 15,
+      "wind": "ESE 6 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 18,
-      "wind": "ENE 8 km/h",
+      "temperatureC": 19,
+      "wind": "E 9 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 21,
+      "wind": "ENE 9 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 15,
+      "wind": "N 3 km/h",
       "visibility": "Buena"
     }
   ],
