@@ -29,7 +29,7 @@
     "visibilityKm": 10,
     "sunrise": "07:54",
     "sunset": "19:23",
-    "updatedAt": "2026-04-10T23:36:45.229Z",
+    "updatedAt": "2026-04-11T00:05:34.198Z",
     "feelsLikeC": 13,
     "humidity": 52
   },
@@ -37,34 +37,34 @@
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-10T23:36:45.229Z",
+  "scrapedAt": "2026-04-11T00:05:34.199Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la madrugada",
       "description": "Despejado",
       "temperatureC": 9,
-      "wind": "WNW 5 km/h",
+      "wind": "NW 1 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana al mediodía",
+      "period": "Hoy por la mañana",
       "description": "Soleado",
-      "temperatureC": 15,
-      "wind": "SE 6 km/h",
+      "temperatureC": 11,
+      "wind": "NE 1 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 19,
-      "wind": "ENE 9 km/h",
+      "temperatureC": 14,
+      "wind": "ENE 6 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 17,
-      "wind": "NE 5 km/h",
+      "period": "Hoy por la tarde",
+      "description": "Lluvia  moderada a intervalos",
+      "temperatureC": 18,
+      "wind": "E 14 km/h",
       "visibility": "Buena"
     }
   ],
