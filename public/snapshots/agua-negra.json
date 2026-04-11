@@ -23,21 +23,21 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13,
-    "description": "Despejado",
-    "wind": "NE a 10 km/h",
+    "temperatureC": 12,
+    "description": "Lluvia  moderada a intervalos",
+    "wind": "NNE a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "07:54",
     "sunset": "19:23",
-    "updatedAt": "2026-04-11T02:25:06.634Z",
+    "updatedAt": "2026-04-11T02:59:32.719Z",
     "feelsLikeC": 13,
-    "humidity": 54
+    "humidity": 59
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4765,
-  "scrapedAt": "2026-04-11T02:25:06.635Z",
+  "scrapedAt": "2026-04-11T02:59:32.719Z",
   "forecast": [
     {
       "period": "Mañana por la mañana",

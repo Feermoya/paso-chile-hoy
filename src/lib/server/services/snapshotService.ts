@@ -8,9 +8,9 @@ import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { extractTimeFromIso, mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import { checkSnapshotFreshness } from "@/lib/server/utils/snapshotFreshnessCheck";
 import {
-  readPassSnapshotFile,
-  writePassSnapshotFile,
-} from "@/lib/server/storage/jsonSnapshotStore";
+  readPassSnapshot,
+  writePassSnapshot,
+} from "@/lib/server/storage/passSnapshotStorage";
 import type { PassRaw } from "@/types/pass-raw";
 
 /** En producción, si el JSON tiene más de esto, se intenta refrescar desde la API. */
@@ -32,10 +32,6 @@ function allowLiveScrape(): boolean {
   return isDevRuntime() && !isVercelEnv();
 }
 
-function isVercelRuntime(): boolean {
-  return typeof process !== "undefined" && Boolean(process.env.VERCEL);
-}
-
 function snapshotAgeMs(scrapedAt: string): number {
   const t = new Date(scrapedAt).getTime();
   if (!Number.isFinite(t)) return Number.POSITIVE_INFINITY;
@@ -48,20 +44,9 @@ function isFresh(snapshot: PassRaw | PassSnapshot, maxAgeMs: number): boolean {
   return snapshotAgeMs(at) < maxAgeMs;
 }
 
-/** Lee el último snapshot persistido (JSON en `public/snapshots`). */
+/** Lee el último snapshot (Redis si hay hit, si no archivo en `public/snapshots`). */
 export async function readPersistedSnapshot(slug: string): Promise<PassRaw | PassSnapshot | null> {
-  return readPassSnapshotFile(slug);
-}
-
-async function tryWriteSnapshot(slug: string, snapshot: PassRaw | PassSnapshot): Promise<void> {
-  try {
-    await writePassSnapshotFile(slug, snapshot);
-  } catch (e) {
-    if (isVercelRuntime()) {
-      return;
-    }
-    throw e;
-  }
+  return readPassSnapshot(slug);
 }
 
 /** Agua Negra: solo sitio de San Juan + wttr.in (sin API nacional ni SMN). */
@@ -147,7 +132,7 @@ async function refreshAguaNegraFromSanJuan(cfg: PasoConfig): Promise<PassSnapsho
     },
   };
 
-  await tryWriteSnapshot(cfg.slug, snapshot);
+  await writePassSnapshot(cfg.slug, snapshot);
   console.log(
     `[snapshot] agua-negra ✅ status=${snapshot.rawStatus} | temp=${snapshot.weather?.temperatureC}°C | schedule=${snapshot.schedule}`,
   );
@@ -199,7 +184,7 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
 
   const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast, { htmlAlerts });
 
-  await tryWriteSnapshot(slug, snapshot);
+  await writePassSnapshot(slug, snapshot);
   return snapshot;
 }
 
@@ -213,7 +198,7 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSna
     throw new Error("UNKNOWN_SLUG");
   }
 
-  const persisted = await readPassSnapshotFile(slug);
+  const persisted = await readPassSnapshot(slug);
 
   if (persisted) {
     checkSnapshotFreshness(persisted);
@@ -262,3 +247,6 @@ export async function getSnapshotForApi(slug: string): Promise<PassRaw | PassSna
     throw new Error(PASS_DATA_UNAVAILABLE);
   }
 }
+
+/** Alias del flujo de refresh en vivo + persistencia unificada. */
+export { refreshAndPersistSnapshot as refreshPassSnapshot };

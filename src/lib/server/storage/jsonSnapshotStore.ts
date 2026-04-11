@@ -163,30 +163,34 @@ export async function writePassSnapshotFile(slug: string, snapshot: PassRaw | Pa
   await writeFile(filePath, body, "utf8");
 }
 
+/** Parsea JSON ya decodificado (archivo o Redis). */
+export function parsePassSnapshotJson(parsed: unknown): PassRaw | PassSnapshot | null {
+  if (!parsed || typeof parsed !== "object") return null;
+  const o = parsed as Record<string, unknown>;
+
+  if (isLegacyPassPageSnapshot(o)) {
+    return enrichPassRaw(migrateLegacyToPassRaw(o));
+  }
+
+  if (isPassSnapshotShape(parsed)) {
+    const s = parsed as PassSnapshot;
+    return {
+      ...s,
+      forecast: Array.isArray(s.forecast) ? s.forecast : [],
+      vialidadRuta: typeof s.vialidadRuta === "string" ? s.vialidadRuta : "",
+      vialidadTramo: typeof s.vialidadTramo === "string" ? s.vialidadTramo : "",
+      latestTweet: s.latestTweet ?? null,
+    };
+  }
+
+  if (!isPassRawShape(o)) return null;
+  return enrichPassRaw(parsed as PassRaw);
+}
+
 export async function readPassSnapshotFile(slug: string): Promise<PassRaw | PassSnapshot | null> {
   try {
     const rawFile = await readFile(pathForSlug(slug), "utf8");
-    const parsed: unknown = JSON.parse(rawFile);
-    if (!parsed || typeof parsed !== "object") return null;
-    const o = parsed as Record<string, unknown>;
-
-    if (isLegacyPassPageSnapshot(o)) {
-      return enrichPassRaw(migrateLegacyToPassRaw(o));
-    }
-
-    if (isPassSnapshotShape(parsed)) {
-      const s = parsed as PassSnapshot;
-      return {
-        ...s,
-        forecast: Array.isArray(s.forecast) ? s.forecast : [],
-        vialidadRuta: typeof s.vialidadRuta === "string" ? s.vialidadRuta : "",
-        vialidadTramo: typeof s.vialidadTramo === "string" ? s.vialidadTramo : "",
-        latestTweet: s.latestTweet ?? null,
-      };
-    }
-
-    if (!isPassRawShape(o)) return null;
-    return enrichPassRaw(parsed as PassRaw);
+    return parsePassSnapshotJson(JSON.parse(rawFile) as unknown);
   } catch (e) {
     const code = typeof e === "object" && e && "code" in e ? String((e as { code?: string }).code) : "";
     if (code === "ENOENT") return null;

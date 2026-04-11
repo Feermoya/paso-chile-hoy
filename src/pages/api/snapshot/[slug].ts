@@ -1,26 +1,16 @@
 import type { APIRoute } from "astro";
 import { getPasoBySlug } from "@/data/pasos";
-import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
+import {
+  buildPassRefreshPayload,
+  type PassSnapshotApiEnvelope,
+} from "@/lib/server/passRefreshPayload";
 import {
   getSnapshotForApi,
   readPersistedSnapshot,
   refreshAndPersistSnapshot,
 } from "@/lib/server/services/snapshotService";
-import type { PassSnapshot } from "@/lib/server/passMapper";
-import type { PassRaw } from "@/types/pass-raw";
-import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
-import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
-import { inferPassStatus } from "@/utils/inferPassStatus";
-import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 
 export const prerender = false;
-
-const STATUS_LABELS: Record<PassDisplayStatus, string> = {
-  abierto: "ABIERTO",
-  condicionado: "CONDICIONADO",
-  cerrado: "CERRADO",
-  sin_datos: "Estado no disponible",
-};
 
 function jsonHeaders(): HeadersInit {
   return {
@@ -33,26 +23,20 @@ function jsonHeaders(): HeadersInit {
 const STALE_REFRESH_MESSAGE =
   "No se pudo refrescar ahora; mostrando el último dato disponible.";
 
-function buildPayload(raw: PassRaw | PassSnapshot, paso: NonNullable<ReturnType<typeof getPasoBySlug>>) {
-  const view = mapPersistedSnapshotToView(raw, paso);
-  const st = inferPassStatus(view);
-  const scrapedAt = raw.scrapedAt ?? "";
+function envelope(
+  raw: Parameters<typeof buildPassRefreshPayload>[0],
+  paso: NonNullable<ReturnType<typeof getPasoBySlug>>,
+  flags: Pick<PassSnapshotApiEnvelope, "stale" | "refreshFailed"> & { message?: string },
+): PassSnapshotApiEnvelope {
   return {
-    passRaw: raw,
-    scrapedAt,
-    lastUpdatedRelative: scrapedAt ? formatRelativeTimeAgo(scrapedAt) : "",
-    status: st.status,
-    statusLabel: st.displayLabel ?? STATUS_LABELS[st.status],
-    schedule: heroScheduleFromView(view),
-    opensInMinutes: st.opensInMinutes ?? null,
-    closesInMinutes: st.closesInMinutes ?? null,
+    ...buildPassRefreshPayload(raw, paso),
+    stale: flags.stale,
+    refreshFailed: flags.refreshFailed,
+    ...(flags.message ? { message: flags.message } : {}),
   };
 }
 
-function jsonBody(
-  body: Record<string, unknown>,
-  status: number,
-): Response {
+function jsonBody(body: PassSnapshotApiEnvelope | Record<string, unknown>, status: number): Response {
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders() });
 }
 
@@ -75,7 +59,12 @@ export const GET: APIRoute = async ({ params }) => {
 
   try {
     const raw = await getSnapshotForApi(slug);
-    return new Response(JSON.stringify(buildPayload(raw, paso)), { status: 200, headers: jsonHeaders() });
+    return new Response(
+      JSON.stringify(
+        envelope(raw, paso, { stale: false, refreshFailed: false }),
+      ),
+      { status: 200, headers: jsonHeaders() },
+    );
   } catch {
     return new Response(JSON.stringify({ error: "Snapshot failed" }), { status: 503, headers: jsonHeaders() });
   }
@@ -98,25 +87,17 @@ export const POST: APIRoute = async ({ params, request }) => {
 
   try {
     const raw = await refreshAndPersistSnapshot(slug);
-    return jsonBody(
-      {
-        ...buildPayload(raw, paso),
-        stale: false,
-        refreshFailed: false,
-      },
-      200,
-    );
+    return jsonBody(envelope(raw, paso, { stale: false, refreshFailed: false }), 200);
   } catch (err) {
     console.error(`[snapshot-api] POST refresh failed for "${slug}":`, err);
     const persisted = await readPersistedSnapshot(slug);
     if (persisted) {
       return jsonBody(
-        {
-          ...buildPayload(persisted, paso),
+        envelope(persisted, paso, {
           stale: true,
           refreshFailed: true,
           message: STALE_REFRESH_MESSAGE,
-        },
+        }),
         200,
       );
     }

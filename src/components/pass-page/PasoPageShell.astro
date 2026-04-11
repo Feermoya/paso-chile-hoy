@@ -36,7 +36,17 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={["paso-page-shell paso-page-wrapper", className]}>
+<div
+  class:list={["paso-page-shell paso-page-wrapper", className]}
+  data-paso-page-shell
+  data-shell-slug={slug}
+>
+  <div
+    id={`paso-stale-banner-${slug}`}
+    class="paso-stale-banner mb-3 hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3 py-2 text-[13px] leading-snug text-[var(--color-text-secondary)]"
+    role="status"
+    aria-live="polite"
+  />
   <div class="paso-page-grid paso-grid">
     <PasoOperationalSection
       slug={slug}
@@ -58,3 +68,19 @@ const {
 
   <PasoFullwidthSection view={view} hideScheduleInDetails={hideScheduleInDetails} />
 </div>
+
+<script is:inline define:vars={{ slug }}>
+  function showStaleRefreshBanner() {
+    const key = `pch:pass-stale-banner:${slug}`;
+    const msg = sessionStorage.getItem(key);
+    if (!msg) return;
+    sessionStorage.removeItem(key);
+    const el = document.getElementById(`paso-stale-banner-${slug}`);
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove("hidden");
+  }
+
+  showStaleRefreshBanner();
+  document.addEventListener("astro:page-load", showStaleRefreshBanner);
+</script>

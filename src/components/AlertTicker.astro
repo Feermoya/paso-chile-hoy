@@ -1,7 +1,7 @@
 ---
 import { PASOS } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
-import { readPassSnapshotFile } from "@/lib/server/storage/jsonSnapshotStore";
+import { readPassSnapshot } from "@/lib/server/storage/passSnapshotStorage";
 import { inferPassStatus, isVialidadCorteTotal } from "@/utils/inferPassStatus";
 
 const STATUS_LABEL: Record<string, string> = {
@@ -22,7 +22,7 @@ const tickerItems: string[] = [];
 
 for (const paso of PASOS.filter((p) => p.active)) {
   try {
-    const raw = await readPassSnapshotFile(paso.slug);
+    const raw = await readPassSnapshot(paso.slug);
     if (!raw) continue;
 
     const view = mapPersistedSnapshotToView(raw, paso);

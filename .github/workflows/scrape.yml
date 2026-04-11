@@ -1,8 +1,16 @@
+# Actualiza snapshots en public/snapshots/ (pasos + datos ya incluidos en scrape).
+# Manual: pestaña Actions → "Scrape pasos internacionales" → Run workflow.
+
 name: Scrape pasos internacionales
 
 on:
   schedule:
-    - cron: "*/15 * * * *" # cada 15 minutos
+    # Tres corridas diarias (minuto/hora UTC). Sin :00 para reducir coincidencia con picos.
+    # Argentina aprox. (UTC-3, sin DST): 10:17→~07:17 | 15:23→~12:23 | 21:41→~18:41
+    # Para ~04:00 AR hace falta ~07:00 UTC (p. ej. "0 7 * * *" en lugar del primer slot).
+    - cron: "17 10 * * *"
+    - cron: "23 15 * * *"
+    - cron: "41 21 * * *"
   workflow_dispatch:
 
 jobs:
@@ -14,28 +22,28 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout (rama main)
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
           ref: main
 
-      - name: Setup Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Instalar dependencias
         run: npm ci --ignore-scripts
 
-      - name: Run scraper
+      - name: Ejecutar scraper
         run: npx tsx scripts/scrape.ts
         env:
           NODE_ENV: production
 
-      - name: Validate snapshots
+      - name: Validar snapshots de pasos
         run: |
           echo "Validando snapshots..."
           for slug in cristo-redentor pehuenche agua-negra; do
@@ -48,7 +56,7 @@ jobs:
               || { echo "❌ JSON inválido: $FILE"; exit 1; }
           done
 
-      - name: Commit if changed
+      - name: Commit y push si hay cambios
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
