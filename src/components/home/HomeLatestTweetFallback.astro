@@ -2,12 +2,7 @@
 const PROFILE_URL = "https://x.com/PasoCRMza";
 ---
 
-<a
-  href={PROFILE_URL}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="tweet-card tweet-card--fallback anim-section"
->
+<div class="tweet-card tweet-card--fallback anim-section">
   <div class="tweet-card-header">
     <svg
       width="13"
@@ -22,14 +17,23 @@ const PROFILE_URL = "https://x.com/PasoCRMza";
       />
     </svg>
     <span class="tweet-handle">@PasoCRMza</span>
-    <span class="tweet-ago tweet-ago--muted">Sin datos recientes en el snapshot</span>
   </div>
-  <p class="tweet-text">
-    No pudimos cargar el último post en la última actualización automática. Abrí la cuenta en X para ver
-    alertas complementarias al estado en gob.ar.
-  </p>
+  <p class="tweet-text">No hay novedad reciente cargada.</p>
   <div class="tweet-footer">
     <span class="tweet-disclaimer">Fuente complementaria · verificar en gob.ar</span>
-    <span class="tweet-cta">Ver perfil en X →</span>
+    <a href={PROFILE_URL} target="_blank" rel="noopener noreferrer" class="tweet-cta tweet-cta--link">
+      Ver perfil en X →
+    </a>
   </div>
-</a>
+</div>
+
+<style>
+  .tweet-cta--link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+  }
+  .tweet-cta--link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -6,7 +6,6 @@ import { scrapeAguaNegraStatus } from "@/lib/server/aguaNegraScraper";
 import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { extractTimeFromIso, mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
-import { getPassTweetFromSnapshot } from "@/lib/server/social/twitterSnapshotFile";
 import { checkSnapshotFreshness } from "@/lib/server/utils/snapshotFreshnessCheck";
 import {
   readPassSnapshotFile,
@@ -148,13 +147,6 @@ async function refreshAguaNegraFromSanJuan(cfg: PasoConfig): Promise<PassSnapsho
     },
   };
 
-  try {
-    snapshot.latestTweet = getPassTweetFromSnapshot(cfg.slug);
-  } catch (e) {
-    console.warn(`[snapshot] latestTweet for ${cfg.slug}:`, e);
-    snapshot.latestTweet = null;
-  }
-
   await tryWriteSnapshot(cfg.slug, snapshot);
   console.log(
     `[snapshot] agua-negra ✅ status=${snapshot.rawStatus} | temp=${snapshot.weather?.temperatureC}°C | schedule=${snapshot.schedule}`,
@@ -206,13 +198,6 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
   }
 
   const snapshot = mapToSnapshot(cfg, consolidado, clima, forecast, { htmlAlerts });
-
-  try {
-    snapshot.latestTweet = getPassTweetFromSnapshot(slug);
-  } catch (e) {
-    console.warn(`[snapshot] latestTweet for ${slug}:`, e);
-    snapshot.latestTweet = null;
-  }
 
   await tryWriteSnapshot(slug, snapshot);
   return snapshot;

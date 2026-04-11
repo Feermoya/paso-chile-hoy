@@ -15,19 +15,19 @@
   "vialidadObservaciones": "Corte preventivo por nevadas",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 21,
-    "description": "Algo nublado",
-    "wind": "Sudoeste 4 km/h",
+    "temperatureC": 14.4,
+    "description": "Cubierto",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:56",
     "sunset": "19:25",
-    "updatedAt": "2026-04-10T15:00:00-03:00"
+    "updatedAt": "2026-04-10T21:00:00-03:00"
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-11T01:23:40.623Z",
+  "scrapedAt": "2026-04-11T01:41:07.277Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",

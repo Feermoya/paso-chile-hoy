@@ -13,9 +13,9 @@ import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { inferPassStatus } from "@/utils/inferPassStatus";
-import { readHomeLatestTweetFromSnapshot } from "@/lib/server/social/twitterSnapshotFile";
+import { readLatestTweetForHome } from "@/lib/server/social/twitterLatestLocal";
 
-const latestTweet = readHomeLatestTweetFromSnapshot();
+const latestTweet = await readLatestTweetForHome();
 
 type CardEntry = {
   slug: string;

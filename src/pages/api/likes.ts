@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/lib/server/redisClient";
 
 export const prerender = false;
 
@@ -8,34 +8,12 @@ const KEY = "pch:likes";
 /** Valor inicial en Redis si la clave no existe (luego solo suma con INCR). */
 const INITIAL_LIKES = 6;
 
-async function ensureBaseline(client: Redis): Promise<void> {
+async function ensureBaseline(client: NonNullable<ReturnType<typeof getRedis>>): Promise<void> {
   await client.set(KEY, INITIAL_LIKES, { nx: true });
 }
 
-/**
- * Misma resolución que `Redis.fromEnv()`, pero sin instanciar el cliente si faltan credenciales
- * (evita warnings, stack trace y timeouts en local sin `.env`).
- */
-function getRedis(): Redis | null {
-  const url =
-    process.env.UPSTASH_REDIS_REST_URL?.trim() || process.env.KV_REST_API_URL?.trim();
-  const token =
-    process.env.UPSTASH_REDIS_REST_TOKEN?.trim() || process.env.KV_REST_API_TOKEN?.trim();
-  if (!url || !token) return null;
-  return new Redis({ url, token });
-}
-
-let cachedRedis: Redis | null | undefined;
-
-function redis(): Redis | null {
-  if (cachedRedis === undefined) {
-    cachedRedis = getRedis();
-  }
-  return cachedRedis;
-}
-
 export const GET: APIRoute = async () => {
-  const client = redis();
+  const client = getRedis();
   if (!client) {
     return new Response(JSON.stringify({ likes: 0, error: true }), {
       status: 200,
@@ -77,7 +55,7 @@ export const GET: APIRoute = async () => {
 };
 
 export const POST: APIRoute = async () => {
-  const client = redis();
+  const client = getRedis();
   if (!client) {
     return new Response(JSON.stringify({ error: true }), {
       status: 503,

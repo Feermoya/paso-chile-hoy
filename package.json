@@ -13,6 +13,7 @@
     "sync": "git pull --rebase origin main",
     "prescrape": "git pull --rebase origin main || true",
     "scrape": "tsx scripts/scrape.ts",
+    "twitter:update": "tsx scripts/update-latest-tweet.ts",
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",
     "update:all-passes": "node scripts/update-all-passes.mjs",

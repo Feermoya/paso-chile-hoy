@@ -1,17 +1,25 @@
 ---
-import type { LatestTweetSnapshot } from "@/lib/server/social/twitterTypes";
+import type { LocalLatestTweet } from "@/lib/server/social/twitterLatestLocal";
 import { tweetSentiment } from "@/utils/tweetSentiment";
 
 export interface Props {
-  tweet: LatestTweetSnapshot;
+  tweet: LocalLatestTweet;
 }
 
 const { tweet } = Astro.props;
 
 const sentiment = tweetSentiment(tweet.text);
-const tweetAgeMs = Date.now() - new Date(tweet.date).getTime();
-const isOlderThan6Hours =
-  Number.isFinite(tweetAgeMs) && tweetAgeMs > 6 * 60 * 60 * 1000;
+const parsed = Date.parse(tweet.date);
+const dateLabel = Number.isFinite(parsed)
+  ? new Date(parsed).toLocaleString("es-AR", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  : "";
 
 function timeAgo(d: string): string {
   const ms = Date.now() - new Date(d).getTime();
@@ -62,16 +70,20 @@ const color = {
       )
     }
   </div>
+  {dateLabel && <p class="tweet-date-label">{dateLabel}</p>}
   <p class="tweet-text">{tweet.text}</p>
-  {
-    isOlderThan6Hours && (
-      <p class="tweet-stale-warning">
-        Este aviso tiene más de 6 horas. Verificá en gob.ar
-      </p>
-    )
-  }
   <div class="tweet-footer">
-    <span class="tweet-disclaimer">Fuente complementaria a la información oficial · verificar en gob.ar</span>
-    <span class="tweet-cta">Ver en X →</span>
+    <span class="tweet-disclaimer">
+      Complementa la información oficial; el estado del paso sigue siendo el publicado en gob.ar.
+    </span>
+    <span class="tweet-cta">Ver post en X →</span>
   </div>
 </a>
+
+<style>
+  .tweet-date-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+</style>
