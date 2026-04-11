@@ -291,22 +291,33 @@ const icbmContent = geoPosition.includes(";")
     <div id="pwa-banner" class="pwa-banner" hidden aria-live="polite">
       <div class="pwa-banner-inner">
         <img src="/logo.png" alt="" width="36" height="36" class="pwa-banner-logo" />
-        <div class="pwa-banner-text">
-          <strong>Instalá la app</strong>
-          <span>Acceso rápido al estado de los pasos</span>
+        <div id="pwa-panel-chrome" class="pwa-banner-panel" hidden>
+          <div class="pwa-banner-text">
+            <strong>Instalá la app</strong>
+            <span>Accedé más rápido al estado de los pasos.</span>
+          </div>
+          <div class="pwa-banner-actions">
+            <button id="pwa-install-btn" class="pwa-btn pwa-btn--primary" type="button">
+              Instalar
+            </button>
+            <button id="pwa-dismiss-btn" class="pwa-btn pwa-btn--ghost pwa-btn--banner-text" type="button">
+              Ahora no
+            </button>
+          </div>
         </div>
-        <div class="pwa-banner-actions">
-          <button id="pwa-install-btn" class="pwa-btn pwa-btn--primary" type="button">
-            Instalar
-          </button>
-          <button
-            id="pwa-dismiss-btn"
-            class="pwa-btn pwa-btn--ghost"
-            type="button"
-            aria-label="Cerrar"
-          >
-            ✕
-          </button>
+        <div id="pwa-panel-ios" class="pwa-banner-panel" hidden>
+          <div class="pwa-banner-text">
+            <strong>Agregar a inicio</strong>
+            <span
+              >En iPhone, abrí Compartir y elegí &quot;Añadir a pantalla de inicio&quot;.</span
+            >
+          </div>
+          <div class="pwa-banner-actions pwa-banner-actions--stack">
+            <button id="pwa-ios-ok" class="pwa-btn pwa-btn--primary" type="button">Entendido</button>
+            <button id="pwa-ios-dismiss" class="pwa-btn pwa-btn--ghost pwa-btn--banner-text" type="button">
+              Cerrar
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -343,11 +354,6 @@ const icbmContent = geoPosition.includes(";")
 
         var deferredPrompt = null;
 
-        window.addEventListener("beforeinstallprompt", function (e) {
-          e.preventDefault();
-          deferredPrompt = e;
-        });
-
         function isStandalone() {
           return (
             window.matchMedia("(display-mode: standalone)").matches ||
@@ -355,27 +361,79 @@ const icbmContent = geoPosition.includes(";")
           );
         }
 
+        /** iPhone / iPad / iPod; incluye iPadOS con UA de escritorio. En iOS ningún navegador expone instalación programática. */
+        function isIos() {
+          return (
+            /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+          );
+        }
+
+        /** Hay evento guardado para abrir el diálogo nativo (Chrome / Edge / etc.). */
+        function supportsInstallPrompt() {
+          return deferredPrompt !== null;
+        }
+
         function hideBanner() {
           var banner = document.getElementById("pwa-banner");
+          var chromePanel = document.getElementById("pwa-panel-chrome");
+          var iosPanel = document.getElementById("pwa-panel-ios");
           if (!banner) return;
           banner.classList.remove("pwa-banner--visible");
           setTimeout(function () {
             banner.setAttribute("hidden", "");
+            if (chromePanel) chromePanel.setAttribute("hidden", "");
+            if (iosPanel) iosPanel.setAttribute("hidden", "");
           }, 400);
         }
 
-        function showInstallBanner() {
+        function showChromePanel() {
           if (localStorage.getItem("pwa-dismissed") === "true") return;
           if (isStandalone()) return;
+          if (!supportsInstallPrompt()) return;
           var banner = document.getElementById("pwa-banner");
-          if (!banner) return;
+          var chromePanel = document.getElementById("pwa-panel-chrome");
+          var iosPanel = document.getElementById("pwa-panel-ios");
+          if (!banner || !chromePanel || !iosPanel) return;
+          iosPanel.setAttribute("hidden", "");
+          chromePanel.removeAttribute("hidden");
           banner.removeAttribute("hidden");
           requestAnimationFrame(function () {
             banner.classList.add("pwa-banner--visible");
           });
         }
 
-        setTimeout(showInstallBanner, 3000);
+        function showIosPanel() {
+          if (localStorage.getItem("pwa-dismissed") === "true") return;
+          if (isStandalone()) return;
+          if (!isIos()) return;
+          if (supportsInstallPrompt()) return;
+          var banner = document.getElementById("pwa-banner");
+          var chromePanel = document.getElementById("pwa-panel-chrome");
+          var iosPanel = document.getElementById("pwa-panel-ios");
+          if (!banner || !chromePanel || !iosPanel) return;
+          chromePanel.setAttribute("hidden", "");
+          iosPanel.removeAttribute("hidden");
+          banner.removeAttribute("hidden");
+          requestAnimationFrame(function () {
+            banner.classList.add("pwa-banner--visible");
+          });
+        }
+
+        window.addEventListener("beforeinstallprompt", function (e) {
+          e.preventDefault();
+          deferredPrompt = e;
+          showChromePanel();
+        });
+
+        window.addEventListener("appinstalled", function () {
+          deferredPrompt = null;
+          hideBanner();
+        });
+
+        setTimeout(function () {
+          showIosPanel();
+        }, 3000);
 
         document.addEventListener("click", function (e) {
           var t = e.target;
@@ -384,18 +442,31 @@ const icbmContent = geoPosition.includes(";")
           if (t.closest("#pwa-install-btn")) {
             if (deferredPrompt) {
               deferredPrompt.prompt();
-              deferredPrompt.userChoice.then(function () {
-                deferredPrompt = null;
-                hideBanner();
-              });
-            } else {
-              hideBanner();
+              deferredPrompt.userChoice
+                .then(function () {
+                  deferredPrompt = null;
+                  hideBanner();
+                })
+                .catch(function () {
+                  deferredPrompt = null;
+                });
             }
             return;
           }
 
           if (t.closest("#pwa-dismiss-btn")) {
             localStorage.setItem("pwa-dismissed", "true");
+            hideBanner();
+            return;
+          }
+
+          if (t.closest("#pwa-ios-dismiss")) {
+            localStorage.setItem("pwa-dismissed", "true");
+            hideBanner();
+            return;
+          }
+
+          if (t.closest("#pwa-ios-ok")) {
             hideBanner();
           }
         });

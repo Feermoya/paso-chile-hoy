@@ -2767,8 +2767,27 @@ a.paso-card-v2 .pcv2-badge--sin_datos::before {
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 600px;
+  max-width: 640px;
   margin-inline: auto;
+}
+
+.pwa-banner-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pwa-banner-actions--stack {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pwa-btn--banner-text {
+  padding: 8px 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
 }
 
 .pwa-banner-logo {
