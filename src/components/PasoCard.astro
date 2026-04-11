@@ -50,6 +50,8 @@ const hasVialidad =
 
 const label = displayLabel?.trim() || status.toUpperCase();
 const href = paso.active ? `/${paso.slug}` : undefined;
+const desc = weatherDesc?.trim() ?? "";
+const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
 ---
 
 {
@@ -59,107 +61,62 @@ const href = paso.active ? `/${paso.slug}` : undefined;
       class:list={["paso-card-v2", `paso-card-v2--${status}`]}
       aria-label={`Ver estado de ${paso.shortName}`}
     >
-      <div class="pcv2-header">
+      <div class="pcv2-top">
+        <h3 class="pcv2-name">{paso.shortName}</h3>
         <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>
           <span class="pcv2-badge-dot" aria-hidden="true" />
-          {label}
+          <span class="pcv2-badge-label">{label}</span>
         </span>
-        <span class="pcv2-tap-hint" aria-hidden="true">Ver →</span>
       </div>
 
-      <h3 class="pcv2-name">{paso.shortName}</h3>
-
-      {weatherTempC != null ? (
-        <div class="pcv2-weather-row">
+      <div class="pcv2-metric">
+        {weatherTempC != null ? (
           <span class="pcv2-temp">{weatherTempC}°</span>
-          {weatherDesc?.trim() && <span class="pcv2-weather-desc">{weatherDesc.trim()}</span>}
-        </div>
-      ) : (
-        <div class="pcv2-weather-row">
+        ) : (
           <span class="pcv2-temp pcv2-temp--na">—°</span>
-          {weatherDesc?.trim() && <span class="pcv2-weather-desc">{weatherDesc.trim()}</span>}
-        </div>
-      )}
+        )}
+        {desc ? <p class="pcv2-weather-desc">{desc}</p> : null}
+      </div>
 
-      {showClosesIn && (
-        <div class:list={["pcv2-countdown", closingSoon && "pcv2-countdown--urgent"]}>
-          <svg
-            width="11"
-            height="11"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v6l4 2" />
-          </svg>
-          Cierra en {fmtMinutes(closesInMinutes!)}
-        </div>
-      )}
-      {showOpensIn && (
-        <div class="pcv2-countdown pcv2-countdown--opens">
-          <svg
-            width="11"
-            height="11"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v6l4 2" />
-          </svg>
-          Abre en {fmtMinutes(opensInMinutes!)}
+      {(showClosesIn || showOpensIn) && (
+        <div class="pcv2-chips">
+          {showClosesIn && (
+            <span class:list={["pcv2-chip", closingSoon && "pcv2-chip--urgent"]}>
+              Cierra en {fmtMinutes(closesInMinutes!)}
+            </span>
+          )}
+          {showOpensIn && (
+            <span class="pcv2-chip pcv2-chip--muted">Abre en {fmtMinutes(opensInMinutes!)}</span>
+          )}
         </div>
       )}
 
       {hasVialidad && (
-        <div class="pcv2-vialidad-alert">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-            <line x1="12" y1="9" x2="12" y2="13" />
-            <line x1="12" y1="17" x2="12.01" y2="17" />
-          </svg>
-          <span>{vialidadObservaciones?.trim() || "Alerta vial activa"}</span>
-        </div>
+        <p class="pcv2-notice">
+          <span class="pcv2-notice-mark" aria-hidden="true">!</span>
+          {vialidadObservaciones?.trim() || "Alerta vial activa"}
+        </p>
       )}
 
       <div class="pcv2-footer">
-        <span class="pcv2-locality">
-          {paso.localityAR} → {paso.localityCL}
-        </span>
-        <span class="pcv2-cta">Ver más →</span>
+        <span class="pcv2-route">{routeLabel}</span>
+        <span class="pcv2-disclosure" aria-hidden="true" />
       </div>
     </a>
   ) : (
     <div class="paso-card-v2 paso-card-v2--disabled paso-card-v2--sin_datos" aria-disabled="true">
-      <div class="pcv2-header">
+      <div class="pcv2-top">
+        <h3 class="pcv2-name">{paso.shortName}</h3>
         <span class="pcv2-badge pcv2-badge--sin_datos">
           <span class="pcv2-badge-dot" aria-hidden="true" />
-          PRÓXIMAMENTE
+          <span class="pcv2-badge-label">Próximamente</span>
         </span>
       </div>
-      <h3 class="pcv2-name">{paso.shortName}</h3>
-      <div class="pcv2-weather-row">
+      <div class="pcv2-metric">
         <span class="pcv2-temp pcv2-temp--na">—°</span>
       </div>
       <div class="pcv2-footer">
-        <span class="pcv2-locality">
-          {paso.localityAR} → {paso.localityCL}
-        </span>
+        <span class="pcv2-route">{routeLabel}</span>
       </div>
     </div>
   )
