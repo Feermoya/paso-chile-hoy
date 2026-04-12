@@ -1911,6 +1911,412 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     }
   }
 
+  /* ===== HOME — Las Leñas (clima; alineado a cards y tipografía del sitio) ===== */
+  .las-lenas-home {
+    width: 100%;
+    max-width: 1100px;
+    margin: 28px auto 0;
+    padding: 22px 20px 20px;
+    box-sizing: border-box;
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .las-lenas-home-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px 20px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 0.5px solid var(--color-border-subtle);
+  }
+
+  .las-lenas-home-head-text {
+    min-width: 0;
+  }
+
+  .las-lenas-home-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+  }
+
+  .las-lenas-home-sub {
+    margin: 6px 0 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--color-text-secondary);
+  }
+
+  .las-lenas-home-loc {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-align: right;
+    max-width: 220px;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 560px) {
+    .las-lenas-home-loc {
+      text-align: left;
+      max-width: none;
+    }
+  }
+
+  .las-lenas-home-grid {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 22px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .las-lenas-home-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      align-items: stretch;
+      gap: 16px;
+    }
+  }
+
+  .las-lenas-now-card {
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    border: 0.5px solid var(--color-border-subtle);
+    background: color-mix(in srgb, var(--color-surface-raised) 88%, var(--color-accent) 12%);
+  }
+
+  :root[data-theme="dark"] .las-lenas-now-card {
+    background: color-mix(in srgb, var(--color-surface-raised) 92%, var(--color-accent) 8%);
+  }
+
+  .las-lenas-eyebrow {
+    margin: 0 0 12px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .las-lenas-now-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px 18px;
+  }
+
+  .las-lenas-now-icon-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-surface) 75%, transparent);
+  }
+
+  .las-lenas-now-icon {
+    display: block;
+  }
+
+  .las-lenas-now-copy {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .las-lenas-now-temp-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .las-lenas-now-temp {
+    font-size: clamp(2.25rem, 5vw, 2.85rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .las-lenas-now-temp--na {
+    opacity: 0.4;
+  }
+
+  .las-lenas-now-unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    align-self: flex-start;
+    margin-top: 0.4rem;
+  }
+
+  .las-lenas-now-desc {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text-primary);
+  }
+
+  .las-lenas-now-time {
+    margin: 8px 0 0;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+  }
+
+  .las-lenas-metrics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .las-lenas-metric {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    border: 0.5px solid var(--color-border-subtle);
+    background: var(--color-surface-raised);
+  }
+
+  .las-lenas-metric-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--color-text-secondary);
+    opacity: 0.9;
+  }
+
+  .las-lenas-metric-body {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .las-lenas-metric-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .las-lenas-metric-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .las-lenas-forecast-block {
+    margin-bottom: 18px;
+  }
+
+  .las-lenas-forecast-heading {
+    margin: 0 0 12px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+
+  .las-lenas-forecast-days {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  @media (max-width: 640px) {
+    .las-lenas-forecast-days {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .las-lenas-fc-day {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 10px;
+    row-gap: 4px;
+    padding: 12px 12px 10px;
+    border-radius: var(--radius-md);
+    border: 0.5px solid var(--color-border-subtle);
+    background: var(--color-surface-raised);
+    align-items: start;
+  }
+
+  .las-lenas-fc-icon {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    align-self: center;
+  }
+
+  .las-lenas-fc-daytext {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .las-lenas-fc-wd {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .las-lenas-fc-dm {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: capitalize;
+  }
+
+  .las-lenas-fc-temps {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9375rem;
+    font-weight: 700;
+  }
+
+  .las-lenas-fc-min {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+
+  .las-lenas-fc-sep {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.8125rem;
+  }
+
+  .las-lenas-fc-max {
+    color: var(--color-text-primary);
+  }
+
+  .las-lenas-fc-na {
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .las-lenas-fc-desc {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin: 6px 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .las-lenas-forecast-note {
+    margin: 12px 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .las-lenas-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid color-mix(in srgb, var(--color-accent) 55%, var(--color-border-subtle));
+    background: color-mix(in srgb, var(--color-surface-raised) 92%, var(--color-accent) 8%);
+  }
+
+  :root[data-theme="dark"] .las-lenas-callout {
+    background: color-mix(in srgb, var(--color-surface-raised) 94%, var(--color-accent) 6%);
+  }
+
+  .las-lenas-callout-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-text-secondary);
+  }
+
+  .las-lenas-callout-body {
+    min-width: 0;
+  }
+
+  .las-lenas-callout-title {
+    margin: 0 0 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text-primary);
+  }
+
+  .las-lenas-callout-text {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+  }
+
+  .las-lenas-callout-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .las-lenas-callout-link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .las-lenas-foot {
+    padding-top: 12px;
+    border-top: 0.5px solid var(--color-border-subtle);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .las-lenas-foot-ref,
+  .las-lenas-foot-updated {
+    margin: 0;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+  }
+
+  .las-lenas-foot-updated {
+    font-variant-numeric: tabular-nums;
+  }
+
   /* ===== HOME — sección rutas (RN 7 / RN 150) ===== */
   .rutas-section {
     width: 100%;

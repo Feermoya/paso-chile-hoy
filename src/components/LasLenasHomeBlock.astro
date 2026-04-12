@@ -1,0 +1,210 @@
+---
+import { Icon } from "astro-icon/components";
+import type { LasLenasSnapshot } from "@/types/las-lenas";
+import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
+import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
+
+export interface Props {
+  snapshot: LasLenasSnapshot;
+}
+
+const { snapshot } = Astro.props;
+const { place, current, forecast, warnings, forecastSource } = snapshot;
+
+function fmtObserved(iso: string | null): string {
+  if (!iso?.trim()) return "";
+  try {
+    return new Intl.DateTimeFormat("es-AR", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "America/Argentina/Buenos_Aires",
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
+
+function fmtForecastDate(dateStr: string): { line1: string; line2: string } {
+  try {
+    const d = new Date(`${dateStr}T12:00:00`);
+    const wd = new Intl.DateTimeFormat("es-AR", { weekday: "short" }).format(d);
+    const dm = new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "short" }).format(d);
+    return { line1: wd, line2: dm };
+  } catch {
+    return { line1: dateStr, line2: "" };
+  }
+}
+
+const updatedRel = formatRelativeTimeAgo(snapshot.updatedAt);
+const updatedLine = updatedRel ? `Datos actualizados ${updatedRel}` : "";
+
+const stationLine =
+  place.station && place.station.distanceKm != null
+    ? `Meteorología de referencia: ${place.station.name} · ${place.station.distanceKm.toLocaleString("es-AR", { maximumFractionDigits: 1 })} km`
+    : place.station
+      ? `Meteorología de referencia: ${place.station.name}`
+      : null;
+
+const windLine =
+  current?.wind.direction && current.wind.speedKmh != null
+    ? `${current.wind.direction} · ${current.wind.speedKmh} km/h`
+    : current?.wind.direction
+      ? current.wind.direction
+      : "—";
+
+const visLine = current?.visibilityKm != null ? `${current.visibilityKm} km` : "—";
+
+const nowIcon = getWeatherIcon(current?.description);
+const nowIconColor = getWeatherIconColor(current?.description);
+---
+
+<section class="las-lenas-home" aria-labelledby="las-lenas-title">
+  <header class="las-lenas-home-head">
+    <div class="las-lenas-home-head-text">
+      <h2 id="las-lenas-title" class="las-lenas-home-title">Las Leñas</h2>
+      <p class="las-lenas-home-sub">Clima y acceso · Malargüe, Mendoza</p>
+    </div>
+    <p class="las-lenas-home-loc">{place.name} · {place.department}, {place.province}</p>
+  </header>
+
+  {
+    current && (
+      <div class="las-lenas-home-grid">
+        <div class="las-lenas-now-card">
+          <p class="las-lenas-eyebrow">Ahora</p>
+          <div class="las-lenas-now-main">
+            <div class="las-lenas-now-icon-wrap" aria-hidden="true">
+              <Icon
+                name={nowIcon}
+                class="las-lenas-now-icon"
+                width="52"
+                height="52"
+                style={`color: ${nowIconColor}`}
+              />
+            </div>
+            <div class="las-lenas-now-copy">
+              <div class="las-lenas-now-temp-row">
+                {current.temperatureC != null ? (
+                  <>
+                    <span class="las-lenas-now-temp">{current.temperatureC.toFixed(1)}</span>
+                    <span class="las-lenas-now-unit">°C</span>
+                  </>
+                ) : (
+                  <span class="las-lenas-now-temp las-lenas-now-temp--na">—</span>
+                )}
+              </div>
+              <p class="las-lenas-now-desc">{current.description ?? "Sin datos de condición"}</p>
+              {current.observedAt && (
+                <p class="las-lenas-now-time">Mediciones · {fmtObserved(current.observedAt)}</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <ul class="las-lenas-metrics" aria-label="Condiciones actuales">
+          <li class="las-lenas-metric">
+            <Icon name="lucide:wind" class="las-lenas-metric-icon" width="18" height="18" aria-hidden="true" />
+            <div class="las-lenas-metric-body">
+              <span class="las-lenas-metric-label">Viento</span>
+              <span class="las-lenas-metric-value">{windLine}</span>
+            </div>
+          </li>
+          <li class="las-lenas-metric">
+            <Icon name="lucide:eye" class="las-lenas-metric-icon" width="18" height="18" aria-hidden="true" />
+            <div class="las-lenas-metric-body">
+              <span class="las-lenas-metric-label">Visibilidad</span>
+              <span class="las-lenas-metric-value">{visLine}</span>
+            </div>
+          </li>
+          {current.humidity != null && (
+            <li class="las-lenas-metric">
+              <Icon name="lucide:droplets" class="las-lenas-metric-icon" width="18" height="18" aria-hidden="true" />
+              <div class="las-lenas-metric-body">
+                <span class="las-lenas-metric-label">Humedad</span>
+                <span class="las-lenas-metric-value">{current.humidity}%</span>
+              </div>
+            </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
+
+  {
+    forecast.length > 0 && (
+      <div class="las-lenas-forecast-block">
+        <h3 class="las-lenas-forecast-heading">Próximos días</h3>
+        <div class="las-lenas-forecast-days">
+          {forecast.map((d) => {
+            const { line1, line2 } = fmtForecastDate(d.date);
+            const fcIcon = getWeatherIcon(d.description);
+            const fcColor = getWeatherIconColor(d.description);
+            return (
+              <div class="las-lenas-fc-day">
+                <Icon
+                  name={fcIcon}
+                  class="las-lenas-fc-icon"
+                  width="28"
+                  height="28"
+                  style={`color: ${fcColor}`}
+                  aria-hidden="true"
+                />
+                <div class="las-lenas-fc-daytext">
+                  <span class="las-lenas-fc-wd">{line1}</span>
+                  {line2 && <span class="las-lenas-fc-dm">{line2}</span>}
+                </div>
+                <div class="las-lenas-fc-temps">
+                  {d.tempMinC != null && d.tempMaxC != null ? (
+                    <>
+                      <span class="las-lenas-fc-min">{d.tempMinC}°</span>
+                      <span class="las-lenas-fc-sep" aria-hidden="true">
+                        /
+                      </span>
+                      <span class="las-lenas-fc-max">{d.tempMaxC}°</span>
+                    </>
+                  ) : d.tempMaxC != null ? (
+                    <span class="las-lenas-fc-max">máx. {d.tempMaxC}°</span>
+                  ) : (
+                    <span class="las-lenas-fc-na">—</span>
+                  )}
+                </div>
+                {d.description && <p class="las-lenas-fc-desc">{d.description}</p>}
+              </div>
+            );
+          })}
+        </div>
+        {forecastSource === "wttr_in" && (
+          <p class="las-lenas-forecast-note">Pronóstico complementario para planificar la visita.</p>
+        )}
+      </div>
+    )
+  }
+
+  <div class="las-lenas-callout" role="note">
+    <Icon name="lucide:cloud-alert" class="las-lenas-callout-icon" width="18" height="18" aria-hidden="true" />
+    <div class="las-lenas-callout-body">
+      <p class="las-lenas-callout-title">Alertas meteorológicas</p>
+      {warnings.sourceUnavailable ? (
+        <p class="las-lenas-callout-text">
+          <a
+            href="https://www.smn.gob.ar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="las-lenas-callout-link"
+          >
+            Consultá las alertas oficiales del SMN para Las Leñas
+          </a>
+        </p>
+      ) : warnings.hasWarnings ? (
+        <p class="las-lenas-callout-text">Hay avisos publicados; revisá el SMN para el detalle.</p>
+      ) : (
+        <p class="las-lenas-callout-text">Sin resumen de alertas en esta vista.</p>
+      )}
+    </div>
+  </div>
+
+  <footer class="las-lenas-foot">
+    {stationLine && <p class="las-lenas-foot-ref">{stationLine}</p>}
+    {updatedLine && <p class="las-lenas-foot-updated">{updatedLine}</p>}
+  </footer>
+</section>

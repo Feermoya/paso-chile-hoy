@@ -12,6 +12,8 @@ import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import HomeRouteSegmentsCard from "@/components/HomeRouteSegmentsCard.astro";
 import TwitterTimeline from "@/components/TwitterTimeline.astro";
+import LasLenasHomeBlock from "@/components/LasLenasHomeBlock.astro";
+import { getLasLenasSnapshot } from "@/lib/server/las-lenas/getLasLenasSnapshot";
 import { buildHomeRouteCardView } from "@/lib/mappers/homeRouteCardView";
 import { HOME_ROUTE_CARD_ORDER, getRouteProfile } from "@/lib/server/route-segments/profiles";
 import { readRouteSegments } from "@/lib/server/storage/routeSegmentsStorage";
@@ -91,6 +93,8 @@ for (const profileId of HOME_ROUTE_CARD_ORDER) {
 
 const meta = buildHomeMeta();
 
+const lasLenasSnapshot = await getLasLenasSnapshot();
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -117,9 +121,10 @@ const homeSchema = {
 <MainLayout {...meta} structuredData={homeSchema}>
   <div class="home-layout">
     <div class="home-hero">
-      <h1 class="home-hero-title">Paso a Chile hoy — Cristo Redentor, Pehuenche y Agua Negra</h1>
+      <h1 class="home-hero-title">¿Está abierto el paso a Chile hoy?</h1>
       <p class="home-hero-subtitle">
-        Paso Chile Hoy: consultá si el paso está abierto o cerrado, horario y clima en la cordillera.
+        Paso Chile Hoy — Cristo Redentor, Pehuenche y Agua Negra. Consultá si el paso está abierto o
+        cerrado, horario y clima en la cordillera.
         Datos desde la fuente pública del Ministerio de Seguridad de la Nación Argentina.
       </p>
       {
@@ -216,6 +221,8 @@ const homeSchema = {
         </section>
       ) : null
     }
+
+    {lasLenasSnapshot ? <LasLenasHomeBlock snapshot={lasLenasSnapshot} /> : null}
 
     <TwitterTimeline />
   </div>
