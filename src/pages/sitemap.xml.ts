@@ -1,14 +1,13 @@
 import type { APIRoute } from "astro";
 import { PASOS } from "@/data/pasos";
+import { SITE_URL } from "@/utils/seo";
 
 export const prerender = true;
-
-const SITE = "https://pasochilehoy.com";
 
 function url(path: string, priority: string, changefreq: string, lastmod?: string) {
   return `
   <url>
-    <loc>${SITE}${path}</loc>
+    <loc>${SITE_URL}${path}</loc>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
     ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}

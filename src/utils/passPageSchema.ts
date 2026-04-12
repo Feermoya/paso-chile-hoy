@@ -1,5 +1,10 @@
 import type { PasoConfig } from "@/data/pasos";
-import { SITE_URL, passAlternateNames, type PassStatus } from "@/utils/seo";
+import {
+  SITE_URL,
+  passAlternateNames,
+  passEnglishDiscoveryLine,
+  type PassStatus,
+} from "@/utils/seo";
 
 export function openingHoursSpecsFromSchedule(schedule: string): Array<Record<string, unknown>> {
   const s = schedule.trim();
@@ -25,18 +30,41 @@ export function openingHoursSpecsFromSchedule(schedule: string): Array<Record<st
   ];
 }
 
+function crossingStatusProperty(displayStatus: PassStatus): Record<string, unknown> | null {
+  if (displayStatus === "sin_datos") return null;
+  const valueEs =
+    displayStatus === "abierto"
+      ? "Síntesis en este sitio: cruce habilitado según datos mostrados. Confirmar siempre en Gendarmería y fuente oficial."
+      : displayStatus === "cerrado"
+        ? "Síntesis en este sitio: cerrado o fuera de horario según datos mostrados. Confirmar en fuente oficial."
+        : "Síntesis en este sitio: condicionado o con restricciones según datos oficiales.";
+  return {
+    "@type": "PropertyValue",
+    name: "Estado del cruce (resumen)",
+    value: valueEs,
+  };
+}
+
 export function buildPassTouristAttractionSchema(opts: {
   paso: PasoConfig;
   scheduleText: string;
   displayStatus: PassStatus;
 }): Record<string, unknown> {
   const { paso, scheduleText, displayStatus } = opts;
+  const enLine = passEnglishDiscoveryLine(paso.slug);
+  const statusProp = crossingStatusProperty(displayStatus);
+
+  const description =
+    `Cruce internacional entre ${paso.localityAR} (${paso.provinceAR}, Argentina) y ${paso.localityCL} (Chile). ` +
+    `${enLine} Paso Chile Hoy resume horario y estado a partir de datos públicos del Estado argentino; ` +
+    `para decidir el viaje hay que verificar en las fuentes oficiales.`;
+
   return {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
     name: paso.name,
     alternateName: passAlternateNames(paso.slug, paso.shortName, paso.name),
-    description: `Paso internacional entre ${paso.localityAR} (Argentina) y ${paso.localityCL} (Chile). Estado en tiempo real del cruce fronterizo.`,
+    description,
     url: `${SITE_URL}/${paso.slug}`,
     image: `${SITE_URL}/og-image.png`,
     geo: {
@@ -52,15 +80,6 @@ export function buildPassTouristAttractionSchema(opts: {
       addressCountry: "AR",
     },
     openingHoursSpecification: openingHoursSpecsFromSchedule(scheduleText),
-    ...(displayStatus !== "sin_datos" && {
-      offers: {
-        "@type": "Offer",
-        name: `Estado actual: ${displayStatus}`,
-        availability:
-          displayStatus === "abierto"
-            ? "https://schema.org/InStock"
-            : "https://schema.org/OutOfStock",
-      },
-    }),
+    ...(statusProp ? { additionalProperty: [statusProp] } : {}),
   };
 }

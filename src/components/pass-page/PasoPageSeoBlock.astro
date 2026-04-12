@@ -1,5 +1,6 @@
 ---
 import type { PasoConfig } from "@/data/pasos";
+import { passEnglishDiscoveryLine } from "@/utils/seo";
 
 export interface Props {
   paso: PasoConfig;
@@ -7,18 +8,28 @@ export interface Props {
 }
 
 const { paso, class: className } = Astro.props;
+const enLine = passEnglishDiscoveryLine(paso.slug);
 ---
 
-<section class:list={["paso-page-seo seo-content seo-content--pass", className]} aria-label={`Información sobre ${paso.name}`}>
-  <h2 class="paso-page-seo-title">Sobre el {paso.name}</h2>
+<section
+  class:list={["paso-page-seo seo-content seo-content--pass", className]}
+  aria-label={`Información sobre ${paso.name}`}
+>
+  <h2 class="paso-page-seo-title">Estado del paso {paso.shortName} hoy</h2>
   <p class="paso-page-seo-lead">
-    El {paso.name} conecta {paso.localityAR} ({paso.provinceAR},
-    Argentina) con {paso.localityCL} (Chile). Se encuentra a{" "}
-    {paso.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de
-    los Andes.
+    El {paso.name} conecta {paso.localityAR} ({paso.provinceAR}, Argentina) con {paso.localityCL} (Chile).
+    Está a {paso.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de los
+    Andes. Si buscás <strong>estado del paso {paso.shortName.toLowerCase()}</strong>,{" "}
+    <strong>horario</strong> o si está <strong>abierto o cerrado</strong>, el detalle arriba resume datos
+    públicos oficiales.
   </p>
   <p class="paso-page-seo-note">
-    Esta página muestra el estado actual del paso según el mismo API público que usa el sitio oficial del
-    Ministerio de Seguridad de la Nación Argentina. La información se actualiza automáticamente.
+    La información se actualiza desde el sitio público del Ministerio de Seguridad de la Nación Argentina
+    (mismo origen que el portal de pasos internacionales). Antes de viajar, confirmá siempre en la fuente
+    oficial y con Gendarmería.
+  </p>
+  <p class="paso-page-seo-note" lang="en">
+    <strong>English:</strong> {enLine} This page summarizes official open/closed status, schedule hints and
+    mountain weather — not a substitute for border authorities.
   </p>
 </section>

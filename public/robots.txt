@@ -1,3 +1,6 @@
+# Paso Chile Hoy — crawling
+# Sitemap usa el mismo dominio que PUBLIC_SITE_URL / astro.config site en producción.
+
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -5,7 +8,7 @@ Disallow: /snapshots/
 Disallow: /data/
 Disallow: /.env
 Disallow: /src/
-Disallow: /legal
+# /legal tiene noindex en HTML; permitir crawl para que Google lea la directiva.
 
 User-agent: SemrushBot
 Disallow: /

@@ -94,15 +94,22 @@ const meta = buildHomeMeta();
 const homeSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Pasos internacionales Argentina y Chile",
+  name: "Pasos a Chile hoy — Paso Chile Hoy",
   description:
-    "Lista de pasos internacionales entre Argentina y Chile (Mendoza, San Juan) con estado en tiempo real.",
+    "Cristo Redentor (Los Libertadores), Pehuenche y Agua Negra: estado del paso, horario y clima desde datos oficiales Argentina. English: main Argentina–Chile border passes.",
   numberOfItems: PASOS.filter((p) => p.active).length,
   itemListElement: PASOS.filter((p) => p.active).map((paso, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: paso.name,
-    url: `${SITE_URL}/${paso.slug}`,
+    name:
+      paso.slug === "cristo-redentor"
+        ? `${paso.name} — paso Cristo Redentor y Los Libertadores`
+        : paso.slug === "pehuenche"
+          ? `${paso.name} — Malargüe a Talca`
+          : paso.slug === "agua-negra"
+            ? `${paso.name} — San Juan a Chile`
+            : paso.name,
+    item: `${SITE_URL}/${paso.slug}`,
   })),
 };
 ---
@@ -110,9 +117,10 @@ const homeSchema = {
 <MainLayout {...meta} structuredData={homeSchema}>
   <div class="home-layout">
     <div class="home-hero">
-      <h1 class="home-hero-title">¿Está abierto el paso a Chile?</h1>
+      <h1 class="home-hero-title">Paso a Chile hoy — Cristo Redentor, Pehuenche y Agua Negra</h1>
       <p class="home-hero-subtitle">
-        Cristo Redentor, Pehuenche y Agua Negra: estado, clima y alertas en tiempo real.
+        Paso Chile Hoy: consultá si el paso está abierto o cerrado, horario y clima en la cordillera.
+        Datos desde la fuente pública del Ministerio de Seguridad de la Nación Argentina.
       </p>
       {
         homeLastUpdatedIso && homeUpdatedRelative ? (
@@ -160,7 +168,7 @@ const homeSchema = {
       <StatusGuide />
       <div class="home-live-pill" aria-live="polite">
         <span class="home-live-dot" aria-hidden="true"></span>
-        <span class="home-live-label">En vivo</span>
+        <span class="home-live-label">Datos oficiales</span>
       </div>
     </div>
 
@@ -215,30 +223,35 @@ const homeSchema = {
   <SupportBlock />
 
   <section class="seo-content seo-content--home" aria-label="Información sobre los pasos a Chile">
-    <h2>Pasos internacionales entre Argentina y Chile</h2>
+    <h2>Paso Chile Hoy — pasos internacionales Mendoza y San Juan</h2>
     <p>
-      Paso Chile Hoy muestra el estado en tiempo real de pasos internacionales entre Argentina y Chile,
-      incluyendo el <strong>Paso Sistema Cristo Redentor</strong> (también
-      conocido como Paso Los Libertadores) entre Mendoza y la región de Valparaíso, el{" "}
-      <strong>Paso Pehuenche</strong> conectando Malargüe con Talca, y el <strong>Paso Agua Negra</strong>{" "}
-      entre San Juan y la región de Coquimbo.
+      Acá podés ver el <strong>estado del paso a Chile hoy</strong> para los tres cruces principales
+      desde el oeste argentino: el <strong>Paso Cristo Redentor</strong> (Sistema Cristo Redentor, también
+      llamado <strong>Paso Los Libertadores</strong>) entre Mendoza y la región de Valparaíso, el{" "}
+      <strong>Paso Pehuenche</strong> entre Malargüe y Talca, y el <strong>Paso Agua Negra</strong> entre
+      Las Flores (San Juan) y Huanta (Chile). Si buscás <em>paso a Chile Mendoza</em> o{" "}
+      <em>pasos a Chile hoy</em>, esta es la página de referencia de la marca Paso Chile Hoy.
     </p>
     <p>
-      El estado del paso, su horario de funcionamiento, las condiciones climáticas y las alertas de
-      Vialidad Nacional y Gendarmería Nacional se actualizan automáticamente desde la fuente oficial del
-      Ministerio de Seguridad de la Nación Argentina.
+      El sitio resume horario, clima en alta montaña y alertas a partir del mismo tipo de información
+      pública que publica el Ministerio de Seguridad de la Nación Argentina (Gendarmería, Vialidad
+      Nacional, Servicio Meteorológico). No reemplaza la consulta directa con la fuente oficial antes de
+      viajar. <span lang="en">Travelers searching in English: this site summarizes whether major
+      Argentina–Chile border passes (Christ the Redeemer / Los Libertadores, Pehuenche, Agua Negra) are
+      open or closed, with schedule and weather from official Argentine public data.</span>
     </p>
-    <h3>¿Cuándo está abierto el Paso Cristo Redentor?</h3>
+    <h3>Estado y horario del Paso Cristo Redentor (Los Libertadores)</h3>
     <p>
-      El horario habitual es de 09:00 a 21:00 h desde el lado argentino. Durante el verano puede operar
-      las 24 horas. El paso puede cerrarse sin previo aviso por nevadas, vientos fuertes o condiciones
-      meteorológicas adversas en la alta montaña.
+      El <strong>paso Cristo Redentor</strong> es el más usado entre Mendoza y Chile. El horario habitual
+      desde Argentina suele ser de 09:00 a 21:00 h; en temporada alta a veces opera 24 horas. El cruce
+      puede cerrar por nieve, viento o condiciones en ruta: conviene revisar el detalle del paso en esta
+      web y confirmar en Gendarmería o en la página oficial del paso.
     </p>
-    <h3>Otros pasos</h3>
+    <h3>Paso Pehuenche y Paso Agua Negra</h3>
     <p>
-      El <strong>Paso Pehuenche</strong> conecta Malargüe (Mendoza) con Talca y el{" "}
-      <strong>Paso Agua Negra</strong> une Las Flores (San Juan) con Huanta. Los horarios y condiciones
-      pueden variar según la temporada y el estado de la ruta.
+      El <strong>Paso Pehuenche</strong> une Malargüe con Talca; el <strong>Paso Agua Negra</strong> une
+      Las Flores (San Juan) con el lado chileno. Los horarios y el estado del paso dependen de la temporada
+      y del estado de la ruta en la cordillera.
     </p>
   </section>
 </MainLayout>

@@ -1,7 +1,7 @@
 {
   "name": "Paso Chile Hoy",
   "short_name": "Paso Chile",
-  "description": "Estado en tiempo real de los pasos internacionales Argentina-Chile",
+  "description": "Estado del paso a Chile (Cristo Redentor, Pehuenche, Agua Negra), horario y clima desde datos oficiales Argentina. Mendoza y San Juan.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8f9fb",

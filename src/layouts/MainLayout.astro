@@ -3,7 +3,7 @@ import AlertTicker from "@/components/AlertTicker.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
 import Footer from "@/components/Footer.astro";
 import VersionBadge from "@/components/VersionBadge.astro";
-import { SITE_FAVICON, SITE_NAME } from "@/utils/seo";
+import { SITE_FAVICON, SITE_NAME, WEB_SITE_SCHEMA_DESCRIPTION } from "@/utils/seo";
 import "@/styles/global.css";
 
 export interface Props {
@@ -71,19 +71,14 @@ const websiteSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: SITE_NAME,
+  alternateName: ["Paso Chile Hoy", "pasochilehoy.com", "Paso a Chile hoy"],
   url: `${siteUrl}/`,
-  description:
-    "Estado en tiempo real del Cristo Redentor, Pehuenche, Agua Negra y pasos internacionales Argentina–Chile.",
+  description: WEB_SITE_SCHEMA_DESCRIPTION,
   inLanguage: "es-AR",
   publisher: {
     "@type": "Person",
     name: "Fernando Moya",
     email: "fmoya97.fm@gmail.com",
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${siteUrl}/?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
   },
 };
 
@@ -152,7 +147,7 @@ const icbmContent = geoPosition.includes(";")
     <meta http-equiv="content-language" content="es-AR" />
     <link rel="alternate" hreflang="es-AR" href={canonical} />
     <link rel="alternate" hreflang="es" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />
@@ -164,6 +159,7 @@ const icbmContent = geoPosition.includes(";")
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAltResolved} />
     <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
 
     <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={resolvedOgTitle} />
