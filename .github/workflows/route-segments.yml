@@ -1,0 +1,64 @@
+# Actualiza snapshots filtrados en public/snapshots/rutas/ (estado por tramos).
+# Manual: Actions → "Route segments (RN / provincia)" → Run workflow.
+
+name: Route segments (RN / provincia)
+
+on:
+  schedule:
+    - cron: "17 10 * * *"
+    - cron: "23 15 * * *"
+    - cron: "41 21 * * *"
+  workflow_dispatch:
+
+jobs:
+  route-segments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout (rama main)
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+          ref: main
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Instalar dependencias
+        run: npm ci --ignore-scripts
+
+      - name: Actualizar snapshots de rutas
+        run: npx tsx scripts/update-route-segments.ts
+        env:
+          NODE_ENV: production
+          GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
+
+      - name: Validar snapshot cristo-redentor
+        run: |
+          FILE="public/snapshots/rutas/cristo-redentor.json"
+          if [ ! -f "$FILE" ]; then
+            echo "❌ Missing: $FILE"
+            exit 1
+          fi
+          node -e "const j=JSON.parse(require('fs').readFileSync('$FILE','utf8')); if(j.schemaVersion!==1||!j.segments?.length) process.exit(1); console.log('✅', j.profile, '→', j.segments.length, 'tramos |', j.summary.headline);" \
+            || { echo "❌ JSON inválido: $FILE"; exit 1; }
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/snapshots/rutas/
+          if git diff --staged --quiet; then
+            echo "Sin cambios en snapshots de rutas"
+          else
+            git commit -m "chore: update route segment snapshots [skip ci]"
+            git push origin main
+          fi

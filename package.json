@@ -17,6 +17,7 @@
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",
     "update:all-passes": "node scripts/update-all-passes.mjs",
+    "update:rutas": "tsx scripts/update-route-segments.ts",
     "c": "bash scripts/c.sh",
     "commit": "cz",
     "c:feat": "git add . && git commit -m",

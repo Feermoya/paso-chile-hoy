@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "profile": "cristo-redentor",
+  "passSlug": "cristo-redentor",
+  "routeName": "Ruta Nacional 7",
+  "routeCode": "7",
+  "province": "Mendoza",
+  "updatedAt": "2026-04-12T03:00:24.330Z",
+  "sourceUpdatedAt": "2026-04-10T10:30:00.000Z",
+  "summary": {
+    "totalSegments": 8,
+    "openSegments": 7,
+    "partialSegments": 0,
+    "closedSegments": 1,
+    "cautionSegments": 0,
+    "firstBlockingSegmentId": "tunel-internacional",
+    "canReachPass": false,
+    "headline": "Corte en Tunel Internacional",
+    "worstStatus": "CLOSED"
+  },
+  "segmentOrder": "asc",
+  "segments": [
+    {
+      "id": "lte-con-san-luis-mendoza",
+      "order": 0,
+      "name": "Lte.Con San Luis - Mendoza",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 175,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": true,
+        "international": false
+      }
+    },
+    {
+      "id": "empalme-rn-40-potrerillos",
+      "order": 1,
+      "name": "Empalme RN 40 - Potrerillos",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 46,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "potrerillos-uspallata",
+      "order": 2,
+      "name": "Potrerillos - Uspallata",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 50,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "uspallata-polvaredas",
+      "order": 3,
+      "name": "Uspallata - Polvaredas",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 40,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "polvaredas-punta-de-vacas",
+      "order": 4,
+      "name": "Polvaredas - Punta de Vacas",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 51,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "punta-de-vacas-puente-del-inca",
+      "order": 5,
+      "name": "Punta De Vacas - Puente Del Inca",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 26,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "puente-del-inca-las-cuevas",
+      "order": 6,
+      "name": "Puente Del Inca - Las Cuevas",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 13.8,
+      "notes": null,
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "tunel-internacional",
+      "order": 7,
+      "name": "Tunel Internacional",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
+      "surface": "PAVIMENTO",
+      "lengthKm": 4.45,
+      "notes": "Corte preventivo por nevadas",
+      "updatedAt": "2026-04-10T10:30:00.000Z",
+      "flags": {
+        "critical": true,
+        "toll": true,
+        "international": true
+      }
+    }
+  ]
+}
