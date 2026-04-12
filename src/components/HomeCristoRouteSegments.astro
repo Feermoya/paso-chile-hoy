@@ -1,70 +1,259 @@
 ---
-import type { HomeCristoRouteView } from "@/lib/mappers/homeCristoRouteView";
+import { Icon } from "astro-icon/components";
+import type { HomeCristoRouteView, HomeCristoDisplayItem, TimelineVisualMark } from "@/lib/mappers/homeCristoRouteView";
 
 export interface Props {
   view: HomeCristoRouteView;
 }
 
 const { view } = Astro.props;
+
+const markIcon = (m: TimelineVisualMark): { name: string } => {
+  switch (m) {
+    case "check":
+    case "check-dim":
+      return { name: "lucide:check" };
+    case "stop":
+      return { name: "lucide:x" };
+    case "warn":
+      return { name: "lucide:alert-triangle" };
+    default:
+      return { name: "lucide:minus" };
+  }
+};
 ---
 
 <section class="home-route-rn7" aria-labelledby="home-route-rn7-title">
   <div class="hrr7-panel">
     <header class="hrr7-header">
-      <p class="hrr7-eyebrow">{view.eyebrow}</p>
-      <h2 id="home-route-rn7-title" class="hrr7-title">
-        {view.title}
-      </h2>
-      <p class="hrr7-meta">{view.updatedLine}</p>
+      <svg
+        class="hrr7-mountain"
+        viewBox="0 0 120 80"
+        fill="none"
+        aria-hidden="true"
+      >
+        <polygon points="60,5 10,75 110,75" fill="currentColor"></polygon>
+        <polygon points="90,20 55,75 125,75" fill="currentColor"></polygon>
+        <polygon points="30,35 5,75 60,75" fill="currentColor"></polygon>
+      </svg>
+      <div class="hrr7-header-inner">
+        <h2 id="home-route-rn7-title" class="hrr7-title">
+          {view.title}
+        </h2>
+        <p class="hrr7-meta">
+          <span
+            class:list={[
+              "hrr7-fresh-dot",
+              view.freshnessDot === "green" && "hrr7-fresh-dot--green",
+              view.freshnessDot === "amber" && "hrr7-fresh-dot--amber",
+              view.freshnessDot === "red" && "hrr7-fresh-dot--red",
+            ]}
+            aria-hidden="true"
+          />
+          <span class="hrr7-meta-sep" aria-hidden="true">·</span>
+          <span>{view.freshnessLabel}</span>
+          <span class="hrr7-meta-sep" aria-hidden="true">·</span>
+          <span>{view.enabledSummary}</span>
+        </p>
+      </div>
     </header>
 
-    <div class="hrr7-summary">
-      <p class="hrr7-headline">{view.headline}</p>
-      <p class="hrr7-reach">{view.reachLine}</p>
-    </div>
+    {
+      view.showAlertBanner && view.alertBannerText ? (
+        <div class="hrr7-alert-banner" role="alert">
+          <p class="hrr7-alert-banner-text">{view.alertBannerText}</p>
+        </div>
+      ) : null
+    }
 
-    <div class="hrr7-timeline-wrap" role="presentation">
-      <ul class="hrr7-timeline">
+    <div class="hrr7-track">
+      <div class="hrr7-track-rail" aria-hidden="true" />
+      <div class="hrr7-car-wrap" aria-hidden="true">
+        <svg class="hrr7-car" viewBox="0 0 24 36" fill="none" aria-hidden="true">
+          <path
+            d="M6 28 L4 32 L20 32 L18 28 Z"
+            fill="currentColor"
+            opacity="0.35"
+          />
+          <rect x="5" y="14" width="14" height="12" rx="2" fill="currentColor" opacity="0.5" />
+          <rect x="7" y="16" width="10" height="6" rx="1" fill="currentColor" opacity="0.25" />
+          <circle cx="9" cy="30" r="3" fill="currentColor" opacity="0.45" />
+          <circle cx="15" cy="30" r="3" fill="currentColor" opacity="0.45" />
+        </svg>
+      </div>
+
+      <ul class="hrr7-steps hrr7-steps--desktop" aria-label="Tramos RN 7">
         {
           view.timeline.map((row) => (
             <li
               class:list={[
-                "hrr7-item",
-                row.isBlocking && "hrr7-item--blocking",
-                row.isAfterBlocking && "hrr7-item--muted",
-                row.flags.international && "hrr7-item--tunnel",
+                "hrr7-step",
+                row.isAfterBlocking && "hrr7-step--past",
+                row.isCriticalFinal && "hrr7-step--critical",
               ]}
             >
-              <span class="hrr7-rail" aria-hidden="true">
-                <span class:list={["hrr7-dot", `hrr7-dot--${row.status.toLowerCase()}`]} />
-              </span>
-              <div class="hrr7-item-body">
-                <div class="hrr7-item-top">
-                  <span class="hrr7-item-name">{row.name}</span>
-                  <span class:list={["hrr7-badge", `hrr7-badge--${row.status.toLowerCase()}`]}>
-                    {row.badgeLabel}
-                  </span>
+              <div class="hrr7-step-axis">
+                <span
+                  class:list={["hrr7-step-icon", `hrr7-step-icon--${row.visualMark}`]}
+                  aria-hidden="true"
+                >
+                  <Icon name={markIcon(row.visualMark).name} width={13} height={13} aria-hidden="true" />
+                </span>
+              </div>
+              {row.isCriticalFinal ? (
+                <div class="hrr7-step-card hrr7-step-card--critical">
+                  <div class="hrr7-row">
+                    <div>
+                      <p class="hrr7-name">{row.name}</p>
+                      {row.flags.international ? (
+                        <p class="hrr7-sub">Estado del paso internacional</p>
+                      ) : null}
+                    </div>
+                    <span class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}>
+                      <span class="hrr7-pill-full">{row.badgeLabelStrong}</span>
+                      <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                    </span>
+                  </div>
+                  {row.surfaceLine ? (
+                    <p class="hrr7-detail hrr7-detail--desktop">{row.surfaceLine}</p>
+                  ) : null}
+                  {row.notes?.trim() ? <p class="hrr7-notes">{row.notes.trim()}</p> : null}
                 </div>
-                <div class="hrr7-item-meta">
-                  {row.kmDisplay ? <span class="hrr7-meta-chip">{row.kmDisplay}</span> : null}
-                  {row.surface?.trim() ? (
-                    <span class="hrr7-meta-chip">{row.surface.trim()}</span>
+              ) : (
+                <div class="hrr7-step-card">
+                  <div class="hrr7-row">
+                    <p class="hrr7-name">{row.name}</p>
+                    <span class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}>
+                      <span class="hrr7-pill-full">{row.badgeLabel}</span>
+                      <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                    </span>
+                  </div>
+                  {row.surfaceLine ? (
+                    <p class="hrr7-detail hrr7-detail--desktop">{row.surfaceLine}</p>
+                  ) : null}
+                  {row.notes?.trim() && row.isBlocking ? (
+                    <p class="hrr7-notes">{row.notes.trim()}</p>
                   ) : null}
                 </div>
-                {row.showNotes && row.notes?.trim() ? (
-                  <p class="hrr7-item-notes">{row.notes.trim()}</p>
-                ) : null}
-              </div>
+              )}
             </li>
           ))
         }
       </ul>
+
+      <ul class="hrr7-steps hrr7-steps--mobile" aria-label="Tramos RN 7 (vista compacta)">
+        {
+          view.mobileTimeline.map((item: HomeCristoDisplayItem) =>
+            item.kind === "collapsed" ? (
+              <li class="hrr7-step hrr7-step--collapsed">
+                <div class="hrr7-step-axis hrr7-step-axis--noline">
+                  <span class="hrr7-step-icon hrr7-step-icon--check" aria-hidden="true">
+                    <Icon name="lucide:check" width={12} height={12} aria-hidden="true" />
+                  </span>
+                </div>
+                <div class="hrr7-step-card hrr7-step-card--collapsed">
+                  <span class="hrr7-collapsed-label">
+                    {item.count} tramos habilitados más
+                  </span>
+                  <span class="hrr7-pill hrr7-pill--open hrr7-pill--compact">
+                    OK ×{item.count}
+                  </span>
+                </div>
+              </li>
+            ) : (
+              <li
+                class:list={[
+                  "hrr7-step",
+                  item.row.isAfterBlocking && "hrr7-step--past",
+                  item.row.isCriticalFinal && "hrr7-step--critical",
+                ]}
+              >
+                <div class="hrr7-step-axis">
+                  <span
+                    class:list={["hrr7-step-icon", `hrr7-step-icon--${item.row.visualMark}`]}
+                    aria-hidden="true"
+                  >
+                    <Icon
+                      name={markIcon(item.row.visualMark).name}
+                      width={12}
+                      height={12}
+                      aria-hidden="true"
+                    />
+                  </span>
+                </div>
+                {item.row.isCriticalFinal ? (
+                  <div class="hrr7-step-card hrr7-step-card--critical">
+                    <div class="hrr7-row">
+                      <div>
+                        <p class="hrr7-name">{item.row.name}</p>
+                        {item.row.flags.international ? (
+                          <p class="hrr7-sub">Estado del paso internacional</p>
+                        ) : null}
+                      </div>
+                      <span
+                        class:list={["hrr7-pill", `hrr7-pill--${item.row.status.toLowerCase()}`]}
+                      >
+                        <span class="hrr7-pill-full">{item.row.badgeLabelStrong}</span>
+                        <span class="hrr7-pill-abbr">{item.row.badgeLabelMobile}</span>
+                      </span>
+                    </div>
+                    {item.row.notes?.trim() ? (
+                      <p class="hrr7-notes">{item.row.notes.trim()}</p>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div class="hrr7-step-card">
+                    <div class="hrr7-row">
+                      <p class="hrr7-name">{item.row.name}</p>
+                      <span
+                        class:list={["hrr7-pill", `hrr7-pill--${item.row.status.toLowerCase()}`]}
+                      >
+                        <span class="hrr7-pill-full">{item.row.badgeLabel}</span>
+                        <span class="hrr7-pill-abbr">{item.row.badgeLabelMobile}</span>
+                      </span>
+                    </div>
+                    {item.row.notes?.trim() && item.row.isBlocking ? (
+                      <p class="hrr7-notes">{item.row.notes.trim()}</p>
+                    ) : null}
+                  </div>
+                )}
+              </li>
+            ),
+          )
+        }
+      </ul>
     </div>
 
-    <footer class="hrr7-footer">
-      <a href="/cristo-redentor" class="hrr7-cta">
-        Ver detalle del paso
-        <span class="hrr7-cta-chevron" aria-hidden="true">→</span>
+    <div class="hrr7-reachbox">
+      <div class="hrr7-reachbox-head">¿Hasta dónde llegás?</div>
+      <div class="hrr7-reachbox-body">
+        <div class="hrr7-reach-row">
+          <span class="hrr7-reach-ic hrr7-reach-ic--ok" aria-hidden="true">
+            ✓
+          </span>
+          <span class="hrr7-reach-txt hrr7-reach-txt--full">{view.reachGreenLine}</span>
+          <span class="hrr7-reach-txt hrr7-reach-txt--short">{view.reachGreenLineShort}</span>
+        </div>
+        {
+          view.reachRedLine ? (
+            <div class="hrr7-reach-row">
+              <span class="hrr7-reach-ic hrr7-reach-ic--no" aria-hidden="true">
+                ✕
+              </span>
+              <span class="hrr7-reach-txt hrr7-reach-txt--full">{view.reachRedLine}</span>
+              {view.reachRedLineShort ? (
+                <span class="hrr7-reach-txt hrr7-reach-txt--short">{view.reachRedLineShort}</span>
+              ) : null}
+            </div>
+          ) : null
+        }
+      </div>
+    </div>
+
+    <footer class="hrr7-foot">
+      <span class="hrr7-source">Fuente: Vialidad Nacional</span>
+      <a href="/cristo-redentor" class="hrr7-link-full">
+        Ver detalle completo →
       </a>
     </footer>
   </div>

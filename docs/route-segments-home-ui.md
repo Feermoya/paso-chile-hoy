@@ -19,8 +19,8 @@ Si `readRouteSegments` devuelve `null`, la sección **no se renderiza** (home in
 | Archivo | Rol |
 |---------|-----|
 | `src/pages/index.astro` | Tras la grilla de `PasoCard`, antes de `TwitterTimeline`: lee snapshot, arma `HomeCristoRouteView`, renderiza `HomeCristoRouteSegments`. |
-| `src/components/HomeCristoRouteSegments.astro` | Markup de la sección (panel, resumen, timeline, CTA). |
-| `src/lib/mappers/homeCristoRouteView.ts` | View-model: `reachLine`, badges, flags `isBlocking` / `isAfterBlocking` / `showNotes`. |
+| `src/components/HomeCristoRouteSegments.astro` | Panel: título + subtítulo (N de M tramos), **callout** de mensaje principal, **recorrido** con íconos (check / stop / alerta), bloque **¿Hasta dónde…?**, CTA. |
+| `src/lib/mappers/homeCristoRouteView.ts` | View-model: `subtitleLine`, `mainAlertMessage` + `mainAlertTone`, `reachOkLine`, `cannotCrossLine`, `timeline` con `visualMark`, `isCriticalFinal`, `surfaceLine`, etc. |
 | `src/styles/global.css` | Estilos con prefijo **`.home-route-rn7`** y **`.hrr7-*`** (no mezclar con `.paso-card-v2`). |
 
 ## Lógica de presentación (view-model)

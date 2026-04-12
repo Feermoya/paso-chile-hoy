@@ -80,9 +80,7 @@ const homeLastUpdatedIso = mostRecentScrapedAt(cards);
 const homeUpdatedRelative = homeLastUpdatedIso ? formatRelativeTimeAgo(homeLastUpdatedIso) : "";
 
 const cristoRouteRaw = await readRouteSegments("cristo-redentor");
-const cristoRouteView = cristoRouteRaw
-  ? buildHomeCristoRouteView(cristoRouteRaw, formatRelativeTimeAgo)
-  : null;
+const cristoRouteView = cristoRouteRaw ? buildHomeCristoRouteView(cristoRouteRaw) : null;
 
 const meta = buildHomeMeta();
 
