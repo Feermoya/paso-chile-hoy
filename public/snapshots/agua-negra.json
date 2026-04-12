@@ -22,29 +22,22 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13,
+    "temperatureC": 10,
     "description": "Despejado",
-    "wind": "WNW a 4 km/h",
+    "wind": "W a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "07:55",
     "sunset": "19:21",
-    "updatedAt": "2026-04-12 12:29 AM",
-    "feelsLikeC": 13,
-    "humidity": 36
+    "updatedAt": "2026-04-12 04:13 AM",
+    "feelsLikeC": 10,
+    "humidity": 41
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-04-12T04:11:17.911Z",
+  "scrapedAt": "2026-04-12T08:11:28.820Z",
   "forecast": [
-    {
-      "period": "Hoy por la madrugada",
-      "description": "Despejado",
-      "temperatureC": 10,
-      "wind": "WSW 3 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la mañana",
       "description": "Soleado",
@@ -65,6 +58,13 @@
       "temperatureC": 21,
       "wind": "E 7 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 20,
+      "wind": "ENE 16 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "11 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-12T04:11:17.911Z"
+  "lastKnownGoodAt": "2026-04-12T08:11:28.820Z"
 }
