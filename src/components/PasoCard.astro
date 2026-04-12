@@ -43,12 +43,8 @@ const showClosesIn = isOpen && closesInMinutes != null && closesInMinutes > 0;
 const showOpensIn = isClosed && opensInMinutes != null && opensInMinutes > 0;
 const closingSoon = showClosesIn && closesInMinutes! <= 60;
 
-const estU = (vialidadEstado ?? "").trim().toUpperCase();
-const hasVialidad =
-  Boolean(estU && !estU.includes("HABILITADA")) &&
-  (isVialidadCorteTotal(vialidadEstado) ||
-    estU.includes("RESTRINGIDA") ||
-    estU.includes("CORTE"));
+/** Solo corte total vial: evita bandas naranjas por restricción/precaución cuando el paso sigue oficialmente habilitado. */
+const hasVialidad = isVialidadCorteTotal(vialidadEstado);
 
 const defaultBadgeLabel: Record<PassDisplayStatus, string> = {
   abierto: "ABIERTO",
@@ -56,9 +52,17 @@ const defaultBadgeLabel: Record<PassDisplayStatus, string> = {
   condicionado: "CONDICIONADO",
   sin_datos: "SIN DATOS",
 };
-/** CONDICIONADO siempre en badge naranja; no reutilizar "ABIERTO" de Gendarmería cuando el estado inferido es condicionado. */
-const label =
-  status === "condicionado" ? "CONDICIONADO" : (displayLabel?.trim() || defaultBadgeLabel[status]);
+
+const displayTrim = displayLabel?.trim() ?? "";
+const displayUpper = displayTrim.toUpperCase();
+const label = displayTrim || defaultBadgeLabel[status];
+
+/**
+ * Color/borde de la card: si Gendarmería va como ABIERTO pero la inferencia marcó condicionado (p. ej. vialidad),
+ * en home mostramos ABIERTO como estado principal.
+ */
+const uiStatus: PassDisplayStatus =
+  status === "condicionado" && displayUpper === "ABIERTO" ? "abierto" : status;
 const href = paso.active ? `/${paso.slug}` : undefined;
 const desc = weatherDesc?.trim() ?? "";
 const routeLabel = `${paso.localityAR} — ${paso.localityCL}`;
@@ -71,13 +75,13 @@ const tempStr = weatherTempC != null ? String(weatherTempC) : null;
   href ? (
     <a
       href={href}
-      class:list={["paso-card-v2", `paso-card-v2--${status}`]}
+      class:list={["paso-card-v2", `paso-card-v2--${uiStatus}`]}
       aria-label={`Ver estado de ${paso.shortName}`}
     >
       <div class="pcv2-top">
         <h3 class="pcv2-name">{paso.shortName}</h3>
-        <span class:list={["pcv2-badge", `pcv2-badge--${status}`]}>
-          <span class:list={["pcv2-badge-dot", status !== "sin_datos" && "pcv2-badge-dot--pulse"]} aria-hidden="true" />
+        <span class:list={["pcv2-badge", `pcv2-badge--${uiStatus}`]}>
+          <span class:list={["pcv2-badge-dot", uiStatus !== "sin_datos" && "pcv2-badge-dot--pulse"]} aria-hidden="true" />
           <span class="pcv2-badge-label">{label}</span>
         </span>
       </div>
@@ -143,7 +147,7 @@ const tempStr = weatherTempC != null ? String(weatherTempC) : null;
         </div>
         <Icon
           name="lucide:chevron-right"
-          class:list={["pcv2-footer-chevron", `pcv2-footer-chevron--${status}`]}
+          class:list={["pcv2-footer-chevron", `pcv2-footer-chevron--${uiStatus}`]}
           width="18"
           height="18"
           aria-hidden="true"
