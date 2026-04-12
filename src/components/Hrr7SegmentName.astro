@@ -1,0 +1,20 @@
+---
+interface Props {
+  origin: string;
+  dest: string | null;
+}
+
+const { origin, dest } = Astro.props;
+---
+
+<p class="hrr7-name hrr7-name--split">
+  <span class="hrr7-tramo-origin">{origin}</span>
+  {
+    dest ? (
+      <span class="hrr7-tramo-tail">
+        <span class="hrr7-tramo-arrow" aria-hidden="true">→</span>
+        <span class="hrr7-tramo-dest">{dest}</span>
+      </span>
+    ) : null
+  }
+</p>

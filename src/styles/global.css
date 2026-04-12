@@ -1924,6 +1924,10 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     --hrr7-bg-warning: var(--color-conditional-subtle);
     margin-top: 24px;
     margin-bottom: 2px;
+    max-width: 680px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .home-route-rn7 .hrr7-panel {
@@ -1960,9 +1964,10 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-title {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.3;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
     color: var(--color-text-primary);
     margin: 0 0 8px;
     font-family: var(--font-body);
@@ -2025,19 +2030,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   .home-route-rn7 .hrr7-track {
     position: relative;
-    padding: 8px 18px 4px 18px;
+    padding: 0 14px 12px;
     margin: 0;
-  }
-
-  .home-route-rn7 .hrr7-track-rail {
-    position: absolute;
-    left: 31px;
-    top: 12px;
-    bottom: 48px;
-    width: 2px;
-    background: color-mix(in srgb, var(--color-text-muted) 22%, transparent);
-    border-radius: 1px;
-    pointer-events: none;
   }
 
   .home-route-rn7 .hrr7-car-wrap {
@@ -2045,26 +2039,36 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 44px;
+    width: 28px;
     pointer-events: none;
-    z-index: 0;
+    z-index: 20;
+  }
+
+  .home-route-rn7 .hrr7-car-y {
+    position: absolute;
+    left: 14px;
+    top: 0;
+    width: 18px;
+    height: 26px;
+    margin-left: -9px;
+    will-change: top, opacity, margin-left;
+    pointer-events: none;
   }
 
   .home-route-rn7 .hrr7-car {
-    position: absolute;
-    left: 13px;
-    width: 13px;
-    height: 20px;
-    color: var(--color-text-muted);
-    animation: hrr7-car-drive 11s ease-in-out infinite alternate;
+    display: block;
+    width: 18px;
+    height: 26px;
+    color: #1e40af;
   }
 
-  @keyframes hrr7-car-drive {
-    0% {
-      top: 6%;
-    }
-    100% {
-      top: 72%;
+  :root[data-theme="dark"] .home-route-rn7 .hrr7-car {
+    color: #93c5fd;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .home-route-rn7 .hrr7-car {
+      color: #93c5fd;
     }
   }
 
@@ -2082,16 +2086,59 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   .home-route-rn7 .hrr7-step {
     display: grid;
-    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-columns: 28px minmax(0, 1fr);
     gap: 0 10px;
-    align-items: start;
-    margin-bottom: 6px;
+    align-items: stretch;
+    margin-bottom: 0;
   }
 
-  .home-route-rn7 .hrr7-step-axis {
+  .home-route-rn7 .hrr7-line-col {
     display: flex;
-    justify-content: center;
-    padding-top: 4px;
+    flex-direction: column;
+    align-items: center;
+    width: 28px;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-route-rn7 .hrr7-line-col .hrr7-step-icon {
+    margin: 0;
+  }
+
+  .home-route-rn7 .hrr7-connector {
+    flex: 1;
+    width: 3px;
+    min-height: 0;
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .home-route-rn7 .hrr7-step[data-tramo-estado="HABILITADA"] .hrr7-connector {
+    background: #c0dd97;
+  }
+
+  .home-route-rn7 .hrr7-step[data-tramo-estado="PRECAUCION"] .hrr7-connector {
+    background: #fac775;
+  }
+
+  .home-route-rn7 .hrr7-step[data-tramo-estado="CORTE_TOTAL"] .hrr7-connector {
+    background: #f7c1c1;
+  }
+
+  .home-route-rn7 .hrr7-step[data-tramo-estado="DESCONOCIDO"] .hrr7-connector {
+    background: color-mix(in srgb, var(--color-text-muted) 35%, var(--hrr7-bg-primary));
+  }
+
+  .home-route-rn7 .hrr7-steps > li.hrr7-step:last-child .hrr7-connector,
+  .home-route-rn7 .hrr7-nested-steps > li.hrr7-step:last-child .hrr7-connector {
+    display: none;
+  }
+
+  .home-route-rn7 .hrr7-step-main {
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
   }
 
   .home-route-rn7 .hrr7-step-icon {
@@ -2106,6 +2153,7 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     color: #fff;
     flex-shrink: 0;
     box-shadow: 0 0 0 2px var(--hrr7-bg-primary);
+    transition: transform 150ms ease;
   }
 
   .home-route-rn7 .hrr7-step-icon--check {
@@ -2131,11 +2179,30 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     background: var(--color-unknown);
   }
 
-  .home-route-rn7 .hrr7-step-card {
+  .home-route-rn7 .tramo-content-inner.hrr7-step-card {
     border-radius: var(--hrr7-br-md);
     border: 0.5px solid var(--hrr7-border-tertiary);
     background: var(--hrr7-bg-secondary);
-    padding: 7px 10px 8px;
+    padding: 10px 12px;
+    transition:
+      background 150ms ease,
+      transform 100ms ease;
+    cursor: default;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-route-rn7 .tramo-row:hover .tramo-content-inner {
+    background: color-mix(in srgb, var(--color-text-primary) 4%, var(--hrr7-bg-secondary));
+    transform: translateX(3px);
+  }
+
+  .home-route-rn7 .tramo-row:hover .line-dot {
+    transform: scale(1.1);
+  }
+
+  .home-route-rn7 .tramo-row.hrr7-step--corte:hover .tramo-content-inner {
+    background: #fef2f2;
   }
 
   .home-route-rn7 .hrr7-step--past .hrr7-step-card {
@@ -2149,7 +2216,6 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   .home-route-rn7 .hrr7-step-card--critical {
     border-color: color-mix(in srgb, var(--color-closed) 32%, var(--hrr7-border-tertiary));
     background: var(--hrr7-bg-danger);
-    padding: 9px 11px 10px;
   }
 
   .home-route-rn7 .hrr7-step-card--collapsed {
@@ -2190,6 +2256,46 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     min-width: 0;
   }
 
+  .home-route-rn7 .hrr7-name--split {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0;
+    width: 100%;
+  }
+
+  .home-route-rn7 .hrr7-tramo-tail {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0;
+    min-width: 0;
+    flex: 1 1 160px;
+  }
+
+  .home-route-rn7 .hrr7-tramo-arrow {
+    color: var(--color-text-tertiary);
+    font-size: 11px;
+    margin: 0 6px;
+    flex-shrink: 0;
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .home-route-rn7 .hrr7-tramo-dest {
+    flex: 1 1 120px;
+    min-width: 0;
+  }
+
+  .home-route-rn7 .hrr7-name-extra {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-text-tertiary);
+    margin: 6px 0 0;
+    line-height: 1.35;
+  }
+
   .home-route-rn7 .hrr7-sub {
     font-size: 10px;
     font-weight: 600;
@@ -2199,11 +2305,54 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     margin: 4px 0 0;
   }
 
+  .home-route-rn7 .hrr7-subline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1px;
+  }
+
+  .home-route-rn7 .hrr7-subline .hrr7-detail {
+    margin: 0;
+  }
+
   .home-route-rn7 .hrr7-detail {
     font-size: 11px;
     color: var(--color-text-muted);
-    margin: 5px 0 0;
+    margin: 1px 0 0;
     line-height: 1.3;
+  }
+
+  .home-route-rn7 .hrr7-segment-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .home-route-rn7 .hrr7-segment-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 3px 8px 3px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+    background: color-mix(in srgb, var(--color-text-muted) 9%, var(--hrr7-bg-secondary));
+    border: 0.5px solid var(--hrr7-border-tertiary);
+    border-radius: 999px;
+  }
+
+  .home-route-rn7 .hrr7-segment-tag-ic {
+    flex-shrink: 0;
+    opacity: 0.85;
   }
 
   .home-route-rn7 .hrr7-notes {
@@ -2215,13 +2364,13 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-pill {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
     padding: 4px 10px;
-    border-radius: var(--radius-pill);
-    border: 0.5px solid var(--color-border-default);
+    border-radius: 20px;
+    border: none;
     flex-shrink: 0;
   }
 
@@ -2240,103 +2389,231 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-pill--open {
-    color: var(--color-open-soft);
-    border-color: color-mix(in srgb, var(--color-open) 40%, var(--hrr7-border-tertiary));
-    background: var(--hrr7-bg-success);
+    color: #3b6d11;
+    background: #eaf3de;
   }
 
   .home-route-rn7 .hrr7-pill--closed {
-    color: var(--color-closed-soft);
-    border-color: color-mix(in srgb, var(--color-closed) 40%, var(--hrr7-border-tertiary));
-    background: var(--hrr7-bg-danger);
+    color: #a32d2d;
+    background: transparent;
+    border: 1.5px solid #e24b4a;
   }
 
   .home-route-rn7 .hrr7-pill--partial,
   .home-route-rn7 .hrr7-pill--caution {
-    color: var(--color-conditional-soft);
-    border-color: color-mix(in srgb, var(--color-conditional) 40%, var(--hrr7-border-tertiary));
-    background: var(--hrr7-bg-warning);
+    color: #854f0b;
+    background: #faeeda;
   }
 
   .home-route-rn7 .hrr7-pill--unknown {
     color: var(--color-text-muted);
-    border-color: var(--hrr7-border-tertiary);
+    background: var(--hrr7-bg-secondary);
+    border: 0.5px solid var(--hrr7-border-tertiary);
   }
 
   .home-route-rn7 .hrr7-step-card--critical .hrr7-pill--closed {
     font-size: 11px;
-    padding: 5px 11px;
+    padding: 4px 10px;
   }
 
-  .home-route-rn7 .hrr7-reachbox {
-    margin: 12px 18px 16px;
+  .home-route-rn7 .hrr7-step--accordion .hrr7-accordion-cell {
+    min-width: 0;
+  }
+
+  .home-route-rn7 .hrr7-expand-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    margin: 0;
+    border: none;
     border-radius: var(--hrr7-br-md);
+    background: color-mix(in srgb, var(--color-open) 5%, var(--hrr7-bg-secondary));
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .home-route-rn7 .hrr7-expand-icon {
+    flex-shrink: 0;
+    width: 1.1rem;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .home-route-rn7 .hrr7-tramos-collapsed {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+  }
+
+  .home-route-rn7 .hrr7-tramos-collapsed--expanded {
+    max-height: 1200px;
+  }
+
+  .home-route-rn7 .hrr7-nested-steps {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 8px;
+  }
+
+  .home-route-rn7 .hrr7-step--nested {
+    margin-bottom: 0;
+  }
+
+  @keyframes hrr7-reach-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .home-route-rn7 .hrr7-reach-compact {
+    margin: 12px 14px 14px;
+    border-radius: var(--hrr7-br-lg);
     border: 0.5px solid var(--hrr7-border-tertiary);
     overflow: hidden;
   }
 
-  .home-route-rn7 .hrr7-reachbox-head {
+  .home-route-rn7 .hrr7-reach-compact-head {
+    padding: 8px 14px;
     background: var(--hrr7-bg-secondary);
-    padding: 8px 12px;
+    border-bottom: 0.5px solid var(--hrr7-border-tertiary);
+  }
+
+  .home-route-rn7 .hrr7-reach-compact-head .reach-header-title {
     font-size: 11px;
     font-weight: 500;
     color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
   }
 
-  .home-route-rn7 .hrr7-reachbox-body {
-    background: var(--hrr7-bg-primary);
+  .home-route-rn7 .hrr7-reach-compact-body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
 
-  .home-route-rn7 .hrr7-reach-row {
+  .home-route-rn7 .hrr7-reach-compact-body--solo-yes .reach-item--yes {
+    flex: 1;
+  }
+
+  .home-route-rn7 .hrr7-reach-item-yes,
+  .home-route-rn7 .hrr7-reach-item-no {
+    animation: hrr7-reach-in 0.4s ease-out both;
+  }
+
+  .home-route-rn7 .hrr7-reach-item-no {
+    animation-delay: 150ms;
+  }
+
+  .home-route-rn7 .reach-item {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.35;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .home-route-rn7 .reach-item--yes {
+    background: #f0fdf4;
+  }
+
+  .home-route-rn7 .reach-item--yes-neutral {
+    background: var(--hrr7-bg-secondary);
+  }
+
+  .home-route-rn7 .reach-item--yes-neutral .reach-place {
     color: var(--color-text-primary);
-    border-top: 0.5px solid var(--hrr7-border-tertiary);
   }
 
-  .home-route-rn7 .hrr7-reachbox-body .hrr7-reach-row:first-child {
-    border-top: none;
+  .home-route-rn7 .reach-item--yes-neutral .reach-detail {
+    color: var(--color-text-secondary);
+    opacity: 1;
   }
 
-  .home-route-rn7 .hrr7-reach-ic {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .home-route-rn7 .reach-item--no {
+    background: #fff1f2;
+  }
+
+  .home-route-rn7 .hrr7-reach-separator {
+    width: 0.5px;
     flex-shrink: 0;
+    background: var(--hrr7-border-tertiary);
+    align-self: stretch;
+  }
+
+  .home-route-rn7 .reach-checkpoint {
+    flex-shrink: 0;
+  }
+
+  .home-route-rn7 .reach-info {
+    min-width: 0;
+  }
+
+  .home-route-rn7 .reach-label {
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 2px;
   }
 
-  .home-route-rn7 .hrr7-reach-ic--ok {
-    background: #eaf3de;
+  .home-route-rn7 .reach-place {
+    font-size: 15px;
+    font-weight: 700;
+    color: #27500a;
+    line-height: 1.2;
+  }
+
+  .home-route-rn7 .reach-place--no {
+    color: #a32d2d;
+  }
+
+  .home-route-rn7 .reach-detail {
+    font-size: 10px;
     color: #3b6d11;
+    margin-top: 2px;
+    opacity: 0.8;
   }
 
-  .home-route-rn7 .hrr7-reach-ic--no {
-    background: #fcebeb;
+  .home-route-rn7 .reach-detail--no {
     color: #791f1f;
   }
 
-  :root[data-theme="dark"] .home-route-rn7 .hrr7-reach-ic--ok {
-    background: color-mix(in srgb, var(--color-open) 22%, transparent);
-    color: var(--color-open);
+  @media (max-width: 359px) {
+    .home-route-rn7 .hrr7-reach-compact-body {
+      flex-direction: column;
+    }
+
+    .home-route-rn7 .hrr7-reach-separator {
+      display: none;
+    }
   }
 
-  :root[data-theme="dark"] .home-route-rn7 .hrr7-reach-ic--no {
-    background: color-mix(in srgb, var(--color-closed) 22%, transparent);
-    color: #f87171;
+  :root[data-theme="dark"] .home-route-rn7 .reach-item--yes {
+    background: color-mix(in srgb, #14532d 35%, var(--hrr7-bg-primary));
   }
 
-  .home-route-rn7 .hrr7-reach-txt--short {
-    display: none;
+  :root[data-theme="dark"] .home-route-rn7 .reach-item--no {
+    background: color-mix(in srgb, #7f1d1d 28%, var(--hrr7-bg-primary));
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .reach-place {
+    color: var(--color-text-primary);
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .reach-detail {
+    color: var(--color-text-secondary);
   }
 
   .home-route-rn7 .hrr7-foot {
@@ -2366,6 +2643,12 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   @media (max-width: 639px) {
+    .home-route-rn7 {
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
     .home-route-rn7 .hrr7-steps--desktop {
       display: none;
     }
@@ -2386,22 +2669,46 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
       display: none;
     }
 
-    .home-route-rn7 .hrr7-reach-txt--full {
-      display: none;
+    .home-route-rn7 .hrr7-tramo-tail {
+      flex: 1 0 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
-    .home-route-rn7 .hrr7-reach-txt--short {
-      display: inline;
-    }
-
-    .home-route-rn7 .hrr7-car {
-      width: 11px;
-      height: 16px;
-      left: 14px;
+    .home-route-rn7 .hrr7-tramo-dest {
+      flex: 1 0 100%;
+      padding-left: 1.1rem;
+      margin-top: 2px;
     }
 
     .home-route-rn7 .hrr7-header-inner {
       max-width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-route-rn7 .route-car,
+    .home-route-rn7 .hrr7-car-y {
+      display: none !important;
+    }
+
+    .home-route-rn7 .reach-item {
+      animation: none !important;
+    }
+
+    .home-route-rn7 .hrr7-tramos-collapsed {
+      max-height: none !important;
+      overflow: visible !important;
+      transition: none !important;
+    }
+
+    .home-route-rn7 .hrr7-tramos-collapsed--expanded {
+      max-height: none !important;
+    }
+
+    .home-route-rn7 .hrr7-expand-btn {
+      display: none !important;
     }
   }
 

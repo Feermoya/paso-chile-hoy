@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  surfaceLine: string | null;
+  toll: boolean;
+  international: boolean;
+}
+
+const { surfaceLine, toll, international } = Astro.props;
+const hasDetail = !!surfaceLine?.trim();
+const hasTags = toll || international;
+---
+
+{
+  hasDetail || hasTags ? (
+    <div class="hrr7-subline">
+      {hasDetail ? <p class="hrr7-detail hrr7-detail--desktop">{surfaceLine}</p> : null}
+      {hasTags ? (
+        <ul class="hrr7-segment-tags">
+          {toll ? (
+            <li class="hrr7-segment-tag">
+              <Icon
+                name="lucide:banknote"
+                width={11}
+                height={11}
+                class="hrr7-segment-tag-ic"
+                aria-hidden="true"
+              />
+              Peaje
+            </li>
+          ) : null}
+          {international ? (
+            <li class="hrr7-segment-tag">
+              <Icon
+                name="lucide:globe"
+                width={11}
+                height={11}
+                class="hrr7-segment-tag-ic"
+                aria-hidden="true"
+              />
+              Paso internacional
+            </li>
+          ) : null}
+        </ul>
+      ) : null}
+    </div>
+  ) : null
+}

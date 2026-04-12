@@ -13,15 +13,42 @@ export interface HomeCristoRouteTimelineRow extends RouteSegmentItem {
   badgeLabelStrong: string;
   kmDisplay: string | null;
   surfaceLine: string | null;
+  /** Partes del nombre para flecha "origen → destino". */
+  nameOrigin: string;
+  nameDest: string | null;
 }
 
 export type FreshnessDot = "green" | "amber" | "red";
 
 export type HomeCristoDisplayItem =
   | { kind: "segment"; row: HomeCristoRouteTimelineRow }
-  | { kind: "collapsed"; count: number };
+  | { kind: "collapsed"; count: number; rows: HomeCristoRouteTimelineRow[] };
 
 export type MainAlertTone = "ok" | "warn" | "danger" | "neutral";
+
+export type HomeCristoReachMode = "all-open" | "all-closed" | "mixed";
+
+export interface HomeCristoReachCard {
+  mode: HomeCristoReachMode;
+  /** Etiqueta uppercase chica; vacío en all-open. */
+  yesZoneLabel: string;
+  yesPlace: string;
+  yesSub: string | null;
+  yesZoneVariant: "success" | "neutral";
+  showNoZone: boolean;
+  noZoneLabel: string;
+  noPlace: string;
+  noSub: string | null;
+}
+
+/** Vista compacta tipo checkpoint (home). */
+export interface HomeCristoReachCompact {
+  yesPlace: string;
+  yesDetail: string | null;
+  showNo: boolean;
+  noPlace: string;
+  noDetail: string | null;
+}
 
 export interface HomeCristoRouteView {
   title: string;
@@ -42,8 +69,22 @@ export interface HomeCristoRouteView {
   /** Fila roja; null si no hay corte. */
   reachRedLine: string | null;
   reachRedLineShort: string | null;
+  reachCard: HomeCristoReachCard;
+  reachCompact: HomeCristoReachCompact;
   timeline: HomeCristoRouteTimelineRow[];
   mobileTimeline: HomeCristoDisplayItem[];
+}
+
+/** Divide "A - B" en origen y destino para UI con flecha. */
+export function splitSegmentName(name: string): { origin: string; dest: string | null } {
+  const trimmed = name.trim();
+  const parts = trimmed.split(/\s*-\s*/);
+  if (parts.length < 2) {
+    return { origin: trimmed, dest: null };
+  }
+  const origin = parts[0]?.trim() ?? trimmed;
+  const dest = parts.slice(1).join(" - ").trim();
+  return { origin, dest: dest || null };
 }
 
 function isBlockingStatus(status: RouteSegmentItem["status"]): boolean {
@@ -188,6 +229,114 @@ function lastReachablePlace(payload: RouteSegmentsPayload): {
   };
 }
 
+/** Índice del último tramo OPEN alcanzable antes del primer bloqueo (cierre o precaución/partial). */
+function lastReachableSegmentIndex(payload: RouteSegmentsPayload): number | null {
+  const segs = payload.segments;
+  if (!segs.some((s) => s.status === "OPEN")) return null;
+  const ci = firstClosedIndex(segs);
+  let end = ci === -1 ? segs.length : ci;
+  const pi = segs.findIndex((s) => s.status === "PARTIAL" || s.status === "CAUTION");
+  if (pi >= 0 && (ci === -1 || pi < ci)) {
+    end = pi;
+  }
+  let last = -1;
+  for (let i = 0; i < end; i++) {
+    if (segs[i].status === "OPEN") last = i;
+  }
+  return last >= 0 ? last : null;
+}
+
+function cumulativeKmThrough(segments: RouteSegmentItem[], endInclusive: number): number | null {
+  let sum = 0;
+  let any = false;
+  const n = Math.min(endInclusive, segments.length - 1);
+  for (let i = 0; i <= n; i++) {
+    const km = segments[i].lengthKm;
+    if (km != null && Number.isFinite(km)) {
+      sum += km;
+      any = true;
+    }
+  }
+  return any ? Math.round(sum) : null;
+}
+
+function buildReachCard(payload: RouteSegmentsPayload): HomeCristoReachCard {
+  const segs = payload.segments;
+  const allOpen = segs.length > 0 && segs.every((s) => s.status === "OPEN");
+  if (allOpen) {
+    return {
+      mode: "all-open",
+      yesZoneLabel: "",
+      yesPlace: "Podés cruzar a Chile sin restricciones",
+      yesSub: "Todos los tramos habilitados",
+      yesZoneVariant: "success",
+      showNoZone: false,
+      noZoneLabel: "No podés cruzar por",
+      noPlace: "",
+      noSub: null,
+    };
+  }
+  const anyOpen = segs.some((s) => s.status === "OPEN");
+  if (!anyOpen) {
+    return {
+      mode: "all-closed",
+      yesZoneLabel: "",
+      yesPlace: "Sin acceso disponible",
+      yesSub: null,
+      yesZoneVariant: "neutral",
+      showNoZone: false,
+      noZoneLabel: "No podés cruzar por",
+      noPlace: "",
+      noSub: null,
+    };
+  }
+  const lastIdx = lastReachableSegmentIndex(payload);
+  const yesPlace =
+    lastIdx != null ? tailPlace(segs[lastIdx].name) : "Consultá el recorrido";
+  const km = lastIdx != null ? cumulativeKmThrough(segs, lastIdx) : null;
+  const yesSub =
+    lastIdx != null && km != null
+      ? `Último punto accesible · ${km} km desde Mendoza`
+      : lastIdx != null
+        ? "Último punto accesible"
+        : null;
+  const ci = firstClosedIndex(segs);
+  const showNo = ci >= 0;
+  let noPlace = "";
+  let noSub: string | null = null;
+  if (showNo) {
+    noPlace = tailPlace(segs[ci].name);
+    noSub = segs[ci].notes?.trim() || null;
+  }
+  return {
+    mode: "mixed",
+    yesZoneLabel: "Podés llegar hasta",
+    yesPlace,
+    yesSub,
+    yesZoneVariant: "success",
+    showNoZone: showNo,
+    noZoneLabel: "No podés cruzar por",
+    noPlace: showNo ? noPlace : "",
+    noSub: showNo ? noSub : null,
+  };
+}
+
+function buildReachCompact(rc: HomeCristoReachCard): HomeCristoReachCompact {
+  let yesDetail = rc.yesSub?.trim() || null;
+  if (yesDetail?.includes("km desde Mendoza")) {
+    yesDetail = yesDetail
+      .replace("Último punto accesible · ", "Último punto · ")
+      .replace(" desde Mendoza", "");
+  }
+  return {
+    yesPlace: rc.yesPlace,
+    yesDetail,
+    showNo: rc.showNoZone,
+    noPlace: rc.noPlace,
+    noDetail: rc.noSub,
+  };
+}
+
 function cutSegmentName(payload: RouteSegmentsPayload): string | null {
   const ci = firstClosedIndex(payload.segments);
   if (ci < 0) return null;
@@ -279,15 +428,16 @@ function buildMobileTimeline(rows: HomeCristoRouteTimelineRow[]): HomeCristoDisp
       j++;
     }
     const runLen = j - i;
-    if (runLen < 4) {
+    if (runLen < 3) {
       for (let k = i; k < j; k++) {
         items.push({ kind: "segment", row: rows[k] });
       }
       i = j;
       continue;
     }
+    const middle = rows.slice(i + 1, j - 1);
     items.push({ kind: "segment", row: rows[i] });
-    items.push({ kind: "collapsed", count: runLen - 2 });
+    items.push({ kind: "collapsed", count: runLen - 2, rows: middle });
     items.push({ kind: "segment", row: rows[j - 1] });
     i = j;
   }
@@ -320,6 +470,8 @@ export function buildHomeCristoRouteView(payload: RouteSegmentsPayload): HomeCri
     cutShort != null ? `No cruzás el ${cutShort}` : null;
 
   const alertBannerText = showAlertBanner ? mainAlertMessage : "";
+  const reachCard = buildReachCard(payload);
+  const reachCompact = buildReachCompact(reachCard);
 
   const timeline: HomeCristoRouteTimelineRow[] = segments.map((s, index) => {
     const isBlocking = bi >= 0 && index === bi;
@@ -328,6 +480,7 @@ export function buildHomeCristoRouteView(payload: RouteSegmentsPayload): HomeCri
       isBlocking && (s.flags.international || s.status === "CLOSED" || s.status === "PARTIAL");
     const kmD = formatKm(s.lengthKm);
     const strong = s.statusLabel?.trim();
+    const { origin, dest } = splitSegmentName(s.name);
     return {
       ...s,
       isBlocking,
@@ -339,6 +492,8 @@ export function buildHomeCristoRouteView(payload: RouteSegmentsPayload): HomeCri
       badgeLabelStrong: strong || badgeLabelFor(s.status).toUpperCase(),
       kmDisplay: kmD,
       surfaceLine: surfaceLine(s.surface, kmD),
+      nameOrigin: origin,
+      nameDest: dest,
     };
   });
 
@@ -360,6 +515,8 @@ export function buildHomeCristoRouteView(payload: RouteSegmentsPayload): HomeCri
     reachGreenLineShort,
     reachRedLine,
     reachRedLineShort,
+    reachCard,
+    reachCompact,
     timeline,
     mobileTimeline,
   };
