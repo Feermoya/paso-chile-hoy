@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.9.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.9.0...v2.9.1) (2026-04-12)
+
+### Estilos
+
+* Mejora visual las leñas ([bddfdab](https://github.com/Feermoya/paso-chile-hoy/commit/bddfdabdb4b45fcd979c735c58326e359f43b446))
+
 ## [2.9.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.8.2...v2.9.0) (2026-04-12)
 
 ### Nuevas funcionalidades
