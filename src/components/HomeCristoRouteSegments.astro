@@ -1,0 +1,71 @@
+---
+import type { HomeCristoRouteView } from "@/lib/mappers/homeCristoRouteView";
+
+export interface Props {
+  view: HomeCristoRouteView;
+}
+
+const { view } = Astro.props;
+---
+
+<section class="home-route-rn7" aria-labelledby="home-route-rn7-title">
+  <div class="hrr7-panel">
+    <header class="hrr7-header">
+      <p class="hrr7-eyebrow">{view.eyebrow}</p>
+      <h2 id="home-route-rn7-title" class="hrr7-title">
+        {view.title}
+      </h2>
+      <p class="hrr7-meta">{view.updatedLine}</p>
+    </header>
+
+    <div class="hrr7-summary">
+      <p class="hrr7-headline">{view.headline}</p>
+      <p class="hrr7-reach">{view.reachLine}</p>
+    </div>
+
+    <div class="hrr7-timeline-wrap" role="presentation">
+      <ul class="hrr7-timeline">
+        {
+          view.timeline.map((row) => (
+            <li
+              class:list={[
+                "hrr7-item",
+                row.isBlocking && "hrr7-item--blocking",
+                row.isAfterBlocking && "hrr7-item--muted",
+                row.flags.international && "hrr7-item--tunnel",
+              ]}
+            >
+              <span class="hrr7-rail" aria-hidden="true">
+                <span class:list={["hrr7-dot", `hrr7-dot--${row.status.toLowerCase()}`]} />
+              </span>
+              <div class="hrr7-item-body">
+                <div class="hrr7-item-top">
+                  <span class="hrr7-item-name">{row.name}</span>
+                  <span class:list={["hrr7-badge", `hrr7-badge--${row.status.toLowerCase()}`]}>
+                    {row.badgeLabel}
+                  </span>
+                </div>
+                <div class="hrr7-item-meta">
+                  {row.kmDisplay ? <span class="hrr7-meta-chip">{row.kmDisplay}</span> : null}
+                  {row.surface?.trim() ? (
+                    <span class="hrr7-meta-chip">{row.surface.trim()}</span>
+                  ) : null}
+                </div>
+                {row.showNotes && row.notes?.trim() ? (
+                  <p class="hrr7-item-notes">{row.notes.trim()}</p>
+                ) : null}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <footer class="hrr7-footer">
+      <a href="/cristo-redentor" class="hrr7-cta">
+        Ver detalle del paso
+        <span class="hrr7-cta-chevron" aria-hidden="true">→</span>
+      </a>
+    </footer>
+  </div>
+</section>

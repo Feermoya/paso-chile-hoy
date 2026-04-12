@@ -1911,6 +1911,301 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     }
   }
 
+  /* ===== HOME — RN 7 Mendoza hacia Cristo Redentor (tramos) ===== */
+  .home-route-rn7 {
+    margin-top: 28px;
+    margin-bottom: 4px;
+  }
+
+  .home-route-rn7 .hrr7-panel {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 40px rgba(0, 0, 0, 0.06);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .hrr7-panel {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  .home-route-rn7 .hrr7-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .home-route-rn7 .hrr7-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 6px;
+  }
+
+  .home-route-rn7 .hrr7-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  .home-route-rn7 .hrr7-meta {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .home-route-rn7 .hrr7-summary {
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .home-route-rn7 .hrr7-headline {
+    font-size: 15px;
+    font-weight: 650;
+    color: var(--color-text-primary);
+    margin: 0 0 8px;
+    line-height: 1.35;
+  }
+
+  .home-route-rn7 .hrr7-reach {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .home-route-rn7 .hrr7-timeline-wrap {
+    margin-bottom: var(--space-5);
+  }
+
+  .home-route-rn7 .hrr7-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-route-rn7 .hrr7-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    min-height: 0;
+    padding: 6px 0;
+  }
+
+  .home-route-rn7 .hrr7-item--muted .hrr7-item-body {
+    opacity: 0.52;
+  }
+
+  .home-route-rn7 .hrr7-item--muted .hrr7-rail {
+    opacity: 0.45;
+  }
+
+  .home-route-rn7 .hrr7-item--blocking .hrr7-item-body {
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-default);
+    background: color-mix(in srgb, var(--color-surface-raised) 85%, transparent);
+  }
+
+  .home-route-rn7 .hrr7-item--tunnel.hrr7-item--blocking .hrr7-item-body {
+    border-color: color-mix(in srgb, var(--color-closed) 22%, var(--color-border-default));
+  }
+
+  .home-route-rn7 .hrr7-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16px;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+
+  .home-route-rn7 .hrr7-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-border-subtle);
+  }
+
+  .home-route-rn7 .hrr7-dot--open {
+    background: var(--color-open);
+  }
+
+  .home-route-rn7 .hrr7-dot--closed {
+    background: var(--color-closed);
+  }
+
+  .home-route-rn7 .hrr7-dot--partial,
+  .home-route-rn7 .hrr7-dot--caution {
+    background: var(--color-conditional);
+  }
+
+  .home-route-rn7 .hrr7-dot--unknown {
+    background: var(--color-unknown);
+  }
+
+  .home-route-rn7 .hrr7-rail::after {
+    content: "";
+    width: 2px;
+    flex: 1;
+    min-height: 10px;
+    margin-top: 4px;
+    background: var(--color-border-subtle);
+    border-radius: 1px;
+  }
+
+  .home-route-rn7 .hrr7-item:last-child .hrr7-rail::after {
+    display: none;
+  }
+
+  .home-route-rn7 .hrr7-item-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 2px;
+  }
+
+  .home-route-rn7 .hrr7-item-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px 10px;
+  }
+
+  .home-route-rn7 .hrr7-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+
+  .home-route-rn7 .hrr7-badge {
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border-default);
+    color: var(--color-text-secondary);
+    background: transparent;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .home-route-rn7 .hrr7-badge--open {
+    color: var(--color-open-soft);
+    border-color: color-mix(in srgb, var(--color-open) 35%, var(--color-border-subtle));
+    background: color-mix(in srgb, var(--color-open) 10%, transparent);
+  }
+
+  .home-route-rn7 .hrr7-badge--closed {
+    color: var(--color-closed-soft);
+    border-color: color-mix(in srgb, var(--color-closed) 35%, var(--color-border-subtle));
+    background: color-mix(in srgb, var(--color-closed) 10%, transparent);
+  }
+
+  .home-route-rn7 .hrr7-badge--partial,
+  .home-route-rn7 .hrr7-badge--caution {
+    color: var(--color-conditional-soft);
+    border-color: color-mix(in srgb, var(--color-conditional) 35%, var(--color-border-subtle));
+    background: color-mix(in srgb, var(--color-conditional) 10%, transparent);
+  }
+
+  .home-route-rn7 .hrr7-badge--unknown {
+    color: var(--color-text-muted);
+    border-color: var(--color-border-subtle);
+  }
+
+  .home-route-rn7 .hrr7-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin-top: 6px;
+  }
+
+  .home-route-rn7 .hrr7-meta-chip {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .home-route-rn7 .hrr7-item-notes {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+    margin: 8px 0 0;
+  }
+
+  .home-route-rn7 .hrr7-footer {
+    padding-top: 2px;
+    border-top: 1px solid var(--color-border-subtle);
+    margin-top: -2px;
+  }
+
+  .home-route-rn7 .hrr7-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color var(--transition-fast);
+  }
+
+  .home-route-rn7 .hrr7-cta:hover {
+    color: var(--color-accent);
+  }
+
+  .home-route-rn7 .hrr7-cta-chevron {
+    font-size: 14px;
+    opacity: 0.7;
+    transform: translateX(0);
+    transition: transform var(--transition-fast);
+  }
+
+  .home-route-rn7 .hrr7-cta:hover .hrr7-cta-chevron {
+    transform: translateX(3px);
+  }
+
+  :root[data-theme="light"] .home-route-rn7 .hrr7-panel {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 16px 48px rgba(15, 23, 42, 0.06);
+  }
+
+  :root[data-theme="light"] .home-route-rn7 .hrr7-item--blocking .hrr7-item-body {
+    background: #f9fafb;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  @media (max-width: 480px) {
+    .home-route-rn7 .hrr7-panel {
+      padding: var(--space-5) var(--space-4);
+    }
+
+    .home-route-rn7 .hrr7-item {
+      padding: 5px 0;
+    }
+
+    .home-route-rn7 .hrr7-badge {
+      font-size: 9px;
+      padding: 2px 7px;
+    }
+  }
+
   .home-twitter {
     margin-top: 28px;
     padding-top: 24px;

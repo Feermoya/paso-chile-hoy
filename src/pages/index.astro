@@ -10,7 +10,10 @@ import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { buildHomeMeta, SITE_URL } from "@/utils/seo";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
+import HomeCristoRouteSegments from "@/components/HomeCristoRouteSegments.astro";
 import TwitterTimeline from "@/components/TwitterTimeline.astro";
+import { buildHomeCristoRouteView } from "@/lib/mappers/homeCristoRouteView";
+import { readRouteSegments } from "@/lib/server/storage/routeSegmentsStorage";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 
@@ -75,6 +78,11 @@ const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
 
 const homeLastUpdatedIso = mostRecentScrapedAt(cards);
 const homeUpdatedRelative = homeLastUpdatedIso ? formatRelativeTimeAgo(homeLastUpdatedIso) : "";
+
+const cristoRouteRaw = await readRouteSegments("cristo-redentor");
+const cristoRouteView = cristoRouteRaw
+  ? buildHomeCristoRouteView(cristoRouteRaw, formatRelativeTimeAgo)
+  : null;
 
 const meta = buildHomeMeta();
 
@@ -169,6 +177,8 @@ const homeSchema = {
         );
       })}
     </div>
+
+    {cristoRouteView ? <HomeCristoRouteSegments view={cristoRouteView} /> : null}
 
     <TwitterTimeline />
   </div>
