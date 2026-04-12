@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.9.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.8.2...v2.9.0) (2026-04-12)
+
+### Nuevas funcionalidades
+
+* Las leñas ([c4fb56d](https://github.com/Feermoya/paso-chile-hoy/commit/c4fb56dba27d3f3ada8014f37f5cf4772ca17899))
+
 ## [2.8.2](https://github.com/Feermoya/paso-chile-hoy/compare/v2.8.1...v2.8.2) (2026-04-12)
 
 ### Refactoring
