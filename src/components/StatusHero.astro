@@ -477,10 +477,6 @@ const closeCountdownInitial =
           data as unknown as import("@/client/applyPassRefresh").PassRefreshEnvelope,
         );
 
-        if (document.querySelector("[data-home-route-rn7]")) {
-          document.dispatchEvent(new CustomEvent("pch:rn7-route-reset", { bubbles: true }));
-        }
-
         document.querySelectorAll("[data-status-countdown-root]").forEach(startCountdown);
 
         setState("success", data.stale === true ? "Listo" : "¡Listo!");

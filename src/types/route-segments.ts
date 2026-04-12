@@ -29,6 +29,18 @@ export interface RouteProfileConfig {
   province: string;
   expectedSegments: string[];
   segmentOrder: "asc" | "desc";
+  /** Título de la card de ruta en la home. */
+  homeCardTitle: string;
+  /** Ruta del detalle del paso (href). */
+  homeDetailPath: string;
+  /** Headline del resumen cuando todos los tramos están OPEN. */
+  headlineWhenAllOpen?: string;
+  /** Texto principal del bloque “llegás hasta” cuando todos OPEN. */
+  reachAllOpenPrimary?: string;
+  /** Subtítulo; usar `{lastSegmentName}` para el último tramo del recorrido. */
+  reachAllOpenSubTemplate?: string;
+  /** Referencia para “X km desde …” en recorridos parciales. */
+  reachKmOriginLabel?: string;
 }
 
 export type RouteSegmentStatus = "OPEN" | "PARTIAL" | "CLOSED" | "CAUTION" | "UNKNOWN";
@@ -47,6 +59,7 @@ export interface RouteSegmentItem {
     critical: boolean;
     toll: boolean;
     international: boolean;
+    scenic?: boolean;
   };
 }
 

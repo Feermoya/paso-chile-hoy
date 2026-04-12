@@ -4,6 +4,7 @@ import {
   buildPassSnapshotApiEnvelope,
   type PassSnapshotApiEnvelope,
 } from "@/lib/server/passRefreshPayload";
+import { verifyRefreshPostAuth } from "@/lib/server/refreshPostAuth";
 import {
   getSnapshotForApi,
   readPersistedSnapshot,
@@ -35,12 +36,6 @@ function jsonBody(body: PassSnapshotApiEnvelope | Record<string, unknown>, statu
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders() });
 }
 
-function verifyRefreshAuth(request: Request): boolean {
-  const secret = process.env.SCRAPE_SECRET?.trim();
-  if (!secret) return true;
-  return request.headers.get("x-scrape-secret") === secret;
-}
-
 export const GET: APIRoute = async ({ params }) => {
   const slug = params.slug ?? "";
   if (!slug) {
@@ -66,7 +61,7 @@ export const GET: APIRoute = async ({ params }) => {
 };
 
 export const POST: APIRoute = async ({ params, request }) => {
-  if (!verifyRefreshAuth(request)) {
+  if (!verifyRefreshPostAuth(request)) {
     return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: jsonHeaders() });
   }
 

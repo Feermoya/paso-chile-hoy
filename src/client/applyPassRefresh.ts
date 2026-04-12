@@ -30,6 +30,13 @@ function escapeSlug(slug: string): string {
   return slug.replace(/[^a-zA-Z0-9_-]/g, "");
 }
 
+/** Alineado con la tarjeta SSR (evita 5.799999999 y mantiene un decimal cuando aplica). */
+function formatTemperatureForUi(c: number): string {
+  if (!Number.isFinite(c)) return "";
+  const r = Math.round(c * 10) / 10;
+  return Number.isInteger(r) ? String(r) : r.toFixed(1);
+}
+
 function applyHero(slug: string, env: PassRefreshEnvelope): void {
   const root = document.querySelector(
     `[data-status-hero-root][data-hero-slug="${escapeSlug(slug)}"]`,
@@ -184,7 +191,7 @@ function applyWeather(slug: string, env: PassRefreshEnvelope): void {
     card.classList.remove("hidden");
     const t = section.querySelector("[data-wn-temp]");
     const d = section.querySelector("[data-wn-desc]");
-    if (t && now!.temperatureC != null) t.textContent = String(now!.temperatureC);
+    if (t && now!.temperatureC != null) t.textContent = formatTemperatureForUi(now!.temperatureC);
     if (d) d.textContent = now!.description?.trim() || "";
   } else {
     unavail?.classList.remove("hidden");

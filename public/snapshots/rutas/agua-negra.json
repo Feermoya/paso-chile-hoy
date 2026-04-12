@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "profile": "agua-negra",
+  "passSlug": "agua-negra",
+  "routeName": "Ruta Nacional 150",
+  "routeCode": "150",
+  "province": "San Juan",
+  "updatedAt": "2026-04-11T12:00:00.000Z",
+  "sourceUpdatedAt": "2026-04-11T10:00:00.000Z",
+  "summary": {
+    "totalSegments": 7,
+    "openSegments": 7,
+    "partialSegments": 0,
+    "closedSegments": 0,
+    "cautionSegments": 0,
+    "firstBlockingSegmentId": null,
+    "canReachPass": true,
+    "headline": "Ruta operativa hacia Agua Negra",
+    "worstStatus": "OPEN"
+  },
+  "segmentOrder": "asc",
+  "segments": [
+    {
+      "id": "lte-con-la-rioja-ischigualasto",
+      "order": 0,
+      "name": "Lte. Con La Rioja - Ischigualasto",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 21,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false,
+        "scenic": true
+      }
+    },
+    {
+      "id": "ischigualasto-huaco",
+      "order": 1,
+      "name": "Ischigualasto - Huaco",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 85,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false,
+        "scenic": true
+      }
+    },
+    {
+      "id": "emp-rn-40-jachal",
+      "order": 2,
+      "name": "Emp. RN 40 - Jachal",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 13,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "jachal-rodeo",
+      "order": 3,
+      "name": "Jachal - Rodeo",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 40,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "rodeo-las-flores",
+      "order": 4,
+      "name": "Rodeo - Las Flores",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 23,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "las-flores-arrequintin",
+      "order": 5,
+      "name": "Las Flores - Arrequintin",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "PAVIMENTO",
+      "lengthKm": 37,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": false,
+        "toll": false,
+        "international": false
+      }
+    },
+    {
+      "id": "arrequintin-lte-con-chile",
+      "order": 6,
+      "name": "Arrequintin - Lte. Con Chile",
+      "status": "OPEN",
+      "statusLabel": "HABILITADA",
+      "surface": "RIPIO",
+      "lengthKm": 56,
+      "notes": null,
+      "updatedAt": "2026-04-11T10:00:00.000Z",
+      "flags": {
+        "critical": true,
+        "toll": false,
+        "international": true
+      }
+    }
+  ]
+}

@@ -94,24 +94,114 @@ export function extractTimeFromIso(iso: string | null): string | null {
   return `${m[1]}:${m[2]}`;
 }
 
+function numFromUnknown(v: unknown): number | null {
+  if (v == null) return null;
+  if (typeof v === "number" && Number.isFinite(v)) return v;
+  if (typeof v === "string" && v.trim()) {
+    const n = parseFloat(v.replace(",", "."));
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
+
+/**
+ * Mapea la respuesta de `/detalle_clima/{lat}/{lng}` (estructura anidada o variantes).
+ * No lanza: ante formato desconocido devuelve campos null y opcionalmente avisa en DEBUG_PASS.
+ */
 export function weatherSnapshotFromClima(clima: ClimaResponse): WeatherSnapshot {
-  const temp = clima.temperatura;
+  const root = clima as unknown as Record<string, unknown>;
+
+  let tempBlock: Record<string, unknown> = {};
+  const tRoot = root.temperatura;
+  if (tRoot && typeof tRoot === "object" && !Array.isArray(tRoot)) {
+    tempBlock = tRoot as Record<string, unknown>;
+  } else if (Array.isArray(root.datos) && root.datos[0] && typeof root.datos[0] === "object") {
+    tempBlock = root.datos[0] as Record<string, unknown>;
+  }
+
+  const temperatureC =
+    numFromUnknown(tempBlock.temperature) ??
+    numFromUnknown(tempBlock.temperatura) ??
+    numFromUnknown(root.temperature) ??
+    numFromUnknown(root.temp);
+
+  const weatherSub =
+    tempBlock.weather && typeof tempBlock.weather === "object"
+      ? (tempBlock.weather as Record<string, unknown>)
+      : null;
+  const descriptionRaw =
+    typeof weatherSub?.description === "string"
+      ? weatherSub.description.trim()
+      : typeof tempBlock.descripcion === "string"
+        ? tempBlock.descripcion.trim()
+        : typeof root.descripcion === "string"
+          ? (root.descripcion as string).trim()
+          : null;
+  const description = descriptionRaw && descriptionRaw.length > 0 ? descriptionRaw : null;
+
+  let windDir = "Calma";
+  let windSpeed: number | null = null;
+  const w = tempBlock.wind;
+  if (typeof w === "string" && w.trim()) {
+    windDir = w.trim();
+  } else if (w && typeof w === "object") {
+    const wo = w as Record<string, unknown>;
+    const d = wo.direction;
+    if (typeof d === "string" && d.trim()) windDir = d.trim();
+    windSpeed = numFromUnknown(wo.speed);
+  }
+
   const windStr =
-    temp.wind.direction === "Calma" || temp.wind.speed == null || temp.wind.speed === 0
+    windDir === "Calma" || windSpeed == null || windSpeed === 0
       ? "Calma"
-      : `${temp.wind.direction} ${temp.wind.speed} km/h`;
-  return {
-    temperatureC: Number.isFinite(temp.temperature) ? temp.temperature : null,
-    description: temp.weather?.description?.trim() ?? null,
+      : `${windDir} ${windSpeed} km/h`;
+
+  const visibilityKm =
+    numFromUnknown(tempBlock.visibility) ??
+    numFromUnknown(tempBlock.visibilidad) ??
+    numFromUnknown(root.visibility);
+
+  const salidaSol = typeof root.salida_sol === "string" ? root.salida_sol : null;
+  const puestaSol = typeof root.puesta_sol === "string" ? root.puesta_sol : null;
+
+  const dateStr =
+    typeof tempBlock.date === "string" && tempBlock.date.trim()
+      ? tempBlock.date.trim()
+      : typeof tempBlock.fecha === "string" && tempBlock.fecha.trim()
+        ? (tempBlock.fecha as string).trim()
+        : null;
+
+  const feelsRaw = numFromUnknown(tempBlock.feels_like) ?? numFromUnknown(tempBlock.sensacion);
+  const humidityRaw = numFromUnknown(tempBlock.humidity) ?? numFromUnknown(tempBlock.humedad);
+
+  const out: WeatherSnapshot = {
+    temperatureC,
+    description,
     wind: windStr,
-    visibilityKm: Number.isFinite(temp.visibility) ? temp.visibility : null,
-    sunrise: extractTimeFromIso(clima.salida_sol),
-    sunset: extractTimeFromIso(clima.puesta_sol),
-    updatedAt: temp.date?.trim() ?? null,
-    feelsLikeC:
-      temp.feels_like != null && Number.isFinite(temp.feels_like) ? temp.feels_like : null,
-    humidity: Number.isFinite(temp.humidity) ? temp.humidity : null,
+    visibilityKm,
+    sunrise: extractTimeFromIso(salidaSol),
+    sunset: extractTimeFromIso(puestaSol),
+    updatedAt: dateStr,
+    feelsLikeC: feelsRaw != null && Number.isFinite(feelsRaw) ? feelsRaw : null,
+    humidity: humidityRaw != null && Number.isFinite(humidityRaw) ? humidityRaw : null,
   };
+
+  if (
+    typeof process !== "undefined" &&
+    process.env.DEBUG_PASS === "true" &&
+    temperatureC == null &&
+    description == null
+  ) {
+    console.warn("[passMapper] clima: no se pudo extraer temperatura ni descripción", {
+      keys: Object.keys(root),
+      temperaturaKeys:
+        tRoot && typeof tRoot === "object" && !Array.isArray(tRoot)
+          ? Object.keys(tRoot as object)
+          : [],
+    });
+  }
+
+  return out;
 }
 
 function contactFromString(contact: string | null): { phone: string; telHref: string } | undefined {

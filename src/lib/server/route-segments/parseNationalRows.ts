@@ -20,7 +20,7 @@ export function slugifySegmentId(canonicalName: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function stripHtmlToText(html: string): string {
+export function stripHtmlToText(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -87,6 +87,22 @@ export function detectTollFromHtml(html: string | null | undefined): boolean {
   if (!html?.trim()) return false;
   const t = html.toLowerCase();
   return t.includes("peaje") || t.includes("peajes");
+}
+
+/** Enlace “Ruta escénica” u homólogo en HTML de la columna “Conocé más”. */
+export function detectScenicFromHtml(html: string | null | undefined): boolean {
+  if (!html?.trim()) return false;
+  const lower = html.toLowerCase();
+  if (lower.includes("ruta escénica") || lower.includes("ruta escenica")) return true;
+  const plain = stripHtmlToText(html).toLowerCase();
+  return plain.includes("ruta escénica") || plain.includes("ruta escenica");
+}
+
+/** Enlace tipo “Estado del paso internacional” en “Conocé más”. */
+export function detectInternationalFromHtml(html: string | null | undefined): boolean {
+  if (!html?.trim()) return false;
+  const plain = stripHtmlToText(html).toLowerCase();
+  return plain.includes("estado del paso internacional");
 }
 
 /**

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getPasoBySlug } from "@/data/pasos";
 import { buildPassSnapshotApiEnvelope } from "@/lib/server/passRefreshPayload";
+import { verifyRefreshPostAuth } from "@/lib/server/refreshPostAuth";
 import { refreshAndPersistSnapshot } from "@/lib/server/services/snapshotService";
 
 export const prerender = false;
@@ -13,18 +14,12 @@ function jsonHeaders(): HeadersInit {
   };
 }
 
-function verifyRefreshAuth(request: Request): boolean {
-  const secret = process.env.SCRAPE_SECRET?.trim();
-  if (!secret) return true;
-  return request.headers.get("x-scrape-secret") === secret;
-}
-
 /**
  * Refresh estricto: solo 200 si el scrape + persistencia terminaron bien.
  * El body incluye vista + snapshot; el cliente actualiza la UI sin recargar.
  */
 export const POST: APIRoute = async ({ params, request }) => {
-  if (!verifyRefreshAuth(request)) {
+  if (!verifyRefreshPostAuth(request)) {
     return new Response(JSON.stringify({ error: "Forbidden", refreshFailed: true }), {
       status: 403,
       headers: jsonHeaders(),

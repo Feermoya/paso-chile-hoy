@@ -5,41 +5,78 @@ export interface Props {
   surfaceLine: string | null;
   toll: boolean;
   international: boolean;
+  scenic?: boolean;
+  /**
+   * Home: como máximo 2 señales (internacional > peaje > escénica) para no saturar la timeline.
+   */
+  compactSignals?: boolean;
 }
 
-const { surfaceLine, toll, international } = Astro.props;
+const { surfaceLine, toll, international, scenic = false, compactSignals = false } = Astro.props;
 const hasDetail = !!surfaceLine?.trim();
-const hasTags = toll || international;
+
+type Sig = "toll" | "international" | "scenic";
+let signals: Sig[] = [];
+if (compactSignals) {
+  if (international) {
+    signals.push("international");
+    if (toll) signals.push("toll");
+    else if (scenic) signals.push("scenic");
+  } else {
+    if (toll) signals.push("toll");
+    if (scenic && signals.length < 2) signals.push("scenic");
+  }
+} else {
+  if (toll) signals.push("toll");
+  if (international) signals.push("international");
+  if (scenic) signals.push("scenic");
+}
+
+const hasTags = signals.length > 0;
 ---
 
 {
   hasDetail || hasTags ? (
     <div class="hrr7-subline">
-      {hasDetail ? <p class="hrr7-detail hrr7-detail--desktop">{surfaceLine}</p> : null}
+      {hasDetail ? (
+        <p class="hrr7-detail hrr7-detail--route tramo-sub">{surfaceLine}</p>
+      ) : null}
       {hasTags ? (
-        <ul class="hrr7-segment-tags">
-          {toll ? (
-            <li class="hrr7-segment-tag">
+        <ul class:list={["hrr7-segment-tags", compactSignals && "hrr7-segment-tags--compact"]}>
+          {signals.includes("toll") ? (
+            <li class="hrr7-segment-tag tramo-tag">
               <Icon
                 name="lucide:banknote"
-                width={11}
-                height={11}
+                width={10}
+                height={10}
                 class="hrr7-segment-tag-ic"
                 aria-hidden="true"
               />
               Peaje
             </li>
           ) : null}
-          {international ? (
-            <li class="hrr7-segment-tag">
+          {signals.includes("international") ? (
+            <li class:list={["hrr7-segment-tag", "hrr7-segment-tag--signal", "tramo-tag"]}>
               <Icon
                 name="lucide:globe"
-                width={11}
-                height={11}
+                width={10}
+                height={10}
                 class="hrr7-segment-tag-ic"
                 aria-hidden="true"
               />
               Paso internacional
+            </li>
+          ) : null}
+          {signals.includes("scenic") ? (
+            <li class="hrr7-segment-tag tramo-tag">
+              <Icon
+                name="lucide:mountain-snow"
+                width={10}
+                height={10}
+                class="hrr7-segment-tag-ic"
+                aria-hidden="true"
+              />
+              Ruta escénica
             </li>
           ) : null}
         </ul>

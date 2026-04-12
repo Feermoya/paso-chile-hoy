@@ -1,0 +1,490 @@
+---
+export const prerender = true;
+
+import MainLayout from "@/layouts/MainLayout.astro";
+import { buildGraciasPageMeta } from "@/utils/seo";
+
+const seo = buildGraciasPageMeta();
+---
+
+<MainLayout {...seo} noindex={true}>
+  <div class="container-main">
+    <div class="gracias-page" data-gracias-page>
+      <div class="gracias-hero-icon" aria-hidden="true">
+        <svg width="80" height="72" viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="15,65 40,20 65,65" fill="currentColor" opacity="0.15"></polygon>
+          <polygon points="35,65 55,35 75,65" fill="currentColor" opacity="0.1"></polygon>
+          <path
+            d="M40 18c-3-3-8-1-8 4 0 5 8 10 8 10s8-5 8-10c0-5-5-7-8-4z"
+            fill="#dc2626"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="gracias-brand">
+        <span class="gracias-brand-name">PASO CHILE HOY</span>
+      </div>
+
+      <h1 class="gracias-title">Gracias por apoyar el proyecto</h1>
+
+      <p class="gracias-text-primary">
+        Tu ayuda hace que esto pueda seguir disponible para todos, sin bloquear el acceso ni llenarlo de
+        cosas molestas, para que cualquiera pueda consultar cómo está el paso antes de viajar o incluso ya
+        en camino.
+      </p>
+      <p class="gracias-text-secondary">
+        Lo mantengo desde Mendoza, en los momentos que puedo, porque sé lo útil que es tener esta
+        información a mano.
+      </p>
+      <p class="gracias-text-signoff">Gracias por dar una mano.</p>
+
+      <div class="impacto-items">
+        <div class="impacto-item">
+          <div class="impacto-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 2C9.24 2 7 4.24 7 7v2H5v13h14V9h-2V7c0-2.76-2.24-5-5-5zM12 4c1.65 0 3 1.35 3 3v2H9V7c0-1.65 1.35-3 3-3zM12 14c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
+                fill="currentColor"></path>
+            </svg>
+          </div>
+          <div class="impacto-text">
+            <strong>Siempre gratis</strong>
+            <span>Sin suscripciones ni paywalls</span>
+          </div>
+        </div>
+
+        <div class="impacto-item">
+          <div class="impacto-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+              <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              ></line>
+            </svg>
+          </div>
+          <div class="impacto-text">
+            <strong>Sin publicidad</strong>
+            <span>La info, sin distracciones</span>
+          </div>
+        </div>
+
+        <div class="impacto-item">
+          <div class="impacto-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle>
+              <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div class="impacto-text">
+            <strong>Tiempo real</strong>
+            <span>3 pasos, datos en vivo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gracias-firma">
+        <div class="firma-avatar" aria-hidden="true">FM</div>
+        <div class="firma-content">
+          <div class="firma-name">Fernando Moya</div>
+          <div class="firma-role">Hecho con ♥ en Mendoza</div>
+        </div>
+        <a
+          href="https://linkedin.com/in/fernando-moya-1997-"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="firma-link"
+          aria-label="LinkedIn de Fernando Moya"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M19 0H5C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76S5.53 3.22 6.5 3.22s1.75.79 1.75 1.75-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-3.37-4-3.12-4 0V19h-3V8h3v1.77C14.4 7.4 20 7.24 20 12.3V19z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="gracias-actions">
+        <a href="/" class="gracias-btn-primary">Ver estado de los pasos →</a>
+        <a
+          href="https://x.com/PasoCRMza"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gracias-btn-secondary"
+        >
+          Seguir @PasoCRMza en X →
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<script>
+  import { mountGraciasConfetti } from "@/scripts/graciasConfetti.client.ts";
+
+  mountGraciasConfetti();
+  document.addEventListener("astro:page-load", mountGraciasConfetti);
+</script>
+
+<style is:global>
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  .confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .gracias-page {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  @keyframes heart-appear {
+    from {
+      transform: scale(0) rotate(-15deg);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes heart-beat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    15% {
+      transform: scale(1.15);
+    }
+    30% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.08);
+    }
+    60% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up-gracias {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .gracias-hero-icon {
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+    flex-shrink: 0;
+    line-height: 0;
+    animation:
+      heart-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both,
+      heart-beat 2.5s ease-in-out 1.5s infinite;
+  }
+
+  .gracias-hero-icon svg {
+    display: block;
+  }
+
+  .gracias-brand {
+    margin-bottom: 12px;
+    animation: slide-up-gracias 0.4s ease-out 0.5s both;
+  }
+
+  .gracias-brand-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+  }
+
+  .gracias-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+    animation: slide-up-gracias 0.5s ease-out 0.58s both;
+  }
+
+  .gracias-text-primary {
+    font-size: 17px;
+    color: var(--color-text-primary);
+    line-height: 1.75;
+    margin: 0 0 12px;
+    animation: slide-up-gracias 0.5s ease-out 0.72s both;
+  }
+
+  .gracias-text-secondary {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    margin: 0 0 12px;
+    animation: slide-up-gracias 0.5s ease-out 0.88s both;
+  }
+
+  .gracias-text-signoff {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    margin: 0 0 28px;
+    animation: slide-up-gracias 0.5s ease-out 1.02s both;
+  }
+
+  .impacto-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    border: 0.5px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 24px;
+    text-align: left;
+    animation: slide-up-gracias 0.5s ease-out 1.1s both;
+  }
+
+  .impacto-items .impacto-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--color-surface);
+    border-bottom: 0.5px solid var(--color-border-subtle);
+  }
+
+  .impacto-items .impacto-item:last-child {
+    border-bottom: none;
+  }
+
+  .impacto-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  :root[data-theme="dark"] .gracias-page .impacto-icon {
+    color: #60a5fa;
+  }
+
+  .impacto-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .impacto-text strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .impacto-text span {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.35;
+  }
+
+  .gracias-firma {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 18px;
+    border: 0.5px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    margin-bottom: 24px;
+    text-align: left;
+    box-sizing: border-box;
+    animation: slide-up-gracias 0.5s ease-out 1.25s both;
+  }
+
+  .firma-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  :root[data-theme="dark"] .gracias-page .firma-avatar {
+    background: color-mix(in srgb, #1d4ed8 35%, transparent);
+    color: #93c5fd;
+  }
+
+  .firma-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .firma-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .firma-role {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 1px;
+  }
+
+  .firma-link {
+    color: var(--color-text-muted);
+    transition: color 150ms ease;
+    padding: 4px;
+    flex-shrink: 0;
+    line-height: 0;
+    border-radius: var(--radius-sm);
+  }
+
+  .firma-link:hover {
+    color: #2563eb;
+  }
+
+  :root[data-theme="dark"] .gracias-page .firma-link:hover {
+    color: #60a5fa;
+  }
+
+  .gracias-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    animation: slide-up-gracias 0.5s ease-out 1.4s both;
+  }
+
+  .gracias-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: #1e40af;
+    color: #ffffff;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 150ms ease, transform 100ms ease;
+  }
+
+  .gracias-btn-primary:hover {
+    background: #1e3a8a;
+    transform: translateY(-2px);
+  }
+
+  .gracias-btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .gracias-btn-secondary {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    transition: color 150ms ease, background 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .gracias-btn-secondary:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+  }
+
+  @media (max-width: 640px) {
+    .gracias-page {
+      padding: 32px 16px;
+      justify-content: flex-start;
+      padding-top: 48px;
+    }
+
+    .gracias-title {
+      font-size: 28px;
+    }
+
+    .gracias-hero-icon svg {
+      width: 72px;
+      height: auto;
+    }
+
+    .impacto-items .impacto-item {
+      padding: 12px 14px;
+      gap: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gracias-hero-icon,
+    .gracias-brand,
+    .gracias-title,
+    .gracias-text-primary,
+    .gracias-text-secondary,
+    .gracias-text-signoff,
+    .impacto-items,
+    .gracias-firma,
+    .gracias-actions {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .confetti-container {
+      display: none !important;
+    }
+  }
+</style>

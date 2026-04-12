@@ -6,58 +6,67 @@
   "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [
-    "Vialidad Nacional informa: Corte total RN 7 tramo Tunel Internacional Corte preventivo por nevadas Contacto: (2624) 420094"
-  ],
+  "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "CORTE TOTAL",
-  "vialidadObservaciones": "Corte preventivo por nevadas",
+  "vialidadEstado": "HABILITADA",
+  "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.1,
+    "temperatureC": 5.8,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "07:57",
-    "sunset": "19:23",
-    "updatedAt": "2026-04-11T21:00:00-03:00",
+    "sunrise": "07:58",
+    "sunset": "19:22",
+    "updatedAt": "2026-04-12T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 61
+    "humidity": 68
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-12T08:11:21.220Z",
+=======
+  "scrapedAt": "2026-04-12T15:17:09.565Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
-      "period": "Hoy por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -9,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": 1,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -1,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": 0,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 7,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
-  ]
+  ],
+  "sources": {
+    "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
+    "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
+    "statusUpdatedAt": "10/4/2026 07:58:24"
+  },
+  "operationalStale": false,
+  "lastKnownGoodAt": "2026-04-12T15:17:09.565Z"
 }

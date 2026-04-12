@@ -8,6 +8,8 @@ import type {
   RouteSegmentsSummary,
 } from "@/types/route-segments";
 import {
+  detectInternationalFromHtml,
+  detectScenicFromHtml,
   detectTollFromHtml,
   normalizeTramoKey,
   slugifySegmentId,
@@ -45,6 +47,14 @@ function isInternationalTunnelName(canonicalSegmentName: string): boolean {
   return k.includes("tunel internacional") || k.includes("túnel internacional");
 }
 
+function isInternationalSegment(canonicalSegmentName: string, conoceMasHtml: string | null | undefined): boolean {
+  if (isInternationalTunnelName(canonicalSegmentName)) return true;
+  if (detectInternationalFromHtml(conoceMasHtml)) return true;
+  const k = normalizeTramoKey(canonicalSegmentName);
+  if (k.includes("lte") && k.includes("chile")) return true;
+  return false;
+}
+
 /**
  * Resuelve filas del sheet para el perfil: provincia + ruta + tramos esperados en orden.
  * Filas extra (Mismo provincia/ruta, tramo no listado) se ignoran a propósito.
@@ -75,7 +85,10 @@ export function resolveProfileRows(
   return ordered;
 }
 
-function computeSummary(segments: RouteSegmentItem[]): RouteSegmentsSummary {
+function computeSummary(
+  segments: RouteSegmentItem[],
+  opts?: { headlineWhenAllOpen?: string },
+): RouteSegmentsSummary {
   let openSegments = 0;
   let partialSegments = 0;
   let closedSegments = 0;
@@ -122,7 +135,7 @@ function computeSummary(segments: RouteSegmentItem[]): RouteSegmentsSummary {
   } else if (cautionSegments > 0 && openSegments + cautionSegments === totalSegments) {
     headline = "Precaución en ruta hacia el paso";
   } else if (openSegments === totalSegments && totalSegments > 0) {
-    headline = "Ruta operativa hasta el paso";
+    headline = opts?.headlineWhenAllOpen?.trim() || "Ruta operativa hasta el paso";
   } else {
     headline = "Estado de ruta con información incompleta";
   }
@@ -148,7 +161,8 @@ function buildSegmentItemsBase(
     const canonical = expectedSegments[index] ?? row.tramo;
     const id = slugifySegmentId(canonical);
     const status = mapNationalToSegmentStatus(row.estadoNormalized);
-    const international = isInternationalTunnelName(canonical);
+    const international = isInternationalSegment(canonical, row.conoceMasHtml);
+    const scenic = detectScenicFromHtml(row.conoceMasHtml);
 
     return {
       id,
@@ -164,6 +178,7 @@ function buildSegmentItemsBase(
         critical: false,
         toll: detectTollFromHtml(row.conoceMasHtml),
         international,
+        ...(scenic ? { scenic: true as const } : {}),
       },
     };
   });
@@ -210,7 +225,9 @@ export function buildRouteSegmentsPayload(
     segments = [...segments].reverse().map((s, i) => ({ ...s, order: i }));
   }
   segments = applyCriticalFlags(segments);
-  const summary = computeSummary(segments);
+  const summary = computeSummary(segments, {
+    headlineWhenAllOpen: config.headlineWhenAllOpen,
+  });
 
   return {
     schemaVersion: 1,

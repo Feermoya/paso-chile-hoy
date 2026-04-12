@@ -140,6 +140,22 @@ export function buildLegalPageMeta(): LayoutSeoBundle {
   };
 }
 
+/** Página de retorno post-apoyo; no indexar. */
+export function buildGraciasPageMeta(): LayoutSeoBundle {
+  const description =
+    "Tu apoyo hace posible que este servicio siga siendo gratuito para todos.";
+  return {
+    title: `¡Gracias por tu apoyo! — ${SITE_NAME}`,
+    description,
+    canonical: `${SITE_URL}/gracias`,
+    ogTitle: "¡Gracias por apoyar Paso Chile Hoy!",
+    ogDescription: description,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: `Gracias — ${SITE_NAME}`,
+    twitterCard: "summary_large_image",
+  };
+}
+
 export function buildNotFoundMeta(): LayoutSeoBundle {
   const description =
     "La página que buscás no existe en Paso Chile Hoy. Volvé al inicio para ver el estado de los pasos a Chile.";

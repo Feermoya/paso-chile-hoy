@@ -1911,6 +1911,551 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     }
   }
 
+  /* ===== HOME — sección rutas (RN 7 / RN 150) ===== */
+  .rutas-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding-inline: 0;
+    box-sizing: border-box;
+  }
+
+  .rutas-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-top: 32px;
+    padding-bottom: 16px;
+    border-top: 0.5px solid var(--color-border-subtle);
+    border-bottom: 2px solid var(--color-border-subtle);
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .rutas-section-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: none;
+    font-family: var(--font-body);
+  }
+
+  .rutas-section-sub {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .rutas-section-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    align-self: flex-end;
+    margin-bottom: 2px;
+  }
+
+  .rutas-source-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-text-tertiary);
+    box-shadow: 0 0 0 1px var(--color-border-subtle);
+  }
+
+  .rutas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .rutas-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .rutas-grid .home-route-rn7 {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .home-route-rn7 .card-stale-banner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #faeeda;
+    border-bottom: 0.5px solid #fac775;
+    font-size: 11px;
+    color: #854f0b;
+    flex-wrap: wrap;
+  }
+
+  .home-route-rn7 .card-stale-banner svg {
+    flex-shrink: 0;
+  }
+
+  .home-route-rn7 .rutas-refresh-inline {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 500;
+    color: #ba7517;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-family: inherit;
+  }
+
+  .home-route-rn7 .card-title-group {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-route-rn7 .card-route-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+
+  .home-route-rn7 .card-route-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .home-route-rn7 .card-route-separator {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+  }
+
+  .home-route-rn7 .card-route-region {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .home-route-rn7 .card-route-name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-family: var(--font-body);
+  }
+
+  .home-route-rn7 .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .home-route-rn7 .progress-row .route-progress {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .home-route-rn7 .progress-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    min-width: 28px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .home-route-rn7 .route-preview {
+    padding: 8px 14px 4px;
+    transition:
+      opacity 0.2s ease,
+      max-height 0.3s ease;
+  }
+
+  .home-route-rn7 .preview-tramo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .home-route-rn7 .preview-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid;
+    box-sizing: border-box;
+  }
+
+  .home-route-rn7 .preview-dot--ok {
+    border-color: #639922;
+    background: #eaf3de;
+  }
+
+  .home-route-rn7 .preview-dot--cut {
+    border-color: #e24b4a;
+    background: #fcebeb;
+  }
+
+  .home-route-rn7 .preview-dot--warn {
+    border-color: #fac775;
+    background: color-mix(in srgb, #fac775 22%, var(--color-surface));
+  }
+
+  .home-route-rn7 .preview-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .home-route-rn7 .preview-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    min-width: 0;
+  }
+
+  .home-route-rn7 .preview-name--cut {
+    color: #791f1f;
+  }
+
+  .home-route-rn7 .preview-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .home-route-rn7 .preview-badge--ok {
+    background: #eaf3de;
+    color: #3b6d11;
+  }
+
+  .home-route-rn7 .preview-badge--cut {
+    background: transparent;
+    color: #a32d2d;
+    border: 1.5px solid #e24b4a;
+  }
+
+  .home-route-rn7 .preview-badge--warn {
+    background: color-mix(in srgb, #fac775 18%, var(--color-surface));
+    color: var(--color-text-secondary);
+    border: 1px solid color-mix(in srgb, #fac775 45%, var(--hrr7-border-tertiary));
+  }
+
+  .home-route-rn7 .preview-middle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 0;
+    margin-left: 1px;
+  }
+
+  .home-route-rn7 .preview-line-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    width: 12px;
+  }
+
+  .home-route-rn7 .preview-mini-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #c0dd97;
+    display: block;
+  }
+
+  .home-route-rn7 .preview-middle-text {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    font-style: italic;
+  }
+
+  .home-route-rn7.ruta-card--expanded .route-preview {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .home-route-rn7 .rutas-expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-accent);
+    background: none;
+    border: none;
+    border-top: 0.5px solid var(--hrr7-border-tertiary);
+    cursor: pointer;
+    transition: background 150ms ease;
+    font-family: var(--font-body);
+  }
+
+  .home-route-rn7 .rutas-expand-btn:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  .home-route-rn7 .expand-label-open {
+    display: none;
+  }
+
+  .home-route-rn7 .rutas-expand-btn[aria-expanded="true"] .expand-label-closed {
+    display: none;
+  }
+
+  .home-route-rn7 .rutas-expand-btn[aria-expanded="true"] .expand-label-open {
+    display: inline;
+  }
+
+  .home-route-rn7 .expand-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .home-route-rn7 .rutas-expand-btn[aria-expanded="true"] .expand-chevron {
+    transform: rotate(180deg);
+  }
+
+  .home-route-rn7 .rutas-tramos-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease 0.1s;
+  }
+
+  .home-route-rn7 .rutas-tramos-body--expanded {
+    max-height: 1400px;
+    opacity: 1;
+  }
+
+  .home-route-rn7 .route-progress {
+    height: 5px;
+    background: var(--hrr7-border-tertiary);
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  .home-route-rn7 .route-progress-bar {
+    display: block;
+    height: 100%;
+    width: var(--route-progress-fill, 0%);
+    background: #639922;
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: route-progress-fill 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+  }
+
+  .home-route-rn7 .route-progress--cut .route-progress-bar {
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      #639922 var(--route-progress-pct, 0%),
+      #e24b4a var(--route-progress-pct, 0%)
+    );
+    animation: route-progress-reveal 0.6s ease 0.2s both;
+  }
+
+  @keyframes route-progress-fill {
+    from {
+      width: 0;
+    }
+    to {
+      width: var(--route-progress-fill, 0%);
+    }
+  }
+
+  @keyframes route-progress-reveal {
+    from {
+      opacity: 0.35;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .home-route-rn7 .reach-summary {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 0.5px solid var(--hrr7-border-tertiary);
+    background: var(--color-bg-secondary);
+    border-radius: 0 0 var(--hrr7-br-lg) var(--hrr7-br-lg);
+  }
+
+  .home-route-rn7 .reach-summary-title {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+  }
+
+  .home-route-rn7 .reach-row-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    padding: 4px 0;
+  }
+
+  .home-route-rn7 .reach-row-item svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .home-route-rn7 .reach-km,
+  .home-route-rn7 .reach-reason {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+  }
+
+  .home-route-rn7 .reach-summary strong {
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .home-route-rn7 .preview-dot--ok {
+      background: #173404;
+      border-color: #639922;
+    }
+
+    :root:not([data-theme="light"]) .home-route-rn7 .preview-dot--cut {
+      background: #501313;
+      border-color: #e24b4a;
+    }
+
+    :root:not([data-theme="light"]) .home-route-rn7 .preview-mini-dot {
+      background: #3b6d11;
+    }
+
+    :root:not([data-theme="light"]) .home-route-rn7 .preview-badge--ok {
+      background: #173404;
+      color: #c0dd97;
+    }
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .preview-dot--ok {
+    background: #173404;
+    border-color: #639922;
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .preview-dot--cut {
+    background: #501313;
+    border-color: #e24b4a;
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .preview-mini-dot {
+    background: #3b6d11;
+  }
+
+  :root[data-theme="dark"] .home-route-rn7 .preview-badge--ok {
+    background: #173404;
+    color: #c0dd97;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-route-rn7 .rutas-tramos-body,
+    .home-route-rn7 .route-preview,
+    .home-route-rn7 .expand-chevron,
+    .home-route-rn7 .route-progress-bar {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
+  .rutas-section .rutas-expand-btn:focus-visible,
+  .rutas-section .rutas-refresh-inline:focus-visible,
+  .rutas-section .hrr7-expand-btn:focus-visible,
+  .rutas-section .hrr7-link-full:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .rutas-grid .home-route-rn7 .card-route-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .rutas-grid .home-route-rn7 .rutas-expand-btn {
+      font-size: 13px;
+    }
+
+    .rutas-grid .home-route-rn7 .hrr7-header,
+    .rutas-grid .home-route-rn7 .route-preview,
+    .rutas-grid .home-route-rn7 .card-stale-banner {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .rutas-grid .home-route-rn7 .hrr7-alert-banner {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+
+    .rutas-grid .home-route-rn7 .hrr7-track {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .rutas-grid .home-route-rn7 .reach-summary {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .home-route-rn7 .tramo-tag {
+      display: none;
+    }
+  }
+
   /* ===== HOME — RN 7 Cristo (card recorrido, tokens locales) ===== */
   .home-route-rn7 {
     --hrr7-br-lg: var(--radius-lg);
@@ -1922,8 +2467,9 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     --hrr7-bg-success: var(--color-open-subtle);
     --hrr7-bg-danger: var(--color-closed-subtle);
     --hrr7-bg-warning: var(--color-conditional-subtle);
-    margin-top: 24px;
-    margin-bottom: 2px;
+    --hrr7-rail: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
     max-width: 680px;
     width: 100%;
     margin-left: auto;
@@ -1941,7 +2487,7 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   .home-route-rn7 .hrr7-header {
     position: relative;
     overflow: hidden;
-    padding: 16px 18px 14px;
+    padding: 11px 14px 10px;
     border-bottom: 0.5px solid var(--hrr7-border-tertiary);
   }
 
@@ -1963,25 +2509,62 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     max-width: calc(100% - 100px);
   }
 
-  .home-route-rn7 .hrr7-title {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--color-text-primary);
-    margin: 0 0 8px;
-    font-family: var(--font-body);
-  }
-
   .home-route-rn7 .hrr7-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
-    font-size: 12px;
+    gap: 5px;
+    font-size: 11px;
     color: var(--color-text-secondary);
     margin: 0;
+    line-height: 1.3;
+  }
+
+  .home-route-rn7 .hrr7-headline-wrap {
+    padding: 6px 14px 0;
+    border-bottom: 0.5px solid var(--hrr7-border-tertiary);
+  }
+
+  .home-route-rn7 .hrr7-headline {
+    margin: 0 0 8px;
+    padding: 0 0 0 9px;
+    border-left: 2px solid color-mix(in srgb, var(--color-text-muted) 45%, transparent);
+    font-size: 12px;
+    font-weight: 600;
     line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+
+  .home-route-rn7 .hrr7-headline--ok {
+    border-left-color: color-mix(in srgb, var(--color-open) 55%, var(--hrr7-border-tertiary));
+    color: var(--color-text-secondary);
+  }
+
+  .home-route-rn7 .hrr7-headline--warn {
+    border-left-color: color-mix(in srgb, var(--color-conditional) 70%, var(--hrr7-border-tertiary));
+    color: var(--color-accent);
+  }
+
+  .home-route-rn7 .hrr7-headline--danger {
+    border-left-color: color-mix(in srgb, var(--color-closed) 55%, transparent);
+    color: var(--color-closed);
+  }
+
+  .home-route-rn7 .hrr7-headline--neutral {
+    border-left-color: color-mix(in srgb, var(--color-text-muted) 45%, transparent);
+    color: var(--color-text-secondary);
+  }
+
+  .home-route-rn7 .hrr7-track-label {
+    margin: 0 0 4px;
+    padding: 0 0 0 calc(var(--hrr7-rail) + 8px);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    line-height: 1.2;
   }
 
   .home-route-rn7 .hrr7-meta-sep {
@@ -2013,8 +2596,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-alert-banner {
-    margin: 12px 18px 16px;
-    padding: 10px 12px;
+    margin: 8px 14px;
+    padding: 8px 12px;
     border-radius: var(--hrr7-br-md);
     border: 0.5px solid var(--hrr7-border-tertiary);
     background: var(--hrr7-bg-danger);
@@ -2023,14 +2606,14 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   .home-route-rn7 .hrr7-alert-banner-text {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.35;
   }
 
   .home-route-rn7 .hrr7-track {
     position: relative;
-    padding: 0 14px 12px;
+    padding: 6px 12px 6px;
     margin: 0;
   }
 
@@ -2039,14 +2622,14 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 28px;
+    width: var(--hrr7-rail);
     pointer-events: none;
     z-index: 20;
   }
 
   .home-route-rn7 .hrr7-car-y {
     position: absolute;
-    left: 14px;
+    left: calc(var(--hrr7-rail) * 0.5);
     top: 0;
     width: 18px;
     height: 26px;
@@ -2078,6 +2661,9 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     padding: 0;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .home-route-rn7 .hrr7-steps--mobile {
@@ -2086,17 +2672,30 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   .home-route-rn7 .hrr7-step {
     display: grid;
-    grid-template-columns: 28px minmax(0, 1fr);
-    gap: 0 10px;
+    grid-template-columns: var(--hrr7-rail) minmax(0, 1fr);
+    gap: 0 8px;
     align-items: stretch;
     margin-bottom: 0;
+  }
+
+  .home-route-rn7 .tramo-row[data-estado="CORTE_TOTAL"]::before {
+    content: "";
+    display: block;
+    grid-column: 1 / -1;
+    height: 0.5px;
+    background: var(--hrr7-border-tertiary);
+    margin: 4px 0;
+  }
+
+  .home-route-rn7 .tramo-row {
+    padding: 0;
   }
 
   .home-route-rn7 .hrr7-line-col {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 28px;
+    width: var(--hrr7-rail);
     min-height: 100%;
     margin: 0;
     padding: 0;
@@ -2108,8 +2707,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
 
   .home-route-rn7 .hrr7-connector {
     flex: 1;
-    width: 3px;
-    min-height: 0;
+    width: 2px;
+    min-height: 4px;
     border-radius: 2px;
     margin: 0 auto;
   }
@@ -2147,8 +2746,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     color: #fff;
     flex-shrink: 0;
@@ -2183,7 +2782,7 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     border-radius: var(--hrr7-br-md);
     border: 0.5px solid var(--hrr7-border-tertiary);
     background: var(--hrr7-bg-secondary);
-    padding: 10px 12px;
+    padding: 11px 12px;
     transition:
       background 150ms ease,
       transform 100ms ease;
@@ -2192,13 +2791,27 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     box-sizing: border-box;
   }
 
+  .home-route-rn7 .hrr7-step-card--ripio {
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--color-text-muted) 35%, var(--hrr7-border-tertiary));
+  }
+
+  .home-route-rn7 .hrr7-step--terminal-intl .hrr7-step-card:not(.hrr7-step-card--critical) {
+    border-color: color-mix(in srgb, var(--color-accent) 22%, var(--hrr7-border-tertiary));
+    background: color-mix(in srgb, var(--color-accent) 4%, var(--hrr7-bg-secondary));
+  }
+
   .home-route-rn7 .tramo-row:hover .tramo-content-inner {
     background: color-mix(in srgb, var(--color-text-primary) 4%, var(--hrr7-bg-secondary));
     transform: translateX(3px);
   }
 
   .home-route-rn7 .tramo-row:hover .line-dot {
-    transform: scale(1.1);
+    transform: scale(1.15);
+  }
+
+  .home-route-rn7 .tramo-row[data-estado="CORTE_TOTAL"] {
+    cursor: help;
   }
 
   .home-route-rn7 .tramo-row.hrr7-step--corte:hover .tramo-content-inner {
@@ -2243,17 +2856,22 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 6px 10px;
+    gap: 4px 8px;
   }
 
   .home-route-rn7 .hrr7-name {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
-    line-height: 1.25;
+    line-height: 1.22;
     flex: 1 1 140px;
     min-width: 0;
+  }
+
+  .home-route-rn7 .hrr7-name.tramo-name {
+    font-size: 13px;
+    font-weight: 600;
   }
 
   .home-route-rn7 .hrr7-name--split {
@@ -2288,11 +2906,11 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-name-extra {
-    font-size: 11px;
+    font-size: 10.5px;
     font-style: italic;
     font-weight: 400;
     color: var(--color-text-tertiary);
-    margin: 6px 0 0;
+    margin: 3px 0 0;
     line-height: 1.35;
   }
 
@@ -2309,8 +2927,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    margin-top: 1px;
+    gap: 5px 6px;
+    margin-top: 0;
   }
 
   .home-route-rn7 .hrr7-subline .hrr7-detail {
@@ -2324,6 +2942,16 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     line-height: 1.3;
   }
 
+  .home-route-rn7 .hrr7-detail--route {
+    display: block;
+  }
+
+  .home-route-rn7 .hrr7-detail.tramo-sub {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-top: 3px;
+  }
+
   .home-route-rn7 .hrr7-segment-tags {
     display: flex;
     flex-wrap: wrap;
@@ -2334,20 +2962,34 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     list-style: none;
   }
 
+  .home-route-rn7 .hrr7-segment-tags--compact {
+    gap: 4px;
+  }
+
   .home-route-rn7 .hrr7-segment-tag {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     margin: 0;
-    padding: 3px 8px 3px 6px;
+    padding: 2px 7px;
     font-size: 10px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: 0.02em;
-    color: var(--color-text-muted);
-    background: color-mix(in srgb, var(--color-text-muted) 9%, var(--hrr7-bg-secondary));
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
     border: 0.5px solid var(--hrr7-border-tertiary);
-    border-radius: 999px;
+    border-radius: 20px;
+  }
+
+  .home-route-rn7 .hrr7-segment-tag.tramo-tag {
+    opacity: 0.75;
+  }
+
+  .home-route-rn7 .hrr7-segment-tag--signal {
+    color: var(--color-text-secondary);
+    border-color: color-mix(in srgb, var(--color-accent) 25%, var(--hrr7-border-tertiary));
+    background: color-mix(in srgb, var(--color-accent) 6%, var(--hrr7-bg-secondary));
   }
 
   .home-route-rn7 .hrr7-segment-tag-ic {
@@ -2356,19 +2998,19 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   }
 
   .home-route-rn7 .hrr7-notes {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin: 6px 0 0;
+    margin: 4px 0 0;
     line-height: 1.35;
   }
 
   .home-route-rn7 .hrr7-pill {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.02em;
     text-transform: none;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 20px;
     border: none;
     flex-shrink: 0;
@@ -2459,6 +3101,9 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     list-style: none;
     margin: 0;
     padding: 4px 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .home-route-rn7 .hrr7-step--nested {
@@ -2476,24 +3121,67 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     }
   }
 
-  .home-route-rn7 .hrr7-reach-compact {
-    margin: 12px 14px 14px;
+  .home-route-rn7 .hrr7-reach-panel {
+    margin: 6px 12px 8px;
     border-radius: var(--hrr7-br-lg);
     border: 0.5px solid var(--hrr7-border-tertiary);
+    overflow: hidden;
+    background: var(--hrr7-bg-primary);
+  }
+
+  .home-route-rn7 .hrr7-reach-digest {
+    padding: 9px 11px 8px;
+    background: color-mix(in srgb, var(--color-text-primary) 2.5%, var(--hrr7-bg-primary));
+    border-bottom: 0.5px solid var(--hrr7-border-tertiary);
+  }
+
+  .home-route-rn7 .hrr7-reach-digest__primary {
+    margin: 0 0 3px;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  .home-route-rn7 .hrr7-reach-digest__alert {
+    margin: 4px 0 6px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-closed);
+    padding: 5px 8px;
+    border-radius: var(--hrr7-br-md);
+    background: var(--hrr7-bg-danger);
+    border: 0.5px solid color-mix(in srgb, var(--color-closed) 18%, var(--hrr7-border-tertiary));
+  }
+
+  .home-route-rn7 .hrr7-reach-digest__context {
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
+  .home-route-rn7 .hrr7-reach-compact {
+    margin: 0;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
   }
 
   .home-route-rn7 .hrr7-reach-compact-head {
-    padding: 8px 14px;
+    padding: 6px 11px;
     background: var(--hrr7-bg-secondary);
     border-bottom: 0.5px solid var(--hrr7-border-tertiary);
   }
 
   .home-route-rn7 .hrr7-reach-compact-head .reach-header-title {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 600;
     color: var(--color-text-secondary);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .home-route-rn7 .hrr7-reach-compact-body {
@@ -2519,8 +3207,8 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
+    gap: 8px;
+    padding: 9px 11px;
   }
 
   .home-route-rn7 .reach-item--yes {
@@ -2568,11 +3256,16 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     margin-bottom: 2px;
   }
 
+  .home-route-rn7 .reach-checkpoint svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .home-route-rn7 .reach-place {
-    font-size: 15px;
+    font-size: 13.5px;
     font-weight: 700;
     color: #27500a;
-    line-height: 1.2;
+    line-height: 1.22;
   }
 
   .home-route-rn7 .reach-place--no {
@@ -2582,8 +3275,9 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
   .home-route-rn7 .reach-detail {
     font-size: 10px;
     color: #3b6d11;
-    margin-top: 2px;
-    opacity: 0.8;
+    margin-top: 1px;
+    opacity: 0.88;
+    line-height: 1.35;
   }
 
   .home-route-rn7 .reach-detail--no {
@@ -2620,19 +3314,19 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
-    padding: 12px 18px;
+    padding: 7px 12px 8px;
     border-top: 0.5px solid var(--hrr7-border-tertiary);
   }
 
   .home-route-rn7 .hrr7-source {
-    font-size: 12px;
+    font-size: 10.5px;
     color: var(--color-text-secondary);
   }
 
   .home-route-rn7 .hrr7-link-full {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 600;
     color: var(--hrr7-text-info);
     text-decoration: none;

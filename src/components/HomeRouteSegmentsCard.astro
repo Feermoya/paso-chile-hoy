@@ -1,0 +1,777 @@
+---
+import { Icon } from "astro-icon/components";
+import Hrr7SegmentName from "@/components/Hrr7SegmentName.astro";
+import Hrr7SegmentMetaLine from "@/components/Hrr7SegmentMetaLine.astro";
+import type {
+  HomeRouteCardView,
+  HomeRouteCardDisplayItem,
+  HomeRouteCardTimelineRow,
+  TimelineVisualMark,
+} from "@/lib/mappers/homeRouteCardView";
+
+export interface Props {
+  view: HomeRouteCardView;
+}
+
+const { view } = Astro.props;
+const pr = view.progress;
+const progressBarStyle = pr.hasClosedSegment
+  ? `--route-progress-pct: ${pr.openPct}%;`
+  : `--route-progress-fill: ${pr.openPct}%;`;
+
+const lastTimelineSeg = view.timeline[view.timeline.length - 1];
+const isTerminalIntlRow = (row: HomeRouteCardTimelineRow): boolean =>
+  Boolean(lastTimelineSeg && row.id === lastTimelineSeg.id && row.flags.international);
+
+const markIcon = (m: TimelineVisualMark): { name: string } => {
+  switch (m) {
+    case "check":
+    case "check-dim":
+      return { name: "lucide:check" };
+    case "stop":
+      return { name: "lucide:x" };
+    case "warn":
+      return { name: "lucide:alert-triangle" };
+    default:
+      return { name: "lucide:minus" };
+  }
+};
+
+/** Valores para data-tramo-estado (animación y conectores). */
+const tramoEstado = (row: HomeRouteCardTimelineRow): string => {
+  switch (row.status) {
+    case "OPEN":
+      return "HABILITADA";
+    case "CAUTION":
+    case "PARTIAL":
+      return "PRECAUCION";
+    case "CLOSED":
+      return "CORTE_TOTAL";
+    default:
+      return "DESCONOCIDO";
+  }
+};
+
+const rowDataEstado = (row: HomeRouteCardTimelineRow): string => {
+  if (row.status === "CLOSED") return "CORTE_TOTAL";
+  if (row.status === "PARTIAL") return "PARCIAL";
+  if (row.status === "CAUTION") return "PRECAUCION";
+  if (row.status === "OPEN") return "HABILITADA";
+  return "OTRO";
+};
+
+const badgeAriaLabel = (row: HomeRouteCardTimelineRow): string => {
+  switch (row.status) {
+    case "OPEN":
+      return "Tramo habilitado";
+    case "CLOSED":
+      return row.badgeLabelStrong?.toUpperCase().includes("CORTE")
+        ? "Corte total en este tramo"
+        : "Tramo cerrado";
+    case "PARTIAL":
+      return "Restricción o corte parcial en este tramo";
+    case "CAUTION":
+      return "Precaución en este tramo";
+    default:
+      return "Estado del tramo no disponible";
+  }
+};
+
+const closedHoverTitle = (row: HomeRouteCardTimelineRow): string | undefined => {
+  if (row.status !== "CLOSED") return undefined;
+  const n = row.notes?.trim();
+  if (n) return n;
+  return row.statusLabel?.trim() || undefined;
+};
+
+const previewLine = (row: HomeRouteCardTimelineRow): string =>
+  row.nameDest ? `${row.nameOrigin} → ${row.nameDest}` : row.nameOrigin;
+
+const previewDotClass = (row: HomeRouteCardTimelineRow): string => {
+  if (row.status === "CLOSED") return "preview-dot--cut";
+  if (row.status === "OPEN") return "preview-dot--ok";
+  return "preview-dot--warn";
+};
+
+const previewBadgeClass = (row: HomeRouteCardTimelineRow): string => {
+  if (row.status === "CLOSED") return "preview-badge--cut";
+  if (row.status === "OPEN") return "preview-badge--ok";
+  return "preview-badge--warn";
+};
+
+const timelineLen = view.timeline.length;
+const previewFirst = timelineLen > 0 ? view.timeline[0] : null;
+const previewLast = timelineLen > 0 ? view.timeline[timelineLen - 1] : null;
+const previewIntermediateCount = Math.max(0, timelineLen - 2);
+const previewMiddleRows =
+  timelineLen > 2 ? view.timeline.slice(1, -1) : ([] as HomeRouteCardTimelineRow[]);
+const previewMiddleAllOpen =
+  previewMiddleRows.length > 0 && previewMiddleRows.every((r) => r.status === "OPEN");
+const previewMiddleAria =
+  previewIntermediateCount > 0
+    ? `${previewIntermediateCount} tramo${previewIntermediateCount === 1 ? "" : "s"} intermedios`
+    : "";
+const previewMiddleText =
+  previewIntermediateCount > 0
+    ? previewMiddleAllOpen
+      ? `${previewIntermediateCount} tramo${previewIntermediateCount === 1 ? "" : "s"} habilitados`
+      : `${previewIntermediateCount} tramo${previewIntermediateCount === 1 ? "" : "s"} intermedios`
+    : "";
+---
+
+<article
+  class="ruta-card home-route-rn7"
+  aria-labelledby={view.titleId}
+  data-home-route-segments
+  data-ruta-card
+  data-collapsible
+  data-route-profile={view.profile}
+>
+  <div class="hrr7-panel">
+    <header class="hrr7-header">
+      <svg
+        class="hrr7-mountain"
+        viewBox="0 0 120 80"
+        fill="none"
+        aria-hidden="true"
+      >
+        <polygon points="60,5 10,75 110,75" fill="currentColor"></polygon>
+        <polygon points="90,20 55,75 125,75" fill="currentColor"></polygon>
+        <polygon points="30,35 5,75 60,75" fill="currentColor"></polygon>
+      </svg>
+      <div class="hrr7-header-inner">
+        <div class="card-title-group">
+          <div class="card-route-label">
+            <span class="card-route-number">{view.cardRouteNumber}</span>
+            <span class="card-route-separator" aria-hidden="true">·</span>
+            <span class="card-route-region">{view.cardRouteRegion}</span>
+          </div>
+          <h3 id={view.titleId} class="card-route-name">
+            {view.cardRouteName}
+          </h3>
+        </div>
+        <div class="progress-row">
+          <div
+            class:list={["route-progress", pr.hasClosedSegment && "route-progress--cut"]}
+            role="progressbar"
+            aria-valuenow={pr.openCount}
+            aria-valuemin={0}
+            aria-valuemax={pr.total}
+            aria-label={`${pr.openCount} de ${pr.total} tramos habilitados`}
+          >
+            <div class="route-progress-bar" style={progressBarStyle} />
+          </div>
+          <span class="progress-label" aria-hidden="true">
+            {pr.openCount}/{pr.total}
+          </span>
+        </div>
+        <p class="hrr7-meta">
+          <span
+            class:list={[
+              "hrr7-fresh-dot",
+              view.freshnessDot === "green" && "hrr7-fresh-dot--green",
+              view.freshnessDot === "amber" && "hrr7-fresh-dot--amber",
+              view.freshnessDot === "red" && "hrr7-fresh-dot--red",
+            ]}
+            aria-hidden="true"
+          />
+          <span class="hrr7-meta-sep" aria-hidden="true">·</span>
+          <span>{view.freshnessLabel}</span>
+          <span class="hrr7-meta-sep" aria-hidden="true">·</span>
+          <span>{view.enabledSummary}</span>
+        </p>
+      </div>
+    </header>
+
+    {
+      view.staleOverTwoHours ? (
+        <div class="card-stale-banner" role="status">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <span>Datos con más de 2 horas · actualizá para ver el estado real</span>
+          <button type="button" class="rutas-refresh-inline">Actualizar ahora</button>
+        </div>
+      ) : null
+    }
+
+    {
+      view.showAlertBanner && view.alertBannerText ? (
+        <div class="hrr7-alert-banner" role="alert">
+          <p class="hrr7-alert-banner-text">{view.alertBannerText}</p>
+        </div>
+      ) : null
+    }
+
+    {
+      previewFirst && previewLast ? (
+        <div class="route-preview">
+          {timelineLen === 1 ? (
+            <div class="preview-tramo preview-tramo--single">
+              <div
+                class:list={["preview-dot", previewDotClass(previewFirst)]}
+                aria-label={badgeAriaLabel(previewFirst)}
+              />
+              <div class="preview-info">
+                <span
+                  class:list={[
+                    "preview-name",
+                    previewFirst.status === "CLOSED" && "preview-name--cut",
+                  ]}
+                >
+                  {previewLine(previewFirst)}
+                </span>
+                <span class:list={["preview-badge", previewBadgeClass(previewFirst)]}>
+                  {previewFirst.badgeLabel}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div class="preview-tramo preview-tramo--first">
+                <div
+                  class:list={["preview-dot", previewDotClass(previewFirst)]}
+                  aria-label={badgeAriaLabel(previewFirst)}
+                />
+                <div class="preview-info">
+                  <span
+                    class:list={[
+                      "preview-name",
+                      previewFirst.status === "CLOSED" && "preview-name--cut",
+                    ]}
+                  >
+                    {previewLine(previewFirst)}
+                  </span>
+                  <span class:list={["preview-badge", previewBadgeClass(previewFirst)]}>
+                    {previewFirst.badgeLabel}
+                  </span>
+                </div>
+              </div>
+              {previewIntermediateCount > 0 ? (
+                <div class="preview-middle" aria-label={previewMiddleAria}>
+                  <div class="preview-line-dots" aria-hidden="true">
+                    <span class="preview-mini-dot" />
+                    <span class="preview-mini-dot" />
+                    <span class="preview-mini-dot" />
+                  </div>
+                  <span class="preview-middle-text">{previewMiddleText}</span>
+                </div>
+              ) : null}
+              <div class="preview-tramo preview-tramo--last">
+                <div
+                  class:list={["preview-dot", previewDotClass(previewLast)]}
+                  aria-label={badgeAriaLabel(previewLast)}
+                />
+                <div class="preview-info">
+                  <span
+                    class:list={[
+                      "preview-name",
+                      previewLast.status === "CLOSED" && "preview-name--cut",
+                    ]}
+                  >
+                    {previewLine(previewLast)}
+                  </span>
+                  <span class:list={["preview-badge", previewBadgeClass(previewLast)]}>
+                    {previewLast.badgeLabel}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      ) : null
+    }
+
+    <button
+      type="button"
+      class="rutas-expand-btn"
+      aria-expanded="false"
+      aria-controls={view.tramosBodyId}
+    >
+      <span class="expand-label-closed">Ver recorrido completo</span>
+      <span class="expand-label-open">Ocultar recorrido</span>
+      <svg
+        class="expand-chevron"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M2 5l5 5 5-5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </svg>
+    </button>
+
+    <div
+      id={view.tramosBodyId}
+      class="rutas-tramos-body"
+      role="region"
+      aria-labelledby={view.titleId}
+      aria-hidden="true"
+    >
+    <div class="hrr7-headline-wrap">
+      <p class:list={["hrr7-headline", `hrr7-headline--${view.mainAlertTone}`]}>{view.headline}</p>
+    </div>
+
+    <div class="hrr7-track">
+      <ul class="hrr7-steps hrr7-steps--desktop" role="list" aria-label={view.timelineAriaLabel}>
+        {
+          view.timeline.map((row) => (
+            <li
+              role="listitem"
+              class:list={[
+                "hrr7-step",
+                "tramo-row",
+                row.status === "CLOSED" && "hrr7-step--corte",
+                row.isAfterBlocking && "hrr7-step--past",
+                row.isCriticalFinal && "hrr7-step--critical",
+                isTerminalIntlRow(row) && "hrr7-step--terminal-intl",
+              ]}
+              data-tramo-estado={tramoEstado(row)}
+              data-estado={rowDataEstado(row)}
+              title={closedHoverTitle(row)}
+            >
+              <div class="hrr7-line-col tramo-line-col">
+                <span
+                  class:list={["hrr7-step-icon", "line-dot", `hrr7-step-icon--${row.visualMark}`]}
+                  aria-hidden="true"
+                >
+                  <Icon name={markIcon(row.visualMark).name} width={12} height={12} aria-hidden="true" />
+                </span>
+                <div class="hrr7-connector" aria-hidden="true" />
+              </div>
+              <div class="hrr7-step-main">
+                {row.isCriticalFinal ? (
+                  <div
+                    class:list={[
+                      "tramo-content-inner",
+                      "hrr7-step-card",
+                      "hrr7-step-card--critical",
+                      row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                    ]}
+                  >
+                    <div class="hrr7-row">
+                      <div>
+                        <Hrr7SegmentName origin={row.nameOrigin} dest={row.nameDest} />
+                      </div>
+                      <span
+                        class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}
+                        role="status"
+                        aria-label={badgeAriaLabel(row)}
+                      >
+                        <span class="hrr7-pill-full">{row.badgeLabelStrong}</span>
+                        <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                      </span>
+                    </div>
+                    <Hrr7SegmentMetaLine
+                      surfaceLine={row.surfaceLine}
+                      toll={row.flags.toll}
+                      international={row.flags.international}
+                      scenic={Boolean(row.flags.scenic)}
+                      compactSignals={true}
+                    />
+                    {row.notes?.trim() ? <p class="hrr7-notes">{row.notes.trim()}</p> : null}
+                  </div>
+                ) : (
+                  <div
+                    class:list={[
+                      "tramo-content-inner",
+                      "hrr7-step-card",
+                      row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                    ]}
+                  >
+                    <div class="hrr7-row">
+                      <Hrr7SegmentName origin={row.nameOrigin} dest={row.nameDest} />
+                      <span
+                        class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}
+                        role="status"
+                        aria-label={badgeAriaLabel(row)}
+                      >
+                        <span class="hrr7-pill-full">{row.badgeLabel}</span>
+                        <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                      </span>
+                    </div>
+                    <Hrr7SegmentMetaLine
+                      surfaceLine={row.surfaceLine}
+                      toll={row.flags.toll}
+                      international={row.flags.international}
+                      scenic={Boolean(row.flags.scenic)}
+                      compactSignals={true}
+                    />
+                    {row.notes?.trim() ? <p class="hrr7-name-extra">{row.notes.trim()}</p> : null}
+                  </div>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="hrr7-steps hrr7-steps--mobile" role="list" aria-label={view.timelineAriaLabelMobile}>
+        {
+          view.mobileTimeline.map((item: HomeRouteCardDisplayItem, mi: number) =>
+            item.kind === "collapsed" ? (
+              <li
+                role="listitem"
+                class="hrr7-step hrr7-step--accordion tramo-row"
+                data-tramo-estado="HABILITADA"
+                data-estado="HABILITADA"
+              >
+                <div class="hrr7-line-col tramo-line-col hrr7-line-col--accordion">
+                  <span class="hrr7-step-icon hrr7-step-icon--check-dim line-dot" aria-hidden="true">
+                    <Icon name="lucide:check" width={12} height={12} aria-hidden="true" />
+                  </span>
+                  <div class="hrr7-connector" aria-hidden="true" />
+                </div>
+                <div class="hrr7-accordion-cell">
+                  <button
+                    type="button"
+                    class="hrr7-expand-btn"
+                    aria-expanded="false"
+                    aria-controls={`hrr7-collapsed-${mi}-${item.rows[0]?.id ?? "mid"}`}
+                  >
+                    <span class="hrr7-expand-icon" aria-hidden="true">
+                      +
+                    </span>
+                    <span
+                      class="hrr7-expand-label"
+                      data-text-collapsed={`Ver ${item.count} tramos habilitados intermedios`}
+                      data-text-expanded="Ocultar tramos intermedios"
+                    >
+                      {`Ver ${item.count} tramos habilitados intermedios`}
+                    </span>
+                  </button>
+                  <div
+                    class="hrr7-tramos-collapsed tramos-collapsed"
+                    id={`hrr7-collapsed-${mi}-${item.rows[0]?.id ?? "mid"}`}
+                  >
+                    <ul class="hrr7-nested-steps" role="list">
+                      {item.rows.map((row) => (
+                        <li
+                          role="listitem"
+                          class:list={[
+                            "hrr7-step",
+                            "hrr7-step--nested",
+                            "tramo-row",
+                            row.status === "CLOSED" && "hrr7-step--corte",
+                            row.isAfterBlocking && "hrr7-step--past",
+                            row.isCriticalFinal && "hrr7-step--critical",
+                            isTerminalIntlRow(row) && "hrr7-step--terminal-intl",
+                          ]}
+                          data-tramo-estado={tramoEstado(row)}
+                          data-estado={rowDataEstado(row)}
+                          title={closedHoverTitle(row)}
+                        >
+                          <div class="hrr7-line-col tramo-line-col">
+                            <span
+                              class:list={[
+                                "hrr7-step-icon",
+                                "line-dot",
+                                `hrr7-step-icon--${row.visualMark}`,
+                              ]}
+                              aria-hidden="true"
+                            >
+                              <Icon
+                                name={markIcon(row.visualMark).name}
+                                width={12}
+                                height={12}
+                                aria-hidden="true"
+                              />
+                            </span>
+                            <div class="hrr7-connector" aria-hidden="true" />
+                          </div>
+                          <div class="hrr7-step-main">
+                            {row.isCriticalFinal ? (
+                              <div
+                                class:list={[
+                                  "tramo-content-inner",
+                                  "hrr7-step-card",
+                                  "hrr7-step-card--critical",
+                                  row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                                ]}
+                              >
+                                <div class="hrr7-row">
+                                  <div>
+                                    <Hrr7SegmentName origin={row.nameOrigin} dest={row.nameDest} />
+                                  </div>
+                                  <span
+                                    class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}
+                                    role="status"
+                                    aria-label={badgeAriaLabel(row)}
+                                  >
+                                    <span class="hrr7-pill-full">{row.badgeLabelStrong}</span>
+                                    <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                                  </span>
+                                </div>
+                                <Hrr7SegmentMetaLine
+                                  surfaceLine={row.surfaceLine}
+                                  toll={row.flags.toll}
+                                  international={row.flags.international}
+                                  scenic={Boolean(row.flags.scenic)}
+                                  compactSignals={true}
+                                />
+                                {row.notes?.trim() ? (
+                                  <p class="hrr7-notes">{row.notes.trim()}</p>
+                                ) : null}
+                              </div>
+                            ) : (
+                              <div
+                                class:list={[
+                                  "tramo-content-inner",
+                                  "hrr7-step-card",
+                                  row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                                ]}
+                              >
+                                <div class="hrr7-row">
+                                  <Hrr7SegmentName origin={row.nameOrigin} dest={row.nameDest} />
+                                  <span
+                                    class:list={["hrr7-pill", `hrr7-pill--${row.status.toLowerCase()}`]}
+                                    role="status"
+                                    aria-label={badgeAriaLabel(row)}
+                                  >
+                                    <span class="hrr7-pill-full">{row.badgeLabel}</span>
+                                    <span class="hrr7-pill-abbr">{row.badgeLabelMobile}</span>
+                                  </span>
+                                </div>
+                                <Hrr7SegmentMetaLine
+                                  surfaceLine={row.surfaceLine}
+                                  toll={row.flags.toll}
+                                  international={row.flags.international}
+                                  scenic={Boolean(row.flags.scenic)}
+                                  compactSignals={true}
+                                />
+                                {row.notes?.trim() ? (
+                                  <p class="hrr7-name-extra">{row.notes.trim()}</p>
+                                ) : null}
+                              </div>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            ) : (
+              <li
+                role="listitem"
+                class:list={[
+                  "hrr7-step",
+                  "tramo-row",
+                  item.row.status === "CLOSED" && "hrr7-step--corte",
+                  item.row.isAfterBlocking && "hrr7-step--past",
+                  item.row.isCriticalFinal && "hrr7-step--critical",
+                  isTerminalIntlRow(item.row) && "hrr7-step--terminal-intl",
+                ]}
+                data-tramo-estado={tramoEstado(item.row)}
+                data-estado={rowDataEstado(item.row)}
+                title={closedHoverTitle(item.row)}
+              >
+                <div class="hrr7-line-col tramo-line-col">
+                  <span
+                    class:list={[
+                      "hrr7-step-icon",
+                      "line-dot",
+                      `hrr7-step-icon--${item.row.visualMark}`,
+                    ]}
+                    aria-hidden="true"
+                  >
+                    <Icon
+                      name={markIcon(item.row.visualMark).name}
+                      width={12}
+                      height={12}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <div class="hrr7-connector" aria-hidden="true" />
+                </div>
+                <div class="hrr7-step-main">
+                  {item.row.isCriticalFinal ? (
+                    <div
+                      class:list={[
+                        "tramo-content-inner",
+                        "hrr7-step-card",
+                        "hrr7-step-card--critical",
+                        item.row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                      ]}
+                    >
+                      <div class="hrr7-row">
+                        <div>
+                          <Hrr7SegmentName origin={item.row.nameOrigin} dest={item.row.nameDest} />
+                        </div>
+                        <span
+                          class:list={["hrr7-pill", `hrr7-pill--${item.row.status.toLowerCase()}`]}
+                          role="status"
+                          aria-label={badgeAriaLabel(item.row)}
+                        >
+                          <span class="hrr7-pill-full">{item.row.badgeLabelStrong}</span>
+                          <span class="hrr7-pill-abbr">{item.row.badgeLabelMobile}</span>
+                        </span>
+                      </div>
+                      <Hrr7SegmentMetaLine
+                        surfaceLine={item.row.surfaceLine}
+                        toll={item.row.flags.toll}
+                        international={item.row.flags.international}
+                        scenic={Boolean(item.row.flags.scenic)}
+                        compactSignals={true}
+                      />
+                      {item.row.notes?.trim() ? (
+                        <p class="hrr7-notes">{item.row.notes.trim()}</p>
+                      ) : null}
+                    </div>
+                  ) : (
+                    <div
+                      class:list={[
+                        "tramo-content-inner",
+                        "hrr7-step-card",
+                        item.row.surface?.toUpperCase().includes("RIPIO") && "hrr7-step-card--ripio",
+                      ]}
+                    >
+                      <div class="hrr7-row">
+                        <Hrr7SegmentName origin={item.row.nameOrigin} dest={item.row.nameDest} />
+                        <span
+                          class:list={["hrr7-pill", `hrr7-pill--${item.row.status.toLowerCase()}`]}
+                          role="status"
+                          aria-label={badgeAriaLabel(item.row)}
+                        >
+                          <span class="hrr7-pill-full">{item.row.badgeLabel}</span>
+                          <span class="hrr7-pill-abbr">{item.row.badgeLabelMobile}</span>
+                        </span>
+                      </div>
+                      <Hrr7SegmentMetaLine
+                        surfaceLine={item.row.surfaceLine}
+                        toll={item.row.flags.toll}
+                        international={item.row.flags.international}
+                        scenic={Boolean(item.row.flags.scenic)}
+                        compactSignals={true}
+                      />
+                      {item.row.notes?.trim() ? (
+                        <p class="hrr7-name-extra">{item.row.notes.trim()}</p>
+                      ) : null}
+                    </div>
+                  )}
+                </div>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </div>
+
+    <div class="reach-summary" aria-label="Resumen de alcance según datos oficiales">
+      <p class="reach-summary-title">¿Hasta dónde llegás?</p>
+      {
+        view.reachSummary.variant === "all-open" ? (
+          <div class="reach-row-item reach-yes">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="7" fill="#EAF3DE" stroke="#639922" stroke-width="1.2" />
+              <path
+                d="M5 8l2.5 2.5L11 5.5"
+                stroke="#3B6D11"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>
+              {view.reachSummary.singleLine}
+              {view.reachSummary.mutedLine ? (
+                <span class="reach-km"> · {view.reachSummary.mutedLine}</span>
+              ) : null}
+            </span>
+          </div>
+        ) : view.reachSummary.variant === "all-closed" ? (
+          <div class="reach-row-item reach-no">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="7" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1.2" />
+              <path
+                d="M5.5 5.5l5 5M10.5 5.5l-5 5"
+                stroke="#A32D2D"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>
+              {view.reachSummary.noCutStrong ? (
+                <>
+                  No podés cruzar: <strong>{view.reachSummary.noCutStrong}</strong>
+                  {view.reachSummary.noReason ? (
+                    <span class="reach-reason"> · {view.reachSummary.noReason}</span>
+                  ) : null}
+                </>
+              ) : (
+                <>{view.reachSummary.singleLine}</>
+              )}
+            </span>
+          </div>
+        ) : (
+          <>
+            {view.reachSummary.lastPlaceStrong ? (
+              <div class="reach-row-item reach-yes">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="7" fill="#EAF3DE" stroke="#639922" stroke-width="1.2" />
+                  <path
+                    d="M5 8l2.5 2.5L11 5.5"
+                    stroke="#3B6D11"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span>
+                  Llegás hasta <strong>{view.reachSummary.lastPlaceStrong}</strong>
+                  {view.reachSummary.kmLine ? (
+                    <span class="reach-km">{view.reachSummary.kmLine}</span>
+                  ) : null}
+                </span>
+              </div>
+            ) : null}
+            {view.reachSummary.showNoRow && view.reachSummary.noCutStrong ? (
+              <div class="reach-row-item reach-no">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="7" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1.2" />
+                  <path
+                    d="M5.5 5.5l5 5M10.5 5.5l-5 5"
+                    stroke="#A32D2D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>
+                  No podés cruzar: <strong>{view.reachSummary.noCutStrong}</strong>
+                  {view.reachSummary.noReason ? (
+                    <span class="reach-reason"> · {view.reachSummary.noReason}</span>
+                  ) : null}
+                </span>
+              </div>
+            ) : null}
+          </>
+        )
+      }
+    </div>
+
+    </div>
+
+    <footer class="hrr7-foot">
+      <span class="hrr7-source">Fuente: Vialidad Nacional</span>
+      <a href={view.detailHref} class="hrr7-link-full">
+        Ver detalle completo →
+      </a>
+    </footer>
+  </div>
+</article>
+
+<script>
+  import { mountHomeRouteSegments } from "@/scripts/homeRouteSegments.client.ts";
+
+  mountHomeRouteSegments();
+  document.addEventListener("astro:page-load", mountHomeRouteSegments);
+</script>

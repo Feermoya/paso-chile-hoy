@@ -13,6 +13,7 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
+<<<<<<< Updated upstream
     "temperatureC": 9,
     "description": "Despejado",
     "wind": "Oeste 6 km/h",
@@ -22,39 +23,54 @@
     "updatedAt": "2026-04-12T04:00:00-03:00",
     "feelsLikeC": 8.5,
     "humidity": 62
+=======
+    "temperatureC": 18.2,
+    "description": "Ligeramente nublado",
+    "wind": "Este 8 km/h",
+    "visibilityKm": 20,
+    "sunrise": "08:01",
+    "sunset": "19:20",
+    "updatedAt": "2026-04-12T12:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 51
+>>>>>>> Stashed changes
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-12T08:11:25.862Z",
+=======
+  "scrapedAt": "2026-04-12T15:17:09.953Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
-      "period": "Hoy por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 9,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": 5,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": 2,
       "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Algo nublado",
+      "temperatureC": 3,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 11,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +80,9 @@
     "statusUpdatedAt": "11/4/2026 09:36:44"
   },
   "operationalStale": false,
+<<<<<<< Updated upstream
   "lastKnownGoodAt": "2026-04-12T08:11:25.862Z"
+=======
+  "lastKnownGoodAt": "2026-04-12T15:17:09.953Z"
+>>>>>>> Stashed changes
 }

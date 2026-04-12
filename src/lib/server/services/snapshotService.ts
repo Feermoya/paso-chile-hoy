@@ -12,6 +12,7 @@ import {
   weatherSnapshotFromClima,
   type PassSnapshot,
 } from "@/lib/server/passMapper";
+import { refreshCristoRedentorSnapshot } from "@/lib/server/cristoRedentorSnapshot";
 import { refreshPehuencheSnapshot } from "@/lib/server/pehuencheSnapshot";
 import { checkSnapshotFreshness } from "@/lib/server/utils/snapshotFreshnessCheck";
 import {
@@ -224,6 +225,12 @@ export async function refreshAndPersistSnapshot(slug: string): Promise<PassSnaps
 
   if (slug === "pehuenche") {
     const snap = await refreshPehuencheSnapshot(cfg);
+    await writePassSnapshot(slug, snap);
+    return snap;
+  }
+
+  if (slug === "cristo-redentor") {
+    const snap = await refreshCristoRedentorSnapshot(cfg);
     await writePassSnapshot(slug, snap);
     return snap;
   }
