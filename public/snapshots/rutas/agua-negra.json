@@ -5,8 +5,8 @@
   "routeName": "Ruta Nacional 150",
   "routeCode": "150",
   "province": "San Juan",
-  "updatedAt": "2026-04-12T22:02:08.393Z",
-  "sourceUpdatedAt": "2026-04-12T10:00:00.000Z",
+  "updatedAt": "2026-04-13T11:43:25.140Z",
+  "sourceUpdatedAt": "2026-04-13T10:00:00.000Z",
   "summary": {
     "totalSegments": 7,
     "openSegments": 7,
@@ -29,7 +29,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 21,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -46,7 +46,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 85,
       "notes": "transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -63,7 +63,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 13,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -79,7 +79,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 40,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -95,7 +95,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 23,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -111,7 +111,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 37,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -127,7 +127,7 @@
       "surface": "RIPIO",
       "lengthKm": 56,
       "notes": "Transitable",
-      "updatedAt": "2026-04-12T10:00:00.000Z",
+      "updatedAt": "2026-04-13T10:00:00.000Z",
       "flags": {
         "critical": true,
         "toll": false,
