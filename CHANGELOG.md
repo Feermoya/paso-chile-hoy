@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.10.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.9.1...v2.10.0) (2026-04-14)
+
+### Nuevas funcionalidades
+
+* Tiempo en llegar a la aduana nueva implementacion ([4e5f3bd](https://github.com/Feermoya/paso-chile-hoy/commit/4e5f3bd9c7763512fb006a16c455210eef00ec8e))
+
 ## [2.9.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.9.0...v2.9.1) (2026-04-12)
 
 ### Estilos
