@@ -4,6 +4,7 @@ export const prerender = false;
 import PasoCard from "@/components/PasoCard.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
+import TravelSimulator from "@/components/TravelSimulator.astro";
 import { PASOS } from "@/data/pasos";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
@@ -19,6 +20,10 @@ import { HOME_ROUTE_CARD_ORDER, getRouteProfile } from "@/lib/server/route-segme
 import { readRouteSegments } from "@/lib/server/storage/routeSegmentsStorage";
 import { inferPassStatus } from "@/utils/inferPassStatus";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
+import {
+  getCristoRedentorScheduleLabelOverride,
+  getCristoRedentorScheduleOverride,
+} from "@/utils/cristoRedentorManualOverrides";
 
 type CardEntry = {
   slug: string;
@@ -31,7 +36,23 @@ type CardEntry = {
   vialidadEstado?: string;
   vialidadObservaciones?: string;
   scrapedAt?: string;
+  schedule?: string;
 };
+
+interface PasoSchedule {
+  slug: string;
+  name: string;
+  openTime: string;
+  closeTime: string;
+  altitudeM: number;
+}
+
+function parseSchedule(scheduleStr: string | null | undefined): { open: string; close: string } {
+  if (!scheduleStr) return { open: "09:00", close: "21:00" };
+  const match = scheduleStr.match(/(\d{2}:\d{2})\s*[-–]\s*(\d{2}:\d{2})/);
+  if (!match) return { open: "09:00", close: "21:00" };
+  return { open: match[1], close: match[2] };
+}
 
 function mostRecentScrapedAt(entries: CardEntry[]): string | undefined {
   let bestT = 0;
@@ -56,9 +77,21 @@ const cards: CardEntry[] = await Promise.all(
     try {
       const raw = await getSnapshotForApi(paso.slug);
       const view = mapPersistedSnapshotToView(raw, paso);
+      const scheduleOverride = getCristoRedentorScheduleOverride(paso.slug);
+      const scheduleLabelOverride = getCristoRedentorScheduleLabelOverride(paso.slug);
+      if (scheduleOverride) {
+        view.operationalInfo.schedule = scheduleOverride;
+      }
+      if (scheduleLabelOverride) {
+        view.operationalInfo.scheduleRaw = scheduleLabelOverride;
+      }
       const n = view.weather?.now;
       const op = view.operationalInfo;
       const statusResult = inferPassStatus(view);
+      if (scheduleOverride) {
+        statusResult.closesInMinutes = undefined;
+        statusResult.opensInMinutes = undefined;
+      }
       return {
         slug: paso.slug,
         status: statusResult.status,
@@ -70,6 +103,7 @@ const cards: CardEntry[] = await Promise.all(
         vialidadEstado: op.vialidadEstado,
         vialidadObservaciones: op.vialidadObservaciones,
         scrapedAt: raw.scrapedAt?.trim(),
+        schedule: scheduleOverride ?? raw.schedule ?? view.operationalInfo?.schedule,
       };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
@@ -78,6 +112,20 @@ const cards: CardEntry[] = await Promise.all(
 );
 
 const cardBySlug = new Map(cards.map((c) => [c.slug, c]));
+
+const pasosSchedules: PasoSchedule[] = PASOS.filter((paso) => paso.active).map((paso) => {
+  const card = cardBySlug.get(paso.slug);
+  const { open, close } = parseSchedule(card?.schedule);
+  return {
+    slug: paso.slug,
+    name: paso.shortName ?? paso.name,
+    openTime: open,
+    closeTime: close,
+    altitudeM: paso.altitudeM,
+  };
+});
+
+const pasosSchedulesJSON = JSON.stringify(pasosSchedules);
 
 const homeLastUpdatedIso = mostRecentScrapedAt(cards);
 const homeUpdatedRelative = homeLastUpdatedIso ? formatRelativeTimeAgo(homeLastUpdatedIso) : "";
@@ -196,6 +244,8 @@ const homeSchema = {
       })}
     </div>
 
+    <TravelSimulator pasosSchedules={pasosSchedulesJSON} />
+
     {
       homeRouteCards.length > 0 ? (
         <section class="rutas-section" aria-labelledby="rutas-title">
@@ -250,9 +300,11 @@ const homeSchema = {
     <h3>Estado y horario del Paso Cristo Redentor (Los Libertadores)</h3>
     <p>
       El <strong>paso Cristo Redentor</strong> es el más usado entre Mendoza y Chile. El horario habitual
-      desde Argentina suele ser de 09:00 a 21:00 h; en temporada alta a veces opera 24 horas. El cruce
-      puede cerrar por nieve, viento o condiciones en ruta: conviene revisar el detalle del paso en esta
-      web y confirmar en Gendarmería o en la página oficial del paso.
+      desde Argentina puede variar por temporada. Actualmente sigue operativo las 24 horas y el esquema
+      invernal con suspensión nocturna comienza en junio. Además, del lado chileno ya rige el huso horario
+      de invierno, por lo que hay 1 hora menos al cruzar la cordillera. El cruce puede cerrar por nieve,
+      viento o condiciones en ruta: conviene revisar el detalle del paso en esta web y confirmar en
+      Gendarmería o en la página oficial del paso.
     </p>
     <h3>Paso Pehuenche y Paso Agua Negra</h3>
     <p>

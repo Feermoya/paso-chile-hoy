@@ -1,0 +1,627 @@
+---
+interface Props {
+  pasosSchedules: string;
+}
+
+const { pasosSchedules } = Astro.props;
+---
+
+<section class="tsim-root" id="travel-sim" aria-label="Simulador de viaje al paso">
+
+  <!-- Header -->
+  <div class="tsim-header">
+    <div>
+      <h2 class="tsim-title">¿Llegás a tiempo?</h2>
+      <p class="tsim-subtitle">Calculá si llegás antes del cierre del paso</p>
+    </div>
+    <svg class="tsim-header-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </svg>
+  </div>
+
+  <!-- Body: form + result side by side on desktop -->
+  <div class="tsim-body">
+
+    <!-- LEFT: Form -->
+    <div class="tsim-form">
+
+      <div class="tsim-selects-row">
+        <!-- Origen -->
+        <div class="tsim-field">
+          <label class="tsim-label" for="ts-origin">Salís desde</label>
+          <div class="tsim-select-wrap">
+            <select class="tsim-select" id="ts-origin">
+              <optgroup label="Mendoza">
+                <option value="120">Mendoza ciudad</option>
+                <option value="90">Luján de Cuyo</option>
+                <option value="90">Las Heras</option>
+                <option value="105">Maipú</option>
+                <option value="110">Godoy Cruz</option>
+                <option value="115">Guaymallén</option>
+                <option value="100">Tunuyán</option>
+                <option value="140">San Rafael</option>
+                <option value="180">Malargüe</option>
+              </optgroup>
+              <optgroup label="San Juan">
+                <option value="210">San Juan ciudad</option>
+                <option value="180">Caucete</option>
+              </optgroup>
+              <optgroup label="Otras provincias">
+                <option value="720">Buenos Aires</option>
+                <option value="600">Córdoba</option>
+                <option value="540">Rosario</option>
+                <option value="660">Santa Fe</option>
+                <option value="420">San Luis</option>
+                <option value="300">Villa Mercedes</option>
+              </optgroup>
+              <optgroup label="Chile">
+                <option value="150">Santiago de Chile</option>
+                <option value="90">Los Andes (CL)</option>
+              </optgroup>
+              <option value="custom">Otra ciudad...</option>
+            </select>
+            <svg class="tsim-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Paso destino -->
+        <div class="tsim-field">
+          <label class="tsim-label" for="ts-paso">Paso destino</label>
+          <div class="tsim-select-wrap">
+            <select class="tsim-select" id="ts-paso"></select>
+            <svg class="tsim-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hora de salida (selector tipo reloj de alarma; input oculto para calculate) -->
+      <div class="tsim-field tsim-field--time">
+        <span class="tsim-label" id="tsim-time-label">Hora de salida</span>
+        <input type="hidden" id="tsim-hora" value="09:00" />
+        <button
+          type="button"
+          class="tsim-time-trigger"
+          id="tsim-time-open"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-labelledby="tsim-time-label tsim-time-display"
+        >
+          <svg class="tsim-time-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+          <span class="tsim-time-display" id="tsim-time-display">09:00</span>
+          <span class="tsim-time-chevron" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <p class="tsim-time-hint" id="tsim-time-hint">Tocá para elegir hora y minutos</p>
+
+        <div
+          class="tsim-time-dialog"
+          id="tsim-time-dialog"
+          hidden
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tsim-time-dialog-title"
+        >
+          <div class="tsim-time-dialog-backdrop" id="tsim-time-backdrop" tabindex="-1"></div>
+          <div class="tsim-time-panel">
+            <h2 class="tsim-time-dialog-title" id="tsim-time-dialog-title">Hora de salida</h2>
+            <div class="tsim-time-wheels" role="group" aria-label="Elegir hora">
+              <div class="tsim-wheel">
+                <span class="tsim-wheel-caption">Hora</span>
+                <div class="tsim-wheel-frame">
+                  <div class="tsim-wheel-highlight" aria-hidden="true"></div>
+                  <div class="tsim-wheel-scroll" id="tsim-wheel-hour" tabindex="0"></div>
+                </div>
+              </div>
+              <span class="tsim-time-sep" aria-hidden="true">:</span>
+              <div class="tsim-wheel">
+                <span class="tsim-wheel-caption">Min</span>
+                <div class="tsim-wheel-frame">
+                  <div class="tsim-wheel-highlight" aria-hidden="true"></div>
+                  <div class="tsim-wheel-scroll" id="tsim-wheel-minute" tabindex="0"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tsim-time-dialog-actions">
+              <button type="button" class="tsim-time-btn tsim-time-btn--ghost" id="tsim-time-cancel">
+                Cancelar
+              </button>
+              <button type="button" class="tsim-time-btn tsim-time-btn--primary" id="tsim-time-ok">
+                Listo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campo custom horas -->
+      <div class="tsim-field" id="ts-custom-field" style="display:none">
+        <label class="tsim-label" for="ts-custom-hours">Horas de viaje al paso</label>
+        <div class="tsim-select-wrap">
+          <input type="number" class="tsim-select" id="ts-custom-hours"
+            min="0.5" max="24" step="0.5" value="3" placeholder="ej: 2.5" />
+        </div>
+      </div>
+
+    </div><!-- /tsim-form -->
+
+    <!-- RIGHT: Result -->
+    <div class="tsim-result" id="ts-result" style="display:none">
+
+      <!-- Verdict banner -->
+      <div class="tsim-verdict" id="ts-verdict">
+        <span class="tsim-verdict-icon" id="ts-verdict-icon" aria-hidden="true"></span>
+        <div>
+          <p class="tsim-verdict-title" id="ts-verdict-title"></p>
+          <p class="tsim-verdict-sub" id="ts-verdict-sub"></p>
+        </div>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="tsim-metrics">
+        <div class="tsim-metric">
+          <span class="tsim-metric-label">Salís</span>
+          <span class="tsim-metric-value" id="ts-m-salida"></span>
+        </div>
+        <div class="tsim-metric">
+          <span class="tsim-metric-label">Llegás</span>
+          <span class="tsim-metric-value" id="ts-m-llegada"></span>
+        </div>
+        <div class="tsim-metric">
+          <span class="tsim-metric-label">Cierre</span>
+          <span class="tsim-metric-value" id="ts-m-cierre"></span>
+        </div>
+        <div class="tsim-metric tsim-metric--margen">
+          <span class="tsim-metric-label">Margen</span>
+          <span class="tsim-metric-value tsim-metric-value--margen" id="ts-m-margen"></span>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="tsim-timeline-wrap" aria-hidden="true">
+        <div class="tsim-timeline" id="ts-timeline">
+          <div class="tsim-tl-open-zone" id="ts-tl-open-zone"></div>
+          <div class="tsim-tl-close-marker" id="ts-tl-close-marker" title="Cierre"></div>
+          <div class="tsim-tl-arrive-marker" id="ts-tl-arrive-marker" title="Tu llegada"></div>
+        </div>
+        <div class="tsim-tl-labels">
+          <span>00:00</span>
+          <span>06:00</span>
+          <span>12:00</span>
+          <span>18:00</span>
+          <span>24:00</span>
+        </div>
+      </div>
+
+      <!-- Tip + share -->
+      <div class="tsim-tip" id="ts-tip-wrap">
+        <svg class="tsim-tip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M12 10v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          <circle cx="12" cy="7" r="1" fill="currentColor"></circle>
+        </svg>
+        <p class="tsim-tip-text" id="ts-tip"></p>
+      </div>
+
+      <button class="tsim-share-btn" id="ts-share-btn" type="button">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+        Compartir resultado
+      </button>
+
+    </div><!-- /tsim-result -->
+
+  </div><!-- /tsim-body -->
+
+</section>
+
+<script define:vars={{ pasosSchedules }}>
+  document.addEventListener("DOMContentLoaded", () => {
+  const PASOS = JSON.parse(pasosSchedules);
+  const selectPaso = document.getElementById("ts-paso");
+  if (!(selectPaso instanceof HTMLSelectElement)) return;
+
+  // ── Populate paso options from snapshot data ──────────────
+  PASOS.forEach((p) => {
+    const opt = document.createElement("option");
+    opt.value = p.slug;
+    opt.textContent = `${p.name} (cierre ${p.closeTime})`;
+    opt.dataset.open = p.openTime;
+    opt.dataset.close = p.closeTime;
+    selectPaso.appendChild(opt);
+  });
+
+  // ── Selector hora tipo reloj de alarma ────────────────────
+  const TSIM_ITEM_H = 40;
+  const timeHidden = document.getElementById("tsim-hora");
+  const timeDisplay = document.getElementById("tsim-time-display");
+  const timeOpenBtn = document.getElementById("tsim-time-open");
+  const timeDialog = document.getElementById("tsim-time-dialog");
+  const timeBackdrop = document.getElementById("tsim-time-backdrop");
+  const wheelHour = document.getElementById("tsim-wheel-hour");
+  const wheelMinute = document.getElementById("tsim-wheel-minute");
+  const timeOk = document.getElementById("tsim-time-ok");
+  const timeCancel = document.getElementById("tsim-time-cancel");
+
+  let tempHour = 9;
+  let tempMin = 0;
+  let lastFocusBeforeDialog = null;
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function parseTimeValue(v) {
+    const m = /^(\d{1,2}):(\d{2})$/.exec((v || "").trim());
+    if (!m) return { h: 9, min: 0 };
+    const h = Math.min(23, Math.max(0, parseInt(m[1], 10)));
+    const mi = Math.min(59, Math.max(0, parseInt(m[2], 10)));
+    return { h, min: mi };
+  }
+
+  function syncTimeDisplayFromHidden() {
+    if (!(timeHidden instanceof HTMLInputElement) || !timeDisplay) return;
+    const { h, min } = parseTimeValue(timeHidden.value);
+    timeDisplay.textContent = `${pad2(h)}:${pad2(min)}`;
+  }
+
+  function buildWheel(el, max, padFn) {
+    if (!el) return;
+    el.innerHTML = "";
+    const topPad = document.createElement("div");
+    topPad.className = "tsim-wheel-pad";
+    topPad.setAttribute("aria-hidden", "true");
+    el.appendChild(topPad);
+    for (let i = 0; i <= max; i++) {
+      const row = document.createElement("button");
+      row.type = "button";
+      row.className = "tsim-wheel-item";
+      row.dataset.value = String(i);
+      row.textContent = padFn(i);
+      row.addEventListener("click", () => {
+        el.scrollTo({ top: i * TSIM_ITEM_H, behavior: "smooth" });
+      });
+      el.appendChild(row);
+    }
+    const botPad = document.createElement("div");
+    botPad.className = "tsim-wheel-pad";
+    botPad.setAttribute("aria-hidden", "true");
+    el.appendChild(botPad);
+  }
+
+  function wheelIndexFromScroll(el) {
+    if (!el) return 0;
+    const items = el.querySelectorAll(".tsim-wheel-item");
+    if (items.length === 0) return 0;
+    const raw = Math.round(el.scrollTop / TSIM_ITEM_H);
+    return Math.min(items.length - 1, Math.max(0, raw));
+  }
+
+  function scrollWheelToIndex(el, index) {
+    if (!el) return;
+    el.scrollTop = index * TSIM_ITEM_H;
+  }
+
+  function readWheelsFromScroll() {
+    tempHour = wheelIndexFromScroll(wheelHour);
+    tempMin = wheelIndexFromScroll(wheelMinute);
+  }
+
+  function snapWheel(el) {
+    if (!el) return;
+    const i = wheelIndexFromScroll(el);
+    el.scrollTo({ top: i * TSIM_ITEM_H, behavior: "smooth" });
+  }
+
+  function snapWheelInstant(el) {
+    if (!el) return;
+    const i = wheelIndexFromScroll(el);
+    el.scrollTop = i * TSIM_ITEM_H;
+  }
+
+  let snapT = null;
+  function attachSnap(el) {
+    if (!el) return;
+    el.addEventListener("scroll", () => {
+      window.clearTimeout(snapT);
+      snapT = window.setTimeout(() => snapWheel(el), 80);
+    });
+  }
+
+  buildWheel(wheelHour, 23, pad2);
+  buildWheel(wheelMinute, 59, pad2);
+  attachSnap(wheelHour);
+  attachSnap(wheelMinute);
+
+  function openTimeDialog() {
+    if (!(timeHidden instanceof HTMLInputElement) || !timeDialog || !timeOpenBtn) return;
+    lastFocusBeforeDialog = document.activeElement;
+    const { h, min } = parseTimeValue(timeHidden.value);
+    tempHour = h;
+    tempMin = min;
+    scrollWheelToIndex(wheelHour, h);
+    scrollWheelToIndex(wheelMinute, min);
+    timeDialog.hidden = false;
+    timeOpenBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    window.setTimeout(() => timeOk?.focus(), 50);
+  }
+
+  function closeTimeDialog() {
+    if (!timeDialog || !timeOpenBtn) return;
+    timeDialog.hidden = true;
+    timeOpenBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (lastFocusBeforeDialog instanceof HTMLElement) lastFocusBeforeDialog.focus();
+  }
+
+  function applyTimeFromDialog() {
+    snapWheelInstant(wheelHour);
+    snapWheelInstant(wheelMinute);
+    readWheelsFromScroll();
+    if (!(timeHidden instanceof HTMLInputElement)) return;
+    timeHidden.value = `${pad2(tempHour)}:${pad2(tempMin)}`;
+    syncTimeDisplayFromHidden();
+    timeHidden.dispatchEvent(new Event("input", { bubbles: true }));
+    timeHidden.dispatchEvent(new Event("change", { bubbles: true }));
+    closeTimeDialog();
+  }
+
+  timeOpenBtn?.addEventListener("click", openTimeDialog);
+  timeBackdrop?.addEventListener("click", closeTimeDialog);
+  timeCancel?.addEventListener("click", closeTimeDialog);
+  timeOk?.addEventListener("click", applyTimeFromDialog);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && timeDialog && !timeDialog.hidden) {
+      e.preventDefault();
+      closeTimeDialog();
+    }
+  });
+
+  syncTimeDisplayFromHidden();
+
+  // ── Helpers ───────────────────────────────────────────────
+  function getDriveTime(originMinutes, pasoSlug) {
+    if (pasoSlug === "cristo-redentor") return originMinutes;
+    if (pasoSlug === "pehuenche") return originMinutes <= 180 ? originMinutes + 60 : originMinutes + 30;
+    if (pasoSlug === "agua-negra")  return originMinutes <= 180 ? originMinutes + 150 : originMinutes + 90;
+    return originMinutes;
+  }
+  function timeToMin(t) {
+    const [h, m] = t.split(":").map(Number);
+    return h * 60 + m;
+  }
+  function minToTime(m) {
+    const norm = ((m % 1440) + 1440) % 1440;
+    return String(Math.floor(norm / 60)).padStart(2, "0") + ":" + String(norm % 60).padStart(2, "0");
+  }
+  function timePct(timeStr) { return (timeToMin(timeStr) / 1440) * 100; }
+  function fmtMargin(min) {
+    const abs = Math.abs(min);
+    const h = Math.floor(abs / 60);
+    const mm = abs % 60;
+    const sign = min >= 0 ? "+" : "-";
+    if (h === 0) return `${sign}${mm}min`;
+    if (mm === 0) return `${sign}${h}h`;
+    return `${sign}${h}h ${mm}min`;
+  }
+  function isWithinOpenWindow(timeMin, openMin, closeMin) {
+    if (openMin === closeMin) return true;
+    if (closeMin > openMin) return timeMin >= openMin && timeMin < closeMin;
+    return timeMin >= openMin || timeMin < closeMin;
+  }
+  function flashEl(el) {
+    el.style.transform = "scale(1.08)";
+    el.style.transition = "transform 200ms cubic-bezier(0.34,1.56,0.64,1)";
+    window.setTimeout(() => { el.style.transform = "scale(1)"; }, 200);
+  }
+
+  // ── Event listeners ───────────────────────────────────────
+  const originSelect = document.getElementById("ts-origin");
+  originSelect?.addEventListener("change", function () {
+    const custom = document.getElementById("ts-custom-field");
+    if (custom) custom.style.display = this.value === "custom" ? "block" : "none";
+    calculate();
+  });
+  ["ts-origin", "ts-paso", "tsim-hora", "ts-custom-hours"].forEach((id) => {
+    const el = document.getElementById(id);
+    el?.addEventListener("change", calculate);
+    el?.addEventListener("input", calculate);
+  });
+
+  // ── Calculate ─────────────────────────────────────────────
+  function calculate() {
+    const originEl = document.getElementById("ts-origin");
+    const pasoEl   = document.getElementById("ts-paso");
+    const timeEl   = document.getElementById("tsim-hora");
+    if (!(originEl instanceof HTMLSelectElement)) return;
+    if (!(pasoEl   instanceof HTMLSelectElement)) return;
+    if (!(timeEl   instanceof HTMLInputElement))  return;
+    if (!originEl.value || !pasoEl.value || !timeEl.value) return;
+
+    let driveMin;
+    if (originEl.value === "custom") {
+      const customInput = document.getElementById("ts-custom-hours");
+      driveMin = Math.round((customInput instanceof HTMLInputElement ? (parseFloat(customInput.value) || 3) : 3) * 60);
+    } else {
+      driveMin = getDriveTime(parseInt(originEl.value, 10), pasoEl.value);
+    }
+
+    const selectedOpt = pasoEl.options[pasoEl.selectedIndex];
+    const openTime  = selectedOpt?.dataset.open  || "09:00";
+    const closeTime = selectedOpt?.dataset.close || "21:00";
+    const openMin   = timeToMin(openTime);
+    const closeMin  = timeToMin(closeTime);
+
+    const departureMin  = timeToMin(timeEl.value);
+    const arrivalMin    = departureMin + driveMin;
+    const arrivalNorm   = ((arrivalMin % 1440) + 1440) % 1440;
+
+    const isOpenAtArrival = isWithinOpenWindow(arrivalNorm, openMin, closeMin);
+    let marginMin = ((closeMin - arrivalNorm) % 1440 + 1440) % 1440;
+
+    let arrivalBeforeOpen = false;
+    let waitMin = 0;
+    if (!isOpenAtArrival) {
+      waitMin = ((openMin - arrivalNorm) % 1440 + 1440) % 1440;
+      const isBeforeOpeningToday     = closeMin > openMin && arrivalNorm < openMin;
+      const isBeforeOpeningOvernight = closeMin < openMin;
+      arrivalBeforeOpen = isBeforeOpeningToday || isBeforeOpeningOvernight;
+      if (!arrivalBeforeOpen) marginMin = -(((arrivalNorm - closeMin) % 1440 + 1440) % 1440);
+    }
+
+    renderResult({ departureTime: timeEl.value, arrivalTime: minToTime(arrivalNorm),
+      closeTime, openTime, marginMin, driveMin, arrivalBeforeOpen, waitMin });
+  }
+
+  // ── Render ────────────────────────────────────────────────
+  function renderResult({ departureTime, arrivalTime, closeTime, openTime,
+      marginMin, driveMin, arrivalBeforeOpen, waitMin }) {
+
+    const result = document.getElementById("ts-result");
+    if (!result) return;
+    result.style.display = "flex";
+    result.setAttribute("role", "status");
+    result.setAttribute("aria-live", "polite");
+
+    // Metrics
+    const salida   = document.getElementById("ts-m-salida");
+    const llegada  = document.getElementById("ts-m-llegada");
+    const cierre   = document.getElementById("ts-m-cierre");
+    const margenEl = document.getElementById("ts-m-margen");
+    if (!salida || !llegada || !cierre || !margenEl) return;
+
+    salida.textContent  = departureTime;
+    llegada.textContent = arrivalTime;
+    cierre.textContent  = closeTime;
+    margenEl.className  = "tsim-metric-value tsim-metric-value--margen";
+    margenEl.textContent = arrivalBeforeOpen
+      ? `espera ${Math.floor(waitMin/60)}h ${waitMin%60}min`
+      : fmtMargin(marginMin);
+    flashEl(margenEl);
+
+    // Verdict
+    const icon    = document.getElementById("ts-verdict-icon");
+    const title   = document.getElementById("ts-verdict-title");
+    const sub     = document.getElementById("ts-verdict-sub");
+    const verdict = document.getElementById("ts-verdict");
+    const tip     = document.getElementById("ts-tip");
+    if (!icon || !title || !sub || !verdict || !tip) return;
+
+    verdict.className = "tsim-verdict";
+
+    if (arrivalBeforeOpen) {
+      verdict.classList.add("warn");
+      icon.textContent  = "⏰";
+      title.textContent = "Llegás antes de que abra";
+      sub.textContent   = `Llegarías a las ${arrivalTime}, pero el paso abre a las ${openTime}. Esperás ${Math.floor(waitMin/60)}h ${waitMin%60}min en la frontera.`;
+      tip.textContent   = `Salí más tarde. La hora óptima sería alrededor de las ${minToTime(timeToMin(openTime) - driveMin + 20)} para llegar 20 min después de la apertura.`;
+      margenEl.classList.add("warn");
+    } else if (marginMin < 0) {
+      verdict.classList.add("bad");
+      icon.textContent  = "✗";
+      const over = Math.abs(marginMin);
+      title.textContent = "No llegás a tiempo";
+      sub.textContent   = `Llegarías a las ${arrivalTime}, ${Math.floor(over/60)}h ${over%60}min después del cierre (${closeTime}).`;
+      tip.textContent   = `Para llegar con 1 hora de margen, salí a las ${minToTime(timeToMin(closeTime) - driveMin - 60)} como máximo.`;
+      margenEl.classList.add("error");
+    } else if (marginMin < 30) {
+      verdict.classList.add("bad");
+      icon.textContent  = "⚠";
+      title.textContent = "Llegás con riesgo muy alto";
+      sub.textContent   = `Llegarías a las ${arrivalTime}, solo ${marginMin} min antes del cierre. Cualquier demora te deja del lado argentino.`;
+      tip.textContent   = "No es recomendable. Salí al menos 1 hora antes para tener margen.";
+      margenEl.classList.add("error");
+    } else if (marginMin < 90) {
+      verdict.classList.add("warn");
+      icon.textContent  = "△";
+      const mh = Math.floor(marginMin/60), mm = marginMin%60;
+      title.textContent = "Llegás, pero con poco margen";
+      sub.textContent   = `Llegarías a las ${arrivalTime} con ${mh > 0 ? `${mh}h ` : ""}${mm}min antes del cierre.`;
+      tip.textContent   = "Si podés, salí 30-60 min antes para tener margen ante tráfico o incidentes.";
+      margenEl.classList.add("warn");
+    } else {
+      verdict.classList.add("ok");
+      icon.textContent  = "✓";
+      const mh = Math.floor(marginMin/60), mm = marginMin%60;
+      title.textContent = "Llegás con buen margen";
+      sub.textContent   = `Llegarías a las ${arrivalTime} con ${mh}h${mm > 0 ? ` ${mm}min` : ""} de margen antes del cierre.`;
+      tip.textContent   = marginMin > 240
+        ? `Tenés mucho tiempo. La hora límite segura es ${minToTime(timeToMin(closeTime) - driveMin - 90)}.`
+        : "Buen momento para salir. Igualmente llegarías a tiempo ante demoras puntuales.";
+      margenEl.classList.add("ok");
+    }
+
+    // Animate in again
+    result.style.animation = "none";
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+      result.style.animation = "";
+    }));
+
+    // Timeline
+    const openPct   = timePct(openTime);
+    const closePct  = timePct(closeTime);
+    const arrivePct = timePct(arrivalTime);
+    const openWidth = closePct > openPct ? closePct - openPct : 100 - openPct + closePct;
+
+    const openZone     = document.getElementById("ts-tl-open-zone");
+    const closeMarker  = document.getElementById("ts-tl-close-marker");
+    const arriveMarker = document.getElementById("ts-tl-arrive-marker");
+    if (!openZone || !closeMarker || !arriveMarker) return;
+
+    openZone.style.left    = `${openPct}%`;
+    openZone.style.width   = `${openWidth}%`;
+    closeMarker.style.left = `${closePct}%`;
+    closeMarker.setAttribute("data-time", closeTime);
+    arriveMarker.style.left = `${arrivePct}%`;
+    arriveMarker.setAttribute("data-time", arrivalTime);
+    arriveMarker.className = "tsim-tl-arrive-marker " +
+      (marginMin >= 90 ? "ok" : marginMin >= 0 ? "warn" : "bad");
+  }
+
+  // ── Share ─────────────────────────────────────────────────
+  document.getElementById("ts-share-btn")?.addEventListener("click", () => {
+    const title = document.getElementById("ts-verdict-title")?.textContent ?? "";
+    const sub   = document.getElementById("ts-verdict-sub")?.textContent ?? "";
+    const text  = `${title}\n${sub}\nCalculado en pasochilehoy.com`;
+
+    if (navigator.share) {
+      navigator.share({ title: "¿Llego al paso a tiempo?", text, url: "https://pasochilehoy.com" }).catch(() => {});
+      return;
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("ts-share-btn");
+        if (!btn) return;
+        btn.textContent = "¡Copiado!";
+        window.setTimeout(() => {
+          btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> Compartir resultado';
+        }, 2000);
+      });
+    }
+  });
+
+  // ── Init ──────────────────────────────────────────────────
+  calculate();
+  });
+</script>

@@ -7,6 +7,10 @@ import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 import { inferPassStatus, type PassStatusResult } from "@/utils/inferPassStatus";
 import { weatherNowHasDisplayableContent } from "@/utils/passViewGuards";
+import {
+  getCristoRedentorScheduleLabelOverride,
+  getCristoRedentorScheduleOverride,
+} from "@/utils/cristoRedentorManualOverrides";
 
 /** Payload canónico para página del paso (SSR + API + refresh). */
 export interface PassPageRefreshPayload {
@@ -36,8 +40,20 @@ export function buildPassRefreshPayload(
   paso: PasoConfig,
 ): PassPageRefreshPayload {
   const view = mapPersistedSnapshotToView(raw, paso);
+  const scheduleOverride = getCristoRedentorScheduleOverride(paso.slug);
+  const scheduleLabelOverride = getCristoRedentorScheduleLabelOverride(paso.slug);
+  if (scheduleOverride) {
+    view.operationalInfo.schedule = scheduleOverride;
+  }
+  if (scheduleLabelOverride) {
+    view.operationalInfo.scheduleRaw = scheduleLabelOverride;
+  }
   const statusResult = inferPassStatus(view);
-  const scheduleText = heroScheduleFromView(view);
+  if (scheduleOverride) {
+    statusResult.closesInMinutes = undefined;
+    statusResult.opensInMinutes = undefined;
+  }
+  const scheduleText = scheduleLabelOverride ?? heroScheduleFromView(view);
   const lastUpdatedRelative = view.meta.scrapedAt ? formatRelativeTimeAgo(view.meta.scrapedAt) : "";
   const officialUrl = view.meta.sourceUrl;
   const now = view.weather?.now;
