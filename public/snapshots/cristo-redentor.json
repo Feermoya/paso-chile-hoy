@@ -13,47 +13,47 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20,
-    "description": "Algo nublado",
+    "temperatureC": 13,
+    "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:58",
     "sunset": "19:21",
-    "updatedAt": "2026-04-13T18:00:00-03:00",
+    "updatedAt": "2026-04-13T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 53
+    "humidity": 70
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-13T22:28:16.752Z",
+  "scrapedAt": "2026-04-14T09:00:40.408Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": 0,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Mayormente nublado",
       "temperatureC": 6,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": 1,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -3,
+      "wind": "NE a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "12/4/2026 09:01:33"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-13T22:28:16.752Z"
+  "lastKnownGoodAt": "2026-04-14T09:00:40.408Z"
 }
