@@ -5,8 +5,8 @@
   "routeName": "Ruta Nacional 7",
   "routeCode": "7",
   "province": "Mendoza",
-  "updatedAt": "2026-04-13T22:27:20.673Z",
-  "sourceUpdatedAt": "2026-04-13T10:30:00.000Z",
+  "updatedAt": "2026-04-14T11:31:19.125Z",
+  "sourceUpdatedAt": "2026-04-15T10:30:00.000Z",
   "summary": {
     "totalSegments": 8,
     "openSegments": 8,
@@ -29,7 +29,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 175,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": true,
@@ -45,7 +45,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 46,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -61,7 +61,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 50,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -77,7 +77,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 40,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -93,7 +93,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 51,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -109,7 +109,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 26,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -125,7 +125,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 13.8,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -141,7 +141,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 4.45,
       "notes": null,
-      "updatedAt": "2026-04-13T10:30:00.000Z",
+      "updatedAt": "2026-04-15T10:30:00.000Z",
       "flags": {
         "critical": true,
         "toll": true,
