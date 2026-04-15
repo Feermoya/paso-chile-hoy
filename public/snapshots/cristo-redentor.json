@@ -13,48 +13,48 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20.6,
-    "description": "Ligeramente nublado",
+    "temperatureC": 16,
+    "description": "Algo nublado",
     "wind": "Sudeste 10 km/h",
     "visibilityKm": 15,
-    "sunrise": "07:59",
-    "sunset": "19:20",
-    "updatedAt": "2026-04-14T18:00:00-03:00",
+    "sunrise": "08:00",
+    "sunset": "19:19",
+    "updatedAt": "2026-04-14T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 47
+    "humidity": 60
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-14T22:27:40.807Z",
+  "scrapedAt": "2026-04-15T09:01:17.175Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -3,
-      "wind": "NE a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": 8,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Ligeramente nublado",
       "temperatureC": 5,
       "wind": "SO a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Ligeramente nublado",
+      "temperatureC": -4,
+      "wind": "SO a 7-12 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "14/4/2026 12:01:58"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-14T22:27:40.807Z"
+  "lastKnownGoodAt": "2026-04-15T09:01:17.175Z"
 }

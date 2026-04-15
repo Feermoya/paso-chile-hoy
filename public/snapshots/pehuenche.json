@@ -15,48 +15,48 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 16.4,
-    "description": "Algo nublado",
-    "wind": "Norte 6 km/h",
-    "visibilityKm": 20,
-    "sunrise": "08:03",
-    "sunset": "19:18",
-    "updatedAt": "2026-04-14T19:00:00-03:00",
+    "temperatureC": 11.7,
+    "description": "Mayormente nublado con lluvia en la hora anterior",
+    "wind": "Norte 21 km/h",
+    "visibilityKm": 15,
+    "sunrise": "08:04",
+    "sunset": "19:17",
+    "updatedAt": "2026-04-15T04:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 62
+    "humidity": 51
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-14T22:27:44.812Z",
+  "scrapedAt": "2026-04-15T09:01:19.220Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "N a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": 4,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": 14,
       "wind": "NE a 13-22 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Ligeramente nublado",
       "temperatureC": 11,
       "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Ligeramente nublado",
+      "temperatureC": 2,
+      "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "13/4/2026 05:46:24"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-14T22:27:44.812Z"
+  "lastKnownGoodAt": "2026-04-15T09:01:19.220Z"
 }
