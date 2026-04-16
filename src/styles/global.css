@@ -175,13 +175,13 @@
 
 /* Enlaces por defecto con marca (excepciones en header/footer explícitas) */
 a[href]:where(
-    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2)
+    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2):not(.entry-chile__cta)
   ) {
   color: var(--brand);
 }
 
 a[href]:where(
-    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2)
+    :not(.header-logo-link):not(.footer-logo-link):not(.footer-link):not(.cookie-btn):not(.paso-card-v2):not(.entry-chile__cta)
   ):hover {
   color: #7ccbff;
 }
@@ -7673,5 +7673,330 @@ a.paso-card-v2:focus-visible .pcv2-footer-chevron {
     .tsim-selects-row {
       grid-template-columns: 1fr;
     }
+  }
+}
+
+@layer components {
+  .entry-chile {
+    border: 1px solid var(--color-border-default);
+    border-radius: 18px;
+    background: var(--color-surface);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Ancla #ingreso-chile: el bloque queda bajo el header fijo al abrir la URL con hash */
+    scroll-margin-top: calc(var(--header-height, 56px) + 0.75rem);
+  }
+
+  .entry-chile__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .entry-chile__eyebrow {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  .entry-chile__title {
+    margin: 0;
+    font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+    line-height: 1.25;
+    color: var(--color-text-primary);
+  }
+
+  .entry-chile__intro {
+    margin: 0;
+    max-width: 72ch;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  .entry-chile__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .entry-chile__main-card,
+  .entry-chile__steps,
+  .entry-chile__notes,
+  .entry-chile__help {
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--color-surface) 88%, var(--color-surface-raised) 12%);
+    padding: 0.85rem;
+  }
+
+  .entry-chile__main-card {
+    border-color: color-mix(in srgb, var(--brand) 30%, var(--color-border-default) 70%);
+    background: color-mix(in srgb, var(--brand) 7%, var(--color-surface) 93%);
+  }
+
+  .entry-chile__main-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .entry-chile__main-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .entry-chile__main-heading-text {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .entry-chile__sag-logo {
+    width: 5rem;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-border-default) 70%, transparent);
+    background: var(--color-surface);
+  }
+
+  .entry-chile__chip {
+    margin: 0 0 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.52rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 16%, transparent);
+  }
+
+  .entry-chile__main-title,
+  .entry-chile__block-title {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+  }
+
+  .entry-chile__main-desc,
+  .entry-chile__help-text {
+    margin: 0.35rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .entry-chile__cta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .entry-chile__cta-lead {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
+  .entry-chile__cta-lead-icon {
+    flex-shrink: 0;
+    margin-top: 0.08rem;
+    color: var(--brand);
+    display: inline-flex;
+  }
+
+  .entry-chile__cta-lead-icon svg {
+    display: block;
+  }
+
+  .entry-chile__cta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.45rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.55rem 0.85rem;
+    border-radius: 12px;
+    background: var(--brand);
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 0.86rem;
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  .entry-chile__cta-icon,
+  .entry-chile__cta-external {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: inherit;
+  }
+
+  .entry-chile__cta-icon svg,
+  .entry-chile__cta-external svg {
+    display: block;
+  }
+
+  .entry-chile__cta-label {
+    text-align: center;
+    min-width: 0;
+  }
+
+  .entry-chile__cta:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    color: #020617;
+  }
+
+  .entry-chile__cta:visited {
+    color: #0f172a;
+  }
+
+  .entry-chile__cta:focus-visible,
+  .entry-chile__help-link:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .entry-chile__facts,
+  .entry-chile__notes-list,
+  .entry-chile__step-list {
+    margin: 0.75rem 0 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.45rem;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .entry-chile__step-list {
+    counter-reset: entry-step;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .entry-chile__step-list li {
+    counter-increment: entry-step;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .entry-chile__step-list li::before {
+    content: counter(entry-step);
+    position: absolute;
+    left: 0;
+    top: 0.02rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.72rem;
+    color: var(--brand);
+    border: 1px solid color-mix(in srgb, var(--brand) 40%, transparent);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+  }
+
+  .entry-chile__notes {
+    border-color: color-mix(in srgb, #f59e0b 40%, var(--color-border-default) 60%);
+    background: color-mix(in srgb, #f59e0b 8%, var(--color-surface) 92%);
+  }
+
+  .entry-chile__help-link {
+    display: inline-flex;
+    margin-top: 0.6rem;
+    color: var(--brand);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-underline-offset: 2px;
+  }
+
+  .entry-chile__help-link:hover {
+    text-decoration: underline;
+  }
+
+  .entry-chile__future-note {
+    margin: 0.65rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .entry-chile__side {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 900px) {
+    .entry-chile {
+      padding: 1.2rem;
+      gap: 1.1rem;
+    }
+
+    .entry-chile__content {
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .entry-chile__main-top {
+      gap: 0.85rem;
+    }
+
+    .entry-chile__cta-block {
+      width: fit-content;
+      max-width: 100%;
+      align-self: flex-start;
+    }
+
+    .entry-chile__cta {
+      width: fit-content;
+      min-width: min(100%, 17.5rem);
+      padding: 0.55rem 1rem;
+    }
+  }
+
+  :root[data-theme="light"] .entry-chile {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :root[data-theme="light"] .entry-chile__main-card,
+  :root[data-theme="light"] .entry-chile__steps,
+  :root[data-theme="light"] .entry-chile__notes,
+  :root[data-theme="light"] .entry-chile__help {
+    background: #f8fafc;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :root[data-theme="light"] .entry-chile__main-card {
+    background: #f0f9ff;
+    border-color: rgba(14, 165, 233, 0.35);
+  }
+
+  :root[data-theme="light"] .entry-chile__notes {
+    background: #fffbeb;
+    border-color: rgba(245, 158, 11, 0.35);
   }
 }

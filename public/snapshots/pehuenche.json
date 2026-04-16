@@ -13,6 +13,7 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
+<<<<<<< Updated upstream
     "temperatureC": 9,
     "description": "Despejado",
     "wind": "Sudoeste 12 km/h",
@@ -22,12 +23,27 @@
     "updatedAt": "2026-04-16T05:00:00-03:00",
     "feelsLikeC": 7.3,
     "humidity": 62
+=======
+    "temperatureC": 7,
+    "description": "Despejado",
+    "wind": "Sudoeste 8 km/h",
+    "visibilityKm": 20,
+    "sunrise": "08:04",
+    "sunset": "19:15",
+    "updatedAt": "2026-04-16T07:00:00-03:00",
+    "feelsLikeC": 5.6,
+    "humidity": 74
+>>>>>>> Stashed changes
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-16T09:03:01.138Z",
+=======
+  "scrapedAt": "2026-04-16T11:30:20.975Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -64,5 +80,9 @@
     "statusUpdatedAt": "15/4/2026 09:01:44"
   },
   "operationalStale": false,
+<<<<<<< Updated upstream
   "lastKnownGoodAt": "2026-04-16T09:03:01.138Z"
+=======
+  "lastKnownGoodAt": "2026-04-16T11:30:20.975Z"
+>>>>>>> Stashed changes
 }

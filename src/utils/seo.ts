@@ -3,7 +3,7 @@ function resolveSiteUrl(): string {
   if (env) return env.replace(/\/$/, "");
   const site = import.meta.env.SITE?.trim();
   if (site) return site.replace(/\/$/, "");
-  return "https://pasochilehoy.com";
+  return "https://www.pasochilehoy.com";
 }
 
 export const SITE_URL = resolveSiteUrl();

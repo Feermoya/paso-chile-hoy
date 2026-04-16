@@ -606,7 +606,7 @@ const { pasosSchedules } = Astro.props;
     const text  = `${title}\n${sub}\nCalculado en pasochilehoy.com`;
 
     if (navigator.share) {
-      navigator.share({ title: "¿Llego al paso a tiempo?", text, url: "https://pasochilehoy.com" }).catch(() => {});
+      navigator.share({ title: "¿Llego al paso a tiempo?", text, url: "https://www.pasochilehoy.com" }).catch(() => {});
       return;
     }
     if (navigator.clipboard) {

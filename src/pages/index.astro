@@ -14,6 +14,7 @@ import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import HomeRouteSegmentsCard from "@/components/HomeRouteSegmentsCard.astro";
 import TwitterTimeline from "@/components/TwitterTimeline.astro";
 import LasLenasHomeBlock from "@/components/LasLenasHomeBlock.astro";
+import ChileEntryRequirements from "@/components/ChileEntryRequirements.astro";
 import { getLasLenasSnapshot } from "@/lib/server/las-lenas/getLasLenasSnapshot";
 import { buildHomeRouteCardView } from "@/lib/mappers/homeRouteCardView";
 import { HOME_ROUTE_CARD_ORDER, getRouteProfile } from "@/lib/server/route-segments/profiles";
@@ -245,6 +246,8 @@ const homeSchema = {
     </div>
 
     <TravelSimulator pasosSchedules={pasosSchedulesJSON} />
+
+    <ChileEntryRequirements />
 
     {
       homeRouteCards.length > 0 ? (

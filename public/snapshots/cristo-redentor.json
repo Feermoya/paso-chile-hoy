@@ -27,7 +27,11 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-04-16T09:02:57.380Z",
+=======
+  "scrapedAt": "2026-04-16T11:30:20.988Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -64,5 +68,9 @@
     "statusUpdatedAt": "14/4/2026 12:01:58"
   },
   "operationalStale": false,
+<<<<<<< Updated upstream
   "lastKnownGoodAt": "2026-04-16T09:02:57.380Z"
+=======
+  "lastKnownGoodAt": "2026-04-16T11:30:20.988Z"
+>>>>>>> Stashed changes
 }

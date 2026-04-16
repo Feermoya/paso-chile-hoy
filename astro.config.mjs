@@ -17,7 +17,7 @@ export default defineConfig({
     webAnalytics: { enabled: false },
     speedInsights: { enabled: false },
   }),
-  site: "https://pasochilehoy.com",
+  site: "https://www.pasochilehoy.com",
   compressHTML: true,
   server: {
     host: false,
