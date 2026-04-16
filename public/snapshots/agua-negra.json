@@ -22,55 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13,
+    "temperatureC": 11,
     "description": "Despejado",
     "wind": "NE a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "07:57",
-    "sunset": "19:18",
-    "updatedAt": "2026-04-15 05:50 AM",
-    "feelsLikeC": 14,
-    "humidity": 57
+    "sunset": "19:16",
+    "updatedAt": "2026-04-16 04:51 AM",
+    "feelsLikeC": 11,
+    "humidity": 68
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-04-15T09:01:21.843Z",
+  "scrapedAt": "2026-04-16T09:03:04.113Z",
   "forecast": [
     {
       "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 15,
-      "wind": "ENE 13 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 17,
-      "wind": "ENE 17 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
       "temperatureC": 16,
-      "wind": "ENE 14 km/h",
+      "wind": "E 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 21,
+      "wind": "ENE 8 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 21,
+      "wind": "ENE 15 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
-      "temperatureC": 14,
-      "wind": "ENE 7 km/h",
+      "temperatureC": 17,
+      "wind": "N 3 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "14 de abril de 2026 • 17:00 hs"
+    "statusUpdatedAt": "15 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-15T09:01:21.843Z"
+  "lastKnownGoodAt": "2026-04-16T09:03:04.113Z"
 }
