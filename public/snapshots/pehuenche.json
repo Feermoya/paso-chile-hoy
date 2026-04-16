@@ -13,45 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-<<<<<<< Updated upstream
-    "temperatureC": 9,
-    "description": "Despejado",
-    "wind": "Sudoeste 12 km/h",
+    "temperatureC": 20.7,
+    "description": "Parcialmente nublado",
+    "wind": "Calma",
     "visibilityKm": 20,
     "sunrise": "08:04",
     "sunset": "19:15",
-    "updatedAt": "2026-04-16T05:00:00-03:00",
-    "feelsLikeC": 7.3,
-    "humidity": 62
-=======
-    "temperatureC": 7,
-    "description": "Despejado",
-    "wind": "Sudoeste 8 km/h",
-    "visibilityKm": 20,
-    "sunrise": "08:04",
-    "sunset": "19:15",
-    "updatedAt": "2026-04-16T07:00:00-03:00",
-    "feelsLikeC": 5.6,
-    "humidity": 74
->>>>>>> Stashed changes
+    "updatedAt": "2026-04-16T17:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 39
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-16T09:03:01.138Z",
-=======
-  "scrapedAt": "2026-04-16T11:30:20.975Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-16T20:57:40.370Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 9,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Lluvias y nevadas",
@@ -72,6 +49,13 @@
       "temperatureC": 1,
       "wind": "O a 23-31 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 12,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -80,9 +64,5 @@
     "statusUpdatedAt": "15/4/2026 09:01:44"
   },
   "operationalStale": false,
-<<<<<<< Updated upstream
-  "lastKnownGoodAt": "2026-04-16T09:03:01.138Z"
-=======
-  "lastKnownGoodAt": "2026-04-16T11:30:20.975Z"
->>>>>>> Stashed changes
+  "lastKnownGoodAt": "2026-04-16T20:57:40.370Z"
 }

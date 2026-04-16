@@ -1,11 +1,11 @@
 {
   "slug": "agua-negra",
   "name": "Paso Agua Negra",
-  "schedule": null,
-  "scheduleRaw": "Todos los días de la semana, incluidos feriados.",
+  "schedule": "09:00-17:00",
+  "scheduleRaw": "09:00 a 17:00 hs",
   "rawStatus": "CERRADO",
   "statusDetail": "Cerrado",
-  "scheduleText": null,
+  "scheduleText": "09:00 a 17:00 hs",
   "scheduleDays": "Todos los días de la semana, incluidos feriados.",
   "motivo": null,
   "motivoInfo": null,
@@ -22,99 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-<<<<<<< Updated upstream
-    "temperatureC": 11,
-    "description": "Despejado",
-    "wind": "NE a 4 km/h",
-    "visibilityKm": 10,
-    "sunrise": "07:57",
-    "sunset": "19:16",
-    "updatedAt": "2026-04-16 04:51 AM",
-    "feelsLikeC": 11,
-    "humidity": 68
-=======
-    "temperatureC": 9,
+    "temperatureC": 22,
     "description": "Soleado",
-    "wind": "NNW a 4 km/h",
+    "wind": "ENE a 11 km/h",
     "visibilityKm": 10,
     "sunrise": "07:57",
     "sunset": "19:16",
-    "updatedAt": "2026-04-16 08:10 AM",
-    "feelsLikeC": 9,
-    "humidity": 67
->>>>>>> Stashed changes
+    "updatedAt": "2026-04-16 04:58 PM",
+    "feelsLikeC": 22,
+    "humidity": 20
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-04-16T09:03:04.113Z",
-=======
-  "scrapedAt": "2026-04-16T11:30:20.240Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-04-16T20:57:40.366Z",
   "forecast": [
     {
-      "period": "Hoy por la mañana",
-      "description": "Soleado",
-      "temperatureC": 12,
-      "wind": "NNW 1 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-<<<<<<< Updated upstream
-      "temperatureC": 16,
-      "wind": "E 2 km/h",
-=======
-      "temperatureC": 17,
-      "wind": "SE 4 km/h",
->>>>>>> Stashed changes
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 21,
-      "wind": "ENE 8 km/h",
-<<<<<<< Updated upstream
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 21,
-      "wind": "ENE 15 km/h",
+      "wind": "ENE 14 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 17,
-      "wind": "N 3 km/h",
-=======
+      "wind": "NNE 4 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Hoy por la tarde",
+      "period": "Mañana por la mañana",
+      "description": "Despejado",
+      "temperatureC": 11,
+      "wind": "W 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
       "description": "Soleado",
-      "temperatureC": 21,
-      "wind": "ENE 15 km/h",
->>>>>>> Stashed changes
+      "temperatureC": 19,
+      "wind": "E 6 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-<<<<<<< Updated upstream
-    "statusUpdatedAt": "15 de abril de 2026 • 17:00 hs"
+    "statusUpdatedAt": "16 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-16T09:03:04.113Z"
-=======
-    "statusUpdatedAt": "16 de abril de 2026 • 08:22 hs"
-  },
-  "lastKnownGoodAt": "2026-04-16T11:30:20.240Z"
->>>>>>> Stashed changes
+  "lastKnownGoodAt": "2026-04-16T20:57:40.366Z"
 }

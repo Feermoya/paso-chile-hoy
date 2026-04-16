@@ -1,0 +1,18 @@
+---
+export interface Props {
+  targetModalId: string;
+  disabled?: boolean;
+}
+
+const { targetModalId, disabled = false } = Astro.props;
+---
+
+<button
+  type="button"
+  class="forecast-share-trigger inline-flex min-h-11 items-center gap-2 rounded-lg border border-[var(--color-border-subtle)] px-3 py-2 text-sm font-medium text-[var(--color-text-primary)] transition hover:bg-[var(--color-surface-muted)] disabled:cursor-not-allowed disabled:opacity-60"
+  data-forecast-share-open={targetModalId}
+  disabled={disabled}
+>
+  <span aria-hidden="true">↗</span>
+  Compartir pronóstico
+</button>

@@ -2,11 +2,16 @@
 import DrivingConditions from "@/components/DrivingConditions.astro";
 import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
+import ForecastShareButton from "@/components/share/ForecastShareButton.astro";
+import ForecastShareModal from "@/components/share/ForecastShareModal.astro";
+import { mapForecastToShareData } from "@/lib/mappers/forecastShareMapper";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
 
 export interface Props {
   slug: string;
+  passName: string;
+  sourceUrl?: string;
   now?: WeatherNowView;
   forecast: ForecastItemView[];
   scrapedAt?: string;
@@ -15,7 +20,18 @@ export interface Props {
   class?: string;
 }
 
-const { slug, now, forecast, scrapedAt, showNow, showForecast, class: className } = Astro.props;
+const { slug, passName, sourceUrl, now, forecast, scrapedAt, showNow, showForecast, class: className } =
+  Astro.props;
+const shareData = mapForecastToShareData({
+  slug,
+  passName,
+  forecast,
+  sourceUrl,
+  nowIso: scrapedAt,
+  maxDays: 5,
+});
+const shareModalId = `forecast-share-modal-${slug}`;
+const shareCardId = `forecast-share-card-${slug}`;
 ---
 
 <section
@@ -47,6 +63,18 @@ const { slug, now, forecast, scrapedAt, showNow, showForecast, class: className 
   }
 
   {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
+  {
+    showForecast && forecast.length > 0 && (
+      <div class="anim-section anim-delay-2 mt-2">
+        <ForecastShareButton targetModalId={shareModalId} />
+      </div>
+    )
+  }
+  {
+    showForecast && forecast.length > 0 && (
+      <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
+    )
+  }
 
   {
     showNow && now && (

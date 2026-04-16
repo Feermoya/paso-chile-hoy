@@ -1,0 +1,304 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ForecastShareData } from "@/types/forecast-share";
+
+export interface Props {
+  data: ForecastShareData;
+  cardId: string;
+}
+
+const { data, cardId } = Astro.props;
+
+const days = (data.days ?? []).slice(0, 4);
+const descriptions = days.map((d) => (d.description ?? "").toLowerCase()).filter(Boolean);
+
+function buildTitle(descList: string[]): string {
+  const joined = descList.join(" · ");
+  if (joined.includes("lluv") && joined.includes("nev")) return "Lluvias y nevadas";
+  if (joined.includes("nev")) return "Nevadas en el paso";
+  if (joined.includes("lluv")) return "Lluvias en el paso";
+  if (joined.includes("nublado") || joined.includes("nub")) return "Cielo mayormente nublado";
+  return "Condiciones variables en el paso";
+}
+
+function buildVerdict(descList: string[]): string {
+  const joined = descList.join(" · ");
+  if (joined.includes("nev")) return "POSIBLES COMPLICACIONES POR NIEVE";
+  if (joined.includes("lluv")) return "CONDICIONES INESTABLES";
+  if (joined.includes("nublado") || joined.includes("nub")) return "VARIABLE";
+  return "BUEN TIEMPO";
+}
+
+function buildMainIcon(descList: string[]): string {
+  const joined = descList.join(" · ");
+  if (joined.includes("nev")) return "lucide:cloud-snow";
+  if (joined.includes("lluv")) return "lucide:cloud-rain";
+  if (joined.includes("nublado") || joined.includes("nub")) return "lucide:cloud";
+  return "lucide:wind";
+}
+
+function summarizeContext(descList: string[], title: string): string {
+  if (descList.length === 0) return "No hay suficiente detalle de pronóstico para resumir.";
+  const hasSnow = descList.some((d) => d.includes("nev"));
+  const hasRain = descList.some((d) => d.includes("lluv"));
+  const hasLowVisibility = days.some((d) => (d.visibility ?? "").toLowerCase().includes("baj"));
+  if (hasSnow && hasLowVisibility) return "Durante varios tramos se esperan nevadas con visibilidad reducida.";
+  if (hasSnow) return "Se observan períodos con nevadas; conviene revisar cada franja antes de viajar.";
+  if (hasRain) return "Se esperan períodos con lluvia y condiciones cambiantes durante el día.";
+  return `${title}. Revisá la evolución por franja horaria para planificar el cruce.`;
+}
+
+function normalizePeriod(period?: string): string {
+  const p = period?.trim();
+  if (!p) return "Franja";
+  return p.charAt(0).toUpperCase() + p.slice(1);
+}
+
+function compactText(value?: string | null): string {
+  const v = value?.trim();
+  if (!v) return "—";
+  return v.length > 42 ? `${v.slice(0, 39)}...` : v;
+}
+
+function formatTemperature(value: string | number | null | undefined): string | null {
+  if (value == null || value === "") return null;
+  return `${value}°C`;
+}
+
+function getConditionChip(
+  description?: string,
+  dark: boolean,
+): { label: string; classes: string } {
+  const d = (description ?? "").toLowerCase();
+  if (d.includes("nev"))
+    return dark
+      ? { label: "NIEVE", classes: "bg-sky-500/20 text-sky-300 border border-sky-500/30" }
+      : { label: "NIEVE", classes: "bg-sky-100 text-sky-700 border border-sky-200" };
+  if (d.includes("lluv"))
+    return dark
+      ? { label: "LLUVIA", classes: "bg-blue-500/20 text-blue-300 border border-blue-500/30" }
+      : { label: "LLUVIA", classes: "bg-blue-100 text-blue-700 border border-blue-200" };
+  if (d.includes("nublado") || d.includes("nub"))
+    return dark
+      ? { label: "NUBLADO", classes: "bg-slate-500/20 text-slate-300 border border-slate-500/30" }
+      : { label: "NUBLADO", classes: "bg-slate-200 text-slate-700 border border-slate-300" };
+  return dark
+    ? { label: "DESPEJADO", classes: "bg-green-500/20 text-green-300 border border-green-500/30" }
+    : { label: "DESPEJADO", classes: "bg-green-100 text-green-700 border border-green-200" };
+}
+
+const verdict = buildVerdict(descriptions);
+const title = buildTitle(descriptions);
+const mainIcon = buildMainIcon(descriptions);
+const subMessage = summarizeContext(descriptions, title);
+
+const isDark =
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE" || verdict === "CONDICIONES INESTABLES";
+
+const cardBg =
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+    ? "#0f172a"
+    : verdict === "CONDICIONES INESTABLES"
+      ? "#1c1917"
+      : verdict === "VARIABLE"
+        ? "#f8fafc"
+        : "#f0fdf4";
+
+const verdictShort =
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+    ? "COMPLICADO POR NIEVE"
+    : verdict === "CONDICIONES INESTABLES"
+      ? "CONDICIONES INESTABLES"
+      : verdict === "VARIABLE"
+        ? "TIEMPO VARIABLE"
+        : "BUEN TIEMPO";
+
+const verdictColor =
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+    ? isDark
+      ? "text-red-400"
+      : "text-red-600"
+    : verdict === "CONDICIONES INESTABLES"
+      ? isDark
+        ? "text-amber-400"
+        : "text-amber-500"
+      : verdict === "VARIABLE"
+        ? "text-slate-700"
+        : "text-green-600";
+
+const verdictAccent =
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+    ? "bg-red-600"
+    : verdict === "CONDICIONES INESTABLES"
+      ? "bg-amber-500"
+      : "bg-green-600";
+
+const verdictSizeClass = verdictShort.length > 24 ? "text-6xl" : "text-7xl";
+
+const iconTone =
+  mainIcon === "lucide:cloud-snow"
+    ? "text-sky-400"
+    : mainIcon === "lucide:cloud-rain"
+      ? "text-blue-400"
+      : mainIcon === "lucide:cloud"
+        ? "text-slate-400"
+        : "text-slate-400";
+
+const numericTemps = days
+  .map((d) => (typeof d.temperatureC === "number" ? d.temperatureC : null))
+  .filter((v): v is number => v != null && Number.isFinite(v));
+const tempLabel =
+  numericTemps.length >= 2
+    ? `${Math.min(...numericTemps)}°C a ${Math.max(...numericTemps)}°C`
+    : formatTemperature(days.find((d) => d.temperatureC != null)?.temperatureC ?? null) ?? "—";
+const windLabel = compactText(days.find((d) => d.wind)?.wind ?? null);
+const visibilityLabel = compactText(days.find((d) => d.visibility)?.visibility ?? null);
+
+const headerBrand = isDark ? "text-slate-400" : "text-slate-500";
+const headerPass = isDark ? "text-slate-50" : "text-slate-900";
+const headerDate = isDark ? "text-slate-400" : "text-slate-500";
+const titleColor = isDark ? "text-slate-50" : "text-slate-900";
+const subColor = isDark ? "text-slate-300" : "text-slate-700";
+const timelineBorder = isDark ? "border-white/10" : "border-slate-200";
+const periodCol = isDark ? "text-slate-200" : "text-slate-800";
+const descCol = isDark ? "text-slate-300" : "text-slate-700";
+const refTitle = isDark ? "text-slate-400" : "text-slate-500";
+const pillClass = isDark
+  ? "rounded-full border border-white/20 bg-white/10 px-6 py-3 text-2xl text-slate-200"
+  : "rounded-full border border-slate-200 bg-slate-100 px-6 py-3 text-2xl text-slate-700";
+const disclaimer = isDark ? "text-slate-400" : "text-slate-500";
+const emptyMsg = isDark ? "text-slate-400" : "text-slate-500";
+const footerBrand = isDark ? "text-slate-200" : "text-slate-700";
+const footerSub = isDark ? "text-slate-500" : "text-slate-500";
+const handleClass = isDark
+  ? "rounded-full border border-white/20 bg-white/10 px-6 py-3 text-xl font-semibold text-slate-300"
+  : "rounded-full border border-slate-200 bg-slate-100 px-6 py-3 text-xl font-semibold text-slate-600";
+---
+
+<article
+  id={cardId}
+  class:list={["forecast-share-card", isDark ? "text-slate-50" : "text-slate-900"]}
+  style={`background-color: ${cardBg}`}
+  data-forecast-share-card
+>
+  <header class="mb-0 flex items-start justify-between gap-6">
+    <div class="space-y-1">
+      <p class:list={["text-2xl font-semibold tracking-wide", headerBrand]}>Paso Chile Hoy</p>
+      <p class:list={["text-4xl font-semibold leading-tight", headerPass]}>{data.passName}</p>
+    </div>
+    <div class:list={["text-right text-2xl", headerDate]}>
+      <p>{data.generatedLabel}</p>
+    </div>
+  </header>
+
+  <div class:list={["mb-16 h-px w-full", isDark ? "bg-white/10" : "bg-slate-200"]} />
+
+  <section class="space-y-14">
+    <div class="space-y-8">
+      <div class="flex min-w-0 items-start gap-5">
+        <span class:list={["mt-1 block h-20 w-3 shrink-0 rounded-full", verdictAccent]} aria-hidden="true"
+        ></span>
+        <div class="min-w-0 flex-1 overflow-hidden">
+          <p
+            class:list={["font-black leading-[0.98] tracking-tight whitespace-nowrap", verdictSizeClass, verdictColor]}
+            style="letter-spacing: -0.03em;"
+          >
+            {verdictShort}
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-center py-5">
+        {
+          isDark ? (
+            <div class="flex flex-col items-center gap-3">
+              <div class="flex items-center gap-5 rounded-2xl border border-red-500/40 bg-red-600/20 px-10 py-8">
+                <Icon name={mainIcon} width="120" height="120" class:list={[iconTone]} aria-hidden="true" />
+                <div class="text-left">
+                  <p class="text-6xl font-black leading-none text-red-400">!</p>
+                  <p class="mt-1 text-2xl font-bold uppercase tracking-widest text-red-300">Alerta</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div class="rounded-full bg-slate-200/80 p-10">
+              <Icon name={mainIcon} width="240" height="240" class:list={[iconTone]} aria-hidden="true" />
+            </div>
+          )
+        }
+      </div>
+
+      <p class:list={["text-center text-5xl font-semibold leading-tight", titleColor]}>{title}</p>
+      <p class:list={["mx-auto max-w-[860px] text-center text-3xl leading-snug", subColor]}>{subMessage}</p>
+    </div>
+
+    <div class="space-y-4">
+      {
+        days.map((day) => {
+          const chip = getConditionChip(day.description, isDark);
+          return (
+            <div class:list={["grid grid-cols-[260px_1fr] items-start gap-5 border-b pb-3 last:border-b-0", timelineBorder]}>
+              <p class:list={["text-3xl font-semibold", periodCol]}>{normalizePeriod(day.period)}</p>
+              <div class="flex flex-col gap-2">
+                <span
+                  class:list={["self-start rounded-full px-4 py-1 text-xl font-bold uppercase tracking-wider", chip.classes]}
+                >
+                  {chip.label}
+                </span>
+                <p class:list={["min-w-0 text-2xl", descCol]}>
+                  {compactText(day.description?.trim() || "Sin detalle disponible")}
+                </p>
+              </div>
+            </div>
+          );
+        })
+      }
+      {days.length === 0 && <p class:list={["text-2xl", emptyMsg]}>Sin pronóstico disponible para compartir.</p>}
+    </div>
+
+    <div class="space-y-3">
+      <p class:list={["text-2xl font-semibold uppercase tracking-widest", refTitle]}>Datos de referencia</p>
+      <div class="flex flex-wrap gap-3">
+        <div class:list={[pillClass]}>🌡 {tempLabel}</div>
+        <div class:list={[pillClass]}>💨 {windLabel}</div>
+        <div class:list={[pillClass]}>👁 {visibilityLabel}</div>
+      </div>
+    </div>
+
+    <p class:list={["max-w-[860px] text-[25px] leading-relaxed", disclaimer]}>
+      Las condiciones pueden cambiar durante el día. Revisá el estado actualizado antes de viajar.
+    </p>
+  </section>
+
+  <footer class="mt-auto flex items-center justify-between pt-12">
+    <div>
+      <p class:list={["text-2xl font-bold", footerBrand]}>Paso Chile Hoy</p>
+      <p class:list={["text-xl", footerSub]}>pasochilehoy.com</p>
+    </div>
+    <div class:list={[handleClass]}>@pasochilehoy</div>
+  </footer>
+</article>
+
+<style>
+  .forecast-share-card {
+    width: 1080px;
+    height: 1920px;
+    padding: 140px 110px 160px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+  }
+
+  .forecast-share-card p {
+    margin: 0;
+  }
+</style>

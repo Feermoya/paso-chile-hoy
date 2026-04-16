@@ -1,0 +1,187 @@
+---
+import ForecastShareCard from "@/components/share/ForecastShareCard.astro";
+import type { ForecastShareData } from "@/types/forecast-share";
+
+export interface Props {
+  modalId: string;
+  cardId: string;
+  data: ForecastShareData;
+}
+
+const { modalId, cardId, data } = Astro.props;
+const dataJson = JSON.stringify(data);
+---
+
+<div
+  id={modalId}
+  class="forecast-share-modal fixed inset-0 z-50 hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${modalId}-title`}
+  data-forecast-share-modal
+  data-forecast-share-card-id={cardId}
+>
+  <div class="absolute inset-0 bg-slate-950/70" data-forecast-share-backdrop></div>
+  <div class="relative z-10 w-full max-w-3xl rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-primary)] p-4 md:p-5">
+    <div class="mb-3 flex items-center justify-between gap-3">
+      <h3 id={`${modalId}-title`} class="text-base font-semibold text-[var(--color-text-primary)]">
+        Vista previa para compartir
+      </h3>
+      <button
+        type="button"
+        class="inline-flex min-h-10 items-center rounded-lg border border-[var(--color-border-subtle)] px-3 text-sm"
+        data-forecast-share-close
+      >
+        Cerrar
+      </button>
+    </div>
+
+    <div class="max-h-[65vh] overflow-auto rounded-xl bg-slate-950 p-3">
+      <ForecastShareCard data={data} cardId={cardId} />
+    </div>
+
+    <p class="mt-3 text-sm text-[var(--color-text-secondary)]" data-forecast-share-status>
+      Estado: idle
+    </p>
+
+    <div class="mt-3 flex flex-wrap gap-2">
+      <button
+        type="button"
+        class="inline-flex min-h-11 items-center rounded-lg bg-[var(--color-accent)] px-3 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-60"
+        data-forecast-share-download
+      >
+        Descargar PNG
+      </button>
+      <button
+        type="button"
+        class="inline-flex min-h-11 items-center rounded-lg border border-[var(--color-border-subtle)] px-3 text-sm font-medium text-[var(--color-text-primary)] disabled:cursor-not-allowed disabled:opacity-60"
+        data-forecast-share-native
+      >
+        Compartir
+      </button>
+    </div>
+  </div>
+  <script type="application/json" data-forecast-share-data set:html={dataJson}></script>
+</div>
+
+<script>
+  import {
+    blobToPngFile,
+    canShareForecastFile,
+    downloadBlob,
+    renderForecastShareBlob,
+    shareForecastFile,
+  } from "@/lib/client/forecast-share";
+
+  const initialized = new WeakSet();
+
+  function initModal(modal) {
+    if (!(modal instanceof HTMLElement) || initialized.has(modal)) return;
+    initialized.add(modal);
+
+    const modalId = modal.id;
+    const cardId = modal.dataset.forecastShareCardId;
+    const cardNode = cardId ? document.getElementById(cardId) : null;
+    const backdrop = modal.querySelector("[data-forecast-share-backdrop]");
+    const closeBtn = modal.querySelector("[data-forecast-share-close]");
+    const downloadBtn = modal.querySelector("[data-forecast-share-download]");
+    const nativeBtn = modal.querySelector("[data-forecast-share-native]");
+    const statusNode = modal.querySelector("[data-forecast-share-status]");
+    const openButtons = document.querySelectorAll(`[data-forecast-share-open="${modalId}"]`);
+    const dataNode = modal.querySelector("[data-forecast-share-data]");
+    const shareData = dataNode?.textContent ? JSON.parse(dataNode.textContent) : null;
+
+    let lastFocus = null;
+    let lock = false;
+
+    function setStatus(next, message) {
+      const label = message ?? `Estado: ${next}`;
+      if (statusNode instanceof HTMLElement) statusNode.textContent = label;
+      const disabled = next === "generating";
+      if (downloadBtn instanceof HTMLButtonElement) downloadBtn.disabled = disabled;
+      if (nativeBtn instanceof HTMLButtonElement) nativeBtn.disabled = disabled;
+    }
+
+    function openModal() {
+      if (lock) return;
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      setStatus("idle");
+      if (downloadBtn instanceof HTMLButtonElement) {
+        window.setTimeout(() => downloadBtn.focus(), 20);
+      }
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+
+    async function ensurePng() {
+      if (!(cardNode instanceof HTMLElement) || !shareData) {
+        throw new Error("FORECAST_SHARE_CARD_OR_DATA_NOT_FOUND");
+      }
+      const blob = await renderForecastShareBlob(cardNode);
+      const file = blobToPngFile(blob, shareData);
+      return { blob, file };
+    }
+
+    async function withGeneration(action) {
+      if (lock) return;
+      lock = true;
+      setStatus("generating", "Generando imagen...");
+      try {
+        await action();
+        setStatus("success", "Imagen lista.");
+      } catch (error) {
+        console.error("[forecast-share]", error);
+        setStatus("error", "No se pudo generar/compartir la imagen.");
+      } finally {
+        lock = false;
+      }
+    }
+
+    async function onDownload() {
+      await withGeneration(async () => {
+        const { blob, file } = await ensurePng();
+        downloadBlob(blob, file.name);
+      });
+    }
+
+    async function onShare() {
+      await withGeneration(async () => {
+        const { blob, file } = await ensurePng();
+        if (canShareForecastFile(file)) {
+          const shared = await shareForecastFile(file, shareData);
+          if (shared) return;
+        }
+        downloadBlob(blob, file.name);
+        setStatus("success", "Tu navegador no soporta share con archivo. Se descargó el PNG.");
+      });
+    }
+
+    openButtons.forEach((btn) => btn.addEventListener("click", openModal));
+    closeBtn?.addEventListener("click", closeModal);
+    backdrop?.addEventListener("click", closeModal);
+    downloadBtn?.addEventListener("click", onDownload);
+    nativeBtn?.addEventListener("click", onShare);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+        event.preventDefault();
+        closeModal();
+      }
+    });
+  }
+
+  function initAllForecastShareModals() {
+    document.querySelectorAll("[data-forecast-share-modal]").forEach((el) => initModal(el));
+  }
+
+  initAllForecastShareModals();
+  document.addEventListener("astro:page-load", initAllForecastShareModals);
+</script>
