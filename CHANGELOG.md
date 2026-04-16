@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.12.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.11.0...v2.12.0) (2026-04-16)
+
+### Nuevas funcionalidades
+
+* Compartir clima ([fb08150](https://github.com/Feermoya/paso-chile-hoy/commit/fb0815047a3ff630192e4021e8c83f0a855480b9))
+
 ## [2.11.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.10.0...v2.11.0) (2026-04-16)
 
 ### Nuevas funcionalidades
