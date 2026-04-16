@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.11.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.10.0...v2.11.0) (2026-04-16)
+
+### Nuevas funcionalidades
+
+* SAG ([66ddc12](https://github.com/Feermoya/paso-chile-hoy/commit/66ddc12bfbd7d7e532527a2e3d54e292ef28a287))
+
 ## [2.10.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.9.1...v2.10.0) (2026-04-14)
 
 ### Nuevas funcionalidades
