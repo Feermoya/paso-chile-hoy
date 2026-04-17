@@ -23,7 +23,8 @@ public/snapshots/{slug}.json
 
 - **`PassView`**: `src/types/pass-view.ts` (incluye `operationalInfo`, `weather`, `forecast`, `meta.latestTweet`).
 - **No inventar camores**: si algo no está en el tipo o en el mapper, no asumir que existe en el JSON.
-- **Documentación extendida del pipeline**: `docs/flujo-de-datos.md`, `docs/endpoints-internos.md`.
+- **Documentación extendida del pipeline**: `docs/flujo-de-datos.md`, `docs/endpoints-internos.md`, `docs/backend.md`, `docs/scrape.md`, `docs/scheduler.md`.
+- **Cristo Redentor — motor de riesgo informativo (v1, solo backend/payload)**: `docs/cristo-redentor-risk-v1.md`; roadmap de siguientes etapas: `docs/risk-engine-roadmap.md`.
 
 ---
 

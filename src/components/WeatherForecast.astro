@@ -26,6 +26,23 @@ function getForecastDate(period: string): string {
   });
 }
 
+/** Fecha bajo el título: `period.date` si parsea; si no, heurística por nombre del período. */
+function formatForecastDateLine(period: ForecastItemView): string {
+  const raw = period.date?.trim();
+  if (raw) {
+    const t = Date.parse(raw);
+    if (!Number.isNaN(t)) {
+      return new Date(t).toLocaleDateString("es-AR", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+      });
+    }
+    return raw;
+  }
+  return getForecastDate(period.period ?? "");
+}
+
 /** Fondo suave (#RRGGBB + alpha en hex); color en `<Icon>` (astro-icon / `<use>` no hereda currentColor del wrapper). */
 function fcardIconWrapStyle(weatherColor: string): string {
   const c = weatherColor.trim();
@@ -33,6 +50,13 @@ function fcardIconWrapStyle(weatherColor: string): string {
     return `background-color: ${c}20;`;
   }
   return `background-color: color-mix(in srgb, ${c} 12%, transparent);`;
+}
+
+function fcardTempModifier(temp: number | null | undefined): string {
+  if (temp == null || Number.isNaN(temp)) return "";
+  if (temp < 0) return "fcard-temp--cold";
+  if (temp >= 20) return "fcard-temp--warm";
+  return "";
 }
 ---
 
@@ -50,14 +74,18 @@ function fcardIconWrapStyle(weatherColor: string): string {
       forecast.map((period, i) => {
         const descRaw = period.description?.trim() || "Despejado";
         const iconColor = getWeatherIconColor(descRaw);
-        const dateLine = period.date?.trim() || getForecastDate(period.period ?? "");
+        const dateLine = formatForecastDateLine(period);
         const condLevel = translateConditionLevel(period.description);
         const windTranslated = translateWindWithDir(period.wind ?? null);
         const visTranslated = translateForecastVisibilityLabel(period.visibility ?? null);
         const condSymbol = condLevel === "good" ? "✓" : condLevel === "bad" ? "!" : "~";
+        const hasDetails = Boolean(period.wind || (period.visibility && visTranslated));
+        const showWarning = condLevel === "bad";
+        const temp = period.temperatureC;
+        const tempClass = fcardTempModifier(temp);
         return (
           <details class="fcard" open={i === 0}>
-            <summary class="fcard-summary">
+            <summary class="fcard-summary fcard-header">
               <span class="fcard-icon-wrap" aria-hidden="true" style={fcardIconWrapStyle(iconColor)}>
                 <Icon
                   name={getWeatherIcon(descRaw)}
@@ -67,56 +95,62 @@ function fcardIconWrapStyle(weatherColor: string): string {
                   aria-hidden="true"
                 />
               </span>
-              <div class="fcard-meta">
+              <div class="fcard-meta fcard-header-text">
                 <span class="fcard-period">{period.period ?? "—"}</span>
                 <span class="fcard-date">{dateLine}</span>
+                <span class="fcard-desc fcard-desc--summary">{descRaw}</span>
               </div>
-              <span class="fcard-temp">
-                {period.temperatureC != null ? `${period.temperatureC}°` : "—"}
+              <span class:list={["fcard-temp", tempClass]}>
+                {temp != null && !Number.isNaN(temp) ? `${temp} °C` : "—"}
               </span>
               <span class:list={["fcard-cond-badge", `fcard-cond-badge--${condLevel}`]} aria-hidden="true">
                 {condSymbol}
               </span>
             </summary>
-            <div class="fcard-body">
-              <p class="fcard-desc">{period.description?.trim() || "—"}</p>
-              {period.wind && (
-                <div class="fcard-row">
-                  <span class="fcard-label">Viento</span>
-                  <span class:list={["fcard-value-badge", levelClass(windTranslated.level)]}>
-                    {windTranslated.label}
-                  </span>
-                </div>
-              )}
-              {period.visibility && visTranslated && (
-                <div class="fcard-row">
-                  <span class="fcard-label">Visibilidad</span>
-                  <span class:list={["fcard-value-badge", levelClass(visTranslated.level)]}>
-                    {visTranslated.label}
-                  </span>
-                </div>
-              )}
-              {condLevel === "bad" && (
-                <div class="fcard-warning">
-                  <svg
-                    width="11"
-                    height="11"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                    <line x1="12" y1="9" x2="12" y2="13" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
-                  </svg>
-                  Condiciones adversas en esta franja
-                </div>
-              )}
-            </div>
+            {(hasDetails || showWarning) && (
+              <div class="fcard-body">
+                {hasDetails && (
+                  <div class="fcard-details">
+                    {period.wind && (
+                      <div class="fcard-row">
+                        <span class="fcard-label">Viento</span>
+                        <span class:list={["fcard-value-badge", levelClass(windTranslated.level)]}>
+                          {windTranslated.label}
+                        </span>
+                      </div>
+                    )}
+                    {period.visibility && visTranslated && (
+                      <div class="fcard-row">
+                        <span class="fcard-label">Visibilidad</span>
+                        <span class:list={["fcard-value-badge", levelClass(visTranslated.level)]}>
+                          {visTranslated.label}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {showWarning && (
+                  <div class:list={["fcard-warning", !hasDetails && "fcard-warning--standalone"]}>
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Condiciones adversas en esta franja
+                  </div>
+                )}
+              </div>
+            )}
           </details>
         );
       })

@@ -110,4 +110,10 @@ export interface PassRaw {
 
   /** URL canónica de la página fuente */
   sourceUrl?: string;
+
+  /**
+   * Texto complementario (p. ej. boletín extendido Prensa Mendoza). Opcional; solo lo consume el motor de riesgo Cristo.
+   * No forma parte del pronóstico corto HTML del paso.
+   */
+  extendedForecastText?: string;
 }

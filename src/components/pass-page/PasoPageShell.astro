@@ -2,6 +2,8 @@
 import PasoFullwidthSection from "@/components/pass-page/PasoFullwidthSection.astro";
 import PasoOperationalSection from "@/components/pass-page/PasoOperationalSection.astro";
 import PasoWeatherSection from "@/components/pass-page/PasoWeatherSection.astro";
+import type { ExtendedForecastSignal } from "@/lib/external/mendozaExtendedForecast";
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { ForecastItemView, PassView, WeatherNowView } from "@/types/pass-view";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
 
@@ -18,6 +20,10 @@ export interface Props {
   showNow: boolean;
   showForecast: boolean;
   hideScheduleInDetails: boolean;
+  /** Solo Cristo Redentor — motor v1 de riesgo informativo. */
+  cristoRisk?: CristoRedentorRiskV1;
+  /** Solo Cristo — señal boletín extendido (Prensa Mendoza). */
+  extendedForecastSignal?: ExtendedForecastSignal;
   class?: string;
 }
 
@@ -34,6 +40,8 @@ const {
   showNow,
   showForecast,
   hideScheduleInDetails,
+  cristoRisk,
+  extendedForecastSignal,
   class: className,
 } = Astro.props;
 ---
@@ -58,6 +66,8 @@ const {
       lastUpdatedRelative={lastUpdatedRelative}
       officialUrl={officialUrl}
       lastKnownGoodRelative={lastKnownGoodRelative}
+      cristoRisk={cristoRisk}
+      extendedForecastSignal={extendedForecastSignal}
     />
 
     <PasoWeatherSection
@@ -69,6 +79,7 @@ const {
       scrapedAt={view.meta.scrapedAt}
       showNow={showNow}
       showForecast={showForecast}
+      cristoRisk={cristoRisk}
     />
   </div>
 

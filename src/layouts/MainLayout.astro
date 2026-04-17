@@ -3,7 +3,12 @@ import AlertTicker from "@/components/AlertTicker.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
 import Footer from "@/components/Footer.astro";
 import VersionBadge from "@/components/VersionBadge.astro";
-import { SITE_FAVICON, SITE_NAME, WEB_SITE_SCHEMA_DESCRIPTION } from "@/utils/seo";
+import {
+  SITE_FAVICON,
+  SITE_NAME,
+  WEB_SITE_SCHEMA_DESCRIPTION,
+  schemaWebsiteId,
+} from "@/utils/seo";
 import "@/styles/global.css";
 
 export interface Props {
@@ -37,7 +42,7 @@ function baseUrl(): string {
   if (env) return env.replace(/\/$/, "");
   const site = import.meta.env.SITE?.trim();
   if (site) return site.replace(/\/$/, "");
-  return "https://www.pasochilehoy.com";
+  return "https://pasochilehoy.com";
 }
 
 const siteUrl = baseUrl();
@@ -67,19 +72,32 @@ const ogImageFinal = ogImageProp ?? `${siteUrl}/og-image.png`;
 const ogImageAltResolved =
   ogImageAltProp ?? `${SITE_NAME} — Estado de pasos internacionales Argentina–Chile`;
 
-const websiteSchema: Record<string, unknown> = {
+const organizationId = `${siteUrl}#organization`;
+const defaultLdGraph: Record<string, unknown> = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE_NAME,
-  alternateName: ["Paso Chile Hoy", "pasochilehoy.com", "Paso a Chile hoy"],
-  url: `${siteUrl}/`,
-  description: WEB_SITE_SCHEMA_DESCRIPTION,
-  inLanguage: "es-AR",
-  publisher: {
-    "@type": "Person",
-    name: "Fernando Moya",
-    email: "fmoya97.fm@gmail.com",
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: SITE_NAME,
+      url: `${siteUrl}/`,
+      email: "fmoya97.fm@gmail.com",
+      founder: {
+        "@type": "Person",
+        name: "Fernando Moya",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": schemaWebsiteId(),
+      name: SITE_NAME,
+      alternateName: ["Paso Chile Hoy", "pasochilehoy.com", "Paso a Chile hoy", "paso a Chile Mendoza"],
+      url: `${siteUrl}/`,
+      description: WEB_SITE_SCHEMA_DESCRIPTION,
+      inLanguage: "es-AR",
+      publisher: { "@id": organizationId },
+    },
+  ],
 };
 
 const showHeaderRegion = Boolean(headerRegionLabel?.trim());
@@ -186,7 +204,7 @@ const icbmContent = geoPosition.includes(";")
       rel="stylesheet"
     />
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(defaultLdGraph)} />
     {structuredData && (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}

@@ -1,4 +1,5 @@
 ---
+import { PASOS } from "@/data/pasos";
 import type { PasoConfig } from "@/data/pasos";
 import { passEnglishDiscoveryLine } from "@/utils/seo";
 
@@ -9,27 +10,106 @@ export interface Props {
 
 const { paso, class: className } = Astro.props;
 const enLine = passEnglishDiscoveryLine(paso.slug);
+const otros = PASOS.filter((p) => p.active && p.slug !== paso.slug);
+
+const slugIntro: Record<string, { lead: string; context: string }> = {
+  "cristo-redentor": {
+    lead:
+      "Es el paso más transitado entre Mendoza y Chile (ruta internacional 7). Acá ves la lectura automática del estado publicado, el horario que trae la fuente oficial y el clima en altura cerca del cruce.",
+    context:
+      "Antes de salir desde Godoy Cruz, Luján o el Gran Mendoza, conviene cruzar esta pantalla con el mapa de rutas y el pronóstico: el cierre puede ser por condiciones en la montaña aunque en ciudad haga buen tiempo.",
+  },
+  pehuenche: {
+    lead:
+      "Une Malargüe con el Maule chileno (Talca). Es un corredor distinto al de Los Libertadores: el estado y el horario dependen de la temporada y del mantenimiento de la ruta en la cordillera.",
+    context:
+      "Si tu viaje sale desde el sur mendocino o evitás el tránsito del Cristo, revisá acá la síntesis y luego confirmá en la página oficial del paso y con tu seguro o empresa de transporte si aplica.",
+  },
+  "agua-negra": {
+    lead:
+      "Conecta Las Flores (San Juan) con Huanta (Chile) y supera los 4.700 m s.n.m. Es un paso exigente: el estado y las restricciones cambian con rapidez cuando hay nevadas o viento intenso.",
+    context:
+      "Quienes suben desde San Juan o usan esta ruta hacia Coquimbo deberían leer alertas y horario publicado; la altitud afecta el clima aunque en el valle la jornada sea tranquila.",
+  },
+};
+
+const block = slugIntro[paso.slug] ?? {
+  lead: `Información sobre el ${paso.name} entre ${paso.localityAR} y ${paso.localityCL}.`,
+  context: "Revisá el panel superior para el estado actualizado y la fuente oficial antes de conducir.",
+};
 ---
 
 <section
   class:list={["paso-page-seo seo-content seo-content--pass", className]}
-  aria-label={`Información sobre ${paso.name}`}
+  aria-label={`Guía breve — ${paso.name}`}
 >
-  <h2 class="paso-page-seo-title">Estado del paso {paso.shortName} hoy</h2>
-  <p class="paso-page-seo-lead">
-    El {paso.name} conecta {paso.localityAR} ({paso.provinceAR}, Argentina) con {paso.localityCL} (Chile).
-    Está a {paso.altitudeM.toLocaleString("es-AR")} metros sobre el nivel del mar en la Cordillera de los
-    Andes. Si buscás <strong>estado del paso {paso.shortName.toLowerCase()}</strong>,{" "}
-    <strong>horario</strong> o si está <strong>abierto o cerrado</strong>, el detalle arriba resume datos
-    públicos oficiales.
-  </p>
+  <h2 class="paso-page-seo-title">{paso.shortName}: qué encontrás en esta página</h2>
+  <p class="paso-page-seo-lead">{block.lead}</p>
+  <p class="paso-page-seo-note">{block.context}</p>
+
+  <h3 class="paso-page-seo-sub">Cómo interpretar el estado que ves arriba</h3>
   <p class="paso-page-seo-note">
-    La información se actualiza desde el sitio público del Ministerio de Seguridad de la Nación Argentina
-    (mismo origen que el portal de pasos internacionales). Antes de viajar, confirmá siempre en la fuente
-    oficial y con Gendarmería.
+    El cartel resume texto y horarios <strong>públicos</strong> del Ministerio de Seguridad de la Nación
+    Argentina. “Abierto”, “cerrado” o “condicionado” reflejan esa publicación en el momento del último
+    relevamiento, no una orden personalizada para tu vehículo. Si hay dudas, la referencia final es la web
+    oficial de pasos internacionales y Gendarmería.
+  </p>
+
+  <h3 class="paso-page-seo-sub">Qué conviene revisar antes de largar</h3>
+  <ul class="paso-page-seo-list">
+    <li>Horario y estado en la <a href="/">home</a> y en esta misma página (sección operativa).</li>
+    <li>Clima y visibilidad en cordillera; en Agua Negra y Pehuenche el tiempo puede diferir mucho del valle.</li>
+    <li>Documentación y requisitos de ingreso a Chile (no los gestiona este sitio).</li>
+    <li>
+      Fuente oficial del paso:{" "}
+      <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener"
+        >argentina.gob.ar/seguridad/pasosinternacionales</a
+      >.
+    </li>
+  </ul>
+
+  <h3 class="paso-page-seo-sub">Otros pasos y aviso legal</h3>
+  <p class="paso-page-seo-note">
+    {
+      otros.flatMap((o, i) => [
+        i > 0 ? " · " : null,
+        <a href={`/${o.slug}`}>{o.shortName}</a>,
+      ])
+    }
+    {" "}
+    · <a href="/">Inicio</a>
+    {" "}
+    · <a href="/legal">Aviso legal</a>
   </p>
   <p class="paso-page-seo-note" lang="en">
     <strong>English:</strong> {enLine} This page summarizes official open/closed status, schedule hints and
     mountain weather — not a substitute for border authorities.
   </p>
 </section>
+
+<style>
+  .paso-page-seo-sub {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    margin: 22px 0 8px;
+  }
+
+  .paso-page-seo-list {
+    margin: 0 0 8px;
+    padding-left: 1.2rem;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  .paso-page-seo-list a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .paso-page-seo-list a:hover {
+    text-decoration: underline;
+  }
+</style>

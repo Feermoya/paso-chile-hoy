@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { ForecastShareData } from "@/types/forecast-share";
+import type { ForecastShareCristoRisk, ForecastShareData } from "@/types/forecast-share";
 
 export interface Props {
   data: ForecastShareData;
@@ -8,6 +8,36 @@ export interface Props {
 }
 
 const { data, cardId } = Astro.props;
+
+const shareRisk = data.cristoRisk;
+
+const RISK_ACCENT_HEX: Record<ForecastShareCristoRisk["level"], string> = {
+  low: "#16a34a",
+  moderate: "#ca8a04",
+  high_complications: "#ea580c",
+  possible_preventive_closure: "#dc2626",
+};
+
+function shareRiskLevelLabel(r: ForecastShareCristoRisk): string {
+  switch (r.level) {
+    case "low":
+      return "Riesgo bajo";
+    case "moderate":
+      return "Riesgo moderado";
+    case "high_complications":
+      return "Riesgo alto";
+    case "possible_preventive_closure":
+      return "Cierre o restricción";
+    default:
+      return "Riesgo";
+  }
+}
+
+function shareRiskConfidenceLabel(c: ForecastShareCristoRisk["confidence"]): string {
+  if (c === "high") return "Confianza: alta";
+  if (c === "medium") return "Confianza: media";
+  return "Confianza: baja";
+}
 
 const days = (data.days ?? []).slice(0, 4);
 const descriptions = days.map((d) => (d.description ?? "").toLowerCase()).filter(Boolean);
@@ -229,6 +259,46 @@ const handleClass = isDark
   </header>
 
   <div class:list={["mb-8 h-px w-full", isDark ? "bg-white/10" : "bg-slate-200"]} />
+
+  {
+    shareRisk && (
+      <section
+        class:list={[
+          "mb-8 rounded-2xl border p-5",
+          isDark ? "border-white/15 bg-white/[0.06]" : "border-slate-200 bg-slate-100",
+        ]}
+        aria-label="Evaluación informativa de complicaciones en ruta"
+      >
+        <div class="flex gap-4">
+          <span
+            class="w-2 shrink-0 self-stretch rounded-full"
+            style={`background-color: ${RISK_ACCENT_HEX[shareRisk.level]}`}
+            aria-hidden="true"
+          />
+          <div class="min-w-0 flex-1 space-y-2">
+            <div class="flex flex-wrap items-center gap-3">
+              <span
+                class:list={[
+                  "inline-flex rounded-full px-3 py-1 text-xl font-bold uppercase tracking-wide",
+                  isDark ? "bg-white/10 text-slate-200" : "bg-white text-slate-800 shadow-sm",
+                ]}
+              >
+                {shareRiskLevelLabel(shareRisk)}
+              </span>
+              <span class:list={["text-lg", isDark ? "text-slate-400" : "text-slate-500"]}>
+                {shareRiskConfidenceLabel(shareRisk.confidence)}
+              </span>
+            </div>
+            <p class:list={["text-3xl font-semibold leading-tight", titleColor]}>{shareRisk.headline}</p>
+            <p class:list={["text-2xl leading-snug", subColor]}>{shareRisk.summaryShort}</p>
+            <p class:list={["text-lg", isDark ? "text-slate-500" : "text-slate-500"]}>
+              Información orientativa. Verificá siempre fuentes oficiales.
+            </p>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <section class="space-y-10">
     <div class="space-y-6">

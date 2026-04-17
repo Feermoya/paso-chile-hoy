@@ -2,6 +2,10 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
+  /** Base pública del sitio, sin barra final (ej. `https://pasochilehoy.com`). Canonical, OG y sitemap. */
+  readonly PUBLIC_SITE_URL?: string;
+  readonly PUBLIC_SITE_NAME?: string;
+
   /** `1` / `true` — vuelca PassRaw/PassView en consola (API y home). Opcional en `.env`. */
   readonly DEBUG_PASSES?: string;
 

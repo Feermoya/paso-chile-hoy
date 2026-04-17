@@ -16,10 +16,14 @@ Las páginas de paso cargan datos con `getSnapshotForApi` en el servidor (ver `d
 
 | Método | Ruta | Archivo | Propósito |
 |--------|------|---------|-----------|
-| GET | `/api/snapshot/[slug]` | `api/snapshot/[slug].ts` | Payload JSON para refresh cliente / coherencia de estado (`inferPassStatus`, `statusLabel`) |
-| * | `/api/data/[slug]` | `api/data/[slug].ts` | Datos derivados del consolidado + clima (uso interno / debug; revisar antes de exponer) |
+| GET | `/api/snapshot/[slug]` | `api/snapshot/[slug].ts` | Último snapshot + envelope (`PassSnapshotApiEnvelope`: `view`, `statusResult`, `stale`, etc.). Para **`cristo-redentor`** puede incluirse también `cristoRisk` (riesgo informativo v1; ver [`cristo-redentor-risk-v1.md`](./cristo-redentor-risk-v1.md)). |
+| POST | `/api/snapshot/[slug]` | `api/snapshot/[slug].ts` | Tras `verifyRefreshPostAuth`: refresca y persiste; si falla puede devolver 200 con último JSON y `refreshFailed`. |
+| POST | `/api/refresh/[slug]` | `api/refresh/[slug].ts` | Refresh estricto: **200 solo si** el scrape + persistencia OK; si no, **503**. |
+| GET | `/api/data/[slug]` | `api/data/[slug].ts` | `fetchConsolidado` + `fetchClima` → `mapToSnapshot` **sin** pronóstico HTML ni wttr. Uso debug; **la UI no lo usa**. |
+| GET/POST | `/api/likes` | `api/likes.ts` | Contador de likes en Redis (Upstash). |
+| GET | `/api/cron/twitter-refresh` | `api/cron/twitter-refresh.ts` | Actualización tweets; requiere `CRON_SECRET` (Bearer o query). |
 
-Si existe **`SCRAPE_SECRET`** en el entorno, los endpoints que lo requieran validan header (ver comentarios en cada handler).
+**POST** de snapshot/refresh: si existe **`SCRAPE_SECRET`**, `verifyRefreshPostAuth` exige header `x-scrape-secret` **o** petición same-origin; si el secreto **no** está definido, el POST queda **sin** esa capa (útil solo en local). Ver `src/lib/server/refreshPostAuth.ts`.
 
 ## Archivos estáticos relevantes
 
@@ -39,7 +43,9 @@ Ver `src/utils/seo.ts`: tipo `LayoutSeoBundle`, `DEFAULT_OG_IMAGE`, `SITE_FAVICO
 | `PUBLIC_SITE_URL` | URLs canónicas y OG |
 | `DEBUG_PASS` | Logs detallados en `[slug].astro` (SSR) |
 | `DEBUG_PASSES` | Logs voluminosos RAW/VIEW (`passDebugLog.ts`) |
-| `SCRAPE_SECRET` | Protección opcional de rutas de scrape |
+| `SCRAPE_SECRET` | Protección opcional de POST `/api/snapshot` y `/api/refresh` |
+| `CRON_SECRET` | `/api/cron/twitter-refresh` |
+| `KV_REST_API_URL` / `KV_REST_API_TOKEN` | Redis Upstash: snapshots + likes en Vercel |
 
 Copiar desde `.env.example`; en local usar `.env.local` (no commitear).
 
@@ -51,4 +57,4 @@ Copiar desde `.env.example`; en local usar `.env.local` (no commitear).
 
 ---
 
-Para el flujo completo lectura → UI, ver **`docs/flujo-de-datos.md`**.
+Para el flujo completo lectura → UI, ver **`docs/flujo-de-datos.md`**, **`docs/backend.md`**, **`docs/scrape.md`**.

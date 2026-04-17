@@ -1,9 +1,13 @@
 ---
 import AlertsBlock from "@/components/AlertsBlock.astro";
 import LatestTweet from "@/components/LatestTweet.astro";
+import CristoRiskCard from "@/components/pass/CristoRiskCard.astro";
+import PanoramaExtendido from "@/components/pass/PanoramaExtendido.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import StatusHero from "@/components/StatusHero.astro";
 import TwitterAlerts from "@/components/TwitterAlerts.astro";
+import type { ExtendedForecastSignal } from "@/lib/external/mendozaExtendedForecast";
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { PassView } from "@/types/pass-view";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
 
@@ -15,6 +19,10 @@ export interface Props {
   lastUpdatedRelative: string;
   officialUrl?: string;
   lastKnownGoodRelative?: string;
+  /** Solo Cristo Redentor. */
+  cristoRisk?: CristoRedentorRiskV1;
+  /** Solo Cristo — boletín extendido por día (Panorama extendido + señal al motor). */
+  extendedForecastSignal?: ExtendedForecastSignal;
   class?: string;
 }
 
@@ -26,6 +34,8 @@ const {
   lastUpdatedRelative,
   officialUrl,
   lastKnownGoodRelative,
+  cristoRisk,
+  extendedForecastSignal,
   class: className,
 } = Astro.props;
 
@@ -54,6 +64,18 @@ const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().len
     operationalStale={view.meta.operationalStale}
     lastKnownGoodRelative={lastKnownGoodRelative}
   />
+
+  {
+    slug === "cristo-redentor" && cristoRisk && (
+      <CristoRiskCard class="anim-section anim-delay-2" risk={cristoRisk} />
+    )
+  }
+
+  {
+    slug === "cristo-redentor" && extendedForecastSignal && (
+      <PanoramaExtendido class="anim-delay-3" signal={extendedForecastSignal} />
+    )
+  }
 
   <StatusGuide />
 

@@ -73,9 +73,11 @@ const dataJson = JSON.stringify(data);
     shareForecastFile,
   } from "@/lib/client/forecast-share";
 
-  const initialized = new WeakSet();
+  const initialized = new WeakSet<HTMLElement>();
 
-  function initModal(modal) {
+  type ShareStatusPhase = "idle" | "generating" | "success" | "error";
+
+  function initModal(modal: Element): void {
     if (!(modal instanceof HTMLElement) || initialized.has(modal)) return;
     initialized.add(modal);
 
@@ -91,10 +93,10 @@ const dataJson = JSON.stringify(data);
     const dataNode = modal.querySelector("[data-forecast-share-data]");
     const shareData = dataNode?.textContent ? JSON.parse(dataNode.textContent) : null;
 
-    let lastFocus = null;
+    let lastFocus: HTMLElement | null = null;
     let lock = false;
 
-    function setStatus(next, message) {
+    function setStatus(next: ShareStatusPhase, message?: string): void {
       const label = message ?? `Estado: ${next}`;
       if (statusNode instanceof HTMLElement) statusNode.textContent = label;
       const disabled = next === "generating";
@@ -130,7 +132,7 @@ const dataJson = JSON.stringify(data);
       return { blob, file };
     }
 
-    async function withGeneration(action) {
+    async function withGeneration(action: () => void | Promise<void>): Promise<void> {
       if (lock) return;
       lock = true;
       setStatus("generating", "Generando imagen...");

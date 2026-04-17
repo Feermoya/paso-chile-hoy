@@ -3,6 +3,7 @@ import {
   SITE_URL,
   passAlternateNames,
   passEnglishDiscoveryLine,
+  schemaWebsiteId,
   type PassStatus,
 } from "@/utils/seo";
 
@@ -81,5 +82,54 @@ export function buildPassTouristAttractionSchema(opts: {
     },
     openingHoursSpecification: openingHoursSpecsFromSchedule(scheduleText),
     ...(statusProp ? { additionalProperty: [statusProp] } : {}),
+  };
+}
+
+/** Grafo JSON-LD por página de paso: página + filtro de migas + lugar. */
+export function buildPassStructuredGraph(opts: {
+  paso: PasoConfig;
+  scheduleText: string;
+  displayStatus: PassStatus;
+}): Record<string, unknown> {
+  const single = buildPassTouristAttractionSchema(opts);
+  const { "@context": _ctx, ...attractionBody } = single;
+  const attractionId = `${SITE_URL}/${opts.paso.slug}#place`;
+  const pageId = `${SITE_URL}/${opts.paso.slug}#webpage`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...attractionBody,
+        "@id": attractionId,
+      },
+      {
+        "@type": "WebPage",
+        "@id": pageId,
+        url: `${SITE_URL}/${opts.paso.slug}`,
+        name: `${opts.paso.shortName} — estado del paso a Chile`,
+        inLanguage: "es-AR",
+        isPartOf: { "@id": schemaWebsiteId() },
+        about: { "@id": attractionId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/${opts.paso.slug}#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Inicio",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: opts.paso.shortName,
+            item: `${SITE_URL}/${opts.paso.slug}`,
+          },
+        ],
+      },
+    ],
   };
 }

@@ -1,36 +1,7 @@
-# Paso Chile Hoy — crawling
-# Sitemap usa el mismo dominio que PUBLIC_SITE_URL / astro.config site en producción.
+# Paso Chile Hoy — https://pasochilehoy.com
+# Origen canónico: apex (sin www). Coherente con astro.config `site` y PUBLIC_SITE_URL.
 
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /snapshots/
-Disallow: /data/
-Disallow: /.env
-Disallow: /src/
-# /legal tiene noindex en HTML; permitir crawl para que Google lea la directiva.
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: BLEXBot
-Disallow: /
-
-User-agent: Googlebot
-Allow: /
-Disallow: /api/
-Disallow: /snapshots/
-
-User-agent: Bingbot
 Allow: /
 Disallow: /api/
 Disallow: /snapshots/

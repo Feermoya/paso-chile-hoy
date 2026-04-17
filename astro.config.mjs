@@ -17,7 +17,7 @@ export default defineConfig({
     webAnalytics: { enabled: false },
     speedInsights: { enabled: false },
   }),
-  site: "https://www.pasochilehoy.com",
+  site: "https://pasochilehoy.com",
   compressHTML: true,
   server: {
     host: false,
@@ -27,6 +27,10 @@ export default defineConfig({
   },
   integrations: [tailwind({ applyBaseStyles: false }), icon()],
   vite: {
+    /** Reduce errores `504 Outdated Optimize Dep` en dev al estabilizar pre-bundles. */
+    optimizeDeps: {
+      include: ["html-to-image", "aria-query", "axobject-query"],
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),

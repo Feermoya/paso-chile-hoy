@@ -1,8 +1,15 @@
 import type { PasoConfig } from "@/data/pasos";
+import {
+  buildExtendedForecastSignal,
+  type ExtendedForecastSignal,
+} from "@/lib/external/mendozaExtendedForecast";
+import { computeCristoRedentorRiskV1 } from "@/lib/risk/computeCristoRedentorRiskV1";
 import { isPassSnapshotShape, type PassSnapshot } from "@/lib/server/passMapper";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { PassView } from "@/types/pass-view";
 import type { PassRaw } from "@/types/pass-raw";
+import { assessDrivingConditions, weatherNowToDrivingInput } from "@/utils/drivingConditions";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 import { inferPassStatus, type PassStatusResult } from "@/utils/inferPassStatus";
@@ -11,6 +18,21 @@ import {
   getCristoRedentorScheduleLabelOverride,
   getCristoRedentorScheduleOverride,
 } from "@/utils/cristoRedentorManualOverrides";
+
+function readExtendedForecastText(raw: PassRaw | PassSnapshot): string | undefined {
+  if (raw && typeof raw === "object" && "extendedForecastText" in raw) {
+    const t = (raw as { extendedForecastText?: unknown }).extendedForecastText;
+    if (typeof t === "string" && t.trim()) return t.trim();
+  }
+  return undefined;
+}
+
+const EMPTY_DRIVING_WEATHER = {
+  temperatureC: null as number | null,
+  wind: null as string | null,
+  visibilityKm: null as number | string | null,
+  description: "",
+};
 
 /** Payload canónico para página del paso (SSR + API + refresh). */
 export interface PassPageRefreshPayload {
@@ -22,6 +44,12 @@ export interface PassPageRefreshPayload {
   showNow: boolean;
   showForecast: boolean;
   hideScheduleInDetails: boolean;
+  /** Solo `cristo-redentor` (Pass Risk Engine v1). */
+  cristoRisk?: CristoRedentorRiskV1;
+  /**
+   * Señal derivada de `extendedForecastText` en el snapshot (boletín extendido). Solo `cristo-redentor`.
+   */
+  extendedForecastSignal?: ExtendedForecastSignal;
 }
 
 /** Respuesta JSON de GET/POST `/api/snapshot/[slug]` y `/api/refresh/[slug]`. */
@@ -61,6 +89,44 @@ export function buildPassRefreshPayload(
   const showNow = Boolean(now && weatherNowHasDisplayableContent(now));
   const showForecast = forecast.length > 0;
 
+  const hasUsableNow = Boolean(now && weatherNowHasDisplayableContent(now));
+  const drivingForRisk = assessDrivingConditions(
+    now ? weatherNowToDrivingInput(now) : EMPTY_DRIVING_WEATHER,
+    forecast,
+  );
+
+  let extendedForecastSignal: ExtendedForecastSignal | undefined;
+  if (paso.slug === "cristo-redentor") {
+    const extendedText = readExtendedForecastText(raw);
+    if (extendedText) {
+      extendedForecastSignal = buildExtendedForecastSignal(extendedText, {
+        shortForecast: forecast,
+        scrapedAtIso: view.meta.scrapedAt,
+      });
+    }
+    const shouldLog =
+      import.meta.env.DEV ||
+      (typeof process !== "undefined" && process.env.DEBUG_PASS === "true");
+    if (shouldLog) {
+      const rd = extendedForecastSignal?.relevantDays ?? [];
+      console.log("[cristo-risk][extended]", {
+        applied: extendedForecastSignal?.hasRelevantFutureRisk ?? false,
+        days: rd.map((d) => d.dayLabel),
+      });
+    }
+  }
+
+  const cristoRisk =
+    paso.slug === "cristo-redentor"
+      ? computeCristoRedentorRiskV1({
+          view,
+          statusResult,
+          driving: drivingForRisk,
+          hasUsableNow,
+          extendedForecastSignal,
+        })
+      : undefined;
+
   return {
     view,
     statusResult,
@@ -70,6 +136,10 @@ export function buildPassRefreshPayload(
     showNow,
     showForecast,
     hideScheduleInDetails: Boolean(scheduleText.trim()),
+    ...(cristoRisk !== undefined ? { cristoRisk } : {}),
+    ...(paso.slug === "cristo-redentor" && extendedForecastSignal !== undefined
+      ? { extendedForecastSignal }
+      : {}),
   };
 }
 

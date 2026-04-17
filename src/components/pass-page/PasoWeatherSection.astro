@@ -5,6 +5,7 @@ import WeatherNow from "@/components/WeatherNow.astro";
 import ForecastShareButton from "@/components/share/ForecastShareButton.astro";
 import ForecastShareModal from "@/components/share/ForecastShareModal.astro";
 import { mapForecastToShareData } from "@/lib/mappers/forecastShareMapper";
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
 
@@ -17,11 +18,23 @@ export interface Props {
   scrapedAt?: string;
   showNow: boolean;
   showForecast: boolean;
+  /** Presente solo en SSR para Cristo Redentor. */
+  cristoRisk?: CristoRedentorRiskV1;
   class?: string;
 }
 
-const { slug, passName, sourceUrl, now, forecast, scrapedAt, showNow, showForecast, class: className } =
-  Astro.props;
+const {
+  slug,
+  passName,
+  sourceUrl,
+  now,
+  forecast,
+  scrapedAt,
+  showNow,
+  showForecast,
+  cristoRisk,
+  class: className,
+} = Astro.props;
 const shareData = mapForecastToShareData({
   slug,
   passName,
@@ -29,6 +42,7 @@ const shareData = mapForecastToShareData({
   sourceUrl,
   nowIso: scrapedAt,
   maxDays: 5,
+  cristoRisk,
 });
 const shareModalId = `forecast-share-modal-${slug}`;
 const shareCardId = `forecast-share-card-${slug}`;

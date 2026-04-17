@@ -3,6 +3,10 @@ import {
   interpretVisibility,
   interpretWind,
 } from "@/utils/weatherInterpretation";
+import {
+  forecastAdverseTier,
+  forecastAdverseTierForDescription,
+} from "@/utils/forecastAdverseSignals";
 
 export interface DrivingAssessment {
   level: "normal" | "caution" | "warning" | "danger";
@@ -48,16 +52,16 @@ export function weatherNowToDrivingInput(now: WeatherNowView): DrivingWeatherInp
 function forecastAssessment(
   forecast: DrivingForecastItemInput[],
 ): DrivingAssessment | null {
+  const tier = forecastAdverseTier(forecast);
+  if (tier === "none") return null;
+
   for (const f of forecast) {
-    const d = (f.description ?? "").toLowerCase();
-    if (
-      d.includes("nevada") ||
-      d.includes("nieve") ||
-      d.includes("lluvia y nev") ||
-      d.includes("lluvias y nev") ||
-      d.includes("tormenta fuerte")
-    ) {
-      const when = f.period?.trim() ? `${f.period.trim()}: ` : "";
+    const rowTier = forecastAdverseTierForDescription(f.description);
+    if (rowTier !== tier) continue;
+
+    const when = f.period?.trim() ? `${f.period.trim()}: ` : "";
+
+    if (tier === "snow") {
       return {
         level: "caution",
         title: "Pronóstico: nieve o precipitaciones",
@@ -72,12 +76,8 @@ function forecastAssessment(
         bgColor: "rgba(240, 168, 48, 0.06)",
       };
     }
-  }
 
-  for (const f of forecast) {
-    const d = (f.description ?? "").toLowerCase();
-    if (d.includes("tormenta") && !d.includes("nev")) {
-      const when = f.period?.trim() ? `${f.period.trim()}: ` : "";
+    if (tier === "storm") {
       return {
         level: "caution",
         title: "Pronóstico: tormentas",
@@ -91,16 +91,14 @@ function forecastAssessment(
         bgColor: "rgba(240, 168, 48, 0.06)",
       };
     }
-  }
 
-  for (const f of forecast) {
-    const d = (f.description ?? "").toLowerCase();
-    if (d.includes("lluvia") || d.includes("llovizna")) {
-      const when = f.period?.trim() ? `${f.period.trim()}: ` : "";
+    if (tier === "rain") {
+      const d = (f.description ?? "").toLowerCase();
+      const precipCopy = d.includes("precipit") || d.includes("chaparron") || d.includes("mal tiempo");
       return {
         level: "caution",
-        title: "Pronóstico: lluvia",
-        message: `Se espera lluvia (${when}${f.description ?? ""}). La calzada puede mojarse durante el cruce.`,
+        title: precipCopy ? "Pronóstico: precipitaciones o mal tiempo" : "Pronóstico: lluvia",
+        message: `Se esperan condiciones adversas (${when}${f.description ?? ""}). La calzada puede mojarse durante el cruce.`,
         tips: [
           "Aumentá distancia de frenado",
           "Precaución en curvas sobre asfalto mojado",

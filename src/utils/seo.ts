@@ -1,9 +1,12 @@
+/** Origen canónico público (apex). Debe coincidir con `astro.config` y `public/robots.txt`. */
+export const SITE_ORIGIN_DEFAULT = "https://pasochilehoy.com";
+
 function resolveSiteUrl(): string {
   const env = import.meta.env.PUBLIC_SITE_URL?.trim();
   if (env) return env.replace(/\/$/, "");
   const site = import.meta.env.SITE?.trim();
   if (site) return site.replace(/\/$/, "");
-  return "https://www.pasochilehoy.com";
+  return SITE_ORIGIN_DEFAULT;
 }
 
 export const SITE_URL = resolveSiteUrl();
@@ -13,7 +16,7 @@ export const SITE_NAME =
 
 /** Meta description principal de la marca / home (~155–165 caracteres, español + señal EN). */
 export const SITE_DESCRIPTION =
-  "Paso Chile Hoy: estado del paso a Chile hoy (Cristo Redentor, Pehuenche, Agua Negra), horario y clima desde datos oficiales. Mendoza y San Juan. Border pass summary for travelers.";
+  "Paso Chile Hoy resume si el paso a Chile está abierto o cerrado hoy (Cristo Redentor, Pehuenche, Agua Negra), con horario y clima en cordillera desde datos públicos oficiales Argentina. English: border pass status for Mendoza and San Juan.";
 
 /** Texto del JSON-LD `WebSite` (marca + intención + señal EN breve). */
 export const WEB_SITE_SCHEMA_DESCRIPTION =
@@ -131,9 +134,18 @@ export function buildPassPageMeta(opts: {
   /** Título fuerte: intención “hoy / estado” + marca (estable por URL). */
   const title = `${passShortName} hoy — estado del paso a Chile | ${SITE_NAME}`;
 
+  const routeHint =
+    passSlug === "cristo-redentor"
+      ? "Ruta internacional 7, lado argentino Villa Las Cuevas. "
+      : passSlug === "pehuenche"
+        ? "Enlace Malargüe (Mendoza) con Talca. "
+        : passSlug === "agua-negra"
+          ? "Enlace Las Flores (San Juan) con Huanta (Chile), paso de gran altitud. "
+          : "";
+
   const description =
-    `${passShortName}: estado, horario y clima (${region}). Síntesis desde datos oficiales Argentina. ` +
-    `EN: ${enLine} Summary: ${enStatus}.`;
+    `${passShortName} (${region}): ${label.toLowerCase()} ahora según la síntesis de esta web; horario y clima en el paso. ${routeHint}` +
+    `Actualización relativa: ${freshnessLabel}. No reemplaza Gendarmería ni la web oficial. EN: ${enLine} Status summary: ${enStatus}.`;
 
   const ogTitle = `${emoji} ${passShortName} — ${label} | Paso a Chile`;
   const climaPart =
@@ -161,13 +173,13 @@ export function buildPassPageMeta(opts: {
 
 export function buildHomeMeta(): LayoutSeoBundle {
   return {
-    title: `Paso Chile Hoy — paso a Chile hoy | Cristo Redentor, Pehuenche, Agua Negra`,
+    title: `Paso Chile Hoy — ¿paso a Chile abierto hoy? Cristo Redentor, Pehuenche, Agua Negra`,
     description: SITE_DESCRIPTION,
     canonical: `${SITE_URL}/`,
-    ogTitle: "Paso Chile Hoy — ¿Está abierto el paso a Chile hoy?",
+    ogTitle: "Paso Chile Hoy — estado del paso a Chile para decidir si salís",
     ogDescription:
-      "Estado del paso Cristo Redentor, Pehuenche y Agua Negra; horario y clima desde fuentes oficiales (Mendoza y San Juan). " +
-      "EN: Argentina–Chile border passes — open/closed summary for travelers.",
+      "Mirá en un solo lugar si Cristo Redentor (Los Libertadores), Pehuenche y Agua Negra están operativos, con horario publicado y clima de alta montaña. Datos públicos del Estado argentino. " +
+      "EN: Open/closed snapshot for Argentina–Chile passes — Mendoza and San Juan.",
     ogImage: DEFAULT_OG_IMAGE,
     ogImageAlt:
       "Paso Chile Hoy — Cristo Redentor, Pehuenche, Agua Negra: estado del cruce Argentina–Chile",
@@ -177,9 +189,9 @@ export function buildHomeMeta(): LayoutSeoBundle {
 
 /** `/legal` — descripción única; OG alineado sin depender del título del documento. */
 export function buildLegalPageMeta(): LayoutSeoBundle {
-  const title = `Aviso legal — ${SITE_NAME}`;
+  const title = `Aviso legal y fuentes de datos — ${SITE_NAME}`;
   const description =
-    "Condiciones de uso, fuentes de datos oficiales y limitación de responsabilidad de Paso Chile Hoy (pasochilehoy.com). Servicio informativo independiente.";
+    "Condiciones de uso, procedencia de los datos (Ministerio de Seguridad Argentina) y alcance del servicio informativo independiente pasochilehoy.com. Leé esto antes de tomar decisiones de viaje.";
   return {
     title,
     description,
@@ -289,4 +301,85 @@ export function passAlternateNames(slug: string, shortName: string, name: string
     default:
       return [shortName, name];
   }
+}
+
+/** Fragmento `#website` del JSON-LD global (debe coincidir con `MainLayout`). */
+export function schemaWebsiteId(): string {
+  return `${SITE_URL}#website`;
+}
+
+/** Preguntas frecuentes reutilizables (copy visible + FAQPage). */
+export const HOME_FAQ_ITEMS: readonly { question: string; answer: string }[] = [
+  {
+    question: "¿Cómo sé si conviene salir hacia el paso?",
+    answer:
+      "Acá ves una síntesis del estado publicado (abierto, condicionado o cerrado), el horario que figre en la fuente oficial y el clima en altura. Si el margen es ajustado o hay alertas de nieve o viento, conviene revisar el detalle del paso y llamar o escribir a Gendarmería antes de largar.",
+  },
+  {
+    question: "¿Con qué frecuencia se actualiza la información?",
+    answer:
+      "Los datos se obtienen de forma automática desde las páginas públicas del Ministerio de Seguridad de la Nación Argentina. La hora del último relevamiento aparece en la home y en cada paso; no es un dato en vivo segundo a segundo.",
+  },
+  {
+    question: "¿Qué debería revisar antes de viajar?",
+    answer:
+      "Estado y horario del paso en la web oficial de pasos internacionales, estado de rutas en Vialidad si tu tramo depende de la cordillera, documentación y requisitos de ingreso al país vecino, y el pronóstico para la altitud del cruce.",
+  },
+  {
+    question: "¿Sirve para turistas o solo para residentes?",
+    answer:
+      "Para cualquier persona que vaya a cruzar desde Mendoza o San Juan hacia Chile: turistas, transportistas o residentes. El idioma principal del sitio es español rioplatense; hay líneas breves en inglés donde ayuda al buscador.",
+  },
+  {
+    question: "¿Esto reemplaza la información oficial?",
+    answer:
+      "No. Paso Chile Hoy ordena y muestra información ya publicada por organismos del Estado argentino; no es un canal oficial. La decisión de viajar y las verificaciones finales son responsabilidad de cada persona, ante la fuente oficial y las autoridades.",
+  },
+];
+
+export function buildHomeStructuredGraph(itemListElement: Array<Record<string, unknown>>): Record<string, unknown> {
+  const webpageId = `${SITE_URL}/#webpage`;
+  const faqId = `${SITE_URL}/#faq`;
+  const listId = `${SITE_URL}/#pasos-list`;
+
+  const faqEntities = HOME_FAQ_ITEMS.map((item, i) => ({
+    "@type": "Question",
+    "@id": `${SITE_URL}/#faq-q${i + 1}`,
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  }));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url: `${SITE_URL}/`,
+        name: "Paso Chile Hoy — estado de pasos a Chile",
+        description: SITE_DESCRIPTION,
+        inLanguage: "es-AR",
+        isPartOf: { "@id": schemaWebsiteId() },
+        mainEntity: { "@id": faqId },
+        hasPart: { "@id": listId },
+      },
+      {
+        "@type": "ItemList",
+        "@id": listId,
+        name: "Pasos internacionales Argentina–Chile cubiertos",
+        numberOfItems: itemListElement.length,
+        isPartOf: { "@id": webpageId },
+        itemListElement,
+      },
+      {
+        "@type": "FAQPage",
+        "@id": faqId,
+        isPartOf: { "@id": webpageId },
+        mainEntity: faqEntities,
+      },
+    ],
+  };
 }

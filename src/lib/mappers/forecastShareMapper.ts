@@ -1,5 +1,6 @@
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { ForecastItemView } from "@/types/pass-view";
-import type { ForecastShareData, ForecastShareDay } from "@/types/forecast-share";
+import type { ForecastShareCristoRisk, ForecastShareData, ForecastShareDay } from "@/types/forecast-share";
 
 export interface ForecastShareMapperInput {
   slug?: string;
@@ -8,6 +9,8 @@ export interface ForecastShareMapperInput {
   sourceUrl?: string;
   nowIso?: string;
   maxDays?: number;
+  /** Solo usado cuando `slug === \"cristo-redentor\"` — no recalcular en el mapper. */
+  cristoRisk?: CristoRedentorRiskV1;
 }
 
 /** Zona del paso (Mendoza); evita horas incorrectas al formatear en servidor UTC (p. ej. Vercel). */
@@ -114,6 +117,24 @@ function toShareDay(
   };
 }
 
+const CRISTO_RISK_SHARE_SUMMARY_MAX = 160;
+
+function truncateCristoRiskSummary(text: string, max: number): string {
+  const t = text.trim();
+  if (t.length <= max) return t;
+  const slice = t.slice(0, max - 1).trimEnd();
+  return `${slice}…`;
+}
+
+function toShareCristoRisk(risk: CristoRedentorRiskV1): ForecastShareCristoRisk {
+  return {
+    headline: risk.headline.trim(),
+    summaryShort: truncateCristoRiskSummary(risk.summary, CRISTO_RISK_SHARE_SUMMARY_MAX),
+    level: risk.level,
+    confidence: risk.confidence,
+  };
+}
+
 function formatGeneratedLabel(iso: string): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "Generado recientemente";
@@ -139,6 +160,10 @@ export function mapForecastToShareData(input: ForecastShareMapperInput): Forecas
     .slice(0, maxDays)
     .map((item, index) => toShareDay(item, index, generatedAtIso, FORECAST_SHARE_TZ));
   const passName = input.passName.trim() || "Paso";
+  const shareCristoRisk =
+    input.slug === "cristo-redentor" && input.cristoRisk !== undefined
+      ? toShareCristoRisk(input.cristoRisk)
+      : undefined;
 
   return {
     slug: input.slug,
@@ -147,8 +172,9 @@ export function mapForecastToShareData(input: ForecastShareMapperInput): Forecas
     subtitle: passName,
     days,
     sourceName: "Paso Chile Hoy",
-    sourceUrl: input.sourceUrl?.trim() || "https://www.pasochilehoy.com",
+    sourceUrl: input.sourceUrl?.trim() || "https://pasochilehoy.com",
     generatedAtIso,
     generatedLabel: formatGeneratedLabel(generatedAtIso),
+    ...(shareCristoRisk ? { cristoRisk: shareCristoRisk } : {}),
   };
 }

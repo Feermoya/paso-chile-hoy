@@ -2,6 +2,10 @@
 
 Documento vivo para entender **de dónde salen los datos** en Paso Chile Hoy y cómo mejorar el flujo sin duplicar lógica.
 
+**Persistencia, Redis y APIs:** [`backend.md`](./backend.md). **Scrape, GHA y frecuencias:** [`scrape.md`](./scrape.md) y [`scheduler.md`](./scheduler.md).
+
+**Paso Cristo Redentor — riesgo informativo:** después de `inferPassStatus`, el payload puede incluir `cristoRisk` (solo ese slug). Flujo y reglas: [`cristo-redentor-risk-v1.md`](./cristo-redentor-risk-v1.md).
+
 ## Vista rápida (orden real)
 
 ```
@@ -17,8 +21,12 @@ mapPersistedSnapshotToView(raw, pasoConfig)  →  PassView
         ↓
 inferPassStatus(view)          →  badge: abierto | condicionado | cerrado | sin_datos
         ↓
+(buildPassRefreshPayload)       assessDrivingConditions → computeCristoRedentorRiskV1  [solo slug cristo-redentor → cristoRisk]
+        ↓
 Páginas / ticker / cards / API interna
 ```
+
+El bloque `cristoRisk` **no** altera el badge; vive en el mismo payload que consume `/api/snapshot/[slug]` y (en el futuro) la UI dedicada. Detalle: [`cristo-redentor-risk-v1.md`](./cristo-redentor-risk-v1.md).
 
 ## 1. Fuentes externas
 

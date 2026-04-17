@@ -2,12 +2,26 @@
 export const prerender = true;
 
 import MainLayout from "@/layouts/MainLayout.astro";
-import { buildLegalPageMeta } from "@/utils/seo";
+import { buildLegalPageMeta, schemaWebsiteId, SITE_URL } from "@/utils/seo";
 
 const seo = buildLegalPageMeta();
+const legalLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/legal#webpage`,
+      url: `${SITE_URL}/legal`,
+      name: seo.title,
+      description: seo.description,
+      inLanguage: "es-AR",
+      isPartOf: { "@id": schemaWebsiteId() },
+    },
+  ],
+};
 ---
 
-<MainLayout {...seo} noindex={true}>
+<MainLayout {...seo} structuredData={legalLd}>
   <div class="legal-page container-main">
     <h1>Aviso legal</h1>
     <p class="legal-updated">Última actualización: abril de 2026</p>
@@ -81,6 +95,15 @@ const seo = buildLegalPageMeta();
         <a href="mailto:fmoya97.fm@gmail.com">fmoya97.fm@gmail.com</a>
       </p>
     </section>
+
+    <nav class="legal-nav-internal" aria-label="Enlaces dentro del sitio">
+      <p>
+        <a href="/">Inicio — estado de todos los pasos</a>
+        · <a href="/cristo-redentor">Cristo Redentor</a>
+        · <a href="/pehuenche">Pehuenche</a>
+        · <a href="/agua-negra">Agua Negra</a>
+      </p>
+    </nav>
   </div>
 </MainLayout>
 
@@ -122,6 +145,27 @@ const seo = buildLegalPageMeta();
   }
 
   .legal-page a:hover {
+    text-decoration: underline;
+  }
+
+  .legal-nav-internal {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 13px;
+  }
+
+  .legal-nav-internal p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .legal-nav-internal a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .legal-nav-internal a:hover {
     text-decoration: underline;
   }
 </style>

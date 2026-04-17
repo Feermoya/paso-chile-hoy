@@ -66,6 +66,11 @@ export interface PassSnapshot {
   lastKnownGoodAt?: string;
   /** true si falló detalle_consolidado (Pehuenche) u operación equivalente. */
   operationalStale?: boolean;
+  /**
+   * Boletín / texto extendido (p. ej. Prensa Mendoza). Opcional; ingestión manual o futura.
+   * Solo lo usa el motor de riesgo de Cristo Redentor.
+   */
+  extendedForecastText?: string;
 }
 
 /** Snapshots antiguos pueden traer `motivoExtra` en lugar de `motivoInfo`. */

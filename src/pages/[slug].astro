@@ -9,11 +9,13 @@ import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
 import MainLayout from "@/layouts/MainLayout.astro";
 import type { PassView } from "@/types/pass-view";
-import { buildPassTouristAttractionSchema } from "@/utils/passPageSchema";
+import { buildPassStructuredGraph } from "@/utils/passPageSchema";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
 import { formatRelativeTimeAgo } from "@/utils/formatRelativeTime";
 import { buildPassPageMeta, type PassStatus } from "@/utils/seo";
 import { getCristoRedentorManualNotice } from "@/utils/cristoRedentorManualOverrides";
+import type { ExtendedForecastSignal } from "@/lib/external/mendozaExtendedForecast";
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 
 export const prerender = false;
 
@@ -33,6 +35,8 @@ let officialUrl: string | undefined;
 let showNow = false;
 let showForecast = false;
 let hideScheduleInDetails = false;
+let cristoRisk: CristoRedentorRiskV1 | undefined;
+let extendedForecastSignal: ExtendedForecastSignal | undefined;
 const manualCristoNotice = getCristoRedentorManualNotice(slug);
 
 try {
@@ -46,6 +50,8 @@ try {
   showNow = payload.showNow;
   showForecast = payload.showForecast;
   hideScheduleInDetails = payload.hideScheduleInDetails;
+  cristoRisk = payload.cristoRisk;
+  extendedForecastSignal = payload.extendedForecastSignal;
   logPassPipelineDebug(`/${slug}`, { raw, view });
 } catch (e) {
   console.error(`[page] Failed to load snapshot for ${slug}:`, e);
@@ -114,7 +120,7 @@ const meta = buildPassPageMeta({
   statusHeadline: statusResult?.displayLabel ?? null,
 });
 
-const passSchema = buildPassTouristAttractionSchema({
+const passSchema = buildPassStructuredGraph({
   paso: pasoConfig,
   scheduleText,
   displayStatus,
@@ -158,6 +164,8 @@ const passSchema = buildPassTouristAttractionSchema({
           showNow={showNow}
           showForecast={showForecast}
           hideScheduleInDetails={hideScheduleInDetails}
+          cristoRisk={cristoRisk}
+          extendedForecastSignal={extendedForecastSignal}
         />
       )
     }

@@ -1,40 +1,55 @@
 # Actualización periódica de snapshots
 
-El sitio lee datos desde JSON en `data/snapshots/<slug>.json`, generados por el scraper. Para que la información no quede obsoleta, hay que ejecutar periódicamente:
+## Dónde están los JSON
+
+Los snapshots que consume la app están en **`public/snapshots/{slug}.json`** (no en `data/snapshots/`). El lector unificado es `readPassSnapshot` → archivo y/o Redis (`src/lib/server/storage/passSnapshotStore.ts`).
+
+> **Histórico:** `docs/scheduler.md` mencionaba antes `data/snapshots/`; eso estaba **desalineado** con el código. Si existe `data/snapshots/*.json` en el repo, es **ajeno** al pipeline actual salvo uso manual.
+
+## Dos modos de frecuencia (no son lo mismo)
+
+### 1) GitHub Actions (lo definido en el repo)
+
+El workflow **`.github/workflows/scrape.yml`** ejecuta **`npx tsx scripts/scrape.ts`** **tres veces al día** (cron UTC en el YAML). Eso actualiza el repo con commits a `public/snapshots/` cuando hay cambios.
+
+Ver detalle en [`scrape.md`](./scrape.md).
+
+### 2) Ventana de “frescura” para refresh en vivo (`snapshotPolicy.ts`)
+
+- **`snapshotFreshMs`** = 10 minutos: en **desarrollo local** (sin `VERCEL`), `getSnapshotForApi` puede disparar `refreshAndPersistSnapshot` si el JSON en disco es más viejo que esa ventana.
+- Documentación de referencia: **`snapshotFreshMinutes`** en el mismo archivo.
+
+Eso **no** obliga a un cron cada 10 min: es la política **si** algo llama a `getSnapshotForApi` en un entorno que permite scrape en vivo. En **Vercel** el comportamiento añade la rama de snapshot > **120 min** (ver `snapshotService.ts`).
+
+### 3) Cron propio / panel del host
+
+Podés programar `npm run update:all-passes` o `npm run scrape` cada 10–15 minutos en un servidor con filesystem escribible y/o Redis; es **independiente** del schedule de GitHub Actions.
+
+## Comandos
 
 ```bash
+npm run scrape
+# o
 npm run update:all-passes
 ```
 
-Equivalente por paso:
-
-```bash
-npm run update:pass -- cristo-redentor
-```
-
-## Frecuencia recomendada
-
-- **10 minutos:** alineado con `snapshotFreshMs` en `src/lib/server/config/snapshotPolicy.ts` (la API intenta refrescar desde red si el archivo supera esa antigüedad).
-- **15 minutos:** aceptable si querés menos carga sobre argentina.gob.ar o límites del plan de hosting.
-
-No hace falta coincidir al segundo: el snapshot en disco se reutiliza si la red falla.
+Equivalente por paso: `npm run update:pass -- cristo-redentor`.
 
 ## Astro / Node sin cron interno
 
-El proyecto **no** arranca un demonio ni cron por sí mismo. En producción conviene:
+El proyecto **no** arranca un demonio ni cron por sí mismo. Opciones: cron del SO, panel del proveedor, CI programado, o tráfico que dispare refresh en Vercel según la lógica de `getSnapshotForApi`.
 
-1. **Cron del sistema** (Linux/VPS), **launchd** (macOS servidor), o **systemd timer**.
-2. **Panel del proveedor** (tareas programadas / “Cron jobs”).
-3. **CI programado** (GitHub Actions, GitLab CI, etc.) que clone el repo, instale dependencias, ejecute el script y **persista** `data/snapshots/` (por ejemplo commit a rama, artefacto, o volumen compartido con el contenedor que sirve el sitio).
-
-### Ejemplo crontab (cada 10 minutos)
+### Ejemplo crontab (cada 10 minutos, servidor propio)
 
 ```cron
 */10 * * * * cd /ruta/al/proyecto && /usr/bin/env PATH="/ruta/node/bin:$PATH" npm run update:all-passes >> /var/log/paso-chile-hoy-update.log 2>&1
 ```
 
-Ajustá la ruta de Node/npm según tu instalación (`which node`).
+## Variables de entorno
 
-### Variables de entorno
+- `DEBUG_PASSES=1` — depuración voluminosa; **no** dejar en producción.
 
-- `DEBUG_PASSES=1` — solo para depurar; vuelca PassRaw/PassView en consola al usar la API o la home con el logger de debug. **No** dejar en producción.
+## Más lectura
+
+- [`scrape.md`](./scrape.md) — workflows, fuentes por paso, fallos.
+- [`backend.md`](./backend.md) — Redis vs archivo, APIs, capas.

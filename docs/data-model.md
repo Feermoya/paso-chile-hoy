@@ -75,7 +75,7 @@ Visibilidad: en RAW puede ser **`visibilityKm`** y/o **`visibilityText`** (cuand
 
 ## Escalar a nuevos pasos
 
-1. Añadir entrada en `src/lib/server/config/passes.ts` (slug + URL).
+1. Añadir entrada en **`src/data/pasos.ts`** (slug, `routeId`, `routeSlug`, coords). Las URLs de detalle se derivan con `buildArgentinaPassSourceUrl` (`src/lib/server/config/passes.ts` solo lista fuentes para scrape).
 2. Asegurar que el pipeline de ingesta rellene **`PassRaw`** (o un adaptador HTML → `PassRaw`).
 3. La UI solo consume **`PassView`** vía `mapPassRawToView`.
 
@@ -84,6 +84,12 @@ Nuevos campos del HTML: primero ampliar **`PassRaw`** y documentarlos aquí; lue
 ## Relación con el snapshot en disco
 
 Los JSON versionados viven en **`public/snapshots/{slug}.json`**. La forma preferida es **`PassSnapshot`** (API oficial + clima + pronóstico). Formatos antiguos pueden migrarse al leer (`jsonSnapshotStore`). En runtime SSR, **`getSnapshotForApi`** + **`mapPersistedSnapshotToView`** producen **`PassView`**.
+
+**Nota:** no confundir con `data/snapshots/` (puede haber archivos sueltos no conectados al lector). Ver [`backend.md`](./backend.md).
+
+## Payload SSR / API (`PassPageRefreshPayload`)
+
+Además de `PassView` y datos derivados, `src/lib/server/passRefreshPayload.ts` puede incluir **`cristoRisk`** (tipo `CristoRedentorRiskV1`) **solo** cuando el paso es `cristo-redentor`. No forma parte del JSON persistido en disco; se calcula en cada armado del payload. Especificación: [`cristo-redentor-risk-v1.md`](./cristo-redentor-risk-v1.md).
 
 ## Ejemplo
 

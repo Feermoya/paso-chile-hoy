@@ -1,0 +1,101 @@
+---
+import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
+
+export interface Props {
+  risk: CristoRedentorRiskV1;
+  class?: string;
+}
+
+const { risk, class: className } = Astro.props;
+
+function levelBadgeLabel(level: CristoRedentorRiskV1["level"]): string {
+  switch (level) {
+    case "low":
+      return "Riesgo bajo";
+    case "moderate":
+      return "Riesgo moderado";
+    case "high_complications":
+      return "Riesgo alto";
+    case "possible_preventive_closure":
+      return "Cierre o restricción";
+    default:
+      return "Riesgo";
+  }
+}
+
+const levelRing: Record<CristoRedentorRiskV1["level"], string> = {
+  low: "cristo-risk-card--low",
+  moderate: "cristo-risk-card--moderate",
+  high_complications: "cristo-risk-card--high",
+  possible_preventive_closure: "cristo-risk-card--preventive",
+};
+
+function confidenceLabel(c: CristoRedentorRiskV1["confidence"]): string {
+  if (c === "high") return "Confianza: alta";
+  if (c === "medium") return "Confianza: media";
+  return "Confianza: baja";
+}
+
+const badge = levelBadgeLabel(risk.level);
+const ringClass = levelRing[risk.level] ?? "";
+---
+
+<aside
+  class:list={["cristo-risk-card rounded-xl border border-[var(--color-border-subtle)] p-4", ringClass, className]}
+  aria-label="Evaluación informativa de complicaciones en ruta"
+>
+  <div class="mb-2 flex flex-wrap items-center gap-2">
+    <span
+      class:list={[
+        "inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
+        "cristo-risk-badge",
+      ]}
+      data-cristo-risk-level={risk.level}
+    >
+      {badge}
+    </span>
+    <span class="text-[11px] text-[var(--color-text-muted)]">{confidenceLabel(risk.confidence)}</span>
+  </div>
+  <p class="mb-1.5 text-base font-semibold leading-snug text-[var(--color-text-primary)]">
+    {risk.headline}
+  </p>
+  <p class="text-sm leading-relaxed text-[var(--color-text-secondary)]">{risk.summary}</p>
+  <p class="mt-3 text-[12px] leading-snug text-[var(--color-text-muted)]">
+    Información orientativa. Verificá siempre fuentes oficiales.
+  </p>
+</aside>
+
+<style>
+  .cristo-risk-card--low {
+    border-left: 4px solid rgb(34 197 94);
+    background: rgba(34 197 94 / 0.08);
+  }
+  .cristo-risk-card--moderate {
+    border-left: 4px solid rgb(234 179 8);
+    background: rgba(234 179 8 / 0.1);
+  }
+  .cristo-risk-card--high {
+    border-left: 4px solid rgb(249 115 22);
+    background: rgba(249 115 22 / 0.1);
+  }
+  .cristo-risk-card--preventive {
+    border-left: 4px solid rgb(239 68 68);
+    background: rgba(239 68 68 / 0.1);
+  }
+  .cristo-risk-card--low .cristo-risk-badge {
+    background: rgba(34 197 94 / 0.2);
+    color: rgb(21 128 61);
+  }
+  .cristo-risk-card--moderate .cristo-risk-badge {
+    background: rgba(234 179 8 / 0.25);
+    color: rgb(133 77 14);
+  }
+  .cristo-risk-card--high .cristo-risk-badge {
+    background: rgba(249 115 22 / 0.2);
+    color: rgb(194 65 12);
+  }
+  .cristo-risk-card--preventive .cristo-risk-badge {
+    background: rgba(239 68 68 / 0.2);
+    color: rgb(185 28 28);
+  }
+</style>

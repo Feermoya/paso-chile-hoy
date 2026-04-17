@@ -1,7 +1,11 @@
-import { toBlob } from "html-to-image";
 import type { ForecastShareData } from "@/types/forecast-share";
 
 const PNG_TYPE = "image/png";
+
+/** Import dinámico: evita que un fallo de pre-bundle de Vite (`Outdated Optimize Dep`) rompa todo el script del modal al cargar la página. */
+async function loadHtmlToImage() {
+  return import("html-to-image");
+}
 
 function safeFileName(raw: string): string {
   return raw
@@ -17,6 +21,7 @@ export async function renderForecastShareBlob(node: HTMLElement): Promise<Blob> 
     await document.fonts.ready;
   }
 
+  const { toBlob } = await loadHtmlToImage();
   const blob = await toBlob(node, {
     cacheBust: true,
     pixelRatio: 2,

@@ -9,6 +9,7 @@ import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { isPassSnapshotShape, mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import { readPassSnapshot } from "@/lib/server/storage/passSnapshotStorage";
+import { fetchMendozaForecast } from "@/lib/external/fetchMendozaForecast";
 
 const GOV_AR = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 
@@ -61,11 +62,13 @@ export async function refreshCristoRedentorSnapshot(cfg: PasoConfig): Promise<Pa
     fetchConsolidado(cfg.routeId),
     fetchClima(String(cfg.lat), String(cfg.lng)),
     fetchDetailHTML(cfg.routeId, cfg.routeSlug),
+    fetchMendozaForecast(),
   ]);
 
   let consolidado: ConsolidadoResponse | null = null;
   let clima: ClimaResponse | null = null;
   let htmlDetail: string | null = null;
+  let mendozaBulletin: string | null = null;
   const failed: string[] = [];
 
   if (settled[0].status === "fulfilled") consolidado = settled[0].value;
@@ -82,6 +85,10 @@ export async function refreshCristoRedentorSnapshot(cfg: PasoConfig): Promise<Pa
   else {
     failed.push("detalle_html");
     console.warn("[cristo-redentor] detalle_html falló:", settled[2].reason);
+  }
+  if (settled[3].status === "fulfilled") mendozaBulletin = settled[3].value;
+  else {
+    console.warn("[cristo-redentor] prensa mendoza falló:", settled[3].reason);
   }
 
   const scrapedAt = new Date().toISOString();
@@ -157,6 +164,22 @@ export async function refreshCristoRedentorSnapshot(cfg: PasoConfig): Promise<Pa
   snap.lastKnownGoodAt = snap.rawStatus !== "SIN_DATOS" ? scrapedAt : lastKnownGood;
 
   snap.scrapedAt = scrapedAt;
+
+  let extendedForecastText: string | undefined;
+  if (mendozaBulletin) {
+    if (mendozaBulletin.length < 50) {
+      console.warn("[mendoza-forecast] texto demasiado corto, ignorando");
+    } else {
+      extendedForecastText = mendozaBulletin;
+    }
+  }
+  console.log("[mendoza-forecast] loaded", {
+    hasText: !!extendedForecastText,
+    length: extendedForecastText?.length ?? 0,
+  });
+  if (extendedForecastText) {
+    snap.extendedForecastText = extendedForecastText;
+  }
 
   return snap;
 }
