@@ -1,14 +1,6 @@
 {
   "framework": "astro",
   "buildCommand": "astro build",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.pasochilehoy.com" }],
-      "destination": "https://pasochilehoy.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/_app/(.*)",

@@ -17,7 +17,7 @@ export default defineConfig({
     webAnalytics: { enabled: false },
     speedInsights: { enabled: false },
   }),
-  site: "https://pasochilehoy.com",
+  /** Sin `site` fijo: evita URLs absolutas al apex en HTML servido desde www (CORS en `/_app/*`). Canonical vía `PUBLIC_SITE_URL` / `seo.ts`. */
   compressHTML: true,
   server: {
     host: false,
