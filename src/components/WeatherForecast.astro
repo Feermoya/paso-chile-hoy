@@ -100,12 +100,14 @@ function fcardTempModifier(temp: number | null | undefined): string {
                 <span class="fcard-date">{dateLine}</span>
                 <span class="fcard-desc fcard-desc--summary">{descRaw}</span>
               </div>
-              <span class:list={["fcard-temp", tempClass]}>
-                {temp != null && !Number.isNaN(temp) ? `${temp} °C` : "—"}
-              </span>
-              <span class:list={["fcard-cond-badge", `fcard-cond-badge--${condLevel}`]} aria-hidden="true">
-                {condSymbol}
-              </span>
+              <div class="fcard-top-right">
+                <span class:list={["fcard-temp", tempClass]}>
+                  {temp != null && !Number.isNaN(temp) ? `${temp} °C` : "—"}
+                </span>
+                <span class:list={["fcard-cond-badge", `fcard-cond-badge--${condLevel}`]} aria-hidden="true">
+                  {condSymbol}
+                </span>
+              </div>
             </summary>
             {(hasDetails || showWarning) && (
               <div class="fcard-body">

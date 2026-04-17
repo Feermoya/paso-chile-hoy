@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 
 export interface Props {
@@ -8,94 +9,200 @@ export interface Props {
 
 const { risk, class: className } = Astro.props;
 
-function levelBadgeLabel(level: CristoRedentorRiskV1["level"]): string {
-  switch (level) {
-    case "low":
-      return "Riesgo bajo";
-    case "moderate":
-      return "Riesgo moderado";
-    case "high_complications":
-      return "Riesgo alto";
-    case "possible_preventive_closure":
-      return "Cierre o restricción";
-    default:
-      return "Riesgo";
-  }
-}
+const LEVEL_CONFIG = {
+  low: {
+    label:       "Riesgo bajo",
+    icon:        "lucide:shield-check",
+    iconColor:   "rgb(34,197,94)",
+    iconBg:      "rgba(34,197,94,.12)",
+    border:      "rgb(34,197,94)",
+    bg:          "rgba(34,197,94,.06)",
+    badgeBg:     "rgba(34,197,94,.15)",
+    badgeColor:  "rgb(21,128,61)",
+    badgeBorder: "rgba(34,197,94,.35)",
+    badgeColorDark: "rgb(74,222,128)",
+  },
+  moderate: {
+    label:       "Riesgo moderado",
+    icon:        "lucide:cloud-rain",
+    iconColor:   "rgb(234,179,8)",
+    iconBg:      "rgba(234,179,8,.12)",
+    border:      "rgb(234,179,8)",
+    bg:          "rgba(234,179,8,.07)",
+    badgeBg:     "rgba(234,179,8,.15)",
+    badgeColor:  "rgb(133,77,14)",
+    badgeBorder: "rgba(234,179,8,.35)",
+    badgeColorDark: "rgb(251,191,36)",
+  },
+  high_complications: {
+    label:       "Riesgo alto",
+    icon:        "lucide:triangle-alert",
+    iconColor:   "rgb(249,115,22)",
+    iconBg:      "rgba(249,115,22,.12)",
+    border:      "rgb(249,115,22)",
+    bg:          "rgba(249,115,22,.08)",
+    badgeBg:     "rgba(249,115,22,.15)",
+    badgeColor:  "rgb(154,52,18)",
+    badgeBorder: "rgba(249,115,22,.4)",
+    badgeColorDark: "rgb(251,146,60)",
+  },
+  possible_preventive_closure: {
+    label:       "Posible cierre",
+    icon:        "lucide:octagon-x",
+    iconColor:   "rgb(239,68,68)",
+    iconBg:      "rgba(239,68,68,.12)",
+    border:      "rgb(239,68,68)",
+    bg:          "rgba(239,68,68,.07)",
+    badgeBg:     "rgba(239,68,68,.15)",
+    badgeColor:  "rgb(185,28,28)",
+    badgeBorder: "rgba(239,68,68,.4)",
+    badgeColorDark: "rgb(252,165,165)",
+  },
+} as const;
 
-const levelRing: Record<CristoRedentorRiskV1["level"], string> = {
-  low: "cristo-risk-card--low",
-  moderate: "cristo-risk-card--moderate",
-  high_complications: "cristo-risk-card--high",
-  possible_preventive_closure: "cristo-risk-card--preventive",
+const CONFIDENCE_LABEL: Record<CristoRedentorRiskV1["confidence"], string> = {
+  high:   "Alta confianza",
+  medium: "Confianza media",
+  low:    "Baja confianza",
 };
 
-function confidenceLabel(c: CristoRedentorRiskV1["confidence"]): string {
-  if (c === "high") return "Confianza: alta";
-  if (c === "medium") return "Confianza: media";
-  return "Confianza: baja";
-}
-
-const badge = levelBadgeLabel(risk.level);
-const ringClass = levelRing[risk.level] ?? "";
+const cfg = LEVEL_CONFIG[risk.level] ?? LEVEL_CONFIG.moderate;
+const confidenceLabel = CONFIDENCE_LABEL[risk.confidence] ?? "Confianza desconocida";
 ---
 
 <aside
-  class:list={["cristo-risk-card rounded-xl border border-[var(--color-border-subtle)] p-4", ringClass, className]}
+  class:list={["cristo-risk-card", className]}
+  style={`border-left-color: ${cfg.border}; background: ${cfg.bg};`}
   aria-label="Evaluación informativa de complicaciones en ruta"
 >
-  <div class="mb-2 flex flex-wrap items-center gap-2">
-    <span
-      class:list={[
-        "inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
-        "cristo-risk-badge",
-      ]}
-      data-cristo-risk-level={risk.level}
-    >
-      {badge}
-    </span>
-    <span class="text-[11px] text-[var(--color-text-muted)]">{confidenceLabel(risk.confidence)}</span>
+  {/* ── Cabecera ── */}
+  <div class="crc-head">
+    <div class="crc-icon-wrap" style={`background: ${cfg.iconBg};`} aria-hidden="true">
+      <Icon
+        name={cfg.icon}
+        width="22"
+        height="22"
+        style={`color: ${cfg.iconColor}; display:block;`}
+      />
+    </div>
+    <div class="crc-title-group">
+      <div class="crc-badges">
+        <span class="crc-level-badge" style={`background:${cfg.badgeBg}; color:${cfg.badgeColor}; border-color:${cfg.badgeBorder};`}>
+          {cfg.label}
+        </span>
+        <span class="crc-confidence-badge">
+          {confidenceLabel}
+        </span>
+      </div>
+      <p class="crc-headline">{risk.headline}</p>
+    </div>
   </div>
-  <p class="mb-1.5 text-base font-semibold leading-snug text-[var(--color-text-primary)]">
-    {risk.headline}
-  </p>
-  <p class="text-sm leading-relaxed text-[var(--color-text-secondary)]">{risk.summary}</p>
-  <p class="mt-3 text-[12px] leading-snug text-[var(--color-text-muted)]">
+
+  {/* ── Resumen ── */}
+  <p class="crc-summary">{risk.summary}</p>
+
+  {/* ── Disclaimer ── */}
+  <p class="crc-disclaimer">
+    <Icon name="lucide:info" width="11" height="11" aria-hidden="true" class="crc-disclaimer-icon" />
     Información orientativa. Verificá siempre fuentes oficiales.
   </p>
 </aside>
 
 <style>
-  .cristo-risk-card--low {
-    border-left: 4px solid rgb(34 197 94);
-    background: rgba(34 197 94 / 0.08);
+  .cristo-risk-card {
+    border-radius: 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-left-width: 4px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  .cristo-risk-card--moderate {
-    border-left: 4px solid rgb(234 179 8);
-    background: rgba(234 179 8 / 0.1);
+
+  /* ── Cabecera ── */
+  .crc-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
   }
-  .cristo-risk-card--high {
-    border-left: 4px solid rgb(249 115 22);
-    background: rgba(249 115 22 / 0.1);
+
+  .crc-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    flex-shrink: 0;
   }
-  .cristo-risk-card--preventive {
-    border-left: 4px solid rgb(239 68 68);
-    background: rgba(239 68 68 / 0.1);
+
+  .crc-title-group {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  .cristo-risk-card--low .cristo-risk-badge {
-    background: rgba(34 197 94 / 0.2);
-    color: rgb(21 128 61);
+
+  .crc-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
   }
-  .cristo-risk-card--moderate .cristo-risk-badge {
-    background: rgba(234 179 8 / 0.25);
-    color: rgb(133 77 14);
+
+  .crc-level-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid;
+    white-space: nowrap;
   }
-  .cristo-risk-card--high .cristo-risk-badge {
-    background: rgba(249 115 22 / 0.2);
-    color: rgb(194 65 12);
+
+  .crc-confidence-badge {
+    font-size: 0.67rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    white-space: nowrap;
   }
-  .cristo-risk-card--preventive .cristo-risk-badge {
-    background: rgba(239 68 68 / 0.2);
-    color: rgb(185 28 28);
+
+  .crc-headline {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  /* ── Contenido ── */
+  .crc-summary {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Disclaimer ── */
+  .crc-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border-subtle);
+    line-height: 1.4;
+  }
+
+  .crc-disclaimer-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.7;
   }
 </style>

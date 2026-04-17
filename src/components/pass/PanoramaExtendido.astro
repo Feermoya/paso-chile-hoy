@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import {
   stripBulletinHtml,
   type ExtendedDayRiskLevel,
@@ -13,99 +14,311 @@ export interface Props {
 const { signal, class: className } = Astro.props;
 const days = signal.relevantDays ?? [];
 
-function ringClass(level: ExtendedDayRiskLevel): string {
-  switch (level) {
-    case "high":
-      return "panorama-ext-card--high";
-    case "moderate":
-      return "panorama-ext-card--moderate";
-    default:
-      return "panorama-ext-card--low";
-  }
+function cardClass(level: ExtendedDayRiskLevel): string {
+  return { low: "pext-card--low", moderate: "pext-card--moderate", high: "pext-card--high" }[level];
 }
 
 function levelLabel(level: ExtendedDayRiskLevel): string {
-  switch (level) {
-    case "high":
-      return "Enfoque alto";
-    case "moderate":
-      return "Enfoque moderado";
-    default:
-      return "Enfoque bajo";
+  return { low: "Favorable", moderate: "Precaución", high: "Tiempo adverso" }[level];
+}
+
+function levelBadgeIcon(level: ExtendedDayRiskLevel): string {
+  return { low: "lucide:sun", moderate: "lucide:cloud-rain", high: "lucide:triangle-alert" }[level];
+}
+
+interface KwMeta { icon: string; label: string }
+const KW_META: Record<string, KwMeta> = {
+  "nev":         { icon: "wi:snow",          label: "Nieve" },
+  "tormenta":    { icon: "wi:thunderstorm",   label: "Tormenta" },
+  "lluvia":      { icon: "wi:rain",           label: "Lluvia" },
+  "precipit":    { icon: "wi:rain",           label: "Precipitaciones" },
+  "chaparron":   { icon: "wi:showers",        label: "Chaparrón" },
+  "chaparrones": { icon: "wi:showers",        label: "Chaparrón" },
+  "mal tiempo":  { icon: "wi:storm-showers",  label: "Mal tiempo" },
+  "inestab":     { icon: "wi:cloudy",         label: "Inestable" },
+};
+
+function iconFromKeywords(kws: string[], level: ExtendedDayRiskLevel): { name: string; color: string } {
+  if (kws.some(k => k.startsWith("nev")))                                                    return { name: "wi:snow",          color: "#B0D4F1" };
+  if (kws.includes("tormenta"))                                                               return { name: "wi:thunderstorm",   color: "#7B68EE" };
+  if (kws.includes("lluvia") || kws.includes("precipit") || kws.includes("chaparron") || kws.includes("chaparrones"))
+                                                                                              return { name: "wi:rain",           color: "#5BAEFF" };
+  if (kws.includes("mal tiempo") || kws.includes("inestab"))                                 return { name: "wi:storm-showers",  color: "#8DB8D8" };
+  if (level === "high")                                                                       return { name: "wi:thunderstorm",   color: "#7B68EE" };
+  if (level === "moderate")                                                                   return { name: "wi:storm-showers",  color: "#8DB8D8" };
+  return { name: "wi:day-sunny", color: "#F5C842" };
+}
+
+function highlightKeywords(text: string, keywords: string[]): string {
+  if (!keywords.length) return text;
+  const sorted = [...new Set(keywords)].sort((a, b) => b.length - a.length);
+  let out = text;
+  for (const kw of sorted) {
+    const re = new RegExp(`(${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+    out = out.replace(re, '<mark class="pext-hl">$1</mark>');
   }
+  return out;
 }
 ---
 
-{
-  days.length > 0 && (
-    <section
-      class:list={["anim-section anim-delay-3 mt-4", className]}
-      aria-labelledby="panorama-ext-heading"
-    >
-      <h2
-        id="panorama-ext-heading"
-        class="mb-1 text-[1.05rem] font-semibold tracking-tight text-[var(--color-text-primary)]"
-      >
+{days.length > 0 && (
+  <section
+    class:list={["pext-section anim-section anim-delay-3", className]}
+    aria-labelledby="panorama-ext-heading"
+  >
+    <header class="pext-header">
+      <h2 id="panorama-ext-heading" class="pext-title">
+        <Icon name="lucide:calendar-range" width="16" height="16" aria-hidden="true" class="pext-title-icon" />
         Panorama extendido
       </h2>
-      <p class="mb-3 max-w-prose text-[0.72rem] leading-relaxed text-[var(--color-text-muted)]">
-        Complemento al pronóstico por horas: boletín provincial (Alta Montaña), por día.
-      </p>
-      <ul class="panorama-ext-list m-0 list-none space-y-3 p-0" role="list">
-        {days.map((d) => {
-          const summary = stripBulletinHtml(d.summary);
-          const detail = stripBulletinHtml(d.detail);
-          return (
+      <p class="pext-subtitle">Alta Montaña · boletín provincial por día</p>
+    </header>
+
+    <ul class="pext-list" role="list">
+      {days.map((d) => {
+        const summary = stripBulletinHtml(d.summary);
+        const detail  = stripBulletinHtml(d.detail);
+        const icon    = iconFromKeywords(d.keywords, d.riskLevel);
+        const summaryHtml = highlightKeywords(summary, d.keywords);
+        const detailHtml  = highlightKeywords(detail,  d.keywords);
+        const chips = [...new Set(d.keywords)].map(kw => ({ kw, meta: KW_META[kw] })).filter(c => c.meta);
+        return (
           <li>
-            <article
-              class:list={[
-                "panorama-ext-article rounded-xl border border-[var(--color-border-subtle)] p-4 shadow-sm",
-                ringClass(d.riskLevel),
-              ]}
-            >
-              <div class="mb-3 flex flex-wrap items-start justify-between gap-2">
-                <h3 class="m-0 text-[0.95rem] font-semibold leading-tight text-[var(--color-text-primary)]">
-                  {d.dayLabel}
-                </h3>
-                <span
-                  class="shrink-0 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]"
-                  data-panorama-risk={d.riskLevel}
-                >
-                  {levelLabel(d.riskLevel)}
-                </span>
+            <article class:list={["pext-card", cardClass(d.riskLevel)]}>
+
+              {/* ── Cabecera: ícono + día + badge ── */}
+              <div class="pext-card-head">
+                <div class="pext-icon-wrap" aria-hidden="true">
+                  <Icon
+                    name={icon.name}
+                    width="26"
+                    height="26"
+                    style={`color: ${icon.color}; display: block;`}
+                  />
+                </div>
+                <div class="pext-card-meta">
+                  <h3 class="pext-day-label">{d.dayLabel}</h3>
+                  <span
+                    class:list={["pext-badge", `pext-badge--${d.riskLevel}`]}
+                    data-panorama-risk={d.riskLevel}
+                  >
+                    <Icon name={levelBadgeIcon(d.riskLevel)} width="9" height="9" aria-hidden="true" />
+                    {levelLabel(d.riskLevel)}
+                  </span>
+                </div>
               </div>
-              <p class="mb-2 text-[0.84rem] font-medium leading-snug text-[var(--color-text-primary)]">
-                {summary}
-              </p>
-              <p class="mb-0 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
-                {detail}
-              </p>
-              {d.keywords.length > 0 && (
-                <p class="mt-3 text-[0.68rem] leading-snug text-[var(--color-text-muted)] [overflow-wrap:anywhere]">
-                  <span class="font-semibold text-[var(--color-text-secondary)]">Señales:</span>{" "}
-                  {d.keywords.join(", ")}
-                </p>
+
+              {/* ── Texto ── */}
+              <p class="pext-summary" set:html={summaryHtml} />
+              {detail !== summary && detail.length > 0 && (
+                <p class="pext-detail" set:html={detailHtml} />
               )}
+
+              {/* ── Chips de señales ── */}
+              {chips.length > 0 && (
+                <div class="pext-chips" role="list" aria-label="Señales detectadas">
+                  {chips.map(({ meta }) => (
+                    <span class:list={["pext-chip", `pext-chip--${d.riskLevel}`]} role="listitem">
+                      <Icon name={meta!.icon} width="11" height="11" aria-hidden="true" />
+                      {meta!.label}
+                    </span>
+                  ))}
+                </div>
+              )}
+
             </article>
           </li>
-          );
-        })}
-      </ul>
-    </section>
-  )
-}
+        );
+      })}
+    </ul>
+  </section>
+)}
 
 <style>
-  .panorama-ext-card--low {
+  .pext-section {
+    margin-top: 1rem;
+  }
+
+  .pext-header {
+    margin-bottom: 0.875rem;
+  }
+
+  .pext-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 3px;
+    letter-spacing: -0.01em;
+  }
+
+  .pext-title-icon {
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .pext-subtitle {
+    font-size: 0.67rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+  }
+
+  /* ── Lista ── */
+  .pext-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  /* ── Card base ── */
+  .pext-card {
+    border-radius: 12px;
+    border: 1px solid var(--color-border-subtle);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pext-card--low {
     border-left: 4px solid rgb(34 197 94);
-    background: rgba(34 197 94 / 0.06);
+    background: rgba(34, 197, 94, 0.05);
   }
-  .panorama-ext-card--moderate {
+  .pext-card--moderate {
     border-left: 4px solid rgb(234 179 8);
-    background: rgba(234 179 8 / 0.08);
+    background: rgba(234, 179, 8, 0.07);
   }
-  .panorama-ext-card--high {
+  .pext-card--high {
     border-left: 4px solid rgb(249 115 22);
-    background: rgba(249 115 22 / 0.09);
+    background: rgba(249, 115, 22, 0.08);
   }
+
+  /* ── Cabecera ── */
+  .pext-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pext-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  :root[data-theme="light"] .pext-icon-wrap {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .pext-card-meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .pext-day-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  /* ── Badge de nivel ── */
+  .pext-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid;
+    width: fit-content;
+  }
+
+  .pext-badge--low      { background: rgba(34,197,94,.15);  color: rgb(21,128,61);  border-color: rgba(34,197,94,.35); }
+  .pext-badge--moderate { background: rgba(234,179,8,.15);  color: rgb(133,77,14);  border-color: rgba(234,179,8,.35); }
+  .pext-badge--high     { background: rgba(249,115,22,.18); color: rgb(154,52,18);  border-color: rgba(249,115,22,.4); }
+
+  :root:not([data-theme="light"]) .pext-badge--low      { color: rgb(74,222,128);  border-color: rgba(34,197,94,.3);   }
+  :root:not([data-theme="light"]) .pext-badge--moderate { color: rgb(251,191,36);  border-color: rgba(234,179,8,.3);   }
+  :root:not([data-theme="light"]) .pext-badge--high     { color: rgb(251,146,60);  border-color: rgba(249,115,22,.35); }
+
+  /* ── Texto ── */
+  .pext-summary {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .pext-detail {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* ── Highlight de palabras clave ── */
+  :global(.pext-hl) {
+    border-radius: 3px;
+    padding: 0 2px;
+    font-weight: 700;
+    color: inherit;
+  }
+
+  .pext-card--low     :global(.pext-hl) { background: rgba(34,197,94,.2); }
+  .pext-card--moderate :global(.pext-hl) { background: rgba(234,179,8,.25); }
+  .pext-card--high    :global(.pext-hl) { background: rgba(249,115,22,.25); }
+
+  /* ── Chips ── */
+  .pext-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .pext-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.63rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+
+  .pext-chip--low      { background: rgba(34,197,94,.1);  color: rgb(21,128,61);  border-color: rgba(34,197,94,.25); }
+  .pext-chip--moderate { background: rgba(234,179,8,.1);  color: rgb(133,77,14);  border-color: rgba(234,179,8,.25); }
+  .pext-chip--high     { background: rgba(249,115,22,.1); color: rgb(154,52,18);  border-color: rgba(249,115,22,.25); }
+
+  :root:not([data-theme="light"]) .pext-chip--low      { color: rgb(74,222,128);  }
+  :root:not([data-theme="light"]) .pext-chip--moderate { color: rgb(251,191,36);  }
+  :root:not([data-theme="light"]) .pext-chip--high     { color: rgb(251,146,60);  }
 </style>

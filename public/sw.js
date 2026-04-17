@@ -1,7 +1,8 @@
 /**
  * PWA — caché solo de assets estáticos; HTML y datos siempre red.
  */
-const CACHE_NAME = "paso-chile-v2";
+/** Bump al cambiar hashing de assets (`/_app/`) para evitar HTML viejo apuntando a CSS borrado. */
+const CACHE_NAME = "paso-chile-v3";
 const STATIC_PATHS = new Set(["/logo.png", "/favicon_io/apple-touch-icon.png"]);
 
 self.addEventListener("install", (event) => {
