@@ -11,6 +11,8 @@ const xUrl = "https://x.com/PasoCRMza";
 
 const linkedinUrl =
   import.meta.env.PUBLIC_LINKEDIN_URL?.trim() || "https://www.linkedin.com/in/fernando-moya-1997-/";
+const portfolioUrl =
+  import.meta.env.PUBLIC_PORTFOLIO_URL?.trim() || "https://fernandomoya-dev.vercel.app/";
 const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
 ---
 
@@ -40,20 +42,39 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
           <p class="footer-dev-label">Diseñado y desarrollado por</p>
           <div class="footer-dev-row">
             <span class="footer-dev-name">Fernando Moya</span>
-            <span class="footer-dev-icons">
+            <nav class="footer-dev-icons" aria-label="Enlaces de contacto de Fernando Moya">
               <a
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="footer-icon-link"
-                aria-label="Fernando Moya en LinkedIn"
+                title="Perfil profesional en LinkedIn"
+                aria-label="LinkedIn — perfil de Fernando Moya"
               >
                 <Icon name="lucide:linkedin" width="16" height="16" aria-hidden="true" />
+                <span class="footer-icon-link__label">LinkedIn</span>
               </a>
-              <a href={mailto} class="footer-icon-link" aria-label={`Enviar correo a ${mail}`}>
+              <a
+                href={portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-icon-link"
+                title="Sitio web personal: proyectos y contacto"
+                aria-label="Sitio web personal de Fernando Moya"
+              >
+                <Icon name="lucide:globe" width="16" height="16" aria-hidden="true" />
+                <span class="footer-icon-link__label">Sitio web</span>
+              </a>
+              <a
+                href={mailto}
+                class="footer-icon-link"
+                title={`Enviar correo electrónico a ${mail}`}
+                aria-label={`Correo electrónico: ${mail}`}
+              >
                 <Icon name="lucide:mail" width="16" height="16" aria-hidden="true" />
+                <span class="footer-icon-link__label">Correo</span>
               </a>
-            </span>
+            </nav>
           </div>
           <p class="footer-dev-cta">Abierto a consultas y proyectos</p>
         </div>
@@ -82,13 +103,23 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
         <div class="footer-social-block">
           <p class="footer-col-title">Seguinos</p>
           <nav class="footer-nav-list" aria-label="Redes sociales">
-            <a href={xUrl} target="_blank" rel="noopener noreferrer" class="footer-link footer-link--with-icon">
+            <a
+              href={xUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link footer-link--with-icon"
+              title="Cuenta oficial en X (antes Twitter)"
+              aria-label="X — cuenta oficial @PasoCRMza"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="footer-x-icon" aria-hidden="true">
                 <path
                   d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
                 ></path>
               </svg>
-              @PasoCRMza en X
+              <span class="footer-link__text">
+                <span class="footer-link__label">X</span>
+                <span class="footer-link__hint">@PasoCRMza · novedades del proyecto</span>
+              </span>
             </a>
             {
               instagramUrl ? (
@@ -97,15 +128,28 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
                   target="_blank"
                   rel="noopener noreferrer"
                   class="footer-link footer-link--with-icon"
+                  title="Perfil de Instagram de Paso Chile Hoy"
+                  aria-label="Instagram — Paso Chile Hoy"
                 >
                   <Icon name="lucide:instagram" width="16" height="16" aria-hidden="true" />
-                  Instagram
+                  <span class="footer-link__text">
+                    <span class="footer-link__label">Instagram</span>
+                    <span class="footer-link__hint">Red social del proyecto</span>
+                  </span>
                 </a>
               ) : null
             }
-            <a href={mailto} class="footer-link footer-link--with-icon">
+            <a
+              href={mailto}
+              class="footer-link footer-link--with-icon"
+              title={`Enviar correo a ${mail}`}
+              aria-label={`Correo de contacto: ${mail}`}
+            >
               <Icon name="lucide:mail" width="16" height="16" aria-hidden="true" />
-              {mail}
+              <span class="footer-link__text">
+                <span class="footer-link__label">Correo</span>
+                <span class="footer-link__hint">{mail}</span>
+              </span>
             </a>
           </nav>
         </div>
@@ -281,16 +325,29 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
   }
 
   .footer-dev-icons {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: 8px 14px;
   }
 
   .footer-icon-link {
     display: inline-flex;
+    align-items: center;
+    gap: 6px;
     color: #64748b;
     transition: color 150ms ease;
     text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 6px;
+    padding: 4px 2px;
+    margin: -4px -2px;
+  }
+
+  .footer-icon-link__label {
+    letter-spacing: 0.01em;
   }
 
   .footer-icon-link:hover {
@@ -362,12 +419,39 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL?.trim();
 
   .footer-link--with-icon {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 10px;
   }
 
-  .footer-x-icon {
+  .footer-link__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .footer-link__label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .footer-link__hint {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    line-height: 1.35;
+    word-break: break-word;
+  }
+
+  :root[data-theme="dark"] .footer-link__hint {
+    color: var(--color-text-muted);
+  }
+
+  .footer-link--with-icon > :first-child {
     flex-shrink: 0;
+    margin-top: 2px;
   }
 
   .footer-project-version {

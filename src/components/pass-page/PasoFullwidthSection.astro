@@ -13,10 +13,10 @@ const { view, hideScheduleInDetails, class: className } = Astro.props;
 ---
 
 <div class:list={["paso-page-fullwidth paso-fullwidth", className]}>
-  <details class="paso-bottom-details home-collapse" aria-label="Datos ampliados y soporte">
+  <details class="paso-bottom-details home-collapse" aria-label="Datos ampliados del paso">
     <summary class="paso-bottom-details__summary">
       <span class="paso-bottom-details__title">Datos ampliados del paso</span>
-      <span class="paso-bottom-details__hint">Horarios, enlaces útiles y cómo colaborar con el sitio</span>
+      <span class="paso-bottom-details__hint">Horario, contacto, mapa, enlaces y fuentes del cruce</span>
     </summary>
     <div class="paso-bottom-details__body">
       <PassDetails
@@ -24,8 +24,10 @@ const { view, hideScheduleInDetails, class: className } = Astro.props;
         view={view}
         hideScheduleInDetails={hideScheduleInDetails}
       />
-
-      <SupportBlock />
     </div>
   </details>
+
+  <div class="paso-fullwidth-support">
+    <SupportBlock />
+  </div>
 </div>

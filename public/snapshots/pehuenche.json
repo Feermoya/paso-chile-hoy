@@ -13,29 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20,
+    "temperatureC": 22,
     "description": "Parcialmente nublado",
     "wind": "Oeste 21 km/h",
     "visibilityKm": 20,
     "sunrise": "08:06",
     "sunset": "19:13",
-    "updatedAt": "2026-04-18T11:00:00-03:00",
+    "updatedAt": "2026-04-18T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 24
+    "humidity": 17
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-18T15:17:46.317Z",
+  "scrapedAt": "2026-04-18T15:51:52.443Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 6,
-      "wind": "NO a 42-50 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Lluvias y nevadas",
@@ -56,6 +49,13 @@
       "temperatureC": 3,
       "wind": "NO a 23-31 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": 3,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "17/4/2026 10:29:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-18T15:17:46.317Z"
+  "lastKnownGoodAt": "2026-04-18T15:51:52.443Z"
 }

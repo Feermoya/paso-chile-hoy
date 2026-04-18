@@ -1688,6 +1688,11 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     gap: 24px;
   }
 
+  /* Apoyo al proyecto: siempre visible, fuera del <details> de datos ampliados */
+  .paso-fullwidth-support .support-block-section {
+    margin-top: 0;
+  }
+
   /* Paso [slug]: bloques de texto bajo el héroe — colapsados por defecto */
   .paso-extra-details,
   .paso-weather-extra,
@@ -4976,6 +4981,10 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
   margin: 0;
   line-height: 1.5;
   max-width: 42rem;
+}
+
+.support-line-muted + .support-line-muted {
+  margin-top: 10px;
 }
 
 .support-actions--stack {
