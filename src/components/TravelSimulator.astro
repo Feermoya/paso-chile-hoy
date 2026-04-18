@@ -6,21 +6,21 @@ interface Props {
 const { pasosSchedules } = Astro.props;
 ---
 
-<section class="tsim-root" id="travel-sim" aria-label="Simulador de viaje al paso">
+<section class="tsim-root tsim-root--collapsible" id="travel-sim" aria-label="Simulador de viaje al paso">
+  <details class="tsim-details home-collapse">
+    <summary class="tsim-summary">
+      <div>
+        <h2 class="tsim-title">¿Llegás a tiempo?</h2>
+        <p class="tsim-subtitle">Calculá si llegás antes del cierre del paso — tocá para expandir</p>
+      </div>
+      <svg class="tsim-header-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+    </summary>
 
-  <!-- Header -->
-  <div class="tsim-header">
-    <div>
-      <h2 class="tsim-title">¿Llegás a tiempo?</h2>
-      <p class="tsim-subtitle">Calculá si llegás antes del cierre del paso</p>
-    </div>
-    <svg class="tsim-header-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"></circle>
-      <polyline points="12 6 12 12 16 14"></polyline>
-    </svg>
-  </div>
-
+    <div class="tsim-expandable">
   <!-- Body: form + result side by side on desktop -->
   <div class="tsim-body">
 
@@ -231,7 +231,8 @@ const { pasosSchedules } = Astro.props;
     </div><!-- /tsim-result -->
 
   </div><!-- /tsim-body -->
-
+    </div>
+  </details>
 </section>
 
 <script define:vars={{ pasosSchedules }}>

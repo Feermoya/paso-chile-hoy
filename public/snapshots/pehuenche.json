@@ -27,7 +27,7 @@
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-18T14:37:30.791Z",
+  "scrapedAt": "2026-04-18T14:55:57.289Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "17/4/2026 10:29:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-18T14:37:30.791Z"
+  "lastKnownGoodAt": "2026-04-18T14:55:57.289Z"
 }

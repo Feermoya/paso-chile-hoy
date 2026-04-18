@@ -328,7 +328,7 @@ export const HOME_FAQ_ITEMS: readonly { question: string; answer: string }[] = [
   {
     question: "¿Sirve para turistas o solo para residentes?",
     answer:
-      "Para cualquier persona que vaya a cruzar desde Mendoza o San Juan hacia Chile: turistas, transportistas o residentes. El idioma principal del sitio es español rioplatense; hay líneas breves en inglés donde ayuda al buscador.",
+      "Para cualquier persona que vaya a cruzar desde Mendoza o San Juan hacia Chile: turistas, transportistas o residentes. El sitio está principalmente en español; incluye frases breves en inglés para quien busca en ese idioma.",
   },
   {
     question: "¿Esto reemplaza la información oficial?",
