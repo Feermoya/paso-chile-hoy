@@ -2,14 +2,18 @@
 import { Icon } from "astro-icon/components";
 import { PASOS } from "@/data/pasos";
 import { mapPersistedSnapshotToView } from "@/lib/mappers/passViewMapper";
+import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import type { PassView } from "@/types/pass-view";
-import { readPassSnapshot } from "@/lib/server/storage/passSnapshotStorage";
 import {
   inferPassStatus,
   isVialidadCorteTotal,
   type PassDisplayStatus,
   type PassStatusResult,
 } from "@/utils/inferPassStatus";
+import {
+  getCristoRedentorScheduleLabelOverride,
+  getCristoRedentorScheduleOverride,
+} from "@/utils/cristoRedentorManualOverrides";
 
 type AlertSeverity = "critical" | "warning";
 type BarTone = "critical" | "warn" | "calm";
@@ -101,11 +105,22 @@ const allAlerts: TickerAlert[] = [];
 
 for (const paso of PASOS.filter((p) => p.active)) {
   try {
-    const raw = await readPassSnapshot(paso.slug);
-    if (!raw) continue;
-
+    /** Misma cadena que home / página del paso: evita ticker con Redis/archivo viejo mientras la card ya refrescó. */
+    const raw = await getSnapshotForApi(paso.slug);
     const view = mapPersistedSnapshotToView(raw, paso);
+    const scheduleOverride = getCristoRedentorScheduleOverride(paso.slug);
+    const scheduleLabelOverride = getCristoRedentorScheduleLabelOverride(paso.slug);
+    if (scheduleOverride) {
+      view.operationalInfo.schedule = scheduleOverride;
+    }
+    if (scheduleLabelOverride) {
+      view.operationalInfo.scheduleRaw = scheduleLabelOverride;
+    }
     const result = inferPassStatus(view);
+    if (scheduleOverride) {
+      result.closesInMinutes = undefined;
+      result.opensInMinutes = undefined;
+    }
     const corteTotal = isVialidadCorteTotal(view.operationalInfo.vialidadEstado);
 
     passStrips.push({
