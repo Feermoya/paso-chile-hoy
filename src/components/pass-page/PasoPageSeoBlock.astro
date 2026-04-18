@@ -43,48 +43,58 @@ const block = slugIntro[paso.slug] ?? {
   class:list={["paso-page-seo seo-content seo-content--pass", className]}
   aria-label={`Guía breve — ${paso.name}`}
 >
-  <h2 class="paso-page-seo-title">{paso.shortName}: qué encontrás en esta página</h2>
-  <p class="paso-page-seo-lead">{block.lead}</p>
-  <p class="paso-page-seo-note">{block.context}</p>
+  <details class="paso-page-seo-details home-collapse">
+    <summary class="paso-page-seo-details__summary">
+      <span class="paso-page-seo-details__title">{paso.shortName}: qué encontrás en esta página</span>
+      <span class="paso-page-seo-details__hint">
+        Texto explicativo, cómo leer el estado, checklist y enlaces (incluye versión en inglés)
+      </span>
+    </summary>
+    <div class="paso-page-seo-details__body">
+      <h2 class="paso-page-seo-title">{paso.shortName}: qué encontrás en esta página</h2>
+      <p class="paso-page-seo-lead">{block.lead}</p>
+      <p class="paso-page-seo-note">{block.context}</p>
 
-  <h3 class="paso-page-seo-sub">Cómo interpretar el estado que ves arriba</h3>
-  <p class="paso-page-seo-note">
-    El cartel resume texto y horarios <strong>públicos</strong> del Ministerio de Seguridad de la Nación
-    Argentina. “Abierto”, “cerrado” o “condicionado” reflejan esa publicación en el momento del último
-    relevamiento, no una orden personalizada para tu vehículo. Si hay dudas, la referencia final es la web
-    oficial de pasos internacionales y Gendarmería.
-  </p>
+      <h3 class="paso-page-seo-sub">Cómo interpretar el estado que ves arriba</h3>
+      <p class="paso-page-seo-note">
+        El cartel resume texto y horarios <strong>públicos</strong> del Ministerio de Seguridad de la Nación
+        Argentina. “Abierto”, “cerrado” o “condicionado” reflejan esa publicación en el momento del último
+        relevamiento, no una orden personalizada para tu vehículo. Si hay dudas, la referencia final es la web
+        oficial de pasos internacionales y Gendarmería.
+      </p>
 
-  <h3 class="paso-page-seo-sub">Qué conviene revisar antes de largar</h3>
-  <ul class="paso-page-seo-list">
-    <li>Horario y estado en la <a href="/">home</a> y en esta misma página (sección operativa).</li>
-    <li>Clima y visibilidad en cordillera; en Agua Negra y Pehuenche el tiempo puede diferir mucho del valle.</li>
-    <li>Documentación y requisitos de ingreso a Chile (no los gestiona este sitio).</li>
-    <li>
-      Fuente oficial del paso:{" "}
-      <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener"
-        >argentina.gob.ar/seguridad/pasosinternacionales</a
-      >.
-    </li>
-  </ul>
+      <h3 class="paso-page-seo-sub">Qué conviene revisar antes de largar</h3>
+      <ul class="paso-page-seo-list">
+        <li>Horario y estado en la <a href="/">home</a> y en esta misma página (sección operativa).</li>
+        <li>Clima y visibilidad en cordillera; en Agua Negra y Pehuenche el tiempo puede diferir mucho del valle.</li>
+        <li>Documentación y requisitos de ingreso a Chile (no los gestiona este sitio).</li>
+        <li>
+          Fuente oficial del paso:{" "}
+          <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener"
+            >argentina.gob.ar/seguridad/pasosinternacionales</a
+          >.
+        </li>
+      </ul>
 
-  <h3 class="paso-page-seo-sub">Otros pasos y aviso legal</h3>
-  <p class="paso-page-seo-note">
-    {
-      otros.flatMap((o, i) => [
-        i > 0 ? " · " : null,
-        <a href={`/${o.slug}`}>{o.shortName}</a>,
-      ])
-    }
-    {" "}
-    · <a href="/">Inicio</a>
-    {" "}
-    · <a href="/legal">Aviso legal</a>
-  </p>
-  <p class="paso-page-seo-note" lang="en">
-    <strong>English:</strong> {enLine} This page summarizes official open/closed status, schedule hints and
-    mountain weather — not a substitute for border authorities.
-  </p>
+      <h3 class="paso-page-seo-sub">Otros pasos y aviso legal</h3>
+      <p class="paso-page-seo-note">
+        {
+          otros.flatMap((o, i) => [
+            i > 0 ? " · " : null,
+            <a href={`/${o.slug}`}>{o.shortName}</a>,
+          ])
+        }
+        {" "}
+        · <a href="/">Inicio</a>
+        {" "}
+        · <a href="/legal">Aviso legal</a>
+      </p>
+      <p class="paso-page-seo-note" lang="en">
+        <strong>English:</strong> {enLine} This page summarizes official open/closed status, schedule hints and
+        mountain weather — not a substitute for border authorities.
+      </p>
+    </div>
+  </details>
 </section>
 
 <style>

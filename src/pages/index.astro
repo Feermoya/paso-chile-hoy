@@ -15,6 +15,7 @@ import {
   HOME_FAQ_ITEMS,
   SITE_URL,
 } from "@/utils/seo";
+import type { ForecastItemView } from "@/types/pass-view";
 import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import HomeRouteSegmentsCard from "@/components/HomeRouteSegmentsCard.astro";
 import TwitterTimeline from "@/components/TwitterTimeline.astro";
@@ -39,10 +40,18 @@ type CardEntry = {
   opensInMinutes?: number;
   weatherDesc?: string;
   weatherTempC?: number | null;
+  weatherWind?: string;
   vialidadEstado?: string;
   vialidadObservaciones?: string;
+  vialidadRuta?: string;
+  vialidadTramo?: string;
   scrapedAt?: string;
   schedule?: string;
+  htmlAlerts?: string[];
+  forecast?: ForecastItemView[];
+  rawStatus?: string;
+  motivo?: string;
+  motivoInfo?: string | null;
 };
 
 interface PasoSchedule {
@@ -106,10 +115,18 @@ const cards: CardEntry[] = await Promise.all(
         opensInMinutes: statusResult.opensInMinutes,
         weatherDesc: n?.description?.trim(),
         weatherTempC: n?.temperatureC ?? null,
+        weatherWind: n?.wind?.trim(),
         vialidadEstado: op.vialidadEstado,
         vialidadObservaciones: op.vialidadObservaciones,
+        vialidadRuta: op.vialidadRuta,
+        vialidadTramo: op.vialidadTramo,
         scrapedAt: raw.scrapedAt?.trim(),
         schedule: scheduleOverride ?? raw.schedule ?? view.operationalInfo?.schedule,
+        htmlAlerts: op.htmlAlerts,
+        forecast: view.weather?.forecast ?? [],
+        rawStatus: op.rawStatus,
+        motivo: op.motivo,
+        motivoInfo: op.motivoInfo,
       };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
@@ -226,7 +243,7 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
       </div>
     </div>
 
-    <div class="pasos-grid pcv2-cards-grid">
+    <div class="pasos-grid pass-cards-grid pcv2-cards-grid">
       {PASOS.map((paso) => {
         const c = cardBySlug.get(paso.slug);
         return (
@@ -238,8 +255,16 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
             opensInMinutes={c?.opensInMinutes}
             weatherDesc={c?.weatherDesc}
             weatherTempC={c?.weatherTempC}
+            weatherWind={c?.weatherWind}
             vialidadEstado={c?.vialidadEstado}
             vialidadObservaciones={c?.vialidadObservaciones}
+            vialidadRuta={c?.vialidadRuta}
+            vialidadTramo={c?.vialidadTramo}
+            htmlAlerts={c?.htmlAlerts}
+            forecast={c?.forecast}
+            rawStatus={c?.rawStatus}
+            motivo={c?.motivo}
+            motivoInfo={c?.motivoInfo}
           />
         );
       })}

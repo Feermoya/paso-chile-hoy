@@ -6,6 +6,7 @@
   "description": "Web informativa del estado de pasos fronterizos Argentina–Chile (base frontend).",
   "scripts": {
     "dev": "astro dev",
+    "dev:fresh": "rm -rf node_modules/.vite && astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",

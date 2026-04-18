@@ -76,28 +76,39 @@ const shareCardId = `forecast-share-card-${slug}`;
     )
   }
 
-  {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
   {
-    showForecast && forecast.length > 0 && (
-      <div class="anim-section anim-delay-2 mt-2">
-        <ForecastShareButton targetModalId={shareModalId} />
-      </div>
-    )
-  }
-  {
-    showForecast && forecast.length > 0 && (
-      <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
-    )
-  }
-
-  {
-    showNow && now && (
-      <DrivingConditions
-        class="anim-section anim-delay-3"
-        weather={weatherNowToDrivingInput(now)}
-        forecast={forecast}
-        compact
-      />
+    ((showForecast && forecast.length > 0) || (showNow && now)) && (
+      <details class="paso-weather-extra home-collapse" aria-label="Pronóstico y conducción">
+        <summary class="paso-weather-extra__summary">
+          <span class="paso-weather-extra__title">Pronóstico y conducción</span>
+          <span class="paso-weather-extra__hint">Tocá para ver días siguientes, compartir y condiciones en ruta</span>
+        </summary>
+        <div class="paso-weather-extra__body">
+          {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
+          {
+            showForecast && forecast.length > 0 && (
+              <div class="anim-section anim-delay-2 mt-2">
+                <ForecastShareButton targetModalId={shareModalId} />
+              </div>
+            )
+          }
+          {
+            showForecast && forecast.length > 0 && (
+              <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
+            )
+          }
+          {
+            showNow && now && (
+              <DrivingConditions
+                class="anim-section anim-delay-3"
+                weather={weatherNowToDrivingInput(now)}
+                forecast={forecast}
+                compact
+              />
+            )
+          }
+        </div>
+      </details>
     )
   }
 </section>

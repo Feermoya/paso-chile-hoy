@@ -27,7 +27,10 @@ export default defineConfig({
   },
   integrations: [tailwind({ applyBaseStyles: false }), icon()],
   vite: {
-    /** Reduce errores `504 Outdated Optimize Dep` en dev al estabilizar pre-bundles. */
+    /**
+     * Reduce errores `504 Outdated Optimize Dep` / imports del dev-toolbar en dev.
+     * Si persisten: `npm run dev:fresh` (borra caché de Vite) o reiniciar el servidor.
+     */
     optimizeDeps: {
       include: ["html-to-image", "aria-query", "axobject-query"],
     },

@@ -13,11 +13,19 @@ const { view, hideScheduleInDetails, class: className } = Astro.props;
 ---
 
 <div class:list={["paso-page-fullwidth paso-fullwidth", className]}>
-  <PassDetails
-    class="anim-section anim-delay-5"
-    view={view}
-    hideScheduleInDetails={hideScheduleInDetails}
-  />
+  <details class="paso-bottom-details home-collapse" aria-label="Datos ampliados y soporte">
+    <summary class="paso-bottom-details__summary">
+      <span class="paso-bottom-details__title">Datos ampliados del paso</span>
+      <span class="paso-bottom-details__hint">Horarios, enlaces útiles y cómo colaborar con el sitio</span>
+    </summary>
+    <div class="paso-bottom-details__body">
+      <PassDetails
+        class="anim-section anim-delay-5"
+        view={view}
+        hideScheduleInDetails={hideScheduleInDetails}
+      />
 
-  <SupportBlock />
+      <SupportBlock />
+    </div>
+  </details>
 </div>
