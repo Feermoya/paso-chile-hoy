@@ -58,6 +58,18 @@ const LEVEL_CONFIG = {
     badgeBorder: "rgba(239,68,68,.4)",
     badgeColorDark: "rgb(252,165,165)",
   },
+  operational_closed: {
+    label:       "Paso cerrado",
+    icon:        "lucide:ban",
+    iconColor:   "rgb(220,38,38)",
+    iconBg:      "rgba(220,38,38,.12)",
+    border:      "rgb(185,28,28)",
+    bg:          "rgba(220,38,38,.07)",
+    badgeBg:     "rgba(220,38,38,.18)",
+    badgeColor:  "rgb(127,29,29)",
+    badgeBorder: "rgba(220,38,38,.45)",
+    badgeColorDark: "rgb(252,165,165)",
+  },
 } as const;
 
 const CONFIDENCE_LABEL: Record<CristoRedentorRiskV1["confidence"], string> = {

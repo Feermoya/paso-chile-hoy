@@ -6,36 +6,31 @@
   "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [],
+  "htmlAlerts": [
+    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche cerrado por nevadas Contacto: (260) 4471063"
+  ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
-    "description": "Nublado con lluvia en la hora anterior",
-    "wind": "Norte 6 km/h",
-    "visibilityKm": 20,
+    "temperatureC": 7,
+    "description": "Nublado con lluvia débil",
+    "wind": "Noroeste 8 km/h",
+    "visibilityKm": 10,
     "sunrise": "08:08",
     "sunset": "19:10",
-    "updatedAt": "2026-04-20T06:00:00-03:00",
-    "feelsLikeC": 5,
-    "humidity": 92
+    "updatedAt": "2026-04-20T14:00:00-03:00",
+    "feelsLikeC": 5.6,
+    "humidity": 90
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-20T09:25:45.177Z",
+  "scrapedAt": "2026-04-20T20:10:43.151Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": 0,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -56,6 +51,13 @@
       "temperatureC": -6,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 0,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +66,5 @@
     "statusUpdatedAt": "19/4/2026 14:40:23"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-20T09:25:45.177Z"
+  "lastKnownGoodAt": "2026-04-20T20:10:43.151Z"
 }

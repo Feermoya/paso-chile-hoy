@@ -1,11 +1,11 @@
 {
   "slug": "agua-negra",
   "name": "Paso Agua Negra",
-  "schedule": null,
-  "scheduleRaw": "Todos los días de la semana, incluidos feriados.",
+  "schedule": "09:00-17:00",
+  "scheduleRaw": "09:00 a 17:00 hs",
   "rawStatus": "CERRADO",
   "statusDetail": "Cerrado",
-  "scheduleText": null,
+  "scheduleText": "09:00 a 17:00 hs",
   "scheduleDays": "Todos los días de la semana, incluidos feriados.",
   "motivo": null,
   "motivoInfo": null,
@@ -22,55 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9,
-    "description": "Despejado",
-    "wind": "WSW a 4 km/h",
+    "temperatureC": 17,
+    "description": "Soleado",
+    "wind": "ENE a 18 km/h",
     "visibilityKm": 10,
     "sunrise": "08:00",
     "sunset": "19:12",
-    "updatedAt": "2026-04-20 05:48 AM",
-    "feelsLikeC": 9,
-    "humidity": 71
+    "updatedAt": "2026-04-20 04:31 PM",
+    "feelsLikeC": 17,
+    "humidity": 25
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-04-20T09:25:48.073Z",
+  "scrapedAt": "2026-04-20T20:10:44.857Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 15,
-      "wind": "ENE 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 18,
-      "wind": "NE 18 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 14,
-      "wind": "NE 12 km/h",
+      "wind": "NE 7 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 11,
-      "wind": "NE 4 km/h",
+      "wind": "E 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Despejado",
+      "temperatureC": 6,
+      "wind": "NW 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 11,
+      "wind": "ENE 3 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "19 de abril de 2026 • 17:00 hs"
+    "statusUpdatedAt": "20 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-20T09:25:48.073Z"
+  "lastKnownGoodAt": "2026-04-20T20:10:44.857Z"
 }

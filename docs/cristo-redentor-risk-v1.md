@@ -90,7 +90,8 @@ Campos principales:
 | `low` | Sin señales fuertes de complicación meteorológica o de manejo con los datos actuales. |
 | `moderate` | Señales moderadas (viento/visibilidad/temperatura/pronóstico adverso leve) o **falta de estado oficial** (`sin_datos`) con prudencia. |
 | `high_complications` | Clima/manjeo adversos fuertes (p. ej. `danger` en driving o nieve en pronóstico según tier). **Puede** darse con badge **ABIERTO**: no implica cierre predicho. |
-| `possible_preventive_closure` | Estado oficial **cerrado** o **condicionado**, o **corte total** en `vialidadEstado` según `isVialidadCorteTotal`. El nombre refiere a riesgo operativo / restricción; **no** predice horarios. |
+| `operational_closed` | Inferencia de estado **`cerrado`** (Gendarmería o **fuentes cruzadas**). Textos de card y PNG: **«Paso cerrado»** (sin «posible»). |
+| `possible_preventive_closure` | **Condicionado** o **corte total** de vialidad sin cierre inferido aún; restricción o cierre incierto frente al API. |
 
 ---
 
@@ -98,17 +99,19 @@ Campos principales:
 
 Implementación literal en `computeCristoRedentorRiskV1.ts`:
 
-1. **Preventivo (máxima prioridad):** si `cerrado` **o** `condicionado` **o** `isVialidadCorteTotal(vialidadEstado)` → `possible_preventive_closure`.
-2. **Alto:** si no preventivo y (`driving.level === "danger"` **o** `forecastAdverseTier === "snow"`) → `high_complications`.
-3. **Moderado:** si no preventivo ni alto y (`warning` \| `caution` \| tier `storm` \| tier `rain`) → `moderate`.
-4. **Sin datos oficiales:** si `sin_datos` y no entró antes → `moderate` (con razón `official_data_incomplete`).
-5. **Bajo:** resto (p. ej. abierto + condiciones favorables).
-6. **Tope:** si `sin_datos` y el nivel hubiera quedado en `high_complications`, se **fuerza** a `moderate` y se agrega `capped_no_official_status`.
+1. **Cierre confirmado:** si `statusResult.status === "cerrado"` → `operational_closed` (copy limpio: paso cerrado).
+2. **Preventivo / restricción:** si `condicionado` **o** `isVialidadCorteTotal(vialidadEstado)` (y no aplica el paso 1) → `possible_preventive_closure`.
+3. **Alto:** si no preventivo y (`driving.level === "danger"` **o** `forecastAdverseTier === "snow"`) → `high_complications`.
+4. **Moderado:** si no preventivo ni alto y (`warning` \| `caution` \| tier `storm` \| tier `rain`) → `moderate`.
+5. **Sin datos oficiales:** si `sin_datos` y no entró antes → `moderate` (con razón `official_data_incomplete`).
+6. **Bajo:** resto (p. ej. abierto + condiciones favorables).
+7. **Tope:** si `sin_datos` y el nivel hubiera quedado en `high_complications`, se **fuerza** a `moderate` y se agrega `capped_no_official_status`.
 
 **`confidence`:**
 
+- `high` si `statusResult.status === "cerrado"`
 - `low` si `sin_datos` o `view.meta.operationalStale === true`
-- `high` si `hasUsableNow`
+- `high` si `hasUsableNow` (salvo reglas anteriores)
 - `medium` en los demás casos con datos oficiales
 
 ---

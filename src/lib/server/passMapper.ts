@@ -218,6 +218,15 @@ function contactFromString(contact: string | null): { phone: string; telHref: st
   return { phone, telHref: href };
 }
 
+function htmlToPlainBulletin(html: string): string {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function parseScheduleBounds(schedule: string | null): { from?: string; to?: string } {
   if (!schedule?.trim()) return {};
   const m = schedule.trim().match(/(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/);
@@ -328,6 +337,11 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
   const scheduleLine =
     snapshot.schedule ? `Horario: ${snapshot.schedule} h` : undefined;
 
+  const bulletinPlain =
+    typeof snap.extendedForecastText === "string" && snap.extendedForecastText.trim().length > 0
+      ? htmlToPlainBulletin(snap.extendedForecastText).slice(0, 24_000)
+      : undefined;
+
   return {
     slug: snapshot.slug,
     title: snapshot.name || paso.name,
@@ -350,6 +364,7 @@ export function mapPassSnapshotToView(snapshot: PassSnapshot, paso: PasoConfig):
       ...(snapshot.htmlAlerts && snapshot.htmlAlerts.length > 0
         ? { htmlAlerts: [...snapshot.htmlAlerts] }
         : {}),
+      ...(bulletinPlain ? { supplementaryBulletinPlain: bulletinPlain } : {}),
       vialidadEstado: snapshot.vialidadEstado,
       vialidadObservaciones: snapshot.vialidadObservaciones,
       vialidadRuta: snapshot.vialidadRuta ?? "",

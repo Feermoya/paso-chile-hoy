@@ -5,7 +5,9 @@ export type CristoRedentorRiskLevelV1 =
   | "low"
   | "moderate"
   | "high_complications"
-  | "possible_preventive_closure";
+  | "possible_preventive_closure"
+  /** Cierre confirmado en la inferencia de estado (oficial o fuentes cruzadas); no usar redacción de «posible». */
+  | "operational_closed";
 
 export interface CristoRedentorRiskReasonV1 {
   code: string;

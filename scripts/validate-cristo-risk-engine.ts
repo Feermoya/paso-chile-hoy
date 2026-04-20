@@ -52,6 +52,15 @@ function statusSinDatos(): PassStatusResult {
   };
 }
 
+function statusCerrado(): PassStatusResult {
+  return {
+    status: "cerrado",
+    source: "fuentes_cruzadas",
+    reason: "fixture cierre",
+    confidence: "high",
+  };
+}
+
 function runCase(
   name: string,
   view: PassView,
@@ -159,6 +168,19 @@ function main(): void {
   );
 
   runCase("7 sin_datos", baseView([{ period: "Hoy", description: "Despejado" }], false), statusSinDatos(), true);
+
+  runCase(
+    "7b cerrado → operational_closed (PNG/card sin «posible»)",
+    baseView(
+      [
+        { period: "Hoy", description: "Nevadas", temperatureC: -2 },
+        { period: "Noche", description: "Nublado", temperatureC: -4 },
+      ],
+      false,
+    ),
+    statusCerrado(),
+    true,
+  );
 
   runCase("8 operationalStale", baseView([], true), open, true);
 

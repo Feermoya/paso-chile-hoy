@@ -6,8 +6,8 @@ export interface PassStatusResult {
   status: PassDisplayStatus;
   reason: string;
   confidence: "high" | "medium" | "low";
-  /** Origen del estado inferido (solo Gendarmería u horario; la vialidad no define el estado del paso). */
-  source?: "gendarmeria" | "horario";
+  /** Origen del estado inferido; `fuentes_cruzadas` = API + Vialidad/HTML/boletín provincial. */
+  source?: "gendarmeria" | "horario" | "fuentes_cruzadas";
   /** Señal auxiliar (p. ej. Gendarmería «ABIERTO» con alerta de vialidad): no reemplaza el badge CONDICIONADO en UI. */
   displayLabel?: string;
   opensInMinutes?: number;
@@ -33,6 +33,46 @@ function scheduleForInference(view: PassView): string | null {
     return `${from}–${to}`;
   }
   return null;
+}
+
+/** Texto unificado para detectar cierre real pese a `rawStatus` API «ABIERTO». */
+function buildClosureCorpus(view: PassView): string {
+  const o = view.operationalInfo;
+  const chunks = [
+    o.motivo,
+    o.motivoInfo,
+    o.vialidadObservaciones,
+    ...(o.htmlAlerts ?? []),
+    o.supplementaryBulletinPlain,
+  ].filter((x): x is string => typeof x === "string" && x.trim().length > 0);
+  return stripDiacritics(chunks.join("\n").toLowerCase());
+}
+
+/**
+ * Aviso inequívoco de cierre o bloqueo del cruce / tránsito hacia el paso (no solo “precaución”).
+ */
+function hasExplicitOperationalClosure(corpus: string): boolean {
+  if (!corpus.trim()) return false;
+  return (
+    /\bpaso\s+cerrad/.test(corpus) ||
+    /\bcruz\w*\s+cerrad/.test(corpus) ||
+    /\bcerrado\s+desde\b/.test(corpus) ||
+    /\bcerrado\s+a\s+partir\b/.test(corpus) ||
+    /\bcierre\s+del\s+transit/.test(corpus) ||
+    /\bcierre\s+total\b/.test(corpus) ||
+    /\bsin\s+transit\w*\s+en\s+uspallata\b/.test(corpus) ||
+    /\btransit\w*\s+en\s+uspallata[^.]{0,100}\bcerrad/.test(corpus)
+  );
+}
+
+/** Prensa Mendoza: línea del Paso Cristo Redentor con cierre (puede ir desfasado el JSON nacional). */
+function mendozaBulletinDeclaresCristoClosed(plain?: string): boolean {
+  if (!plain?.trim()) return false;
+  const b = stripDiacritics(plain.toLowerCase());
+  const idx = b.search(/cristo\s+redentor/);
+  if (idx < 0) return false;
+  const slice = b.slice(idx, idx + 220);
+  return /\bcerrad/.test(slice);
 }
 
 function normalizeAlertText(view: PassView): string {
@@ -337,6 +377,34 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
       vial.includes("CORTE TOTAL") ||
       vial === "RESTRINGIDA" ||
       vial.includes("RESTRIC");
+
+    const corpus = buildClosureCorpus(view);
+    const explicitClosure = hasExplicitOperationalClosure(corpus);
+    const mendozaCristoClosed =
+      view.slug === "cristo-redentor" &&
+      mendozaBulletinDeclaresCristoClosed(view.operationalInfo.supplementaryBulletinPlain);
+
+    const corteTotalVial = isVialidadCorteTotal(vialRaw);
+    if ((corteTotalVial && explicitClosure) || mendozaCristoClosed) {
+      const vialObs = view.operationalInfo.vialidadObservaciones?.trim();
+      const htmlHit = view.operationalInfo.htmlAlerts?.find((a) =>
+        /cerrad|cierre|corte|nev|uspallata/i.test(a),
+      );
+      const detail =
+        vialObs ||
+        htmlHit?.trim() ||
+        (mendozaCristoClosed
+          ? "Prensa Gobierno de Mendoza: Paso Cristo Redentor cerrado o con restricción de tránsito."
+          : "");
+      return {
+        status: "cerrado",
+        reason: detail
+          ? `Cierre inferido por fuentes cruzadas (Vialidad, alertas HTML y/o boletín provincial), aunque el API figure como ABIERTO: ${detail}`
+          : "Cierre inferido por fuentes cruzadas aunque el API figure como ABIERTO.",
+        confidence: "high",
+        source: "fuentes_cruzadas",
+      };
+    }
 
     let closesInMinutes: number | undefined;
     if (schedule) {

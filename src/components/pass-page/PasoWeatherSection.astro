@@ -78,11 +78,10 @@ const shareCardId = `forecast-share-card-${slug}`;
 
   {
     ((showForecast && forecast.length > 0) || (showNow && now)) && (
-      <details class="paso-weather-extra home-collapse" aria-label="Pronóstico y conducción">
-        <summary class="paso-weather-extra__summary">
+      <div class="paso-weather-extra" aria-label="Pronóstico y conducción">
+        <div class="paso-weather-extra__head">
           <span class="paso-weather-extra__title">Pronóstico y conducción</span>
-          <span class="paso-weather-extra__hint">Tocá para ver días siguientes, compartir y condiciones en ruta</span>
-        </summary>
+        </div>
         <div class="paso-weather-extra__body">
           {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
           {
@@ -108,7 +107,7 @@ const shareCardId = `forecast-share-card-${slug}`;
             )
           }
         </div>
-      </details>
+      </div>
     )
   }
 </section>

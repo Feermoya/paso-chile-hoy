@@ -29,6 +29,10 @@ const COPY: Record<
     summary:
       "El estado oficial o la vialidad muestran cierre, condicionamiento o restricción. El paso puede volver a habilitarse; esto no es una predicción de horarios.",
   },
+  operational_closed: {
+    headline: "Paso cerrado",
+    summary: "Cruce cerrado según la lectura actual del estado en esta página.",
+  },
 };
 
 /**
@@ -44,6 +48,9 @@ function computeConfidence(
   drivingLevel: DrivingAssessment["level"],
   moderateOnlyIncompleteOutlook: boolean,
 ): CristoRedentorRiskV1["confidence"] {
+  if (statusResult.status === "cerrado") {
+    return "high";
+  }
   if (statusResult.status === "sin_datos" || view.meta.operationalStale === true) {
     return "low";
   }
@@ -98,7 +105,9 @@ export function computeCristoRedentorRiskV1(input: {
 
   let level: CristoRedentorRiskV1["level"];
 
-  if (preventive) {
+  if (statusResult.status === "cerrado") {
+    level = "operational_closed";
+  } else if (statusResult.status === "condicionado" || isVialidadCorteTotal(vialidad)) {
     level = "possible_preventive_closure";
   } else if (driving.level === "danger" || tier === "snow") {
     if (driving.level === "danger") reasons.push({ code: "driving_danger" });
@@ -178,7 +187,11 @@ export function computeCristoRedentorRiskV1(input: {
     driving.level,
     moderateOnlyIncompleteOutlook,
   );
-  if (extendedForecastSignal?.hasRelevantFutureRisk && confidence === "high") {
+  if (
+    extendedForecastSignal?.hasRelevantFutureRisk &&
+    confidence === "high" &&
+    level !== "operational_closed"
+  ) {
     confidence = "medium";
   }
   const at = input.computedAt ?? new Date();

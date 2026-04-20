@@ -1693,7 +1693,7 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     margin-top: 0;
   }
 
-  /* Paso [slug]: bloques de texto bajo el héroe — colapsados por defecto */
+  /* Paso [slug]: bloques bajo el héroe — alertas/clima siempre visibles; datos ampliados sigue en <details> */
   .paso-extra-details,
   .paso-weather-extra,
   .paso-bottom-details {
@@ -1703,8 +1703,16 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     background: color-mix(in srgb, var(--color-surface) 94%, var(--color-surface-raised) 6%);
   }
 
-  .paso-extra-details__summary,
-  .paso-weather-extra__summary,
+  .paso-extra-details__head,
+  .paso-weather-extra__head {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 12px 14px 6px 14px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
   .paso-bottom-details__summary {
     position: relative;
     padding: 12px 2.25rem 12px 14px;
@@ -1721,8 +1729,6 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     letter-spacing: -0.02em;
   }
 
-  .paso-extra-details__hint,
-  .paso-weather-extra__hint,
   .paso-bottom-details__hint {
     font-size: 0.72rem;
     font-weight: 500;
@@ -1731,8 +1737,6 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     max-width: 42ch;
   }
 
-  .paso-extra-details__summary::after,
-  .paso-weather-extra__summary::after,
   .paso-bottom-details__summary::after {
     content: "";
     position: absolute;
@@ -1749,8 +1753,6 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     opacity: 0.85;
   }
 
-  .paso-extra-details.home-collapse[open] > .paso-extra-details__summary::after,
-  .paso-weather-extra.home-collapse[open] > .paso-weather-extra__summary::after,
   .paso-bottom-details.home-collapse[open] > .paso-bottom-details__summary::after {
     top: 1.25rem;
     transform: rotate(-135deg);

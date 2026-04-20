@@ -65,11 +65,10 @@ const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().len
     lastKnownGoodRelative={lastKnownGoodRelative}
   />
 
-  <details class="paso-extra-details home-collapse" aria-label="Alertas y complementos del paso">
-    <summary class="paso-extra-details__summary">
+  <div class="paso-extra-details" aria-label="Alertas y complementos del paso">
+    <div class="paso-extra-details__head">
       <span class="paso-extra-details__title">Alertas, guía y redes</span>
-      <span class="paso-extra-details__hint">Tocá para ver el detalle completo (oficial y complementario)</span>
-    </summary>
+    </div>
     <div class="paso-extra-details__body">
       {
         slug === "cristo-redentor" && cristoRisk && (
@@ -100,5 +99,5 @@ const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().len
 
       <TwitterAlerts passSlug={slug} />
     </div>
-  </details>
+  </div>
 </section>

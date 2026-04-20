@@ -57,15 +57,18 @@ function fmtMinutes(min: number): string {
   return m > 0 ? `${h}h ${m}min` : `${h}h`;
 }
 
+const hasVialidad = isVialidadCorteTotal(vialidadEstado);
+
+/** No mostrar la card como “abierta” si hay corte total de RN/túnel aunque el badge diga ABIERTO (API desfasado). */
 const isOpen =
   status === "abierto" ||
-  (status === "condicionado" && displayLabel?.trim().toUpperCase() === "ABIERTO");
+  (status === "condicionado" &&
+    displayLabel?.trim().toUpperCase() === "ABIERTO" &&
+    !hasVialidad);
 const isClosed = status === "cerrado";
 const showClosesIn = isOpen && closesInMinutes != null && closesInMinutes > 0;
 const showOpensIn = isClosed && opensInMinutes != null && opensInMinutes > 0;
 const closingSoon = showClosesIn && closesInMinutes! <= 60;
-
-const hasVialidad = isVialidadCorteTotal(vialidadEstado);
 
 const defaultBadgeLabel: Record<PassDisplayStatus, string> = {
   abierto: "ABIERTO",
@@ -79,7 +82,7 @@ const displayUpper = displayTrim.toUpperCase();
 const label = displayTrim || defaultBadgeLabel[status];
 
 const uiStatus: PassDisplayStatus =
-  status === "condicionado" && displayUpper === "ABIERTO" ? "abierto" : status;
+  status === "condicionado" && displayUpper === "ABIERTO" && !hasVialidad ? "abierto" : status;
 
 const statusDataAttr =
   uiStatus === "abierto"

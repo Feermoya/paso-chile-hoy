@@ -16,6 +16,7 @@ const RISK_ACCENT_HEX: Record<ForecastShareCristoRisk["level"], string> = {
   moderate: "#ca8a04",
   high_complications: "#ea580c",
   possible_preventive_closure: "#dc2626",
+  operational_closed: "#b91c1c",
 };
 
 function shareRiskLevelLabel(r: ForecastShareCristoRisk): string {
@@ -28,6 +29,8 @@ function shareRiskLevelLabel(r: ForecastShareCristoRisk): string {
       return "Riesgo alto";
     case "possible_preventive_closure":
       return "Cierre o restricción";
+    case "operational_closed":
+      return "Paso cerrado";
     default:
       return "Riesgo";
   }
@@ -76,6 +79,18 @@ function summarizeContext(descList: string[], title: string): string {
   if (hasSnow) return "Se observan períodos con nevadas; conviene revisar cada franja antes de viajar.";
   if (hasRain) return "Se esperan períodos con lluvia y condiciones cambiantes durante el día.";
   return `${title}. Revisá la evolución por franja horaria para planificar el cruce.`;
+}
+
+/** Una línea corta bajo el título de riesgo en el PNG cuando el paso está cerrado (contexto clima, no redundancia de “cierre”). */
+function weatherHeadlineForClosedPng(descList: string[]): string {
+  if (descList.length === 0) return "Detalle del pronóstico por franja más abajo.";
+  const joined = descList.join(" · ");
+  if (joined.includes("nev") && joined.includes("lluv")) return "Complicado por lluvias y nevadas.";
+  if (joined.includes("nev")) return "Complicado por nieve.";
+  if (joined.includes("lluv")) return "Complicado por lluvia.";
+  if (joined.includes("torment")) return "Complicado por tormentas o chaparrones.";
+  if (joined.includes("nublado") || joined.includes("nub")) return "Cielo nublado o variable en el pronóstico.";
+  return "Condiciones según el pronóstico de las próximas horas.";
 }
 
 function normalizePeriod(period?: string): string {
@@ -159,11 +174,16 @@ const title = buildTitle(descriptions);
 const mainIcon = buildMainIcon(descriptions);
 const subMessage = summarizeContext(descriptions, title);
 
-const isDark =
-  verdict === "POSIBLES COMPLICACIONES POR NIEVE" || verdict === "CONDICIONES INESTABLES";
+const passClosedPng = shareRisk?.level === "operational_closed";
 
-const cardBg =
-  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+const isDark =
+  passClosedPng ||
+  verdict === "POSIBLES COMPLICACIONES POR NIEVE" ||
+  verdict === "CONDICIONES INESTABLES";
+
+const cardBg = passClosedPng
+  ? "#0f172a"
+  : verdict === "POSIBLES COMPLICACIONES POR NIEVE"
     ? "#0f172a"
     : verdict === "CONDICIONES INESTABLES"
       ? "#1c1917"
@@ -171,7 +191,7 @@ const cardBg =
         ? "#f8fafc"
         : "#f0fdf4";
 
-const verdictShort =
+const verdictShortBase =
   verdict === "POSIBLES COMPLICACIONES POR NIEVE"
     ? "COMPLICADO POR NIEVE"
     : verdict === "CONDICIONES INESTABLES"
@@ -180,8 +200,19 @@ const verdictShort =
         ? "TIEMPO VARIABLE"
         : "BUEN TIEMPO";
 
-const verdictColor =
-  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+const verdictShort = passClosedPng ? "PASO CERRADO" : verdictShortBase;
+
+const riskSublineUnderHeadline = shareRisk
+  ? passClosedPng
+    ? weatherHeadlineForClosedPng(descriptions)
+    : shareRisk.summaryShort
+  : "";
+
+const verdictColor = passClosedPng
+  ? isDark
+    ? "text-red-400"
+    : "text-red-600"
+  : verdict === "POSIBLES COMPLICACIONES POR NIEVE"
     ? isDark
       ? "text-red-400"
       : "text-red-600"
@@ -193,8 +224,9 @@ const verdictColor =
         ? "text-slate-700"
         : "text-green-600";
 
-const verdictAccent =
-  verdict === "POSIBLES COMPLICACIONES POR NIEVE"
+const verdictAccent = passClosedPng
+  ? "bg-red-600"
+  : verdict === "POSIBLES COMPLICACIONES POR NIEVE"
     ? "bg-red-600"
     : verdict === "CONDICIONES INESTABLES"
       ? "bg-amber-500"
@@ -290,7 +322,7 @@ const handleClass = isDark
               </span>
             </div>
             <p class:list={["text-3xl font-semibold leading-tight", titleColor]}>{shareRisk.headline}</p>
-            <p class:list={["text-2xl leading-snug", subColor]}>{shareRisk.summaryShort}</p>
+            <p class:list={["text-2xl leading-snug", subColor]}>{riskSublineUnderHeadline}</p>
             <p class:list={["text-lg", isDark ? "text-slate-500" : "text-slate-500"]}>
               Información orientativa. Verificá siempre fuentes oficiales.
             </p>

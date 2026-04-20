@@ -6,36 +6,31 @@
   "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [],
+  "htmlAlerts": [
+    "Vialidad Nacional informa: Corte total RN 7 tramo Tunel Internacional Paso cerrado desde las 14 hs por nevadas Contacto: (2624) 420094"
+  ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "Paso cerrado desde las 14 hs por nevadas",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
+    "temperatureC": 15.3,
     "description": "Algo nublado",
-    "wind": "Sudeste 4 km/h",
+    "wind": "Sudoeste 4 km/h",
     "visibilityKm": 15,
     "sunrise": "08:03",
-    "sunset": "19:14",
-    "updatedAt": "2026-04-19T21:00:00-03:00",
+    "sunset": "19:13",
+    "updatedAt": "2026-04-20T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 60
+    "humidity": 51
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-20T09:25:40.619Z",
+  "scrapedAt": "2026-04-20T20:11:26.502Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Lluvias y nevadas",
@@ -56,14 +51,21 @@
       "temperatureC": -2,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "18/4/2026 12:43:32"
+    "statusUpdatedAt": "20/4/2026 07:50:33"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-20T09:25:40.619Z",
-  "extendedForecastText": "Alta montaña: Parcialmente nublado a nublado, con nevadas durante la tarde y mejorando hacia la madrugada del Lunes.</p>\n\n\n\n<p>Máxima: 10 °C.<br>Mínima: -4 °C.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"717\" height=\"726\" data-id=\"538646\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-19-at-09.00.30.jpeg\" alt=\"\" class=\"wp-image-538646\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-19-at-09.00.30.jpeg 717w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-19-at-09.00.30-480x486.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 717px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"535\" height=\"955\" data-id=\"538649\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-18-at-13.28.26.jpeg\" alt=\"\" class=\"wp-image-538649\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-18-at-13.28.26.jpeg 535w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-18-at-13.28.26-480x857.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 535px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológicoReporte Meteorológico:</h2>\n\n\n\n<p><strong>Domingo 19/04:</strong></p>\n\n\n\n<p><strong>Viento</strong>:<br>Circulación de viento sur presente desde la madrugada en toda la provincia. Se mantendrá durante toda la jornada hasta aproximadamente las 22:00 hs. En forma débil en la mayor parte del territorio y con intensidad moderada en la Zona Este.</p>\n\n\n\n<p><strong>Nubosidad:<br></strong>Durante la madrugada se registraron precipitaciones, principalmente en la Zona Este de la provincia. Actualmente se observan lluvias muy débiles en el departamento de San Martín y zonas rurales al norte de Santa Rosa, La Paz y sur de La Paz.<br>El sistema nuboso se desplaza hacia la provincia de San Luis, sin observarse nuevos núcleos de tormenta. La nubosidad se mantendrá durante toda la jornada, con mayor probabilidad de precipitaciones en Malargüe y el sur de la Zona Sur.</p>\n\n\n\n<p><strong>Alta Montaña:<br></strong>Mal tiempo durante toda la jornada, con precipitaciones más importantes en la zona sur de la Alta Montaña, especialmente frente a Malargüe.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-04-20T20:11:26.502Z",
+  "extendedForecastText": "Alta Montaña: </strong>Parcialmente nublado a nublado, frío y con nevadas desde la mañana.</p>\n\n\n\n<p><strong>Máxima: 3 °C.<br>Mínima: -4 °C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"748\" height=\"499\" data-id=\"538702\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-08.16.41.jpeg\" alt=\"\" class=\"wp-image-538702\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-08.16.41.jpeg 748w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-08.16.41-480x320.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 748px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológicoReporte Meteorológico:</h2>\n\n\n\n<p><strong>Lunes 20</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento sur muy débil desde la mañana en toda la provincia. Se mantendrá durante toda la jornada hasta aproximadamente las 21.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Amanecerá nublado en toda la provincia. Se prevén lluvias débiles en Malargüe. La nubosidad persistirá durante toda la jornada.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Continuará el mal tiempo durante toda la jornada, con precipitaciones más importantes en la zona Sur, frente a Malargüe. También se registrarán precipitaciones en la zona Centro y, en menor medida, en la zona Norte. Las condiciones tenderán a mejorar hacia la madrugada del martes.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 16°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 5°C.<br>Mínima (resto de la provincia): 7°C.</p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"713\" height=\"724\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.27.jpeg\" alt=\"\" class=\"wp-image-538699\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.27.jpeg 713w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.27-480x487.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 713px, 100vw\" /></figure>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"717\" height=\"726\" data-id=\"538700\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.37.jpeg\" alt=\"\" class=\"wp-image-538700\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.37.jpeg 717w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-20-at-07.08.37-480x486.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 717px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Martes 21</strong></p>\n\n\n\n<p><strong>Viento: </strong>Circulación de vientos calmos durante la mayor parte del día. En horas de la tarde se prevé una brisa leve del este en el Valle de Uco y en la zona Sur, sin intensidades significativas.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Amanecerá nublado en Gran Mendoza, zona Este y Valle de Uco, sin precipitaciones. A las 11comenzará a despejarse progresivamente toda la provincia.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Amanecerá despejado. A partir de las 14 se incrementará la nubosidad en la zona Sur, luego en la zona Centro y hacia la noche en la zona norte, entre seminublado y nublado. No se prevén precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 19°C.<br>Mínima (Malargüe): 3°C.<br>Mínima (Valle de Uco): 2°C.<br>Mínima (resto de la provincia): 9°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 4°</li>\n\n\n\n<li>Punta de Vacas: -3°</li>\n\n\n\n<li>Puente del Inca: -6°</li>\n\n\n\n<li>Las Cuevas: -7°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }

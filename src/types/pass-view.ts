@@ -102,6 +102,11 @@ export interface PassView {
     motivoInfo?: string | null;
     /** Fragmentos “Atención” del HTML de detalle; deduplicados en UI respecto al JSON. */
     htmlAlerts?: string[];
+    /**
+     * Boletín complementario en texto plano (p. ej. Prensa Mendoza), solo para inferencia cruzada
+     * cuando el JSON de Gendarmería va desfasado respecto a Vialidad / provincia.
+     */
+    supplementaryBulletinPlain?: string;
     vialidadEstado?: string;
     vialidadObservaciones?: string;
     /** Ruta nacional (p. ej. `7`) — Vialidad Nacional, informativo. */
