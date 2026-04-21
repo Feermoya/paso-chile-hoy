@@ -1,11 +1,11 @@
 {
   "slug": "agua-negra",
   "name": "Paso Agua Negra",
-  "schedule": "09:00-17:00",
-  "scheduleRaw": "09:00 a 17:00 hs",
+  "schedule": null,
+  "scheduleRaw": "Todos los días de la semana, incluidos feriados.",
   "rawStatus": "CERRADO",
   "statusDetail": "Cerrado",
-  "scheduleText": "09:00 a 17:00 hs",
+  "scheduleText": null,
   "scheduleDays": "Todos los días de la semana, incluidos feriados.",
   "motivo": null,
   "motivoInfo": null,
@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 17,
-    "description": "Soleado",
-    "wind": "ENE a 18 km/h",
+    "temperatureC": 6,
+    "description": "Despejado",
+    "wind": "WNW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:00",
-    "sunset": "19:12",
-    "updatedAt": "2026-04-20 04:31 PM",
-    "feelsLikeC": 17,
-    "humidity": 25
+    "sunset": "19:11",
+    "updatedAt": "2026-04-21 05:39 AM",
+    "feelsLikeC": 6,
+    "humidity": 57
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-04-20T20:10:44.857Z",
+  "scrapedAt": "2026-04-21T09:11:14.305Z",
   "forecast": [
+    {
+      "period": "Hoy al mediodía",
+      "description": "Soleado",
+      "temperatureC": 11,
+      "wind": "NE 4 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 15,
-      "wind": "NE 7 km/h",
+      "wind": "NE 10 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 14,
+      "wind": "NE 10 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 11,
-      "wind": "E 3 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 6,
-      "wind": "NW 3 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
-      "temperatureC": 11,
-      "wind": "ENE 3 km/h",
+      "wind": "NNW 4 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "20 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-20T20:10:44.857Z"
+  "lastKnownGoodAt": "2026-04-21T09:11:14.305Z"
 }

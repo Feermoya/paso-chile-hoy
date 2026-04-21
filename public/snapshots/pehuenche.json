@@ -6,56 +6,54 @@
   "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [
-    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche cerrado por nevadas Contacto: (260) 4471063"
-  ],
+  "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "",
+  "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7,
-    "description": "Nublado con lluvia débil",
-    "wind": "Noroeste 8 km/h",
-    "visibilityKm": 10,
+    "temperatureC": 5.2,
+    "description": "Nublado",
+    "wind": "Sudeste 10 km/h",
+    "visibilityKm": 15,
     "sunrise": "08:08",
     "sunset": "19:10",
-    "updatedAt": "2026-04-20T14:00:00-03:00",
-    "feelsLikeC": 5.6,
-    "humidity": 90
+    "updatedAt": "2026-04-20T21:00:00-03:00",
+    "feelsLikeC": 3.1,
+    "humidity": 94
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-20T20:10:43.151Z",
+  "scrapedAt": "2026-04-21T09:11:11.707Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -3,
+      "period": "Hoy por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 0,
       "wind": "NO a 23-31 km/h",
-      "visibility": "Mala"
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -1,
+      "wind": "NO a 13-22 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "O a 13-22 km/h",
+      "description": "Mayormente nublado",
+      "temperatureC": 2,
+      "wind": "NO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": -6,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 0,
+      "temperatureC": -2,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     }
@@ -66,5 +64,5 @@
     "statusUpdatedAt": "19/4/2026 14:40:23"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-20T20:10:43.151Z"
+  "lastKnownGoodAt": "2026-04-21T09:11:11.707Z"
 }
