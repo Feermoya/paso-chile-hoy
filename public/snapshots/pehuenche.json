@@ -5,64 +5,66 @@
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": null,
-  "htmlAlerts": [],
+  "motivoInfo": "FINALIZACION HORARIO ATENCION AL PUBLICO",
+  "htmlAlerts": [
+    "Motivo del cierre: FINALIZACION HORARIO ATENCION AL PUBLICO Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Tránsitable con Precaución Contacto: (260) 4471063"
+  ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.2,
-    "description": "Nublado",
-    "wind": "Sudeste 10 km/h",
-    "visibilityKm": 15,
+    "temperatureC": 9.4,
+    "description": "Despejado",
+    "wind": "Oeste 6 km/h",
+    "visibilityKm": 20,
     "sunrise": "08:08",
-    "sunset": "19:10",
-    "updatedAt": "2026-04-20T21:00:00-03:00",
-    "feelsLikeC": 3.1,
-    "humidity": 94
+    "sunset": "19:09",
+    "updatedAt": "2026-04-21T21:00:00-03:00",
+    "feelsLikeC": 8.9,
+    "humidity": 84
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-21T09:11:11.707Z",
+  "scrapedAt": "2026-04-22T09:05:42.948Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 0,
-      "wind": "NO a 23-31 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": -1,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
+      "description": "Parcialmente nublado",
       "temperatureC": -1,
-      "wind": "NO a 13-22 km/h",
+      "wind": "NO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
+      "description": "Algo nublado",
       "temperatureC": 2,
       "wind": "NO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -2,
-      "wind": "NO a 23-31 km/h",
+      "description": "Algo nublado",
+      "temperatureC": 2,
+      "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "19/4/2026 14:40:23"
+    "statusUpdatedAt": "21/4/2026 06:12:53"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-21T09:11:11.707Z"
+  "lastKnownGoodAt": "2026-04-22T09:05:42.948Z"
 }
