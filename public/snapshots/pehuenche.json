@@ -15,48 +15,48 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.4,
+    "temperatureC": 11,
     "description": "Despejado",
-    "wind": "Calma",
+    "wind": "Noroeste 12 km/h",
     "visibilityKm": 20,
     "sunrise": "08:09",
     "sunset": "19:08",
-    "updatedAt": "2026-04-22T19:00:00-03:00",
+    "updatedAt": "2026-04-22T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 49
+    "humidity": 57
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-22T22:28:38.095Z",
+  "scrapedAt": "2026-04-23T09:11:14.518Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
-      "temperatureC": 2,
-      "wind": "NO a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Algo nublado",
-      "temperatureC": 2,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": 6,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Algo nublado",
       "temperatureC": 1,
       "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Despejado",
+      "temperatureC": -1,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
+      "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "21/4/2026 06:12:53"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-22T22:28:38.095Z"
+  "lastKnownGoodAt": "2026-04-23T09:11:14.518Z"
 }
