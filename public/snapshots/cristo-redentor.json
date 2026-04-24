@@ -15,39 +15,39 @@
   "vialidadObservaciones": "Paso habilitado 24 hs",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9.7,
+    "temperatureC": 10.6,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:05",
-    "sunset": "19:11",
-    "updatedAt": "2026-04-22T21:00:00-03:00",
+    "sunset": "19:09",
+    "updatedAt": "2026-04-23T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 69
+    "humidity": 70
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-04-23T09:11:10.602Z",
+  "scrapedAt": "2026-04-24T09:16:11.732Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
       "description": "Algo nublado",
-      "temperatureC": 2,
+      "temperatureC": 1,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Algo nublado",
-      "temperatureC": -3,
+      "temperatureC": 1,
       "wind": "SO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Despejado",
+      "description": "Algo nublado",
       "temperatureC": -7,
       "wind": "SO a 7-12 km/h",
       "visibility": "Buena"
@@ -55,7 +55,7 @@
     {
       "period": "Mañana por la mañana",
       "description": "Algo nublado",
-      "temperatureC": -4,
+      "temperatureC": -2,
       "wind": "SO a 7-12 km/h",
       "visibility": "Buena"
     }
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "22/4/2026 07:54:38"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-23T09:11:10.602Z",
-  "extendedForecastText": "Alta Montaña: </strong>Cielo nublado a mayormente nublado. Máxima de 3ºC.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"746\" height=\"480\" data-id=\"539217\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-22-at-08.11.11.jpeg\" alt=\"\" class=\"wp-image-539217\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-22-at-08.11.11.jpeg 746w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-22-at-08.11.11-480x309.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 746px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológicoReporte Meteorológico:</h2>\n\n\n\n<p><strong>Miércoles 22</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sur entre las 13 y las 21 principalmente en la zona Sur. En el resto de la provincia, condiciones de viento calmo.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece mayormente despejado en casi toda la provincia, excepto en Malargüe, donde se presentará nublado.<br>Durante la tarde, condiciones parcialmente nubladas en la zona Sur. Hacia la noche, cielo despejado en toda la provincia.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo parcialmente nublado en toda la Alta Montaña, con mayor nubosidad en el sector Sur. Probables precipitaciones débiles en la zona Sur.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 21 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 6 °C.<br>Mínima (resto de la provincia): Entre 9 °C y 10 °C.</p>\n\n\n\n<p><strong>Jueves 23</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sector norte desde las 13 hasta las 22 en toda la provincia. En la franja Este, el viento podría continuar durante la noche y la madrugada siguiente.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado en toda la provincia toda la jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado toda la jornada.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 23°C a 24°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 7°C.<br>Mínima (resto de la provincia): 10°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 3°</li>\n\n\n\n<li>Punta de Vacas: -2°</li>\n\n\n\n<li>Puente del Inca: -5°</li>\n\n\n\n<li>Las Cuevas: -6°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
+  "lastKnownGoodAt": "2026-04-24T09:16:11.732Z",
+  "extendedForecastText": "Alta montaña: </strong>Poco nubosidad y frío moderado.</p>\n\n\n\n<p><strong>Máxima: 7 °C.<br>Mínima: -11 °C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"750\" height=\"372\" data-id=\"539601\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-23-at-08.20.02.jpeg\" alt=\"\" class=\"wp-image-539601\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-23-at-08.20.02.jpeg 750w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/04/WhatsApp-Image-2026-04-23-at-08.20.02-480x238.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 750px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológicoReporte Meteorológico:</h2>\n\n\n\n<p></p>\n\n\n\n<p><strong>Jueves 23</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sector norte desde las 13 hasta las 22 en toda la provincia. En la franja Este, el viento podría continuar durante la noche y la madrugada siguiente.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado en toda la provincia toda la jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado toda la jornada.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 23°C a 24°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 7°C.<br>Mínima (resto de la provincia): 10°C.</p>\n\n\n\n<p><strong>Viernes 24</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sector sur entre las 13:00 y las 23:00, afectando a toda la provincia.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo parcialmente nublado en la zona Sur durante el día. Hacia la medianoche se observa nubosidad parcial en el departamento de La Paz.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado, con incremento de nubosidad en la zona Sur a partir de las 13:00, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 24 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 6 °C.<br>Mínima (resto de la provincia): 11 °C.</p>\n\n\n\n<p><strong>Sábado 25</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sur desde las 07:00 a 08:00 hasta las 20:00, iniciando en la zona Sur y extendiéndose al resto de la provincia.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Condiciones inestables durante la mañana en el llano, con probabilidad de núcleos de precipitación en la zona Este y el sector sur de la misma, hasta aproximadamente las 11:00. Luego se prevé cielo despejado en toda la provincia.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 21 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): Entre 5 °C y 6 °C.<br>Mínima (resto de la provincia): 11 °C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 2°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -6°</li>\n\n\n\n<li>Las Cuevas: -7°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
