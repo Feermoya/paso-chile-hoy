@@ -15,56 +15,56 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.4,
-    "description": "Ligeramente nublado",
-    "wind": "Noroeste 6 km/h",
+    "temperatureC": 14.5,
+    "description": "Despejado",
+    "wind": "Sur 23 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:11",
-    "sunset": "19:05",
-    "updatedAt": "2026-04-24T21:00:00-03:00",
+    "sunrise": "08:12",
+    "sunset": "19:04",
+    "updatedAt": "2026-04-25T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 38
+    "humidity": 14
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-25T08:30:36.175Z",
+  "scrapedAt": "2026-04-26T08:42:53.722Z",
   "forecast": [
     {
       "period": "Hoy por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": 7,
+      "description": "Algo nublado",
+      "temperatureC": 2,
       "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": -1,
-      "wind": "SO a 13-22 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": 3,
+      "wind": "O a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Despejado",
+      "description": "Algo nublado",
       "temperatureC": 1,
-      "wind": "SO a 23-31 km/h",
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -3,
-      "wind": "SO a 23-31 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": -6,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "23/4/2026 14:47:03"
+    "statusUpdatedAt": "25/4/2026 09:17:02"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-25T08:30:36.175Z"
+  "lastKnownGoodAt": "2026-04-26T08:42:53.722Z"
 }
