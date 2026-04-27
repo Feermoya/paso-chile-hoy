@@ -22,55 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7,
+    "temperatureC": 3,
     "description": "Despejado",
-    "wind": "W a 5 km/h",
+    "wind": "WSW a 6 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:03",
-    "sunset": "19:06",
-    "updatedAt": "2026-04-26 05:42 AM",
-    "feelsLikeC": 6,
-    "humidity": 50
+    "sunrise": "08:04",
+    "sunset": "19:05",
+    "updatedAt": "2026-04-27 06:37 AM",
+    "feelsLikeC": 1,
+    "humidity": 64
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-04-26T08:42:56.953Z",
+  "scrapedAt": "2026-04-27T09:37:18.927Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Soleado",
-      "temperatureC": 8,
-      "wind": "WSW 4 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 16,
-      "wind": "ESE 1 km/h",
+      "temperatureC": 12,
+      "wind": "S 1 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 17,
-      "wind": "ENE 18 km/h",
+      "wind": "ENE 6 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 15,
-      "wind": "ENE 14 km/h",
+      "temperatureC": 16,
+      "wind": "ENE 6 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 10,
+      "wind": "SSW 4 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "25 de abril de 2026 • 17:00 hs"
+    "statusUpdatedAt": "26 de abril de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-04-26T08:42:56.953Z"
+  "lastKnownGoodAt": "2026-04-27T09:37:18.927Z"
 }
