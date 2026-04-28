@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4,
-    "description": "Algo nublado",
-    "wind": "Calma",
+    "temperatureC": 16.4,
+    "description": "Parcialmente nublado",
+    "wind": "Sudeste 12 km/h",
     "visibilityKm": 20,
     "sunrise": "08:14",
     "sunset": "19:01",
-    "updatedAt": "2026-04-28T06:00:00-03:00",
+    "updatedAt": "2026-04-28T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 86
+    "humidity": 31
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-28T09:40:43.191Z",
+  "scrapedAt": "2026-04-28T22:36:38.511Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ventoso",
-      "temperatureC": 2,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Ventoso",
-      "temperatureC": 2,
-      "wind": "SO a 42-50 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
@@ -54,10 +40,24 @@
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
+      "description": "Mayormente nublado",
       "temperatureC": 0,
       "wind": "SO a 32-41 km/h",
-      "visibility": "Mala"
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 5,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": 4,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "27/4/2026 10:39:31"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-28T09:40:43.191Z"
+  "lastKnownGoodAt": "2026-04-28T22:36:38.511Z"
 }
