@@ -6,57 +6,55 @@
   "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [
-    "Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Tránsitable con Precaución Contacto: (260) 4471063"
-  ],
+  "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13.6,
-    "description": "Ligeramente nublado",
+    "temperatureC": 16.6,
+    "description": "Algo nublado",
     "wind": "Calma",
     "visibilityKm": 20,
     "sunrise": "08:16",
     "sunset": "18:59",
-    "updatedAt": "2026-04-29T21:00:00-03:00",
+    "updatedAt": "2026-04-30T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 42
+    "humidity": 44
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-04-30T09:33:59.928Z",
+  "scrapedAt": "2026-04-30T22:32:57.375Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -1,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
+      "description": "Mayormente nublado",
+      "temperatureC": -4,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": 0,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
+      "description": "Ventoso",
+      "temperatureC": -1,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
+      "description": "Lluvias y nevadas",
       "temperatureC": 5,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
+      "wind": "SO a 32-41 km/h",
+      "visibility": "Regular"
     },
     {
       "period": "Mañana por la noche",
       "description": "Parcialmente nublado",
-      "temperatureC": 4,
-      "wind": "NO a 7-12 km/h",
+      "temperatureC": 1,
+      "wind": "SO a 32-41 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,5 +64,5 @@
     "statusUpdatedAt": "29/4/2026 09:03:10"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-04-30T09:33:59.928Z"
+  "lastKnownGoodAt": "2026-04-30T22:32:57.375Z"
 }
