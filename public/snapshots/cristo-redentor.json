@@ -15,48 +15,48 @@
   "vialidadObservaciones": "Paso habilitado 24 hs",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 23.6,
+    "temperatureC": 16.7,
     "description": "Despejado",
-    "wind": "Sudeste 15 km/h",
+    "wind": "Sudeste 4 km/h",
     "visibilityKm": 15,
-    "sunrise": "08:11",
-    "sunset": "19:01",
-    "updatedAt": "2026-05-01T15:00:00-03:00",
+    "sunrise": "08:12",
+    "sunset": "19:00",
+    "updatedAt": "2026-05-01T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 27
+    "humidity": 36
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-01T22:31:22.855Z",
+  "scrapedAt": "2026-05-02T08:48:32.006Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -5,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -3,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": 7,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 2,
       "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Algo nublado",
+      "temperatureC": -5,
+      "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "30/4/2026 13:43:04"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-01T22:31:22.855Z",
+  "lastKnownGoodAt": "2026-05-02T08:48:32.006Z",
   "extendedForecastText": "Alta Montaña:</strong><br>Mal tiempo en el sur con precipitaciones débiles desde la mañana, extendiéndose hasta aproximadamente las 17.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 21°C.<br>Mínima (Malargüe y Valle de Uco): 7°C.<br>Mínima (resto de la provincia): 11°C.</strong></p>\n\n\n\n<p><strong>Sábado 2</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Viento leve y continuo del sur desde horas tempranas, abarcando toda la provincia hasta aproximadamente las 15. Luego, rotación al este con brisa leve, especialmente en el Valle de Uco y Zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Cielo despejado tanto en el llano como en Alta Montaña.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 16°C a 17°C.<br>Mínima (Malargüe y Valle de Uco): 3°C.<br>Mínima (resto de la provincia): 8°C.</strong></p>\n\n\n\n<p><strong>Domingo 3</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Viento del norte desde las 10 hasta las 21, con intensidad leve a moderada. Mayor intensidad en la franja Este provincial (Santa Rosa, La Paz y General Alvear), con valores entre 30 y 35 km/h.<br>Se prevé viento Zonda débil entre las 14 y las 20 en la precordillera y en el sur de Malargüe.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>En el llano, cielo parcialmente nublado en Zona Sur durante la mañana, mientras que el resto de la provincia se mantendrá despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Cielo parcialmente nublado en el sur durante la mañana, extendiéndose hacia la zona central. Hacia la medianoche, ingreso de mal tiempo en el sur con precipitaciones débiles.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 19°C a 20°C.<br>Mínima (Malargüe y Valle de Uco): 4°C.<br>Mínima (resto de la provincia): 7°C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 3°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -3°</li>\n\n\n\n<li>Las Cuevas: -4°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
