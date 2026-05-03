@@ -15,49 +15,49 @@
   "vialidadObservaciones": "Paso habilitado 24 hs",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 18.7,
+    "temperatureC": 6.3,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:12",
     "sunset": "19:00",
-    "updatedAt": "2026-05-02T15:00:00-03:00",
+    "updatedAt": "2026-05-02T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 39
+    "humidity": 67
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-02T22:21:41.526Z",
+  "scrapedAt": "2026-05-03T09:02:27.857Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
-      "temperatureC": -5,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Algo nublado",
-      "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Mayormente nublado",
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
       "temperatureC": 8,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": 1,
       "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -3,
+      "wind": "SO a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Ventoso",
+      "temperatureC": 2,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "2/5/2026 12:31:46"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-02T22:21:41.526Z",
+  "lastKnownGoodAt": "2026-05-03T09:02:27.857Z",
   "extendedForecastText": "Alta Montaña:</strong> Poca nubosidad y muy frío.</p>\n\n\n\n<p><strong>Máxima: 11 °C.<br>Mínima: -7 °C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"625\" height=\"794\" data-id=\"541754\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-02-at-11.03.35.jpeg\" alt=\"\" class=\"wp-image-541754\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-02-at-11.03.35.jpeg 625w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-02-at-11.03.35-480x610.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 625px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico</h2>\n\n\n\n<p><strong>Sábado 2</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación leve del sur desde la mañana en toda la provincia hasta las 15. Luego, rotación al este, manteniéndose como brisa, especialmente en zona Sur y Valle de Uco.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo entre parcialmente nublado y nublado desde la mañana, con mayor cobertura en zona Norte y Este, Malargüe y sector Sudeste provincial.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado durante toda la jornada, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 16°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 3°C.<br>Mínima (resto de la provincia): 8°C.</p>\n\n\n\n<p><strong>Domingo 3</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento del norte leve, con intensidad moderada en la franja Este entre las 10 y 21. Viento Zonda débil entre las 14 y 20 en la precordillera y en el sur de Malargüe.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo parcialmente nublado en zona Sur durante la tarde, que se extiende hacia la zona Centro, incluyendo el Valle de Uco. Resto de la provincia con cielo mayormente despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo parcialmente nublado en zona Sur, que se extiende luego al sector Centro. Se prevé mal tiempo con precipitaciones débiles a partir de las 21-22 en zona Sur, persistiendo durante la madrugada y con posible continuidad hacia el lunes.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 19–20°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 4°C.<br>Mínima (resto de la provincia): 7°C.</p>\n\n\n\n<p><strong>Lunes 4</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento Zonda leve desde la madrugada (alrededor de las 3) se inicia en la precordillera y se extiende hacia Malargüe, sur de Malargüe, sur del Valle de Uco y posiblemente Valle de Uspallata durante la tarde, con persistencia hasta las 21. Además, viento leve del norte entre las 13 y 20 en zona Este y Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo parcialmente nublado en zona Sur. El resto de la provincia se mantendrá mayormente despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo nublado en sectores Sur y Centro, con precipitaciones débiles durante toda la jornada en dichas áreas.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 23°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 7°C.<br>Mínima (resto de la provincia): 10°C.</p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 3°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -3°</li>\n\n\n\n<li>Las Cuevas: -4°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
