@@ -3,66 +3,68 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": null,
-  "htmlAlerts": [],
+  "motivoInfo": "FINALIZACION HORARIO ATENCION AL PUBLICO",
+  "htmlAlerts": [
+    "Motivo del cierre: FINALIZACION HORARIO ATENCION AL PUBLICO Contacto: (260) 4471063"
+  ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.2,
-    "description": "Despejado",
-    "wind": "Calma",
+    "temperatureC": 22.6,
+    "description": "Parcialmente nublado",
+    "wind": "Oeste 21 km/h",
     "visibilityKm": 20,
     "sunrise": "08:18",
     "sunset": "18:56",
-    "updatedAt": "2026-05-02T21:00:00-03:00",
+    "updatedAt": "2026-05-03T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 56
+    "humidity": 11
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-03T09:02:31.482Z",
+  "scrapedAt": "2026-05-03T22:22:38.884Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ventoso",
-      "temperatureC": 10,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": 2,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
-      "temperatureC": 1,
+      "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Ventoso",
+      "temperatureC": 0,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvias y nevadas",
       "temperatureC": 4,
       "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 1,
+      "wind": "O a 23-31 km/h",
       "visibility": "Regular"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "1/5/2026 09:19:07"
+    "statusUpdatedAt": "3/5/2026 06:12:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-03T09:02:31.482Z"
+  "lastKnownGoodAt": "2026-05-03T22:22:38.884Z"
 }
