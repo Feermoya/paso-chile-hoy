@@ -15,47 +15,47 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
-    "description": "Parcialmente nublado",
-    "wind": "Sudeste 17 km/h",
+    "temperatureC": 23.6,
+    "description": "Algo nublado",
+    "wind": "Norte 8 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:18",
-    "sunset": "18:56",
-    "updatedAt": "2026-05-04T06:00:00-03:00",
+    "sunrise": "08:19",
+    "sunset": "18:55",
+    "updatedAt": "2026-05-04T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 22
+    "humidity": 25
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-04T09:35:38.538Z",
+  "scrapedAt": "2026-05-04T22:37:02.256Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 4,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Lluvias y nevadas",
       "temperatureC": -1,
-      "wind": "O a 23-31 km/h",
+      "wind": "O a 42-50 km/h",
       "visibility": "Regular"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
       "temperatureC": 0,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 5,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": 1,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     }
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "3/5/2026 06:12:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-04T09:35:38.538Z"
+  "lastKnownGoodAt": "2026-05-04T22:37:02.256Z"
 }
