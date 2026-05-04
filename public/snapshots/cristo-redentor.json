@@ -15,49 +15,49 @@
   "vialidadObservaciones": "Paso habilitado 24 hs",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 26.5,
-    "description": "Ligeramente nublado",
-    "wind": "Oeste 15 km/h",
+    "temperatureC": 19.7,
+    "description": "Despejado",
+    "wind": "Sudoeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "08:13",
     "sunset": "18:59",
-    "updatedAt": "2026-05-03T15:00:00-03:00",
+    "updatedAt": "2026-05-03T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 18
+    "humidity": 23
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-03T22:22:36.840Z",
+  "scrapedAt": "2026-05-04T09:35:34.432Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -3,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ventoso",
-      "temperatureC": -1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Ventoso",
       "temperatureC": 5,
       "wind": "O a 32-41 km/h",
       "visibility": "Regular"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Algo nublado",
       "temperatureC": 3,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Lluvias y nevadas",
+      "temperatureC": -4,
+      "wind": "SO a 7-12 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -3,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "2/5/2026 12:31:46"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-03T22:22:36.840Z",
+  "lastKnownGoodAt": "2026-05-04T09:35:34.432Z",
   "extendedForecastText": "Alta Montaña:</strong><br>Cielo seminublado en la zona Sur, extendiéndose posteriormente hacia la zona Central. Se prevé inestabilidad con precipitaciones débiles en cordillera Sur a partir de las 21.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima:19°C y 20°C.<br>Mínima: 4°C. (Valle de Uco y Malargüe).<br>Mínima: 7°C. (resto de la provincia).</strong></p>\n\n\n\n<p><strong>Lunes 4</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Se prevé viento Zonda leve desde la madrugada, entre las 3 y 20, afectando la precordillera, Malargüe, Sur de Malargüe, Sur del Valle de Uco y posiblemente Uspallata. Además, viento norte entre las 13 y 20 en la zona Este y zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Cielo seminublado en la zona Sur, mientras que el resto de la provincia permanecerá despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Continúa nubosidad en la zona Sur y Central, con probabilidad de precipitaciones débiles.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 22°C.<br>Mínima: 7°C. (Malargüe y Valle de Uco.)<br>Mínima: 10°C (resto de la provincia).</strong></p>\n\n\n\n<p><strong>Martes 5</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Se prevé viento Zonda leve entre las 14 y 19 en la precordillera Sur y en Malargüe. En el llano, se registrará brisa leve del sector este durante la tarde en la zona Este y Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Cielo seminublado en la zona Sur, mientras que el resto de la provincia se mantendrá despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Se prevé mal tiempo en la zona Sur y Central desde las 7, con probabilidad de precipitaciones débiles.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 23°C.<br>Mínima: 8°C. (Malargüe y Valle de Uco).<br>Mínima: 11°C. (resto de la provincia).</strong></p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 3°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -3°</li>\n\n\n\n<li>Las Cuevas: -4°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }

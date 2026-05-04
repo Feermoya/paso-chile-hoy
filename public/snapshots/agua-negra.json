@@ -1,11 +1,11 @@
 {
   "slug": "agua-negra",
   "name": "Paso Agua Negra",
-  "schedule": "09:00-17:00",
-  "scheduleRaw": "09:00 a 17:00 hs",
+  "schedule": null,
+  "scheduleRaw": "Todos los días de la semana, incluidos feriados.",
   "rawStatus": "CERRADO",
   "statusDetail": "Cerrado",
-  "scheduleText": "09:00 a 17:00 hs",
+  "scheduleText": null,
   "scheduleDays": "Todos los días de la semana, incluidos feriados.",
   "motivo": null,
   "motivoInfo": null,
@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 16,
+    "temperatureC": 9,
     "description": "Despejado",
-    "wind": "NNW a 4 km/h",
+    "wind": "WSW a 9 km/h",
     "visibilityKm": 10,
     "sunrise": "08:08",
-    "sunset": "19:00",
-    "updatedAt": "2026-05-03 07:23 PM",
-    "feelsLikeC": 16,
-    "humidity": 8
+    "sunset": "18:59",
+    "updatedAt": "2026-05-04 06:35 AM",
+    "feelsLikeC": 8,
+    "humidity": 11
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-05-03T22:22:41.438Z",
+  "scrapedAt": "2026-05-04T09:35:41.019Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 8,
-      "wind": "WSW 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
       "temperatureC": 20,
       "wind": "S 3 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 25,
-      "wind": "N 3 km/h",
+      "temperatureC": 24,
+      "wind": "N 2 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 25,
+      "wind": "N 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
       "description": "Despejado",
-      "temperatureC": 15,
-      "wind": "WSW 10 km/h",
+      "temperatureC": 16,
+      "wind": "WSW 8 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "03 de mayo de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-05-03T22:22:41.438Z"
+  "lastKnownGoodAt": "2026-05-04T09:35:41.019Z"
 }
