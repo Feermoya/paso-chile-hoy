@@ -3,68 +3,66 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": "FINALIZACION HORARIO ATENCION AL PUBLICO",
-  "htmlAlerts": [
-    "Motivo del cierre: FINALIZACION HORARIO ATENCION AL PUBLICO Contacto: (260) 4471063"
-  ],
+  "motivoInfo": null,
+  "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 17.4,
-    "description": "Ligeramente nublado",
-    "wind": "Noreste 8 km/h",
+    "temperatureC": 16.7,
+    "description": "Mayormente nublado",
+    "wind": "Norte 8 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:19",
-    "sunset": "18:55",
-    "updatedAt": "2026-05-04T21:00:00-03:00",
+    "sunrise": "08:20",
+    "sunset": "18:54",
+    "updatedAt": "2026-05-05T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 35
+    "humidity": 47
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-05T09:26:47.380Z",
+  "scrapedAt": "2026-05-05T22:35:21.268Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": 1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 23-31 km/h",
+      "temperatureC": -1,
+      "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": 2,
+      "description": "Nevadas fuertes",
+      "temperatureC": 0,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": 0,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -2,
       "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "3/5/2026 06:12:25"
+    "statusUpdatedAt": "5/5/2026 09:10:20"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-05T09:26:47.380Z"
+  "lastKnownGoodAt": "2026-05-05T22:35:21.268Z"
 }
