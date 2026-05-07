@@ -22,55 +22,56 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
-    "description": "Despejado",
-    "wind": "WNW a 15 km/h",
+    "temperatureC": 27.1,
+    "description": "Ligeramente nublado con polvo en suspensión",
+    "wind": "Oeste 15 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:10",
-    "sunset": "18:57",
-    "updatedAt": "2026-05-06 06:10 AM",
-    "feelsLikeC": 10,
-    "humidity": 17
+    "sunrise": "08:08",
+    "sunset": "18:58",
+    "updatedAt": "2026-05-06T21:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 21
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-05-06T09:40:54.419Z",
+  "scrapedAt": "2026-05-07T10:00:05.217Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-      "temperatureC": 21,
-      "wind": "NW 33 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 22,
-      "wind": "NNW 28 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvia  moderada a intervalos",
-      "temperatureC": 19,
-      "wind": "NNW 33 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": 14,
+      "wind": "S a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 14,
-      "wind": "NNW 26 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": 11,
+      "wind": "S a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Algo nublado",
+      "temperatureC": 6,
+      "wind": "S a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Algo nublado",
+      "temperatureC": 7,
+      "wind": "S a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
-    "clima": "https://wttr.in",
-    "statusUpdatedAt": "05 de mayo de 2026 • 17:00 hs"
+    "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-30.32783/-69.23614",
+    "statusUpdatedAt": "06 de mayo de 2026 • 17:00 hs",
+    "forecastSource": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/27/Agua-Negra"
   },
-  "lastKnownGoodAt": "2026-05-06T09:40:54.419Z"
+  "lastKnownGoodAt": "2026-05-07T10:00:05.217Z"
 }

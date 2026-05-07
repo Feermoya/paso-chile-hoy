@@ -3,69 +3,69 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
-    "Vialidad Nacional informa: RN 7 tramo Tunel Internacional Paso habilitado 24 hs Contacto: (2624) 420094"
+    "Vialidad Nacional informa: Corte total RN 7 tramo Tunel Internacional Cierre preventivo por nevadas Contacto: (2624) 420094"
   ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "Paso habilitado 24 hs",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "Cierre preventivo por nevadas",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20.8,
-    "description": "Despejado",
-    "wind": "Oeste 4 km/h",
+    "temperatureC": 9.9,
+    "description": "Mayormente nublado",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:15",
     "sunset": "18:57",
-    "updatedAt": "2026-05-05T21:00:00-03:00",
+    "updatedAt": "2026-05-06T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 28
+    "humidity": 45
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-06T09:40:49.730Z",
+  "scrapedAt": "2026-05-07T09:59:57.879Z",
   "forecast": [
     {
-      "period": "Hoy por la mañana",
-      "description": "Ventisca",
-      "temperatureC": -1,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
       "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
+      "description": "Ventoso",
+      "temperatureC": -3,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Regular"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -3,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Muy mala"
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -13,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
+      "description": "Algo nublado",
+      "temperatureC": -10,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Ventoso",
+      "temperatureC": -9,
+      "wind": "SO a 32-41 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "4/5/2026 14:13:16"
+    "statusUpdatedAt": "6/5/2026 14:15:55"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-06T09:40:49.730Z",
-  "extendedForecastText": "Alta Montaña: </strong>Parcialmente nublado, muy frío, y ventoso por la tarde.</p>\n\n\n\n<p><strong>Máxima: 10 °C.<br>Mínima: -5 °C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"746\" height=\"519\" data-id=\"541842\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-04-at-08.17.55.jpeg\" alt=\"\" class=\"wp-image-541842\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-04-at-08.17.55.jpeg 746w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-04-at-08.17.55-480x334.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 746px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico </h2>\n\n\n\n<p><strong>Lunes 4</strong></p>\n\n\n\n<p><strong>Viento:</strong> Se prevé viento Zonda leve desde la madrugada entre las 3 y 20 en la precordillera, Malargüe, Sur de Malargüe, Sur del Valle de Uco y posiblemente Uspallata. Además, viento norte entre las 13 y 20 en las zonas Este y Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo seminublado en la zona Sur, mientras que el resto de la provincia permanecerá despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Continúa nubosidad en las zonas Sur y Centro, con probabilidad de precipitaciones débiles.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 22°C.<br>Mínima: 7°C. (Malargüe y Valle de Uco.)<br>Mínima: 10°C (resto de la provincia).</p>\n\n\n\n<p><strong>Martes 5</strong></p>\n\n\n\n<p><strong>Viento:</strong> Se prevé viento Zonda leve entre las 14 y 19 en la precordillera Sur y en Malargüe. En el llano, se registrará brisa leve del sector este durante la tarde en las zonas Este y Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo seminublado en la zona Sur, mientras que el resto de la provincia se mantendrá despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Se prevé mal tiempo en las zonas Sur y Centro desde las 7, con probabilidad de precipitaciones débiles.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano<br></strong>Máxima: 23°C.<br>Mínima: 8°C. (Malargüe y Valle de Uco).<br>Mínima: 11°C. (resto de la provincia).</p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 6°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -2°</li>\n\n\n\n<li>Las Cuevas: -3°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
+  "lastKnownGoodAt": "2026-05-07T09:59:57.879Z",
+  "extendedForecastText": "Alta montaña: </strong>Parcialmente nublado a nublado con nevadas moderadas desde la mañana.</p>\n\n\n\n<p><strong>Mínima: -05°C.<br>Máxima: 04°C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"741\" height=\"532\" data-id=\"542313\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-06-at-08.36.20.jpeg\" alt=\"\" class=\"wp-image-542313\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-06-at-08.36.20.jpeg 741w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-06-at-08.36.20-480x345.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 741px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico </h2>\n\n\n\n<p><strong>Miércoles 06</strong></p>\n\n\n\n<p><strong>Viento:</strong> Se prevé viento Zonda en superficie desde las 10:00 hasta aproximadamente las 22:00. Afectará principalmente la Precordillera, iniciando en Malargüe, Valle de Uspallata, Potrerillos, Tupungato y Valle de Uco. Durante la tarde se extenderá al Gran Mendoza, con mayor intensidad desde las 15:00, alcanzando también Zona Este y Lavalle. Velocidades promedio entre 40 y 45 km/h, con ráfagas superiores. Las mayores intensidades se esperan en Malargüe, Valle de Uspallata, norte del Gran Mendoza y Lavalle.<br>Desde las 19:00 en Zona Sur, el viento rotará al sur. Hacia las 22:00, este cambio tenderá a debilitar el Zonda en el norte provincial, persistiendo viento del sur durante la madrugada con intensidades cercanas a 40 km/h.</p>\n\n\n\n<p><strong>Nubosidad:</strong> En Malargüe, desde horas tempranas, se prevé nubosidad con probabilidad de precipitaciones. Durante la tarde, las precipitaciones podrían extenderse a la Precordillera del Valle de Uco. Hacia la tarde-noche, aumento de nubosidad en San Rafael y General Alvear, extendiéndose luego al Valle de Uco y, hacia la noche y madrugada, a la Zona Este.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Se espera mal tiempo generalizado, con precipitaciones más intensas y persistentes en el sur, especialmente frente al Valle de Uco. En zona central y norte, precipitaciones más débiles. La inestabilidad se mantendría hasta aproximadamente las 10:00 del día jueves.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 26°C a 27°C.<br>Mínima (Valle de Uco y Malargüe): 8°C a 9°C.<br>Mínima (resto de la provincia): 11°C a 12°C.</p>\n\n\n\n<p><strong>Jueves 07</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sur desde la madrugada, persistiendo durante gran parte del día, especialmente en Zona Sur y Zona Este, hasta aproximadamente las 21:00.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo algo nublado en La Paz al amanecer, mientras que el resto del llano se presentará mayormente despejado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Inicio de jornada con mal tiempo en zonas norte y central. A partir de las 10:00 a 11:00 se espera una mejora significativa, con condiciones parcialmente nubladas. Hacia las 21:00, se prevé un nuevo aumento de nubosidad en el sur.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 18°C a 19°C.<br>Mínima (Valle de Uco y Malargüe): 4°C.<br>Mínima (resto de la provincia): 9°C.</p>\n\n\n\n<p><strong>Viernes 08</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sur durante la mañana. A partir de las 17:00 se intensificará en Zona Sur, y hacia las 21:00 en Zona Norte y Este, con intensidad moderada. Se extenderá hacia la madrugada del sábado.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado durante la mañana. Desde las 17:00, aumento de nubosidad en Zona Sur, con probabilidad de precipitaciones hacia la noche. A partir de las 22:00, se prevé cielo nublado en Valle de Uco y Zona Este.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Condiciones mayormente despejadas durante el día. Desde las 20:00 hs., probabilidad de precipitaciones débiles en el sur.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 13°C a 14°C.<br>Mínima (Valle de Uco y Malargüe): 0°C a 1°C.<br>Mínima (resto de la provincia): 4°C.</p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 6°</li>\n\n\n\n<li>Punta de Vacas: -1°</li>\n\n\n\n<li>Puente del Inca: -3°</li>\n\n\n\n<li>Las Cuevas: -4°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
