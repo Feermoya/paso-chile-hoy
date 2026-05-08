@@ -3,28 +3,38 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "SIN_DATOS",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "Intransitable por nevadas y viento blanco",
+  "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
-  "weather": null,
+  "weather": {
+    "temperatureC": 7.2,
+    "description": "Parcialmente nublado",
+    "wind": "Sur 32 km/h",
+    "visibilityKm": 20,
+    "sunrise": "08:22",
+    "sunset": "18:51",
+    "updatedAt": "2026-05-08T19:00:00-03:00",
+    "feelsLikeC": 2.8,
+    "humidity": 50
+  },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-08T08:55:32.924Z",
+  "scrapedAt": "2026-05-08T22:34:31.174Z",
   "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": null
+    "statusUpdatedAt": "7/5/2026 13:42:16"
   },
-  "scrapeError": "detalle_consolidado, detalle_html",
-  "lastKnownGoodAt": "2026-05-07T10:00:02.548Z",
-  "operationalStale": true
+  "scrapeError": "detalle_html",
+  "operationalStale": false,
+  "lastKnownGoodAt": "2026-05-08T22:34:31.174Z"
 }
