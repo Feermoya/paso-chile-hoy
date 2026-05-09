@@ -13,21 +13,21 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 3.6,
-    "description": "Parcialmente nublado",
-    "wind": "Sudoeste 23 km/h",
+    "temperatureC": 4,
+    "description": "Despejado",
+    "wind": "Sudeste 8 km/h",
     "visibilityKm": 20,
     "sunrise": "08:23",
     "sunset": "18:50",
-    "updatedAt": "2026-05-08T21:00:00-03:00",
-    "feelsLikeC": -1,
-    "humidity": 65
+    "updatedAt": "2026-05-09T12:00:00-03:00",
+    "feelsLikeC": 2.1,
+    "humidity": 49
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-09T08:57:50.177Z",
+  "scrapedAt": "2026-05-09T16:11:41.488Z",
   "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
@@ -36,5 +36,5 @@
   },
   "scrapeError": "detalle_html",
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-09T08:57:50.177Z"
+  "lastKnownGoodAt": "2026-05-09T16:11:41.488Z"
 }
