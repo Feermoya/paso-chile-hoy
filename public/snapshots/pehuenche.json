@@ -6,35 +6,65 @@
   "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [],
+  "htmlAlerts": [
+    "Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Transitable con Precaución Contacto: (260) 4471063"
+  ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4,
+    "temperatureC": -3.6,
     "description": "Despejado",
-    "wind": "Sudeste 8 km/h",
+    "wind": "Sudoeste 10 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:23",
-    "sunset": "18:50",
-    "updatedAt": "2026-05-09T12:00:00-03:00",
-    "feelsLikeC": 2.1,
-    "humidity": 49
+    "sunrise": "08:24",
+    "sunset": "18:49",
+    "updatedAt": "2026-05-10T06:00:00-03:00",
+    "feelsLikeC": -7.4,
+    "humidity": 81
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-09T16:11:41.488Z",
-  "forecast": [],
+  "scrapedAt": "2026-05-10T09:12:16.720Z",
+  "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Ligeramente nublado",
+      "temperatureC": 6,
+      "wind": "S a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 2,
+      "wind": "N a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Despejado",
+      "temperatureC": -2,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Ligeramente nublado",
+      "temperatureC": 5,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
+    }
+  ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "7/5/2026 13:42:16"
+    "statusUpdatedAt": "9/5/2026 11:36:57"
   },
-  "scrapeError": "detalle_html",
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-09T16:11:41.488Z"
+  "lastKnownGoodAt": "2026-05-10T09:12:16.720Z"
 }
