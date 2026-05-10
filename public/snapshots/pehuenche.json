@@ -15,48 +15,48 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -3.6,
+    "temperatureC": 12.6,
     "description": "Despejado",
-    "wind": "Sudoeste 10 km/h",
+    "wind": "Este 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:24",
     "sunset": "18:49",
-    "updatedAt": "2026-05-10T06:00:00-03:00",
-    "feelsLikeC": -7.4,
-    "humidity": 81
+    "updatedAt": "2026-05-10T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 31
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-10T09:12:16.720Z",
+  "scrapedAt": "2026-05-10T22:28:04.728Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ligeramente nublado",
-      "temperatureC": 6,
-      "wind": "S a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 2,
-      "wind": "N a 7-12 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Despejado",
-      "temperatureC": -2,
+      "temperatureC": -1,
       "wind": "NO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Ligeramente nublado",
-      "temperatureC": 5,
+      "temperatureC": 0,
       "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Algo nublado",
+      "temperatureC": 9,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Algo nublado",
+      "temperatureC": 5,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "9/5/2026 11:36:57"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-10T09:12:16.720Z"
+  "lastKnownGoodAt": "2026-05-10T22:28:04.728Z"
 }
