@@ -15,48 +15,48 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.6,
+    "temperatureC": 8.3,
     "description": "Despejado",
-    "wind": "Calma",
+    "wind": "Este 4 km/h",
     "visibilityKm": 15,
     "sunrise": "08:18",
     "sunset": "18:54",
-    "updatedAt": "2026-05-10T15:00:00-03:00",
+    "updatedAt": "2026-05-10T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 29
+    "humidity": 48
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-10T22:28:00.947Z",
+  "scrapedAt": "2026-05-11T10:45:57.636Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -1,
-      "wind": "SO a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la tarde",
       "description": "Ligeramente nublado",
-      "temperatureC": -3,
-      "wind": "SO a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Algo nublado",
       "temperatureC": 5,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Algo nublado",
+      "period": "Hoy por la noche",
+      "description": "Ligeramente nublado",
       "temperatureC": 3,
       "wind": "SO a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Despejado",
+      "temperatureC": 0,
+      "wind": "SO a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Despejado",
+      "temperatureC": -2,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "9/5/2026 21:55:47"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-10T22:28:00.947Z",
+  "lastKnownGoodAt": "2026-05-11T10:45:57.636Z",
   "extendedForecastText": "Alta Montaña:</strong> Poca nubosidad con frío moderado.</p>\n\n\n\n<p><strong>Máxima: -2°C.<br>Mínima: -13°C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"741\" height=\"403\" data-id=\"542927\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-08-at-08.20.08.jpeg\" alt=\"\" class=\"wp-image-542927\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-08-at-08.20.08.jpeg 741w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-08-at-08.20.08-480x261.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 741px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico </h2>\n\n\n\n<p></p>\n\n\n\n<p><strong>Viernes 8</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento leve del sur durante la mañana. A partir de las 17 se intensificará en zona Sur, y hacia las 2 en zonas Norte y Este, con intensidad moderada. Se extenderá hacia la madrugada del sábado.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado durante la mañana. Desde las 17, aumento de nubosidad en zona Sur, con probabilidad de precipitaciones hacia la noche. A partir de las 22, se prevé cielo nublado en Valle de Uco y zona Este.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Condiciones mayormente despejadas durante el día. Desde las 20, probabilidad de precipitaciones débiles en el Sur.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 13°C a 14°C.<br>Mínima (Valle de Uco y Malargüe): 0°C a 1°C.<br>Mínima (resto de la provincia): 4°C.</p>\n\n\n\n<p><strong>Sábado 9</strong></p>\n\n\n\n<p><strong>Viento:</strong> Se prevé circulación débil de viento norte en toda la provincia desde las 12 hasta aproximadamente las 23. En la franja Este, estas condiciones podrían persistir durante la madrugada siguiente.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Desde la 1 se esperan probabilidades de lluvias débiles en el Oeste de San Rafael y del Gran Mendoza, con posible afectación del Gran Mendoza. Las precipitaciones se extenderían hasta aproximadamente las 4. Posteriormente, el resto del día se presentará despejado en el llano.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado toda la jornada.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 12°C a 13°C.<br>Mínima (Malargüe y Valle de Uco): -2°C.<br>Mínima (resto de la provincia): 2°C.</p>\n\n\n\n<p><strong>Domingo 10</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento débil del norte entre las 10 y las 19 principalmente en las zonas Este y Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo generalmente despejado en el llano.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Cielo despejado.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: entre 16°C y 17°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): entre 0°C y 1°C, con probabilidad de heladas parciales.<br>Mínima (resto de la provincia): entre 3°C y 4°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos Internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 0°</li>\n\n\n\n<li>Punta de Vacas: -6°</li>\n\n\n\n<li>Puente del Inca: -10°</li>\n\n\n\n<li>Las Cuevas: -11°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
