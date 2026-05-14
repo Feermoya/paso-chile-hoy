@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 2.4,
-    "description": "Ligeramente nublado",
-    "wind": "Oeste 6 km/h",
+    "temperatureC": 11.5,
+    "description": "Despejado",
+    "wind": "Este 6 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:26",
+    "sunrise": "08:27",
     "sunset": "18:46",
-    "updatedAt": "2026-05-14T06:00:00-03:00",
-    "feelsLikeC": 0.9,
-    "humidity": 81
+    "updatedAt": "2026-05-14T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 58
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-14T09:54:26.785Z",
+  "scrapedAt": "2026-05-14T22:39:35.614Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 3,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
@@ -56,8 +42,22 @@
       "period": "Mañana por la mañana",
       "description": "Nevadas",
       "temperatureC": 0,
-      "wind": "SO a 23-31 km/h",
+      "wind": "SO a 32-41 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 4,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 1,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "13/5/2026 09:03:45"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-14T09:54:26.785Z"
+  "lastKnownGoodAt": "2026-05-14T22:39:35.614Z"
 }
