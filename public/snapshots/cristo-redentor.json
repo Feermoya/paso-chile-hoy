@@ -15,49 +15,49 @@
   "vialidadObservaciones": "Corte preventivo por nevadas desde la 10 hs",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 18.3,
-    "description": "Algo nublado",
-    "wind": "Oeste 15 km/h",
+    "temperatureC": 12,
+    "description": "Despejado",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:21",
     "sunset": "18:50",
-    "updatedAt": "2026-05-15T18:00:00-03:00",
+    "updatedAt": "2026-05-15T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 32
+    "humidity": 49
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-15T22:34:38.568Z",
+  "scrapedAt": "2026-05-16T09:10:53.361Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -5,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -1,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": 1,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -2,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "N a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "14/5/2026 13:53:16"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-15T22:34:38.568Z",
+  "lastKnownGoodAt": "2026-05-16T09:10:53.361Z",
   "extendedForecastText": "Alta Montaña: </strong>Nevadas débiles a moderadas, ocasionalmente fuertes durante la noche. Máxima estimada: -5 °C.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"743\" height=\"518\" data-id=\"544386\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-15-at-08.17.07.jpeg\" alt=\"\" class=\"wp-image-544386\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-15-at-08.17.07.jpeg 743w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-15-at-08.17.07-480x335.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 743px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico </h2>\n\n\n\n<p><strong>Viernes 15</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento débil a moderado en la franja Este de la provincia, de norte a sur, entre las 11 y las 20. Probabilidad de viento Zonda débil entre las 14 y las 18 en la precordillera Sur y Malargüe.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en la zona Sur. Alrededor del mediodía se prevé cielo seminublado en todo el llano. Hacia la medianoche, en la transición hacia el sábado, aumentará la nubosidad principalmente en la zona Sur, sin precipitaciones previstas.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece seminublado en toda la región. A partir de las 20 comenzará el mal tiempo con precipitaciones débiles en la zona Centro, y se extiende durante la madrugada hacia la zona Norte.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: entre 20 °C y 21 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 4 °C.<br>Mínima (resto de la provincia): 8 °C.</p>\n\n\n\n<p><strong>Sábado 16</strong></p>\n\n\n\n<p><strong>Viento:</strong> Ingreso de viento sur débil a moderado desde aproximadamente las 6 en la zona Sur. Alrededor de las 9 se percibirá en las zonas Norte, Zona Este y Gran Mendoza. Persistirá hasta las 16 o 17 en toda la provincia y provocando descenso de temperatura.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Se espera abundante nubosidad desde la madrugada, con precipitaciones débiles en el llano. Las precipitaciones comenzarán en la zona Sur y se extenderán hacia Gran Mendoza, zona Este y Valle de Uco durante la mañana. Las condiciones inestables persistirán hasta primeras horas de la tarde, mientras que en la zona Sur las precipitaciones podrían extenderse hasta las 16 y 17. Luego continuará nublado hasta aproximadamente las 2 del domingo.</p>\n\n\n\n<p>Se prevén precipitaciones níveas cercanas al llano en precordillera del Valle de Uco, principalmente en San Carlos, Tunuyán y Oeste de Tupungato. Oeste de Malargüe, Oeste y Sur de San Rafael, y también en sectores del Oeste del Gran Mendoza.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Se mantendrá el mal tiempo durante toda la jornada del sábado en toda la Alta Montaña, con precipitaciones desde la madrugada. Se observa una mejora de las condiciones recién a partir de las 21.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: entre 9°C y 10°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): entre 3°C y 4°C.<br>Mínima (resto de la provincia): 8°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 3°</li>\n\n\n\n<li>Punta de Vacas: -3°</li>\n\n\n\n<li>Puente del Inca: -5°</li>\n\n\n\n<li>Las Cuevas: -6°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
