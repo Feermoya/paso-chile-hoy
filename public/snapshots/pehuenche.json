@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10,
+    "temperatureC": 7.6,
     "description": "Despejado",
-    "wind": "Norte 12 km/h",
+    "wind": "Calma",
     "visibilityKm": 20,
     "sunrise": "08:30",
     "sunset": "18:43",
-    "updatedAt": "2026-05-18T14:00:00-03:00",
-    "feelsLikeC": 8.5,
-    "humidity": 38
+    "updatedAt": "2026-05-18T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 51
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-18T17:37:53.668Z",
+  "scrapedAt": "2026-05-18T22:35:39.809Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": -6,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Despejado",
@@ -58,6 +51,13 @@
       "temperatureC": 0,
       "wind": "E a 7-12 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 1,
+      "wind": "NE a 7-12 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "17/5/2026 13:27:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-18T17:37:53.668Z"
+  "lastKnownGoodAt": "2026-05-18T22:35:39.809Z"
 }
