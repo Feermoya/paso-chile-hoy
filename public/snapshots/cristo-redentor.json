@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.7,
-    "description": "Despejado",
-    "wind": "Calma",
+    "temperatureC": 11.4,
+    "description": "Parcialmente nublado",
+    "wind": "Sur 4 km/h",
     "visibilityKm": 15,
     "sunrise": "08:25",
     "sunset": "18:47",
-    "updatedAt": "2026-05-19T21:00:00-03:00",
+    "updatedAt": "2026-05-20T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 53
+    "humidity": 32
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-20T10:33:52.175Z",
+  "scrapedAt": "2026-05-20T22:57:11.692Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 2,
-      "wind": "NE a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "NE a 7-12 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -58,6 +44,20 @@
       "temperatureC": -6,
       "wind": "N a 7-12 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 3,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Algo nublado",
+      "temperatureC": -2,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "19/5/2026 13:56:11"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-20T10:33:52.175Z",
-  "extendedForecastText": "Alta Montaña:</strong> Cielo totalmente despejado.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 18°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): -2°C.<br>Mínima (resto de la provincia): 2°C.</p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"715\" height=\"724\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-19-at-08.19.01.jpeg\" alt=\"\" class=\"wp-image-545142\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-19-at-08.19.01.jpeg 715w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-19-at-08.19.01-480x486.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 715px, 100vw\" /></figure>\n\n\n\n<p><strong>Miércoles 20</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa muy leve de este a oeste durante la tarde, principalmente en la zona Sur provincial.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado en el llano durante la mañana. A partir de las 15:00 se espera aumento parcial de la nubosidad en la zona Norte, zona Este, Gran Mendoza y Valle de Uco. Durante la noche, la seminubosidad alcanzaría también la zona Sur provincial.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Condiciones despejadas durante la mañana. A partir de las 14:00 se espera aumento de nubosidad parcial en el sector Norte y posteriormente en la parte Central de la alta montaña. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 17 °C.<br>Mínima (Malargüe y partes bajas del Valle de Uco): -2 °C.<br>Mínima (resto de la provincia): 3 °C.</p>\n\n\n\n<p><strong>Jueves 21</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento del norte entre las 12:00 y las 21:00, comenzando por el Norte provincial y afectando posteriormente todo el llano provincial.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en todo el llano. La nubosidad parcial persistirá hasta las 15:00, luego se prevé paulatino despeje.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece seminublado sin precipitaciones, comenzando por el sector Norte y extendiéndose posteriormente al sector Central y Sur. La nubosidad persistirá hasta aproximadamente las 13:00, luego se prevé despeje generalizado en toda la Alta Montaña.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C.<br>Mínima (Malargüe y partes bajas del Valle de Uco): entre 0°C y 1°C.<br>Mínima (resto de la provincia): 3°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: -2°</li>\n\n\n\n<li>Punta de Vacas: -9°</li>\n\n\n\n<li>Puente del Inca: -10°</li>\n\n\n\n<li>Las Cuevas: -11°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
+  "lastKnownGoodAt": "2026-05-20T22:57:11.692Z",
+  "extendedForecastText": "Alta Montaña: </strong>Poca nubosidad, frío moderado, con nubosidad en aumento en la noche.</p>\n\n\n\n<p><strong>Máxima: 1°C.<br>Mínima: -17°C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"743\" height=\"521\" data-id=\"545375\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-20-at-08.14.41.jpeg\" alt=\"\" class=\"wp-image-545375\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-20-at-08.14.41.jpeg 743w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-20-at-08.14.41-480x337.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 743px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"></h1>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico </h2>\n\n\n\n<p></p>\n\n\n\n<p><strong>Miércoles 20</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa muy leve de este a oeste durante la tarde, principalmente en la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo despejado en el llano durante la mañana. A partir de las 15 se espera aumento parcial de la nubosidad en la zonas Norte, Este, Gran Mendoza y Valle de Uco. Durante la noche, la seminubosidad alcanzaría también la zona Sur.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Condiciones despejadas durante la mañana. A partir de las 14 se espera aumento de nubosidad parcial en el sector Norte y posteriormente en la parte Centro. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 17 °C.<br>Mínima (Malargüe y partes bajas del Valle de Uco): -2 °C.<br>Mínima (resto de la provincia): 3 °C.</p>\n\n\n\n<p><strong>Jueves 21</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento del norte entre las 12 y las 21 que comienza en el Norte provincial y afecta posteriormente todo el llano.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en todo el llano. La nubosidad parcial persistirá hasta las 15. Luego se prevé paulatino despeje.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece seminublado sin precipitaciones. Comienza en el sector Norte y se extiende posteriormente a los sectores Centro y Sur. La nubosidad persistirá hasta aproximadamente las 13. Luego se prevé despeje generalizado.</p>\n\n\n\n<p><strong>Temperaturas promedio en el llano</strong><br>Máxima: 16°C.<br>Mínima (Malargüe y partes bajas del Valle de Uco): entre 0°C y 1°C.<br>Mínima (resto de la provincia): 3°C.</p>\n\n\n\n<p><strong>Se mantiene el monitoreo de la situación meteorológica por parte de la Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: -2°</li>\n\n\n\n<li>Punta de Vacas: -9°</li>\n\n\n\n<li>Puente del Inca: -10°</li>\n\n\n\n<li>Las Cuevas: -11°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
