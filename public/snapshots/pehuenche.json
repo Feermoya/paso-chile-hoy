@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 0,
-    "description": "Despejado",
-    "wind": "Oeste 6 km/h",
+    "temperatureC": 7.6,
+    "description": "Parcialmente nublado",
+    "wind": "Noreste 6 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:33",
+    "sunrise": "08:34",
     "sunset": "18:40",
-    "updatedAt": "2026-05-23T06:00:00-03:00",
-    "feelsLikeC": -1.8,
-    "humidity": 79
+    "updatedAt": "2026-05-23T19:00:00-03:00",
+    "feelsLikeC": 6.9,
+    "humidity": 65
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-23T09:20:00.853Z",
+  "scrapedAt": "2026-05-23T22:33:05.467Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 6,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -54,9 +40,23 @@
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -3,
       "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": 0,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": 2,
+      "wind": "O a 7-12 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "21/5/2026 22:21:10"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-23T09:20:00.853Z"
+  "lastKnownGoodAt": "2026-05-23T22:33:05.467Z"
 }
