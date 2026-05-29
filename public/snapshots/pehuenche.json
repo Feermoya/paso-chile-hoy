@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,56 +15,56 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12.6,
+    "temperatureC": -0.6,
     "description": "Ligeramente nublado",
-    "wind": "Este 6 km/h",
+    "wind": "Calma",
     "visibilityKm": 20,
     "sunrise": "08:38",
     "sunset": "18:37",
-    "updatedAt": "2026-05-28T14:00:00-03:00",
+    "updatedAt": "2026-05-29T07:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 55
+    "humidity": 79
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-05-28T18:20:38.454Z",
+  "scrapedAt": "2026-05-29T10:56:20.880Z",
   "forecast": [
     {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 8,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
       "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 2,
+      "description": "Mayormente nublado",
+      "temperatureC": 4,
       "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": 2,
-      "wind": "NO a 42-50 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": -3,
+      "wind": "SO a 0-2 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": 3,
-      "wind": "NO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": 8,
-      "wind": "NO a 23-31 km/h",
+      "temperatureC": -3,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "26/5/2026 08:53:32"
+    "statusUpdatedAt": "28/5/2026 18:03:18"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-28T18:20:38.454Z"
+  "lastKnownGoodAt": "2026-05-29T10:56:20.880Z"
 }
