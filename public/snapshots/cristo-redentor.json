@@ -15,39 +15,25 @@
   "vialidadObservaciones": "Tránsitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.2,
+    "temperatureC": 18.6,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:31",
     "sunset": "18:42",
-    "updatedAt": "2026-05-30T21:00:00-03:00",
+    "updatedAt": "2026-05-31T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 54
+    "humidity": 29
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-05-31T10:00:18.145Z",
+  "scrapedAt": "2026-05-31T22:37:56.256Z",
   "forecast": [
     {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 5,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -5,
       "wind": "O a 7-12 km/h",
       "visibility": "Buena"
@@ -55,8 +41,22 @@
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": -2,
+      "temperatureC": -6,
       "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 3,
+      "wind": "NO a 42-50 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "30/5/2026 12:15:37"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-05-31T10:00:18.145Z",
-  "extendedForecastText": "Alta montaña:</strong> Algo nublado.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"760\" height=\"686\" data-id=\"547152\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30.jpeg\" alt=\"\" class=\"wp-image-547152\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30.jpeg 760w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30-480x433.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 760px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Sábado 30</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve entre las 12 y las 20, afectando la zona Este provincial.</p>\n\n\n\n<p><strong>Nubosidad</strong>: Amanece seminublado en gran parte de la provincia, con menor cobertura en la zona Sur. Desde las 12 comenzará un progresivo despeje por sectores, alcanzando condiciones mayormente despejadas entre las 14 y las 15.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo seminublado a nublado durante la mañana en distintos sectores de la cordillera. Se prevé un progresivo despeje desde el mediodía.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: entre 18 °C y 19 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 2 °C.<br>Mínima (resto de la provincia): entre 4 °C y 5 °C.</strong></p>\n\n\n\n<p><strong>Domingo 31</strong>/</p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve entre las 11 y las 19, afectando zona Este y zona Sur.</p>\n\n\n\n<p><strong>Nubosidad</strong>: Amanece seminublado en la zona Sur. Durante la media mañana la nubosidad se extenderá al Valle de Uco. Desde las 18 aumentará la cobertura nubosa en zona Sur y zona Este, manteniéndose seminublado. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece seminublado en el sector Sur de la cordillera. A partir del mediodía se prevén condiciones seminubladas en toda la alta montaña, manteniéndose durante el resto de la jornada.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: entre 19 °C a 20 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): entre 2 °C a 3 °C.<br>Mínima (resto de la provincia): 6 °C.</strong></p>\n\n\n\n<p><strong>Lunes 1</strong></p>\n\n\n\n<p><strong>Viento: </strong>Leve brisa del este durante la tarde, afectando la zona Este, zona Sur y el Valle de Uco.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece nublado en la zona Sur y el Valle de Uco. Desde la media mañana la nubosidad se extenderá a gran parte de la zona Este, manteniéndose el cielo mayormente nublado durante toda la jornada. No se observan precipitaciones en el llano.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Condiciones seminubladas durante gran parte del día. A partir de las 20se observan precipitaciones débiles y de corta duración en el sector Central y Sur de la alta montaña de Mendoza.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 15 °C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): entre 3 °C y 4 °C.<br>Mínima (resto de la provincia): 6 °C</strong></p>\n\n\n\n<p><strong>La Dirección Provincial de Defensa Civil mantiene el monitoreo de la situación meteorológica.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Uspallata: 2°</li>\n\n\n\n<li>Punta de Vacas: -5°</li>\n\n\n\n<li>Puente del Inca: -8°</li>\n\n\n\n<li>Las Cuevas: -9°</li>\n</ul>\n\n\n\n<h3 class=\"wp-block-heading\">"
+  "lastKnownGoodAt": "2026-05-31T22:37:56.256Z",
+  "extendedForecastText": "Alta montaña:</strong> Tiempo bueno. Mínima 4 °C/6 °C.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"760\" height=\"686\" data-id=\"547152\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30.jpeg\" alt=\"\" class=\"wp-image-547152\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30.jpeg 760w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/05/WhatsApp-Image-2026-05-30-at-11.43.30-480x433.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 760px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Domingo 31</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Circulación de viento norte leve en la Zona Este provincial, entre las 11 y las 19.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Amanece seminublado en la Zona Sur. A partir de media mañana la nubosidad se extiende al Valle de Uco. Desde las 17 a 18 se espera mayor cobertura nubosa en la Zona Sur y condiciones seminubladas en la Zona Este, manteniéndose durante el resto de la jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Amanece seminublado en el sector Sur. Desde el mediodía se prevé cielo seminublado en toda la Alta Montaña de Mendoza. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 19°C.<br>Mínima (Valle de Uco y Malargüe): 2°C.<br>Mínima (resto de la provincia): 5°C a 6°C.</strong></p>\n\n\n\n<p><strong>Lunes 1</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Brisa leve del este durante la tarde, afectando la Zona Este, Valle de Uco y Zona Sur.</p>\n\n\n\n<p>Nubosidad:<br>Amanece nublado en la Zona Sur y probablemente también en el Valle de Uco. Desde media mañana la nubosidad puede extenderse a toda la Zona Este, manteniéndose nublado durante toda la jornada en el llano provincial.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Amanece seminublado. Se prevén precipitaciones débiles y de corta duración en el sector Sur de la alta Montaña a partir de las 19.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 15°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 3°C a 4°C.<br>Mínima (resto de la provincia): 6°C.</strong></p>\n\n\n\n<p><strong>Martes 2</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Circulación de viento norte leve entre las 13 y las 22, afectando principalmente la Zona Este y la Zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Amanece nublado en la Zona Este, Zona Sur y Valle de Uco. Posteriormente la nubosidad puede extenderse al Gran Mendoza, manteniéndose durante toda la jornada. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Amanece nublado en los sectores Norte y Central. Luego la nubosidad se extenderá al sector Sur de la alta Montaña. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 17°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 3°C.<br>Mínima (resto de la provincia): 6°C a 7°C.</strong></p>\n\n\n\n<p><strong>La Dirección Provincial de Defensa Civil mantiene el monitoreo de la situación meteorológica.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
