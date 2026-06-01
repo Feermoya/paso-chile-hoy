@@ -5,8 +5,8 @@
   "routeName": "Ruta Nacional 7",
   "routeCode": "7",
   "province": "Mendoza",
-  "updatedAt": "2026-05-31T22:37:31.889Z",
-  "sourceUpdatedAt": "2026-05-28T10:31:00.000Z",
+  "updatedAt": "2026-06-01T16:18:40.700Z",
+  "sourceUpdatedAt": "2026-06-01T10:31:00.000Z",
   "summary": {
     "totalSegments": 8,
     "openSegments": 8,
@@ -29,7 +29,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 175,
       "notes": null,
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": true,
@@ -45,7 +45,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 46,
       "notes": null,
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -61,7 +61,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 50,
       "notes": null,
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -76,8 +76,8 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 40,
-      "notes": "Transitable con Precaución",
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "notes": null,
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -92,8 +92,8 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 51,
-      "notes": "Transitable con Precaución",
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "notes": null,
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -108,8 +108,8 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 26,
-      "notes": "Transitable con Precaución",
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "notes": null,
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -125,7 +125,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 13.8,
       "notes": "Tránsitable con Precaución",
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -140,8 +140,8 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 4.45,
-      "notes": "Tránsitable con Precaución",
-      "updatedAt": "2026-05-28T10:31:00.000Z",
+      "notes": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
+      "updatedAt": "2026-06-01T10:31:00.000Z",
       "flags": {
         "critical": true,
         "toll": true,
