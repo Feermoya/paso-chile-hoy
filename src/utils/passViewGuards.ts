@@ -4,8 +4,11 @@ import type { WeatherNowView } from "@/types/pass-view";
 /** True si `PassDetails` tiene al menos un bloque con contenido. */
 export function passDetailsHasContent(
   view: PassView,
-  options?: { /** Horario ya mostrado en el hero — no cuenta para decidir si hay bloque útil. */
+  options?: {
+    /** Horario ya mostrado en el hero — no cuenta para decidir si hay bloque útil. */
     treatScheduleAsHidden?: boolean;
+    /** Enlace oficial ya en el hero — no cuenta. */
+    treatOfficialLinkAsHidden?: boolean;
   },
 ): boolean {
   const op = view.operationalInfo;
@@ -14,6 +17,8 @@ export function passDetailsHasContent(
     Boolean(
       op.schedule?.trim() || op.scheduleFrom?.trim() || op.scheduleTo?.trim(),
     );
+  const officialVisible =
+    !options?.treatOfficialLinkAsHidden && Boolean(view.meta.sourceUrl?.trim());
   return Boolean(
     scheduleVisible ||
       op.contact?.phone ||
@@ -23,7 +28,7 @@ export function passDetailsHasContent(
       view.usefulLinks.length > 0 ||
       view.providers.length > 0 ||
       view.meta.scrapedAt?.trim() ||
-      view.meta.sourceUrl?.trim(),
+      officialVisible,
   );
 }
 

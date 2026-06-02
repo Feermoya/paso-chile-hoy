@@ -6,10 +6,11 @@ import type { PassView } from "@/types/pass-view";
 export interface Props {
   view: PassView;
   hideScheduleInDetails: boolean;
+  hideOfficialLink?: boolean;
   class?: string;
 }
 
-const { view, hideScheduleInDetails, class: className } = Astro.props;
+const { view, hideScheduleInDetails, hideOfficialLink = false, class: className } = Astro.props;
 ---
 
 <div class:list={["paso-page-fullwidth paso-fullwidth", className]}>
@@ -23,6 +24,7 @@ const { view, hideScheduleInDetails, class: className } = Astro.props;
         class="anim-section anim-delay-5"
         view={view}
         hideScheduleInDetails={hideScheduleInDetails}
+        hideOfficialLink={hideOfficialLink}
       />
     </div>
   </details>

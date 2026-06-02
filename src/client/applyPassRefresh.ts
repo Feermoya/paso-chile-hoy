@@ -2,6 +2,7 @@
  * Actualiza el DOM de la página del paso tras un POST /api/refresh/:slug (sin recargar).
  */
 import type { PassView } from "@/types/pass-view";
+import { applyHeroScheduleToDom } from "@/utils/formatHeroSchedule";
 import type { PassDisplayStatus, PassStatusResult } from "@/utils/inferPassStatus";
 
 export interface PassRefreshEnvelope {
@@ -78,14 +79,7 @@ function applyHero(slug: string, env: PassRefreshEnvelope): void {
     }
   }
 
-  const schedRow = root.querySelector("[data-hero-schedule-row]");
-  const schedText = root.querySelector("[data-hero-schedule-text]");
-  if (scheduleText.trim()) {
-    schedRow?.classList.remove("hidden");
-    if (schedText) schedText.textContent = scheduleText;
-  } else {
-    schedRow?.classList.add("hidden");
-  }
+  applyHeroScheduleToDom(root, scheduleText);
 
   const ts = root.querySelector("[data-hero-timestamp]");
   const tsWrap = root.querySelector("[data-hero-timestamp-wrap]");

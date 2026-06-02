@@ -14,33 +14,28 @@ import {
   getCristoRedentorScheduleLabelOverride,
   getCristoRedentorScheduleOverride,
 } from "@/utils/cristoRedentorManualOverrides";
+import { shouldSuppressMotivoAlert } from "@/utils/motivoFilters";
 
 type AlertSeverity = "critical" | "warning";
 type BarTone = "critical" | "warn" | "calm";
 
-const STATUS_BADGE: Record<PassDisplayStatus, string> = {
-  abierto: "ABIERTO",
-  cerrado: "CERRADO",
-  condicionado: "CONDICIONADO",
-  sin_datos: "SIN DATOS",
+const STATUS_ARIA: Record<PassDisplayStatus, string> = {
+  abierto: "abierto",
+  cerrado: "cerrado",
+  condicionado: "condicionado",
+  sin_datos: "sin datos",
 };
 
 interface PassStrip {
   slug: string;
   shortName: string;
   status: PassDisplayStatus;
-  badgeLabel: string;
   corteTotal: boolean;
 }
 
 interface TickerAlert {
   severity: AlertSeverity;
   text: string;
-}
-
-function badgeForResult(status: PassDisplayStatus, displayLabel?: string): string {
-  if (status === "condicionado") return "CONDICIONADO";
-  return displayLabel?.trim() || STATUS_BADGE[status];
 }
 
 function vialidadParcialAlerta(estado?: string | null): boolean {
@@ -64,9 +59,8 @@ function collectTickerAlerts(
     out.push({ severity: "critical", text: `${paso.shortName}: ${vialObs}` });
   }
 
-  if (result.status === "cerrado") {
-    const text = motivo ? `${paso.shortName}: ${motivo}` : `${paso.shortName}: Paso cerrado`;
-    out.push({ severity: "critical", text });
+  if (result.status === "cerrado" && motivo && !shouldSuppressMotivoAlert(motivo)) {
+    out.push({ severity: "critical", text: `${paso.shortName}: ${motivo}` });
   }
 
   if (vialidadParcialAlerta(vialEst) && vialObs) {
@@ -127,7 +121,6 @@ for (const paso of PASOS.filter((p) => p.active)) {
       slug: paso.slug,
       shortName: paso.shortName,
       status: result.status,
-      badgeLabel: badgeForResult(result.status, result.displayLabel),
       corteTotal,
     });
 
@@ -150,7 +143,7 @@ const alertSignature = alerts.map((a) => `${a.severity}:${a.text}`).join("|");
 const tripleAlerts = [...alerts, ...alerts, ...alerts];
 
 type MobileScrollEntry =
-  | { t: "pass"; slug: string; shortName: string; badgeLabel: string }
+  | { t: "pass"; slug: string; shortName: string; status: PassDisplayStatus }
   | { t: "msg"; text: string };
 
 const mobileParts: MobileScrollEntry[] = [
@@ -158,7 +151,7 @@ const mobileParts: MobileScrollEntry[] = [
     t: "pass" as const,
     slug: p.slug,
     shortName: p.shortName,
-    badgeLabel: p.badgeLabel,
+    status: p.status,
   })),
   ...(alerts.length > 0
     ? alerts.map((a) => ({ t: "msg" as const, text: a.text }))
@@ -180,16 +173,15 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
         <span class="status-bar-live-dot" aria-hidden="true"></span>
         <span class="status-bar-live-label">EN VIVO</span>
       </div>
-      <span class="status-bar-vsep status-bar-vsep--soft" aria-hidden="true"></span>
       <div class="status-bar-passes">
         {
-          passStrips.map((p, i) => (
+          passStrips.map((p) => (
             <span class="status-bar-pass-unit">
-              {i > 0 ? <span class="status-bar-pipe" aria-hidden="true">|</span> : null}
               <a
                 class:list={["status-bar-pass", "status-bar-pass-link"]}
                 href={`/${p.slug}`}
-                aria-label={`Ver estado del paso ${p.shortName}`}
+                aria-label={`${p.shortName}, ${STATUS_ARIA[p.status]}`}
+                title={`${p.shortName} — ${STATUS_ARIA[p.status]}`}
               >
                 <span
                   class:list={[
@@ -200,9 +192,6 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                   aria-hidden="true"
                 />
                 <span class="status-bar-pass-name">{p.shortName}</span>
-                <span class:list={["status-bar-pass-badge", `status-bar-pass-badge--${p.status}`]}>
-                  {p.badgeLabel}
-                </span>
               </a>
             </span>
           ))
@@ -232,9 +221,7 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                   <span class="status-bar-alert-unit">
                     {idx > 0 ? <span class="status-bar-alert-dot-sep" aria-hidden="true">·</span> : null}
                     <span class:list={["status-bar-alert-item", `status-bar-alert--${a.severity}`]}>
-                      <span class="status-bar-alert-emoji" aria-hidden="true">
-                        ⚠️
-                      </span>
+                      <span class="status-bar-alert-marker" aria-hidden="true" />
                       {a.text}
                     </span>
                   </span>
@@ -252,7 +239,6 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
       <span class="status-bar-live-dot" aria-hidden="true"></span>
       <span class="status-bar-live-label">EN VIVO</span>
     </div>
-    <span class="status-bar-vsep status-bar-vsep--soft" aria-hidden="true"></span>
     <div class="status-bar-mobile-track">
       <div class="status-bar-mobile-content">
         {
@@ -263,11 +249,17 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                 <a
                   class="status-bar-mobile-item status-bar-mobile-pass"
                   href={`/${item.slug}`}
-                  aria-label={`Ver estado del paso ${item.shortName}`}
+                  aria-label={`${item.shortName}, ${STATUS_ARIA[item.status]}`}
+                  title={`${item.shortName} — ${STATUS_ARIA[item.status]}`}
                 >
+                  <span
+                    class:list={[
+                      "status-bar-mobile-dot",
+                      `status-bar-mobile-dot--${item.status}`,
+                    ]}
+                    aria-hidden="true"
+                  />
                   {item.shortName}
-                  {" "}
-                  {item.badgeLabel}
                 </a>
               ) : (
                 <span class="status-bar-mobile-item">{item.text}</span>
@@ -374,8 +366,8 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: 12px;
-    overflow: hidden;
+    gap: 14px;
+    overflow: visible;
   }
 
   .status-bar-live-pill {
@@ -422,13 +414,6 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     align-self: center;
   }
 
-  .status-bar-vsep--soft {
-    height: 60%;
-    max-height: 18px;
-    background: currentColor;
-    opacity: 0.3;
-  }
-
   .status-bar-vsep--mid {
     height: 60%;
     max-height: 18px;
@@ -443,14 +428,14 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     min-width: 0;
     flex: 1 1 auto;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--color-text-secondary);
-    gap: 2px;
-    padding-bottom: 1px;
+    gap: 14px;
+    padding: 3px 4px;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -464,19 +449,14 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     flex-shrink: 0;
   }
 
-  .status-bar-pipe {
-    margin: 0 8px;
-    opacity: 0.3;
-    color: var(--color-text-muted);
-    flex-shrink: 0;
-  }
-
   .status-bar-pass {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     flex-shrink: 0;
     white-space: nowrap;
+    padding: 2px 4px;
+    border-radius: 8px;
   }
 
   a.status-bar-pass-link {
@@ -501,15 +481,28 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
   }
 
   .status-bar-pass-dot {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     flex-shrink: 0;
     background: var(--color-text-muted);
+    /* Sin halo externo: overflow del ticker lo recortaba y la pelotita se veía cortada */
   }
 
+  /* Sin scale: el overflow del ticker recortaba la pelotita */
   .status-bar-pass-dot--pulse {
-    animation: pulse-live 2s ease-in-out infinite;
+    animation: status-bar-dot-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes status-bar-dot-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.45;
+    }
   }
 
   .status-bar-pass-dot--abierto {
@@ -534,59 +527,10 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
   }
 
   .status-bar-pass-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--color-text-primary);
-  }
-
-  .status-bar-pass-badge {
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    padding: 4px 8px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    line-height: 1.2;
-  }
-
-  .status-bar-pass-badge--abierto {
-    color: #15803d;
-    background: #dcfce7;
-    border-color: #16a34a;
-  }
-
-  .status-bar-pass-badge--cerrado {
-    color: #991b1b;
-    background: #fee2e2;
-    border-color: #dc2626;
-  }
-
-  .status-bar-pass-badge--condicionado {
-    color: #92400e;
-    background: #fef3c7;
-    border-color: #d97706;
-  }
-
-  .status-bar-pass-badge--sin_datos {
-    color: var(--color-text-muted);
-    background: var(--color-surface-raised);
-    border-color: var(--color-border-default);
-  }
-
-  :root[data-theme="dark"] .status-bar-pass-badge--abierto {
-    color: #86efac;
-    background: color-mix(in srgb, #16a34a 22%, var(--color-surface));
-    border-color: #16a34a;
-  }
-
-  :root[data-theme="dark"] .status-bar-pass-badge--cerrado {
-    color: #fecaca;
-    background: color-mix(in srgb, #dc2626 22%, var(--color-surface));
-    border-color: #dc2626;
-  }
-
-  :root[data-theme="dark"] .status-bar-pass-badge--condicionado {
-    color: #fde68a;
-    background: color-mix(in srgb, #d97706 22%, var(--color-surface));
-    border-color: #d97706;
   }
 
   .status-bar-center {
@@ -725,8 +669,21 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     color: var(--color-text-muted);
   }
 
-  .status-bar-alert-emoji {
-    font-size: 0.75rem;
+  .status-bar-alert-marker {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: currentColor;
+    opacity: 0.85;
+  }
+
+  .status-bar-alert--critical .status-bar-alert-marker {
+    background: #dc2626;
+  }
+
+  .status-bar-alert--warning .status-bar-alert-marker {
+    background: #d97706;
   }
 
   .status-bar-mobile {
@@ -735,7 +692,7 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     width: 100%;
     min-height: 48px;
     padding: 8px 10px;
-    gap: 10px;
+    gap: 12px;
     box-sizing: border-box;
   }
 
@@ -794,10 +751,39 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
   }
 
   a.status-bar-mobile-pass {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     text-decoration: none;
     color: inherit;
-    border-radius: 4px;
+    border-radius: 6px;
+    padding: 2px 4px;
+    margin: -2px -4px;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  .status-bar-mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-text-muted);
+  }
+
+  .status-bar-mobile-dot--abierto {
+    background: #16a34a;
+  }
+
+  .status-bar-mobile-dot--cerrado {
+    background: #dc2626;
+  }
+
+  .status-bar-mobile-dot--condicionado {
+    background: #d97706;
+  }
+
+  .status-bar-mobile-dot--sin_datos {
+    opacity: 0.65;
   }
 
   a.status-bar-mobile-pass:active {
@@ -814,6 +800,7 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     .status-bar-live-dot,
     .status-bar-pass-dot--pulse {
       animation: none;
+      opacity: 1;
     }
 
     .status-bar-alert-content,

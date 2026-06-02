@@ -10,8 +10,25 @@ import {
   type PassCardWeatherVariant,
 } from "@/utils/passCardWeather";
 
+const STATUS_ARIA: Record<PassDisplayStatus, string> = {
+  abierto: "abierto",
+  cerrado: "cerrado",
+  condicionado: "condicionado",
+  sin_datos: "sin datos",
+};
+
+/** Etiqueta corta para lectura rápida en home (sin MAYÚSCULAS de badge). */
+const SHORT_STATUS_LABEL: Record<PassDisplayStatus, string> = {
+  abierto: "Abierto",
+  cerrado: "Cerrado",
+  condicionado: "Condicionado",
+  sin_datos: "Sin datos",
+};
+
 export interface Props {
   paso: PasoConfig;
+  /** Home minimal: franja de estado (punto + Abierto/Cerrado) sin badge pill. */
+  statusDotsOnly?: boolean;
   status?: PassDisplayStatus;
   displayLabel?: string;
   closesInMinutes?: number;
@@ -32,6 +49,7 @@ export interface Props {
 
 const {
   paso,
+  statusDotsOnly = false,
   status = "sin_datos",
   displayLabel,
   closesInMinutes,
@@ -102,6 +120,8 @@ const weatherVariant: PassCardWeatherVariant = desc
   ? getWeatherVariant(desc, weatherWind)
   : "sunny";
 const weatherIconHtml = getWeatherIconHtml(weatherVariant);
+const quickStatusLabel = SHORT_STATUS_LABEL[uiStatus];
+
 const weatherPreview = getWeatherPreviewAlert({
   htmlAlerts,
   forecast,
@@ -112,6 +132,8 @@ const weatherPreview = getWeatherPreviewAlert({
   rawStatus,
   motivo,
   motivoInfo,
+  displayStatus: uiStatus,
+  displayLabel: label,
 });
 ---
 
@@ -122,17 +144,40 @@ const weatherPreview = getWeatherPreviewAlert({
       class:list={["paso-card-v2", "pass-card", `paso-card-v2--${uiStatus}`]}
       data-weather={weatherVariant}
       data-slug={paso.slug}
-      aria-label={`Estado del paso ${paso.shortName}`}
+      aria-label={`${paso.shortName}, ${STATUS_ARIA[uiStatus]}`}
+      title={`${paso.shortName} — ${STATUS_ARIA[uiStatus]}`}
     >
       <div class="pass-card-weather-icon" set:html={weatherIconHtml} aria-hidden="true" />
 
-      <div class="pass-card-header">
+      <div class:list={["pass-card-header", statusDotsOnly && "pass-card-header--minimal"]}>
         <h3 class="pass-card-name">{paso.shortName}</h3>
-        <div class="pass-card-status-badge" data-status={statusDataAttr}>
-          <span class:list={["status-dot", uiStatus !== "sin_datos" && "status-dot--pulse"]} aria-hidden="true" />
-          <span>{label}</span>
-        </div>
+        {
+          !statusDotsOnly && (
+            <div class="pass-card-status-badge" data-status={statusDataAttr}>
+              <span class:list={["status-dot", uiStatus !== "sin_datos" && "status-dot--pulse"]} aria-hidden="true" />
+              <span>{label}</span>
+            </div>
+          )
+        }
       </div>
+
+      {
+        statusDotsOnly && (
+          <p
+            class:list={["pass-card-status-strip", `pass-card-status-strip--${uiStatus}`]}
+            role="status"
+          >
+            <span
+              class:list={[
+                "pass-card-status-strip__dot",
+                uiStatus !== "sin_datos" && "pass-card-status-strip__dot--pulse",
+              ]}
+              aria-hidden="true"
+            />
+            <span class="pass-card-status-strip__label">{quickStatusLabel}</span>
+          </p>
+        )
+      }
 
       <div class="pass-card-temp">
         {tempStr != null ? (

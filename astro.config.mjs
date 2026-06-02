@@ -8,6 +8,7 @@ import icon from "astro-icon";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  site: "https://pasochilehoy.com",
   output: "server",
   adapter: vercel({
     functionPerRoute: false,
@@ -17,7 +18,7 @@ export default defineConfig({
     webAnalytics: { enabled: false },
     speedInsights: { enabled: false },
   }),
-  /** Sin `site` fijo: evita URLs absolutas al apex en HTML servido desde www (CORS en `/_app/*`). Canonical vía `PUBLIC_SITE_URL` / `seo.ts`. */
+  /** Canonical en producción: apex + `PUBLIC_SITE_URL`. Redirección www → apex en `middleware.ts`. */
   compressHTML: true,
   server: {
     host: false,

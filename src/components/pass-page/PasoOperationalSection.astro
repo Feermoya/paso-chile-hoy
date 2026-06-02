@@ -3,13 +3,14 @@ import AlertsBlock from "@/components/AlertsBlock.astro";
 import LatestTweet from "@/components/LatestTweet.astro";
 import CristoRiskCard from "@/components/pass/CristoRiskCard.astro";
 import PanoramaExtendido from "@/components/pass/PanoramaExtendido.astro";
-import StatusGuide from "@/components/StatusGuide.astro";
 import StatusHero from "@/components/StatusHero.astro";
 import TwitterAlerts from "@/components/TwitterAlerts.astro";
+import { Icon } from "astro-icon/components";
 import type { ExtendedForecastSignal } from "@/lib/external/mendozaExtendedForecast";
 import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { PassView } from "@/types/pass-view";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
+import { buildOperationalNotices } from "@/utils/operationalNotices";
 
 export interface Props {
   slug: string;
@@ -19,9 +20,7 @@ export interface Props {
   lastUpdatedRelative: string;
   officialUrl?: string;
   lastKnownGoodRelative?: string;
-  /** Solo Cristo Redentor. */
   cristoRisk?: CristoRedentorRiskV1;
-  /** Solo Cristo — boletín extendido por día (Panorama extendido + señal al motor). */
   extendedForecastSignal?: ExtendedForecastSignal;
   class?: string;
 }
@@ -42,6 +41,20 @@ const {
 const op = view.operationalInfo;
 const latestTweet = view.meta?.latestTweet;
 const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().length >= 10);
+const statusDisplayLabel = statusResult.displayLabel?.trim() || "";
+const operationalNotices = buildOperationalNotices({
+  motivo: op.motivo ?? null,
+  motivoInfo: op.motivoInfo ?? null,
+  htmlAlerts: op.htmlAlerts,
+  vialidadRuta: op.vialidadRuta ?? "",
+  vialidadTramo: op.vialidadTramo ?? "",
+  vialidadEstado: op.vialidadEstado ?? "HABILITADA",
+  vialidadObservaciones: op.vialidadObservaciones ?? "",
+  statusDisplayLabel,
+});
+const hasOperationalNotices = operationalNotices.length > 0;
+const showCristoExtras = slug === "cristo-redentor" && (cristoRisk || extendedForecastSignal);
+const showDetailPanel = hasOperationalNotices || showCristoExtras || showLatestTweet;
 ---
 
 <section
@@ -63,41 +76,55 @@ const showLatestTweet = Boolean(latestTweet?.text && latestTweet.text.trim().len
     scrapeError={view.meta.scrapeError}
     operationalStale={view.meta.operationalStale}
     lastKnownGoodRelative={lastKnownGoodRelative}
+    compactOfficialLink
   />
 
-  <div class="paso-extra-details" aria-label="Alertas y complementos del paso">
-    <div class="paso-extra-details__head">
-      <span class="paso-extra-details__title">Alertas, guía y redes</span>
-    </div>
-    <div class="paso-extra-details__body">
-      {
-        slug === "cristo-redentor" && cristoRisk && (
-          <CristoRiskCard class="anim-section anim-delay-2" risk={cristoRisk} />
-        )
-      }
+  {
+    showDetailPanel && (
+      <div class="paso-panel paso-extra-details anim-section anim-delay-2" aria-label="Complementos del cruce">
+        <div class="paso-panel__head">
+          <h2 class="paso-panel__title">Detalle operativo</h2>
+        </div>
+        <div class="paso-panel__body paso-extra-details__body">
+          {slug === "cristo-redentor" && cristoRisk && <CristoRiskCard risk={cristoRisk} />}
 
-      {
-        slug === "cristo-redentor" && extendedForecastSignal && (
-          <PanoramaExtendido class="anim-delay-3" signal={extendedForecastSignal} />
-        )
-      }
+          {
+            slug === "cristo-redentor" && extendedForecastSignal && (
+              <PanoramaExtendido signal={extendedForecastSignal} />
+            )
+          }
 
-      <StatusGuide />
+          <AlertsBlock
+            motivo={op.motivo ?? null}
+            motivoInfo={op.motivoInfo ?? null}
+            htmlAlerts={op.htmlAlerts}
+            vialidadRuta={op.vialidadRuta ?? ""}
+            vialidadTramo={op.vialidadTramo ?? ""}
+            vialidadEstado={op.vialidadEstado ?? "HABILITADA"}
+            vialidadObservaciones={op.vialidadObservaciones ?? ""}
+            statusDisplayLabel={statusDisplayLabel}
+          />
 
-      <AlertsBlock
-        class="anim-section anim-delay-2"
-        motivo={op.motivo ?? null}
-        motivoInfo={op.motivoInfo ?? null}
-        htmlAlerts={op.htmlAlerts}
-        vialidadRuta={op.vialidadRuta ?? ""}
-        vialidadTramo={op.vialidadTramo ?? ""}
-        vialidadEstado={op.vialidadEstado ?? "HABILITADA"}
-        vialidadObservaciones={op.vialidadObservaciones ?? ""}
-      />
+          {showLatestTweet && <LatestTweet tweet={latestTweet} />}
+        </div>
+      </div>
+    )
+  }
 
-      {showLatestTweet && <LatestTweet tweet={latestTweet} />}
-
-      <TwitterAlerts passSlug={slug} />
-    </div>
+  <div class="paso-social-footer anim-section anim-delay-3">
+    <TwitterAlerts passSlug={slug} />
+    <a href="/#status-guide" class="paso-legend-link">
+      <Icon name="lucide:info" class="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+      Cómo leer abierto, cerrado y alertas de ruta
+    </a>
   </div>
 </section>
+
+<style>
+  .paso-social-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 2px 0 0;
+  }
+</style>

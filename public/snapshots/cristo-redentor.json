@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.2,
-    "description": "Despejado",
+    "temperatureC": 12.7,
+    "description": "Algo nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:33",
     "sunset": "18:42",
-    "updatedAt": "2026-06-01T21:00:00-03:00",
+    "updatedAt": "2026-06-02T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 82
+    "humidity": 28
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-02T11:48:48.504Z",
+  "scrapedAt": "2026-06-02T22:50:06.546Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 4,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
@@ -58,6 +44,20 @@
       "temperatureC": -5,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 4,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": 2,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "31/5/2026 23:07:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-02T11:48:48.504Z",
+  "lastKnownGoodAt": "2026-06-02T22:50:06.546Z",
   "extendedForecastText": "Alta montaña:</strong> Parcialmente nublado a nublado y muy frío.</p>\n\n\n\n<p><strong>Mínima -07°C.<br>Máxima 08°C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"1100\" height=\"624\" data-id=\"547305\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.08.59.jpeg\" alt=\"\" class=\"wp-image-547305\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.08.59.jpeg 1100w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.08.59-980x556.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.08.59-480x272.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1100px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Martes 2</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Circulación de viento norte leve entre las 13 y las 22, afectando principalmente la Zona Este y la Zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Amanece nublado en la Zona Este, Zona Sur y Valle de Uco. Posteriormente la nubosidad puede extenderse al Gran Mendoza, manteniéndose durante toda la jornada. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Amanece nublado en los sectores Norte y Central. Luego la nubosidad se extenderá al sector Sur de la alta Montaña. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br></strong>Máxima: 17°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 3°C.<br>Mínima (resto de la provincia): 6°C a 7°C.</p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"715\" height=\"724\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.10.19.jpeg\" alt=\"\" class=\"wp-image-547306\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.10.19.jpeg 715w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-02-at-08.10.19-480x486.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 715px, 100vw\" /></figure>\n\n\n\n<p><strong>Miércoles 03</strong></p>\n\n\n\n<p><strong>Viento: </strong>Circulación de viento norte débil en la franja Este provincial, entre las 09:00 y las 18:00.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece nublado en Valle de Uco, Gran Mendoza, zona Este y zona Sur. Estas condiciones se mantendrán durante toda la jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Mal tiempo en el sector Sur, con precipitaciones moderadas. En los sectores Centro y Norte se observará abundante nubosidad, sin precipitaciones. Las condiciones se mantendrán durante todo el día.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C a 17°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 3°C a 4°C.<br>Mínima (resto de la provincia): 7°C a 8°C.</p>\n\n\n\n<p><strong>La Dirección Provincial de Defensa Civil mantiene el monitoreo de la situación meteorológica.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }

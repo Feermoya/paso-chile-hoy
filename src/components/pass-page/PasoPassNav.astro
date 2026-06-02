@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import type { PasoConfig } from "@/data/pasos";
+
+export interface Props {
+  paso: PasoConfig;
+  class?: string;
+}
+
+const { paso, class: className } = Astro.props;
+const routeLine = `${paso.localityAR} — ${paso.localityCL}`;
+---
+
+<nav
+  class:list={["paso-pass-nav", className]}
+  aria-label="Ubicación en el sitio"
+>
+  <ol class="paso-pass-nav__crumbs">
+    <li>
+      <a href="/" class="paso-pass-nav__link">Inicio</a>
+    </li>
+    <li class="paso-pass-nav__sep" aria-hidden="true">
+      <Icon name="lucide:chevron-right" class="paso-pass-nav__chev" />
+    </li>
+    <li>
+      <h1 class="paso-pass-nav__current" aria-current="page">{paso.shortName}</h1>
+    </li>
+  </ol>
+  <p class="paso-pass-nav__route">{routeLine} · {paso.provinceAR}</p>
+</nav>

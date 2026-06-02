@@ -83,7 +83,11 @@ const {
     />
   </div>
 
-  <PasoFullwidthSection view={view} hideScheduleInDetails={hideScheduleInDetails} />
+  <PasoFullwidthSection
+    view={view}
+    hideScheduleInDetails={hideScheduleInDetails}
+    hideOfficialLink={Boolean(officialUrl?.trim())}
+  />
 </div>
 
 <script is:inline define:vars={{ slug }}>

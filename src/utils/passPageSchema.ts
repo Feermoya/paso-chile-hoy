@@ -90,6 +90,8 @@ export function buildPassStructuredGraph(opts: {
   paso: PasoConfig;
   scheduleText: string;
   displayStatus: PassStatus;
+  /** ISO del último relevamiento (mejor señal de frescura para buscadores). */
+  dateModified?: string;
 }): Record<string, unknown> {
   const single = buildPassTouristAttractionSchema(opts);
   const { "@context": _ctx, ...attractionBody } = single;
@@ -111,6 +113,9 @@ export function buildPassStructuredGraph(opts: {
         inLanguage: "es-AR",
         isPartOf: { "@id": schemaWebsiteId() },
         about: { "@id": attractionId },
+        ...(opts.dateModified?.trim()
+          ? { dateModified: opts.dateModified.trim() }
+          : {}),
       },
       {
         "@type": "BreadcrumbList",

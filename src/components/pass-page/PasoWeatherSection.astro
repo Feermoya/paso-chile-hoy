@@ -18,7 +18,6 @@ export interface Props {
   scrapedAt?: string;
   showNow: boolean;
   showForecast: boolean;
-  /** Presente solo en SSR para Cristo Redentor. */
   cristoRisk?: CristoRedentorRiskV1;
   class?: string;
 }
@@ -46,6 +45,7 @@ const shareData = mapForecastToShareData({
 });
 const shareModalId = `forecast-share-modal-${slug}`;
 const shareCardId = `forecast-share-card-${slug}`;
+const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0);
 ---
 
 <section
@@ -54,56 +54,64 @@ const shareCardId = `forecast-share-card-${slug}`;
   data-paso-weather-section
   data-weather-slug={slug}
 >
-  <p
-    class:list={[
-      "mb-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-muted)] px-3 py-2 text-[13px] text-[var(--color-text-secondary)]",
-      showNow && now && "hidden",
-    ]}
-    data-paso-weather-unavailable
-  >
-    Clima no disponible
-  </p>
   {
-    showNow && now && (
-      <WeatherNow
-        class="anim-section anim-delay-3"
-        weather={now}
-        forecast={forecast}
-        updatedAt={now.providerNote}
-        scrapedAt={scrapedAt}
-        includeDriving={false}
-      />
+    !hasWeatherBlock && (
+      <div class="paso-panel">
+        <p class="m-0 px-4 py-5 text-[13px] text-[var(--color-text-secondary)]" data-paso-weather-unavailable>
+          Clima no disponible en este momento.
+        </p>
+      </div>
     )
   }
 
   {
-    ((showForecast && forecast.length > 0) || (showNow && now)) && (
-      <div class="paso-weather-extra" aria-label="Pronóstico y conducción">
-        <div class="paso-weather-extra__head">
-          <span class="paso-weather-extra__title">Pronóstico y conducción</span>
-        </div>
-        <div class="paso-weather-extra__body">
-          {showForecast && <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />}
-          {
-            showForecast && forecast.length > 0 && (
-              <div class="anim-section anim-delay-2 mt-2">
-                <ForecastShareButton targetModalId={shareModalId} />
-              </div>
-            )
-          }
-          {
-            showForecast && forecast.length > 0 && (
-              <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
-            )
-          }
+    hasWeatherBlock && (
+      <div class="paso-panel paso-weather-panel">
+        <header class="paso-weather-panel__head">
+          <div class="paso-weather-panel__title-row">
+            <span class="paso-weather-panel__live" aria-hidden="true" />
+            <h2 class="paso-weather-panel__title">Clima en el paso</h2>
+          </div>
+          <span class="paso-weather-panel__source">SMN · datos públicos</span>
+        </header>
+        <div class="paso-panel__body paso-weather-panel__body">
           {
             showNow && now && (
-              <DrivingConditions
+              <WeatherNow
                 class="anim-section anim-delay-3"
-                weather={weatherNowToDrivingInput(now)}
+                weather={now}
                 forecast={forecast}
-                compact
+                updatedAt={now.providerNote}
+                scrapedAt={scrapedAt}
+                includeDriving={false}
+                hideDataTimestamp
+                embedded
               />
+            )
+          }
+
+          {showForecast && forecast.length > 0 && (
+            <div class="paso-weather-forecast-block">
+              <h3 class="paso-weather-subhead">Próximos días</h3>
+              <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />
+              <div class="anim-section anim-delay-2 mt-3">
+                <ForecastShareButton targetModalId={shareModalId} />
+              </div>
+              <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
+            </div>
+          )}
+
+          {
+            showNow && now && (
+              <div class="paso-weather-driving">
+                <h3 class="paso-weather-subhead">Conducción</h3>
+                <DrivingConditions
+                  class="anim-section anim-delay-3"
+                  weather={weatherNowToDrivingInput(now)}
+                  forecast={forecast}
+                  compact
+                />
+              </div>
             )
           }
         </div>
@@ -111,3 +119,4 @@ const shareCardId = `forecast-share-card-${slug}`;
     )
   }
 </section>
+

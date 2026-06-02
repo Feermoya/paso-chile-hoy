@@ -148,6 +148,7 @@ const icbmContent = geoPosition.includes(";")
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href={`${siteUrl}/sitemap.xml`} />
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (

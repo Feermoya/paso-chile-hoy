@@ -24,6 +24,10 @@ export interface Props {
   scrapedAt?: string;
   /** Si es false, no incluye DrivingConditions (p. ej. se muestra a ancho completo en la página del paso). */
   includeDriving?: boolean;
+  /** En panel de paso: el hero ya muestra la hora del relevamiento. */
+  hideDataTimestamp?: boolean;
+  /** Oculta eyebrow y título (el panel padre ya los muestra). */
+  embedded?: boolean;
   class?: string;
 }
 
@@ -101,6 +105,8 @@ const {
   updatedAt,
   scrapedAt,
   includeDriving = true,
+  hideDataTimestamp = false,
+  embedded = false,
   class: className,
 } = Astro.props;
 const iconName = getWeatherIcon(w.description);
@@ -143,137 +149,239 @@ const drivingWeather = {
 const freshness = assessSnapshotFreshness(scrapedAt);
 ---
 
-<article
-  class:list={[
-    "weather-now-card w-full rounded-[var(--radius-xl)] border border-[var(--color-border-subtle)] bg-[var(--color-surface)] p-5 shadow-[var(--shadow-card)] min-[375px]:p-6",
-    className,
-  ]}
-  aria-labelledby="weather-now-heading"
-  data-paso-weather-now-card
->
-  <p class="text-eyebrow weather-eyebrow weather-eyebrow--live">
-    <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
-    Clima en el paso
-  </p>
-  <h2 id="weather-now-heading" class="text-section-title mt-2">Ahora</h2>
+{
+  embedded ? (
+    <article
+      class:list={["weather-now-card weather-now-card--embedded", className]}
+      aria-labelledby="weather-now-heading"
+      data-paso-weather-now-card
+    >
+      <h2 id="weather-now-heading" class="sr-only">Clima actual en el paso</h2>
 
-  <div class:list={["wn-driving-summary", `wn-driving-summary--${drivingSummary.level}`]}>
-    <span class="wn-ds-dot" aria-hidden="true"></span>
-    <div>
-      <span class="wn-ds-label">{drivingSummary.label}</span>
-      <span class="wn-ds-sub">{drivingSummary.sublabel}</span>
-    </div>
-  </div>
-
-  {w.description && (
-    <div class="weather-icon-block mt-4">
-      <div class="weather-icon-wrapper">
-        <Icon
-          name={iconName}
-          style={`color: ${iconColor}`}
-          class="weather-icon-main"
-          aria-hidden="true"
-        />
+      <div class:list={["wn-embed-condition", `wn-embed-condition--${drivingSummary.level}`]} role="status">
+        <span class="wn-embed-condition__dot" aria-hidden="true" />
+        <div class="wn-embed-condition__copy">
+          <span class="wn-embed-condition__title">{drivingSummary.label}</span>
+          <span class="wn-embed-condition__sub">{drivingSummary.sublabel}</span>
+        </div>
       </div>
-      <span class="text-weather-desc min-w-0" data-wn-desc>{w.description}</span>
-    </div>
-  )}
 
-  {w.temperatureC != null && (
-    <>
-      <p class="mt-4 flex flex-wrap items-start gap-x-1 gap-y-0">
-        <span
-          class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums"
-          data-wn-temp
-        >
-          {w.temperatureC}
-        </span>
-        <span class="mt-2 font-display text-lg font-medium text-[var(--color-text-secondary)] md:text-2xl">
-          °C
-        </span>
+      <div class="wn-embed-hero">
+        {w.description && (
+          <div class="wn-embed-hero__icon" aria-hidden="true">
+            <Icon name={iconName} style={`color: ${iconColor}`} class="wn-embed-hero__icon-svg" />
+          </div>
+        )}
+        <div class="wn-embed-hero__main">
+          {w.temperatureC != null && (
+            <p class="wn-embed-temp">
+              <span class="wn-embed-temp__value tabular-nums" data-wn-temp>
+                {w.temperatureC}
+              </span>
+              <span class="wn-embed-temp__unit">°C</span>
+            </p>
+          )}
+          {w.description && (
+            <p class="wn-embed-desc" data-wn-desc>
+              {w.description}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {
+        tempData.meaning && (
+          <p
+            class="wn-embed-temp-note"
+            style={`--temp-note-color: ${levelToColor(tempData.level)}`}
+          >
+            <Icon name="lucide:thermometer-snowflake" class="wn-embed-temp-note__icon" aria-hidden="true" />
+            {tempData.meaning}
+          </p>
+        )
+      }
+
+      <ul class="wn-embed-metrics" role="list">
+        <li class="wn-embed-metric">
+          <span class="wn-embed-metric__label">Visibilidad</span>
+          <span class="wn-embed-metric__badge">
+            <span class:list={["wn-badge", levelClass(visTranslated.level)]}>{visTranslated.label}</span>
+          </span>
+          {visTranslated.detail && (
+            <span class="wn-embed-metric__detail">{visTranslated.detail}</span>
+          )}
+        </li>
+        <li class="wn-embed-metric">
+          <span class="wn-embed-metric__label">Viento</span>
+          <span class="wn-embed-metric__badge">
+            <span class:list={["wn-badge", levelClass(windTranslated.level)]}>{windTranslated.label}</span>
+          </span>
+        </li>
+        <li class="wn-embed-metric">
+          <span class="wn-embed-metric__label">Amanecer</span>
+          <span class="wn-embed-metric__value">{sunriseDisplay}</span>
+          <span class="wn-embed-metric__detail">Primera luz en la cordillera</span>
+        </li>
+        {
+          tempFeelTranslated && w.feelsLikeC != null && (
+            <li class="wn-embed-metric">
+              <span class="wn-embed-metric__label">Sensación</span>
+              <span class="wn-embed-metric__badge">
+                <span class:list={["wn-badge", levelClass(tempFeelTranslated.level)]}>
+                  {w.feelsLikeC}° · {tempFeelTranslated.label}
+                </span>
+              </span>
+              {tempFeelTranslated.detail && (
+                <span class="wn-embed-metric__detail">{tempFeelTranslated.detail}</span>
+              )}
+            </li>
+          )
+        }
+      </ul>
+
+      {
+        freshness.warningMessage && (
+          <div class="staleness-warning" data-level={freshness.level}>
+            <Icon name="lucide:clock-alert" class="staleness-warning-icon" aria-hidden="true" />
+            <span>{freshness.warningMessage}</span>
+          </div>
+        )
+      }
+    </article>
+  ) : (
+    <article
+      class:list={[
+        "weather-now-card w-full rounded-[var(--radius-xl)] border border-[var(--color-border-subtle)] bg-[var(--color-surface)] p-5 shadow-[var(--shadow-card)] min-[375px]:p-6",
+        className,
+      ]}
+      aria-labelledby="weather-now-heading"
+      data-paso-weather-now-card
+    >
+      <p class="text-eyebrow weather-eyebrow weather-eyebrow--live">
+        <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
+        Clima en el paso
       </p>
-      {tempData.meaning && (
-        <p class="temp-warning md:hidden">
-          <Icon
-            name="lucide:triangle-alert"
-            class="temp-warning-icon h-3 w-3 shrink-0"
-            style={`color: ${levelToColor(tempData.level)}`}
-            aria-hidden="true"
-          />
-          <span style={`color: ${levelToColor(tempData.level)}`}>{tempData.meaning}</span>
-        </p>
-      )}
-    </>
-  )}
+      <h2 id="weather-now-heading" class="text-section-title mt-2">Ahora</h2>
 
-  <div class="wn-translated-stats mt-4 flex flex-col gap-3">
-    <div class="wn-stat-row">
-      <span class="wn-stat-label">Visibilidad</span>
-      <div class="wn-stat-value-group">
-        <span class:list={["wn-badge", levelClass(visTranslated.level)]}>{visTranslated.label}</span>
-        {visTranslated.detail && <span class="wn-stat-detail">{visTranslated.detail}</span>}
+      <div class:list={["wn-driving-summary", `wn-driving-summary--${drivingSummary.level}`]}>
+        <span class="wn-ds-dot" aria-hidden="true"></span>
+        <div>
+          <span class="wn-ds-label">{drivingSummary.label}</span>
+          <span class="wn-ds-sub">{drivingSummary.sublabel}</span>
+        </div>
       </div>
-    </div>
-    <div class="wn-stat-row">
-      <span class="wn-stat-label">Viento</span>
-      <div class="wn-stat-value-group">
-        <span class:list={["wn-badge", levelClass(windTranslated.level)]}>{windTranslated.label}</span>
-      </div>
-    </div>
-    <div class="wn-stat-row">
-      <span class="wn-stat-label">Amanecer</span>
-      <div class="wn-stat-value-group">
-        <span class="wn-stat-detail m-0 font-semibold text-[var(--color-text-secondary)]">{sunriseDisplay}</span>
-        <span class="wn-stat-detail">Primera luz en la cordillera</span>
-      </div>
-    </div>
-    {
-      tempFeelTranslated && w.feelsLikeC != null && (
-        <div class="wn-stat-row">
-          <span class="wn-stat-label">Sensación</span>
-          <div class="wn-stat-value-group">
-            <span class:list={["wn-badge", levelClass(tempFeelTranslated.level)]}>
-              {w.feelsLikeC}° · {tempFeelTranslated.label}
+
+      {w.description && (
+        <div class="weather-icon-block mt-4">
+          <div class="weather-icon-wrapper">
+            <Icon
+              name={iconName}
+              style={`color: ${iconColor}`}
+              class="weather-icon-main"
+              aria-hidden="true"
+            />
+          </div>
+          <span class="text-weather-desc min-w-0" data-wn-desc>{w.description}</span>
+        </div>
+      )}
+
+      {w.temperatureC != null && (
+        <>
+          <p class="mt-4 flex flex-wrap items-start gap-x-1 gap-y-0">
+            <span
+              class="temperature-display text-temperature text-[var(--color-text-primary)] tabular-nums"
+              data-wn-temp
+            >
+              {w.temperatureC}
             </span>
-            {tempFeelTranslated.detail && <span class="wn-stat-detail">{tempFeelTranslated.detail}</span>}
+            <span class="mt-2 font-display text-lg font-medium text-[var(--color-text-secondary)] md:text-2xl">
+              °C
+            </span>
+          </p>
+          {tempData.meaning && (
+            <p class="temp-warning md:hidden">
+              <Icon
+                name="lucide:triangle-alert"
+                class="temp-warning-icon h-3 w-3 shrink-0"
+                style={`color: ${levelToColor(tempData.level)}`}
+                aria-hidden="true"
+              />
+              <span style={`color: ${levelToColor(tempData.level)}`}>{tempData.meaning}</span>
+            </p>
+          )}
+        </>
+      )}
+
+      <div class="wn-translated-stats mt-4 flex flex-col gap-3">
+        <div class="wn-stat-row">
+          <span class="wn-stat-label">Visibilidad</span>
+          <div class="wn-stat-value-group">
+            <span class:list={["wn-badge", levelClass(visTranslated.level)]}>{visTranslated.label}</span>
+            {visTranslated.detail && <span class="wn-stat-detail">{visTranslated.detail}</span>}
           </div>
         </div>
-      )
-    }
-  </div>
-
-  {
-    tempData.meaning && (
-      <div
-        class="desktop-temp-warning mt-4 hidden md:block"
-        style={`border-color: ${levelToColor(tempData.level)}; background: ${tempBg}; border-left-color: ${levelToColor(tempData.level)}`}
-      >
-        <Icon
-          name="lucide:thermometer-snowflake"
-          class="h-4 w-4 shrink-0"
-          style={`color: ${levelToColor(tempData.level)}`}
-          aria-hidden="true"
-        />
-        <p class="m-0 text-sm leading-snug" style={`color: ${levelToColor(tempData.level)}`}>
-          {tempData.meaning}
-        </p>
+        <div class="wn-stat-row">
+          <span class="wn-stat-label">Viento</span>
+          <div class="wn-stat-value-group">
+            <span class:list={["wn-badge", levelClass(windTranslated.level)]}>{windTranslated.label}</span>
+          </div>
+        </div>
+        <div class="wn-stat-row">
+          <span class="wn-stat-label">Amanecer</span>
+          <div class="wn-stat-value-group">
+            <span class="wn-stat-detail m-0 font-semibold text-[var(--color-text-secondary)]">{sunriseDisplay}</span>
+            <span class="wn-stat-detail">Primera luz en la cordillera</span>
+          </div>
+        </div>
+        {
+          tempFeelTranslated && w.feelsLikeC != null && (
+            <div class="wn-stat-row">
+              <span class="wn-stat-label">Sensación</span>
+              <div class="wn-stat-value-group">
+                <span class:list={["wn-badge", levelClass(tempFeelTranslated.level)]}>
+                  {w.feelsLikeC}° · {tempFeelTranslated.label}
+                </span>
+                {tempFeelTranslated.detail && <span class="wn-stat-detail">{tempFeelTranslated.detail}</span>}
+              </div>
+            </div>
+          )
+        }
       </div>
-    )
-  }
 
-  {includeDriving && <DrivingConditions weather={drivingWeather} forecast={forecast} />}
+      {
+        tempData.meaning && (
+          <div
+            class="desktop-temp-warning mt-4 hidden md:block"
+            style={`border-color: ${levelToColor(tempData.level)}; background: ${tempBg}; border-left-color: ${levelToColor(tempData.level)}`}
+          >
+            <Icon
+              name="lucide:thermometer-snowflake"
+              class="h-4 w-4 shrink-0"
+              style={`color: ${levelToColor(tempData.level)}`}
+              aria-hidden="true"
+            />
+            <p class="m-0 text-sm leading-snug" style={`color: ${levelToColor(tempData.level)}`}>
+              {tempData.meaning}
+            </p>
+          </div>
+        )
+      }
 
-  {datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
+      {includeDriving && <DrivingConditions weather={drivingWeather} forecast={forecast} />}
 
-  {
-    freshness.warningMessage && (
-      <div class="staleness-warning" data-level={freshness.level}>
-        <Icon name="lucide:clock-alert" class="staleness-warning-icon" aria-hidden="true" />
-        <span>{freshness.warningMessage}</span>
-      </div>
-    )
-  }
-</article>
+      {!hideDataTimestamp && datosAlLine && <p class="text-meta mt-5">{datosAlLine}</p>}
+
+      {
+        freshness.warningMessage && (
+          <div class="staleness-warning" data-level={freshness.level}>
+            <Icon name="lucide:clock-alert" class="staleness-warning-icon" aria-hidden="true" />
+            <span>{freshness.warningMessage}</span>
+          </div>
+        )
+      }
+    </article>
+  )
+}
 
 <style>
   .weather-eyebrow--live {

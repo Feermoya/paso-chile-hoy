@@ -9,10 +9,15 @@ export interface Props {
   class?: string;
   /** Si true, el horario ya está en StatusHero — no duplicar en este bloque. */
   hideScheduleInDetails?: boolean;
+  /** Si true, el enlace oficial ya está en el hero — no duplicar. */
+  hideOfficialLink?: boolean;
 }
 
-const { view, class: className, hideScheduleInDetails = false } = Astro.props;
-const has = passDetailsHasContent(view, { treatScheduleAsHidden: hideScheduleInDetails });
+const { view, class: className, hideScheduleInDetails = false, hideOfficialLink = false } = Astro.props;
+const has = passDetailsHasContent(view, {
+  treatScheduleAsHidden: hideScheduleInDetails,
+  treatOfficialLinkAsHidden: hideOfficialLink,
+});
 ---
 
 {
@@ -36,7 +41,11 @@ const has = passDetailsHasContent(view, { treatScheduleAsHidden: hideScheduleInD
           Datos del paso
         </h2>
         <div class="pass-details-content pb-6 pt-2 md:pt-0">
-          <PassDetailsInner view={view} hideSchedule={hideScheduleInDetails} />
+          <PassDetailsInner
+            view={view}
+            hideSchedule={hideScheduleInDetails}
+            hideOfficialLink={hideOfficialLink}
+          />
         </div>
       </details>
     </div>

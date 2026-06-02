@@ -1,6 +1,8 @@
 ---
-import { shouldSuppressMotivoAlert } from "@/utils/motivoFilters";
-import { dedupeHtmlAlertsAgainstJson } from "@/utils/dedupeHtmlAlerts";
+import {
+  buildOperationalNotices,
+  type OperationalNoticeTone,
+} from "@/utils/operationalNotices";
 
 export interface Props {
   motivo: string | null;
@@ -10,6 +12,8 @@ export interface Props {
   vialidadTramo: string;
   vialidadEstado: string;
   vialidadObservaciones: string;
+  /** Evita repetir el badge del hero (ABIERTO / CERRADO / …). */
+  statusDisplayLabel?: string;
   class?: string;
 }
 
@@ -21,113 +25,39 @@ const {
   vialidadTramo,
   vialidadEstado,
   vialidadObservaciones,
+  statusDisplayLabel,
   class: className,
 } = Astro.props;
 
-function buildVialidadTitle(estado: string, ruta: string, tramo: string): string {
-  const parts: string[] = [];
-  const e = estado.trim();
-  if (e && e.toUpperCase() !== "HABILITADA") {
-    parts.push(
-      e
-        .split(/\s+/)
-        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-        .join(" "),
-    );
-  }
-  const rn = ruta.trim();
-  if (rn) parts.push(`RN ${rn}`);
-  const tr = tramo.trim();
-  if (tr) parts.push(`Tramo: ${tr}`);
-  return parts.join(", ");
-}
-
-const estU = (vialidadEstado ?? "").trim().toUpperCase();
-const showVialidad = Boolean(estU && estU !== "HABILITADA");
-
-const vialidadTitle = buildVialidadTitle(
-  vialidadEstado ?? "",
-  vialidadRuta ?? "",
-  vialidadTramo ?? "",
-);
-
-const obs = (vialidadObservaciones ?? "").trim();
-const showObs =
-  Boolean(obs) &&
-  obs.toLowerCase() !== "transitable" &&
-  obs.length > 3;
-
-const m = motivo?.trim() ?? "";
-const showMotivo = Boolean(m) && !shouldSuppressMotivoAlert(m);
-
-const info = motivoInfo?.trim() ?? "";
-const showMotivoInfo = Boolean(info);
-
-const htmlExtra = dedupeHtmlAlertsAgainstJson(htmlAlerts, {
-  motivo: m || null,
-  motivoInfo: info || null,
-  vialidadObservaciones: obs || null,
+const notices = buildOperationalNotices({
+  motivo,
+  motivoInfo,
+  htmlAlerts,
+  vialidadRuta,
+  vialidadTramo,
+  vialidadEstado,
+  vialidadObservaciones,
+  statusDisplayLabel,
 });
 
-const isCorteTotal = estU === "CORTE TOTAL" || estU.includes("CORTE TOTAL");
-
-const hasContent =
-  showVialidad || showMotivo || showMotivoInfo || htmlExtra.length > 0;
-
-if (!hasContent) {
+if (notices.length === 0) {
   return;
 }
+
+const toneClass: Record<OperationalNoticeTone, string> = {
+  danger: "operational-notice--danger",
+  warning: "operational-notice--warning",
+  info: "operational-notice--info",
+};
 ---
 
-<div class:list={["alerts-section", className]} role="region" aria-label="Información operativa">
+<div class:list={["operational-notices alerts-section", className]} role="region" aria-label="Avisos operativos">
   {
-    showVialidad && (
-      <div
-        class:list={[
-          "alert-card",
-          isCorteTotal ? "alert-card--danger" : "alert-card--warning",
-        ]}
-      >
-        <p class="alert-card-eyebrow">
-          <svg class="alert-card-eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Atención
-        </p>
-        <p class="alert-card-title">{vialidadTitle}</p>
-        {showObs && <p class="alert-card-detail">{obs}</p>}
-      </div>
-    )
-  }
-  {
-    showMotivoInfo && (
-      <div class="alert-card alert-card--warning">
-        <p class="alert-card-eyebrow">
-          <svg class="alert-card-eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Atención
-        </p>
-        <p class="alert-card-title">{info}</p>
-      </div>
-    )
-  }
-  {
-    showMotivo && (
-      <div class="alert-card alert-card--warning">
-        <p class="alert-card-eyebrow">
-          <svg class="alert-card-eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Atención
-        </p>
-        <p class="alert-card-title">{m}</p>
-      </div>
-    )
-  }
-  {
-    htmlExtra.map((text) => (
-      <div class="alert-card alert-card--warning alert-card--html-source">
-        <p class="alert-card-eyebrow">
-          <svg class="alert-card-eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Atención
-        </p>
-        <p class="alert-card-title">{text}</p>
-      </div>
+    notices.map((n) => (
+      <article class:list={["operational-notice", toneClass[n.tone]]}>
+        <p class="operational-notice__label">{n.label}</p>
+        <p class="operational-notice__text">{n.text}</p>
+      </article>
     ))
   }
 </div>

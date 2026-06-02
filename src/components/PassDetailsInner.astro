@@ -2,39 +2,24 @@
 import { Icon } from "astro-icon/components";
 import type { PassView } from "@/types/pass-view";
 import { formatDateTime } from "@/utils/format";
+import { formatHeroSchedule } from "@/utils/formatHeroSchedule";
+import { heroScheduleFromView } from "@/utils/heroScheduleFromView";
 
 export interface Props {
   view: PassView;
   /** Si el horario ya se muestra en el hero, no repetir el bloque Horario aquí. */
   hideSchedule?: boolean;
+  hideOfficialLink?: boolean;
 }
 
-const { view, hideSchedule = false } = Astro.props;
+const { view, hideSchedule = false, hideOfficialLink = false } = Astro.props;
 const op = view.operationalInfo;
 
-function normalizeScheduleRaw(schedule: string): string {
-  let s = schedule.trim().replace(/^horario:\s*/i, "").replace(/\.\s*$/u, "").trim();
-  s = s.replace(/\s*-\s*/g, " – ").replace(/\s+–\s+/g, " – ");
-  if (!/\s+h\.?$/i.test(s)) s = `${s} h`;
-  return s;
-}
-
-function scheduleLine(): string | null {
-  if (op.schedule?.trim()) return normalizeScheduleRaw(op.schedule);
-  if (op.scheduleFrom && op.scheduleTo) return `${op.scheduleFrom} – ${op.scheduleTo} h`;
-  if (op.scheduleFrom || op.scheduleTo) {
-    const a = op.scheduleFrom ?? "";
-    const b = op.scheduleTo ?? "";
-    return b ? `${a} – ${b} h` : `${a} h`;
-  }
-  return null;
-}
-
-const horarioValor = scheduleLine();
+const scheduleDisplay = formatHeroSchedule(heroScheduleFromView(view));
 ---
 
 <div class="space-y-8 text-sm text-[var(--color-text-secondary)] md:text-[15px]">
-  {view.meta.sourceUrl?.trim() && (
+  {view.meta.sourceUrl?.trim() && !hideOfficialLink && (
     <p>
       <a
         href={view.meta.sourceUrl}
@@ -48,12 +33,25 @@ const horarioValor = scheduleLine();
     </p>
   )}
 
-  {horarioValor && !hideSchedule && (
-    <div>
-      <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">Horario</h3>
-      <p class="mt-2 text-[17px] font-medium text-[var(--color-text-primary)] md:text-base">{horarioValor}</p>
-    </div>
-  )}
+  {
+    scheduleDisplay && !hideSchedule && (
+      <div>
+        <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
+          Horario
+        </h3>
+        <p class="mt-2 text-[17px] font-semibold leading-snug text-[var(--color-text-primary)] md:text-base">
+          {scheduleDisplay.primary}
+        </p>
+        {
+          scheduleDisplay.detail && (
+            <p class="mt-1 text-[14px] leading-snug text-[var(--color-text-secondary)] md:text-[15px]">
+              {scheduleDisplay.detail}
+            </p>
+          )
+        }
+      </div>
+    )
+  }
 
   {(op.contact?.phone || op.contact?.telHref) && (
     <div>

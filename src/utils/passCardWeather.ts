@@ -1,4 +1,5 @@
 import type { ForecastItemView } from "@/types/pass-view";
+import type { PassDisplayStatus } from "@/utils/inferPassStatus";
 import { dedupeHtmlAlertsAgainstJson } from "@/utils/dedupeHtmlAlerts";
 import { shouldSuppressMotivoAlert } from "@/utils/motivoFilters";
 
@@ -42,7 +43,22 @@ export type PassCardAlertInput = {
   rawStatus?: string | null;
   motivo?: string | null;
   motivoInfo?: string | null;
+  displayStatus?: PassDisplayStatus;
+  displayLabel?: string | null;
 };
+
+function motivoRepeatsStatusBadge(motivo: string, status: PassDisplayStatus | undefined, label: string | null | undefined): boolean {
+  const badge = (label?.trim() || "").toUpperCase();
+  const m = motivo.trim().toLowerCase();
+  if (!m) return true;
+  if (status === "cerrado" || badge === "CERRADO") {
+    return m.includes("paso cerrado") || m === "cerrado";
+  }
+  if (status === "abierto" || badge === "ABIERTO") {
+    return m.includes("paso abierto");
+  }
+  return false;
+}
 
 function truncatePreview(s: string, max = 60): string {
   const t = s.trim();
@@ -155,6 +171,8 @@ export function getWeatherPreviewAlert(input: PassCardAlertInput): WeatherPrevie
     rawStatus,
     motivo,
     motivoInfo,
+    displayStatus,
+    displayLabel,
   } = input;
 
   const vr = vialidadRuta ?? "";
@@ -193,7 +211,7 @@ export function getWeatherPreviewAlert(input: PassCardAlertInput): WeatherPrevie
     if (t.length >= 6) candidates.push({ text: t, score: scoreAlertImportance(t) });
   }
 
-  if (m.length > 0 && !shouldSuppressMotivoAlert(m)) {
+  if (m.length > 0 && !shouldSuppressMotivoAlert(m) && !motivoRepeatsStatusBadge(m, displayStatus, displayLabel)) {
     const t = cleanAlertText(m);
     if (t.length >= 6) candidates.push({ text: t, score: scoreAlertImportance(t) });
   }

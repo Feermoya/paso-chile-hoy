@@ -2,12 +2,13 @@
 import PasoPageLoadError from "@/components/pass-page/PasoPageLoadError.astro";
 import PasoPageSeoBlock from "@/components/pass-page/PasoPageSeoBlock.astro";
 import PasoPageShell from "@/components/pass-page/PasoPageShell.astro";
-import PasoPageVersionRow from "@/components/pass-page/PasoPageVersionRow.astro";
 import { buildArgentinaPassSourceUrl, getPasoBySlug } from "@/data/pasos";
 import { buildPassRefreshPayload } from "@/lib/server/passRefreshPayload";
 import { getSnapshotForApi } from "@/lib/server/services/snapshotService";
 import { logPassPipelineDebug } from "@/lib/server/utils/passDebugLog";
+import PasoPassNav from "@/components/pass-page/PasoPassNav.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
+import "@/styles/paso-page-premium.css";
 import type { PassView } from "@/types/pass-view";
 import { buildPassStructuredGraph } from "@/utils/passPageSchema";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
@@ -124,7 +125,9 @@ const passSchema = buildPassStructuredGraph({
   paso: pasoConfig,
   scheduleText,
   displayStatus,
+  dateModified: view?.meta?.scrapedAt,
 });
+
 ---
 
 <MainLayout
@@ -137,7 +140,7 @@ const passSchema = buildPassStructuredGraph({
   geoPosition={geoPositionMeta}
 >
   <div class="paso-page-root flex w-full min-w-0 flex-col gap-4 md:gap-6">
-    <PasoPageVersionRow />
+    <PasoPassNav paso={pasoConfig} class="container-main" />
 
     {snapshotLoadFailed && <PasoPageLoadError officialPassUrl={officialPassUrl} slug={slug} />}
 
