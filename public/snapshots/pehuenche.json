@@ -15,21 +15,21 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10.4,
-    "description": "Parcialmente nublado",
-    "wind": "Sudeste 6 km/h",
-    "visibilityKm": 20,
+    "temperatureC": 2.2,
+    "description": "Algo nublado",
+    "wind": "Sudoeste 6 km/h",
+    "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:36",
-    "updatedAt": "2026-06-02T19:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 58
+    "updatedAt": "2026-06-03T08:00:00-03:00",
+    "feelsLikeC": 0.7,
+    "humidity": 91
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-02T22:50:05.949Z",
+  "scrapedAt": "2026-06-03T12:19:54.811Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",
@@ -66,5 +66,5 @@
     "statusUpdatedAt": "1/6/2026 09:33:09"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-02T22:50:05.949Z"
+  "lastKnownGoodAt": "2026-06-03T12:19:54.811Z"
 }
