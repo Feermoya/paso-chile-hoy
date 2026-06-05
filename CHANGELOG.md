@@ -1,5 +1,11 @@
 # Paso Chile Hoy — Historial de versiones
 
+## [2.14.1](https://github.com/Feermoya/paso-chile-hoy/compare/v2.14.0...v2.14.1) (2026-06-05)
+
+### Correcciones
+
+* Correccion ([84e90f7](https://github.com/Feermoya/paso-chile-hoy/commit/84e90f79632ed14af5d60946b80253ba96361a6d))
+
 ## [2.14.0](https://github.com/Feermoya/paso-chile-hoy/compare/v2.13.7...v2.14.0) (2026-06-02)
 
 ### Nuevas funcionalidades
