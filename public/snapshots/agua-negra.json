@@ -22,41 +22,41 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
-    "description": "Lluvia localizada en las cercanías",
-    "wind": "W a 4 km/h",
+    "temperatureC": 3,
+    "description": "Despejado",
+    "wind": "SW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:27",
     "sunset": "18:44",
-    "updatedAt": "2026-06-04",
-    "feelsLikeC": 2,
-    "humidity": 80
+    "updatedAt": "2026-06-05",
+    "feelsLikeC": -2,
+    "humidity": 74
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-04T10:47:33.775Z",
+  "scrapedAt": "2026-06-05T10:57:21.593Z",
   "forecast": [
     {
       "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "ENE 3 km/h",
+      "temperatureC": 11,
+      "wind": "E 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 15,
+      "wind": "E 7 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 13,
-      "wind": "ESE 5 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 12,
-      "wind": "ENE 13 km/h",
+      "wind": "NE 9 km/h",
       "visibility": "Buena"
     },
     {
@@ -70,7 +70,7 @@
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "03 de junio de 2026 • 17:00 hs"
+    "statusUpdatedAt": "04 de junio de 2026 • 17:00 hs"
   },
-  "lastKnownGoodAt": "2026-06-04T10:47:33.775Z"
+  "lastKnownGoodAt": "2026-06-05T10:57:21.593Z"
 }
