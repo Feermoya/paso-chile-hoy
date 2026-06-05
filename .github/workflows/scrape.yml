@@ -3,6 +3,9 @@
 
 name: Scrape pasos internacionales
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   schedule:
     # Tres corridas diarias (minuto/hora UTC). Sin :00 en las otras dos para reducir picos.
@@ -21,12 +24,10 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout (rama main)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 1
-          ref: main
+          fetch-depth: 0
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -56,13 +57,33 @@ jobs:
           done
 
       - name: Commit y push si hay cambios
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
+          set -euo pipefail
+
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/snapshots/
-          if git diff --staged --quiet; then
-            echo "Sin cambios en snapshots"
-          else
-            git commit -m "chore: update snapshots [skip ci]"
-            git push origin main
+
+          # Asegurar que estamos en una rama (no detached HEAD)
+          if ! git symbolic-ref -q HEAD >/dev/null; then
+            git checkout -B "${BRANCH}"
           fi
+
+          git add -A public/snapshots/
+
+          if git diff --cached --quiet; then
+            echo "✅ Sin cambios en snapshots — no se hace commit ni push."
+            exit 0
+          fi
+
+          echo "Cambios detectados:"
+          git status --short
+
+          git commit --no-verify -m "chore: update snapshots [skip ci]"
+
+          echo "Sincronizando con origin/${BRANCH}…"
+          git pull --rebase origin "${BRANCH}"
+
+          git push origin "HEAD:${BRANCH}"
+          echo "✅ Push completado en ${BRANCH}."

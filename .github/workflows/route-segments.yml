@@ -3,6 +3,9 @@
 
 name: Route segments (RN / provincia)
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   schedule:
     - cron: "17 10 * * *"
@@ -19,12 +22,10 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout (rama main)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 1
-          ref: main
+          fetch-depth: 0
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -52,13 +53,25 @@ jobs:
             || { echo "❌ JSON inválido: $FILE"; exit 1; }
 
       - name: Commit y push si hay cambios
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
+          set -euo pipefail
+
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/snapshots/rutas/
-          if git diff --staged --quiet; then
-            echo "Sin cambios en snapshots de rutas"
-          else
-            git commit -m "chore: update route segment snapshots [skip ci]"
-            git push origin main
+
+          if ! git symbolic-ref -q HEAD >/dev/null; then
+            git checkout -B "${BRANCH}"
           fi
+
+          git add -A public/snapshots/rutas/
+
+          if git diff --cached --quiet; then
+            echo "✅ Sin cambios en snapshots de rutas — no se hace commit ni push."
+            exit 0
+          fi
+
+          git commit --no-verify -m "chore: update route segment snapshots [skip ci]"
+          git pull --rebase origin "${BRANCH}"
+          git push origin "HEAD:${BRANCH}"
