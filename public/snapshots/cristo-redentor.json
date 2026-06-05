@@ -15,47 +15,47 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8.1,
-    "description": "Algo nublado",
+    "temperatureC": null,
+    "description": null,
     "wind": "Calma",
-    "visibilityKm": 15,
-    "sunrise": "08:34",
-    "sunset": "18:41",
-    "updatedAt": "2026-06-05T12:00:00-03:00",
+    "visibilityKm": null,
+    "sunrise": null,
+    "sunset": null,
+    "updatedAt": null,
     "feelsLikeC": null,
-    "humidity": 46
+    "humidity": null
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-05T17:25:02.007Z",
+  "scrapedAt": "2026-06-05T22:46:06.913Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 0,
-      "wind": "SO a 7-12 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "SO a 7-12 km/h",
+      "temperatureC": 0,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Mayormente nublado",
-      "temperatureC": -2,
+      "temperatureC": -5,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": 3,
+      "temperatureC": -4,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": -5,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     }
@@ -63,9 +63,9 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "5/6/2026 12:42:50"
+    "statusUpdatedAt": "5/6/2026 16:39:28"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-05T17:25:02.007Z",
+  "lastKnownGoodAt": "2026-06-05T22:46:06.913Z",
   "extendedForecastText": "Alta montaña:</strong> Parcialmente nublado a nublado con nevadas débiles hacia la tarde-noche y madrugada del Sábado.</p>\n\n\n\n<p><strong>Mínima -8°C.<br>Máxima 9°C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"745\" height=\"391\" data-id=\"547834\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.18.49.jpeg\" alt=\"\" class=\"wp-image-547834\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.18.49.jpeg 745w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.18.49-480x252.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 745px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Viernes 05</strong></p>\n\n\n\n<p><strong>Viento:</strong> Vientos calmos en general. Entre las 12:00 y las 17:00 se prevé circulación muy leve de viento sur en la franja Este provincial.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Amanece seminublado a nublado en el llano y se mantendrá con abundante nubosidad durante gran parte del día. Desde la medianoche y durante la madrugada del Sábado podría registrarse despejado temporario.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Cielo nublado durante toda la jornada. Entre la medianoche y las 04:00 del sábado se prevé un breve período despejado, volviendo a presentarse condiciones de nubosidad hacia el amanecer.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C.<br>Mínima (Malargüe y zonas bajas del Valle de Uco): 2°C a 3°C.<br>Mínima (resto de la provincia): 6°C.</p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"715\" height=\"724\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.16.37.jpeg\" alt=\"\" class=\"wp-image-547835\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.16.37.jpeg 715w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-05-at-08.16.37-480x486.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 715px, 100vw\" /></figure>\n\n\n\n<p><strong>Sábado 06</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación leve de viento de sur a norte entre las 11:00 y las 21:00, afectando principalmente la zona Este y la zona Sur provincial.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Amanece seminublado, con mayor nubosidad en la zona Sur. Desde las 11:00 se prevé aumento de la nubosidad en toda la provincia. A partir de las 13:00 existe probabilidad de lluvias o lloviznas débiles en el Sudeste provincial, especialmente en General Alvear. Desde las 16:00 la probabilidad de precipitaciones débiles se extendería al Valle de Uco, Oeste del Gran Mendoza, zona Sur y sector Este de La Paz, manteniéndose durante la tarde y parte de la noche.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Amanece nublado. Desde las 16:00 se esperan precipitaciones, principalmente en los sectores Norte y Central de la alta montaña. No se prevén acumulados significativos.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 14°C a 15°C.<br>Mínima (Malargüe y ñzonas bajas del Valle de Uco): 2°C.<br>Mínima (resto de la provincia): 6°C.</p>\n\n\n\n<p><strong>La Dirección Provincial de Defensa Civil mantiene el monitoreo de la situación meteorológica.</strong></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
