@@ -15,43 +15,29 @@
     "Velocidad moderada"
   ],
   "vialidadRuta": "150",
-  "vialidadTramo": "",
-  "vialidadEstado": "",
-  "vialidadObservaciones": "",
+  "vialidadTramo": "Arrequintin - Lte. Con Chile",
+  "vialidadEstado": "RESTRINGIDA",
+  "vialidadObservaciones": "Transitable",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
+    "temperatureC": 9,
     "description": "Parcialmente nublado",
-    "wind": "N a 4 km/h",
+    "wind": "E a 8 km/h",
     "visibilityKm": 10,
     "sunrise": "08:28",
     "sunset": "18:43",
     "updatedAt": "2026-06-07",
-    "feelsLikeC": 1,
-    "humidity": 80
+    "feelsLikeC": 8,
+    "humidity": 58
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-07T10:13:21.078Z",
+  "scrapedAt": "2026-06-07T16:47:18.910Z",
   "forecast": [
-    {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-      "temperatureC": 8,
-      "wind": "E 7 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "E 13 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la tarde",
       "description": "Soleado",
@@ -65,12 +51,26 @@
       "temperatureC": 6,
       "wind": "ENE 4 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Despejado",
+      "temperatureC": 2,
+      "wind": "NE 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 6,
+      "wind": "ENE 5 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "06 de junio de 2026 • 09:01 hs"
+    "statusUpdatedAt": "07 de junio de 2026 • 08:39 hs"
   },
-  "lastKnownGoodAt": "2026-06-07T10:13:21.078Z"
+  "lastKnownGoodAt": "2026-06-07T16:47:18.910Z"
 }
