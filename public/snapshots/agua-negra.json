@@ -15,55 +15,55 @@
     "Velocidad moderada"
   ],
   "vialidadRuta": "150",
-  "vialidadTramo": "Arrequintin - Lte. Con Chile",
-  "vialidadEstado": "RESTRINGIDA",
-  "vialidadObservaciones": "Transitable",
+  "vialidadTramo": "",
+  "vialidadEstado": "",
+  "vialidadObservaciones": "",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9,
-    "description": "Despejado",
-    "wind": "N a 5 km/h",
+    "temperatureC": 5,
+    "description": "Parcialmente nublado",
+    "wind": "N a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:28",
-    "sunset": "18:44",
-    "updatedAt": "2026-06-06",
-    "feelsLikeC": 4,
-    "humidity": 60
+    "sunset": "18:43",
+    "updatedAt": "2026-06-07",
+    "feelsLikeC": 1,
+    "humidity": 80
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-06T22:41:24.702Z",
+  "scrapedAt": "2026-06-07T10:13:21.078Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": 6,
-      "wind": "ENE 0 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
       "temperatureC": 8,
-      "wind": "E 9 km/h",
+      "wind": "E 7 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 10,
-      "wind": "ENE 13 km/h",
+      "wind": "E 13 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 9,
+      "wind": "ENE 15 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 6,
-      "wind": "NE 3 km/h",
+      "wind": "ENE 4 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "06 de junio de 2026 • 09:01 hs"
   },
-  "lastKnownGoodAt": "2026-06-06T22:41:24.702Z"
+  "lastKnownGoodAt": "2026-06-07T10:13:21.078Z"
 }
