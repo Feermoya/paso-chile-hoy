@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.8,
+    "temperatureC": 6,
     "description": "Algo nublado",
-    "wind": "Sudoeste 6 km/h",
+    "wind": "Este 4 km/h",
     "visibilityKm": 20,
     "sunrise": "08:44",
     "sunset": "18:34",
-    "updatedAt": "2026-06-08T14:00:00-03:00",
-    "feelsLikeC": 7.1,
-    "humidity": 70
+    "updatedAt": "2026-06-08T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 76
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-08T18:09:08.831Z",
+  "scrapedAt": "2026-06-08T23:02:25.921Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -48,14 +41,21 @@
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
-      "temperatureC": -8,
+      "temperatureC": -4,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": -1,
+      "temperatureC": -4,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     }
@@ -63,8 +63,8 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "8/6/2026 09:01:43"
+    "statusUpdatedAt": "8/6/2026 19:05:53"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-08T18:09:08.831Z"
+  "lastKnownGoodAt": "2026-06-08T23:02:25.921Z"
 }
