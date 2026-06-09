@@ -22,75 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 2,
-<<<<<<< Updated upstream
-    "description": "Despejado",
-    "wind": "WNW a 4 km/h",
-=======
+    "temperatureC": 14,
     "description": "Soleado",
-    "wind": "WSW a 4 km/h",
->>>>>>> Stashed changes
+    "wind": "SSE a 5 km/h",
     "visibilityKm": 10,
     "sunrise": "08:29",
     "sunset": "18:43",
     "updatedAt": "2026-06-09",
-<<<<<<< Updated upstream
-    "feelsLikeC": -3,
-    "humidity": 61
-=======
-    "feelsLikeC": -2,
-    "humidity": 52
->>>>>>> Stashed changes
+    "feelsLikeC": 9,
+    "humidity": 20
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-<<<<<<< Updated upstream
-  "scrapedAt": "2026-06-09T10:45:07.778Z",
-=======
-  "scrapedAt": "2026-06-09T12:16:58.698Z",
->>>>>>> Stashed changes
+  "scrapedAt": "2026-06-09T17:31:39.039Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-      "temperatureC": 12,
-      "wind": "SSW 2 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 17,
-      "wind": "WNW 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 17,
-      "wind": "SW 8 km/h",
+      "wind": "SW 4 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": 8,
-      "wind": "SSW 9 km/h",
+      "wind": "WSW 6 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 4,
+      "wind": "SSW 12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 9,
+      "wind": "S 10 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-<<<<<<< Updated upstream
-    "statusUpdatedAt": "08 de junio de 2026 • 09:01 hs"
-  },
-  "lastKnownGoodAt": "2026-06-09T10:45:07.778Z"
-=======
     "statusUpdatedAt": "09 de junio de 2026 • 08:46 hs"
   },
-  "lastKnownGoodAt": "2026-06-09T12:16:58.698Z"
->>>>>>> Stashed changes
+  "lastKnownGoodAt": "2026-06-09T17:31:39.039Z"
 }
