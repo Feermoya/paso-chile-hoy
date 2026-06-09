@@ -23,20 +23,34 @@
   "latestTweet": null,
   "weather": {
     "temperatureC": 2,
+<<<<<<< Updated upstream
     "description": "Despejado",
     "wind": "WNW a 4 km/h",
+=======
+    "description": "Soleado",
+    "wind": "WSW a 4 km/h",
+>>>>>>> Stashed changes
     "visibilityKm": 10,
     "sunrise": "08:29",
     "sunset": "18:43",
     "updatedAt": "2026-06-09",
+<<<<<<< Updated upstream
     "feelsLikeC": -3,
     "humidity": 61
+=======
+    "feelsLikeC": -2,
+    "humidity": 52
+>>>>>>> Stashed changes
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-06-09T10:45:07.778Z",
+=======
+  "scrapedAt": "2026-06-09T12:16:58.698Z",
+>>>>>>> Stashed changes
   "forecast": [
     {
       "period": "Hoy al mediodía",
@@ -70,7 +84,13 @@
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
+<<<<<<< Updated upstream
     "statusUpdatedAt": "08 de junio de 2026 • 09:01 hs"
   },
   "lastKnownGoodAt": "2026-06-09T10:45:07.778Z"
+=======
+    "statusUpdatedAt": "09 de junio de 2026 • 08:46 hs"
+  },
+  "lastKnownGoodAt": "2026-06-09T12:16:58.698Z"
+>>>>>>> Stashed changes
 }

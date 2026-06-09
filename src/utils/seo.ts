@@ -14,13 +14,13 @@ export const SITE_URL = resolveSiteUrl();
 export const SITE_NAME =
   import.meta.env.PUBLIC_SITE_NAME?.trim() || "Paso Chile Hoy";
 
-/** Meta description principal de la marca / home (~155–165 caracteres, español + señal EN). */
+/** Meta description principal de la marca / home (~155 caracteres). */
 export const SITE_DESCRIPTION =
-  "Paso Chile Hoy resume si el paso a Chile está abierto o cerrado hoy (Cristo Redentor, Pehuenche, Agua Negra), con horario y clima en cordillera desde datos públicos oficiales Argentina. English: border pass status for Mendoza and San Juan.";
+  "Consultá si el paso a Chile está abierto hoy. Estado, horario, clima y rutas de Cristo Redentor, Pehuenche y Agua Negra con datos públicos oficiales.";
 
-/** Texto del JSON-LD `WebSite` (marca + intención + señal EN breve). */
+/** Texto del JSON-LD `WebSite` (marca + intención). */
 export const WEB_SITE_SCHEMA_DESCRIPTION =
-  "Paso Chile Hoy: estado del paso a Chile (Cristo Redentor, Pehuenche, Agua Negra), horario y clima a partir de datos públicos oficiales Argentina. English: Argentina–Chile border crossing status — Christ the Redeemer, Pehuenche, Agua Negra passes.";
+  "Paso Chile Hoy informa el estado del paso a Chile: Cristo Redentor, Pehuenche y Agua Negra, con horario, clima y rutas desde datos públicos oficiales.";
 
 /**
  * Imagen Open Graph por defecto (URL absoluta).
@@ -126,13 +126,16 @@ export function buildPassPageMeta(opts: {
   const region = opts.regionLabel ?? "Mendoza, Argentina";
 
   const emoji = STATUS_EMOJI[status];
-  const label = STATUS_LABEL[status];
-  const headline = opts.statusHeadline?.trim() || label;
-  const enLine = passEnglishDiscoveryLine(passSlug);
-  const enStatus = STATUS_LABEL_EN[status];
+  const headline = opts.statusHeadline?.trim() || STATUS_LABEL[status];
 
-  /** Título fuerte: intención “hoy / estado” + marca (estable por URL). */
-  const title = `${passShortName} hoy — estado del paso a Chile | ${SITE_NAME}`;
+  const title =
+    passSlug === "cristo-redentor"
+      ? `Paso Cristo Redentor hoy: estado, horario y clima | ${SITE_NAME}`
+      : passSlug === "pehuenche"
+        ? `Paso Pehuenche hoy: estado, horario y clima | ${SITE_NAME}`
+        : passSlug === "agua-negra"
+          ? `Paso Agua Negra hoy: estado, horario y clima | ${SITE_NAME}`
+          : `${passShortName} hoy: estado, horario y clima | ${SITE_NAME}`;
 
   const routeHint =
     passSlug === "cristo-redentor"
@@ -144,16 +147,15 @@ export function buildPassPageMeta(opts: {
           : "";
 
   const description =
-    `${passShortName} (${region}): ${label.toLowerCase()} ahora según la síntesis de esta web; horario y clima en el paso. ${routeHint}` +
-    `Actualización relativa: ${freshnessLabel}. No reemplaza Gendarmería ni la web oficial. EN: ${enLine} Status summary: ${enStatus}.`;
+    `${passShortName} (${region}): estado actual del paso a Chile, horario publicado, clima en cordillera y datos de ruta. ${routeHint}` +
+    `Última actualización: ${freshnessLabel}. Verificá siempre con la fuente oficial antes de viajar.`;
 
-  const ogTitle = `${emoji} ${passShortName} — ${label} | Paso a Chile`;
+  const ogTitle = `${emoji} ${passShortName} — ${STATUS_LABEL[status]} | Paso a Chile`;
   const climaPart =
     weatherDesc && tempC !== null ? ` ${weatherDesc} · ${tempC}°C.` : weatherDesc ? ` ${weatherDesc}.` : "";
   const horarioPart = schedule ? ` Horario: ${schedule} h.` : "";
   const ogDescription =
-    `${passName}: ${headline.toUpperCase()} ahora.${horarioPart}${climaPart} ${freshnessLabel}. ` +
-    `${enLine}`;
+    `${passName}: ${headline.toUpperCase()} ahora.${horarioPart}${climaPart} Actualización: ${freshnessLabel}.`;
 
   const ogImage = resolveOgImageUrlForPass(passSlug);
   const canonical = `${SITE_URL}/${passSlug}`;
@@ -173,13 +175,12 @@ export function buildPassPageMeta(opts: {
 
 export function buildHomeMeta(): LayoutSeoBundle {
   return {
-    title: `Paso Chile Hoy — ¿paso a Chile abierto hoy? Cristo Redentor, Pehuenche, Agua Negra`,
+    title: `Paso a Chile hoy: estado, horario y clima | Cristo Redentor y Pehuenche`,
     description: SITE_DESCRIPTION,
     canonical: `${SITE_URL}/`,
-    ogTitle: "Paso Chile Hoy — estado del paso a Chile para decidir si salís",
+    ogTitle: "Paso a Chile hoy — estado, horario y clima actualizado",
     ogDescription:
-      "Mirá en un solo lugar si Cristo Redentor (Los Libertadores), Pehuenche y Agua Negra están operativos, con horario publicado y clima de alta montaña. Datos públicos del Estado argentino. " +
-      "EN: Open/closed snapshot for Argentina–Chile passes — Mendoza and San Juan.",
+      "Consultá si el paso a Chile está abierto hoy. Estado de Cristo Redentor, Pehuenche y Agua Negra, horario publicado, clima en cordillera y rutas.",
     ogImage: DEFAULT_OG_IMAGE,
     ogImageAlt:
       "Paso Chile Hoy — Cristo Redentor, Pehuenche, Agua Negra: estado del cruce Argentina–Chile",
@@ -336,6 +337,85 @@ export const HOME_FAQ_ITEMS: readonly { question: string; answer: string }[] = [
       "No. Paso Chile Hoy ordena y muestra información ya publicada por organismos del Estado argentino; no es un canal oficial. La decisión de viajar y las verificaciones finales son responsabilidad de cada persona, ante la fuente oficial y las autoridades.",
   },
 ];
+
+/** FAQ específicas de la landing `/paso-a-chile-hoy`. */
+export const PASO_A_CHILE_FAQ_ITEMS: readonly { question: string; answer: string }[] = [
+  {
+    question: "¿Cómo sé si el paso a Chile está abierto hoy?",
+    answer:
+      "En esta página y en cada paso ves si Cristo Redentor, Pehuenche y Agua Negra figuran como abiertos, cerrados o condicionados, con horario y clima. La fuente son datos públicos oficiales; confirmá siempre en Gendarmería antes de viajar.",
+  },
+  {
+    question: "¿Qué pasos a Chile cubre Paso Chile Hoy?",
+    answer:
+      "Los tres cruces principales desde el oeste argentino: Cristo Redentor (Mendoza, ruta internacional 7), Pehuenche (Malargüe–Talca) y Agua Negra (San Juan, gran altitud). Cada uno tiene su página con estado, horario y clima.",
+  },
+  {
+    question: "¿Qué debo revisar antes de cruzar a Chile?",
+    answer:
+      "Estado y horario del paso en la web oficial, clima en cordillera, documentación de ingreso, estado de rutas nacionales si tu tramo depende de Vialidad, y alertas de nieve o viento en altura.",
+  },
+  {
+    question: "¿Con qué frecuencia se actualiza el estado?",
+    answer:
+      "Los datos se relevan de forma automática desde fuentes públicas del Estado argentino varias veces al día. La hora de la última actualización figura en cada paso; no es un dato en vivo segundo a segundo.",
+  },
+];
+
+export function buildPasoAChileHoyMeta(): LayoutSeoBundle {
+  const title = "Paso a Chile hoy: abierto o cerrado, horario y clima";
+  const description =
+    "Verificá si el paso a Chile está abierto hoy. Estado actualizado de Cristo Redentor, Pehuenche y Agua Negra, horarios, clima y rutas para viajar desde Argentina.";
+  return {
+    title: `${title} | ${SITE_NAME}`,
+    description,
+    canonical: `${SITE_URL}/paso-a-chile-hoy`,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: DEFAULT_OG_IMAGE,
+    ogImageAlt: "Paso a Chile hoy — Cristo Redentor, Pehuenche y Agua Negra",
+    twitterCard: "summary_large_image",
+  };
+}
+
+export function buildPasoAChileHoyStructuredGraph(): Record<string, unknown> {
+  const pageUrl = `${SITE_URL}/paso-a-chile-hoy`;
+  const webpageId = `${pageUrl}#webpage`;
+  const faqId = `${pageUrl}#faq`;
+
+  const faqEntities = PASO_A_CHILE_FAQ_ITEMS.map((item, i) => ({
+    "@type": "Question",
+    "@id": `${pageUrl}#faq-q${i + 1}`,
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  }));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url: pageUrl,
+        name: "Paso a Chile hoy: estado actualizado",
+        description:
+          "Estado, horario y clima de los principales pasos a Chile desde Argentina: Cristo Redentor, Pehuenche y Agua Negra.",
+        inLanguage: "es-AR",
+        isPartOf: { "@id": schemaWebsiteId() },
+        mainEntity: { "@id": faqId },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": faqId,
+        isPartOf: { "@id": webpageId },
+        mainEntity: faqEntities,
+      },
+    ],
+  };
+}
 
 export function buildHomeStructuredGraph(itemListElement: Array<Record<string, unknown>>): Record<string, unknown> {
   const webpageId = `${SITE_URL}/#webpage`;

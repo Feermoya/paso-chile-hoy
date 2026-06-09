@@ -1,0 +1,259 @@
+---
+export const prerender = true;
+
+import MainLayout from "@/layouts/MainLayout.astro";
+import { PASOS } from "@/data/pasos";
+import {
+  buildPasoAChileHoyMeta,
+  buildPasoAChileHoyStructuredGraph,
+  PASO_A_CHILE_FAQ_ITEMS,
+} from "@/utils/seo";
+
+const meta = buildPasoAChileHoyMeta();
+const structuredData = buildPasoAChileHoyStructuredGraph();
+
+const activePasos = PASOS.filter((p) => p.active);
+
+const passBlurbs: Record<string, string> = {
+  "cristo-redentor":
+    "Principal cruce Mendoza–Chile por la ruta internacional 7 (Los Libertadores). Consultá estado, horario y clima en Villa Las Cuevas.",
+  pehuenche:
+    "Enlace entre Malargüe (Mendoza) y Talca (Chile). Ideal para quienes viajan por el sur cordillerano.",
+  "agua-negra":
+    "Paso de gran altitud entre San Juan y Chile. Verificá clima y restricciones antes de subir por Las Flores.",
+};
+---
+
+<MainLayout {...meta} structuredData={structuredData}>
+  <article class="container-main paso-chile-landing">
+    <header class="paso-chile-landing__hero">
+      <h1 class="paso-chile-landing__title">Paso a Chile hoy: estado actualizado</h1>
+      <p class="paso-chile-landing__lead">
+        Consultá en un solo lugar si los principales pasos a Chile están abiertos, cerrados o condicionados, con
+        horario publicado, clima en cordillera y datos de ruta.
+      </p>
+      <p class="paso-chile-landing__back">
+        <a href="/">Volver al panel principal</a>
+      </p>
+    </header>
+
+    <section class="paso-chile-landing__section" aria-labelledby="pasos-principales-title">
+      <h2 id="pasos-principales-title" class="paso-chile-landing__h2">Principales pasos a Chile</h2>
+      <ul class="paso-chile-landing__pass-list">
+        {
+          activePasos.map((paso) => (
+            <li class="paso-chile-landing__pass-card">
+              <h3 class="paso-chile-landing__pass-name">
+                <a href={`/${paso.slug}`}>{paso.shortName}</a>
+              </h3>
+              <p class="paso-chile-landing__pass-route">
+                {paso.localityAR} — {paso.localityCL} · {paso.provinceAR}
+              </p>
+              <p class="paso-chile-landing__pass-desc">{passBlurbs[paso.slug] ?? paso.name}</p>
+              <a class="paso-chile-landing__pass-cta" href={`/${paso.slug}`}>
+                Ver estado de {paso.shortName} hoy
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="paso-chile-landing__section" aria-labelledby="antes-viajar-title">
+      <h2 id="antes-viajar-title" class="paso-chile-landing__h2">Qué revisar antes de viajar a Chile</h2>
+      <ul class="paso-chile-landing__checklist">
+        <li>Estado del paso (abierto, cerrado o condicionado) en la fuente oficial</li>
+        <li>Horario de habilitación publicado por Gendarmería</li>
+        <li>Clima en cordillera: temperatura, viento y posible nieve</li>
+        <li>Documentación y requisitos de ingreso a Chile</li>
+        <li>Estado de rutas nacionales si tu tramo depende de Vialidad Nacional</li>
+      </ul>
+    </section>
+
+    <section class="paso-chile-landing__section paso-chile-landing__faq" aria-labelledby="paso-chile-faq-title">
+      <h2 id="paso-chile-faq-title" class="paso-chile-landing__h2">Preguntas frecuentes</h2>
+      <dl class="paso-chile-landing__faq-list">
+        {
+          PASO_A_CHILE_FAQ_ITEMS.map((row) => (
+            <div class="paso-chile-landing__faq-pair">
+              <dt class="paso-chile-landing__faq-q">{row.question}</dt>
+              <dd class="paso-chile-landing__faq-a">{row.answer}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="paso-chile-landing__footer-links">
+        Enlaces: <a href="/cristo-redentor">Cristo Redentor</a>, <a href="/pehuenche">Pehuenche</a>,{" "}
+        <a href="/agua-negra">Agua Negra</a>. <a href="/">Inicio</a> · <a href="/legal">Aviso legal</a>
+      </p>
+    </section>
+  </article>
+</MainLayout>
+
+<style>
+  .paso-chile-landing {
+    padding-block: 24px 40px;
+  }
+
+  .paso-chile-landing__hero {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border-subtle) 70%, transparent);
+  }
+
+  .paso-chile-landing__title {
+    margin: 0 0 12px;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+  }
+
+  .paso-chile-landing__lead {
+    margin: 0;
+    max-width: 58ch;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-chile-landing__back {
+    margin: 12px 0 0;
+    font-size: 13px;
+  }
+
+  .paso-chile-landing__back a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .paso-chile-landing__back a:hover {
+    text-decoration: underline;
+  }
+
+  .paso-chile-landing__section {
+    margin-bottom: 28px;
+  }
+
+  .paso-chile-landing__h2 {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  .paso-chile-landing__pass-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .paso-chile-landing__pass-card {
+    padding: 14px 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-raised);
+    box-shadow: var(--shadow-card);
+  }
+
+  .paso-chile-landing__pass-name {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .paso-chile-landing__pass-name a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .paso-chile-landing__pass-name a:hover {
+    color: var(--color-accent);
+  }
+
+  .paso-chile-landing__pass-route {
+    margin: 0 0 8px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .paso-chile-landing__pass-desc {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-chile-landing__pass-cta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .paso-chile-landing__pass-cta:hover {
+    text-decoration: underline;
+  }
+
+  .paso-chile-landing__checklist {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-chile-landing__checklist li + li {
+    margin-top: 6px;
+  }
+
+  .paso-chile-landing__faq-list {
+    margin: 0;
+  }
+
+  .paso-chile-landing__faq-pair {
+    padding: 12px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border-subtle) 65%, transparent);
+  }
+
+  .paso-chile-landing__faq-pair:last-of-type {
+    border-bottom: 0;
+  }
+
+  .paso-chile-landing__faq-q {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .paso-chile-landing__faq-a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-chile-landing__footer-links {
+    margin: 16px 0 0;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .paso-chile-landing__footer-links a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .paso-chile-landing__footer-links a:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -33,6 +33,7 @@ export const GET: APIRoute = () => {
 
   const paths: { path: string; priority: string; changefreq: string }[] = [
     { path: "/", priority: "1.0", changefreq: "hourly" },
+    { path: "/paso-a-chile-hoy", priority: "0.95", changefreq: "hourly" },
     { path: "/legal", priority: "0.35", changefreq: "monthly" },
     ...PASOS.filter((p) => p.active).map((p) => ({
       path: `/${p.slug}`,

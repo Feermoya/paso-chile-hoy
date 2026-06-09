@@ -15,6 +15,7 @@
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
+<<<<<<< Updated upstream
     "temperatureC": -0.2,
     "description": "Parcialmente nublado con niebla en bancos",
     "wind": "Noreste 6 km/h",
@@ -23,12 +24,23 @@
     "sunset": "18:34",
     "updatedAt": "2026-06-09T07:00:00-03:00",
     "feelsLikeC": -2.1,
+=======
+    "temperatureC": 0,
+    "description": "Mayormente nublado con niebla en la hora anterior",
+    "wind": "Norte 6 km/h",
+    "visibilityKm": 10,
+    "sunrise": "08:44",
+    "sunset": "18:34",
+    "updatedAt": "2026-06-09T08:00:00-03:00",
+    "feelsLikeC": -1.8,
+>>>>>>> Stashed changes
     "humidity": 97
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
+<<<<<<< Updated upstream
   "scrapedAt": "2026-06-09T10:45:05.139Z",
   "forecast": [
     {
@@ -44,11 +56,22 @@
       "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Muy mala"
+=======
+  "scrapedAt": "2026-06-09T12:16:57.551Z",
+  "forecast": [
+    {
+      "period": "Hoy por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": 4,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
+>>>>>>> Stashed changes
     },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
       "temperatureC": -3,
+<<<<<<< Updated upstream
       "wind": "O a 23-31 km/h",
       "visibility": "Muy mala"
     },
@@ -58,13 +81,38 @@
       "temperatureC": -8,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
+=======
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": 1,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nublado",
+      "temperatureC": 9,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+>>>>>>> Stashed changes
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
+<<<<<<< Updated upstream
     "statusUpdatedAt": "9/6/2026 06:10:59"
   },
   "operationalStale": false,
   "lastKnownGoodAt": "2026-06-09T10:45:05.139Z"
+=======
+    "statusUpdatedAt": "9/6/2026 09:00:38"
+  },
+  "operationalStale": false,
+  "lastKnownGoodAt": "2026-06-09T12:16:57.551Z"
+>>>>>>> Stashed changes
 }

@@ -214,21 +214,30 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
             <span>Sin alertas activas</span>
           </div>
         ) : (
-          <div class="status-bar-alert-track">
-            <div class="status-bar-alert-content">
+          <>
+            <ul class="status-bar-alert-a11y sr-only">
               {
-                tripleAlerts.map((a, idx) => (
-                  <span class="status-bar-alert-unit">
-                    {idx > 0 ? <span class="status-bar-alert-dot-sep" aria-hidden="true">·</span> : null}
-                    <span class:list={["status-bar-alert-item", `status-bar-alert--${a.severity}`]}>
-                      <span class="status-bar-alert-marker" aria-hidden="true" />
-                      {a.text}
-                    </span>
-                  </span>
+                alerts.map((a) => (
+                  <li class:list={[`status-bar-alert--${a.severity}`]}>{a.text}</li>
                 ))
               }
+            </ul>
+            <div class="status-bar-alert-track" aria-hidden="true">
+              <div class="status-bar-alert-content">
+                {
+                  tripleAlerts.map((a, idx) => (
+                    <span class="status-bar-alert-unit">
+                      {idx > 0 ? <span class="status-bar-alert-dot-sep" aria-hidden="true">·</span> : null}
+                      <span class:list={["status-bar-alert-item", `status-bar-alert--${a.severity}`]}>
+                        <span class="status-bar-alert-marker" aria-hidden="true" />
+                        {a.text}
+                      </span>
+                    </span>
+                  ))
+                }
+              </div>
             </div>
-          </div>
+          </>
         )
       }
     </div>
@@ -239,7 +248,23 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
       <span class="status-bar-live-dot" aria-hidden="true"></span>
       <span class="status-bar-live-label">EN VIVO</span>
     </div>
-    <div class="status-bar-mobile-track">
+    <ul class="status-bar-mobile-a11y sr-only">
+      {
+        passStrips.map((p) => (
+          <li>
+            <a href={`/${p.slug}`}>
+              {p.shortName}, {STATUS_ARIA[p.status]}
+            </a>
+          </li>
+        ))
+      }
+      {
+        alerts.map((a) => (
+          <li>{a.text}</li>
+        ))
+      }
+    </ul>
+    <div class="status-bar-mobile-track" aria-hidden="true">
       <div class="status-bar-mobile-content">
         {
           mobileScrollItems.map((item, idx) => (
@@ -249,8 +274,7 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                 <a
                   class="status-bar-mobile-item status-bar-mobile-pass"
                   href={`/${item.slug}`}
-                  aria-label={`${item.shortName}, ${STATUS_ARIA[item.status]}`}
-                  title={`${item.shortName} — ${STATUS_ARIA[item.status]}`}
+                  tabindex="-1"
                 >
                   <span
                     class:list={[
@@ -259,10 +283,10 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                     ]}
                     aria-hidden="true"
                   />
-                  {item.shortName}
+                  <span aria-hidden="true">{item.shortName}</span>
                 </a>
               ) : (
-                <span class="status-bar-mobile-item">{item.text}</span>
+                <span class="status-bar-mobile-item" aria-hidden="true">{item.text}</span>
               )}
             </span>
           ))

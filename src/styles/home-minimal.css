@@ -38,7 +38,26 @@
 }
 
 .home-layout--minimal .home-hero-subtitle {
-  display: none;
+  margin: 8px 0 0;
+  max-width: 52ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.home-layout--minimal .home-hero-landing-link {
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+.home-layout--minimal .home-hero-landing-link a {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.home-layout--minimal .home-hero-landing-link a:hover {
+  text-decoration: underline;
 }
 
 /* Guía al pie de las cards */
