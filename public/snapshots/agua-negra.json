@@ -16,35 +16,28 @@
   ],
   "vialidadRuta": "150",
   "vialidadTramo": "Arrequintin - Lte. Con Chile",
-  "vialidadEstado": "RESTRINGIDA",
+  "vialidadEstado": "CORTE TOTAL",
   "vialidadObservaciones": "Transitable",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13,
+    "temperatureC": 6,
     "description": "Lluvia localizada en las cercanías",
-    "wind": "N a 8 km/h",
+    "wind": "NNE a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:30",
     "sunset": "18:43",
     "updatedAt": "2026-06-10",
-    "feelsLikeC": 9,
-    "humidity": 23
+    "feelsLikeC": 2,
+    "humidity": 59
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-10T18:10:48.543Z",
+  "scrapedAt": "2026-06-10T23:13:31.202Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 5,
-      "wind": "WSW 0 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
@@ -56,14 +49,21 @@
       "period": "Mañana al mediodía",
       "description": "Soleado",
       "temperatureC": 8,
-      "wind": "S 2 km/h",
+      "wind": "SSW 2 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Soleado",
       "temperatureC": 12,
-      "wind": "SE 1 km/h",
+      "wind": "SSE 1 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 5,
+      "wind": "W 8 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-06-10T18:10:48.543Z"
+  "lastKnownGoodAt": "2026-06-10T23:13:31.202Z"
 }

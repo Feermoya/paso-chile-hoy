@@ -15,40 +15,33 @@
   "vialidadObservaciones": "Corte por nevadas . Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10.8,
-    "description": "Parcialmente nublado",
+    "temperatureC": 8.6,
+    "description": "Cubierto",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:37",
     "sunset": "18:41",
-    "updatedAt": "2026-06-10T12:00:00-03:00",
+    "updatedAt": "2026-06-10T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 40
+    "humidity": 54
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-10T18:10:43.860Z",
+  "scrapedAt": "2026-06-10T23:13:23.106Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
-      "temperatureC": -11,
+      "temperatureC": -10,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": -8,
+      "temperatureC": -11,
       "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
     },
@@ -58,6 +51,13 @@
       "temperatureC": -4,
       "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": -6,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "9/6/2026 12:52:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-10T18:10:43.860Z",
+  "lastKnownGoodAt": "2026-06-10T23:13:23.106Z",
   "extendedForecastText": "Alta montaña:</strong> Nublado con nevadas moderadas a débiles.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"742\" height=\"500\" data-id=\"548501\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.14.57.jpeg\" alt=\"\" class=\"wp-image-548501\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.14.57.jpeg 742w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.14.57-480x323.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 742px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"942\" height=\"664\" data-id=\"548498\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59-1.jpeg\" alt=\"\" class=\"wp-image-548498\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59-1.jpeg 942w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59-1-480x338.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 942px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"944\" height=\"669\" data-id=\"548497\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59.jpeg\" alt=\"\" class=\"wp-image-548497\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59.jpeg 944w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.11.59-480x340.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 944px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Miércoles 10:</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa leve con circulación de sur a norte. Comenzaría alrededor de las 14 en la Zona Sur y cerca de las 16 en las zonas Norte y Este, extendiéndose hasta aproximadamente las 20. Probable viento Zonda leve en la precordillera Sur y Malargüe entre las 14:00 y las 19.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece nublado y se mantendría con abundante nubosidad durante gran parte del día. Desde las 19 se observan precipitaciones débiles en General Alvear, San Rafael y sectores rurales al Sur de La Paz.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Persisten las condiciones de mal tiempo desde la madrugada y durante toda la jornada. Se espera una mejora hacia las 23 o la medianoche. Las precipitaciones más importantes se concentrarían en los sectores Sur y Central, con acumulaciones de nieve nueva estimadas entre 30 y 40 cm. En la Zona Norte las acumulaciones serían menores.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C.<br>Mínima (Malargüe y sectores bajos del Valle de Uco): 2°C a 3°C.<br>Mínima (resto de la provincia): 5°C a 6°C.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"548496\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-1.jpeg\" alt=\"\" class=\"wp-image-548496\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-1.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-1-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-1-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"548495\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00.jpeg\" alt=\"\" class=\"wp-image-548495\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-10-at-08.12.00-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Jueves 11:</strong> </p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve en toda la provincia entre las 12 y las 19. Probable viento Zonda en toda la precordillera provincial entre las 14 y las 20.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece despejado en el llano. Desde aproximadamente las 13 comenzaría a incrementarse la nubosidad sobre Malargüe, extendiéndose posteriormente hacia el Valle de Uco y más tarde a las zonas Norte y Este. No se observan precipitaciones para esta jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece despejado. Desde las 12 comenzaría a aumentar la nubosidad en el sector Sur, extendiéndose gradualmente hacia las zonas Central y Norte. No se prevén precipitaciones durante el jueves. Se observa la posibilidad de un nuevo período de mal tiempo desde la madrugada del viernes, iniciándose en la Zona Sur.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C.<br>Mínima (Valle de Uco y Malargüe): entre 0°C y 1°C, con sectores que podrían registrar hasta -2°C.<br>Mínima (resto de la provincia): 3°C a 4°C.</p>\n\n\n\n<p><strong>Se mantiene monitoreo de la situación meteorológica por parte de Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<p></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
