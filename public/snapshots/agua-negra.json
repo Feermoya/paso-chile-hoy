@@ -22,46 +22,46 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 16,
-    "description": "Soleado",
-    "wind": "WNW a 5 km/h",
+    "temperatureC": 3,
+    "description": "Lluvia localizada en las cercanías",
+    "wind": "SW a 10 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:29",
+    "sunrise": "08:30",
     "sunset": "18:43",
-    "updatedAt": "2026-06-09",
-    "feelsLikeC": 11,
-    "humidity": 13
+    "updatedAt": "2026-06-10",
+    "feelsLikeC": 1,
+    "humidity": 43
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-09T23:04:23.740Z",
+  "scrapedAt": "2026-06-10T11:08:52.856Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
+      "period": "Hoy al mediodía",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 4,
-      "wind": "SW 13 km/h",
+      "temperatureC": 10,
+      "wind": "S 5 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana al mediodía",
+      "period": "Hoy por la tarde",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 9,
-      "wind": "SSW 8 km/h",
+      "temperatureC": 15,
+      "wind": "W 14 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 13,
-      "wind": "S 7 km/h",
+      "temperatureC": 12,
+      "wind": "S 21 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Lluvia localizada en las cercanías",
+      "period": "Hoy por la noche",
+      "description": "Despejado",
       "temperatureC": 6,
       "wind": "WNW 1 km/h",
       "visibility": "Buena"
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "09 de junio de 2026 • 08:46 hs"
   },
-  "lastKnownGoodAt": "2026-06-09T23:04:23.740Z"
+  "lastKnownGoodAt": "2026-06-10T11:08:52.856Z"
 }
