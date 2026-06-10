@@ -6,65 +6,34 @@
   "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [
-    "Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Transitable con Precaución Contacto: (260) 4471063"
-  ],
+  "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Transitable con Precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
+    "temperatureC": 9.7,
     "description": "Parcialmente nublado",
-    "wind": "Sudoeste 6 km/h",
+    "wind": "Norte 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:45",
     "sunset": "18:34",
-    "updatedAt": "2026-06-10T07:00:00-03:00",
-    "feelsLikeC": 3.9,
-    "humidity": 66
+    "updatedAt": "2026-06-10T14:00:00-03:00",
+    "feelsLikeC": 9.3,
+    "humidity": 52
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-10T11:08:46.741Z",
-  "forecast": [
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -4,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -4,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    }
-  ],
+  "scrapedAt": "2026-06-10T18:10:45.922Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
     "statusUpdatedAt": "10/6/2026 06:55:33"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-10T11:08:46.741Z"
+  "lastKnownGoodAt": "2026-06-10T18:10:45.922Z"
 }

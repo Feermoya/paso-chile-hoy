@@ -22,55 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 3,
+    "temperatureC": 13,
     "description": "Lluvia localizada en las cercanías",
-    "wind": "SW a 10 km/h",
+    "wind": "N a 8 km/h",
     "visibilityKm": 10,
     "sunrise": "08:30",
     "sunset": "18:43",
     "updatedAt": "2026-06-10",
-    "feelsLikeC": 1,
-    "humidity": 43
+    "feelsLikeC": 9,
+    "humidity": 23
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-10T11:08:52.856Z",
+  "scrapedAt": "2026-06-10T18:10:48.543Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 10,
-      "wind": "S 5 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 15,
-      "wind": "W 14 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 12,
-      "wind": "S 21 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la noche",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 5,
+      "wind": "WSW 0 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 6,
-      "wind": "WNW 1 km/h",
+      "temperatureC": 0,
+      "wind": "SW 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 8,
+      "wind": "S 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Soleado",
+      "temperatureC": 12,
+      "wind": "SE 1 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://wttr.in",
-    "statusUpdatedAt": "09 de junio de 2026 • 08:46 hs"
+    "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-06-10T11:08:52.856Z"
+  "lastKnownGoodAt": "2026-06-10T18:10:48.543Z"
 }
