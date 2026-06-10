@@ -5,18 +5,18 @@
   "routeName": "Ruta Nacional 150",
   "routeCode": "150",
   "province": "San Juan",
-  "updatedAt": "2026-06-10T18:10:48.473Z",
+  "updatedAt": "2026-06-10T23:12:53.196Z",
   "sourceUpdatedAt": "2026-06-10T10:00:00.000Z",
   "summary": {
     "totalSegments": 7,
     "openSegments": 5,
     "partialSegments": 0,
-    "closedSegments": 0,
+    "closedSegments": 2,
     "cautionSegments": 0,
-    "firstBlockingSegmentId": null,
-    "canReachPass": "unknown",
-    "headline": "Estado de ruta con información incompleta",
-    "worstStatus": "OPEN"
+    "firstBlockingSegmentId": "las-flores-arrequintin",
+    "canReachPass": false,
+    "headline": "Corte en Las Flores - Arrequintin",
+    "worstStatus": "CLOSED"
   },
   "segmentOrder": "asc",
   "segments": [
@@ -106,14 +106,14 @@
       "id": "las-flores-arrequintin",
       "order": 5,
       "name": "Las Flores - Arrequintin",
-      "status": "UNKNOWN",
-      "statusLabel": "RESTRINGIDA",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
       "surface": "PAVIMENTO",
       "lengthKm": 37,
       "notes": "Transitable",
       "updatedAt": "2026-06-10T10:00:00.000Z",
       "flags": {
-        "critical": false,
+        "critical": true,
         "toll": false,
         "international": false
       }
@@ -122,8 +122,8 @@
       "id": "arrequintin-lte-con-chile",
       "order": 6,
       "name": "Arrequintin - Lte. Con Chile",
-      "status": "UNKNOWN",
-      "statusLabel": "RESTRINGIDA",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
       "surface": "RIPIO",
       "lengthKm": 56,
       "notes": "Transitable",
