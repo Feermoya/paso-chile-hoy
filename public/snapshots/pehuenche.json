@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "Fuerte viento blanco y nevadas",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -2.6,
-    "description": "Algo nublado",
-    "wind": "Oeste 6 km/h",
+    "temperatureC": 7,
+    "description": "Parcialmente nublado",
+    "wind": "Sudeste 10 km/h",
     "visibilityKm": 20,
     "sunrise": "08:45",
     "sunset": "18:34",
-    "updatedAt": "2026-06-11T08:00:00-03:00",
-    "feelsLikeC": -4.8,
-    "humidity": 68
+    "updatedAt": "2026-06-11T14:00:00-03:00",
+    "feelsLikeC": 5.2,
+    "humidity": 40
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-11T11:54:25.744Z",
+  "scrapedAt": "2026-06-11T18:28:52.932Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -2,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Ventoso",
@@ -56,13 +49,20 @@
       "temperatureC": -6,
       "wind": "O a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 5,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "11/6/2026 06:39:23"
+    "statusUpdatedAt": "11/6/2026 14:11:33"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-11T11:54:25.744Z"
+  "lastKnownGoodAt": "2026-06-11T18:28:52.932Z"
 }
