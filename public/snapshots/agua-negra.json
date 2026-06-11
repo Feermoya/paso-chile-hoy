@@ -24,32 +24,25 @@
   "weather": {
     "temperatureC": 12,
     "description": "Soleado",
-    "wind": "ESE a 4 km/h",
+    "wind": "WNW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:30",
     "sunset": "18:43",
     "updatedAt": "2026-06-11",
     "feelsLikeC": 8,
-    "humidity": 18
+    "humidity": 15
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-11T18:28:55.559Z",
+  "scrapedAt": "2026-06-11T23:09:27.218Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "WSW 7 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
       "temperatureC": 3,
-      "wind": "SW 12 km/h",
+      "wind": "SW 13 km/h",
       "visibility": "Buena"
     },
     {
@@ -63,7 +56,14 @@
       "period": "Mañana por la tarde",
       "description": "Soleado",
       "temperatureC": 16,
-      "wind": "WNW 3 km/h",
+      "wind": "W 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 8,
+      "wind": "WSW 12 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-06-11T18:28:55.559Z"
+  "lastKnownGoodAt": "2026-06-11T23:09:27.218Z"
 }

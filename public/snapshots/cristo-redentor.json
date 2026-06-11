@@ -15,47 +15,47 @@
   "vialidadObservaciones": "Corte por nevadas . Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8.3,
+    "temperatureC": 13.4,
     "description": "Despejado",
-    "wind": "Noreste 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": null,
-    "sunset": null,
-    "updatedAt": "2026-06-11T12:00:00-03:00",
+    "sunrise": "08:37",
+    "sunset": "18:41",
+    "updatedAt": "2026-06-11T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 57
+    "humidity": 28
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-11T18:28:50.883Z",
+  "scrapedAt": "2026-06-11T23:09:19.966Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
+      "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
-      "temperatureC": -6,
-      "wind": "O a 23-31 km/h",
+      "temperatureC": -7,
+      "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la madrugada",
-      "description": "Lluvias y nevadas",
-      "temperatureC": -7,
+      "period": "Mañana por la mañana",
+      "description": "Ventoso",
+      "temperatureC": -8,
       "wind": "O a 32-41 km/h",
       "visibility": "Regular"
     },
     {
-      "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -8,
+      "period": "Mañana por la tarde",
+      "description": "Ventisca",
+      "temperatureC": -3,
       "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
+      "visibility": "Mala"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Mañana por la noche",
       "description": "Nevadas",
-      "temperatureC": -3,
+      "temperatureC": -6,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     }
@@ -63,9 +63,9 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "11/6/2026 11:34:33"
+    "statusUpdatedAt": "11/6/2026 17:43:35"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-11T18:28:50.883Z",
+  "lastKnownGoodAt": "2026-06-11T23:09:19.966Z",
   "extendedForecastText": "Alta montaña:</strong> Tiempo bueno.<br>Mínimas entre -18/-16ºC.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"743\" height=\"505\" data-id=\"548716\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.12.21.jpeg\" alt=\"\" class=\"wp-image-548716\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.12.21.jpeg 743w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.12.21-480x326.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 743px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"664\" height=\"454\" data-id=\"548723\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59-1.jpeg\" alt=\"\" class=\"wp-image-548723\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59-1.jpeg 664w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59-1-480x328.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 664px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"666\" height=\"473\" data-id=\"548724\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59.jpeg\" alt=\"\" class=\"wp-image-548724\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59.jpeg 666w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.28.59-480x341.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 666px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Jueves 11:</strong> </p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve en toda la provincia entre las 12 y las 19. Probable viento Zonda en toda la precordillera provincial entre las 14 y las 20.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece despejado en el llano. Desde aproximadamente las 13 comenzaría a incrementarse la nubosidad sobre Malargüe, extendiéndose posteriormente hacia el Valle de Uco y más tarde a las zonas Norte y Este. No se observan precipitaciones para esta jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Amanece despejado. Desde las 12 comenzaría a aumentar la nubosidad en el sector Sur, extendiéndose gradualmente hacia las zonas Central y Norte. No se prevén precipitaciones durante el jueves. Se observa la posibilidad de un nuevo período de mal tiempo desde la madrugada del viernes, iniciándose en la Zona Sur.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: 16°C.<br>Mínima (Valle de Uco y Malargüe): entre 0°C y 1°C, con sectores que podrían registrar hasta -2°C.<br>Mínima (resto de la provincia): 3°C a 4°C.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"548725\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.29.00.jpeg\" alt=\"\" class=\"wp-image-548725\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.29.00.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.29.00-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-11-at-08.29.00-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Viernes 12</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve en la franja Este provincial, entre las 09:00 y las 19:00. Probable presencia de viento Zonda leve entre las 09:00 y las 20:00 en toda la precordillera de Mendoza, Malargüe y Valle de Uspallata.</p>\n\n\n\n<p><strong>Nubosidad</strong>: Amanece seminublado a nublado en todo el llano. Las condiciones persistirán durante gran parte de la jornada. A partir de las 18:00 tenderá a despejar en la zona Norte de la provincia y sector norte del Valle de Uco, mientras que el Sur provincial continuará nublado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Desde la madrugada se prevé nuevamente mal tiempo. Se registrarán precipitaciones níveas débiles a moderadas, principalmente en el sector Sur. A partir de las 15:00 hs. estas precipitaciones se extenderán hacia los sectores Central y Norte, por lo que toda la alta montaña presentará mal tiempo con nevadas moderadas durante la tarde.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:</strong><br>Máxima: entre 17°C y 18°C.<br>Mínima (Malargüe y partes bajas del Valle de Uco): 0°C.<br>Mínima (resto de la provincia): entre 4°C y 5°C.</p>\n\n\n\n<p><strong>Se mantiene monitoreo de la situación meteorológica por parte de Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<p></p>\n\n\n\n<h5 class=\"wp-block-heading\">Pasos internacionales</h5>\n\n\n\n<h3 class=\"wp-block-heading\">"
 }
