@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
-    "description": "Lluvia localizada en las cercanías",
-    "wind": "NNE a 4 km/h",
+    "temperatureC": 0,
+    "description": "Despejado",
+    "wind": "WSW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:30",
     "sunset": "18:43",
-    "updatedAt": "2026-06-10",
-    "feelsLikeC": 2,
-    "humidity": 59
+    "updatedAt": "2026-06-11",
+    "feelsLikeC": null,
+    "humidity": 68
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-10T23:13:31.202Z",
+  "scrapedAt": "2026-06-11T11:54:28.440Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 0,
-      "wind": "SW 4 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
       "temperatureC": 8,
-      "wind": "SSW 2 km/h",
+      "wind": "SE 2 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 12,
-      "wind": "SSE 1 km/h",
+      "temperatureC": 11,
+      "wind": "SSW 1 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 12,
+      "wind": "W 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
       "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "W 8 km/h",
+      "temperatureC": 6,
+      "wind": "WSW 7 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-06-10T23:13:31.202Z"
+  "lastKnownGoodAt": "2026-06-11T11:54:28.440Z"
 }
