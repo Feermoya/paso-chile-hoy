@@ -15,22 +15,29 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 1.6,
-    "description": "Parcialmente nublado",
-    "wind": "Calma",
+    "temperatureC": 18.7,
+    "description": "Ligeramente nublado",
+    "wind": "Sudoeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "08:38",
     "sunset": "18:41",
-    "updatedAt": "2026-06-13T09:00:00-03:00",
+    "updatedAt": "2026-06-13T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 48
+    "humidity": 18
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-13T16:51:05.228Z",
+  "scrapedAt": "2026-06-13T22:43:38.256Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -3,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -51,21 +58,14 @@
       "temperatureC": -12,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -2,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "13/6/2026 12:55:12"
+    "statusUpdatedAt": "13/6/2026 17:54:18"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-13T16:51:05.228Z",
+  "lastKnownGoodAt": "2026-06-13T22:43:38.256Z",
   "extendedForecastText": "Alta montaña: Parcialmente nublado a nublado con frio moderado.</p>\n\n\n\n<p>Mínima: -12<br>Máxima: -4</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"630\" height=\"806\" data-id=\"549136\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260613-WA0008.jpg\" alt=\"\" class=\"wp-image-549136\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260613-WA0008.jpg 630w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260613-WA0008-480x614.jpg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 630px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548901\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-1200x848.jpeg\" alt=\"\" class=\"wp-image-548901\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548902\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-1200x848.jpeg\" alt=\"\" class=\"wp-image-548902\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Viernes 12</strong></p>\n\n\n\n<p><strong>Reporte meteorológico:</strong></p>\n\n\n\n<p><strong>Sábado 13/06:</strong></p>\n\n\n\n<p><strong>Viento:<br></strong>Ingreso de frente frío con circulación de viento sur de intensidad débil a moderada. Comenzó a percibirse alrededor de las 05:00 hs. en la Zona Sur y cerca de las 07:00 hs. en la Zona Norte. En la Zona Este se esperan velocidades promedio de entre 30 y 35 km/h. Se mantendrá hasta aproximadamente las 21:00 hs.</p>\n\n\n\n<p><strong>Nubosidad:<br></strong>Amanece nublado en toda la provincia, con nubosidad avanzando desde el Sur hacia el Norte. Se pueden presentar bancos de niebla aislados durante las primeras horas. Existe probabilidad de lloviznas aisladas y lluvias débiles, principalmente en Malargüe, la Precordillera y el sector Oeste del Valle de Uco. La mejora de las condiciones en el llano se espera durante la madrugada del domingo, con disminución de la nubosidad y cielo seminublado.</p>\n\n\n\n<p><strong>Alta Montaña:<br></strong>Persiste el mal tiempo en toda la Alta Montaña, con precipitaciones moderadas, de mayor intensidad en los sectores Central y Sur. Hacia la medianoche se observa una mejora en cuanto a las precipitaciones, aunque continuará la nubosidad.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
