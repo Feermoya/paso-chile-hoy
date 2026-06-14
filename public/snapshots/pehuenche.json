@@ -13,40 +13,33 @@
   "vialidadObservaciones": "Transitable con Precaución.",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4.5,
-    "description": "Parcialmente nublado",
-    "wind": "Sudoeste 8 km/h",
+    "temperatureC": 9.7,
+    "description": "Algo nublado",
+    "wind": "Noreste 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:47",
     "sunset": "18:34",
-    "updatedAt": "2026-06-14T12:00:00-03:00",
-    "feelsLikeC": 2.7,
-    "humidity": 69
+    "updatedAt": "2026-06-14T19:00:00-03:00",
+    "feelsLikeC": 9.3,
+    "humidity": 46
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-14T16:48:43.733Z",
+  "scrapedAt": "2026-06-14T22:48:23.453Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -2,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -2,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -4,
+      "description": "Mayormente nublado",
+      "temperatureC": -6,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
@@ -56,13 +49,20 @@
       "temperatureC": 2,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": 1,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "14/6/2026 06:59:35"
+    "statusUpdatedAt": "14/6/2026 19:09:45"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-14T16:48:43.733Z"
+  "lastKnownGoodAt": "2026-06-14T22:48:23.453Z"
 }
