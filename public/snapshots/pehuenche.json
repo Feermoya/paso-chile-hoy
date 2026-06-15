@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "SIN_DATOS",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
@@ -12,57 +12,19 @@
   "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "Transitable con Precaución.",
   "latestTweet": null,
-  "weather": {
-    "temperatureC": -1.7,
-    "description": "Algo nublado",
-    "wind": "Oeste 8 km/h",
-    "visibilityKm": 20,
-    "sunrise": "08:47",
-    "sunset": "18:34",
-    "updatedAt": "2026-06-15T09:00:00-03:00",
-    "feelsLikeC": -4.5,
-    "humidity": 81
-  },
+  "weather": null,
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-15T13:30:09.478Z",
-  "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 2,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "NO a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": 1,
-      "wind": "NO a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    }
-  ],
+  "scrapedAt": "2026-06-15T19:09:51.544Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "15/6/2026 08:59:53"
+    "statusUpdatedAt": null
   },
-  "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-15T13:30:09.478Z"
+  "scrapeError": "detalle_consolidado",
+  "lastKnownGoodAt": "2026-06-15T13:30:09.478Z",
+  "operationalStale": true
 }
