@@ -7,7 +7,7 @@
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
-    "Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
+    "Motivo del cierre: PERIODO INVERNAL, PI HABILITADO 09:00 HS HASTA 21:00 HS. Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
   ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -15,27 +15,41 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -2.1,
-    "description": "Algo nublado",
+    "temperatureC": 1,
+    "description": "Cubierto",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:38",
     "sunset": "18:41",
-    "updatedAt": "2026-06-14T09:00:00-03:00",
+    "updatedAt": "2026-06-15T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 72
+    "humidity": 59
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-14T22:48:16.068Z",
+  "scrapedAt": "2026-06-15T13:30:07.432Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
+      "period": "Hoy por la tarde",
       "description": "Mayormente nublado",
+      "temperatureC": -2,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Parcialmente nublado",
       "temperatureC": -5,
-      "wind": "O a 23-31 km/h",
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nublado",
+      "temperatureC": -7,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
     {
@@ -44,28 +58,14 @@
       "temperatureC": -8,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": -2,
-      "wind": "SO a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "14/6/2026 12:32:04"
+    "statusUpdatedAt": "15/6/2026 09:30:40"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-14T22:48:16.068Z",
-  "extendedForecastText": "Alta montaña: Nubosidad variable. Mínima -09°C.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"760\" height=\"747\" data-id=\"549205\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003.jpg\" alt=\"\" class=\"wp-image-549205\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003.jpg 760w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003-480x472.jpg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 760px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548901\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-1200x848.jpeg\" alt=\"\" class=\"wp-image-548901\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548902\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-1200x848.jpeg\" alt=\"\" class=\"wp-image-548902\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Reporte meteorológico:</strong></p>\n\n\n\n<p><strong>Domingo 14/06:</strong></p>\n\n\n\n<p>Viento: Circulación leve de viento norte, entre las 12:00 y las 18:00 hs., afectando el llano provincial.</p>\n\n\n\n<p>Nubosidad: Amaneció entre seminublado y despejado, con bancos de niebla y neblina. La neblina tenderá a disiparse durante la media mañana. Durante el resto del día se mantendrán condiciones de cielo alternadas entre seminublado y despejado. No se observan precipitaciones.</p>\n\n\n\n<p>Alta Montaña: Cielo entre seminublado y nublado. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-06-15T13:30:07.432Z",
+  "extendedForecastText": "Alta montaña: Cielo parcialmente nublado a nublado con frío moderado.</p>\n\n\n\n<p>Máxima: 0 °C.<br>Mínima: -14 °C.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"549232\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-15-at-08.17.57.jpeg\" alt=\"\" class=\"wp-image-549232\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-15-at-08.17.57.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-15-at-08.17.57-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-15-at-08.17.57-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"760\" height=\"747\" data-id=\"549205\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003.jpg\" alt=\"\" class=\"wp-image-549205\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003.jpg 760w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/IMG-20260614-WA0003-480x472.jpg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 760px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548901\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-1200x848.jpeg\" alt=\"\" class=\"wp-image-548901\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.12-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"548902\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-1200x848.jpeg\" alt=\"\" class=\"wp-image-548902\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-12-at-08.20.13-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Reporte meteorológico:</strong></p>\n\n\n\n<p><strong>Domingo 14/06:</strong></p>\n\n\n\n<p>Viento: Circulación leve de viento norte, entre las 12:00 y las 18:00 hs., afectando el llano provincial.</p>\n\n\n\n<p>Nubosidad: Amaneció entre seminublado y despejado, con bancos de niebla y neblina. La neblina tenderá a disiparse durante la media mañana. Durante el resto del día se mantendrán condiciones de cielo alternadas entre seminublado y despejado. No se observan precipitaciones.</p>\n\n\n\n<p>Alta Montaña: Cielo entre seminublado y nublado. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
