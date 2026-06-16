@@ -13,56 +13,56 @@
   "vialidadObservaciones": "Transitable con Precaución.",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.4,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 8 km/h",
+    "temperatureC": -2,
+    "description": "Algo nublado",
+    "wind": "Sur 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:47",
     "sunset": "18:34",
-    "updatedAt": "2026-06-15T19:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 50
+    "updatedAt": "2026-06-16T08:00:00-03:00",
+    "feelsLikeC": -4.1,
+    "humidity": 77
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-15T23:22:53.082Z",
+  "scrapedAt": "2026-06-16T12:26:14.843Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": -3,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Mayormente nublado",
       "temperatureC": 0,
-      "wind": "NO a 23-31 km/h",
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -2,
+      "wind": "NE a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": 0,
-      "wind": "O a 13-22 km/h",
+      "wind": "N a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "15/6/2026 19:27:21"
+    "statusUpdatedAt": "16/6/2026 06:45:21"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-15T23:22:53.082Z"
+  "lastKnownGoodAt": "2026-06-16T12:26:14.843Z"
 }
