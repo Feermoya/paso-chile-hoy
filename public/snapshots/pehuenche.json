@@ -13,28 +13,56 @@
   "vialidadObservaciones": "Transitable con Precaución.",
   "latestTweet": null,
   "weather": {
-    "temperatureC": null,
-    "description": null,
+    "temperatureC": 0.8,
+    "description": "Algo nublado",
     "wind": "Calma",
-    "visibilityKm": null,
+    "visibilityKm": 20,
     "sunrise": "08:47",
     "sunset": "18:34",
-    "updatedAt": null,
+    "updatedAt": "2026-06-17T08:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": null
+    "humidity": 54
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-16T23:08:34.912Z",
-  "forecast": [],
+  "scrapedAt": "2026-06-17T12:04:11.516Z",
+  "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 7,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 3,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Lluvias y nevadas",
+      "temperatureC": -2,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -5,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    }
+  ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "16/6/2026 18:39:17"
+    "statusUpdatedAt": "17/6/2026 06:30:39"
   },
-  "scrapeError": "detalle_html",
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-16T23:08:34.912Z"
+  "lastKnownGoodAt": "2026-06-17T12:04:11.516Z"
 }
