@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "Transitable con Precaución.",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14,
-    "description": "Algo nublado",
-    "wind": "Calma",
+    "temperatureC": 10.9,
+    "description": "Mayormente nublado",
+    "wind": "Este 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:35",
-    "updatedAt": "2026-06-17T14:00:00-03:00",
+    "updatedAt": "2026-06-17T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 32
+    "humidity": 52
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-17T18:00:06.470Z",
+  "scrapedAt": "2026-06-17T23:06:13.913Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 3,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Lluvias y nevadas",
@@ -56,13 +49,20 @@
       "temperatureC": 6,
       "wind": "SO a 23-31 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -4,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "17/6/2026 13:36:53"
+    "statusUpdatedAt": "17/6/2026 19:04:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-17T18:00:06.470Z"
+  "lastKnownGoodAt": "2026-06-17T23:06:13.913Z"
 }

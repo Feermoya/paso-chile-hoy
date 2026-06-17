@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9.1,
+    "temperatureC": 14.2,
     "description": "Parcialmente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:39",
     "sunset": "18:41",
-    "updatedAt": "2026-06-17T12:00:00-03:00",
+    "updatedAt": "2026-06-17T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 39
+    "humidity": 53
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-17T18:00:02.631Z",
+  "scrapedAt": "2026-06-17T23:06:08.271Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -2,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Lluvias y nevadas",
@@ -58,14 +51,21 @@
       "temperatureC": 2,
       "wind": "SO a 23-31 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "17/6/2026 12:10:59"
+    "statusUpdatedAt": "17/6/2026 17:59:31"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-17T18:00:02.631Z",
+  "lastKnownGoodAt": "2026-06-17T23:06:08.271Z",
   "extendedForecastText": "Alta Montaña:</strong> Amanece nublado y se mantendrá nublado durante todo el día. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
