@@ -15,32 +15,25 @@
   "vialidadObservaciones": "Corte por nevadas  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.3,
-    "description": "Cubierto",
+    "temperatureC": 13.7,
+    "description": "Algo nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:39",
     "sunset": "18:41",
-    "updatedAt": "2026-06-17T21:00:00-03:00",
+    "updatedAt": "2026-06-18T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 52
+    "humidity": 39
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-18T11:35:06.882Z",
+  "scrapedAt": "2026-06-18T18:11:43.164Z",
   "forecast": [
     {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 2,
-      "wind": "SO a 23-31 km/h",
-      "visibility": "Regular"
-    },
-    {
       "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -8,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
@@ -58,6 +51,13 @@
       "temperatureC": -10,
       "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nublado",
+      "temperatureC": 2,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "17/6/2026 21:24:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-18T11:35:06.882Z",
-  "extendedForecastText": "Alta Montaña:</strong> Amanece nublado y se mantendrá nublado durante todo el día. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-06-18T18:11:43.164Z",
+  "extendedForecastText": "Alta montaña: </strong>Nublado con nevadas débiles ocasionales y moderadas. Mejorando por la tarde o noche.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"742\" height=\"492\" data-id=\"549574\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.03.59.jpeg\" alt=\"\" class=\"wp-image-549574\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.03.59.jpeg 742w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.03.59-480x318.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 742px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"549572\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-1-1200x848.jpeg\" alt=\"\" class=\"wp-image-549572\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-1-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-1-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"549571\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-1200x848.jpeg\" alt=\"\" class=\"wp-image-549571\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-18-at-09.01.15-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Jueves 18</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento sur muy débil entre las 12:00 y las 18:00, con mayor incidencia en el Valle de Uco y las Zonas Norte y Este.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en las Zonas Sur y Este de la provincia. A partir de las 11:00 a 12:00 tenderá a despejarse en todo el llano.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado durante toda la jornada.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }

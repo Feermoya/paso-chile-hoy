@@ -3,39 +3,34 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [],
+  "htmlAlerts": [
+    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche Nevadas y fuerte viento blanco Contacto: (260) 4471063"
+  ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
-  "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "Transitable con Precaución.",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.2,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 12 km/h",
+    "temperatureC": 16,
+    "description": "Ligeramente nublado",
+    "wind": "Oeste 25 km/h",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:35",
-    "updatedAt": "2026-06-18T08:00:00-03:00",
-    "feelsLikeC": 2.7,
-    "humidity": 61
+    "updatedAt": "2026-06-18T14:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 17
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-18T11:35:12.600Z",
+  "scrapedAt": "2026-06-18T18:11:54.945Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 6,
-      "wind": "SO a 23-31 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -56,13 +51,20 @@
       "temperatureC": -5,
       "wind": "SO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nublado",
+      "temperatureC": 5,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "18/6/2026 06:41:46"
+    "statusUpdatedAt": "18/6/2026 11:44:07"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-18T11:35:12.600Z"
+  "lastKnownGoodAt": "2026-06-18T18:11:54.945Z"
 }
