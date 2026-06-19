@@ -15,56 +15,27 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -1,
-    "description": "Algo nublado",
-    "wind": "Norte 6 km/h",
+    "temperatureC": 5,
+    "description": "Mayormente nublado",
+    "wind": "Calma",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:35",
-    "updatedAt": "2026-06-19T07:00:00-03:00",
-    "feelsLikeC": -3,
-    "humidity": 67
+    "updatedAt": "2026-06-19T13:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 45
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-19T11:47:14.940Z",
-  "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": -2,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Nublado",
-      "temperatureC": -5,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -6,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
-    }
-  ],
+  "scrapedAt": "2026-06-19T17:27:41.644Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
     "statusUpdatedAt": "19/6/2026 06:28:10"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-19T11:47:14.940Z"
+  "lastKnownGoodAt": "2026-06-19T17:27:41.644Z"
 }
