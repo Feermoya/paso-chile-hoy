@@ -15,33 +15,26 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12.7,
-    "description": "Algo nublado",
-    "wind": "Oeste 23 km/h",
+    "temperatureC": 7.6,
+    "description": "Ligeramente nublado",
+    "wind": "Oeste 15 km/h",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:35",
-    "updatedAt": "2026-06-20T13:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 25
+    "updatedAt": "2026-06-20T19:00:00-03:00",
+    "feelsLikeC": 5,
+    "humidity": 20
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-20T16:54:52.706Z",
+  "scrapedAt": "2026-06-20T22:47:06.815Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
-      "temperatureC": -9,
+      "description": "Mayormente nublado",
+      "temperatureC": -12,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
@@ -55,16 +48,23 @@
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": -3,
+      "temperatureC": -8,
       "wind": "SO a 42-50 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -15,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "20/6/2026 13:29:18"
+    "statusUpdatedAt": "20/6/2026 18:20:26"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-20T16:54:52.706Z"
+  "lastKnownGoodAt": "2026-06-20T22:47:06.815Z"
 }
