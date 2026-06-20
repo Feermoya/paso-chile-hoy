@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,57 +15,57 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.1,
-    "description": "Algo nublado",
-    "wind": "Calma",
+    "temperatureC": 9,
+    "description": "Despejado",
+    "wind": "Sudeste 4 km/h",
     "visibilityKm": 15,
     "sunrise": "08:40",
     "sunset": "18:42",
-    "updatedAt": "2026-06-19T18:00:00-03:00",
+    "updatedAt": "2026-06-19T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 47
+    "humidity": 24
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-19T22:33:54.982Z",
+  "scrapedAt": "2026-06-20T10:17:26.696Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -7,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nublado",
-      "temperatureC": -6,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Ventisca",
       "temperatureC": -4,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -8,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Algo nublado",
+      "temperatureC": -11,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -12,
+      "wind": "SO a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "19/6/2026 10:22:30"
+    "statusUpdatedAt": "19/6/2026 22:29:40"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-19T22:33:54.982Z",
+  "lastKnownGoodAt": "2026-06-20T10:17:26.696Z",
   "extendedForecastText": "Alta montaña:</strong> Tiempo bueno.</p>\n\n\n\n<p><strong>Máxima: -3°C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"743\" height=\"350\" data-id=\"549826\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.20.49.jpeg\" alt=\"\" class=\"wp-image-549826\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.20.49.jpeg 743w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.20.49-480x226.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 743px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"937\" height=\"666\" data-id=\"549824\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.26.jpeg\" alt=\"\" class=\"wp-image-549824\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.26.jpeg 937w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.26-480x341.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 937px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"947\" height=\"647\" data-id=\"549823\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.25.jpeg\" alt=\"\" class=\"wp-image-549823\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.25.jpeg 947w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-19-at-08.18.25-480x328.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 947px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Viernes 19</strong></p>\n\n\n\n<p><strong>Viento</strong>: Circulación de viento débil con dirección de norte a sur entre las 13:00 y las 20:00, principalmente en la zona Norte, Este y Sur de Mendoza.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en Malargüe. Durante el día la nubosidad se extenderá gradualmente hacia el Valle de Uco, zona Norte y Este, sin precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo entre seminublado y nublado durante toda la jornada. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
