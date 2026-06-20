@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13,
-    "description": "Ligeramente nublado",
-    "wind": "Oeste 25 km/h",
+    "temperatureC": 12.7,
+    "description": "Algo nublado",
+    "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:35",
-    "updatedAt": "2026-06-20T06:00:00-03:00",
+    "updatedAt": "2026-06-20T13:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 10
+    "humidity": 25
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-20T10:17:28.737Z",
+  "scrapedAt": "2026-06-20T16:54:52.706Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ventisca",
-      "temperatureC": -15,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -47,24 +40,31 @@
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Despejado",
+      "description": "Algo nublado",
       "temperatureC": -9,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
+      "description": "Nevadas",
       "temperatureC": -10,
       "wind": "SO a 23-31 km/h",
-      "visibility": "Buena"
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -3,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "20/6/2026 06:39:58"
+    "statusUpdatedAt": "20/6/2026 13:29:18"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-20T10:17:28.737Z"
+  "lastKnownGoodAt": "2026-06-20T16:54:52.706Z"
 }
