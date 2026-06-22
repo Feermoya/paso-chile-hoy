@@ -15,57 +15,57 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8.9,
-    "description": "Ligeramente nublado",
-    "wind": "Sur 4 km/h",
+    "temperatureC": -8,
+    "description": "Despejado",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:40",
     "sunset": "18:42",
-    "updatedAt": "2026-06-21T15:00:00-03:00",
+    "updatedAt": "2026-06-22T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 45
+    "humidity": 85
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-21T22:46:41.153Z",
+  "scrapedAt": "2026-06-22T13:10:16.906Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -17,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -19,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": -6,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Algo nublado",
       "temperatureC": -11,
       "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Algo nublado",
+      "temperatureC": -14,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Ligeramente nublado",
+      "temperatureC": -14,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "21/6/2026 12:55:56"
+    "statusUpdatedAt": "21/6/2026 21:01:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-21T22:46:41.153Z",
-  "extendedForecastText": "Alta montaña: Algo nublado, desmejorando hacia el mediodía con nevadas débiles hasta la noche.</p>\n\n\n\n<p><strong>Máxima: -10 °C<br>Mínima: -22 °C</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"530\" height=\"855\" data-id=\"550203\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-21-at-12.31.23.jpeg\" alt=\"\" class=\"wp-image-550203\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-21-at-12.31.23.jpeg 530w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-21-at-12.31.23-480x774.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 530px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Domingo 21</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Viento Zonda débil en la precordillera Sur, principalmente en el sector central, con probable extensión al sector Norte, Malargüe y Sur de Malargüe. Se prevé entre las 11 y las 19.<br>Circulación de viento sur débil desde el mediodía en la zona Sur. En la zona Norte y Este se espera entre las 15 y las 19 con velocidades promedio de 20 a 25 km/h.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Amanece seminublado en la zona Sur de Mendoza. El resto de la provincia presenta cielo generalmente despejado.<br>Desde las 15 persistirá la nubosidad en la zona Sur y podría cubrirse el Valle de Uco.<br>No se observan precipitaciones en el llano.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Cielo seminublado en general. A partir de las 11 podrían registrarse precipitaciones débiles en el sector Sur de la cordillera y, de forma probable, en el sector Central.<br>Desde las 19 se observa una mejora de las condiciones, manteniéndose luego mayormente nublado, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 13°C<br>Mínima (Valle de Uco y zona Sur): -2°C<br>Mínima (resto de la provincia): entre 1°C y 2°C</strong></p>\n\n\n\n<p><strong>Lunes 22</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Brisa muy leve del norte entre las 14 y las 19, principalmente en la zona Centro y la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Cielo generalmente despejado.<br>Desde las 14, se observará nubosidad parcial en Malargüe y la zona Sur hasta las 20.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Cielo generalmente despejado.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: entre 10°C y 11°C<br>Mínima (Valle de Uco y zona Sur): -3°C<br>Mínima (resto de la provincia): 0°C</strong></p>\n\n\n\n<p><strong>Martes 23</strong></p>\n\n\n\n<p><strong>Viento:</strong><br>Brisa leve del norte entre las 14:00 hs. y las 20:00 hs., afectando la zona Norte, Este y la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong><br>Amanece seminublado en el Valle de Uco y la zona Norte y Este.<br>Desde media mañana se prevé un marcado despeje en gran parte de la provincia.<br>A partir de media tarde volverá a observarse cielo seminublado en la zona Sur y la zona Centro.<br>No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong><br>Cielo despejado, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 13°C<br>Mínima (Malargüe, zonas bajas del Valle de Uco y zona Sur): -3°C<br>Mínima (resto de la provincia): 0°C</strong></p>\n\n\n\n<p></p>\n\n\n\n<p><strong>Se mantiene monitoreo de la situación meteorológica por parte de Dirección Provincial de Defensa Civil.</strong></p>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\">Pasos internacionales</h1>\n\n\n\n<p></p>\n\n\n\n<h3 class=\"wp-block-heading\">COORDINACION CORREDOR INTERNACIONA FECHA 20/06/26</h3>\n\n\n\n<p>⚠️RUTA 7, TRANSITABLE.</p>\n\n\n\n<p>✅"
+  "lastKnownGoodAt": "2026-06-22T13:10:16.906Z",
+  "extendedForecastText": "Alta montaña:</strong> Despejado a algo nublado.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"749\" height=\"475\" data-id=\"550227\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-08.26.01.jpeg\" alt=\"\" class=\"wp-image-550227\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-08.26.01.jpeg 749w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-08.26.01-480x304.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 749px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"940\" height=\"658\" data-id=\"550224\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.24.jpeg\" alt=\"\" class=\"wp-image-550224\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.24.jpeg 940w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.24-480x336.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 940px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"948\" height=\"675\" data-id=\"550225\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.43.jpeg\" alt=\"\" class=\"wp-image-550225\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.43.jpeg 948w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-22-at-07.22.43-480x342.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 948px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Lunes 22</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa muy leve del norte entre las 14 y las 19, principalmente en la zona Centro y la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo generalmente despejado.<br>Desde las 14, se observará nubosidad parcial en Malargüe y la zona Sur hasta las 20.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo generalmente despejado.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
