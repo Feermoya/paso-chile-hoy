@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,56 +15,27 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.2,
-    "description": "Algo nublado",
-    "wind": "Oeste 26 km/h",
-    "visibilityKm": 20,
+    "temperatureC": 11.8,
+    "description": "Despejado",
+    "wind": "Sudoeste 34 km/h",
+    "visibilityKm": 12,
     "sunrise": "08:49",
     "sunset": "18:36",
-    "updatedAt": "2026-06-24T14:00:00-03:00",
+    "updatedAt": "2026-06-24T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 19
+    "humidity": 14
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-24T17:21:11.033Z",
-  "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -3,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
-      "temperatureC": -5,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Algo nublado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    }
-  ],
+  "scrapedAt": "2026-06-24T22:50:21.390Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "24/6/2026 09:08:16"
+    "statusUpdatedAt": "24/6/2026 18:46:24"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-24T17:21:11.033Z"
+  "lastKnownGoodAt": "2026-06-24T22:50:21.390Z"
 }
