@@ -3,11 +3,11 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": "CIERRE DEL PFI POR PERIODO INVERNAL DE 21:00 A 09:00",
+  "motivoInfo": null,
   "htmlAlerts": [
-    "Motivo del cierre: CIERRE DEL PFI POR PERIODO INVERNAL DE 21:00 A 09:00 Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
+    "Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
   ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -15,34 +15,27 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 1,
+    "temperatureC": 8.1,
     "description": "Despejado",
-    "wind": "Calma",
+    "wind": "Oeste 15 km/h",
     "visibilityKm": 15,
-    "sunrise": "08:40",
+    "sunrise": "08:41",
     "sunset": "18:43",
-    "updatedAt": "2026-06-23T21:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 81
+    "updatedAt": "2026-06-24T12:00:00-03:00",
+    "feelsLikeC": 5.6,
+    "humidity": 54
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-24T10:30:39.974Z",
+  "scrapedAt": "2026-06-24T17:21:08.985Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": -9,
-      "wind": "O a 13-22 km/h",
+      "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
@@ -58,14 +51,21 @@
       "temperatureC": -10,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Algo nublado",
+      "temperatureC": -2,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "23/6/2026 21:27:37"
+    "statusUpdatedAt": "24/6/2026 12:57:02"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-24T10:30:39.974Z",
-  "extendedForecastText": "Alta montaña:</strong> Cielo despejado, muy frío y vientos de débiles a moderados del sudoeste.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"751\" height=\"583\" data-id=\"550308\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-23-at-08.14.27.jpeg\" alt=\"\" class=\"wp-image-550308\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-23-at-08.14.27.jpeg 751w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-23-at-08.14.27-480x373.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 751px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Martes 23</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa leve del norte entre las 14:00 y las 20:00, afectando la zona Norte, Este y la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece seminublado en el Valle de Uco y la zona Norte y Este.<br>Desde media mañana se prevé un marcado despeje en gran parte de la provincia.<br>A partir de media tarde volverá a observarse cielo seminublado en la zona Sur y la zona Centro.<br>No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo despejado, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-06-24T17:21:08.985Z",
+  "extendedForecastText": "Alta Montaña:</strong> Desde la madrugada se espera aumento de nubosidad en la zona Sur, extendiéndose posteriormente a la zona Central y Norte. Se prevén precipitaciones débiles en alta montaña desde las 10:00, comenzando en el sector Sur y desplazándose hacia los sectores Central y Norte. La mejora de las condiciones se observa a partir de las 21:00.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }

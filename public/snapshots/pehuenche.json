@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -11,33 +11,26 @@
   ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
-  "vialidadEstado": "CORTE TOTAL",
+  "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -0.6,
+    "temperatureC": 14.2,
     "description": "Algo nublado",
-    "wind": "Noroeste 15 km/h",
+    "wind": "Oeste 26 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:36",
-    "updatedAt": "2026-06-24T07:00:00-03:00",
-    "feelsLikeC": -5.1,
-    "humidity": 64
+    "updatedAt": "2026-06-24T14:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 19
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-24T10:30:45.805Z",
+  "scrapedAt": "2026-06-24T17:21:11.033Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 2,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -58,13 +51,20 @@
       "temperatureC": -7,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 3,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "24/6/2026 07:01:37"
+    "statusUpdatedAt": "24/6/2026 09:08:16"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-24T10:30:45.805Z"
+  "lastKnownGoodAt": "2026-06-24T17:21:11.033Z"
 }
