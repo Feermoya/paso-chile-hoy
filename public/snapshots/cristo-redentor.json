@@ -15,33 +15,26 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -1.5,
+    "temperatureC": 13.2,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:44",
-    "updatedAt": "2026-06-27T09:00:00-03:00",
+    "updatedAt": "2026-06-27T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 74
+    "humidity": 23
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-27T16:34:10.433Z",
+  "scrapedAt": "2026-06-27T22:41:06.668Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -10,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
-      "temperatureC": -14,
+      "temperatureC": -15,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
     },
@@ -58,6 +51,13 @@
       "temperatureC": -2,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -9,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "27/6/2026 13:08:58"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-27T16:34:10.433Z",
+  "lastKnownGoodAt": "2026-06-27T22:41:06.668Z",
   "extendedForecastText": "Alta montaña: </strong>Algo nublado, vientos moderados del oeste.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-full\"><img fetchpriority=\"high\" decoding=\"async\" width=\"524\" height=\"1041\" data-id=\"551030\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-27-at-11.37.18-1.jpeg\" alt=\"\" class=\"wp-image-551030\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-27-at-11.37.18-1.jpeg 524w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-27-at-11.37.18-1-480x954.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 524px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Sábado 27:</strong></p>\n\n\n\n<p><strong>Viento:</strong> circulación de viento sur débil durante la mañana en toda la provincia. A partir de las 18 y 19 se intensificará a moderado, con velocidades promedio de 35 km/h, especialmente en la zona Este. Se mantendrá hasta las 4 del domingo. Viento Zonda débil entre las 15 y las 19, afectando la precordillera, Malargüe y el sur de Malargüe.</p>\n\n\n\n<p><strong>Nubosidad:</strong> leve nubosidad en la zona Sur al inicio del día, luego cielo despejado. Durante la tarde aumentará la nubosidad en la zona Sur con probabilidad de precipitaciones débiles en el extremo sur de Malargüe y el Sur de San Rafael, especialmente en la zona del Secano. Las condiciones mejorarán a partir de las 03:00 hs. del domingo.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> parcialmente nublado en la zona Sur hasta el mediodía y luego, cielo despejado.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
