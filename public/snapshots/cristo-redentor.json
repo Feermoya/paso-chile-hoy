@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -2.5,
+    "temperatureC": 9.6,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:44",
-    "updatedAt": "2026-06-28T09:00:00-03:00",
+    "updatedAt": "2026-06-28T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 72
+    "humidity": 40
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-28T16:38:47.996Z",
+  "scrapedAt": "2026-06-28T22:41:11.512Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -9,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
@@ -58,6 +51,13 @@
       "temperatureC": -5,
       "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -9,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "28/6/2026 12:18:33"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-28T16:38:47.996Z",
+  "lastKnownGoodAt": "2026-06-28T22:41:11.512Z",
   "extendedForecastText": "Alta montaña: </strong>poca nubosidad, viento moderado del sudoeste.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-full\"><img fetchpriority=\"high\" decoding=\"async\" width=\"507\" height=\"632\" data-id=\"551077\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-28-at-11.06.22.jpeg\" alt=\"\" class=\"wp-image-551077\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-28-at-11.06.22.jpeg 507w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/06/WhatsApp-Image-2026-06-28-at-11.06.22-480x598.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 507px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p><strong>Domingo 28:</strong></p>\n\n\n\n<p><strong>Viento: </strong>circulación de viento norte leve entre las 13 y las 21, afectando todo el llano provincial.</p>\n\n\n\n<p><strong>Nubosidad: </strong>cielo despejado en casi toda la provincia. Amanece con cielo débilmente seminublado en Malargüe. Hacia las 19:00 hs. se observa algo de nubosidad en la zona Sur.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>algo nublado en el sector Sur durante la mañana, con tendencia a despejarse. A partir de las 20. aumenta nuevamente la nubosidad en el sector sur, sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }

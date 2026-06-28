@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
-    "description": "Ligeramente nublado",
-    "wind": "Noreste 6 km/h",
+    "temperatureC": 6.2,
+    "description": "Parcialmente nublado",
+    "wind": "Sur 12 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:37",
-    "updatedAt": "2026-06-28T13:00:00-03:00",
+    "updatedAt": "2026-06-28T19:00:00-03:00",
     "feelsLikeC": 3.9,
-    "humidity": 36
+    "humidity": 32
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-28T16:38:50.040Z",
+  "scrapedAt": "2026-06-28T22:41:15.606Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -2,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -58,13 +51,20 @@
       "temperatureC": -3,
       "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": -5,
+      "wind": "SO a 0-2 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "28/6/2026 13:03:36"
+    "statusUpdatedAt": "28/6/2026 19:02:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-28T16:38:50.040Z"
+  "lastKnownGoodAt": "2026-06-28T22:41:15.606Z"
 }
