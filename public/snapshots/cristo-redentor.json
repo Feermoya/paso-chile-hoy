@@ -15,57 +15,28 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.8,
+    "temperatureC": 7.8,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:44",
-    "updatedAt": "2026-06-29T12:00:00-03:00",
+    "updatedAt": "2026-06-29T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 53
+    "humidity": 46
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-29T17:51:12.338Z",
-  "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -9,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -11,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -10,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -4,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    }
-  ],
+  "scrapedAt": "2026-06-29T22:40:09.069Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "29/6/2026 14:11:15"
+    "statusUpdatedAt": "29/6/2026 17:13:54"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-29T17:51:12.338Z",
+  "lastKnownGoodAt": "2026-06-29T22:40:09.069Z",
   "extendedForecastText": "Alta Montaña: </strong>Cielo parcialmente seminublado, primero en el sector Norte y luego en el sector Sur, con períodos despejados y sin precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }

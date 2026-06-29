@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.4,
-    "description": "Despejado",
-    "wind": "Este 17 km/h",
-    "visibilityKm": 20,
+    "temperatureC": null,
+    "description": null,
+    "wind": "Calma",
+    "visibilityKm": null,
     "sunrise": "08:49",
     "sunset": "18:38",
-    "updatedAt": "2026-06-29T14:00:00-03:00",
-    "feelsLikeC": 4.5,
-    "humidity": 43
+    "updatedAt": null,
+    "feelsLikeC": null,
+    "humidity": null
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-29T17:51:32.080Z",
+  "scrapedAt": "2026-06-29T22:40:38.111Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": -5,
-      "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Despejado",
@@ -48,23 +41,30 @@
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": -6,
+      "temperatureC": -7,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "O a 13-22 km/h",
+      "temperatureC": -4,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -8,
+      "wind": "N a 7-12 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "29/6/2026 14:14:39"
+    "statusUpdatedAt": "29/6/2026 18:25:11"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-29T17:51:32.080Z"
+  "lastKnownGoodAt": "2026-06-29T22:40:38.111Z"
 }
