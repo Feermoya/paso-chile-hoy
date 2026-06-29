@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -3.6,
-    "description": "Ligeramente nublado",
-    "wind": "Oeste 15 km/h",
+    "temperatureC": 7.4,
+    "description": "Despejado",
+    "wind": "Este 17 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
-    "sunset": "18:37",
-    "updatedAt": "2026-06-29T08:00:00-03:00",
-    "feelsLikeC": -8.8,
-    "humidity": 73
+    "sunset": "18:38",
+    "updatedAt": "2026-06-29T14:00:00-03:00",
+    "feelsLikeC": 4.5,
+    "humidity": 43
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-29T12:15:35.996Z",
+  "scrapedAt": "2026-06-29T17:51:32.080Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ligeramente nublado",
-      "temperatureC": -3,
-      "wind": "NO a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
@@ -58,13 +51,20 @@
       "temperatureC": -6,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": -3,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "29/6/2026 06:51:43"
+    "statusUpdatedAt": "29/6/2026 14:14:39"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-29T12:15:35.996Z"
+  "lastKnownGoodAt": "2026-06-29T17:51:32.080Z"
 }

@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 2.4,
+    "temperatureC": 6.8,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:44",
-    "updatedAt": "2026-06-28T21:00:00-03:00",
+    "updatedAt": "2026-06-29T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 61
+    "humidity": 53
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-06-29T12:15:29.401Z",
+  "scrapedAt": "2026-06-29T17:51:12.338Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": -5,
-      "wind": "NO a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -58,14 +51,21 @@
       "temperatureC": -10,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": -4,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "28/6/2026 21:06:27"
+    "statusUpdatedAt": "29/6/2026 14:11:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-29T12:15:29.401Z",
-  "extendedForecastText": "Alta Montaña: </strong>cielo parcialmente seminublado, primero en el sector Norte y luego en el sector Sur, con períodos despejados y sin precipitaciones.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-06-29T17:51:12.338Z",
+  "extendedForecastText": "Alta Montaña: </strong>Cielo parcialmente seminublado, primero en el sector Norte y luego en el sector Sur, con períodos despejados y sin precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
