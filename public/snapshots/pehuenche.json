@@ -5,9 +5,9 @@
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": "FINALIZACION HORARIO ATENCION AL PUBLICO",
+  "motivoInfo": "CERRADO POR FINALIZACION DE ATENCION AL PUBLICO",
   "htmlAlerts": [
-    "Motivo del cierre: FINALIZACION HORARIO ATENCION AL PUBLICO Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche Nevadas y fuerte viento blanco Contacto: (260) 4471063"
+    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche Nevadas y fuerte viento blanco Contacto: (260) 4471063"
   ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.3,
-    "description": "Ligeramente nublado",
-    "wind": "Noreste 8 km/h",
+    "temperatureC": 11.4,
+    "description": "Parcialmente nublado",
+    "wind": "Sudoeste 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:38",
-    "updatedAt": "2026-06-30T13:00:00-03:00",
-    "feelsLikeC": 6,
-    "humidity": 34
+    "updatedAt": "2026-06-30T18:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 28
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-30T17:18:10.254Z",
+  "scrapedAt": "2026-06-30T22:54:48.698Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": -8,
-      "wind": "N a 7-12 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
@@ -55,16 +48,23 @@
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": -4,
+      "temperatureC": -6,
       "wind": "E a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": -7,
+      "wind": "NE a 13-22 km/h",
       "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "30/6/2026 06:36:59"
+    "statusUpdatedAt": "30/6/2026 18:07:13"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-30T17:18:10.254Z"
+  "lastKnownGoodAt": "2026-06-30T22:54:48.698Z"
 }
