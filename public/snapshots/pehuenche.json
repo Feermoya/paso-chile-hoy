@@ -7,7 +7,7 @@
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
-    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche Transitable con extrema precaución. Nevadas y fuerte viento blanco Contacto: (260) 4471063"
+    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche . Nevadas y fuerte viento blanco Contacto: (260) 4471063"
   ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -3.4,
-    "description": "Nublado con nevada",
-    "wind": "Sur 13 km/h",
-    "visibilityKm": 3,
+    "temperatureC": -3.3,
+    "description": "Mayormente nublado",
+    "wind": "Norte 10 km/h",
+    "visibilityKm": 15,
     "sunrise": "08:49",
     "sunset": "18:39",
-    "updatedAt": "2026-07-01T14:00:00-03:00",
-    "feelsLikeC": -8.1,
-    "humidity": 79
+    "updatedAt": "2026-07-01T19:00:00-03:00",
+    "feelsLikeC": -7,
+    "humidity": 78
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-01T17:24:31.171Z",
+  "scrapedAt": "2026-07-01T22:51:34.123Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "NE a 13-22 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -48,7 +41,7 @@
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
-      "temperatureC": -8,
+      "temperatureC": -12,
       "wind": "E a 23-31 km/h",
       "visibility": "Mala"
     },
@@ -58,13 +51,20 @@
       "temperatureC": -4,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": -12,
+      "wind": "N a 7-12 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "1/7/2026 14:18:37"
+    "statusUpdatedAt": "1/7/2026 18:41:07"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-01T17:24:31.171Z"
+  "lastKnownGoodAt": "2026-07-01T22:51:34.123Z"
 }
