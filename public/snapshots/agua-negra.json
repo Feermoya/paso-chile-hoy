@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10,
+    "temperatureC": -2,
     "description": "Despejado",
-    "wind": "WNW a 23 km/h",
+    "wind": "NW a 8 km/h",
     "visibilityKm": 10,
     "sunrise": "08:34",
-    "sunset": "18:47",
-    "updatedAt": "2026-06-30",
-    "feelsLikeC": 7,
-    "humidity": 9
+    "sunset": "18:48",
+    "updatedAt": "2026-07-01",
+    "feelsLikeC": -4,
+    "humidity": 67
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-06-30T22:54:51.364Z",
+  "scrapedAt": "2026-07-01T10:53:34.666Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": -1,
-      "wind": "NNW 5 km/h",
+      "period": "Hoy al mediodía",
+      "description": "Lluvia ligera helada",
+      "temperatureC": 1,
+      "wind": "ENE 10 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana al mediodía",
-      "description": "Lluvia ligera helada",
-      "temperatureC": 1,
+      "period": "Hoy por la tarde",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 2,
       "wind": "ENE 11 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 1,
-      "wind": "ENE 12 km/h",
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": -1,
+      "wind": "NE 8 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -4,
-      "wind": "NE 4 km/h",
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": -3,
+      "wind": "NNE 6 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-06-30T22:54:51.364Z"
+  "lastKnownGoodAt": "2026-07-01T10:53:34.666Z"
 }

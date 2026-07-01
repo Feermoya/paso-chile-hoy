@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": "CERRADO POR FINALIZACION DE ATENCION AL PUBLICO",
+  "motivoInfo": null,
   "htmlAlerts": [
     "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche Nevadas y fuerte viento blanco Contacto: (260) 4471063"
   ],
@@ -15,56 +15,56 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.4,
-    "description": "Parcialmente nublado",
-    "wind": "Sudoeste 6 km/h",
-    "visibilityKm": 20,
+    "temperatureC": -2,
+    "description": "Nublado con nevada débil",
+    "wind": "Sur 28 km/h",
+    "visibilityKm": 4,
     "sunrise": "08:49",
-    "sunset": "18:38",
-    "updatedAt": "2026-06-30T18:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 28
+    "sunset": "18:39",
+    "updatedAt": "2026-07-01T07:00:00-03:00",
+    "feelsLikeC": -8.8,
+    "humidity": 89
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-06-30T22:54:48.698Z",
+  "scrapedAt": "2026-07-01T10:53:31.873Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -12,
-      "wind": "E a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -6,
       "wind": "E a 13-22 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -7,
       "wind": "NE a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -8,
+      "wind": "NE a 7-12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -8,
+      "wind": "E a 23-31 km/h",
       "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "30/6/2026 18:07:13"
+    "statusUpdatedAt": "1/7/2026 06:29:01"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-06-30T22:54:48.698Z"
+  "lastKnownGoodAt": "2026-07-01T10:53:31.873Z"
 }
