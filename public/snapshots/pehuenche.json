@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -4.8,
-    "description": "Cubierto con neblina",
-    "wind": "Norte 4 km/h",
-    "visibilityKm": 2.5,
+    "temperatureC": -3.6,
+    "description": "Nublado",
+    "wind": "Este 8 km/h",
+    "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:39",
-    "updatedAt": "2026-07-02T06:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 94
+    "updatedAt": "2026-07-02T13:00:00-03:00",
+    "feelsLikeC": -6.7,
+    "humidity": 81
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-02T10:17:48.947Z",
+  "scrapedAt": "2026-07-02T17:02:28.923Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -4,
-      "wind": "NO a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Parcialmente nublado",
@@ -58,13 +51,20 @@
       "temperatureC": -12,
       "wind": "E a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": -4,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "1/7/2026 23:11:02"
+    "statusUpdatedAt": "2/7/2026 10:17:24"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-02T10:17:48.947Z"
+  "lastKnownGoodAt": "2026-07-02T17:02:28.923Z"
 }
