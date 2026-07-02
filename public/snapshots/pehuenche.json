@@ -15,46 +15,46 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -3.6,
-    "description": "Nublado",
-    "wind": "Este 8 km/h",
+    "temperatureC": -2.6,
+    "description": "Cubierto",
+    "wind": "Noreste 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:39",
-    "updatedAt": "2026-07-02T13:00:00-03:00",
-    "feelsLikeC": -6.7,
-    "humidity": 81
+    "updatedAt": "2026-07-02T19:00:00-03:00",
+    "feelsLikeC": -4.8,
+    "humidity": 77
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-02T17:02:28.923Z",
+  "scrapedAt": "2026-07-02T22:43:53.002Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
-      "wind": "N a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
+      "description": "Despejado",
+      "temperatureC": -8,
       "wind": "NO a 7-12 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
+      "description": "Ligeramente nublado",
+      "temperatureC": -10,
       "wind": "E a 13-22 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
+      "description": "Ligeramente nublado",
+      "temperatureC": 0,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Ligeramente nublado",
       "temperatureC": -4,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
@@ -63,8 +63,8 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "2/7/2026 10:17:24"
+    "statusUpdatedAt": "2/7/2026 15:29:53"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-02T17:02:28.923Z"
+  "lastKnownGoodAt": "2026-07-02T22:43:53.002Z"
 }
