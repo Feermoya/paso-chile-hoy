@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,47 +15,47 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 1.9,
+    "temperatureC": -3.8,
     "description": "Despejado",
-    "wind": "Sur 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:46",
-    "updatedAt": "2026-07-02T18:00:00-03:00",
+    "updatedAt": "2026-07-02T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 68
+    "humidity": 84
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-02T22:43:48.609Z",
+  "scrapedAt": "2026-07-03T10:13:34.641Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -10,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
-      "wind": "NO a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
       "temperatureC": -4,
       "wind": "NO a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Ligeramente nublado",
+      "period": "Hoy por la noche",
+      "description": "Mayormente nublado",
       "temperatureC": -6,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -15,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -16,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     }
@@ -63,9 +63,9 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "2/7/2026 09:27:50"
+    "statusUpdatedAt": "2/7/2026 21:04:36"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-02T22:43:48.609Z",
+  "lastKnownGoodAt": "2026-07-03T10:13:34.641Z",
   "extendedForecastText": "Alta Montaña:</strong> Parcialmente nublado, muy frío, formación de hielo en la calzada.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"753\" height=\"541\" data-id=\"551604\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.16.21.jpeg\" alt=\"\" class=\"wp-image-551604\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.16.21.jpeg 753w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.16.21-480x345.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 753px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"810\" height=\"540\" data-id=\"551601\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.13.05.jpeg\" alt=\"\" class=\"wp-image-551601\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.13.05.jpeg 810w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-08.13.05-480x320.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 810px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"809\" height=\"545\" data-id=\"551602\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-1.jpeg\" alt=\"\" class=\"wp-image-551602\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-1.jpeg 809w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-02-at-1-480x323.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 809px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Jueves 2</strong></p>\n\n\n\n<p><strong>Viento:</strong> Brisa leve del norte entre las 14 y las 21 en toda la provincia.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Se prevén heladas generales. Amanecerá despejado sobre la franja Oeste del llano provincial y nublado en el resto de la provincia. No se observan precipitaciones. A partir de las 9 aumentará la nubosidad hasta cubrir todo el llano provincial, manteniéndose durante el resto del día. Podrían registrarse lloviznas aisladas.</p>\n\n\n\n<p><strong>Alta Montaña</strong>: Cielo despejado. A partir de las 16 aumentará la nubosidad en el sector Norte de la Alta Montaña. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
