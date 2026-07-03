@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -2.8,
-    "description": "Cubierto",
-    "wind": "Oeste 8 km/h",
+    "temperatureC": -2,
+    "description": "Nublado",
+    "wind": "Norte 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:40",
-    "updatedAt": "2026-07-03T12:00:00-03:00",
-    "feelsLikeC": -5.8,
-    "humidity": 76
+    "updatedAt": "2026-07-03T18:00:00-03:00",
+    "feelsLikeC": -4.1,
+    "humidity": 82
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-03T16:47:23.896Z",
+  "scrapedAt": "2026-07-03T22:39:14.029Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Ligeramente nublado",
-      "temperatureC": -4,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
@@ -47,7 +40,7 @@
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -12,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
@@ -55,16 +48,23 @@
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": -1,
+      "temperatureC": -3,
       "wind": "SO a 0-2 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -5,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "2/7/2026 15:29:53"
+    "statusUpdatedAt": "3/7/2026 18:12:16"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-03T16:47:23.896Z"
+  "lastKnownGoodAt": "2026-07-03T22:39:14.029Z"
 }
