@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,56 +15,56 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -5.6,
+    "temperatureC": -1,
     "description": "Nublado",
-    "wind": "Noroeste 6 km/h",
+    "wind": "Norte 8 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:40",
-    "updatedAt": "2026-07-04T12:00:00-03:00",
-    "feelsLikeC": -8.2,
-    "humidity": 91
+    "updatedAt": "2026-07-04T18:00:00-03:00",
+    "feelsLikeC": -3.7,
+    "humidity": 92
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-04T16:17:32.922Z",
+  "scrapedAt": "2026-07-04T22:35:53.640Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -5,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
       "temperatureC": -10,
-      "wind": "O a 7-12 km/h",
+      "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
-      "temperatureC": -10,
+      "temperatureC": -11,
       "wind": "NO a 23-31 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -1,
-      "wind": "SO a 13-22 km/h",
+      "description": "Algo nublado",
+      "temperatureC": -3,
+      "wind": "SO a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": -11,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "4/7/2026 06:30:39"
+    "statusUpdatedAt": "4/7/2026 13:43:59"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-04T16:17:32.922Z"
+  "lastKnownGoodAt": "2026-07-04T22:35:53.640Z"
 }
