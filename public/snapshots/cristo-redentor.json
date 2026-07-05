@@ -15,29 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -0.9,
+    "temperatureC": -8.2,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:41",
     "sunset": "18:47",
-    "updatedAt": "2026-07-04T21:00:00-03:00",
+    "updatedAt": "2026-07-05T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 88
+    "humidity": 69
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-05T09:54:15.890Z",
+  "scrapedAt": "2026-07-05T16:29:22.037Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": -6,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Despejado",
@@ -58,6 +51,13 @@
       "temperatureC": -15,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": -5,
+      "wind": "SO a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "4/7/2026 21:01:40"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-05T09:54:15.890Z",
-  "extendedForecastText": "Alta montaña:</strong><br>Poca nubosidad con frío moderado. Nubosidad en aumento por la tarde con nevadas débiles dispersas.</p>\n\n\n\n<p><strong>Mínima: -16<br>Maxima: -04</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"517\" height=\"874\" data-id=\"552134\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-11.06.39.jpeg\" alt=\"\" class=\"wp-image-552134\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-11.06.39.jpeg 517w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-11.06.39-480x811.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 517px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"552100\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.06-1.jpeg\" alt=\"\" class=\"wp-image-552100\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.06-1.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.06-1-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.06-1-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img decoding=\"async\" width=\"1080\" height=\"1080\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.05-1.jpeg\" alt=\"\" class=\"wp-image-552099\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.05-1.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.05-1-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-04-at-08.13.05-1-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n\n\n\n<p></p>\n\n\n\n<p>Sábado 4</p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento norte leve en la franja Este provincial, entre las 13 y las 19.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece nublado, con bancos de niebla aislados, especialmente en la zona Centro, Sur, Gran Mendoza y Valle de Uco. La nubosidad se mantendrá durante gran parte de la jornada.</p>\n\n\n\n<p><strong>Alta Montaña</strong>: Cielo nublado en la zona Norte durante la mañana. Desde media mañana se espera, cielo cubierto en toda la Alta Montaña. A partir de las 16 se espera mal tiempo con precipitaciones débiles, persistiendo durante la tarde, noche y la madrugada del domingo.</p>\n\n\n\n<p><strong>Temperatura promedio"
+  "lastKnownGoodAt": "2026-07-05T16:29:22.037Z",
+  "extendedForecastText": "Alta montaña:</strong> Cielo parcialmente nublado a nublado. Mejorando durante la mañana. Frío moderado a severo.</p>\n\n\n\n<p><strong>Minima: -6°C<br>Maxima: -24°C</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"760\" height=\"910\" data-id=\"552206\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-05-at-11.32.11-2-1.jpeg\" alt=\"\" class=\"wp-image-552206\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-05-at-11.32.11-2-1.jpeg 760w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-05-at-11.32.11-2-1-480x575.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 760px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<p></p>\n\n\n\n<p><strong>Domingo 5</strong></p>\n\n\n\n<p><strong>Viento</strong>: Leve circulación de viento Norte durante la tarde, principalmente en el Valle de Uco y la zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanece nublado en zona Sur, Valle de Uco, Gran Mendoza y sectores del llano. Desde el mediodía tenderá a despejarse, predominando cielo despejado durante la tarde.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Finaliza el período de mal tiempo en la zona Sur. A partir de media mañana se espera una marcada mejoría, con cielo prácticamente despejado en toda la alta montaña de Mendoza.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
