@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,47 +15,47 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.7,
-    "description": "Parcialmente nublado",
+    "temperatureC": 0,
+    "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:41",
-    "sunset": "18:47",
-    "updatedAt": "2026-07-06T18:00:00-03:00",
+    "sunrise": "08:40",
+    "sunset": "18:48",
+    "updatedAt": "2026-07-06T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 28
+    "humidity": 84
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-06T22:47:05.062Z",
+  "scrapedAt": "2026-07-07T10:37:25.454Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -11,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
       "temperatureC": -1,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Mayormente nublado",
+      "period": "Hoy por la noche",
+      "description": "Parcialmente nublado",
       "temperatureC": -3,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -13,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     }
@@ -63,9 +63,9 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "6/7/2026 09:16:28"
+    "statusUpdatedAt": "6/7/2026 21:52:31"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-06T22:47:05.062Z",
+  "lastKnownGoodAt": "2026-07-07T10:37:25.454Z",
   "extendedForecastText": "Alta Montaña:</strong> Poca nubosidad con frío moderado.</p>\n\n\n\n<p><strong>Máxima: 0 °C.<br>Mínima: -16 °C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"552248\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-2-1200x848.jpeg\" alt=\"\" class=\"wp-image-552248\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-2-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-2-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"552245\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-1200x848.jpeg\" alt=\"\" class=\"wp-image-552245\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"552246\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-1-1200x848.jpeg\" alt=\"\" class=\"wp-image-552246\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-1-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-06-at-08.08.45-1-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Lunes 6</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento Zonda leve desde las 4 hasta las 11 en precordillera y zona Sur de Malargüe. Posteriormente, circulación de viento Norte débil entre las 12 y las 19 en la franja Este de la provincia.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Cielo despejado durante la mañana. Desde las 12 se observará cielo algo nublado en Malargüe y posteriormente en el Valle de Uco.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Cielo despejado, con condiciones de seminubosidad desde las 12 únicamente en la zona Sur.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
