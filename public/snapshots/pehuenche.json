@@ -3,7 +3,7 @@
   "name": "Pehuenche",
   "schedule": "09:00-19:00",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,56 +15,27 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14,
-    "description": "Algo nublado",
-    "wind": "Noreste 12 km/h",
+    "temperatureC": 13,
+    "description": "Parcialmente nublado",
+    "wind": "Sudeste 15 km/h",
     "visibilityKm": 20,
     "sunrise": "08:49",
     "sunset": "18:42",
-    "updatedAt": "2026-07-07T13:00:00-03:00",
+    "updatedAt": "2026-07-07T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 34
+    "humidity": 15
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-07T17:27:29.638Z",
-  "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": 3,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    }
-  ],
+  "scrapedAt": "2026-07-07T22:42:06.186Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "7/7/2026 12:03:48"
+    "statusUpdatedAt": "7/7/2026 18:13:50"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-07T17:27:29.638Z"
+  "lastKnownGoodAt": "2026-07-07T22:42:06.186Z"
 }
