@@ -3,11 +3,11 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": "CIERRE DEL PFI PERIODO HORARIO INVERNAL DE 21:00 A 09.00",
+  "motivoInfo": null,
   "htmlAlerts": [
-    "Motivo del cierre: CIERRE DEL PFI PERIODO HORARIO INVERNAL DE 21:00 A 09.00 Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
+    "Vialidad Nacional informa: RN 7 tramo Tunel Internacional Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
   ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -15,36 +15,22 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12.6,
-    "description": "Despejado",
-    "wind": "Oeste 15 km/h",
-    "visibilityKm": 15,
+    "temperatureC": 19.6,
+    "description": "Algo nublado con polvo levantado por viento",
+    "wind": "Oeste 34 km/h",
+    "visibilityKm": 8,
     "sunrise": "08:40",
     "sunset": "18:48",
-    "updatedAt": "2026-07-07T21:00:00-03:00",
+    "updatedAt": "2026-07-08T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 20
+    "humidity": 8
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-08T09:54:18.972Z",
+  "scrapedAt": "2026-07-08T22:39:42.636Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ventisca",
-      "temperatureC": -1,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Ventisca",
-      "temperatureC": -3,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Ventisca",
@@ -58,14 +44,28 @@
       "temperatureC": -7,
       "wind": "O a 51-59 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Ventisca",
+      "temperatureC": -1,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Ventoso",
+      "temperatureC": -3,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "7/7/2026 21:42:38"
+    "statusUpdatedAt": "8/7/2026 09:14:18"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-08T09:54:18.972Z",
-  "extendedForecastText": "Alta Montaña: </strong>Parcialmente nublado, muy frío y vientos moderados del sudoeste.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"745\" height=\"534\" data-id=\"552440\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-08.12.43.jpeg\" alt=\"\" class=\"wp-image-552440\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-08.12.43.jpeg 745w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-08.12.43-480x344.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 745px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"662\" height=\"468\" data-id=\"552438\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.00.42.jpeg\" alt=\"\" class=\"wp-image-552438\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.00.42.jpeg 662w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.00.42-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 662px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"660\" height=\"466\" data-id=\"552439\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.01.11.jpeg\" alt=\"\" class=\"wp-image-552439\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.01.11.jpeg 660w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-07-at-07.01.11-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 660px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Martes 7</strong></p>\n\n\n\n<p><strong>Viento: </strong>Viento Zonda débil desde las 5 hasta aproximadamente las 21a 22 en toda la precordillera, Malargüe y el Sur de Malargüe. Además, circulación de viento Norte débil en la franja Este provincial, entre las 11 y las 22.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo seminublado en la zona Centro, Valle de Uco y zona Sur. Durante la tarde, cielo seminublado en la zona Este. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> A partir de las 10, cielo entre nublado y seminublado en toda la Alta Montaña de Mendoza. Durante la noche, disminución de la nubosidad.</p>\n\n\n\n<p><strong>Temperaturas promedio"
+  "lastKnownGoodAt": "2026-07-08T22:39:42.636Z",
+  "extendedForecastText": "Alta Montaña:</strong> Desmejorando, viento moderado del noroeste y nevadas.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"745\" height=\"545\" data-id=\"552665\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49.jpeg\" alt=\"\" class=\"wp-image-552665\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49.jpeg 745w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49-480x351.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 745px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"931\" height=\"665\" data-id=\"552662\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg\" alt=\"\" class=\"wp-image-552662\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg 931w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-480x343.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 931px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"973\" height=\"671\" data-id=\"552663\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg\" alt=\"\" class=\"wp-image-552663\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg 973w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1-480x331.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 973px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Miércoles 8</strong></p>\n\n\n\n<p><strong>Viento: </strong>Zonda de intensidad débil desde las 4 hasta las 20 en la precordillera. En Malargüe se prevén intensidades cercanas a&nbsp;35 km/h. También podría presentarse viento Zonda débil en el Valle de Uspallata durante el mismo período. Circulación de viento norte débil en la franja Este provincial entre las 11 y las 18.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Cielo seminublado a nublado durante prácticamente toda la jornada, con algunos claros temporarios.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Cielo seminublado a nublado durante la mañana. A partir del mediodía se espera mal tiempo con precipitaciones moderadas, principalmente en la zona Sur y en el Oeste de Malargüe. Es probable que las precipitaciones alcancen también la zona Centro. Las precipitaciones se extenderían hasta la medianoche del miércoles al jueves, y luego la nubosidad permanece sin precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
