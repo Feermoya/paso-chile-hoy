@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,57 +15,57 @@
   "vialidadObservaciones": "Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 19.6,
-    "description": "Algo nublado con polvo levantado por viento",
-    "wind": "Oeste 34 km/h",
+    "temperatureC": 17.4,
+    "description": "Despejado con polvo levantado por viento",
+    "wind": "Oeste 25 km/h",
     "visibilityKm": 8,
     "sunrise": "08:40",
-    "sunset": "18:48",
-    "updatedAt": "2026-07-08T18:00:00-03:00",
+    "sunset": "18:49",
+    "updatedAt": "2026-07-08T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 8
+    "humidity": 11
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-08T22:39:42.636Z",
+  "scrapedAt": "2026-07-09T10:41:45.685Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Ventisca",
-      "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ventisca",
-      "temperatureC": -7,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Ventisca",
       "temperatureC": -1,
       "wind": "O a 51-59 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Ventoso",
       "temperatureC": -3,
       "wind": "O a 51-59 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Ventisca alta",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Ventisca",
+      "temperatureC": -3,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "8/7/2026 09:14:18"
+    "statusUpdatedAt": "8/7/2026 22:03:55"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-08T22:39:42.636Z",
+  "lastKnownGoodAt": "2026-07-09T10:41:45.685Z",
   "extendedForecastText": "Alta Montaña:</strong> Desmejorando, viento moderado del noroeste y nevadas.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"745\" height=\"545\" data-id=\"552665\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49.jpeg\" alt=\"\" class=\"wp-image-552665\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49.jpeg 745w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.16.49-480x351.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 745px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"931\" height=\"665\" data-id=\"552662\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg\" alt=\"\" class=\"wp-image-552662\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg 931w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-480x343.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 931px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"973\" height=\"671\" data-id=\"552663\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg\" alt=\"\" class=\"wp-image-552663\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg 973w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1-480x331.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 973px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Miércoles 8</strong></p>\n\n\n\n<p><strong>Viento: </strong>Zonda de intensidad débil desde las 4 hasta las 20 en la precordillera. En Malargüe se prevén intensidades cercanas a&nbsp;35 km/h. También podría presentarse viento Zonda débil en el Valle de Uspallata durante el mismo período. Circulación de viento norte débil en la franja Este provincial entre las 11 y las 18.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Cielo seminublado a nublado durante prácticamente toda la jornada, con algunos claros temporarios.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Cielo seminublado a nublado durante la mañana. A partir del mediodía se espera mal tiempo con precipitaciones moderadas, principalmente en la zona Sur y en el Oeste de Malargüe. Es probable que las precipitaciones alcancen también la zona Centro. Las precipitaciones se extenderían hasta la medianoche del miércoles al jueves, y luego la nubosidad permanece sin precipitaciones.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }

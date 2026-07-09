@@ -5,9 +5,9 @@
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": null,
+  "motivoInfo": "FINALIZO HORARIO DE ATENCION-.-",
   "htmlAlerts": [
-    "Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Habilitado desde las 13 hs Contacto: (260) 4471063"
+    "Motivo del cierre: FINALIZO HORARIO DE ATENCION-.- Vialidad Nacional informa: RN 145 tramo Paso Internacional El Pehuenche Habilitado desde las 13 hs Contacto: (260) 4471063"
   ],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
@@ -15,56 +15,56 @@
   "vialidadObservaciones": "Transitable con extrema precaución",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13.6,
-    "description": "Algo nublado",
-    "wind": "Noroeste 19 km/h",
+    "temperatureC": 6.2,
+    "description": "Parcialmente nublado",
+    "wind": "Oeste 6 km/h",
     "visibilityKm": 20,
     "sunrise": "08:48",
     "sunset": "18:42",
-    "updatedAt": "2026-07-08T18:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 18
+    "updatedAt": "2026-07-09T07:00:00-03:00",
+    "feelsLikeC": 5.3,
+    "humidity": 71
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-08T22:39:44.676Z",
+  "scrapedAt": "2026-07-09T10:41:51.462Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -2,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -2,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Lluvias y nevadas",
       "temperatureC": 1,
       "wind": "O a 51-59 km/h",
       "visibility": "Regular"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -1,
       "wind": "O a 51-59 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -4,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas fuertes",
+      "temperatureC": -1,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "8/7/2026 18:30:20"
+    "statusUpdatedAt": "9/7/2026 06:17:14"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-08T22:39:44.676Z"
+  "lastKnownGoodAt": "2026-07-09T10:41:51.462Z"
 }
