@@ -3,7 +3,7 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
+  "rawStatus": "ABIERTO",
   "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [
@@ -15,36 +15,22 @@
   "vialidadObservaciones": "nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9,
-    "description": "Cubierto",
+    "temperatureC": 3.9,
+    "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:39",
     "sunset": "18:50",
-    "updatedAt": "2026-07-10T21:00:00-03:00",
+    "updatedAt": "2026-07-11T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 65
+    "humidity": 72
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-11T09:06:48.924Z",
+  "scrapedAt": "2026-07-11T16:12:23.791Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -9,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -58,14 +44,28 @@
       "temperatureC": -8,
       "wind": "SO a 32-41 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 0,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "9/7/2026 20:02:10"
+    "statusUpdatedAt": "11/7/2026 11:02:02"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-11T09:06:48.924Z",
-  "extendedForecastText": "Alta Montaña: </strong>Nublado, frío con nevadas moderadas.</p>\n\n\n\n<p><strong>Máxima: -1°C.<br>Mínima: -8°C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-full\"><img fetchpriority=\"high\" decoding=\"async\" width=\"720\" height=\"916\" data-id=\"552880\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-09-at-11.02.26.jpeg\" alt=\"\" class=\"wp-image-552880\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-09-at-11.02.26.jpeg 720w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-09-at-11.02.26-480x611.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 720px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"931\" height=\"665\" data-id=\"552662\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg\" alt=\"\" class=\"wp-image-552662\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg 931w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-480x343.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 931px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"973\" height=\"671\" data-id=\"552663\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg\" alt=\"\" class=\"wp-image-552663\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg 973w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1-480x331.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 973px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\"></figure>\n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-4 is-layout-flex wp-block-gallery-is-layout-flex\"></figure>\n\n\n\n<p><strong>Viernes 10</strong></p>\n\n\n\n<p><strong>Viento: </strong>Viento Zonda débil en la precordillera Centro y Sur, y probablemente en el Valle de Uspallata, entre las 7 y las 20. Circulación de viento Sur débil en el llano, entre las 12 y las 20 en las zonas Sur y Noreste.</p>\n\n\n\n<p><strong>Nubosidad: </strong>El llano amanece nublado a seminublado en las zonas Sur y Centro. Se prevén precipitaciones débiles en sectores cercanos y al Oeste de Malargüe. En horas de la tarde, probabilidad de precipitaciones débiles en el oeste del Valle de Uco y el Oeste del Gran Mendoza.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Mal tiempo con precipitaciones de importancia desde la madrugada en toda la Alta Montaña, con mayor intensidad en los sectores Sur y Centro. Las precipitaciones se extenderán, con menor intensidad, hacia el sector norte y se mantendrán hasta la madrugada del sábado. Posteriormente continuará el cielo nublado.</p>\n\n\n\n<p><strong>Temperaturas promedio"
+  "lastKnownGoodAt": "2026-07-11T16:12:23.791Z",
+  "extendedForecastText": "Alta montaña: </strong>Estable y algo nublado.</p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"931\" height=\"665\" data-id=\"552662\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg\" alt=\"\" class=\"wp-image-552662\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg 931w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-480x343.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 931px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"973\" height=\"671\" data-id=\"552663\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg\" alt=\"\" class=\"wp-image-552663\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg 973w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1-480x331.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 973px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<p><strong>Sábado 11:</strong></p>\n\n\n\n<p><strong>Viento: </strong>Circulación de viento Sur leve durante la mañana y primeras horas de la tarde, afectando las zonas Sur, Norte y Este.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo nublado en gran parte del llano provincial durante toda la jornada. Después de las 17, se prevé mayor nubosidad en la zona Sur. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Disminuye la nubosidad en el sector Sur, finalizando el período de mal tiempo, no se observan nuevas precipitaciones. Hacia el transcurso del día aumentará la nubosidad desde el sector Sur hacia las zonas Centro y Norte de la alta montaña.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
