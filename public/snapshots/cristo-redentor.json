@@ -3,11 +3,11 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "09:00-21:00",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
+  "rawStatus": "CERRADO",
   "motivo": null,
-  "motivoInfo": null,
+  "motivoInfo": "CIERRE DEL PFI PERIODO INVERNAL DE 21:00 A 09:00.",
   "htmlAlerts": [
-    "Vialidad Nacional informa: RN 7 tramo Tunel Internacional nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
+    "Motivo del cierre: CIERRE DEL PFI PERIODO INVERNAL DE 21:00 A 09:00. Vialidad Nacional informa: RN 7 tramo Tunel Internacional nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile Contacto: (2624) 420094"
   ],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -15,47 +15,47 @@
   "vialidadObservaciones": "nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": null,
-    "description": null,
+    "temperatureC": 7,
+    "description": "Despejado",
     "wind": "Calma",
-    "visibilityKm": null,
+    "visibilityKm": 15,
     "sunrise": "08:39",
-    "sunset": "18:50",
-    "updatedAt": null,
+    "sunset": "18:51",
+    "updatedAt": "2026-07-11T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": null
+    "humidity": 58
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-11T22:28:33.118Z",
+  "scrapedAt": "2026-07-12T09:25:39.630Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -5,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -8,
       "wind": "SO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
       "temperatureC": 2,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": -5,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -6,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
@@ -63,9 +63,9 @@
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "11/7/2026 17:07:37"
+    "statusUpdatedAt": "11/7/2026 21:06:35"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-11T22:28:33.118Z",
+  "lastKnownGoodAt": "2026-07-12T09:25:39.630Z",
   "extendedForecastText": "Alta Montaña: </strong>Estable y algo nublado.</p>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"931\" height=\"665\" data-id=\"552662\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg\" alt=\"\" class=\"wp-image-552662\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05.jpeg 931w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-480x343.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 931px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"973\" height=\"671\" data-id=\"552663\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg\" alt=\"\" class=\"wp-image-552663\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1.jpeg 973w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-08-at-08.14.05-1-480x331.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 973px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<p><strong>Sábado 11</strong></p>\n\n\n\n<p><strong>Viento: </strong>Circulación de viento Sur leve durante la mañana y primeras horas de la tarde en las zonas Sur, Norte y Este.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo nublado en gran parte del llano provincial durante toda la jornada. Después de las 17, se prevé mayor nubosidad en la zona Sur. No se observan precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña: </strong>Disminuye la nubosidad en el sector Sur y finaliza el período de mal tiempo. No se observan nuevas precipitaciones. Hacia el transcurso del día aumentará la nubosidad desde el sector Sur hacia las zonas Centro y Norte.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
