@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 15,
+    "temperatureC": 19,
     "description": "Parcialmente nublado",
-    "wind": "Este 10 km/h",
+    "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
     "sunrise": "08:47",
     "sunset": "18:45",
-    "updatedAt": "2026-07-13T14:00:00-03:00",
+    "updatedAt": "2026-07-13T19:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 44
+    "humidity": 16
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-13T17:24:23.893Z",
+  "scrapedAt": "2026-07-13T22:33:21.927Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -58,13 +51,20 @@
       "temperatureC": 0,
       "wind": "O a 42-50 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Ventisca",
+      "temperatureC": 0,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "13/7/2026 10:13:26"
+    "statusUpdatedAt": "13/7/2026 17:06:10"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-13T17:24:23.893Z"
+  "lastKnownGoodAt": "2026-07-13T22:33:21.927Z"
 }
