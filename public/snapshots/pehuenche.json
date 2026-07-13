@@ -15,29 +15,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -1.2,
-    "description": "Ligeramente nublado",
-    "wind": "Sur 17 km/h",
+    "temperatureC": 15,
+    "description": "Parcialmente nublado",
+    "wind": "Este 10 km/h",
     "visibilityKm": 20,
     "sunrise": "08:47",
     "sunset": "18:45",
-    "updatedAt": "2026-07-13T07:00:00-03:00",
-    "feelsLikeC": -6.2,
-    "humidity": 74
+    "updatedAt": "2026-07-13T14:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 44
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-13T10:38:38.520Z",
+  "scrapedAt": "2026-07-13T17:24:23.893Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -58,13 +51,20 @@
       "temperatureC": -3,
       "wind": "O a 42-50 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": 0,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "13/7/2026 06:06:27"
+    "statusUpdatedAt": "13/7/2026 10:13:26"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-13T10:38:38.520Z"
+  "lastKnownGoodAt": "2026-07-13T17:24:23.893Z"
 }
