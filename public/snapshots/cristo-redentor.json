@@ -15,45 +15,45 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 19.2,
+    "temperatureC": 13.6,
     "description": "Parcialmente nublado",
-    "wind": "Oeste 10 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:39",
+    "sunrise": "08:38",
     "sunset": "18:52",
-    "updatedAt": "2026-07-14T18:00:00-03:00",
+    "updatedAt": "2026-07-14T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 32
+    "humidity": 31
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-14T22:36:15.272Z",
+  "scrapedAt": "2026-07-15T09:28:24.415Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ventisca",
-      "temperatureC": -8,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -5,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -7,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas fuertes",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la mañana",
       "description": "Nevadas fuertes",
       "temperatureC": -7,
       "wind": "O a 60-69 km/h",
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "14/7/2026 18:43:57"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-14T22:36:15.272Z",
+  "lastKnownGoodAt": "2026-07-15T09:28:24.415Z",
   "extendedForecastText": "Alta Montaña:</strong> Parcialmente nublado y nevadas hacia la noche.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><a href=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-14-at-11.04.33-AM.jpeg\"><img fetchpriority=\"high\" decoding=\"async\" width=\"686\" height=\"1200\" data-id=\"553233\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-14-at-11.04.33-AM-686x1200.jpeg\" alt=\"\" class=\"wp-image-553233\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-14-at-11.04.33-AM-686x1200.jpeg 686w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-14-at-11.04.33-AM-480x840.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 686px, 100vw\" /></a></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\"></figure>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\"></figure>\n\n\n\n<p><strong>Martes 14</strong></p>\n\n\n\n<p><strong>Viento: </strong>Se prevé viento Zonda débil desde media mañana hasta las 21/22 h, afectando a la precordillera de Mendoza, Sur de Malargüe, Malargüe, Valle de Uspallata y el Oeste del Valle de Uco. Además, se espera circulación de viento norte leve entre las 14 y las 18 en la franja Este provincial.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo seminublado, con mayor nubosidad en la zona Sur y el Valle de Uco. Durante la tarde aumentará la nubosidad en las zonas Norte y Este. No se esperan precipitaciones en el llano.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Cielo cubierto durante la jornada. A partir de las 16/17 h comenzarán las precipitaciones en la alta montaña Sur, extendiéndose posteriormente hacia el sector Central, dando inicio a un período de mal tiempo de importancia.</p>\n\n\n\n<p><strong>Temperatura promedio"
 }
