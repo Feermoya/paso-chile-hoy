@@ -15,48 +15,48 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.8,
-    "description": "Algo nublado",
+    "temperatureC": 9.4,
+    "description": "Ligeramente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:38",
-    "sunset": "18:52",
-    "updatedAt": "2026-07-15T18:00:00-03:00",
+    "sunset": "18:53",
+    "updatedAt": "2026-07-15T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 37
+    "humidity": 55
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-15T22:37:03.004Z",
+  "scrapedAt": "2026-07-16T09:34:14.991Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -6,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -4,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -7,
       "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas fuertes",
+      "temperatureC": -7,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas fuertes",
+      "temperatureC": -7,
+      "wind": "O a 42-50 km/h",
       "visibility": "Muy mala"
     }
   ],
@@ -66,6 +66,6 @@
     "statusUpdatedAt": "14/7/2026 18:43:57"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-15T22:37:03.004Z",
+  "lastKnownGoodAt": "2026-07-16T09:34:14.991Z",
   "extendedForecastText": "Alta Montaña: </strong>Nublado y muy frío, con nevadas continuas.</p>\n\n\n\n<p><strong>Máxima: -4 °C.<br>Mínima: -8 °C</strong>.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"744\" height=\"501\" data-id=\"553309\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-08.20.36.jpeg\" alt=\"\" class=\"wp-image-553309\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-08.20.36.jpeg 744w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-08.20.36-480x323.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 744px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><a href=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.09.jpeg\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"553307\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.09-1200x848.jpeg\" alt=\"\" class=\"wp-image-553307\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.09-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.09-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></a></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><a href=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.26.jpeg\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"553306\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.26-1200x848.jpeg\" alt=\"\" class=\"wp-image-553306\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.26-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-15-at-07.01.26-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></a></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<p><strong>Miércoles 15</strong></p>\n\n\n\n<p><strong>Viento:</strong> Se prevé viento Zonda débil desde las 5 hasta las 22, afectando a la precordillera de Mendoza, Malargüe, Sur de Malargüe, Oeste del Valle de Uco y probablemente el Valle de Uspallata.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo nublado en la zona Sur, luego en el Valle de Uco. En el resto del llano se presentará entre despejado y seminublado.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Desde la madrugada continuará el mal tiempo con precipitaciones en los sectores Sur y Central. Durante la tarde las precipitaciones se intensificarán, principalmente en el sector Sur, extendiéndose también al sector Norte con menor intensidad. El mal tiempo quedará instalado en toda la alta montaña provincial.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
