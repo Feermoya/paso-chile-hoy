@@ -6,31 +6,43 @@
   "rawStatus": "CERRADO",
   "motivo": null,
   "motivoInfo": null,
-  "htmlAlerts": [
-    "Vialidad Nacional informa: Corte total RN 145 tramo Paso Internacional El Pehuenche nevadas y fuerte viento blanco Contacto: (260) 4471063"
-  ],
+  "htmlAlerts": [],
   "vialidadRuta": "145",
   "vialidadTramo": "Cajón Grande - Lte. Internacional",
   "vialidadEstado": "CORTE TOTAL",
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
+    "temperatureC": 9.8,
     "description": "Parcialmente nublado",
-    "wind": "Oeste 23 km/h",
+    "wind": "Oeste 19 km/h",
     "visibilityKm": 20,
     "sunrise": "08:45",
-    "sunset": "18:47",
-    "updatedAt": "2026-07-16T19:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 46
+    "sunset": "18:48",
+    "updatedAt": "2026-07-16T21:00:00-03:00",
+    "feelsLikeC": 7.3,
+    "humidity": 47
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-16T22:34:24.645Z",
+  "scrapedAt": "2026-07-17T09:26:22.399Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": -3,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -8,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Muy mala"
+    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
@@ -44,20 +56,6 @@
       "temperatureC": -3,
       "wind": "O a 42-50 km/h",
       "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -3,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -8,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -66,5 +64,5 @@
     "statusUpdatedAt": "16/7/2026 17:12:34"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-16T22:34:24.645Z"
+  "lastKnownGoodAt": "2026-07-17T09:26:22.399Z"
 }
