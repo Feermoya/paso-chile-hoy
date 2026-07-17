@@ -22,49 +22,49 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
-    "description": "Lluvia localizada en las cercanías",
-    "wind": "SSW a 8 km/h",
-    "visibilityKm": 10,
+    "temperatureC": 9,
+    "description": "Brotes de tormenta en las cercanías",
+    "wind": "ESE a 4 km/h",
+    "visibilityKm": 9,
     "sunrise": "08:31",
     "sunset": "18:56",
     "updatedAt": "2026-07-17",
-    "feelsLikeC": 3,
-    "humidity": 70
+    "feelsLikeC": 4,
+    "humidity": 59
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-17T09:26:25.395Z",
+  "scrapedAt": "2026-07-17T16:36:35.139Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Brotes de tormenta en las cercanías",
-      "temperatureC": 7,
-      "wind": "E 5 km/h",
-      "visibility": "Regular"
-    },
-    {
       "period": "Hoy por la tarde",
-      "description": "Brotes de tormenta en las cercanías",
-      "temperatureC": 11,
-      "wind": "SSW 4 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 11,
-      "wind": "WSW 15 km/h",
+      "description": "Lluvia ligera localizada con truenos en la zona",
+      "temperatureC": 10,
+      "wind": "WSW 18 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 8,
-      "wind": "WSW 8 km/h",
+      "description": "Aguacero ligero",
+      "temperatureC": 7,
+      "wind": "SW 10 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Aguanieve ligero",
+      "temperatureC": 5,
+      "wind": "SW 6 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Nieve pesada",
+      "temperatureC": 3,
+      "wind": "SSW 17 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-17T09:26:25.395Z"
+  "lastKnownGoodAt": "2026-07-17T16:36:35.139Z"
 }
