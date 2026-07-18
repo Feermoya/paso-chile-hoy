@@ -22,36 +22,22 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
+    "temperatureC": 4,
     "description": "Aguanieve ligero",
-    "wind": "S a 10 km/h",
+    "wind": "SSW a 21 km/h",
     "visibilityKm": 9,
     "sunrise": "08:31",
     "sunset": "18:56",
     "updatedAt": "2026-07-18",
-    "feelsLikeC": 3,
-    "humidity": 87
+    "feelsLikeC": 0,
+    "humidity": 81
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-18T16:13:21.704Z",
+  "scrapedAt": "2026-07-18T22:29:23.006Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Aguanieve ligero",
-      "temperatureC": 4,
-      "wind": "SSW 21 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Nieve pesada irregular",
-      "temperatureC": 3,
-      "wind": "SSW 16 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Nieve ligera",
@@ -65,6 +51,20 @@
       "temperatureC": 2,
       "wind": "NW 1 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nieve pesada irregular",
+      "temperatureC": 2,
+      "wind": "S 12 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nieve pesada",
+      "temperatureC": 1,
+      "wind": "SSE 4 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-18T16:13:21.704Z"
+  "lastKnownGoodAt": "2026-07-18T22:29:23.006Z"
 }
