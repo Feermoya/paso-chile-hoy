@@ -13,29 +13,22 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4,
-    "description": "Cubierto con lluvia débil",
+    "temperatureC": -2.6,
+    "description": "Cubierto",
     "wind": "Calma",
-    "visibilityKm": 10,
+    "visibilityKm": 15,
     "sunrise": "08:37",
     "sunset": "18:54",
-    "updatedAt": "2026-07-17T21:00:00-03:00",
+    "updatedAt": "2026-07-18T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 94
+    "humidity": 83
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-18T09:08:34.659Z",
+  "scrapedAt": "2026-07-18T16:13:06.055Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
@@ -56,14 +49,21 @@
       "temperatureC": -13,
       "wind": "O a 42-50 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": -8,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "17/7/2026 08:21:34"
+    "statusUpdatedAt": "18/7/2026 08:45:00"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-18T09:08:34.659Z",
-  "extendedForecastText": "Alta Montaña: </strong>Continúan las nevadas intensas con fuerte viento blanco. Vientos moderados a fuertes del noreste.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"751\" height=\"523\" data-id=\"553599\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14.jpeg\" alt=\"\" class=\"wp-image-553599\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14.jpeg 751w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14-480x334.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 751px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"666\" height=\"479\" data-id=\"553595\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58.jpeg\" alt=\"\" class=\"wp-image-553595\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58.jpeg 666w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-480x345.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 666px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"666\" height=\"472\" data-id=\"553596\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1.jpeg\" alt=\"\" class=\"wp-image-553596\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1.jpeg 666w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1-480x340.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 666px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Viernes 17</strong></p>\n\n\n\n<p><strong>Viento: </strong>Circulación de viento sur leve entre las 11 y las 22 en la zona Sur y posteriormente en las zonas Norte y Este.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Cielo nublado en el Valle de Uco y en la zona Sur. Desde las 12 se esperan precipitaciones en Malargüe y a lo largo de toda la franja Oeste de Mendoza, incluyendo el Oeste del Valle de Uco y del Gran Mendoza. Durante la noche las precipitaciones se extenderán a todo el Valle de Uco, sectores del Oeste del Gran Mendoza y probablemente la zona Sur.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Continúa el mal tiempo durante toda la jornada, con importantes precipitaciones níveas que se extenderán al sábado. Los modelos prevén acumulaciones de nieve nueva del orden de 50 a 60 cm durante el período de mayor intensidad.</p>\n\n\n\n<p><strong>Temperaturas promedio"
+  "lastKnownGoodAt": "2026-07-18T16:13:06.055Z",
+  "extendedForecastText": "Alta montaña: Cielo cubierto con nevadas continuas.</p>\n\n\n\n<p>Máxima: -10 °C.<br>Mínima: -15 °C.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"751\" height=\"523\" data-id=\"553599\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14.jpeg\" alt=\"\" class=\"wp-image-553599\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14.jpeg 751w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.21.14-480x334.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 751px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"666\" height=\"479\" data-id=\"553595\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58.jpeg\" alt=\"\" class=\"wp-image-553595\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58.jpeg 666w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-480x345.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 666px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"666\" height=\"472\" data-id=\"553596\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1.jpeg\" alt=\"\" class=\"wp-image-553596\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1.jpeg 666w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-17-at-08.16.58-1-480x340.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 666px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"553897\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-2.jpeg\" alt=\"\" class=\"wp-image-553897\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-2.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-2-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-2-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"553895\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-1.jpeg\" alt=\"\" class=\"wp-image-553895\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-1.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-1-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-1-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"553896\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05.jpeg\" alt=\"\" class=\"wp-image-553896\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-18-at-08.33.05-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<p></p>\n\n\n\n<p><strong>Sábado 18 de julio</strong></p>\n\n\n\n<p><strong>Viento</strong></p>\n\n\n\n<p>Se prevé viento Zonda débil desde media mañana y hasta aproximadamente las 19, con incidencia en toda la Precordillera, Malargüe y el sur de ese departamento.</p>\n\n\n\n<p>Además, se espera circulación de viento sur débil entre las 14 y las 21 en las zonas Norte y Este de Mendoza.</p>\n\n\n\n<p><strong>Nubosidad</strong></p>\n\n\n\n<p>El cielo permanecerá mayormente nublado durante toda la jornada. Se registrarán precipitaciones y lloviznas aisladas en sectores del oeste provincial, el oeste de Malargüe y el oeste del Valle de Uco, con posibilidad de lloviznas aisladas también en el llano.</p>\n\n\n\n<p>Alta Montaña</p>\n\n\n\n<p>Continuará el mal tiempo durante toda la jornada. Se prevé que las precipitaciones disminuyan durante la madrugada del domingo, aunque posteriormente volverán a intensificarse.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
