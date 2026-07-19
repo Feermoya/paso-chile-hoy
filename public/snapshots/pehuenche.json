@@ -13,47 +13,47 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.4,
-    "description": "Ligeramente nublado",
-    "wind": "Noreste 6 km/h",
+    "temperatureC": 5.8,
+    "description": "Mayormente nublado",
+    "wind": "Noreste 17 km/h",
     "visibilityKm": 20,
     "sunrise": "08:44",
     "sunset": "18:49",
-    "updatedAt": "2026-07-19T12:00:00-03:00",
-    "feelsLikeC": 5.5,
-    "humidity": 56
+    "updatedAt": "2026-07-19T19:00:00-03:00",
+    "feelsLikeC": 2.5,
+    "humidity": 67
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-19T16:13:56.038Z",
+  "scrapedAt": "2026-07-19T22:32:23.102Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -5,
+      "description": "Nevadas fuertes",
+      "temperatureC": -12,
       "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
+      "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -9,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
+      "description": "Nevadas fuertes",
+      "temperatureC": -13,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas fuertes",
-      "temperatureC": -2,
+      "temperatureC": -6,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -5,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "19/7/2026 10:38:46"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-19T16:13:56.038Z"
+  "lastKnownGoodAt": "2026-07-19T22:32:23.102Z"
 }
