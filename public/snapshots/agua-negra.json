@@ -23,48 +23,48 @@
   "latestTweet": null,
   "weather": {
     "temperatureC": 2,
-    "description": "Lluvia localizada en las cercanías",
-    "wind": "N a 8 km/h",
-    "visibilityKm": 10,
+    "description": "Nieve moderada",
+    "wind": "NE a 6 km/h",
+    "visibilityKm": 5,
     "sunrise": "08:30",
     "sunset": "18:57",
     "updatedAt": "2026-07-19",
-    "feelsLikeC": 0,
-    "humidity": 81
+    "feelsLikeC": 1,
+    "humidity": 88
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-19T09:26:04.124Z",
+  "scrapedAt": "2026-07-19T16:13:58.690Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Nieve pesada",
-      "temperatureC": 3,
-      "wind": "WSW 3 km/h",
-      "visibility": "Mala"
-    },
-    {
       "period": "Hoy por la tarde",
       "description": "Nieve pesada",
       "temperatureC": 2,
-      "wind": "SSW 7 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nieve pesada",
-      "temperatureC": 2,
-      "wind": "SW 4 km/h",
+      "wind": "S 9 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Hoy por la noche",
       "description": "Nieve pesada",
       "temperatureC": 1,
-      "wind": "SSW 2 km/h",
+      "wind": "SSW 8 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nieve moderada",
+      "temperatureC": 1,
+      "wind": "NNE 9 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 3,
+      "wind": "SW 3 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-19T09:26:04.124Z"
+  "lastKnownGoodAt": "2026-07-19T16:13:58.690Z"
 }
