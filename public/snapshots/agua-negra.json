@@ -22,36 +22,22 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 1,
-    "description": "Nieve moderada",
-    "wind": "SSE a 8 km/h",
-    "visibilityKm": 5,
+    "temperatureC": 4,
+    "description": "Soleado",
+    "wind": "SSW a 9 km/h",
+    "visibilityKm": 10,
     "sunrise": "08:30",
     "sunset": "18:57",
     "updatedAt": "2026-07-20",
-    "feelsLikeC": -2,
-    "humidity": 97
+    "feelsLikeC": 2,
+    "humidity": 72
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-20T10:24:30.349Z",
+  "scrapedAt": "2026-07-20T16:45:55.387Z",
   "forecast": [
-    {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-      "temperatureC": 4,
-      "wind": "SSW 9 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 7,
-      "wind": "WSW 4 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la tarde",
       "description": "Lluvia localizada en las cercanías",
@@ -65,6 +51,20 @@
       "temperatureC": 4,
       "wind": "WSW 10 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Aguacero con nieve ligera",
+      "temperatureC": 1,
+      "wind": "WNW 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Aguacero con nieve ligera",
+      "temperatureC": 2,
+      "wind": "E 4 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-20T10:24:30.349Z"
+  "lastKnownGoodAt": "2026-07-20T16:45:55.387Z"
 }
