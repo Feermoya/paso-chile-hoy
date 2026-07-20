@@ -13,40 +13,33 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 2.2,
-    "description": "Nublado",
-    "wind": "Calma",
-    "visibilityKm": 12,
+    "temperatureC": 5,
+    "description": "Parcialmente nublado",
+    "wind": "Noroeste 13 km/h",
+    "visibilityKm": 20,
     "sunrise": "08:43",
     "sunset": "18:50",
-    "updatedAt": "2026-07-20T13:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 91
+    "updatedAt": "2026-07-20T18:00:00-03:00",
+    "feelsLikeC": 2.1,
+    "humidity": 72
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-20T16:45:52.522Z",
+  "scrapedAt": "2026-07-20T22:34:24.265Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -5,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
-      "temperatureC": -6,
+      "temperatureC": -7,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas fuertes",
-      "temperatureC": -6,
+      "temperatureC": -7,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     },
@@ -54,15 +47,22 @@
       "period": "Mañana por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
+      "wind": "O a 32-41 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -7,
+      "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "20/7/2026 11:00:24"
+    "statusUpdatedAt": "20/7/2026 18:26:20"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-20T16:45:52.522Z"
+  "lastKnownGoodAt": "2026-07-20T22:34:24.265Z"
 }
