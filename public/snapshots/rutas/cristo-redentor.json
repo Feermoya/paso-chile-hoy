@@ -5,17 +5,17 @@
   "routeName": "Ruta Nacional 7",
   "routeCode": "7",
   "province": "Mendoza",
-  "updatedAt": "2026-07-19T22:30:27.337Z",
-  "sourceUpdatedAt": "2026-07-18T10:33:00.000Z",
+  "updatedAt": "2026-07-20T12:26:33.295Z",
+  "sourceUpdatedAt": "2026-07-20T10:33:00.000Z",
   "summary": {
     "totalSegments": 8,
-    "openSegments": 4,
+    "openSegments": 3,
     "partialSegments": 0,
-    "closedSegments": 4,
+    "closedSegments": 5,
     "cautionSegments": 0,
-    "firstBlockingSegmentId": "polvaredas-punta-de-vacas",
+    "firstBlockingSegmentId": "uspallata-polvaredas",
     "canReachPass": false,
-    "headline": "Corte en Polvaredas - Punta de Vacas",
+    "headline": "Corte en Uspallata - Polvaredas",
     "worstStatus": "CLOSED"
   },
   "segmentOrder": "asc",
@@ -29,7 +29,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 175,
       "notes": null,
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": false,
         "toll": true,
@@ -45,7 +45,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 46,
       "notes": "TRANSITABLE CON EXTREMA PRECAUCIÓN",
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -61,7 +61,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 50,
       "notes": null,
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -72,14 +72,14 @@
       "id": "uspallata-polvaredas",
       "order": 3,
       "name": "Uspallata - Polvaredas",
-      "status": "OPEN",
-      "statusLabel": "HABILITADA",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
       "surface": "PAVIMENTO",
       "lengthKm": 40,
       "notes": null,
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
-        "critical": false,
+        "critical": true,
         "toll": false,
         "international": false
       }
@@ -93,9 +93,9 @@
       "surface": "PAVIMENTO",
       "lengthKm": 51,
       "notes": null,
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
-        "critical": true,
+        "critical": false,
         "toll": false,
         "international": false
       }
@@ -109,7 +109,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 26,
       "notes": null,
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -125,7 +125,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 13.8,
       "notes": "Fuertes nevadas y viento blanco",
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -141,7 +141,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 4.45,
       "notes": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
-      "updatedAt": "2026-07-18T10:33:00.000Z",
+      "updatedAt": "2026-07-20T10:33:00.000Z",
       "flags": {
         "critical": true,
         "toll": true,
