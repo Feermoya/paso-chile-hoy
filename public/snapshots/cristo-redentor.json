@@ -13,29 +13,22 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 0,
+    "temperatureC": 3.2,
     "description": "Cubierto",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:36",
-    "sunset": "18:55",
-    "updatedAt": "2026-07-20T21:00:00-03:00",
+    "sunrise": "08:35",
+    "sunset": "18:56",
+    "updatedAt": "2026-07-21T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 99
+    "humidity": 54
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-21T10:00:05.895Z",
+  "scrapedAt": "2026-07-21T16:47:01.521Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -7,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
@@ -56,14 +49,21 @@
       "temperatureC": -18,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": -7,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "20/7/2026 20:14:19"
+    "statusUpdatedAt": "21/7/2026 08:42:01"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-21T10:00:05.895Z",
-  "extendedForecastText": "Alta Montaña:</strong> Nublado con nevadas. Viento moderado del noroeste.</p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"744\" height=\"492\" data-id=\"553988\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.22.17.jpeg\" alt=\"\" class=\"wp-image-553988\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.22.17.jpeg 744w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.22.17-480x317.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 744px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"672\" height=\"467\" data-id=\"553984\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12-1.jpeg\" alt=\"\" class=\"wp-image-553984\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12-1.jpeg 672w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12-1-480x334.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 672px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"668\" height=\"467\" data-id=\"553985\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12.jpeg\" alt=\"\" class=\"wp-image-553985\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12.jpeg 668w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-20-at-08.18.12-480x336.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 668px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Lunes 20</strong></p>\n\n\n\n<p><strong>Viento: </strong>Brisa leve del sur durante la tarde y la noche que afectará principalmente las zonas Sur y Norte.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Cielo cubierto durante toda la jornada. Se esperan lloviznas en gran parte del llano provincial, con precipitaciones más persistentes sobre la franja Oeste de la provincia, la zona Sur y, especialmente, en Malargüe durante la tarde y la noche. Será una jornada fría.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Desde la madrugada aumentarán nuevamente las precipitaciones en toda la cordillera y se mantendrán todo el día, con intensidad moderada a fuerte.</p>\n\n\n\n<p><strong>Temperaturas promedio"
+  "lastKnownGoodAt": "2026-07-21T16:47:01.521Z",
+  "extendedForecastText": "Alta Montaña:</strong> Cielo mayormente nublado, frío con nevadas débiles a moderadas durante toda la jornada.</p>\n\n\n\n<p><strong>Máxima: -8 °C.<br>Mínima: -18 °C.</strong></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"742\" height=\"505\" data-id=\"554182\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.48.07.jpeg\" alt=\"\" class=\"wp-image-554182\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.48.07.jpeg 742w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.48.07-480x327.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 742px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\"><strong>Reporte meteorológico</strong></h1>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"554178\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.17-1200x848.jpeg\" alt=\"\" class=\"wp-image-554178\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.17-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.17-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1200\" height=\"848\" data-id=\"554179\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.18-1200x848.jpeg\" alt=\"\" class=\"wp-image-554179\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.18-980x692.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-21-at-08.45.18-480x339.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1200px, 100vw\" /></figure>\n</figure>\n\n\n\n<p><strong>Martes 21</strong></p>\n\n\n\n<p><strong>Viento:</strong> Viento sur leve desde las 12 hasta las 20, que afectará las zonas Sur, Norte y Este.</p>\n\n\n\n<p><strong>Nubosidad:</strong> Amanecerá mayormente nublado. Se esperan precipitaciones débiles en el Gran Mendoza, el Valle de Uco y Malargüe. Desde el mediodía continuará el cielo cubierto, con lloviznas aisladas en distintos sectores del llano provincial durante toda la jornada.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Persistirá el mal tiempo, con precipitaciones durante todo el día. Hacia la noche del martes y la madrugada del miércoles comenzará una mejora. Desde media mañana del miércoles se espera una mejora transitoria de la nubosidad y de las precipitaciones. El mal tiempo retornaría desde la mañana o el mediodía del jueves.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
