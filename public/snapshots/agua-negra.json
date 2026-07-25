@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14,
-    "description": "Soleado",
-    "wind": "S a 12 km/h",
+    "temperatureC": 11,
+    "description": "Despejado",
+    "wind": "SW a 12 km/h",
     "visibilityKm": 10,
     "sunrise": "08:27",
     "sunset": "19:00",
     "updatedAt": "2026-07-25",
     "feelsLikeC": 8,
-    "humidity": 34
+    "humidity": 33
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-25T16:13:49.551Z",
+  "scrapedAt": "2026-07-25T22:33:25.454Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 15,
-      "wind": "W 4 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 8,
-      "wind": "WSW 12 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Lluvia localizada en las cercanías",
       "temperatureC": 5,
-      "wind": "SW 13 km/h",
+      "wind": "SW 11 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana al mediodía",
-      "description": "Soleado",
+      "description": "Lluvia localizada en las cercanías",
       "temperatureC": 12,
-      "wind": "S 4 km/h",
+      "wind": "W 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 17,
+      "wind": "SW 3 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 9,
+      "wind": "WSW 16 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-25T16:13:49.551Z"
+  "lastKnownGoodAt": "2026-07-25T22:33:25.454Z"
 }
