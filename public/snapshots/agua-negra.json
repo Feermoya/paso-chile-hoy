@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
+    "temperatureC": 12,
     "description": "Lluvia localizada en las cercanías",
-    "wind": "SW a 12 km/h",
+    "wind": "SSW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:27",
     "sunset": "19:01",
     "updatedAt": "2026-07-26",
-    "feelsLikeC": 3,
-    "humidity": 32
+    "feelsLikeC": 7,
+    "humidity": 23
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-26T09:32:03.220Z",
+  "scrapedAt": "2026-07-26T16:16:03.056Z",
   "forecast": [
     {
-      "period": "Hoy al mediodía",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 12,
-      "wind": "W 3 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la tarde",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 17,
-      "wind": "SW 3 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 17,
-      "wind": "WSW 15 km/h",
+      "temperatureC": 16,
+      "wind": "W 17 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
       "description": "Lluvia localizada en las cercanías",
       "temperatureC": 9,
-      "wind": "WSW 16 km/h",
+      "wind": "WSW 15 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 5,
+      "wind": "SW 15 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 10,
+      "wind": "NNE 3 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-26T09:32:03.220Z"
+  "lastKnownGoodAt": "2026-07-26T16:16:03.056Z"
 }
