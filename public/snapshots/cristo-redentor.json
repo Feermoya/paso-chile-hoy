@@ -13,29 +13,22 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.2,
-    "description": "Mayormente nublado",
-    "wind": "Calma",
+    "temperatureC": 13.7,
+    "description": "Algo nublado",
+    "wind": "Oeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "08:32",
-    "sunset": "18:59",
-    "updatedAt": "2026-07-26T21:00:00-03:00",
+    "sunset": "19:00",
+    "updatedAt": "2026-07-27T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 48
+    "humidity": 45
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-27T10:53:56.340Z",
+  "scrapedAt": "2026-07-27T17:12:37.569Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -2,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
@@ -56,13 +49,21 @@
       "temperatureC": -10,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": -3,
+      "wind": "NO a 51-59 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "26/7/2026 09:28:00"
+    "statusUpdatedAt": "27/7/2026 08:06:52"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-27T10:53:56.340Z"
+  "lastKnownGoodAt": "2026-07-27T17:12:37.569Z",
+  "extendedForecastText": "Alta Montaña: </strong>Parcialmente nublado a nublado con frío moderado. Nevadas hacia la noche.</p>\n\n\n\n<p><strong>Máxima: -5 °C.<br>Mínima: -14 °C.</strong></p>\n\n\n\n<p></p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure class=\"wp-block-image size-large\"><img fetchpriority=\"high\" decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"555144\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.29-AM.jpeg\" alt=\"\" class=\"wp-image-555144\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.29-AM.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.29-AM-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.29-AM-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n\n\n\n<figure class=\"wp-block-image size-large\"><img decoding=\"async\" width=\"1080\" height=\"1080\" data-id=\"555145\" src=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.38-AM.jpeg\" alt=\"\" class=\"wp-image-555145\" srcset=\"https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.38-AM.jpeg 1080w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.38-AM-980x980.jpeg 980w, https://mza-dicaws-portal-uploads-media-prod.s3.amazonaws.com/prensa/uploads/2026/07/WhatsApp-Image-2026-07-27-at-7.00.38-AM-480x480.jpeg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) 1080px, 100vw\" /></figure>\n</figure>\n\n\n\n<h1 class=\"wp-block-heading\">Reporte meteorológico</h1>\n\n\n\n<p><strong>Lunes 27</strong></p>\n\n\n\n<p><strong>Viento:</strong> Circulación de viento Zonda débil desde las 4 hasta las 18 en toda la precordillera de Mendoza, Malargüe, Valle de Uco, Valle de Uspallata y con probabilidad de alcanzar el Gran Mendoza. Además, circulación de viento Sur débil a moderado desde las 10 en la zona Sur y desde las 13 en las zonas Norte y Este, que se extienden hasta las 21.</p>\n\n\n\n<p><strong>Nubosidad: </strong>Cielo seminublado al amanecer en la zona Sur y en el extremo Este, principalmente en La Paz. En el resto de la provincia, cielo mayormente despejado. Probables precipitaciones en Malargüe debido a la proximidad de un sistema de mal tiempo al oeste del departamento.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> Continúa el mal tiempo con precipitaciones, principalmente en los sectores Centro y Sur. En el sector Norte permanecería nublado, con probabilidad de precipitaciones débiles durante la noche.</p>\n\n\n\n<p><strong>Temperaturas promedio"
 }
