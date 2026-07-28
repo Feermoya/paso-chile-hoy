@@ -13,48 +13,48 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.6,
-    "description": "Parcialmente nublado",
+    "temperatureC": 11.2,
+    "description": "Algo nublado",
     "wind": "Oeste 4 km/h",
     "visibilityKm": 15,
     "sunrise": "08:32",
     "sunset": "19:00",
-    "updatedAt": "2026-07-27T18:00:00-03:00",
+    "updatedAt": "2026-07-27T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 32
+    "humidity": 30
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-27T22:38:50.391Z",
+  "scrapedAt": "2026-07-28T10:04:43.608Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -10,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -11,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -8,
       "wind": "NO a 51-59 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -11,
       "wind": "NO a 42-50 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -13,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -9,
+      "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "27/7/2026 08:06:52"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-27T22:38:50.391Z"
+  "lastKnownGoodAt": "2026-07-28T10:04:43.608Z"
 }
