@@ -22,56 +22,55 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20.8,
-    "description": "Ligeramente nublado con polvo en suspensión",
-    "wind": "Norte 4 km/h",
+    "temperatureC": 11,
+    "description": "Soleado",
+    "wind": "SSW a 5 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:24",
+    "sunrise": "08:26",
     "sunset": "19:02",
-    "updatedAt": "2026-07-27T21:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 21
+    "updatedAt": "2026-07-28",
+    "feelsLikeC": 10,
+    "humidity": 39
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-07-28T10:04:52.038Z",
+  "scrapedAt": "2026-07-28T16:53:10.711Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 21,
-      "wind": "O a 23-31 km/h",
+      "description": "Soleado",
+      "temperatureC": 13,
+      "wind": "NW 14 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 13,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": 10,
-      "wind": "O a 13-22 km/h",
+      "description": "Despejado",
+      "temperatureC": 6,
+      "wind": "W 15 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
+      "description": "Despejado",
       "temperatureC": 3,
-      "wind": "N a 23-31 km/h",
+      "wind": "SW 8 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 10,
+      "wind": "S 4 km/h",
       "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
-    "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-30.32783/-69.23614",
-    "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs",
-    "forecastSource": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/27/Agua-Negra"
+    "clima": "https://wttr.in",
+    "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-07-28T10:04:52.038Z"
+  "lastKnownGoodAt": "2026-07-28T16:53:10.711Z"
 }
