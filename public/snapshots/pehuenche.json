@@ -1,7 +1,7 @@
 {
   "slug": "pehuenche",
   "name": "Pehuenche",
-  "schedule": "09:00-19:00",
+  "schedule": "Mo-Su open 09:00-19:00 \"Ingreso hasta las 19 h, egreso hasta las 18.\"",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": null,
@@ -13,56 +13,56 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.4,
-    "description": "Mayormente nublado",
-    "wind": "Sudeste 13 km/h",
+    "temperatureC": 13.8,
+    "description": "Ligeramente nublado",
+    "wind": "Noreste 12 km/h",
     "visibilityKm": 20,
     "sunrise": "08:36",
     "sunset": "18:57",
-    "updatedAt": "2026-07-30T13:00:00-03:00",
-    "feelsLikeC": 3.8,
-    "humidity": 84
+    "updatedAt": "2026-07-30T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 39
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-30T16:52:23.036Z",
+  "scrapedAt": "2026-07-30T22:43:48.076Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Ventoso",
-      "temperatureC": -4,
-      "wind": "NO a 60-69 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Ventisca",
-      "temperatureC": -3,
-      "wind": "O a 60-69 km/h",
+      "temperatureC": -1,
+      "wind": "NO a 60-69 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas fuertes",
-      "temperatureC": -6,
-      "wind": "NO a 42-50 km/h",
+      "temperatureC": -2,
+      "wind": "NO a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": 0,
-      "wind": "O a 32-41 km/h",
+      "wind": "NO a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -4,
+      "wind": "S a 32-41 km/h",
       "visibility": "Muy mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "30/7/2026 10:29:43"
+    "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-30T16:52:23.036Z"
+  "lastKnownGoodAt": "2026-07-30T22:43:48.076Z"
 }
