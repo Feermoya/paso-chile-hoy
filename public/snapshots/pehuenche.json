@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 15.6,
+    "temperatureC": 7.8,
     "description": "Algo nublado",
     "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
     "sunrise": "08:35",
     "sunset": "18:58",
-    "updatedAt": "2026-07-31T13:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 20
+    "updatedAt": "2026-07-31T19:00:00-03:00",
+    "feelsLikeC": 4.4,
+    "humidity": 36
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-31T16:58:50.414Z",
+  "scrapedAt": "2026-07-31T22:39:50.995Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -4,
-      "wind": "S a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
       "temperatureC": -5,
-      "wind": "NO a 23-31 km/h",
+      "wind": "O a 42-50 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Mayormente nublado",
-      "temperatureC": -6,
-      "wind": "O a 51-59 km/h",
+      "temperatureC": -5,
+      "wind": "O a 42-50 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 0,
-      "wind": "O a 51-59 km/h",
+      "description": "Ventisca",
+      "temperatureC": -1,
+      "wind": "NO a 51-59 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-31T16:58:50.414Z"
+  "lastKnownGoodAt": "2026-07-31T22:39:50.995Z"
 }

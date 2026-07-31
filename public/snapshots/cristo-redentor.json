@@ -13,48 +13,48 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10.4,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 10 km/h",
+    "temperatureC": 9.7,
+    "description": "Algo nublado",
+    "wind": "Sudoeste 15 km/h",
     "visibilityKm": 15,
     "sunrise": "08:29",
     "sunset": "19:02",
-    "updatedAt": "2026-07-31T12:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 28
+    "updatedAt": "2026-07-31T18:00:00-03:00",
+    "feelsLikeC": 7.6,
+    "humidity": 27
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-07-31T16:58:48.365Z",
+  "scrapedAt": "2026-07-31T22:39:39.599Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -11,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nublado",
       "temperatureC": -16,
-      "wind": "NO a 23-31 km/h",
+      "wind": "O a 42-50 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Mayormente nublado",
-      "temperatureC": -14,
-      "wind": "O a 13-22 km/h",
+      "temperatureC": -16,
+      "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
       "temperatureC": -6,
-      "wind": "O a 32-41 km/h",
+      "wind": "NO a 42-50 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": -9,
+      "wind": "O a 60-69 km/h",
       "visibility": "Mala"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-31T16:58:48.365Z"
+  "lastKnownGoodAt": "2026-07-31T22:39:39.599Z"
 }
