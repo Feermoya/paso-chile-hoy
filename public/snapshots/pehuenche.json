@@ -13,45 +13,45 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.8,
+    "temperatureC": 7.2,
     "description": "Algo nublado",
-    "wind": "Oeste 23 km/h",
+    "wind": "Oeste 15 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:35",
+    "sunrise": "08:34",
     "sunset": "18:58",
-    "updatedAt": "2026-07-31T19:00:00-03:00",
-    "feelsLikeC": 4.4,
-    "humidity": 36
+    "updatedAt": "2026-07-31T21:00:00-03:00",
+    "feelsLikeC": 4.5,
+    "humidity": 44
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-07-31T22:39:50.995Z",
+  "scrapedAt": "2026-08-01T09:32:34.501Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Ventisca",
       "temperatureC": -1,
       "wind": "NO a 51-59 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas fuertes",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la mañana",
       "description": "Nevadas fuertes",
       "temperatureC": -6,
       "wind": "O a 60-69 km/h",
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-07-31T22:39:50.995Z"
+  "lastKnownGoodAt": "2026-08-01T09:32:34.501Z"
 }
