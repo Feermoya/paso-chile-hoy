@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
-    "description": "Soleado",
-    "wind": "W a 13 km/h",
+    "temperatureC": 6,
+    "description": "Despejado",
+    "wind": "WSW a 10 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:22",
-    "sunset": "19:05",
-    "updatedAt": "2026-08-02",
-    "feelsLikeC": 8,
-    "humidity": 25
+    "sunrise": "08:21",
+    "sunset": "19:06",
+    "updatedAt": "2026-08-03",
+    "feelsLikeC": 3,
+    "humidity": 37
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-02T22:34:36.493Z",
+  "scrapedAt": "2026-08-03T10:54:16.687Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 6,
-      "wind": "WSW 13 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
       "temperatureC": 15,
-      "wind": "WSW 5 km/h",
+      "wind": "SW 7 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 19,
-      "wind": "WNW 5 km/h",
+      "temperatureC": 18,
+      "wind": "NNW 1 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 16,
+      "wind": "ENE 7 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
       "description": "Despejado",
-      "temperatureC": 10,
-      "wind": "WNW 9 km/h",
+      "temperatureC": 9,
+      "wind": "W 6 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-02T22:34:36.493Z"
+  "lastKnownGoodAt": "2026-08-03T10:54:16.687Z"
 }
