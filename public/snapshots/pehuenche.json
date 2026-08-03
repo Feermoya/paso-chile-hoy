@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4.4,
-    "description": "Mayormente nublado con lluvia débil",
-    "wind": "Noreste 6 km/h",
-    "visibilityKm": 8,
-    "sunrise": "08:34",
-    "sunset": "18:59",
-    "updatedAt": "2026-08-03T07:00:00-03:00",
-    "feelsLikeC": 3.2,
-    "humidity": 86
+    "temperatureC": 8.7,
+    "description": "Mayormente nublado",
+    "wind": "Norte 8 km/h",
+    "visibilityKm": 20,
+    "sunrise": "08:33",
+    "sunset": "19:00",
+    "updatedAt": "2026-08-03T14:00:00-03:00",
+    "feelsLikeC": 7.6,
+    "humidity": 75
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-03T10:54:10.067Z",
+  "scrapedAt": "2026-08-03T17:20:56.327Z",
   "forecast": [
     {
-      "period": "Hoy por la tarde",
+      "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
-      "temperatureC": -2,
+      "temperatureC": -8,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -5,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
+      "description": "Nevadas fuertes",
       "temperatureC": -7,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas fuertes",
+      "temperatureC": -5,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -7,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-03T10:54:10.067Z"
+  "lastKnownGoodAt": "2026-08-03T17:20:56.327Z"
 }
