@@ -4,7 +4,7 @@
   "schedule": "Mo-Su open 09:00-19:00 \"Ingreso hasta las 19 h, egreso hasta las 18.\"",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
-  "motivo": null,
+  "motivo": "Inclemencias climáticas",
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "145",
@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8.7,
-    "description": "Mayormente nublado",
-    "wind": "Norte 8 km/h",
+    "temperatureC": 12.2,
+    "description": "Nublado",
+    "wind": "Noreste 8 km/h",
     "visibilityKm": 20,
     "sunrise": "08:33",
     "sunset": "19:00",
-    "updatedAt": "2026-08-03T14:00:00-03:00",
-    "feelsLikeC": 7.6,
-    "humidity": 75
+    "updatedAt": "2026-08-03T19:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 61
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-03T17:20:56.327Z",
+  "scrapedAt": "2026-08-03T22:37:34.347Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -8,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
+      "description": "Nevadas",
+      "temperatureC": -7,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
+      "description": "Nevadas",
       "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
     },
     {
       "period": "Mañana por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -5,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
+      "description": "Nevadas",
+      "temperatureC": -2,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
     },
     {
       "period": "Mañana por la noche",
-      "description": "Nevadas fuertes",
+      "description": "Nevadas",
       "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-03T17:20:56.327Z"
+  "lastKnownGoodAt": "2026-08-03T22:37:34.347Z"
 }
