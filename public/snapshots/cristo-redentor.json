@@ -27,35 +27,35 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-04T22:41:21.506Z",
+  "scrapedAt": "2026-08-05T10:05:28.207Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ventoso",
-      "temperatureC": -16,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -8,
       "wind": "O a 51-59 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Nevadas",
+      "period": "Hoy por la noche",
+      "description": "Ventisca",
       "temperatureC": -10,
-      "wind": "O a 51-59 km/h",
+      "wind": "O a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas fuertes",
+      "temperatureC": -13,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas fuertes",
+      "temperatureC": -18,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-04T22:41:21.506Z"
+  "lastKnownGoodAt": "2026-08-05T10:05:28.207Z"
 }
