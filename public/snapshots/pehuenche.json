@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 3.3,
+    "temperatureC": 7.1,
     "description": "Despejado",
-    "wind": "Oeste 28 km/h",
+    "wind": "Oeste 13 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:31",
-    "sunset": "19:01",
-    "updatedAt": "2026-08-06T06:00:00-03:00",
-    "feelsLikeC": -1.9,
-    "humidity": 50
+    "sunrise": "08:30",
+    "sunset": "19:02",
+    "updatedAt": "2026-08-06T21:00:00-03:00",
+    "feelsLikeC": 4.7,
+    "humidity": 28
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-06T10:08:18.867Z",
+  "scrapedAt": "2026-08-07T01:04:47.610Z",
   "forecast": [
     {
-      "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": -6,
-      "wind": "SO a 51-59 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "SO a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
+      "description": "Mayormente nublado",
       "temperatureC": -9,
-      "wind": "SO a 32-41 km/h",
+      "wind": "O a 42-50 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "O a 51-59 km/h",
+      "description": "Ventoso",
+      "temperatureC": -9,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Ventisca",
+      "temperatureC": -8,
+      "wind": "O a 70-78 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -13,
+      "wind": "O a 70-78 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-06T10:08:18.867Z"
+  "lastKnownGoodAt": "2026-08-07T01:04:47.610Z"
 }
