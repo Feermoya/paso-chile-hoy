@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4,
+    "temperatureC": 7,
     "description": "Soleado",
-    "wind": "NE a 5 km/h",
+    "wind": "ENE a 7 km/h",
     "visibilityKm": 10,
     "sunrise": "08:16",
     "sunset": "19:10",
     "updatedAt": "2026-08-10",
-    "feelsLikeC": 2,
-    "humidity": 32
+    "feelsLikeC": 5,
+    "humidity": 28
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-10T16:11:43.582Z",
+  "scrapedAt": "2026-08-10T22:17:31.436Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Parcialmente nublado",
-      "temperatureC": 7,
-      "wind": "NE 8 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": 4,
-      "wind": "NNW 1 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 3,
-      "wind": "SSW 5 km/h",
+      "temperatureC": 2,
+      "wind": "S 5 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana al mediodía",
       "description": "Soleado",
-      "temperatureC": 13,
-      "wind": "NNW 9 km/h",
+      "temperatureC": 12,
+      "wind": "WNW 5 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 15,
+      "wind": "W 18 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 7,
+      "wind": "ESE 4 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-10T16:11:43.582Z"
+  "lastKnownGoodAt": "2026-08-10T22:17:31.436Z"
 }
