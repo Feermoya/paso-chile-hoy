@@ -14,35 +14,21 @@
   "latestTweet": null,
   "weather": {
     "temperatureC": 1,
-    "description": "Cubierto",
+    "description": "Mayormente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:21",
-    "sunset": "19:08",
-    "updatedAt": "2026-08-09T21:00:00-03:00",
+    "sunrise": "08:20",
+    "sunset": "19:09",
+    "updatedAt": "2026-08-10T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 84
+    "humidity": 58
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-10T08:56:57.285Z",
+  "scrapedAt": "2026-08-10T16:11:25.714Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "N a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -6,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -56,6 +42,20 @@
       "temperatureC": -7,
       "wind": "N a 23-31 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -10,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -5,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-10T08:56:57.285Z"
+  "lastKnownGoodAt": "2026-08-10T16:11:25.714Z"
 }
