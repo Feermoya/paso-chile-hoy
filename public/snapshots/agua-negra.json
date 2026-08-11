@@ -15,55 +15,55 @@
     "Velocidad moderada"
   ],
   "vialidadRuta": "150",
-  "vialidadTramo": "Arrequintin - Lte. Con Chile",
-  "vialidadEstado": "CORTE TOTAL",
-  "vialidadObservaciones": "Transitable",
+  "vialidadTramo": "",
+  "vialidadEstado": "",
+  "vialidadObservaciones": "",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
+    "temperatureC": 11,
     "description": "Soleado",
-    "wind": "NNW a 6 km/h",
+    "wind": "SSW a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:15",
     "sunset": "19:10",
     "updatedAt": "2026-08-11",
-    "feelsLikeC": 10,
-    "humidity": 25
+    "feelsLikeC": 8,
+    "humidity": 28
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-11T16:13:02.494Z",
+  "scrapedAt": "2026-08-11T22:22:49.386Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 14,
-      "wind": "WNW 19 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 8,
-      "wind": "WSW 4 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 4,
-      "wind": "NNW 5 km/h",
+      "temperatureC": 5,
+      "wind": "W 4 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana al mediodía",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 7,
-      "wind": "NW 1 km/h",
+      "temperatureC": 8,
+      "wind": "SE 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 10,
+      "wind": "E 7 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
+      "temperatureC": 5,
+      "wind": "N 1 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-11T16:13:02.494Z"
+  "lastKnownGoodAt": "2026-08-11T22:22:49.386Z"
 }
