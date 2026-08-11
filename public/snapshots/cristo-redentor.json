@@ -13,48 +13,48 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4.3,
-    "description": "Mayormente nublado",
+    "temperatureC": 0,
+    "description": "Cubierto",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:20",
-    "sunset": "19:09",
-    "updatedAt": "2026-08-10T18:00:00-03:00",
+    "sunrise": "08:19",
+    "sunset": "19:10",
+    "updatedAt": "2026-08-10T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 45
+    "humidity": 67
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-10T22:17:26.898Z",
+  "scrapedAt": "2026-08-11T08:29:35.475Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "N a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Nevadas",
       "temperatureC": -10,
       "wind": "NO a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -5,
       "wind": "NO a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -7,
       "wind": "NO a 32-41 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas fuertes",
+      "temperatureC": -4,
+      "wind": "NO a 42-50 km/h",
       "visibility": "Muy mala"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-10T22:17:26.898Z"
+  "lastKnownGoodAt": "2026-08-11T08:29:35.475Z"
 }
