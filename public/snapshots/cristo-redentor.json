@@ -13,41 +13,27 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.3,
-    "description": "Ligeramente nublado",
-    "wind": "Calma",
-    "visibilityKm": 19,
+    "temperatureC": 9,
+    "description": "Algo nublado",
+    "wind": "Oeste 4 km/h",
+    "visibilityKm": 15,
     "sunrise": "08:18",
     "sunset": "19:10",
-    "updatedAt": "2026-08-11T18:00:00-03:00",
+    "updatedAt": "2026-08-12T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 35
+    "humidity": 46
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-12T08:46:34.343Z",
+  "scrapedAt": "2026-08-12T16:11:43.915Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -13,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -9,
-      "wind": "NO a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -6,
-      "wind": "NO a 32-41 km/h",
+      "wind": "NO a 13-22 km/h",
       "visibility": "Mala"
     },
     {
@@ -56,6 +42,20 @@
       "temperatureC": -3,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -10,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -4,
+      "wind": "NO a 23-31 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-12T08:46:34.343Z"
+  "lastKnownGoodAt": "2026-08-12T16:11:43.915Z"
 }
