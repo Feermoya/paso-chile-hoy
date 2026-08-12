@@ -15,55 +15,55 @@
     "Velocidad moderada"
   ],
   "vialidadRuta": "150",
-  "vialidadTramo": "",
-  "vialidadEstado": "",
-  "vialidadObservaciones": "",
+  "vialidadTramo": "Arrequintin - Lte. Con Chile",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "Transitable",
   "restriccionPasajeros": "Vehículos hasta 22 butacas",
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
-    "description": "Soleado",
-    "wind": "SSW a 4 km/h",
+    "temperatureC": 5,
+    "description": "Lluvia localizada en las cercanías",
+    "wind": "NW a 4 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:15",
-    "sunset": "19:10",
-    "updatedAt": "2026-08-11",
-    "feelsLikeC": 8,
-    "humidity": 28
+    "sunrise": "08:14",
+    "sunset": "19:11",
+    "updatedAt": "2026-08-12",
+    "feelsLikeC": 2,
+    "humidity": 45
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-11T22:22:49.386Z",
+  "scrapedAt": "2026-08-12T08:46:49.863Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 5,
-      "wind": "W 4 km/h",
+      "temperatureC": 6,
+      "wind": "SW 3 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 8,
-      "wind": "SE 4 km/h",
+      "temperatureC": 9,
+      "wind": "ESE 2 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Lluvia localizada en las cercanías",
       "temperatureC": 10,
-      "wind": "E 7 km/h",
+      "wind": "E 4 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "N 1 km/h",
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 9,
+      "wind": "ENE 14 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-11T22:22:49.386Z"
+  "lastKnownGoodAt": "2026-08-12T08:46:49.863Z"
 }

@@ -3,8 +3,8 @@
   "name": "Pehuenche",
   "schedule": "Mo-Su open 09:00-19:00 \"Ingreso hasta las 19 h, egreso hasta las 18.\"",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
-  "rawStatus": "SIN_DATOS",
-  "motivo": null,
+  "rawStatus": "CERRADO",
+  "motivo": "Inclemencias climáticas",
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "145",
@@ -12,19 +12,57 @@
   "vialidadEstado": "CORTE TOTAL",
   "vialidadObservaciones": "",
   "latestTweet": null,
-  "weather": null,
+  "weather": {
+    "temperatureC": 2,
+    "description": "Cubierto",
+    "wind": "Este 6 km/h",
+    "visibilityKm": 20,
+    "sunrise": "08:24",
+    "sunset": "19:06",
+    "updatedAt": "2026-08-11T21:00:00-03:00",
+    "feelsLikeC": 0.5,
+    "humidity": 78
+  },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-11T22:22:46.222Z",
-  "forecast": [],
+  "scrapedAt": "2026-08-12T08:46:43.225Z",
+  "forecast": [
+    {
+      "period": "Hoy por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -10,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -5,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -7,
+      "wind": "NO a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -3,
+      "wind": "NO a 7-12 km/h",
+      "visibility": "Buena"
+    }
+  ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": null
+    "statusUpdatedAt": "6/07/2026 14:55:25"
   },
-  "scrapeError": "detalle_consolidado, detalle_clima, detalle_html",
-  "lastKnownGoodAt": "2026-08-11T16:12:59.578Z",
-  "operationalStale": true
+  "operationalStale": false,
+  "lastKnownGoodAt": "2026-08-12T08:46:43.225Z"
 }
