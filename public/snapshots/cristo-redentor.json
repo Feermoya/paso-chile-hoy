@@ -17,8 +17,8 @@
     "description": null,
     "wind": "Calma",
     "visibilityKm": null,
-    "sunrise": "08:17",
-    "sunset": "19:11",
+    "sunrise": "08:16",
+    "sunset": "19:12",
     "updatedAt": null,
     "feelsLikeC": null,
     "humidity": null
@@ -27,42 +27,13 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-13T22:22:41.318Z",
-  "forecast": [
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -8,
-      "wind": "NO a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -3,
-      "wind": "NO a 42-50 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Nevadas",
-      "temperatureC": -6,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    }
-  ],
+  "scrapedAt": "2026-08-14T08:43:33.876Z",
+  "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-13T22:22:41.318Z"
+  "lastKnownGoodAt": "2026-08-14T08:43:33.876Z"
 }
