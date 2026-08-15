@@ -17,7 +17,7 @@
     "description": "Mayormente nublado",
     "wind": "Sudoeste 4 km/h",
     "visibilityKm": 15,
-    "sunrise": "08:16",
+    "sunrise": "08:15",
     "sunset": "19:12",
     "updatedAt": "2026-08-14T18:00:00-03:00",
     "feelsLikeC": null,
@@ -27,35 +27,35 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-14T21:55:12.688Z",
+  "scrapedAt": "2026-08-15T07:51:36.196Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -9,
-      "wind": "SO a 23-31 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Nevadas fuertes",
       "temperatureC": -10,
       "wind": "NO a 23-31 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -6,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -5,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -7,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-14T21:55:12.688Z"
+  "lastKnownGoodAt": "2026-08-15T07:51:36.196Z"
 }
