@@ -22,36 +22,22 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
+    "temperatureC": 8,
     "description": "Soleado",
-    "wind": "NE a 8 km/h",
+    "wind": "NE a 17 km/h",
     "visibilityKm": 10,
     "sunrise": "08:10",
     "sunset": "19:13",
     "updatedAt": "2026-08-16",
     "feelsLikeC": 5,
-    "humidity": 55
+    "humidity": 49
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-16T15:40:11.481Z",
+  "scrapedAt": "2026-08-16T21:53:01.699Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 8,
-      "wind": "NE 17 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "NNE 5 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Nieve ligera irregular",
@@ -65,6 +51,20 @@
       "temperatureC": 3,
       "wind": "E 5 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Aguacero con nieve moderada o fuerte",
+      "temperatureC": 3,
+      "wind": "ENE 8 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Aguacero con nieve moderada o fuerte",
+      "temperatureC": 1,
+      "wind": "NE 6 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-16T15:40:11.481Z"
+  "lastKnownGoodAt": "2026-08-16T21:53:01.699Z"
 }
