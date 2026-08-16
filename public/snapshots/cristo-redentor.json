@@ -13,47 +13,47 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13.8,
-    "description": "Parcialmente nublado",
-    "wind": "Este 10 km/h",
+    "temperatureC": 6.5,
+    "description": "Algo nublado",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:15",
-    "sunset": "19:12",
-    "updatedAt": "2026-08-15T15:00:00-03:00",
+    "sunrise": "08:14",
+    "sunset": "19:13",
+    "updatedAt": "2026-08-15T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 37
+    "humidity": 60
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-15T21:53:04.732Z",
+  "scrapedAt": "2026-08-16T07:54:03.346Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Nevadas fuertes",
       "temperatureC": -8,
       "wind": "O a 23-31 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -1,
       "wind": "O a 32-41 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -4,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -10,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-15T21:53:04.732Z"
+  "lastKnownGoodAt": "2026-08-16T07:54:03.346Z"
 }
