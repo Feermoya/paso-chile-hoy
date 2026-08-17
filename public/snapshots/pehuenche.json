@@ -13,36 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6,
-    "description": "Parcialmente nublado",
-    "wind": "Norte 8 km/h",
-    "visibilityKm": 20,
-    "sunrise": "08:19",
-    "sunset": "19:10",
-    "updatedAt": "2026-08-16T21:00:00-03:00",
-    "feelsLikeC": 4.5,
-    "humidity": 76
+    "temperatureC": 1,
+    "description": "Nublado con nevada débil",
+    "wind": "Sudeste 4 km/h",
+    "visibilityKm": 1,
+    "sunrise": "08:18",
+    "sunset": "19:11",
+    "updatedAt": "2026-08-17T12:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 88
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-17T08:06:29.195Z",
+  "scrapedAt": "2026-08-17T15:43:43.706Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -8,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": 1,
-      "wind": "NO a 23-31 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -56,6 +42,20 @@
       "temperatureC": -9,
       "wind": "SO a 0-2 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -11,
+      "wind": "NE a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 1,
+      "wind": "NE a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-17T08:06:29.195Z"
+  "lastKnownGoodAt": "2026-08-17T15:43:43.706Z"
 }
