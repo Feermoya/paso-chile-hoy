@@ -13,49 +13,49 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.7,
+    "temperatureC": 5.7,
     "description": "Parcialmente nublado",
-    "wind": "Sudoeste 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:14",
-    "sunset": "19:13",
-    "updatedAt": "2026-08-16T15:00:00-03:00",
+    "sunrise": "08:13",
+    "sunset": "19:14",
+    "updatedAt": "2026-08-16T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 30
+    "humidity": 63
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-16T21:52:52.176Z",
+  "scrapedAt": "2026-08-17T08:06:27.159Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
+      "period": "Hoy por la mañana",
+      "description": "Nevadas fuertes",
       "temperatureC": -10,
       "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
+      "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -11,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -4,
       "wind": "NO a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -7,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -11,
+      "wind": "SE a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-16T21:52:52.176Z"
+  "lastKnownGoodAt": "2026-08-17T08:06:27.159Z"
 }
