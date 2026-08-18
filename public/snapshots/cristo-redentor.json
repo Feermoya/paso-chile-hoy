@@ -13,48 +13,48 @@
   "vialidadObservaciones": "Nevadas y fuerte viento blanco Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10.5,
-    "description": "Parcialmente nublado",
-    "wind": "Sudeste 4 km/h",
+    "temperatureC": 2.1,
+    "description": "Algo nublado",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:13",
+    "sunrise": "08:12",
     "sunset": "19:14",
-    "updatedAt": "2026-08-17T15:00:00-03:00",
+    "updatedAt": "2026-08-17T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 46
+    "humidity": 68
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-17T21:56:12.487Z",
+  "scrapedAt": "2026-08-18T08:02:15.604Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -11,
-      "wind": "SE a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -13,
       "wind": "NE a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Algo nublado",
       "temperatureC": -8,
       "wind": "NE a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Despejado",
       "temperatureC": -13,
       "wind": "SE a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Despejado",
+      "temperatureC": -13,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-17T21:56:12.487Z"
+  "lastKnownGoodAt": "2026-08-18T08:02:15.604Z"
 }
