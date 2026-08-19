@@ -13,29 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4.7,
-    "description": "Algo nublado",
-    "wind": "Este 6 km/h",
+    "temperatureC": 16.5,
+    "description": "Ligeramente nublado",
+    "wind": "Noreste 8 km/h",
     "visibilityKm": 20,
     "sunrise": "08:15",
     "sunset": "19:12",
-    "updatedAt": "2026-08-19T11:00:00-03:00",
-    "feelsLikeC": 3.5,
-    "humidity": 68
+    "updatedAt": "2026-08-19T18:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": 37
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-19T15:49:22.379Z",
+  "scrapedAt": "2026-08-19T21:57:30.519Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -4,
-      "wind": "SE a 13-22 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
@@ -56,6 +49,13 @@
       "temperatureC": 4,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": 0,
+      "wind": "SO a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-19T15:49:22.379Z"
+  "lastKnownGoodAt": "2026-08-19T21:57:30.519Z"
 }
