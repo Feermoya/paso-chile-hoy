@@ -24,46 +24,46 @@
   "weather": {
     "temperatureC": 12,
     "description": "Soleado",
-    "wind": "ENE a 9 km/h",
+    "wind": "ENE a 13 km/h",
     "visibilityKm": 10,
     "sunrise": "08:05",
     "sunset": "19:16",
     "updatedAt": "2026-08-21",
-    "feelsLikeC": 9,
-    "humidity": 23
+    "feelsLikeC": 8,
+    "humidity": 30
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-21T15:51:17.140Z",
+  "scrapedAt": "2026-08-21T21:57:05.633Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 12,
-      "wind": "ENE 12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 9,
-      "wind": "NE 8 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "SW 4 km/h",
+      "temperatureC": 4,
+      "wind": "SW 1 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana al mediodía",
       "description": "Soleado",
+      "temperatureC": 10,
+      "wind": "SE 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Soleado",
+      "temperatureC": 16,
+      "wind": "E 4 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Despejado",
       "temperatureC": 11,
-      "wind": "SE 3 km/h",
+      "wind": "ESE 3 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-21T15:51:17.140Z"
+  "lastKnownGoodAt": "2026-08-21T21:57:05.633Z"
 }
