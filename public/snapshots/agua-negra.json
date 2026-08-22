@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
-    "description": "Despejado",
-    "wind": "SSW a 4 km/h",
+    "temperatureC": 8,
+    "description": "Soleado",
+    "wind": "SSE a 4 km/h",
     "visibilityKm": 10,
     "sunrise": "08:04",
     "sunset": "19:17",
     "updatedAt": "2026-08-22",
-    "feelsLikeC": 2,
-    "humidity": 65
+    "feelsLikeC": 5,
+    "humidity": 44
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-22T07:53:55.733Z",
+  "scrapedAt": "2026-08-22T15:39:31.411Z",
   "forecast": [
     {
-      "period": "Hoy por la mañana",
-      "description": "Cubierto de nubes",
-      "temperatureC": 5,
-      "wind": "S 4 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy al mediodía",
-      "description": "Soleado",
-      "temperatureC": 11,
-      "wind": "ENE 2 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 16,
-      "wind": "ESE 4 km/h",
+      "temperatureC": 18,
+      "wind": "ENE 9 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Hoy por la tarde",
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 12,
+      "wind": "ESE 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Despejado",
+      "temperatureC": 6,
+      "wind": "S 5 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
       "description": "Soleado",
-      "temperatureC": 17,
-      "wind": "ENE 10 km/h",
+      "temperatureC": 13,
+      "wind": "ENE 6 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-22T07:53:55.733Z"
+  "lastKnownGoodAt": "2026-08-22T15:39:31.411Z"
 }
