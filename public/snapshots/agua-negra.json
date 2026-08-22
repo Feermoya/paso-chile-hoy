@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
-    "description": "Soleado",
-    "wind": "ENE a 13 km/h",
+    "temperatureC": 5,
+    "description": "Despejado",
+    "wind": "SSW a 4 km/h",
     "visibilityKm": 10,
-    "sunrise": "08:05",
-    "sunset": "19:16",
-    "updatedAt": "2026-08-21",
-    "feelsLikeC": 8,
-    "humidity": 30
+    "sunrise": "08:04",
+    "sunset": "19:17",
+    "updatedAt": "2026-08-22",
+    "feelsLikeC": 2,
+    "humidity": 65
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-21T21:57:05.633Z",
+  "scrapedAt": "2026-08-22T07:53:55.733Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 4,
-      "wind": "SW 1 km/h",
+      "period": "Hoy por la mañana",
+      "description": "Cubierto de nubes",
+      "temperatureC": 5,
+      "wind": "S 4 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana al mediodía",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "SE 2 km/h",
+      "temperatureC": 11,
+      "wind": "ENE 2 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 16,
-      "wind": "E 4 km/h",
+      "wind": "ESE 4 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 11,
-      "wind": "ESE 3 km/h",
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 17,
+      "wind": "ENE 10 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-21T21:57:05.633Z"
+  "lastKnownGoodAt": "2026-08-22T07:53:55.733Z"
 }
