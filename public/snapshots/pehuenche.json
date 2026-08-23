@@ -13,48 +13,48 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11.7,
-    "description": "Parcialmente nublado",
-    "wind": "Este 10 km/h",
+    "temperatureC": 6.3,
+    "description": "Ligeramente nublado",
+    "wind": "Noroeste 6 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:11",
-    "sunset": "19:14",
-    "updatedAt": "2026-08-22T18:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 57
+    "sunrise": "08:10",
+    "sunset": "19:15",
+    "updatedAt": "2026-08-22T21:00:00-03:00",
+    "feelsLikeC": 5.4,
+    "humidity": 82
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-22T21:54:30.095Z",
+  "scrapedAt": "2026-08-23T07:55:52.244Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Algo nublado",
-      "temperatureC": 1,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": 1,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Mayormente nublado",
       "temperatureC": 6,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Parcialmente nublado",
       "temperatureC": 1,
       "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Algo nublado",
+      "temperatureC": 1,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "6/07/2026 14:55:25"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-22T21:54:30.095Z"
+  "lastKnownGoodAt": "2026-08-23T07:55:52.244Z"
 }
