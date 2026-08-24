@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": null,
+  "motivoInfo": "-.SE PROCEDE AL CIERRE DE BARRERA, INHABILITANDO LA TRANSITABILIDAD PARA VEHÍCULOS PARTICULARES Y TRANSPORTES DE PASAJERO/CARGA CON DESTINO A CHILE-",
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -17,7 +17,7 @@
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:06",
+    "sunrise": "08:05",
     "sunset": "19:18",
     "updatedAt": "2026-08-23T15:00:00-03:00",
     "feelsLikeC": null,
@@ -27,34 +27,34 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-23T21:54:07.490Z",
+  "scrapedAt": "2026-08-24T08:10:21.201Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Ligeramente nublado",
-      "temperatureC": -10,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -9,
       "wind": "NO a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": 1,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -1,
       "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -6,
+      "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/07/2026 12:04:12"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-23T21:54:07.490Z"
+  "lastKnownGoodAt": "2026-08-24T08:10:21.201Z"
 }
