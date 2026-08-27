@@ -13,47 +13,47 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4.8,
+    "temperatureC": 12.6,
     "description": "Ligeramente nublado",
-    "wind": "Sudoeste 12 km/h",
+    "wind": "Sur 12 km/h",
     "visibilityKm": 20,
-    "sunrise": "08:06",
-    "sunset": "19:17",
-    "updatedAt": "2026-08-26T21:00:00-03:00",
-    "feelsLikeC": 2.2,
-    "humidity": 76
+    "sunrise": "08:05",
+    "sunset": "19:18",
+    "updatedAt": "2026-08-27T15:00:00-03:00",
+    "feelsLikeC": null,
+    "humidity": null
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-27T01:02:45.450Z",
+  "scrapedAt": "2026-08-27T18:22:00.101Z",
   "forecast": [
     {
+      "period": "Hoy por la noche",
+      "description": "Nevadas",
+      "temperatureC": -10,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -4,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Muy mala"
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "NO a 13-22 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
-      "temperatureC": -12,
-      "wind": "O a 23-31 km/h",
+      "temperatureC": -9,
+      "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas",
-      "temperatureC": -8,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Nevadas",
-      "temperatureC": -10,
+      "temperatureC": -1,
       "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/08/2026 12:15:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-27T01:02:45.450Z"
+  "lastKnownGoodAt": "2026-08-27T18:22:00.101Z"
 }

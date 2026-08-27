@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": null,
+  "motivoInfo": "-.-SISTEMA CRISTO REDENTOR” (MINSEG 048) INHABILITADO, PARA TODO TIPO DE VEHICULOS. ASIMISMO. TRANSITO INTERNO PARA TURISMO, SE ENCUENTRA HABILITADO HASTA LA LOCALIDAD DE “USPALLATA",
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,49 +13,49 @@
   "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.5,
-    "description": "Cubierto con llovizna",
+    "temperatureC": 9.3,
+    "description": "Parcialmente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "08:02",
+    "sunrise": "08:01",
     "sunset": "19:20",
-    "updatedAt": "2026-08-26T21:00:00-03:00",
+    "updatedAt": "2026-08-27T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 81
+    "humidity": 40
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-27T01:02:34.919Z",
+  "scrapedAt": "2026-08-27T18:21:55.449Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -6,
-      "wind": "NO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -12,
-      "wind": "NO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -10,
-      "wind": "NO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -8,
       "wind": "O a 13-22 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -14,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -15,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Ventisca",
+      "temperatureC": -7,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "26/08/2026 9:20:06"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-27T01:02:34.919Z"
+  "lastKnownGoodAt": "2026-08-27T18:21:55.449Z"
 }
