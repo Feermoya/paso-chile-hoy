@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": "-.-SE PROCEDE AL CIERRE DE BARRERA PARA VEHÍCULOS QUE INTENTEN TRANSPONER EL LIMITE INTERNACIONAL, DEBIDO A LAS CONDICIONES CLIMÁTICAS ADVERSAS EN ALTA MONTAÑA",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,48 +13,48 @@
   "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7.2,
+    "temperatureC": 5.5,
     "description": "Cubierto con llovizna",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:02",
     "sunset": "19:20",
-    "updatedAt": "2026-08-26T12:00:00-03:00",
+    "updatedAt": "2026-08-26T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 80
+    "humidity": 81
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-26T16:34:50.409Z",
+  "scrapedAt": "2026-08-27T01:02:34.919Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -7,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
       "temperatureC": -6,
-      "wind": "O a 13-22 km/h",
+      "wind": "NO a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas fuertes",
       "temperatureC": -12,
-      "wind": "O a 32-41 km/h",
+      "wind": "NO a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": -10,
-      "wind": "O a 32-41 km/h",
+      "wind": "NO a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -8,
+      "wind": "O a 13-22 km/h",
       "visibility": "Muy mala"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "26/08/2026 9:20:06"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-26T16:34:50.409Z"
+  "lastKnownGoodAt": "2026-08-27T01:02:34.919Z"
 }
