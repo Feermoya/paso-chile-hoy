@@ -5,17 +5,17 @@
   "routeName": "Ruta Nacional 7",
   "routeCode": "7",
   "province": "Mendoza",
-  "updatedAt": "2026-08-27T01:02:15.362Z",
-  "sourceUpdatedAt": "2026-08-26T10:11:00.000Z",
+  "updatedAt": "2026-08-27T20:34:00.088Z",
+  "sourceUpdatedAt": "2026-08-27T10:11:00.000Z",
   "summary": {
     "totalSegments": 8,
-    "openSegments": 6,
+    "openSegments": 4,
     "partialSegments": 0,
-    "closedSegments": 2,
+    "closedSegments": 4,
     "cautionSegments": 0,
-    "firstBlockingSegmentId": "punta-de-vacas-puente-del-inca",
+    "firstBlockingSegmentId": "uspallata-polvaredas",
     "canReachPass": false,
-    "headline": "Corte en Punta De Vacas - Puente Del Inca",
+    "headline": "Corte en Uspallata - Polvaredas",
     "worstStatus": "CLOSED"
   },
   "segmentOrder": "asc",
@@ -29,7 +29,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 175,
       "notes": null,
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": false,
         "toll": true,
@@ -45,7 +45,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 46,
       "notes": null,
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -61,7 +61,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 50,
       "notes": null,
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -72,14 +72,14 @@
       "id": "uspallata-polvaredas",
       "order": 3,
       "name": "Uspallata - Polvaredas",
-      "status": "OPEN",
-      "statusLabel": "HABILITADA",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
       "surface": "PAVIMENTO",
       "lengthKm": 40,
       "notes": null,
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
-        "critical": false,
+        "critical": true,
         "toll": false,
         "international": false
       }
@@ -88,12 +88,12 @@
       "id": "polvaredas-punta-de-vacas",
       "order": 4,
       "name": "Polvaredas - Punta de Vacas",
-      "status": "OPEN",
-      "statusLabel": "HABILITADA",
+      "status": "CLOSED",
+      "statusLabel": "CORTE TOTAL",
       "surface": "PAVIMENTO",
       "lengthKm": 51,
-      "notes": "Transitable con Precaución",
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "notes": null,
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -109,9 +109,9 @@
       "surface": "PAVIMENTO",
       "lengthKm": 26,
       "notes": "Transitable con Precaución",
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
-        "critical": true,
+        "critical": false,
         "toll": false,
         "international": false
       }
@@ -125,7 +125,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 13.8,
       "notes": "Transitable con Precaución",
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": false,
         "toll": false,
@@ -141,7 +141,7 @@
       "surface": "PAVIMENTO",
       "lengthKm": 4.45,
       "notes": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
-      "updatedAt": "2026-08-26T10:11:00.000Z",
+      "updatedAt": "2026-08-27T10:11:00.000Z",
       "flags": {
         "critical": true,
         "toll": true,
