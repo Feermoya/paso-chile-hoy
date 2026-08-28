@@ -13,49 +13,49 @@
   "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8.9,
-    "description": "Parcialmente nublado",
+    "temperatureC": 7,
+    "description": "Algo nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "08:01",
     "sunset": "19:20",
-    "updatedAt": "2026-08-27T18:00:00-03:00",
+    "updatedAt": "2026-08-27T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 57
+    "humidity": 62
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-28T00:26:43.208Z",
+  "scrapedAt": "2026-08-28T05:36:15.230Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -14,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la mañana",
       "description": "Nevadas",
       "temperatureC": -18,
       "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -12,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -11,
       "wind": "O a 7-12 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -14,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "26/08/2026 9:20:06"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-28T00:26:43.208Z"
+  "lastKnownGoodAt": "2026-08-28T05:36:15.230Z"
 }
