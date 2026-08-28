@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": "-.-SISTEMA CRISTO REDENTOR” (MINSEG 048) INHABILITADO, PARA TODO TIPO DE VEHICULOS. ASIMISMO. TRANSITO INTERNO PARA TURISMO, SE ENCUENTRA HABILITADO HASTA LA LOCALIDAD DE “USPALLATA",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,36 +13,22 @@
   "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 7,
+    "temperatureC": 12.4,
     "description": "Algo nublado",
-    "wind": "Calma",
+    "wind": "Sudoeste 4 km/h",
     "visibilityKm": 15,
-    "sunrise": "08:01",
-    "sunset": "19:20",
-    "updatedAt": "2026-08-27T21:00:00-03:00",
+    "sunrise": "08:00",
+    "sunset": "19:21",
+    "updatedAt": "2026-08-28T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 62
+    "humidity": 25
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-08-28T05:36:15.230Z",
+  "scrapedAt": "2026-08-28T19:31:13.985Z",
   "forecast": [
-    {
-      "period": "Hoy por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -18,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -12,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -56,6 +42,20 @@
       "temperatureC": -14,
       "wind": "O a 7-12 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -16,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -8,
+      "wind": "SO a 13-22 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "26/08/2026 9:20:06"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-28T05:36:15.230Z"
+  "lastKnownGoodAt": "2026-08-28T19:31:13.985Z"
 }
