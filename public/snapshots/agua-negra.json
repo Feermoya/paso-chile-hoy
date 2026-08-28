@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 19,
-    "description": "Soleado",
-    "wind": "NNE a 24 km/h",
+    "temperatureC": 15,
+    "description": "Despejado",
+    "wind": "NW a 29 km/h",
     "visibilityKm": 10,
     "sunrise": "07:58",
     "sunset": "19:20",
     "updatedAt": "2026-08-27",
-    "feelsLikeC": 11,
-    "humidity": 16
+    "feelsLikeC": 7,
+    "humidity": 21
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-08-27T18:22:03.359Z",
+  "scrapedAt": "2026-08-28T00:26:50.334Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Despejado",
-      "temperatureC": 14,
-      "wind": "NNW 26 km/h",
+      "period": "Hoy por la madrugada",
+      "description": "Cubierto de nubes",
+      "temperatureC": 9,
+      "wind": "S 4 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la mañana",
-      "description": "Despejado",
-      "temperatureC": 7,
-      "wind": "SW 1 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy por la mañana",
       "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "SE 6 km/h",
+      "temperatureC": 9,
+      "wind": "SSE 6 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy al mediodía",
       "description": "Soleado",
-      "temperatureC": 14,
-      "wind": "E 11 km/h",
+      "temperatureC": 12,
+      "wind": "ESE 5 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 19,
+      "wind": "N 39 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-08-27T18:22:03.359Z"
+  "lastKnownGoodAt": "2026-08-28T00:26:50.334Z"
 }
