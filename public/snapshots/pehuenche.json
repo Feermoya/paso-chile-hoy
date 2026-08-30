@@ -27,7 +27,7 @@
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-30T18:39:05.495Z",
+  "scrapedAt": "2026-08-30T23:49:14.193Z",
   "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
@@ -35,5 +35,5 @@
     "statusUpdatedAt": "25/08/2026 12:15:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-30T18:39:05.495Z"
+  "lastKnownGoodAt": "2026-08-30T23:49:14.193Z"
 }
