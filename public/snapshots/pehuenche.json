@@ -17,8 +17,8 @@
     "description": null,
     "wind": "Calma",
     "visibilityKm": null,
-    "sunrise": "08:01",
-    "sunset": "19:20",
+    "sunrise": "07:59",
+    "sunset": "19:21",
     "updatedAt": null,
     "feelsLikeC": null,
     "humidity": null
@@ -27,7 +27,7 @@
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-08-30T23:49:14.193Z",
+  "scrapedAt": "2026-08-31T15:16:47.695Z",
   "forecast": [],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
@@ -35,5 +35,5 @@
     "statusUpdatedAt": "25/08/2026 12:15:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-08-30T23:49:14.193Z"
+  "lastKnownGoodAt": "2026-08-31T15:16:47.695Z"
 }
