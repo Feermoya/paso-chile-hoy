@@ -13,40 +13,33 @@
   "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13.8,
-    "description": "Ligeramente nublado",
+    "temperatureC": 17.1,
+    "description": "Parcialmente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:55",
     "sunset": "19:23",
-    "updatedAt": "2026-09-01T12:00:00-03:00",
+    "updatedAt": "2026-09-01T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 34
+    "humidity": 26
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-01T18:36:39.404Z",
+  "scrapedAt": "2026-09-01T23:32:29.267Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
-      "temperatureC": -9,
+      "temperatureC": -5,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Nevadas",
-      "temperatureC": -10,
+      "temperatureC": -8,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
     },
@@ -54,6 +47,13 @@
       "period": "Mañana por la tarde",
       "description": "Ventisca",
       "temperatureC": -5,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Ventisca",
+      "temperatureC": -6,
       "wind": "O a 42-50 km/h",
       "visibility": "Mala"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "31/08/2026 11:04:09"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-01T18:36:39.404Z"
+  "lastKnownGoodAt": "2026-09-01T23:32:29.267Z"
 }
