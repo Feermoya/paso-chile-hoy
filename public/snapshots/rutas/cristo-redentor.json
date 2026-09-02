@@ -5,7 +5,7 @@
   "routeName": "Ruta Nacional 7",
   "routeCode": "7",
   "province": "Mendoza",
-  "updatedAt": "2026-09-02T14:32:14.007Z",
+  "updatedAt": "2026-09-02T18:46:29.358Z",
   "sourceUpdatedAt": "2026-09-02T10:45:00.000Z",
   "summary": {
     "totalSegments": 8,
@@ -60,7 +60,7 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 50,
-      "notes": null,
+      "notes": "Transitable con Precaución",
       "updatedAt": "2026-09-02T10:45:00.000Z",
       "flags": {
         "critical": false,
@@ -76,7 +76,7 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 40,
-      "notes": null,
+      "notes": "Transitable con Precaución",
       "updatedAt": "2026-09-02T10:45:00.000Z",
       "flags": {
         "critical": false,
@@ -92,7 +92,7 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 51,
-      "notes": null,
+      "notes": "Transitable con Precaución",
       "updatedAt": "2026-09-02T10:45:00.000Z",
       "flags": {
         "critical": false,
@@ -140,7 +140,7 @@
       "statusLabel": "HABILITADA",
       "surface": "PAVIMENTO",
       "lengthKm": 4.45,
-      "notes": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
+      "notes": "Corte por nevadas desde las 15 hs  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
       "updatedAt": "2026-09-02T10:45:00.000Z",
       "flags": {
         "critical": true,
