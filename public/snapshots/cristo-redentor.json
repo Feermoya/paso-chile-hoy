@@ -5,37 +5,30 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": "HORARIO INVERNAL, PI HABILITADO 09:00 HS HASTA 21:00 HS",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
   "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "Corte por nevadas  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
+  "vialidadObservaciones": "Corte por nevadas desde las 15 hs  - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12.3,
-    "description": "Parcialmente nublado",
-    "wind": "Calma",
+    "temperatureC": 17.1,
+    "description": "Cubierto",
+    "wind": "Noroeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "07:54",
     "sunset": "19:24",
-    "updatedAt": "2026-09-01T21:00:00-03:00",
+    "updatedAt": "2026-09-02T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 46
+    "humidity": 28
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-02T12:13:42.336Z",
+  "scrapedAt": "2026-09-02T18:46:37.423Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Ventisca",
-      "temperatureC": -5,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Ventisca",
@@ -56,6 +49,13 @@
       "temperatureC": -8,
       "wind": "O a 42-50 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -4,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "31/08/2026 11:04:09"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-02T12:13:42.336Z"
+  "lastKnownGoodAt": "2026-09-02T18:46:37.423Z"
 }
