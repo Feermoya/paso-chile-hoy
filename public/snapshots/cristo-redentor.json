@@ -13,40 +13,33 @@
   "vialidadObservaciones": "Corte por nevadas - Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 17.8,
+    "temperatureC": 16.2,
     "description": "Parcialmente nublado",
-    "wind": "Sudoeste 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:52",
     "sunset": "19:25",
-    "updatedAt": "2026-09-03T15:00:00-03:00",
+    "updatedAt": "2026-09-03T18:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 26
+    "humidity": 31
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-03T18:43:54.325Z",
+  "scrapedAt": "2026-09-03T23:36:10.044Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Ventisca",
-      "temperatureC": -7,
-      "wind": "O a 42-50 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
       "temperatureC": -10,
-      "wind": "O a 13-22 km/h",
+      "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
-      "temperatureC": -13,
+      "temperatureC": -7,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
@@ -56,6 +49,13 @@
       "temperatureC": -5,
       "wind": "SO a 7-12 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -11,
+      "wind": "SO a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "2/09/2026 18:03:02"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-03T18:43:54.325Z"
+  "lastKnownGoodAt": "2026-09-03T23:36:10.044Z"
 }
