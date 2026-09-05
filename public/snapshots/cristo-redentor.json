@@ -13,29 +13,22 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8,
+    "temperatureC": -1.8,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:50",
     "sunset": "19:26",
-    "updatedAt": "2026-09-04T21:00:00-03:00",
+    "updatedAt": "2026-09-05T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 47
+    "humidity": 83
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-05T11:20:53.168Z",
+  "scrapedAt": "2026-09-05T17:23:14.043Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -5,
-      "wind": "SE a 13-22 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -56,6 +49,13 @@
       "temperatureC": -12,
       "wind": "NO a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Despejado",
+      "temperatureC": -5,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "4/09/2026 8:11:39"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-05T11:20:53.168Z"
+  "lastKnownGoodAt": "2026-09-05T17:23:14.043Z"
 }
