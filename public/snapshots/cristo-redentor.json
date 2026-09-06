@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": null,
+  "motivoInfo": "-.-SE PROCEDE AL  CIERRE DE BARRERA DE TRANSITO  CON DESTINO A CHILE, PARA TODO TIPO DE VEHICULOS",
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,47 +13,47 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.5,
-    "description": "Despejado",
+    "temperatureC": 0.4,
+    "description": "Cubierto",
     "wind": "Sur 4 km/h",
     "visibilityKm": 15,
     "sunrise": "07:50",
     "sunset": "19:26",
-    "updatedAt": "2026-09-05T15:00:00-03:00",
+    "updatedAt": "2026-09-05T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 45
+    "humidity": 64
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-05T23:15:17.716Z",
+  "scrapedAt": "2026-09-06T11:43:12.275Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -10,
-      "wind": "SE a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
-      "wind": "NO a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Despejado",
       "temperatureC": -5,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Algo nublado",
       "temperatureC": -9,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Despejado",
+      "temperatureC": -11,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -12,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "4/09/2026 8:11:39"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-05T23:15:17.716Z"
+  "lastKnownGoodAt": "2026-09-06T11:43:12.275Z"
 }
