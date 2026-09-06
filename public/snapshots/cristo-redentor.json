@@ -13,33 +13,26 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -6.1,
-    "description": "Cubierto",
-    "wind": "Calma",
+    "temperatureC": 6.2,
+    "description": "Despejado",
+    "wind": "Sudoeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "07:48",
     "sunset": "19:27",
-    "updatedAt": "2026-09-06T09:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 61
+    "updatedAt": "2026-09-06T15:00:00-03:00",
+    "feelsLikeC": 4.3,
+    "humidity": 46
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-06T17:37:04.557Z",
+  "scrapedAt": "2026-09-06T23:07:26.270Z",
   "forecast": [
     {
-      "period": "Hoy por la noche",
-      "description": "Algo nublado",
-      "temperatureC": -9,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -11,
+      "description": "Algo nublado",
+      "temperatureC": -10,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
@@ -47,13 +40,20 @@
       "period": "Mañana por la mañana",
       "description": "Parcialmente nublado",
       "temperatureC": -12,
-      "wind": "O a 13-22 km/h",
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la tarde",
       "description": "Mayormente nublado",
-      "temperatureC": -4,
+      "temperatureC": -3,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "4/09/2026 8:11:39"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-06T17:37:04.557Z"
+  "lastKnownGoodAt": "2026-09-06T23:07:26.270Z"
 }
