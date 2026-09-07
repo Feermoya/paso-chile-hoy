@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 4,
-    "description": "Soleado",
-    "wind": "NE a 7 km/h",
+    "temperatureC": 3,
+    "description": "Parcialmente nublado",
+    "wind": "S a 4 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:47",
-    "sunset": "19:25",
-    "updatedAt": "2026-09-06",
-    "feelsLikeC": 2,
-    "humidity": 36
+    "sunrise": "07:46",
+    "sunset": "19:26",
+    "updatedAt": "2026-09-07",
+    "feelsLikeC": -1,
+    "humidity": 39
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-06T23:07:35.495Z",
+  "scrapedAt": "2026-09-07T13:36:51.229Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 16,
+      "wind": "NE 9 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 18,
+      "wind": "NNW 19 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 13,
+      "wind": "NNW 10 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 1,
-      "wind": "SSE 4 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
-      "temperatureC": 10,
-      "wind": "SSE 5 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Soleado",
-      "temperatureC": 16,
-      "wind": "NNE 8 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 13,
-      "wind": "NW 13 km/h",
+      "temperatureC": 7,
+      "wind": "SSW 6 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-06T23:07:35.495Z"
+  "lastKnownGoodAt": "2026-09-07T13:36:51.229Z"
 }
