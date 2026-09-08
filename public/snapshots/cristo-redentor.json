@@ -13,47 +13,47 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 16.2,
+    "temperatureC": 11.6,
     "description": "Despejado",
-    "wind": "Sudoeste 10 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:47",
     "sunset": "19:27",
-    "updatedAt": "2026-09-07T18:00:00-03:00",
+    "updatedAt": "2026-09-07T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 22
+    "humidity": 36
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-07T23:44:43.334Z",
+  "scrapedAt": "2026-09-08T12:14:09.670Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -13,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -13,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -3,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -8,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -12,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -7,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     }
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "4/09/2026 8:11:39"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-07T23:44:43.334Z"
+  "lastKnownGoodAt": "2026-09-08T12:14:09.670Z"
 }

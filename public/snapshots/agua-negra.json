@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14,
-    "description": "Despejado",
-    "wind": "NNW a 27 km/h",
+    "temperatureC": 6,
+    "description": "Soleado",
+    "wind": "SSW a 7 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:46",
+    "sunrise": "07:44",
     "sunset": "19:26",
-    "updatedAt": "2026-09-07",
-    "feelsLikeC": 6,
-    "humidity": 16
+    "updatedAt": "2026-09-08",
+    "feelsLikeC": 4,
+    "humidity": 31
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-07T23:44:51.726Z",
+  "scrapedAt": "2026-09-08T12:14:16.103Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 16,
+      "wind": "ESE 6 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Nublado",
+      "temperatureC": 17,
+      "wind": "NNW 27 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 14,
+      "wind": "NNW 31 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 6,
-      "wind": "SSW 4 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
-      "temperatureC": 13,
-      "wind": "SE 3 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Cubierto de nubes",
-      "temperatureC": 16,
-      "wind": "ESE 7 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 14,
-      "wind": "NNW 27 km/h",
+      "temperatureC": 7,
+      "wind": "WSW 6 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-07T23:44:51.726Z"
+  "lastKnownGoodAt": "2026-09-08T12:14:16.103Z"
 }
