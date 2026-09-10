@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
-    "description": "Parcialmente nublado",
-    "wind": "NW a 22 km/h",
+    "temperatureC": 5,
+    "description": "Soleado",
+    "wind": "NE a 4 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:43",
+    "sunrise": "07:42",
     "sunset": "19:27",
-    "updatedAt": "2026-09-09",
-    "feelsLikeC": 7,
-    "humidity": 15
+    "updatedAt": "2026-09-10",
+    "feelsLikeC": 1,
+    "humidity": 40
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-09T23:29:48.113Z",
+  "scrapedAt": "2026-09-10T12:19:07.534Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Cubierto de nubes",
+      "temperatureC": 14,
+      "wind": "ENE 14 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Parcialmente nublado",
+      "temperatureC": 14,
+      "wind": "NW 28 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Aguacero ligero",
+      "temperatureC": 9,
+      "wind": "S 20 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "SE 2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
-      "temperatureC": 9,
-      "wind": "E 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Cubierto de nubes",
-      "temperatureC": 13,
-      "wind": "ENE 13 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Aguacero ligero",
-      "temperatureC": 10,
-      "wind": "SSW 30 km/h",
+      "temperatureC": 4,
+      "wind": "ESE 1 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-09T23:29:48.113Z"
+  "lastKnownGoodAt": "2026-09-10T12:19:07.534Z"
 }
