@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": "PASO INTERNACIONAL “SISTEMA INTEGRADO CRISTO REDENTOR” (MSG.048), PERMANECE INHABILITADO PARA TODO TIPO DE VEHÍCULO. ASIMISMO TURISMO INTERNO PERMANECE HABILITADO DESDE USPALLATA KM1151  HASTA BOCA DEL TÚNEL KM1236",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 0.9,
-    "description": "Despejado",
+    "temperatureC": 10.2,
+    "description": "Algo nublado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:42",
     "sunset": "19:30",
-    "updatedAt": "2026-09-11T09:00:00-03:00",
+    "updatedAt": "2026-09-11T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 57
+    "humidity": 66
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-11T12:17:50.616Z",
+  "scrapedAt": "2026-09-11T18:38:17.119Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -7,
-      "wind": "SO a 13-22 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -56,6 +49,13 @@
       "temperatureC": -10,
       "wind": "NE a 23-31 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nublado",
+      "temperatureC": -7,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "10/09/2026 8:37:46"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-11T12:17:50.616Z"
+  "lastKnownGoodAt": "2026-09-11T18:38:17.119Z"
 }
