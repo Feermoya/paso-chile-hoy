@@ -13,33 +13,26 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -3.9,
+    "temperatureC": 4.2,
     "description": "Parcialmente nublado",
-    "wind": "Calma",
+    "wind": "Sur 4 km/h",
     "visibilityKm": 15,
     "sunrise": "07:40",
     "sunset": "19:30",
-    "updatedAt": "2026-09-12T09:00:00-03:00",
+    "updatedAt": "2026-09-12T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 86
+    "humidity": 46
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-12T17:45:54.111Z",
+  "scrapedAt": "2026-09-12T23:18:36.490Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Parcialmente nublado",
-      "temperatureC": -10,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Parcialmente nublado",
-      "temperatureC": -10,
+      "temperatureC": -15,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     },
@@ -56,6 +49,13 @@
       "temperatureC": -7,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Parcialmente nublado",
+      "temperatureC": -9,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "11/09/2026 18:05:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-12T17:45:54.111Z"
+  "lastKnownGoodAt": "2026-09-12T23:18:36.490Z"
 }
