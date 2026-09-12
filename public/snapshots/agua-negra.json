@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
-    "description": "Soleado",
-    "wind": "E a 28 km/h",
-    "visibilityKm": 10,
-    "sunrise": "07:41",
+    "temperatureC": -1,
+    "description": "Aguacero con nieve moderada o fuerte",
+    "wind": "NE a 9 km/h",
+    "visibilityKm": 7,
+    "sunrise": "07:39",
     "sunset": "19:28",
-    "updatedAt": "2026-09-11",
-    "feelsLikeC": 6,
-    "humidity": 30
+    "updatedAt": "2026-09-12",
+    "feelsLikeC": -4,
+    "humidity": 87
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-11T23:31:05.073Z",
+  "scrapedAt": "2026-09-12T11:41:18.566Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Aguacero con nieve moderada o fuerte",
-      "temperatureC": -1,
-      "wind": "NE 10 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Nublado",
+      "period": "Hoy al mediodía",
+      "description": "Parcialmente nublado",
       "temperatureC": 1,
-      "wind": "NE 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 4,
       "wind": "ENE 12 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Cubierto de nubes",
-      "temperatureC": -1,
-      "wind": "NE 6 km/h",
+      "period": "Hoy por la tarde",
+      "description": "Lluvia localizada en las cercanías",
+      "temperatureC": 3,
+      "wind": "ENE 12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 1,
+      "wind": "ENE 13 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": -2,
+      "wind": "NNE 7 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-11T23:31:05.073Z"
+  "lastKnownGoodAt": "2026-09-12T11:41:18.566Z"
 }
