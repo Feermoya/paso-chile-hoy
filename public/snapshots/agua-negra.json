@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -2,
-    "description": "Despejado",
-    "wind": "ENE a 9 km/h",
+    "temperatureC": -3,
+    "description": "Soleado",
+    "wind": "WNW a 4 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:39",
-    "sunset": "19:28",
-    "updatedAt": "2026-09-12",
-    "feelsLikeC": -5,
-    "humidity": 66
+    "sunrise": "07:38",
+    "sunset": "19:29",
+    "updatedAt": "2026-09-13",
+    "feelsLikeC": -6,
+    "humidity": 63
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-12T23:18:41.144Z",
+  "scrapedAt": "2026-09-13T12:48:19.588Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 10,
+      "wind": "ENE 12 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 9,
+      "wind": "ENE 13 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Cubierto de nubes",
+      "temperatureC": 5,
+      "wind": "ESE 3 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": -5,
-      "wind": "NW 3 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
       "temperatureC": 3,
-      "wind": "NE 1 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Soleado",
-      "temperatureC": 9,
-      "wind": "E 10 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 5,
-      "wind": "SSE 2 km/h",
+      "wind": "S 5 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-12T23:18:41.144Z"
+  "lastKnownGoodAt": "2026-09-13T12:48:19.588Z"
 }

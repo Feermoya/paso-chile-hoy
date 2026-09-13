@@ -13,48 +13,48 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": -0.8,
-    "description": "Parcialmente nublado",
-    "wind": "Norte 8 km/h",
+    "temperatureC": -4.6,
+    "description": "Ligeramente nublado",
+    "wind": "Sudoeste 8 km/h",
     "visibilityKm": 20,
     "sunrise": "07:42",
     "sunset": "19:30",
-    "updatedAt": "2026-09-12T19:00:00-03:00",
-    "feelsLikeC": -3.5,
-    "humidity": 80
+    "updatedAt": "2026-09-13T09:00:00-03:00",
+    "feelsLikeC": -7.9,
+    "humidity": 78
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-12T23:18:38.537Z",
+  "scrapedAt": "2026-09-13T12:48:16.612Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -10,
-      "wind": "N a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -3,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
       "temperatureC": -3,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Parcialmente nublado",
       "temperatureC": -8,
       "wind": "NO a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -3,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Algo nublado",
+      "temperatureC": 0,
+      "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/08/2026 12:15:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-12T23:18:38.537Z"
+  "lastKnownGoodAt": "2026-09-13T12:48:16.612Z"
 }
