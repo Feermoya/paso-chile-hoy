@@ -22,56 +22,26 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 11,
-    "description": "Despejado con humo",
-    "wind": "Sur 4 km/h",
-    "visibilityKm": 10,
+    "temperatureC": null,
+    "description": null,
+    "wind": "Calma",
+    "visibilityKm": null,
     "sunrise": "07:33",
     "sunset": "19:30",
-    "updatedAt": "2026-09-14T21:00:00-03:00",
+    "updatedAt": null,
     "feelsLikeC": null,
-    "humidity": 54
+    "humidity": null
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-15T12:46:57.641Z",
-  "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Algo nublado",
-      "temperatureC": 18,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la noche",
-      "description": "Algo nublado",
-      "temperatureC": 11,
-      "wind": "SO a 0-2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": 2,
-      "wind": "NO a 7-12 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ligeramente nublado",
-      "temperatureC": 2,
-      "wind": "NO a 13-22 km/h",
-      "visibility": "Buena"
-    }
-  ],
+  "scrapedAt": "2026-09-15T19:04:15.287Z",
+  "forecast": [],
   "sources": {
     "status": "aguanegra.sanjuan.gob.ar",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-30.32783/-69.23614",
-    "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs",
-    "forecastSource": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/27/Agua-Negra"
+    "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-15T12:46:57.641Z"
+  "lastKnownGoodAt": "2026-09-15T19:04:15.287Z"
 }
