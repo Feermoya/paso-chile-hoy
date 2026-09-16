@@ -13,48 +13,48 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 19.4,
+    "temperatureC": 1.1,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:36",
     "sunset": "19:32",
-    "updatedAt": "2026-09-15T18:00:00-03:00",
+    "updatedAt": "2026-09-16T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 35
+    "humidity": 78
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-15T23:40:32.486Z",
+  "scrapedAt": "2026-09-16T12:42:08.790Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Despejado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -7,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Parcialmente nublado",
       "temperatureC": 0,
       "wind": "O a 23-31 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
-      "description": "Parcialmente nublado",
+      "period": "Hoy por la noche",
+      "description": "Algo nublado",
       "temperatureC": -4,
       "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Ligeramente nublado",
+      "temperatureC": -5,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "O a 13-22 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "11/09/2026 18:05:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-15T23:40:32.486Z"
+  "lastKnownGoodAt": "2026-09-16T12:42:08.790Z"
 }
