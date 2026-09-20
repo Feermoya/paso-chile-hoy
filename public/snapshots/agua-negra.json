@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10,
+    "temperatureC": 21,
     "description": "Soleado",
-    "wind": "SSW a 13 km/h",
+    "wind": "NW a 46 km/h",
     "visibilityKm": 10,
     "sunrise": "07:29",
     "sunset": "19:33",
     "updatedAt": "2026-09-20",
-    "feelsLikeC": 8,
-    "humidity": 43
+    "feelsLikeC": 9,
+    "humidity": 11
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-20T12:33:00.627Z",
+  "scrapedAt": "2026-09-20T18:13:16.038Z",
   "forecast": [
     {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 22,
-      "wind": "WNW 50 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Hoy por la tarde",
-      "description": "Soleado",
-      "temperatureC": 21,
-      "wind": "W 38 km/h",
-      "visibility": "Buena"
-    },
-    {
       "period": "Hoy por la noche",
-      "description": "Cubierto de nubes",
-      "temperatureC": 19,
-      "wind": "W 37 km/h",
+      "description": "Parcialmente nublado",
+      "temperatureC": 18,
+      "wind": "W 49 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nublado",
-      "temperatureC": 12,
-      "wind": "W 4 km/h",
+      "description": "Cubierto de nubes",
+      "temperatureC": 11,
+      "wind": "WSW 2 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana al mediodía",
+      "description": "Soleado",
+      "temperatureC": 15,
+      "wind": "ENE 17 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Soleado",
+      "temperatureC": 15,
+      "wind": "ENE 18 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-20T12:33:00.627Z"
+  "lastKnownGoodAt": "2026-09-20T18:13:16.038Z"
 }

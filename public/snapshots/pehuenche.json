@@ -1,7 +1,7 @@
 {
   "slug": "pehuenche",
   "name": "Pehuenche",
-  "schedule": "Mo-Su open 09:00-19:00 \"Ingreso hasta las 19 h. || Egreso hasta las 18.\"",
+  "schedule": "Mo-Su 09:00-19:00 open \"Ingreso hasta las 19 h. || Egreso hasta las 18.\"",
   "scheduleRaw": "HABILITADO PARA TODO TIPO DE TRANSPORTE DE 0800 A 1900 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 8,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 23 km/h",
-    "visibilityKm": 20,
+    "temperatureC": 4.6,
+    "description": "Nublado con lluvia",
+    "wind": "Sudoeste 21 km/h",
+    "visibilityKm": 4,
     "sunrise": "07:31",
     "sunset": "19:36",
-    "updatedAt": "2026-09-20T09:00:00-03:00",
-    "feelsLikeC": 4.6,
-    "humidity": 54
+    "updatedAt": "2026-09-20T14:00:00-03:00",
+    "feelsLikeC": 0.5,
+    "humidity": 92
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-20T12:32:56.819Z",
+  "scrapedAt": "2026-09-20T18:13:13.293Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": 0,
-      "wind": "SO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
@@ -56,13 +49,20 @@
       "temperatureC": -6,
       "wind": "SO a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 5,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/32",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-35.79497/-70.14326",
-    "statusUpdatedAt": "25/08/2026 12:15:15"
+    "statusUpdatedAt": "20/09/2026 12:27:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-20T12:32:56.819Z"
+  "lastKnownGoodAt": "2026-09-20T18:13:13.293Z"
 }

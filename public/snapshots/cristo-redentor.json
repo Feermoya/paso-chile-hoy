@@ -1,11 +1,11 @@
 {
   "slug": "cristo-redentor",
   "name": "Sistema Cristo Redentor",
-  "schedule": "Mo-Su open 09:00-21:00 \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
+  "schedule": "Mo-Su 09:00-21:00 open \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "CERRADO",
   "motivo": "Inclemencias climáticas",
-  "motivoInfo": "-.-CIERRE PREVENTIVO DEL PFI A PARTIR DE 191400SEP26, DEBIDO A INGRESO DE FRENTE DE MAL TIEMPO PREPONDERANTE EN ZONA DE ALTA MONTAÑA; POR TAL MOTIVO SE EFECTUARÁ EL CIERRE DE BARRERA EN LA LOCALIDAD DE USPALLATA",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5,
+    "temperatureC": 14.9,
     "description": "Parcialmente nublado",
-    "wind": "Oeste 4 km/h",
+    "wind": "Sur 10 km/h",
     "visibilityKm": 15,
-    "sunrise": "07:31",
+    "sunrise": "07:30",
     "sunset": "19:35",
-    "updatedAt": "2026-09-20T09:00:00-03:00",
+    "updatedAt": "2026-09-20T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 51
+    "humidity": 30
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-20T12:32:52.904Z",
+  "scrapedAt": "2026-09-20T18:13:06.835Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": -1,
-      "wind": "SO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
@@ -56,13 +49,20 @@
       "temperatureC": -5,
       "wind": "SO a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 1,
+      "wind": "SO a 42-50 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "19/09/2026 14:01:03"
+    "statusUpdatedAt": "20/09/2026 12:27:01"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-20T12:32:52.904Z"
+  "lastKnownGoodAt": "2026-09-20T18:13:06.835Z"
 }
