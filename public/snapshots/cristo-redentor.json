@@ -27,15 +27,8 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-20T18:13:06.835Z",
+  "scrapedAt": "2026-09-20T23:29:51.840Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -3,
-      "wind": "SO a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Ventisca",
@@ -56,6 +49,13 @@
       "temperatureC": 1,
       "wind": "SO a 42-50 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Mayormente nublado",
+      "temperatureC": -7,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/09/2026 12:27:01"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-20T18:13:06.835Z"
+  "lastKnownGoodAt": "2026-09-20T23:29:51.840Z"
 }
