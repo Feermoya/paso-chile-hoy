@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 20,
+    "temperatureC": 10,
     "description": "Soleado",
-    "wind": "NW a 41 km/h",
+    "wind": "SSW a 13 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:31",
-    "sunset": "19:32",
-    "updatedAt": "2026-09-19",
-    "feelsLikeC": 9,
-    "humidity": 16
+    "sunrise": "07:29",
+    "sunset": "19:33",
+    "updatedAt": "2026-09-20",
+    "feelsLikeC": 8,
+    "humidity": 43
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-19T23:30:04.559Z",
+  "scrapedAt": "2026-09-20T12:33:00.627Z",
   "forecast": [
     {
-      "period": "Mañana por la mañana",
-      "description": "Lluvia localizada en las cercanías",
-      "temperatureC": 10,
-      "wind": "SSW 2 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
-      "temperatureC": 20,
-      "wind": "NW 41 km/h",
+      "temperatureC": 22,
+      "wind": "WNW 50 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Soleado",
       "temperatureC": 21,
-      "wind": "NW 48 km/h",
+      "wind": "W 38 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Cubierto de nubes",
-      "temperatureC": 18,
-      "wind": "W 41 km/h",
+      "temperatureC": 19,
+      "wind": "W 37 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nublado",
+      "temperatureC": 12,
+      "wind": "W 4 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-19T23:30:04.559Z"
+  "lastKnownGoodAt": "2026-09-20T12:33:00.627Z"
 }

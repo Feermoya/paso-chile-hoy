@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 13.3,
+    "temperatureC": 8,
     "description": "Parcialmente nublado",
-    "wind": "Noreste 13 km/h",
+    "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
-    "sunrise": "07:32",
-    "sunset": "19:35",
-    "updatedAt": "2026-09-19T20:00:00-03:00",
-    "feelsLikeC": null,
-    "humidity": 39
+    "sunrise": "07:31",
+    "sunset": "19:36",
+    "updatedAt": "2026-09-20T09:00:00-03:00",
+    "feelsLikeC": 4.6,
+    "humidity": 54
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-19T23:30:01.807Z",
+  "scrapedAt": "2026-09-20T12:32:56.819Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Nevadas fuertes",
-      "temperatureC": -1,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -4,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": 0,
       "wind": "SO a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -4,
       "wind": "SO a 60-69 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Ventisca",
+      "temperatureC": -1,
+      "wind": "SO a 60-69 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -6,
+      "wind": "SO a 60-69 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/08/2026 12:15:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-19T23:30:01.807Z"
+  "lastKnownGoodAt": "2026-09-20T12:32:56.819Z"
 }
