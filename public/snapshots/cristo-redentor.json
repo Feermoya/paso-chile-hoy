@@ -3,8 +3,8 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "Mo-Su 09:00-21:00 open \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
-  "motivo": "Inclemencias climáticas",
+  "rawStatus": "ABIERTO",
+  "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 6.9,
-    "description": "Algo nublado",
-    "wind": "Calma",
+    "temperatureC": 23.7,
+    "description": "Despejado",
+    "wind": "Sudoeste 4 km/h",
     "visibilityKm": 15,
-    "sunrise": "07:30",
-    "sunset": "19:35",
-    "updatedAt": "2026-09-21T09:00:00-03:00",
+    "sunrise": "07:28",
+    "sunset": "19:36",
+    "updatedAt": "2026-09-21T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 44
+    "humidity": 25
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-21T14:25:41.682Z",
+  "scrapedAt": "2026-09-21T20:01:06.493Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Mayormente nublado",
-      "temperatureC": 1,
-      "wind": "SO a 42-50 km/h",
-      "visibility": "Buena"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Mayormente nublado",
@@ -56,13 +49,20 @@
       "temperatureC": -5,
       "wind": "E a 7-12 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": 1,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "20/09/2026 12:27:01"
+    "statusUpdatedAt": "21/09/2026 16:00:49"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-21T14:25:41.682Z"
+  "lastKnownGoodAt": "2026-09-21T20:01:06.493Z"
 }
