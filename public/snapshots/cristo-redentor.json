@@ -9,52 +9,52 @@
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "HABILITADA",
-  "vialidadObservaciones": "- Desde las 09 hs habilitacion  Nuevo horario de invierno de 09 a 21 hs Arg - 08 a 20 hs Chile",
+  "vialidadEstado": "CORTE TOTAL",
+  "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 14.9,
-    "description": "Parcialmente nublado",
-    "wind": "Sur 10 km/h",
+    "temperatureC": 6.9,
+    "description": "Algo nublado",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:30",
     "sunset": "19:35",
-    "updatedAt": "2026-09-20T15:00:00-03:00",
+    "updatedAt": "2026-09-21T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 30
+    "humidity": 44
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-20T23:29:51.840Z",
+  "scrapedAt": "2026-09-21T14:25:41.682Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Ventisca",
-      "temperatureC": -6,
-      "wind": "SO a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -5,
-      "wind": "SO a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Mayormente nublado",
       "temperatureC": 1,
       "wind": "SO a 42-50 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": -7,
       "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -2,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -5,
+      "wind": "E a 7-12 km/h",
       "visibility": "Buena"
     }
   ],
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/09/2026 12:27:01"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-20T23:29:51.840Z"
+  "lastKnownGoodAt": "2026-09-21T14:25:41.682Z"
 }
