@@ -13,49 +13,49 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 22.1,
+    "temperatureC": 13.3,
     "description": "Despejado",
-    "wind": "Sudoeste 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "07:27",
+    "sunrise": "07:26",
     "sunset": "19:37",
-    "updatedAt": "2026-09-22T18:00:00-03:00",
+    "updatedAt": "2026-09-22T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 32
+    "humidity": 46
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-22T23:47:36.816Z",
+  "scrapedAt": "2026-09-23T12:53:27.272Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -3,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -4,
-      "wind": "O a 51-59 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": 2,
       "wind": "O a 51-59 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas fuertes",
       "temperatureC": -3,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -5,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -6,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "21/09/2026 16:00:49"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-22T23:47:36.816Z"
+  "lastKnownGoodAt": "2026-09-23T12:53:27.272Z"
 }

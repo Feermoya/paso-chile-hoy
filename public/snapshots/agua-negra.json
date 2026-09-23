@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 12,
-    "description": "Smoky haze",
-    "wind": "NE a 4 km/h",
+    "temperatureC": 11,
+    "description": "Soleado",
+    "wind": "ESE a 6 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:27",
+    "sunrise": "07:26",
     "sunset": "19:34",
-    "updatedAt": "2026-09-22",
+    "updatedAt": "2026-09-23",
     "feelsLikeC": 9,
-    "humidity": 21
+    "humidity": 23
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-22T23:47:46.600Z",
+  "scrapedAt": "2026-09-23T12:53:31.996Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Smoky haze",
+      "temperatureC": 27,
+      "wind": "NW 24 km/h",
+      "visibility": "Regular"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Humo",
+      "temperatureC": 25,
+      "wind": "NW 31 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Smoky haze",
+      "temperatureC": 19,
+      "wind": "SW 13 km/h",
+      "visibility": "Regular"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 9,
-      "wind": "SSW 10 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Soleado",
-      "temperatureC": 20,
-      "wind": "NE 10 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Smoky haze",
-      "temperatureC": 27,
-      "wind": "NNW 20 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Smoky haze",
-      "temperatureC": 19,
-      "wind": "SW 11 km/h",
+      "temperatureC": 12,
+      "wind": "SSW 12 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-22T23:47:46.600Z"
+  "lastKnownGoodAt": "2026-09-23T12:53:31.996Z"
 }
