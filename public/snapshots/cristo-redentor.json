@@ -3,8 +3,8 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "Mo-Su 09:00-21:00 open \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
-  "motivo": "Inclemencias climáticas",
+  "rawStatus": "ABIERTO",
+  "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9.1,
+    "temperatureC": 16.3,
     "description": "Cubierto",
-    "wind": "Calma",
+    "wind": "Sudoeste 4 km/h",
     "visibilityKm": 15,
     "sunrise": "07:24",
     "sunset": "19:38",
-    "updatedAt": "2026-09-24T09:00:00-03:00",
+    "updatedAt": "2026-09-24T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 33
+    "humidity": 19
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-24T12:49:42.406Z",
+  "scrapedAt": "2026-09-24T19:15:41.661Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": -1,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Lluvias y nevadas",
@@ -56,13 +49,20 @@
       "temperatureC": -7,
       "wind": "O a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Ventisca",
+      "temperatureC": -4,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "23/09/2026 17:00:20"
+    "statusUpdatedAt": "24/09/2026 10:01:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-24T12:49:42.406Z"
+  "lastKnownGoodAt": "2026-09-24T19:15:41.661Z"
 }
