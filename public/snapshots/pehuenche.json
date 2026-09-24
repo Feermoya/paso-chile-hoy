@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 15.8,
+    "temperatureC": 13.1,
     "description": "Mayormente nublado",
-    "wind": "Oeste 25 km/h",
+    "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
-    "sunrise": "07:26",
+    "sunrise": "07:25",
     "sunset": "19:39",
-    "updatedAt": "2026-09-23T20:00:00-03:00",
+    "updatedAt": "2026-09-24T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 24
+    "humidity": 39
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-23T23:56:09.940Z",
+  "scrapedAt": "2026-09-24T12:49:49.242Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
+      "period": "Hoy por la tarde",
       "description": "Nevadas fuertes",
       "temperatureC": 0,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la mañana",
+      "period": "Hoy por la noche",
+      "description": "Nevadas fuertes",
+      "temperatureC": -2,
+      "wind": "O a 60-69 km/h",
+      "visibility": "Muy mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
       "description": "Nevadas fuertes",
       "temperatureC": -1,
       "wind": "O a 60-69 km/h",
       "visibility": "Muy mala"
     },
     {
-      "period": "Mañana por la tarde",
-      "description": "Nevadas fuertes",
-      "temperatureC": 0,
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -1,
       "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Nevadas fuertes",
-      "temperatureC": -2,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Muy mala"
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/09/2026 12:27:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-23T23:56:09.940Z"
+  "lastKnownGoodAt": "2026-09-24T12:49:49.242Z"
 }

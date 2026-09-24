@@ -22,49 +22,49 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 23,
-    "description": "Smoky haze",
-    "wind": "NW a 29 km/h",
-    "visibilityKm": 4,
-    "sunrise": "07:26",
-    "sunset": "19:34",
-    "updatedAt": "2026-09-23",
-    "feelsLikeC": 14,
-    "humidity": 9
+    "temperatureC": 12,
+    "description": "Soleado",
+    "wind": "SW a 10 km/h",
+    "visibilityKm": 10,
+    "sunrise": "07:24",
+    "sunset": "19:35",
+    "updatedAt": "2026-09-24",
+    "feelsLikeC": 9,
+    "humidity": 20
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-23T23:56:13.465Z",
+  "scrapedAt": "2026-09-24T12:49:52.342Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 26,
+      "wind": "NW 40 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 24,
+      "wind": "NW 46 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 20,
+      "wind": "WNW 34 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 12,
-      "wind": "SSW 8 km/h",
+      "temperatureC": 13,
+      "wind": "SW 11 km/h",
       "visibility": "Buena"
-    },
-    {
-      "period": "Mañana al mediodía",
-      "description": "Smoky haze",
-      "temperatureC": 23,
-      "wind": "WNW 6 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Smoky haze",
-      "temperatureC": 26,
-      "wind": "WNW 49 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Smoky haze",
-      "temperatureC": 19,
-      "wind": "WNW 32 km/h",
-      "visibility": "Regular"
     }
   ],
   "sources": {
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-23T23:56:13.465Z"
+  "lastKnownGoodAt": "2026-09-24T12:49:52.342Z"
 }
