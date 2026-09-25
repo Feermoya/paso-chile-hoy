@@ -13,49 +13,49 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 17.8,
+    "temperatureC": 14.7,
     "description": "Cubierto",
-    "wind": "Noroeste 10 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "07:24",
-    "sunset": "19:38",
-    "updatedAt": "2026-09-24T18:00:00-03:00",
+    "sunrise": "07:23",
+    "sunset": "19:39",
+    "updatedAt": "2026-09-24T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 13
+    "humidity": 36
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-24T23:59:23.084Z",
+  "scrapedAt": "2026-09-25T12:51:50.428Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Ventisca",
-      "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Ventisca",
-      "temperatureC": -7,
-      "wind": "O a 60-69 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Ventisca",
       "temperatureC": -4,
       "wind": "O a 60-69 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Ventisca",
       "temperatureC": -11,
       "wind": "O a 60-69 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Parcialmente nublado",
+      "temperatureC": -17,
+      "wind": "O a 51-59 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Parcialmente nublado",
+      "temperatureC": -4,
+      "wind": "O a 42-50 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "24/09/2026 10:01:03"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-24T23:59:23.084Z"
+  "lastKnownGoodAt": "2026-09-25T12:51:50.428Z"
 }
