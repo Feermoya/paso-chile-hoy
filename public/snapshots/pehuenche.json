@@ -13,29 +13,22 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 22.7,
-    "description": "Algo nublado",
-    "wind": "Noreste 10 km/h",
+    "temperatureC": 17.7,
+    "description": "Ligeramente nublado",
+    "wind": "Oeste 23 km/h",
     "visibilityKm": 20,
     "sunrise": "07:22",
     "sunset": "19:41",
-    "updatedAt": "2026-09-26T15:00:00-03:00",
+    "updatedAt": "2026-09-26T20:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 25
+    "humidity": 19
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-26T18:38:26.858Z",
+  "scrapedAt": "2026-09-26T23:52:14.523Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": 1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
@@ -56,6 +49,13 @@
       "temperatureC": 5,
       "wind": "O a 32-41 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Lluvias y nevadas",
+      "temperatureC": 1,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Regular"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/09/2026 12:27:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-26T18:38:26.858Z"
+  "lastKnownGoodAt": "2026-09-26T23:52:14.523Z"
 }
