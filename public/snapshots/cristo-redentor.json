@@ -27,15 +27,8 @@
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-27T19:01:48.862Z",
+  "scrapedAt": "2026-09-27T23:56:45.041Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Lluvias y nevadas",
-      "temperatureC": 1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Regular"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Lluvias y nevadas",
@@ -56,6 +49,13 @@
       "temperatureC": -3,
       "wind": "O a 32-41 km/h",
       "visibility": "Regular"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": -10,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/09/2026 11:00:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-27T19:01:48.862Z"
+  "lastKnownGoodAt": "2026-09-27T23:56:45.041Z"
 }
