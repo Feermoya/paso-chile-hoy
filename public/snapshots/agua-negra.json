@@ -22,48 +22,48 @@
   "restriccionVelocidad": "moderada",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 22,
-    "description": "Parcialmente nublado",
-    "wind": "WNW a 23 km/h",
+    "temperatureC": 16,
+    "description": "Soleado",
+    "wind": "ENE a 10 km/h",
     "visibilityKm": 10,
-    "sunrise": "07:21",
+    "sunrise": "07:19",
     "sunset": "19:37",
-    "updatedAt": "2026-09-27",
-    "feelsLikeC": 15,
-    "humidity": 17
+    "updatedAt": "2026-09-28",
+    "feelsLikeC": 13,
+    "humidity": 51
   },
   "contact": null,
   "lat": -30.32783,
   "lng": -69.23614,
   "altitudeM": 4780,
-  "scrapedAt": "2026-09-27T23:56:53.128Z",
+  "scrapedAt": "2026-09-28T15:45:22.112Z",
   "forecast": [
+    {
+      "period": "Hoy por la tarde",
+      "description": "Soleado",
+      "temperatureC": 22,
+      "wind": "NNW 51 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Hoy por la noche",
+      "description": "Despejado",
+      "temperatureC": 18,
+      "wind": "NW 50 km/h",
+      "visibility": "Buena"
+    },
     {
       "period": "Mañana por la mañana",
       "description": "Despejado",
-      "temperatureC": 12,
-      "wind": "ENE 1 km/h",
+      "temperatureC": 8,
+      "wind": "E 3 km/h",
       "visibility": "Buena"
     },
     {
       "period": "Mañana al mediodía",
       "description": "Soleado",
-      "temperatureC": 18,
-      "wind": "E 22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Soleado",
-      "temperatureC": 22,
-      "wind": "ENE 20 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la noche",
-      "description": "Despejado",
-      "temperatureC": 17,
-      "wind": "N 24 km/h",
+      "temperatureC": 13,
+      "wind": "ENE 14 km/h",
       "visibility": "Buena"
     }
   ],
@@ -72,5 +72,5 @@
     "clima": "https://wttr.in",
     "statusUpdatedAt": "10 de junio de 2026 • 10:37 hs"
   },
-  "lastKnownGoodAt": "2026-09-27T23:56:53.128Z"
+  "lastKnownGoodAt": "2026-09-28T15:45:22.112Z"
 }

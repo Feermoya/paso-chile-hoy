@@ -13,49 +13,49 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 26,
+    "temperatureC": 20.2,
     "description": "Ligeramente nublado",
-    "wind": "Noreste 15 km/h",
+    "wind": "Sudoeste 10 km/h",
     "visibilityKm": 15,
-    "sunrise": "07:20",
-    "sunset": "19:40",
-    "updatedAt": "2026-09-27T15:00:00-03:00",
+    "sunrise": "07:19",
+    "sunset": "19:41",
+    "updatedAt": "2026-09-28T12:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 21
+    "humidity": 38
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-27T23:56:45.041Z",
+  "scrapedAt": "2026-09-28T15:45:11.098Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Lluvias y nevadas",
-      "temperatureC": -6,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -8,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
-      "description": "Lluvias y nevadas",
-      "temperatureC": -3,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Regular"
-    },
-    {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -10,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Mayormente nublado",
+      "temperatureC": -9,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -11,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Mayormente nublado",
+      "temperatureC": -3,
+      "wind": "O a 32-41 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/09/2026 11:00:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-27T23:56:45.041Z"
+  "lastKnownGoodAt": "2026-09-28T15:45:11.098Z"
 }
