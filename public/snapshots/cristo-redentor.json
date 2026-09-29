@@ -13,21 +13,21 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 23.8,
-    "description": "Algo nublado",
-    "wind": "Oeste 10 km/h",
+    "temperatureC": 13.4,
+    "description": "Despejado",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:19",
     "sunset": "19:41",
-    "updatedAt": "2026-09-28T15:00:00-03:00",
+    "updatedAt": "2026-09-28T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 16
+    "humidity": 30
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-28T21:15:55.502Z",
+  "scrapedAt": "2026-09-29T01:14:34.968Z",
   "forecast": [
     {
       "period": "Mañana por la madrugada",
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/09/2026 11:00:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-28T21:15:55.502Z"
+  "lastKnownGoodAt": "2026-09-29T01:14:34.968Z"
 }
