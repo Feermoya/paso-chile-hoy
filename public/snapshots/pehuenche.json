@@ -13,49 +13,49 @@
   "vialidadObservaciones": "",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9.6,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 13 km/h",
+    "temperatureC": 7.7,
+    "description": "Mayormente nublado",
+    "wind": "Norte 13 km/h",
     "visibilityKm": 20,
-    "sunrise": "07:19",
-    "sunset": "19:42",
-    "updatedAt": "2026-09-28T21:00:00-03:00",
-    "feelsLikeC": 7.7,
-    "humidity": 52
+    "sunrise": "07:17",
+    "sunset": "19:43",
+    "updatedAt": "2026-09-29T10:00:00-03:00",
+    "feelsLikeC": 5.4,
+    "humidity": 67
   },
   "contact": "(260) 4471063",
   "lat": -35.79497,
   "lng": -70.14326,
   "altitudeM": 2553,
-  "scrapedAt": "2026-09-29T01:14:39.608Z",
+  "scrapedAt": "2026-09-29T14:13:23.597Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -2,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Mayormente nublado",
-      "temperatureC": -4,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Mayormente nublado",
       "temperatureC": 3,
       "wind": "O a 32-41 km/h",
       "visibility": "Buena"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Mayormente nublado",
       "temperatureC": 1,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -1,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Nevadas",
+      "temperatureC": -3,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "20/09/2026 12:27:15"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-29T01:14:39.608Z"
+  "lastKnownGoodAt": "2026-09-29T14:13:23.597Z"
 }
