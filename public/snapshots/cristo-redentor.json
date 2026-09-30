@@ -5,7 +5,7 @@
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
   "rawStatus": "ABIERTO",
   "motivo": null,
-  "motivoInfo": null,
+  "motivoInfo": "-.-L CIERRE DEL PISCR EL DÍA 29 DE SEPTIEMBRE A PARTIR DE LAS 23:00 HS, EN VIRTUD DE LAS CONDICIONES CLIMATICAS ADVERSAS QUE AFECTARAN LA ZONA DE ALTA MONTAÑA. CIERRE DE BARRERAS A.C.I. USPALLATA 292100SEP26",
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,29 +13,22 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 16.7,
+    "temperatureC": 10.6,
     "description": "Algo nublado",
-    "wind": "Sudoeste 4 km/h",
+    "wind": "Calma",
     "visibilityKm": 15,
     "sunrise": "07:17",
     "sunset": "19:41",
-    "updatedAt": "2026-09-29T15:00:00-03:00",
+    "updatedAt": "2026-09-29T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 30
+    "humidity": 55
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-29T20:01:28.810Z",
+  "scrapedAt": "2026-09-30T00:45:01.244Z",
   "forecast": [
-    {
-      "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -6,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Mañana por la madrugada",
       "description": "Mayormente nublado",
@@ -56,6 +49,13 @@
       "temperatureC": -2,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la noche",
+      "description": "Nevadas",
+      "temperatureC": -6,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "25/09/2026 11:00:42"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-29T20:01:28.810Z"
+  "lastKnownGoodAt": "2026-09-30T00:45:01.244Z"
 }
