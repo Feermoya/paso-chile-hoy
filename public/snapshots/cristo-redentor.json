@@ -3,9 +3,9 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "Mo-Su 09:00-21:00 open \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "ABIERTO",
-  "motivo": null,
-  "motivoInfo": "-.-L CIERRE DEL PISCR EL DÍA 29 DE SEPTIEMBRE A PARTIR DE LAS 23:00 HS, EN VIRTUD DE LAS CONDICIONES CLIMATICAS ADVERSAS QUE AFECTARAN LA ZONA DE ALTA MONTAÑA. CIERRE DE BARRERAS A.C.I. USPALLATA 292100SEP26",
+  "rawStatus": "CERRADO",
+  "motivo": "Inclemencias climáticas",
+  "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
@@ -13,56 +13,56 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 10.6,
-    "description": "Algo nublado",
-    "wind": "Calma",
+    "temperatureC": 5.3,
+    "description": "Parcialmente nublado",
+    "wind": "Oeste 4 km/h",
     "visibilityKm": 15,
-    "sunrise": "07:17",
-    "sunset": "19:41",
-    "updatedAt": "2026-09-29T21:00:00-03:00",
+    "sunrise": "07:16",
+    "sunset": "19:42",
+    "updatedAt": "2026-09-30T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 55
+    "humidity": 57
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-30T00:45:01.244Z",
+  "scrapedAt": "2026-09-30T14:03:29.850Z",
   "forecast": [
     {
-      "period": "Mañana por la madrugada",
-      "description": "Mayormente nublado",
-      "temperatureC": -8,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Buena"
-    },
-    {
-      "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "O a 23-31 km/h",
-      "visibility": "Mala"
-    },
-    {
-      "period": "Mañana por la tarde",
+      "period": "Hoy por la tarde",
       "description": "Nevadas",
       "temperatureC": -2,
       "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
-      "period": "Mañana por la noche",
+      "period": "Hoy por la noche",
       "description": "Nevadas",
       "temperatureC": -6,
       "wind": "O a 23-31 km/h",
       "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la madrugada",
+      "description": "Nevadas",
+      "temperatureC": -5,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Mala"
+    },
+    {
+      "period": "Mañana por la mañana",
+      "description": "Mayormente nublado",
+      "temperatureC": -7,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "25/09/2026 11:00:42"
+    "statusUpdatedAt": "29/09/2026 23:00:38"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-30T00:45:01.244Z"
+  "lastKnownGoodAt": "2026-09-30T14:03:29.850Z"
 }
