@@ -9,33 +9,26 @@
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "HABILITADA",
+  "vialidadEstado": "CORTE TOTAL",
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.3,
-    "description": "Parcialmente nublado",
-    "wind": "Oeste 4 km/h",
+    "temperatureC": 15.4,
+    "description": "Mayormente nublado",
+    "wind": "Oeste 10 km/h",
     "visibilityKm": 15,
     "sunrise": "07:16",
     "sunset": "19:42",
-    "updatedAt": "2026-09-30T09:00:00-03:00",
+    "updatedAt": "2026-09-30T15:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 57
+    "humidity": 42
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-09-30T14:03:29.850Z",
+  "scrapedAt": "2026-09-30T20:06:05.704Z",
   "forecast": [
-    {
-      "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -2,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
-    },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
@@ -56,6 +49,13 @@
       "temperatureC": -7,
       "wind": "O a 13-22 km/h",
       "visibility": "Buena"
+    },
+    {
+      "period": "Mañana por la tarde",
+      "description": "Nevadas",
+      "temperatureC": -2,
+      "wind": "SO a 13-22 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
@@ -64,5 +64,5 @@
     "statusUpdatedAt": "29/09/2026 23:00:38"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-09-30T14:03:29.850Z"
+  "lastKnownGoodAt": "2026-09-30T20:06:05.704Z"
 }
