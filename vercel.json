@@ -1,6 +1,6 @@
 {
   "framework": "astro",
-  "buildCommand": "astro build",
+  "buildCommand": "astro build && node scripts/patch-vercel-runtime.mjs",
   "headers": [
     {
       "source": "/_app/(.*)",
