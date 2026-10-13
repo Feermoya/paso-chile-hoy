@@ -52,9 +52,20 @@ function applyHero(slug: string, env: PassRefreshEnvelope): void {
   root.setAttribute("data-pass-status", status);
 
   const labelEl = root.querySelector("[data-hero-label]");
+  const upper = displayLabel.toUpperCase();
   if (labelEl instanceof HTMLElement) {
     labelEl.textContent = displayLabel;
     labelEl.setAttribute("data-status", status);
+    labelEl.setAttribute(
+      "data-status-tone",
+      upper === "ABIERTO"
+        ? "abierto"
+        : upper === "CERRADO"
+          ? "cerrado"
+          : upper === "CONDICIONADO"
+            ? "condicionado"
+            : "neutral",
+    );
     labelEl.className = `text-status status-badge status-badge--${status}`;
   }
 
@@ -66,7 +77,6 @@ function applyHero(slug: string, env: PassRefreshEnvelope): void {
       "status-dot--condicionado",
       "status-dot--unknown",
     );
-    const upper = displayLabel.toUpperCase();
     if (upper === "ABIERTO") dot.classList.add("status-dot--open");
     else if (upper === "CERRADO") dot.classList.add("status-dot--cerrado");
     else if (upper === "CONDICIONADO") dot.classList.add("status-dot--condicionado");

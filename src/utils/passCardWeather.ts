@@ -311,3 +311,17 @@ const ICONS: Record<PassCardWeatherVariant, string> = {
 export function getWeatherIconHtml(variant: PassCardWeatherVariant): string {
   return ICONS[variant] ?? ICONS.sunny;
 }
+
+const PARTLY_ICON = `<svg class="weather-icon-svg" viewBox="0 0 52 52" fill="none"${SVG_NS} aria-hidden="true">
+  <circle cx="20" cy="18" r="8" fill="#fbbf24" stroke="#f59e0b" stroke-width="1"/>
+  <path d="M16 36a8 8 0 010-16c.3 0 .6.02.9.05A9 9 0 0134 24a7 7 0 010 14H16z" fill="#94a3b8"/>
+</svg>`;
+
+/** Ícono de la Home mobile. No altera la variante que usa el escritorio. */
+export function getMobileWeatherIconHtml(description: string, wind?: string | null): string | null {
+  const d = description.trim();
+  if (!d) return null;
+  const folded = d.toLowerCase();
+  if (folded.includes("parcial") && !folded.includes("cubiert")) return PARTLY_ICON;
+  return getWeatherIconHtml(getWeatherVariant(d, wind));
+}

@@ -11,6 +11,7 @@ import type { LasLenasSnapshot } from "@/types/las-lenas";
 
 const TTL_MS = 5 * 60 * 1000;
 let cache: { expires: number; snapshot: LasLenasSnapshot } | null = null;
+let inflight: Promise<LasLenasSnapshot | null> | null = null;
 
 function emptyWarnings() {
   return {
@@ -48,19 +49,32 @@ async function buildSnapshot(): Promise<LasLenasSnapshot | null> {
   return snapshot;
 }
 
-/** Snapshot con cache en memoria (Vercel: por instancia; reduce fan-out a gob.ar/wttr). */
+/**
+ * Snapshot con cache en memoria (Vercel: por instancia; reduce fan-out a gob.ar/wttr).
+ * Las visitas simultáneas comparten la misma consulta mientras está en curso.
+ */
 export async function getLasLenasSnapshot(): Promise<LasLenasSnapshot | null> {
   const now = Date.now();
   if (cache && cache.expires > now) {
     return cache.snapshot;
   }
-  const snapshot = await buildSnapshot();
-  if (snapshot) {
-    cache = { expires: now + TTL_MS, snapshot };
-  }
-  return snapshot;
+  if (inflight) return inflight;
+
+  inflight = buildSnapshot()
+    .then((snapshot) => {
+      if (snapshot) {
+        cache = { expires: Date.now() + TTL_MS, snapshot };
+      }
+      return snapshot;
+    })
+    .finally(() => {
+      inflight = null;
+    });
+
+  return inflight;
 }
 
 export function __clearLasLenasCacheForTests(): void {
   cache = null;
+  inflight = null;
 }

@@ -1,0 +1,191 @@
+---
+import { Icon } from "astro-icon/components";
+import { PASOS } from "@/data/pasos";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const activePasses = PASOS.filter((paso) => paso.active);
+const currentPass = activePasses.find((paso) => path === `/${paso.slug}`);
+const onHome = path === "/";
+const onMore =
+  path === "/legal" || path === "/paso-a-chile-hoy" || path === "/gracias";
+---
+
+<button type="button" class="m-tab-backdrop" hidden aria-label="Cerrar menú"></button>
+<nav class="m-tabbar" aria-label="Navegación principal">
+  <a
+    href="/"
+    class:list={["m-tab", onHome && "is-active"]}
+    aria-current={onHome ? "page" : undefined}
+  >
+    <Icon name="lucide:house" width="22" height="22" aria-hidden="true" />
+    <span>Inicio</span>
+  </a>
+
+  <details class="m-tab-menu">
+    <summary class:list={["m-tab", currentPass && "is-active"]} aria-haspopup="menu">
+      <Icon name="lucide:mountain" width="22" height="22" aria-hidden="true" />
+      <span>Pasos</span>
+    </summary>
+    <div class="m-tab-sheet" role="menu">
+      {
+        activePasses.map((paso) => (
+          <a
+            href={`/${paso.slug}`}
+            role="menuitem"
+            aria-current={currentPass?.slug === paso.slug ? "page" : undefined}
+          >
+            {paso.shortName}
+          </a>
+        ))
+      }
+    </div>
+  </details>
+
+  {
+    currentPass ? (
+      <a href={`/${currentPass.slug}#clima`} class="m-tab">
+        <Icon name="lucide:cloud-sun" width="22" height="22" aria-hidden="true" />
+        <span>Clima</span>
+      </a>
+    ) : (
+      <details class="m-tab-menu">
+        <summary class="m-tab" aria-haspopup="menu">
+          <Icon name="lucide:cloud-sun" width="22" height="22" aria-hidden="true" />
+          <span>Clima</span>
+        </summary>
+        <div class="m-tab-sheet" role="menu">
+          {
+            activePasses.map((paso) => (
+              <a href={`/${paso.slug}#clima`} role="menuitem">
+                {paso.shortName}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+    )
+  }
+
+  <details class="m-tab-menu m-tab-menu--end">
+    <summary class:list={["m-tab", onMore && "is-active"]} aria-haspopup="menu">
+      <Icon name="lucide:ellipsis" width="22" height="22" aria-hidden="true" />
+      <span>Más</span>
+    </summary>
+    <div class="m-tab-sheet" role="menu">
+      <a href="/paso-a-chile-hoy" role="menuitem" aria-current={path === "/paso-a-chile-hoy" ? "page" : undefined}>
+        Paso a Chile hoy
+      </a>
+      <a href="/#travel-sim" role="menuitem">Horario de salida</a>
+      <a href="/#ingreso-chile" role="menuitem">Ingreso a Chile</a>
+      <a href="/#rutas-title" role="menuitem">Rutas</a>
+      <a href="/legal" role="menuitem" aria-current={path === "/legal" ? "page" : undefined}>
+        Aviso legal
+      </a>
+    </div>
+  </details>
+</nav>
+
+<script>
+  const phone = () => window.matchMedia("(max-width: 639px)").matches;
+  const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const menus = () => Array.from(document.querySelectorAll<HTMLDetailsElement>(".m-tab-menu"));
+  const backdrop = () => document.querySelector<HTMLButtonElement>(".m-tab-backdrop");
+
+  function syncChrome() {
+    const open = menus().some((menu) => menu.open);
+    backdrop()?.toggleAttribute("hidden", !open);
+    document.documentElement.classList.toggle("m-tab-lock", open && phone());
+  }
+
+  function closeMenu(menu: HTMLDetailsElement, restoreFocus = false) {
+    const summary = menu.querySelector("summary");
+    const sheet = menu.querySelector(".m-tab-sheet");
+    const finish = () => {
+      menu.open = false;
+      sheet?.classList.remove("is-closing");
+      syncChrome();
+      if (restoreFocus && summary instanceof HTMLElement) summary.focus();
+    };
+    if (!menu.open) return;
+    if (sheet instanceof HTMLElement && !reduceMotion()) {
+      sheet.classList.add("is-closing");
+      window.setTimeout(finish, 160);
+      return;
+    }
+    finish();
+  }
+
+  document.addEventListener("toggle", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLDetailsElement) || !target.classList.contains("m-tab-menu")) return;
+    if (target.open) {
+      for (const menu of menus()) {
+        if (menu !== target && menu.open) menu.open = false;
+      }
+      const first = target.querySelector<HTMLElement>("[role='menuitem']");
+      window.requestAnimationFrame(() => first?.focus());
+    }
+    syncChrome();
+  }, true);
+
+  document.addEventListener("click", (event) => {
+    const node = event.target;
+    if (!(node instanceof Node)) return;
+    if (node instanceof Element && node.closest(".m-tab-backdrop")) {
+      for (const menu of menus()) {
+        if (menu.open) closeMenu(menu, true);
+      }
+      return;
+    }
+    for (const menu of menus()) {
+      if (menu.open && !menu.contains(node)) closeMenu(menu);
+    }
+  });
+
+  document.querySelectorAll(".m-tab-menu > summary").forEach((summary) => {
+    summary.addEventListener("click", (event) => {
+      const menu = summary.parentElement;
+      if (!(menu instanceof HTMLDetailsElement) || !menu.open || reduceMotion()) return;
+      event.preventDefault();
+      closeMenu(menu);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const open = menus().find((menu) => menu.open);
+    if (!open) return;
+    const items = Array.from(open.querySelectorAll<HTMLElement>("[role='menuitem']"));
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeMenu(open, true);
+      return;
+    }
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+    event.preventDefault();
+    const current = items.indexOf(document.activeElement as HTMLElement);
+    const next = event.key === "ArrowDown" ? current + 1 : current - 1;
+    const index = next < 0 ? items.length - 1 : next % items.length;
+    items[index]?.focus();
+  });
+
+  function syncClimaTab() {
+    const link = document.querySelector<HTMLAnchorElement>(".m-tabbar a.m-tab[href$='#clima']");
+    const pasos = document.querySelector<HTMLElement>(".m-tabbar .m-tab-menu > summary.m-tab");
+    if (!link || !document.querySelector(".paso-page-root")) return;
+    if (pasos && pasos.dataset.passActive == null) {
+      pasos.dataset.passActive = pasos.classList.contains("is-active") ? "1" : "0";
+    }
+    const climaOn = location.hash === "#clima";
+    link.classList.toggle("is-active", climaOn);
+    if (climaOn) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+    if (pasos?.dataset.passActive === "1") pasos.classList.toggle("is-active", !climaOn);
+  }
+
+  syncClimaTab();
+  window.addEventListener("hashchange", syncClimaTab);
+  document.addEventListener("astro:page-load", () => {
+    syncClimaTab();
+    syncChrome();
+  });
+</script>

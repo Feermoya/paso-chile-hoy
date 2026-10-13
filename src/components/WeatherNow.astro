@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import DrivingConditions from "@/components/DrivingConditions.astro";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
+import { getMobileWeatherIconHtml } from "@/utils/passCardWeather";
 import { getWeatherIcon, getWeatherIconColor } from "@/utils/weatherIcon";
 import { interpretTemperature, levelToColor } from "@/utils/weatherInterpretation";
 import { assessSnapshotFreshness } from "@/utils/snapshotFreshness";
@@ -131,6 +132,8 @@ const tempFeelTranslated =
 const tempData = interpretTemperature(w.temperatureC ?? null);
 
 const sunriseDisplay = formatSunriseDisplay(w.sunrise);
+const sunsetDisplay = w.sunset?.trim() ? formatSunriseDisplay(w.sunset) : null;
+const mobileWxHtml = getMobileWeatherIconHtml(w.description ?? "", w.wind);
 
 const datosAlLine = formatWeatherDataLine(updatedAt, scrapedAt);
 
@@ -158,6 +161,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
     >
       <h2 id="weather-now-heading" class="sr-only">Clima actual en el paso</h2>
 
+      <div class="wn-mobile-hero">
       <div class:list={["wn-embed-condition", `wn-embed-condition--${drivingSummary.level}`]} role="status">
         <span class="wn-embed-condition__dot" aria-hidden="true" />
         <div class="wn-embed-condition__copy">
@@ -167,6 +171,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
       </div>
 
       <div class="wn-embed-hero">
+        {mobileWxHtml && <span class="wn-mobile-wx" aria-hidden="true" set:html={mobileWxHtml} />}
         {w.description && (
           <div class="wn-embed-hero__icon" aria-hidden="true">
             <Icon name={iconName} style={`color: ${iconColor}`} class="wn-embed-hero__icon-svg" />
@@ -188,6 +193,7 @@ const freshness = assessSnapshotFreshness(scrapedAt);
           )}
         </div>
       </div>
+      </div>
 
       {
         tempData.meaning && (
@@ -202,7 +208,8 @@ const freshness = assessSnapshotFreshness(scrapedAt);
       }
 
       <ul class="wn-embed-metrics" role="list">
-        <li class="wn-embed-metric">
+        <li class="wn-embed-metric" data-empty={visTranslated.label === "Sin datos" ? "true" : undefined}>
+          <Icon name="lucide:eye" class="wn-embed-metric__icon" aria-hidden="true" />
           <span class="wn-embed-metric__label">Visibilidad</span>
           <span class="wn-embed-metric__badge">
             <span class:list={["wn-badge", levelClass(visTranslated.level)]}>{visTranslated.label}</span>
@@ -211,20 +218,32 @@ const freshness = assessSnapshotFreshness(scrapedAt);
             <span class="wn-embed-metric__detail">{visTranslated.detail}</span>
           )}
         </li>
-        <li class="wn-embed-metric">
+        <li class="wn-embed-metric" data-empty={windTranslated.label === "Sin datos" ? "true" : undefined}>
+          <Icon name="lucide:wind" class="wn-embed-metric__icon" aria-hidden="true" />
           <span class="wn-embed-metric__label">Viento</span>
           <span class="wn-embed-metric__badge">
             <span class:list={["wn-badge", levelClass(windTranslated.level)]}>{windTranslated.label}</span>
           </span>
         </li>
-        <li class="wn-embed-metric">
+        <li class="wn-embed-metric" data-empty={sunriseDisplay === "—" ? "true" : undefined}>
+          <Icon name="lucide:sunrise" class="wn-embed-metric__icon" aria-hidden="true" />
           <span class="wn-embed-metric__label">Amanecer</span>
           <span class="wn-embed-metric__value">{sunriseDisplay}</span>
           <span class="wn-embed-metric__detail">Primera luz en la cordillera</span>
         </li>
         {
+          sunsetDisplay && (
+            <li class="wn-embed-metric wn-metric--desktop-off">
+              <Icon name="lucide:sunset" class="wn-embed-metric__icon" aria-hidden="true" />
+              <span class="wn-embed-metric__label">Atardecer</span>
+              <span class="wn-embed-metric__value">{sunsetDisplay}</span>
+            </li>
+          )
+        }
+        {
           tempFeelTranslated && w.feelsLikeC != null && (
             <li class="wn-embed-metric">
+              <Icon name="lucide:thermometer" class="wn-embed-metric__icon" aria-hidden="true" />
               <span class="wn-embed-metric__label">Sensación</span>
               <span class="wn-embed-metric__badge">
                 <span class:list={["wn-badge", levelClass(tempFeelTranslated.level)]}>

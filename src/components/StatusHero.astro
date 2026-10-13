@@ -23,6 +23,8 @@ export interface Props {
   lastKnownGoodRelative?: string;
   /** Una sola fila de enlace oficial (página de paso). */
   compactOfficialLink?: boolean;
+  /** Badge visible solo si la frescura existente marca el dato como reciente. */
+  showLiveBadge?: boolean;
   class?: string;
 }
 
@@ -42,6 +44,7 @@ const {
   operationalStale,
   lastKnownGoodRelative,
   compactOfficialLink = false,
+  showLiveBadge = false,
   class: className,
 } = Astro.props;
 
@@ -61,6 +64,15 @@ const dotColors: Record<PassDisplayStatus, string> = {
 
 const label = displayLabel?.trim() || labels[status];
 const upperLabel = label.trim().toUpperCase();
+/** Tono visual del rótulo. El color de escritorio sigue en el style inline. */
+const statusTone =
+  upperLabel === "ABIERTO"
+    ? "abierto"
+    : upperLabel === "CERRADO"
+      ? "cerrado"
+      : upperLabel === "CONDICIONADO"
+        ? "condicionado"
+        : "neutral";
 
 /** Color del título según lo que se muestra (p. ej. ABIERTO en verde aunque el estado técnico sea condicionado). */
 const titleColor =
@@ -155,6 +167,7 @@ const scheduleDisplay = formatHeroSchedule(schedule);
         id="status-hero-label"
         class:list={["text-status", "status-badge", `status-badge--${status}`]}
         data-status={status}
+        data-status-tone={statusTone}
         data-hero-label
         role="status"
         aria-live="polite"
@@ -162,6 +175,11 @@ const scheduleDisplay = formatHeroSchedule(schedule);
       >
         {label}
       </span>
+      {
+        showLiveBadge && (
+          <span class="status-live-badge">En vivo</span>
+        )
+      }
     </div>
 
     <div class="status-secondary">

@@ -200,6 +200,28 @@ const confidenceLabel = CONFIDENCE_LABEL[risk.confidence] ?? "Confianza desconoc
   }
 
   /* ── Disclaimer ── */
+  @media (max-width: 639px) {
+    .cristo-risk-card {
+      border-radius: 16px;
+      padding: 14px;
+      gap: 8px;
+    }
+
+    .crc-level-badge {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .crc-headline {
+      font-size: 15px;
+    }
+
+    .crc-summary {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+  }
+
   .crc-disclaimer {
     display: flex;
     align-items: flex-start;

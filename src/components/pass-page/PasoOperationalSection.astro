@@ -10,7 +10,9 @@ import type { ExtendedForecastSignal } from "@/lib/external/mendozaExtendedForec
 import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { PassView } from "@/types/pass-view";
 import type { PassStatusResult } from "@/utils/inferPassStatus";
+import { formatHeroSchedule } from "@/utils/formatHeroSchedule";
 import { buildOperationalNotices } from "@/utils/operationalNotices";
+import { assessSnapshotFreshness } from "@/utils/snapshotFreshness";
 
 export interface Props {
   slug: string;
@@ -55,9 +57,23 @@ const operationalNotices = buildOperationalNotices({
 const hasOperationalNotices = operationalNotices.length > 0;
 const showCristoExtras = slug === "cristo-redentor" && (cristoRisk || extendedForecastSignal);
 const showDetailPanel = hasOperationalNotices || showCristoExtras || showLatestTweet;
+const freshness = assessSnapshotFreshness(view.meta.scrapedAt);
+const showLiveBadge = freshness.level === "fresh" && view.meta.operationalStale !== true;
+const scheduleDisplay = formatHeroSchedule(scheduleText);
+const scheduleValue = [scheduleDisplay?.primary, scheduleDisplay?.detail].filter(Boolean).join(" · ");
+const routeBits = [
+  op.vialidadRuta?.trim() ? `RN ${op.vialidadRuta.trim()}` : "",
+  op.vialidadTramo?.trim() ?? "",
+].filter(Boolean);
+const routeValue = routeBits.join(", ") || view.location.routeDescription?.trim() || "";
+const localityValue = [view.location.localityArgentina, view.location.localityBorder]
+  .map((part) => part?.trim())
+  .filter(Boolean)
+  .join(" — ");
 ---
 
 <section
+  id="estado"
   class:list={["paso-page-operational paso-col", className]}
   aria-label="Estado operativo"
 >
@@ -77,13 +93,17 @@ const showDetailPanel = hasOperationalNotices || showCristoExtras || showLatestT
     operationalStale={view.meta.operationalStale}
     lastKnownGoodRelative={lastKnownGoodRelative}
     compactOfficialLink
+    showLiveBadge={showLiveBadge}
   />
 
   {
     showDetailPanel && (
       <div class="paso-panel paso-extra-details anim-section anim-delay-2" aria-label="Complementos del cruce">
         <div class="paso-panel__head">
-          <h2 class="paso-panel__title">Detalle operativo</h2>
+          <h2 class="paso-panel__title">
+            <Icon name="lucide:clipboard-list" class="paso-detail-heading-icon" width="18" height="18" aria-hidden="true" />
+            Detalle operativo
+          </h2>
         </div>
         <div class="paso-panel__body paso-extra-details__body">
           {slug === "cristo-redentor" && cristoRisk && <CristoRiskCard risk={cristoRisk} />}
@@ -110,6 +130,42 @@ const showDetailPanel = hasOperationalNotices || showCristoExtras || showLatestT
       </div>
     )
   }
+
+  <section class="paso-fact-sheet" aria-label="Datos del cruce">
+    {
+      scheduleValue && (
+        <div class="paso-fact-row">
+          <Icon name="lucide:clock" width="18" height="18" aria-hidden="true" />
+          <span class="paso-fact-label">Horario</span>
+          <span class="paso-fact-value">{scheduleValue}</span>
+        </div>
+      )
+    }
+    {
+      routeValue && (
+        <div class="paso-fact-row">
+          <Icon name="lucide:route" width="18" height="18" aria-hidden="true" />
+          <span class="paso-fact-label">Ruta</span>
+          <span class="paso-fact-value">{routeValue}</span>
+        </div>
+      )
+    }
+    {
+      localityValue && (
+        <div class="paso-fact-row">
+          <Icon name="lucide:map-pin" width="18" height="18" aria-hidden="true" />
+          <span class="paso-fact-label">Localidades</span>
+          <span class="paso-fact-value">{localityValue}</span>
+        </div>
+      )
+    }
+    <a class="paso-fact-row" href="/#status-guide">
+      <Icon name="lucide:info" width="18" height="18" aria-hidden="true" />
+      <span class="paso-fact-label">Estados y alertas</span>
+      <span class="paso-fact-value">Cómo leer abierto, cerrado y alertas de ruta</span>
+      <Icon name="lucide:chevron-right" class="paso-fact-chevron" width="16" height="16" aria-hidden="true" />
+    </a>
+  </section>
 
   <div class="paso-social-footer anim-section anim-delay-3">
     <TwitterAlerts passSlug={slug} />

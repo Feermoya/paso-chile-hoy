@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 
+import { Icon } from "astro-icon/components";
 import PasoCard from "@/components/PasoCard.astro";
 import StatusGuide from "@/components/StatusGuide.astro";
 import SupportBlock from "@/components/SupportBlock.astro";
@@ -22,7 +23,6 @@ import HomeRouteSegmentsCard from "@/components/HomeRouteSegmentsCard.astro";
 import TwitterTimeline from "@/components/TwitterTimeline.astro";
 import LasLenasHomeBlock from "@/components/LasLenasHomeBlock.astro";
 import ChileEntryRequirements from "@/components/ChileEntryRequirements.astro";
-import { getLasLenasSnapshot } from "@/lib/server/las-lenas/getLasLenasSnapshot";
 import { buildHomeRouteCardView } from "@/lib/mappers/homeRouteCardView";
 import { HOME_ROUTE_CARD_ORDER, getRouteProfile } from "@/lib/server/route-segments/profiles";
 import { readRouteSegments } from "@/lib/server/storage/routeSegmentsStorage";
@@ -53,6 +53,7 @@ type CardEntry = {
   rawStatus?: string;
   motivo?: string;
   motivoInfo?: string | null;
+  sourceUrl?: string;
 };
 
 interface PasoSchedule {
@@ -128,6 +129,7 @@ const cards: CardEntry[] = await Promise.all(
         rawStatus: op.rawStatus,
         motivo: op.motivo,
         motivoInfo: op.motivoInfo,
+        sourceUrl: view.meta.sourceUrl?.trim(),
       };
     } catch {
       return { slug: paso.slug, status: "sin_datos" };
@@ -153,6 +155,12 @@ const pasosSchedulesJSON = JSON.stringify(pasosSchedules);
 
 const homeLastUpdatedIso = mostRecentScrapedAt(cards);
 const homeUpdatedRelative = homeLastUpdatedIso ? formatRelativeTimeAgo(homeLastUpdatedIso) : "";
+const homeOfficialSource = cards.find(
+  (card) => card.scrapedAt === homeLastUpdatedIso && card.sourceUrl?.startsWith("http"),
+)?.sourceUrl;
+const homeStatusFresh =
+  Boolean(homeLastUpdatedIso) &&
+  Date.now() - new Date(homeLastUpdatedIso as string).getTime() < 30 * 60 * 1000;
 
 const homeRouteCards: { view: ReturnType<typeof buildHomeRouteCardView> }[] = [];
 for (const profileId of HOME_ROUTE_CARD_ORDER) {
@@ -164,8 +172,6 @@ for (const profileId of HOME_ROUTE_CARD_ORDER) {
 }
 
 const meta = buildHomeMeta();
-
-const lasLenasSnapshot = await getLasLenasSnapshot();
 
 const itemListElement = PASOS.filter((p) => p.active).map((paso, i) => ({
   "@type": "ListItem",
@@ -189,8 +195,26 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
     <header class="home-hero">
       <h1 class="home-hero-title">¿Está abierto el paso a Chile hoy?</h1>
       <p class="home-hero-lead">
-        Estado, horario y clima de Cristo Redentor, Pehuenche y Agua Negra — datos públicos oficiales (no es un
-        sitio del gobierno).
+        <svg
+          class="home-lead-icon"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 16v-4"></path>
+          <path d="M12 8h.01"></path>
+        </svg>
+        <span>
+          Estado, horario y clima de Cristo Redentor, Pehuenche y Agua Negra — datos públicos oficiales (no es un
+          sitio del gobierno).
+        </span>
       </p>
       <p class="home-hero-subtitle">
         Información útil para viajar desde Mendoza o San Juan hacia Chile por pasos internacionales.
@@ -198,33 +222,74 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
       <p class="home-hero-landing-link">
         <a href="/paso-a-chile-hoy">Ver estado general del paso a Chile hoy</a>
       </p>
-      {
-        homeLastUpdatedIso && homeUpdatedRelative ? (
-          <p class="home-hero-updated">
-            <svg
-              class="home-hero-updated-icon"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-              <path d="M3 3v5h5" />
-              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-              <path d="M16 16h5v5" />
-            </svg>
-            <time class="home-hero-updated-time" datetime={homeLastUpdatedIso}>
-              Actualizado {homeUpdatedRelative}
-            </time>
-          </p>
-        ) : null
-      }
+      <div class="home-hero-meta">
+        {
+          homeLastUpdatedIso && homeUpdatedRelative ? (
+            <p class="home-hero-updated">
+              <svg
+                class="home-hero-updated-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                <path d="M16 16h5v5" />
+              </svg>
+              <time class="home-hero-updated-time" datetime={homeLastUpdatedIso}>
+                Actualizado {homeUpdatedRelative}
+              </time>
+            </p>
+          ) : null
+        }
+        {
+          homeOfficialSource ? (
+            <a class="home-hero-source" href={homeOfficialSource} rel="noopener noreferrer">
+              Fuente oficial
+            </a>
+          ) : null
+        }
+      </div>
     </header>
+
+    <div class="home-live" aria-label="Estado actual de los pasos">
+      <p class:list={["home-live-flag", !homeStatusFresh && "home-live-flag--stale"]}>
+        <span class="home-live-dot" aria-hidden="true"></span>
+        {homeStatusFresh ? "EN VIVO" : "ÚLTIMO DATO"}
+      </p>
+      <div class="home-live-scroll">
+        {
+          PASOS.filter((paso) => paso.active).map((paso) => {
+            const status = cardBySlug.get(paso.slug)?.status ?? "sin_datos";
+            const statusWord =
+              status === "abierto"
+                ? "abierto"
+                : status === "cerrado"
+                  ? "cerrado"
+                  : status === "condicionado"
+                    ? "condicionado"
+                    : "sin datos";
+            return (
+              <a
+                class:list={["home-live-pass", `home-live-pass--${status}`]}
+                href={`/${paso.slug}`}
+                aria-label={`${paso.shortName}, ${statusWord}`}
+              >
+                <span class="home-live-pass-dot" aria-hidden="true"></span>
+                <span>{paso.shortName}</span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
 
     <div class="pasos-grid pass-cards-grid pcv2-cards-grid">
       {PASOS.map((paso) => {
@@ -253,6 +318,24 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
         );
       })}
     </div>
+
+    <nav class="home-app-tools" aria-label="Herramientas para viajar">
+      <a href="#travel-sim">
+        <Icon name="lucide:clock" width="20" height="20" aria-hidden="true" />
+        <span>Horario de salida</span>
+        <Icon name="lucide:chevron-right" width="16" height="16" aria-hidden="true" />
+      </a>
+      <a href="#ingreso-chile">
+        <Icon name="lucide:book-open" width="20" height="20" aria-hidden="true" />
+        <span>Ingreso a Chile</span>
+        <Icon name="lucide:chevron-right" width="16" height="16" aria-hidden="true" />
+      </a>
+      <a href="#rutas-title">
+        <Icon name="lucide:map" width="20" height="20" aria-hidden="true" />
+        <span>Rutas</span>
+        <Icon name="lucide:chevron-right" width="16" height="16" aria-hidden="true" />
+      </a>
+    </nav>
 
     <div class="home-after-cards">
       <StatusGuide />
@@ -288,7 +371,7 @@ const homeStructured = buildHomeStructuredGraph(itemListElement);
       ) : null
     }
 
-    {lasLenasSnapshot ? <LasLenasHomeBlock snapshot={lasLenasSnapshot} /> : null}
+    <LasLenasHomeBlock />
 
     <TwitterTimeline />
   </div>

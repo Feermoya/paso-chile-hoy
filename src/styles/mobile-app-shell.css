@@ -1,0 +1,454 @@
+/**
+ * App shell mobile (≤639px).
+ * Tokens nuevos para las etapas siguientes. No pisan la paleta desktop.
+ * Marca existente: --brand #5baeff. Tipografías existentes: Sora y DM Sans.
+ */
+
+.header-brand-place,
+.m-tabbar,
+.m-tab-backdrop {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  :root {
+    --m-space-1: 4px;
+    --m-space-2: 8px;
+    --m-space-3: 12px;
+    --m-space-4: 16px;
+    --m-space-5: 20px;
+    --m-space-6: 24px;
+    --m-space-8: 32px;
+    --m-text-display: 1.625rem;
+    --m-text-section: 1.125rem;
+    --m-text-card: 1.0625rem;
+    --m-text-body: 0.9375rem;
+    --m-text-secondary: 0.8125rem;
+    --m-text-label: 0.6875rem;
+    --m-radius-card: 18px;
+    --m-radius-control: 14px;
+    --m-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+    --m-tabbar-offset: calc(62px + env(safe-area-inset-bottom, 0px));
+    --m-icon: 22px;
+    --m-touch: 44px;
+  }
+
+  .app-frame {
+    padding-bottom: var(--m-tabbar-offset);
+  }
+
+  .site-header .header-inner {
+    min-height: 56px;
+    align-items: center;
+    padding: 8px max(16px, env(safe-area-inset-left, 0px)) 8px
+      max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .site-header .header-logo-link {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1px;
+  }
+
+  .site-header .header-location-sep {
+    display: none;
+  }
+
+  .site-header .header-brand-name {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+  }
+
+  .site-header .header-location,
+  .site-header .header-brand-place {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-family: var(--font-body, inherit);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    text-transform: none;
+    color: var(--color-text-muted);
+  }
+
+  .site-header .header-brand-pin {
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  .site-header .theme-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+  }
+
+  .m-tabbar {
+    position: fixed;
+    z-index: 55;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    min-height: 52px;
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border-subtle);
+    box-shadow: 0 -1px 0 rgba(15, 23, 42, 0.03);
+  }
+
+  :root[data-theme="light"] .m-tabbar {
+    background: #ffffff;
+  }
+
+  html.m-tab-lock,
+  html.m-tab-lock body {
+    overflow: hidden;
+  }
+
+  .m-tab-backdrop {
+    display: block;
+    position: fixed;
+    z-index: 54;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(15 23 42 / 0.32);
+  }
+
+  .m-tab-backdrop[hidden] {
+    display: none;
+  }
+
+  .m-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 2px 2px 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 160ms ease, background-color 160ms ease, transform 120ms ease;
+  }
+
+  .m-tab:active {
+    transform: scale(0.96);
+  }
+
+  .m-tab.is-active,
+  .m-tab[aria-current="page"] {
+    color: var(--brand);
+  }
+
+  .m-tab:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .m-tab svg {
+    width: var(--m-icon);
+    height: var(--m-icon);
+  }
+
+  .m-tab-menu {
+    position: relative;
+    min-width: 0;
+  }
+
+  .m-tab-menu > summary {
+    list-style: none;
+  }
+
+  .m-tab-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .m-tab-sheet {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    min-width: 196px;
+    max-width: min(280px, calc(100vw - 24px));
+    padding: 6px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  @starting-style {
+    .m-tab-menu[open] .m-tab-sheet {
+      opacity: 0;
+      transform: translateX(-50%) translateY(8px);
+    }
+
+    .m-tab-menu--end[open] .m-tab-sheet {
+      transform: translateY(8px);
+    }
+  }
+
+  .m-tab-sheet.is-closing {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+
+  .m-tab-menu--end .m-tab-sheet {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+
+  .m-tab-menu--end .m-tab-sheet.is-closing {
+    transform: translateY(8px);
+  }
+
+  .m-tab-sheet a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 10px;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .m-tab-sheet a[aria-current="page"] {
+    background: var(--brand-dim);
+    color: var(--color-text-primary);
+  }
+
+  .m-tab-sheet a:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+  }
+
+  .cookie-banner,
+  .pwa-banner {
+    bottom: var(--m-tabbar-offset);
+    transform: translateY(calc(100% + var(--m-tabbar-offset)));
+  }
+
+  .cookie-banner.visible,
+  .pwa-banner--visible {
+    transform: translateY(0);
+  }
+
+  /*
+   * El footer no usa 100vh. En mobile se veía alto porque .footer-top
+   * suma 48px + 44px de padding, las columnas apiladas separan 36px
+   * y .footer-bottom es otra banda. main sigue en flex-1: el hueco de
+   * una página corta queda arriba, no dentro del footer.
+   */
+  .app-frame .site-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-space-4);
+    margin-top: var(--m-space-5);
+    padding: var(--m-space-4) 0 var(--m-space-2);
+    border-top: 1px solid var(--color-border-subtle);
+    background: var(--color-bg-base);
+  }
+
+  .app-frame .site-footer .footer-top,
+  .app-frame .site-footer .footer-top-inner,
+  .app-frame .site-footer .footer-col--identity,
+  .app-frame .site-footer .footer-col--social,
+  .app-frame .site-footer .footer-project-block,
+  .app-frame .site-footer .footer-bottom,
+  .app-frame .site-footer .footer-bottom-inner {
+    display: contents;
+  }
+
+  .app-frame .site-footer .footer-hr,
+  .app-frame .site-footer .footer-project-block > .footer-col-title {
+    display: none;
+  }
+
+  .app-frame .site-footer .footer-logo-link,
+  .app-frame .site-footer .footer-col--nav,
+  .app-frame .site-footer .footer-dev-block,
+  .app-frame .site-footer .footer-social-block,
+  .app-frame .site-footer .footer-project-block .footer-nav-list,
+  .app-frame .site-footer .footer-legal-short,
+  .app-frame .site-footer .footer-project-version,
+  .app-frame .site-footer .footer-copy-line {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-inline: var(--m-space-5);
+    box-sizing: border-box;
+  }
+
+  .app-frame .site-footer .footer-logo-link {
+    order: 1;
+    gap: var(--m-space-3);
+  }
+
+  .app-frame .site-footer .footer-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .app-frame .site-footer .footer-logo-name {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .app-frame .site-footer .footer-brand-tagline {
+    font-size: 13px;
+  }
+
+  .app-frame .site-footer .footer-col--nav {
+    order: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--m-space-4);
+    align-items: start;
+  }
+
+  .app-frame .site-footer .footer-nav-group + .footer-nav-group {
+    margin-top: 0;
+  }
+
+  .app-frame .site-footer .footer-col-title {
+    margin: 0 0 var(--m-space-2);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .app-frame .site-footer .footer-nav-list {
+    gap: var(--m-space-2);
+  }
+
+  .app-frame .site-footer .footer-link,
+  .app-frame .site-footer .footer-icon-link {
+    min-height: 36px;
+  }
+
+  .app-frame .site-footer .footer-link:focus-visible,
+  .app-frame .site-footer .footer-icon-link:focus-visible,
+  .app-frame .site-footer .footer-logo-link:focus-visible,
+  .app-frame .site-footer .footer-legal-short a:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .app-frame .site-footer .footer-dev-block {
+    order: 3;
+    max-width: none;
+  }
+
+  .app-frame .site-footer .footer-dev-label,
+  .app-frame .site-footer .footer-dev-cta {
+    font-size: 12px;
+  }
+
+  .app-frame .site-footer .footer-dev-label {
+    margin-bottom: var(--m-space-1);
+  }
+
+  .app-frame .site-footer .footer-dev-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .app-frame .site-footer .footer-dev-cta {
+    margin-top: var(--m-space-1);
+  }
+
+  .app-frame .site-footer .footer-social-block {
+    order: 4;
+  }
+
+  .app-frame .site-footer .footer-social-block .footer-nav-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--m-space-2) var(--m-space-4);
+  }
+
+  .app-frame .site-footer .footer-link__hint {
+    display: none;
+  }
+
+  .app-frame .site-footer .footer-link--with-icon {
+    align-items: center;
+    gap: var(--m-space-2);
+  }
+
+  .app-frame .site-footer .footer-project-block .footer-nav-list {
+    order: 5;
+  }
+
+  .app-frame .site-footer .footer-legal-short {
+    order: 6;
+    padding-top: var(--m-space-3);
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .app-frame .site-footer .footer-project-version {
+    order: 7;
+  }
+
+  .app-frame .site-footer .version-badge {
+    animation: none;
+  }
+
+  .app-frame .site-footer .footer-copy-line {
+    order: 8;
+    padding-bottom: var(--m-space-1);
+    font-size: 12px;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) {
+  .m-tab,
+  .m-tab-sheet,
+  .cookie-banner,
+  .pwa-banner,
+  .home-layout--minimal a.pass-card {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

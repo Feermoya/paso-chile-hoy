@@ -190,9 +190,9 @@ export function buildHomeMeta(): LayoutSeoBundle {
 
 /** `/legal` — descripción única; OG alineado sin depender del título del documento. */
 export function buildLegalPageMeta(): LayoutSeoBundle {
-  const title = `Aviso legal y fuentes de datos — ${SITE_NAME}`;
+  const title = `Aviso legal — ${SITE_NAME}`;
   const description =
-    "Condiciones de uso, procedencia de los datos (Ministerio de Seguridad Argentina) y alcance del servicio informativo independiente pasochilehoy.com. Leé esto antes de tomar decisiones de viaje.";
+    "Aviso legal y privacidad de Paso Chile Hoy. Sitio independiente: confirmá el estado del paso en la fuente oficial antes de viajar.";
   return {
     title,
     description,

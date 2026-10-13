@@ -2,6 +2,7 @@
 import AlertTicker from "@/components/AlertTicker.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
 import Footer from "@/components/Footer.astro";
+import MobileTabBar from "@/components/MobileTabBar.astro";
 import VersionBadge from "@/components/VersionBadge.astro";
 import {
   SITE_FAVICON,
@@ -10,6 +11,7 @@ import {
   schemaWebsiteId,
 } from "@/utils/seo";
 import "@/styles/global.css";
+import "@/styles/mobile-app-shell.css";
 
 export interface Props {
   title: string;
@@ -121,7 +123,7 @@ const icbmContent = geoPosition.includes(";")
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"
     />
     <meta name="theme-color" content="#f8f9fb" id="pch-theme-color" />
     <script is:inline>
@@ -211,7 +213,7 @@ const icbmContent = geoPosition.includes(";")
     )}
   </head>
   <body class="min-h-dvh bg-page">
-    <div class="relative z-[1] flex min-h-dvh flex-col">
+    <div class="app-frame relative z-[1] flex min-h-dvh flex-col">
       <a
         href="#contenido-principal"
         class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-[var(--radius-md)] focus:bg-surface-raised focus:px-4 focus:py-2 focus:text-ink focus:outline-none focus:ring-2 focus:ring-accent/40 focus:ring-offset-2 focus:ring-offset-page"
@@ -222,6 +224,28 @@ const icbmContent = geoPosition.includes(";")
         <div class="header-inner">
           <a href="/" class="header-logo-link" aria-label="Inicio — todos los pasos">
             <span class="header-brand-name">PASO CHILE HOY</span>
+            {
+              !showHeaderRegion && (
+                <span class="header-brand-place">
+                  <svg
+                    class="header-brand-pin"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  Mendoza · AR
+                </span>
+              )
+            }
             {
               showHeaderRegion && (
                 <>
@@ -300,6 +324,7 @@ const icbmContent = geoPosition.includes(";")
       </main>
       <slot name="before-footer" />
       <Footer />
+      <MobileTabBar />
     </div>
     <CookieBanner />
 
@@ -579,6 +604,65 @@ const icbmContent = geoPosition.includes(";")
 
         bindForecastHaptics();
         document.addEventListener("astro:page-load", bindForecastHaptics);
+      })();
+    </script>
+
+    <div id="page-loading" class="page-loading" hidden>
+      <div class="page-loading__panel" role="status" aria-live="polite" aria-busy="true">
+        <img src="/logo.png" alt="" width="52" height="52" class="page-loading__logo" />
+        <p class="page-loading__label">Cargando…</p>
+        <span class="page-loading__bar" aria-hidden="true"></span>
+      </div>
+    </div>
+    <script is:inline>
+      (function () {
+        var root = document.getElementById("page-loading");
+        if (!root || root.dataset.bound === "1") return;
+        root.dataset.bound = "1";
+        var timer = 0;
+        var from = "";
+
+        function hide() {
+          window.clearTimeout(timer);
+          root.hidden = true;
+          from = "";
+        }
+
+        function arm() {
+          window.clearTimeout(timer);
+          from = location.href;
+          timer = window.setTimeout(function () {
+            root.hidden = false;
+          }, 80);
+          window.setTimeout(function () {
+            if (!root.hidden && location.href === from) hide();
+          }, 20000);
+        }
+
+        document.addEventListener("click", function (event) {
+          if (event.defaultPrevented || event.button !== 0) return;
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          var target = event.target;
+          if (!target || !target.closest) return;
+          var link = target.closest("a");
+          if (!link) return;
+          if (link.target && link.target !== "_self") return;
+          if (link.hasAttribute("download")) return;
+          var href = link.getAttribute("href");
+          if (!href || href.charAt(0) === "#") return;
+          if (href.indexOf("mailto:") === 0 || href.indexOf("tel:") === 0) return;
+          var url;
+          try {
+            url = new URL(link.href, location.href);
+          } catch (e) {
+            return;
+          }
+          if (url.origin !== location.origin) return;
+          if (url.pathname === location.pathname && url.search === location.search) return;
+          arm();
+        });
+
+        window.addEventListener("pageshow", hide);
       })();
     </script>
   </body>

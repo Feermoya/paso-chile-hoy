@@ -69,7 +69,7 @@ function fcardTempModifier(temp: number | null | undefined): string {
     <span class="live-pulse-dot live-pulse-dot--sky" aria-hidden="true"></span>
     Próximas horas
   </h2>
-  <div class="forecast-grid">
+  <div class="forecast-grid" tabindex="0" aria-label="Pronóstico por franjas horarias">
     {
       forecast.map((period, i) => {
         const descRaw = period.description?.trim() || "Despejado";
@@ -161,19 +161,28 @@ function fcardTempModifier(temp: number | null | undefined): string {
 </section>
 
 <script>
-  const FORECAST_MQ = "(min-width: 768px)";
+  const FORECAST_DESKTOP = "(min-width: 768px)";
+  const FORECAST_PHONE = "(max-width: 639px)";
 
   function syncForecastDetailsOpen() {
-    const mq = window.matchMedia(FORECAST_MQ);
+    const desktop = window.matchMedia(FORECAST_DESKTOP).matches;
+    const phone = window.matchMedia(FORECAST_PHONE).matches;
     const cards = document.querySelectorAll(".forecast-section details.fcard");
     cards.forEach((el, i) => {
-      if (el instanceof HTMLDetailsElement) {
-        el.open = mq.matches || i === 0;
+      if (!(el instanceof HTMLDetailsElement)) return;
+      const summary = el.querySelector("summary");
+      if (phone) {
+        el.open = false;
+        if (summary instanceof HTMLElement) summary.tabIndex = -1;
+      } else {
+        el.open = desktop || i === 0;
+        if (summary instanceof HTMLElement) summary.removeAttribute("tabindex");
       }
     });
   }
 
   syncForecastDetailsOpen();
-  window.matchMedia(FORECAST_MQ).addEventListener("change", syncForecastDetailsOpen);
+  window.matchMedia(FORECAST_DESKTOP).addEventListener("change", syncForecastDetailsOpen);
+  window.matchMedia(FORECAST_PHONE).addEventListener("change", syncForecastDetailsOpen);
   document.addEventListener("astro:page-load", syncForecastDetailsOpen);
 </script>

@@ -1,0 +1,677 @@
+/**
+ * Detalle de paso — solo mobile (≤639px).
+ * Los bloques nuevos quedan ocultos en escritorio.
+ */
+
+.paso-cover,
+.paso-cover-share,
+.paso-cover-back-icon,
+.paso-pass-mark,
+.paso-detail-heading-icon,
+.paso-fact-sheet,
+.paso-section-nav,
+.status-live-badge {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .paso-page-root {
+    gap: var(--m-space-3);
+    overflow-x: clip;
+  }
+
+  .paso-page-root .anim-section {
+    animation: none;
+  }
+
+  .paso-page-root .paso-col {
+    gap: var(--m-space-3);
+  }
+
+  body:has(.paso-page-root) .ticker-wrapper {
+    position: static;
+    z-index: 1;
+    padding: 0 var(--m-space-5) var(--m-space-2);
+  }
+
+  body:has(.paso-page-root) .ticker-wrapper:not(:has(.status-bar-mobile-alert)) {
+    display: none;
+  }
+
+  body:has(.paso-page-root) .status-bar {
+    min-height: 0;
+  }
+
+  body:has(.paso-page-root) .status-bar-live-pill--compact,
+  body:has(.paso-page-root) .status-bar-mobile-unit:has(.status-bar-mobile-pass) {
+    display: none;
+  }
+
+  body:has(.paso-page-root) .status-bar-mobile {
+    min-height: 0;
+    padding: var(--m-space-2) var(--m-space-3);
+  }
+
+  body:has(.paso-page-root) .status-bar-mobile-track {
+    overflow: auto;
+  }
+
+  body:has(.paso-page-root) .status-bar-mobile-content {
+    width: 100%;
+    max-height: 3.6em;
+    white-space: normal;
+    animation: none;
+  }
+
+  .paso-page-root .container-main.paso-pass-nav {
+    position: relative;
+    max-width: none;
+    margin-bottom: 2px;
+    padding-inline: 0;
+  }
+
+  .paso-cover {
+    position: relative;
+    display: block;
+    height: 176px;
+    overflow: hidden;
+    border-radius: 0 0 var(--m-radius-card) var(--m-radius-card);
+    background-color: #c5d6e8;
+    background-image: url("/images/cordillera-cover.webp");
+    background-image: image-set(
+      url("/images/cordillera-cover.avif") type("image/avif"),
+      url("/images/cordillera-cover.webp") type("image/webp")
+    );
+    background-repeat: no-repeat;
+    background-position: center 42%;
+    background-size: cover;
+  }
+
+  .paso-cover::before,
+  .paso-cover::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    pointer-events: none;
+  }
+
+  .paso-cover::before {
+    top: 0;
+    height: 72px;
+    background: linear-gradient(to bottom, rgb(15 23 32 / 0.34), rgb(15 23 32 / 0));
+  }
+
+  .paso-cover::after {
+    bottom: 0;
+    height: 56px;
+    background: linear-gradient(
+      to bottom,
+      rgb(from var(--color-bg-base) r g b / 0),
+      var(--color-bg-base)
+    );
+  }
+
+  .paso-cover-share,
+  .paso-pass-nav__link {
+    position: absolute;
+    z-index: 2;
+    top: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #0d1117;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.22);
+    cursor: pointer;
+    transition: transform 120ms ease;
+  }
+
+  .paso-cover-share:active,
+  .paso-pass-nav__link:active {
+    transform: scale(0.96);
+  }
+
+  .paso-pass-nav__link {
+    left: 14px;
+    text-decoration: none;
+  }
+
+  .paso-cover-share {
+    right: 14px;
+  }
+
+  .paso-cover-back-icon {
+    display: block;
+  }
+
+  .paso-pass-nav__link span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .paso-pass-nav__sep {
+    display: none;
+  }
+
+  .paso-pass-nav__crumbs {
+    display: block;
+    margin-top: var(--m-space-2);
+    padding-inline: 20px;
+  }
+
+  .paso-pass-nav__current {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .paso-pass-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--brand) 16%, var(--color-surface));
+    color: var(--brand);
+  }
+
+  .paso-pass-nav__route {
+    margin: 4px 0 0;
+    padding-right: 20px;
+    padding-left: 74px;
+    font-size: 13px;
+  }
+
+  .paso-page-root .status-hero--pass-page {
+    margin-top: 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-border-subtle);
+    border-radius: 20px;
+    background: var(--color-surface);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 22px rgba(15, 23, 42, 0.05);
+  }
+
+  :root[data-theme="light"] .paso-page-root .status-hero--pass-page[data-pass-status="abierto"] {
+    background: #f3f8f5;
+    border-color: rgba(21, 122, 69, 0.16);
+  }
+
+  :root[data-theme="light"] .paso-page-root .status-hero--pass-page[data-pass-status="cerrado"] {
+    background: #f6f3f3;
+    border-color: rgba(146, 44, 36, 0.16);
+  }
+
+  :root[data-theme="light"] .paso-page-root .status-hero--pass-page[data-pass-status="condicionado"] {
+    background: #f8f6f1;
+    border-color: rgba(146, 96, 16, 0.18);
+  }
+
+  :root[data-theme="light"] .paso-page-root .status-hero--pass-page[data-pass-status="sin_datos"] {
+    background: #f7f8fa;
+    border-color: var(--color-border-subtle);
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page[data-pass-status="abierto"] {
+    background: color-mix(in srgb, #3dd68c 9%, var(--color-surface));
+    border-color: rgba(61, 214, 140, 0.22);
+    box-shadow: none;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page[data-pass-status="cerrado"] {
+    background: color-mix(in srgb, #e05555 10%, var(--color-surface));
+    border-color: rgba(224, 85, 85, 0.24);
+    box-shadow: none;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page[data-pass-status="condicionado"] {
+    background: color-mix(in srgb, #f0a830 10%, var(--color-surface));
+    border-color: rgba(240, 168, 48, 0.24);
+    box-shadow: none;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page[data-pass-status="sin_datos"] {
+    background: var(--color-surface);
+    border-color: var(--color-border-subtle);
+    box-shadow: none;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-hero-inner {
+    padding: 16px 16px 14px;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-main {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-dot {
+    width: 9px;
+    height: 9px;
+    animation: none;
+    box-shadow: none;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-dot--open {
+    background: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.16);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-dot--cerrado {
+    background: #c24136;
+    box-shadow: 0 0 0 4px rgba(194, 65, 54, 0.14);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-dot--condicionado {
+    background: #c4841d;
+    box-shadow: 0 0 0 4px rgba(196, 132, 29, 0.16);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-dot--unknown {
+    background: #6b7280;
+    box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.16);
+  }
+
+  .paso-page-root .status-hero--pass-page .text-status {
+    min-width: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 6.4vw, 1.65rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .paso-page-root .status-hero--pass-page .text-status[data-status-tone="abierto"] {
+    color: #0f7a45 !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .text-status[data-status-tone="cerrado"] {
+    color: #9f2c24 !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .text-status[data-status-tone="condicionado"] {
+    color: #8a5a10 !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .text-status[data-status-tone="neutral"] {
+    color: var(--color-text-secondary) !important;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .text-status[data-status-tone="abierto"] {
+    color: #8ee8b8 !important;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .text-status[data-status-tone="cerrado"] {
+    color: #f0b4b0 !important;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .text-status[data-status-tone="condicionado"] {
+    color: #f0c56a !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-badge--condicionado {
+    animation: none;
+  }
+
+  .status-live-badge {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 5px;
+    min-height: 22px;
+    margin-left: auto;
+    padding: 0 8px 0 7px;
+    border: 1px solid rgba(21, 122, 69, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #157a45;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .status-live-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #16a34a;
+    flex-shrink: 0;
+  }
+
+  :root[data-theme="dark"] .status-live-badge {
+    border-color: rgba(142, 232, 184, 0.28);
+    background: rgba(61, 214, 140, 0.12);
+    color: #c8f8de;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-secondary {
+    margin-top: 0;
+    gap: 10px;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-schedule {
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-border-subtle) 85%, transparent);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-schedule__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-schedule__primary {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-schedule__detail {
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-countdown {
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(21, 122, 69, 0.08);
+    gap: 8px;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-countdown--warning {
+    background: rgba(180, 120, 16, 0.1);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-countdown .status-countdown-icon {
+    color: #157a45 !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-countdown--warning .status-countdown-icon {
+    color: #9a6700 !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .countdown-label,
+  .paso-page-root .status-hero--pass-page .countdown-value {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .paso-page-root .status-hero--pass-page .countdown-label {
+    color: #157a45;
+  }
+
+  .paso-page-root .status-hero--pass-page .countdown-value {
+    min-width: 0;
+    color: #0f7a45;
+  }
+
+  .paso-page-root .status-hero--pass-page .countdown-label--warning,
+  .paso-page-root .status-hero--pass-page .countdown-value--warning {
+    color: #8a5a10;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .status-countdown {
+    background: rgba(61, 214, 140, 0.1);
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .status-countdown .status-countdown-icon,
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .countdown-label,
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .countdown-value {
+    color: #8ee8b8 !important;
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .status-countdown--warning {
+    background: rgba(240, 168, 48, 0.12);
+  }
+
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .status-countdown--warning .status-countdown-icon,
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .countdown-label--warning,
+  :root[data-theme="dark"] .paso-page-root .status-hero--pass-page .countdown-value--warning {
+    color: #f0c56a !important;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-refresh-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px 12px;
+    margin-top: 2px;
+    padding-top: 12px;
+    border-top: 1px solid color-mix(in srgb, var(--color-border-subtle) 90%, transparent);
+  }
+
+  .paso-page-root .status-hero--pass-page .status-timestamp {
+    grid-column: 1;
+    min-width: 0;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-hero-official {
+    grid-column: 2;
+    justify-self: end;
+    margin-top: 0;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .paso-page-root .status-hero--pass-page .status-hero-official:hover {
+    color: var(--brand);
+  }
+
+  @media (max-width: 360px) {
+    .paso-page-root .status-hero--pass-page .status-refresh-row {
+      grid-template-columns: 1fr;
+    }
+
+    .paso-page-root .status-hero--pass-page .status-hero-official {
+      grid-column: 1;
+      justify-self: start;
+    }
+  }
+
+  .paso-page-root .status-hero--pass-page .refresh-btn {
+    grid-column: 1 / -1;
+    justify-self: end;
+    margin-left: 0;
+    min-height: 36px;
+    padding: 0 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .paso-page-root .status-hero--pass-page .refresh-btn:not([data-state]),
+  .paso-page-root .status-hero--pass-page .refresh-btn[data-state="idle"] {
+    border-color: color-mix(in srgb, var(--color-border-default) 90%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    color: var(--color-text-secondary);
+  }
+
+  .paso-page-root .status-hero--pass-page .refresh-btn[data-state="loading"] {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .paso-page-root .status-hero--pass-page .refresh-btn[data-state="success"] {
+    border-color: var(--color-open);
+    color: var(--color-open);
+  }
+
+  .paso-page-root .status-hero--pass-page .refresh-btn[data-state="error"] {
+    border-color: var(--color-closed);
+    color: var(--color-closed);
+  }
+
+  .paso-page-root .status-hero--pass-page [data-hero-sin-datos-msg] {
+    margin-top: 0;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  }
+
+  .paso-page-root .paso-extra-details {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .paso-page-root .paso-extra-details .paso-panel__head {
+    padding: 16px 0 8px;
+  }
+
+  .paso-page-root .paso-panel__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem;
+  }
+
+  .paso-detail-heading-icon {
+    display: block;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-fact-sheet {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 18px;
+    background: var(--color-surface);
+    box-shadow: var(--m-shadow-card, 0 8px 24px rgba(15, 23, 42, 0.06));
+  }
+
+  :root[data-theme="light"] .paso-fact-sheet {
+    background: #ffffff;
+  }
+
+  .paso-fact-row {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 0.9fr) minmax(0, 1.4fr);
+    gap: 10px;
+    align-items: center;
+    min-height: 52px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .paso-fact-row:first-child {
+    border-top: 0;
+  }
+
+  .paso-fact-label {
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .paso-fact-value {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  a.paso-fact-row {
+    grid-template-columns: 22px minmax(0, 0.8fr) minmax(0, 1.3fr) 16px;
+  }
+
+  .paso-fact-chevron {
+    color: var(--color-text-muted);
+  }
+
+  .paso-page-root .paso-legend-link {
+    display: none;
+  }
+
+  .paso-section-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--m-space-1);
+    margin: var(--m-space-3) var(--m-space-5) 0;
+    padding: var(--m-space-1);
+    border-radius: var(--m-radius-control);
+    background: var(--color-surface-raised);
+  }
+
+  .paso-section-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--m-touch);
+    border-radius: 10px;
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease, transform 120ms ease;
+  }
+
+  .paso-section-nav a:active {
+    transform: scale(0.98);
+  }
+
+  .paso-section-nav a[aria-current="true"] {
+    background: var(--brand);
+    color: #ffffff;
+  }
+
+  .paso-section-nav a:focus-visible,
+  .paso-cover-share:focus-visible,
+  .paso-pass-nav__link:focus-visible,
+  .paso-fact-row:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  #estado,
+  #clima,
+  #informacion {
+    scroll-margin-top: calc(var(--header-height, 56px) + var(--m-space-3));
+  }
+}
+
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) {
+  .paso-page-root .status-hero .status-dot--live-pulse,
+  .paso-page-root .countdown-value,
+  .paso-section-nav a,
+  .paso-cover-share,
+  .paso-pass-nav__link {
+    animation: none;
+    transition: none;
+  }
+}

@@ -104,4 +104,21 @@ const {
 
   showStaleRefreshBanner();
   document.addEventListener("astro:page-load", showStaleRefreshBanner);
+
+  function syncPasoSections() {
+    var nav = document.querySelector(".paso-section-nav");
+    if (!nav) return;
+    var hash = window.location.hash;
+    var links = nav.querySelectorAll("a");
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      var active = hash ? link.getAttribute("href") === hash : link.getAttribute("href") === "#estado";
+      if (active) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    }
+  }
+
+  syncPasoSections();
+  window.addEventListener("hashchange", syncPasoSections);
+  document.addEventListener("astro:page-load", syncPasoSections);
 </script>

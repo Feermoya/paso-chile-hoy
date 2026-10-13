@@ -22,150 +22,282 @@ const legalLd = {
 ---
 
 <MainLayout {...seo} structuredData={legalLd}>
-  <div class="legal-page container-main">
-    <h1>Aviso legal</h1>
-    <p class="legal-updated">Última actualización: abril de 2026</p>
+  <article class="legal-page container-main">
+    <header class="legal-header">
+      <h1>Aviso legal</h1>
+      <p class="legal-lead">
+        Paso Chile Hoy es una guía personal para mirar el estado de los pasos. No es un sitio del gobierno y no
+        reemplaza la fuente oficial.
+      </p>
+      <p class="legal-updated">Última actualización: 13 de octubre de 2026</p>
+    </header>
 
-    <section>
-      <h2>1. Naturaleza del servicio</h2>
+    <nav class="legal-toc" aria-label="Contenido del aviso">
+      <ol>
+        <li><a href="#que-es">Qué es este sitio</a></li>
+        <li><a href="#antes-de-viajar">Antes de viajar</a></li>
+        <li><a href="#responsabilidad">Responsabilidad</a></li>
+        <li><a href="#asesoramiento">Qué no es este sitio</a></li>
+        <li><a href="#donaciones">Enlaces y donaciones</a></li>
+        <li><a href="#privacidad">Privacidad</a></li>
+        <li><a href="#propiedad">Propiedad y contacto</a></li>
+      </ol>
+    </nav>
+
+    <section id="que-es">
+      <h2>Qué es este sitio</h2>
       <p>
-        Paso Chile Hoy (<strong>pasochilehoy.com</strong>) es un servicio de información independiente, sin
-        fines de lucro, desarrollado y mantenido por Fernando Moya como proyecto personal. No pertenece ni
-        está afiliado a ningún organismo gubernamental de Argentina ni de Chile.
+        <strong>pasochilehoy.com</strong> es un proyecto personal de Fernando Moya, en Mendoza, Argentina. Es
+        gratis y no tiene publicidad. No pertenece, no representa y no está afiliado a ningún organismo de
+        Argentina ni de Chile: ni Gendarmería Nacional, ni Vialidad Nacional, ni el Servicio Meteorológico
+        Nacional, ni Aduana, ni el SAG, ni ningún ministerio.
+      </p>
+      <p>
+        El sitio resume información pública para que puedas orientarte. No habilita ni prohíbe el cruce. La
+        decisión de salir, esperar o volver es tuya.
       </p>
     </section>
 
-    <section>
-      <h2>2. Fuentes de los datos</h2>
+    <section class="legal-alert" id="antes-de-viajar">
+      <h2>Antes de viajar</h2>
       <p>
-        La información publicada en este sitio proviene exclusivamente de fuentes oficiales de acceso
-        público del Estado argentino, específicamente del sitio
-        <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener">
-          argentina.gob.ar/seguridad/pasosinternacionales
+        Lo que ves acá puede estar desactualizado o incompleto, y puede no coincidir con lo que está pasando
+        en el paso en ese momento.
+      </p>
+      <p>
+        Antes de salir tenés que confirmar en
+        <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener noreferrer">
+          la página oficial de pasos internacionales
         </a>
-        (Ministerio de Seguridad de la Nación), que incluye datos publicados por Gendarmería Nacional,
-        Vialidad Nacional y el Servicio Meteorológico Nacional.
-      </p>
-      <p>
-        Los datos son recopilados de forma automática de páginas de acceso público, sin acceder a sistemas
-        privados ni utilizar APIs no autorizadas. Se presentan con fines exclusivamente informativos y sin
-        modificación del contenido original.
+        y, si hace falta, con Gendarmería en el teléfono que figura ahí. El clima, el viento, la nieve y un
+        corte de ruta pueden cambiar después de la última vez que miraste esta web.
       </p>
     </section>
 
-    <section>
-      <h2>3. Exactitud de la información</h2>
+    <section id="responsabilidad">
+      <h2>Responsabilidad</h2>
       <p>
-        El estado del paso (abierto, cerrado o condicionado) mostrado en este sitio es una
-        <strong>interpretación automática</strong> basada en el horario oficial publicado y las alertas
-        textuales disponibles en la fuente. Esta interpretación puede no reflejar la situación en tiempo
-        real.
+        El sitio se ofrece tal como está, sin garantía de que esté siempre en línea, completo o actualizado al
+        minuto. En la máxima medida que permite la ley argentina, Fernando Moya no responde por decisiones de
+        viaje tomadas con esta información, ni por demoras, cierres, multas, accidentes, pérdida del viaje,
+        clima, trámites de migraciones o aduana, ni por cortes o errores del servicio.
       </p>
       <p>
-        <strong
-          >El usuario es responsable de verificar la información en las fuentes oficiales antes de tomar
-          cualquier decisión de viaje.</strong
-        >
-        Ante cualquier duda, comunicarse directamente con Gendarmería Nacional al teléfono publicado en la
-        página oficial del paso.
+        Nada de este aviso renuncia a derechos que la ley no deja renunciar. Si una norma obligatoria te
+        protege como consumidor, esa norma sigue vigente.
       </p>
     </section>
 
-    <section>
-      <h2>4. Limitación de responsabilidad</h2>
+    <section id="asesoramiento">
+      <h2>Qué no es este sitio</h2>
       <p>
-        Este sitio se provee &quot;tal cual&quot;, sin garantías de ningún tipo. El desarrollador no asume
-        responsabilidad por decisiones tomadas en base a la información aquí publicada, ni por
-        interrupciones del servicio, errores en los datos o desactualizaciones de la información.
+        No es asesoramiento legal, aduanero, migratorio, de seguros ni un pronóstico meteorológico oficial. La
+        declaración del SAG para entrar a Chile se hace en el sitio del propio SAG. Este proyecto solo enlaza
+        esa página. Completarla, y hacerlo a tiempo, es responsabilidad de quien viaja.
       </p>
     </section>
 
-    <section>
-      <h2>5. Propiedad intelectual</h2>
+    <section id="donaciones">
+      <h2>Enlaces y donaciones</h2>
       <p>
-        El diseño, el código y la lógica de interpretación de este sitio son propiedad de Fernando Moya. Los
-        datos mostrados son de dominio público, publicados por organismos del Estado argentino.
+        Los enlaces a sitios del Estado, al SAG, a X y a otros servicios salen de esta web. Cada uno tiene sus
+        propias condiciones. No controlo lo que publican ni lo que hacen con tus datos.
+      </p>
+      <p>
+        «Invitarme un café» es una donación voluntaria por Mercado Pago. No es una venta: no compra
+        información, prioridad ni exactitud. Esta web no guarda datos de tarjetas. La donación la gestiona
+        Mercado Pago según sus condiciones.
       </p>
     </section>
 
-    <section>
-      <h2>6. Contacto</h2>
+    <section id="privacidad">
+      <h2>Privacidad</h2>
       <p>
-        Consultas, sugerencias o reportes de errores:{" "}
-        <a href="mailto:fmoya97.fm@gmail.com">fmoya97.fm@gmail.com</a>
+        No hay cuentas de usuario, no hay publicidad y no vendo datos personales. Este sitio no pide tu nombre
+        para consultar el estado de un paso.
+      </p>
+      <p>
+        Si me escribís a
+        <a href="mailto:fmoya97.fm@gmail.com">fmoya97.fm@gmail.com</a>, uso ese mensaje solo para responderte.
+      </p>
+    </section>
+
+    <section id="propiedad">
+      <h2>Propiedad y contacto</h2>
+      <p>Los textos propios, el diseño y el nombre Paso Chile Hoy son de Fernando Moya.</p>
+      <p>
+        Este aviso se rige por las leyes de la República Argentina. Para lo que la ley permita pactar, los
+        tribunales ordinarios de la ciudad de Mendoza son competentes.
+      </p>
+      <p>
+        Puedo actualizar este texto. La fecha de arriba indica la versión vigente. Consultas:
+        <a href="mailto:fmoya97.fm@gmail.com">fmoya97.fm@gmail.com</a>.
       </p>
     </section>
 
     <nav class="legal-nav-internal" aria-label="Enlaces dentro del sitio">
       <p>
-        <a href="/">Inicio — estado de todos los pasos</a>
+        <a href="/">Inicio</a>
         · <a href="/cristo-redentor">Cristo Redentor</a>
         · <a href="/pehuenche">Pehuenche</a>
         · <a href="/agua-negra">Agua Negra</a>
+        · <a href="/paso-a-chile-hoy">Paso a Chile hoy</a>
       </p>
     </nav>
-  </div>
+  </article>
 </MainLayout>
 
 <style>
   .legal-page {
-    max-width: 680px;
+    max-width: 40rem;
     margin-inline: auto;
-    padding: 40px 0 80px;
-    font-size: 15px;
-    line-height: 1.7;
+    padding-top: 28px;
+    padding-bottom: 56px;
+    font-size: 1rem;
+    line-height: 1.65;
     color: var(--color-text-secondary);
+  }
+
+  .legal-header {
+    margin-bottom: 8px;
   }
 
   .legal-page h1 {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
     color: var(--color-text-primary);
-    margin-bottom: 6px;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+
+  .legal-lead {
+    margin: 0 0 10px;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--color-text-primary);
   }
 
   .legal-updated {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    margin-bottom: 40px;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .legal-toc {
+    margin: 28px 0 8px;
+    padding-top: 8px;
+  }
+
+  .legal-toc ol {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .legal-toc a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .legal-toc a:hover {
+    color: var(--color-accent);
+  }
+
+  .legal-page section {
+    scroll-margin-top: 10rem;
   }
 
   .legal-page h2 {
-    font-size: 15px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
     color: var(--color-text-primary);
-    margin-top: 32px;
+    margin: 36px 0 10px;
+  }
+
+  .legal-page p,
+  .legal-page li {
+    margin: 0 0 12px;
+  }
+
+  .legal-page ul {
+    margin: 0 0 12px;
+    padding-left: 1.15rem;
+  }
+
+  .legal-page li {
     margin-bottom: 8px;
+    padding-left: 0.15rem;
   }
 
   .legal-page a {
     color: var(--color-accent);
-    text-decoration: none;
+    overflow-wrap: anywhere;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
   }
 
   .legal-page a:hover {
     text-decoration: underline;
   }
 
+  .legal-page a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .legal-alert {
+    margin-top: 28px;
+    padding: 18px 18px 6px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  .legal-alert h2 {
+    margin-top: 0;
+  }
+
   .legal-nav-internal {
-    margin-top: 40px;
-    padding-top: 24px;
+    margin-top: 36px;
+    padding-top: 20px;
     border-top: 1px solid var(--color-border-subtle);
-    font-size: 13px;
+    font-size: 0.9375rem;
   }
 
   .legal-nav-internal p {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.8;
   }
 
-  .legal-nav-internal a {
-    color: var(--color-accent);
-    text-decoration: none;
-  }
+  @media (min-width: 640px) {
+    .legal-page {
+      padding-top: 48px;
+      padding-bottom: 88px;
+      font-size: 1.0625rem;
+    }
 
-  .legal-nav-internal a:hover {
-    text-decoration: underline;
+    .legal-toc ol {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 28px;
+    }
+
+    .legal-alert {
+      padding: 22px 24px 10px;
+    }
   }
 </style>

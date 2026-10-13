@@ -4,6 +4,7 @@ import type { PasoConfig } from "@/data/pasos";
 import type { ForecastItemView } from "@/types/pass-view";
 import { isVialidadCorteTotal, type PassDisplayStatus } from "@/utils/inferPassStatus";
 import {
+  getMobileWeatherIconHtml,
   getWeatherIconHtml,
   getWeatherPreviewAlert,
   getWeatherVariant,
@@ -120,6 +121,7 @@ const weatherVariant: PassCardWeatherVariant = desc
   ? getWeatherVariant(desc, weatherWind)
   : "sunny";
 const weatherIconHtml = getWeatherIconHtml(weatherVariant);
+const mobileWeatherIconHtml = desc ? getMobileWeatherIconHtml(desc, weatherWind) : null;
 const quickStatusLabel = SHORT_STATUS_LABEL[uiStatus];
 
 const weatherPreview = getWeatherPreviewAlert({
@@ -135,6 +137,8 @@ const weatherPreview = getWeatherPreviewAlert({
   displayStatus: uiStatus,
   displayLabel: label,
 });
+const alertLooksLikeSnow = Boolean(weatherPreview && /niev|nieve|nevada/i.test(weatherPreview.text));
+const hasNotice = Boolean(weatherPreview) || hasVialidad || showClosesIn || showOpensIn;
 ---
 
 {
@@ -148,37 +152,48 @@ const weatherPreview = getWeatherPreviewAlert({
       title={`${paso.shortName} — ${STATUS_ARIA[uiStatus]}`}
     >
       <div class="pass-card-weather-icon" set:html={weatherIconHtml} aria-hidden="true" />
+      <div class:list={["pass-card-mark", `pass-card-mark--${uiStatus}`]} aria-hidden="true">
+        <Icon name="lucide:mountain" width="22" height="22" />
+      </div>
 
-      <div class:list={["pass-card-header", statusDotsOnly && "pass-card-header--minimal"]}>
-        <h3 class="pass-card-name">{paso.shortName}</h3>
+      <div class="pass-card-lead">
+        <div class:list={["pass-card-header", statusDotsOnly && "pass-card-header--minimal"]}>
+          <h3 class="pass-card-name">{paso.shortName}</h3>
+          {
+            !statusDotsOnly && (
+              <div class="pass-card-status-badge" data-status={statusDataAttr}>
+                <span class:list={["status-dot", uiStatus !== "sin_datos" && "status-dot--pulse"]} aria-hidden="true" />
+                <span>{label}</span>
+              </div>
+            )
+          }
+        </div>
+
         {
-          !statusDotsOnly && (
-            <div class="pass-card-status-badge" data-status={statusDataAttr}>
-              <span class:list={["status-dot", uiStatus !== "sin_datos" && "status-dot--pulse"]} aria-hidden="true" />
-              <span>{label}</span>
-            </div>
+          statusDotsOnly && (
+            <p
+              class:list={["pass-card-status-strip", `pass-card-status-strip--${uiStatus}`]}
+              role="status"
+            >
+              <span
+                class:list={[
+                  "pass-card-status-strip__dot",
+                  uiStatus !== "sin_datos" && "pass-card-status-strip__dot--pulse",
+                ]}
+                aria-hidden="true"
+              />
+              <span class="pass-card-status-strip__label">{quickStatusLabel}</span>
+            </p>
           )
         }
       </div>
 
+      <div class="pass-card-climate">
       {
-        statusDotsOnly && (
-          <p
-            class:list={["pass-card-status-strip", `pass-card-status-strip--${uiStatus}`]}
-            role="status"
-          >
-            <span
-              class:list={[
-                "pass-card-status-strip__dot",
-                uiStatus !== "sin_datos" && "pass-card-status-strip__dot--pulse",
-              ]}
-              aria-hidden="true"
-            />
-            <span class="pass-card-status-strip__label">{quickStatusLabel}</span>
-          </p>
-        )
+        mobileWeatherIconHtml ? (
+          <div class="pass-card-wx" set:html={mobileWeatherIconHtml} aria-hidden="true" />
+        ) : null
       }
-
       <div class="pass-card-temp">
         {tempStr != null ? (
           <>
@@ -200,22 +215,22 @@ const weatherPreview = getWeatherPreviewAlert({
           <div class="pass-card-condition pass-card-condition--muted">Sin datos de clima</div>
         )
       }
+      </div>
 
+      <div class:list={["pass-card-notice", !hasNotice && "pass-card-notice--quiet"]}>
       {
         weatherPreview ? (
           <div
             class:list={["pass-card-alert-preview", weatherPreview.critical && "critical"]}
             aria-live="polite"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M12 9v4M12 17h.01M10.3 3.6L1.8 18a1 1 0 00.9 1.5h18.6a1 1 0 00.9-1.5L13.7 3.6a1 1 0 00-1.8 0z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            {
+              alertLooksLikeSnow ? (
+                <Icon name="lucide:snowflake" width="16" height="16" aria-hidden="true" />
+              ) : (
+                <Icon name="lucide:triangle-alert" width="16" height="16" aria-hidden="true" />
+              )
+            }
             <span>{weatherPreview.text}</span>
           </div>
         ) : null
@@ -243,6 +258,15 @@ const weatherPreview = getWeatherPreviewAlert({
           </div>
         )
       }
+
+      <Icon
+        name="lucide:chevron-right"
+        class="pass-card-go"
+        width="18"
+        height="18"
+        aria-hidden="true"
+      />
+      </div>
 
       <div class="pass-card-route">
         <Icon name="lucide:route" width="15" height="15" aria-hidden="true" />

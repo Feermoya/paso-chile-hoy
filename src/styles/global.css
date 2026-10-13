@@ -1494,6 +1494,33 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
       max(16px, env(safe-area-inset-right, 0px));
   }
 
+  @media (max-width: 639px) {
+    .header-inner {
+      min-height: 48px;
+      padding: 4px max(12px, env(safe-area-inset-left, 0px)) 4px
+        max(12px, env(safe-area-inset-right, 0px));
+    }
+
+    .header-brand-name {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .header-actions .version-badge {
+      display: none;
+    }
+
+    .theme-toggle-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ticker-wrapper {
+      padding: 4px max(12px, env(safe-area-inset-left, 0px)) 6px
+        max(12px, env(safe-area-inset-right, 0px));
+    }
+  }
+
   .header-logo-link {
     display: flex;
     align-items: baseline;
@@ -2118,6 +2145,48 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     overflow: hidden;
   }
 
+  .las-lenas-dynamic {
+    min-height: 148px;
+  }
+
+  .las-lenas-pending {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    min-height: 148px;
+    margin: 0;
+    padding: 16px;
+    box-sizing: border-box;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .las-lenas-retry {
+    margin: 0;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border-default);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .las-lenas-retry:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .las-lenas-retry:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
   .las-lenas-hd {
     padding: 14px 16px 10px;
     border-bottom: 0.5px solid var(--color-border-subtle);
@@ -2207,6 +2276,10 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     font-size: 11px;
     font-weight: 500;
     color: #16a34a;
+  }
+
+  .las-lenas-live-badge[hidden] {
+    display: none;
   }
 
   .las-lenas-live-dot {
@@ -2713,6 +2786,10 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
     padding: 8px 16px;
     gap: 12px;
     flex-wrap: wrap;
+  }
+
+  .las-lenas-foot[hidden] {
+    display: none;
   }
 
   .las-lenas-foot-src,
@@ -4977,6 +5054,14 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
   line-height: 1.35;
 }
 
+@media (max-width: 639px) {
+  .support-line-strong {
+    font-size: 1rem;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+}
+
 .support-line-muted {
   font-size: 0.9rem;
   color: var(--color-text-muted);
@@ -5159,6 +5244,13 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
 @media (min-width: 900px) {
   .support-donate-btn {
     width: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .support-donate-btn {
+    white-space: normal;
+    text-align: center;
   }
 }
 
@@ -8888,5 +8980,85 @@ a.paso-card-v2:focus-visible .pass-card-arrow {
   :root[data-theme="light"] .entry-chile__notes {
     background: #fffbeb;
     border-color: rgba(245, 158, 11, 0.35);
+  }
+}
+
+.page-loading[hidden] {
+  display: none !important;
+}
+
+.page-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--color-bg-base);
+}
+
+.page-loading__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 240px);
+  text-align: center;
+}
+
+.page-loading__logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+
+.page-loading__label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.page-loading__bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+.page-loading__bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--brand);
+  animation: page-loading-bar 1.05s ease-in-out infinite;
+}
+
+@keyframes page-loading-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loading__bar::after {
+    animation: none;
+    left: 30%;
+    width: 40%;
+    transform: none;
   }
 }

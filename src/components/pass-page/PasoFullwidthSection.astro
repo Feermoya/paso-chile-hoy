@@ -13,7 +13,7 @@ export interface Props {
 const { view, hideScheduleInDetails, hideOfficialLink = false, class: className } = Astro.props;
 ---
 
-<div class:list={["paso-page-fullwidth paso-fullwidth", className]}>
+<div id="informacion" class:list={["paso-page-fullwidth paso-fullwidth", className]}>
   <details class="paso-bottom-details home-collapse" aria-label="Datos ampliados del paso">
     <summary class="paso-bottom-details__summary">
       <span class="paso-bottom-details__title">Datos ampliados del paso</span>

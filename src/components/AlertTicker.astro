@@ -157,7 +157,6 @@ const mobileParts: MobileScrollEntry[] = [
     ? alerts.map((a) => ({ t: "msg" as const, text: a.text }))
     : [{ t: "msg" as const, text: "Sin alertas activas" }]),
 ];
-const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
 ---
 
 <div
@@ -267,7 +266,7 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     <div class="status-bar-mobile-track" aria-hidden="true">
       <div class="status-bar-mobile-content">
         {
-          mobileScrollItems.map((item, idx) => (
+          mobileParts.map((item, idx) => (
             <span class="status-bar-mobile-unit">
               {idx > 0 ? <span class="status-bar-mobile-sep" aria-hidden="true">·</span> : null}
               {item.t === "pass" ? (
@@ -286,7 +285,15 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
                   <span aria-hidden="true">{item.shortName}</span>
                 </a>
               ) : (
-                <span class="status-bar-mobile-item" aria-hidden="true">{item.text}</span>
+                <span
+                  class:list={[
+                    "status-bar-mobile-item",
+                    alerts.length > 0 && "status-bar-mobile-alert",
+                  ]}
+                  aria-hidden="true"
+                >
+                  {item.text}
+                </span>
               )}
             </span>
           ))
@@ -714,9 +721,9 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 48px;
-    padding: 8px 10px;
-    gap: 12px;
+    min-height: 36px;
+    padding: 4px 8px;
+    gap: 8px;
     box-sizing: border-box;
   }
 
@@ -735,8 +742,15 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
   .status-bar-mobile-track {
     flex: 1;
     min-width: 0;
-    overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+    overflow-x: auto;
+    overflow-y: hidden;
+    mask-image: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .status-bar-mobile-track::-webkit-scrollbar {
+    display: none;
   }
 
   @keyframes status-bar-mobile-scroll {
@@ -754,10 +768,10 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
     align-items: center;
     white-space: nowrap;
     width: max-content;
-    font-size: 0.78rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--color-text-secondary);
-    animation: status-bar-mobile-scroll 22s linear infinite;
+    animation: none;
   }
 
   .status-bar-mobile-content:hover {
@@ -812,6 +826,13 @@ const mobileScrollItems = [...mobileParts, ...mobileParts, ...mobileParts];
 
   a.status-bar-mobile-pass:active {
     opacity: 0.88;
+  }
+
+  @media (max-width: 639px) {
+    .status-bar {
+      min-height: 0;
+      border-radius: 12px;
+    }
   }
 
   .status-bar-mobile-sep {

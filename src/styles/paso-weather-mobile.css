@@ -1,0 +1,425 @@
+/**
+ * Clima del detalle — solo mobile (≤639px).
+ * El escritorio conserva el panel actual: el envoltorio del hero no genera caja.
+ */
+
+.wn-mobile-hero {
+  display: contents;
+}
+
+.wn-mobile-wx,
+.wn-embed-metric__icon,
+.wn-metric--desktop-off {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .paso-page-root .paso-weather-panel.paso-panel {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .paso-page-root .paso-weather-panel__head {
+    padding: 0 2px 2px;
+    border: 0;
+    background: transparent;
+  }
+
+  .paso-page-root .paso-weather-panel__live {
+    display: none;
+  }
+
+  .paso-page-root .paso-weather-panel__title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .paso-page-root .paso-weather-panel__body {
+    gap: 12px;
+    padding: 8px 0 0;
+  }
+
+  .paso-page-root .weather-now-card--embedded {
+    display: contents;
+  }
+
+  .paso-page-root .wn-mobile-hero {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+    gap: 12px;
+    min-height: 188px;
+    padding: 16px 16px 14px;
+    overflow: hidden;
+    border-radius: 18px;
+    background-color: #e7f3fb;
+    background-image:
+      linear-gradient(180deg, rgb(231 243 251 / 0.9), rgb(214 232 247 / 0.94)),
+      url("/images/cordillera-cover.webp");
+    background-image:
+      linear-gradient(180deg, rgb(231 243 251 / 0.9), rgb(214 232 247 / 0.94)),
+      image-set(
+        url("/images/cordillera-cover.avif") type("image/avif"),
+        url("/images/cordillera-cover.webp") type("image/webp")
+      );
+    background-repeat: no-repeat;
+    background-position: center, center 46%;
+    background-size: cover;
+    color: #102033;
+  }
+
+  :root:not([data-theme="light"]) .paso-page-root .wn-mobile-hero {
+    background-color: #16324c;
+    background-image:
+      linear-gradient(180deg, rgb(18 42 66 / 0.86), rgb(12 30 48 / 0.92)),
+      url("/images/cordillera-cover.webp");
+    background-image:
+      linear-gradient(180deg, rgb(18 42 66 / 0.86), rgb(12 30 48 / 0.92)),
+      image-set(
+        url("/images/cordillera-cover.avif") type("image/avif"),
+        url("/images/cordillera-cover.webp") type("image/webp")
+      );
+    color: #f4f8fb;
+  }
+
+  .paso-page-root .wn-embed-hero {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: center;
+    order: 1;
+  }
+
+  .paso-page-root .wn-embed-hero__main {
+    display: contents;
+  }
+
+  .paso-page-root .wn-embed-hero__icon {
+    display: none;
+  }
+
+  .paso-page-root .wn-mobile-wx {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+  }
+
+  .paso-page-root .wn-mobile-wx .weather-icon-svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .paso-page-root .wn-embed-temp {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: baseline;
+  }
+
+  .paso-page-root .wn-embed-temp__value {
+    font-size: clamp(2.75rem, 14vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: inherit;
+  }
+
+  .paso-page-root .wn-embed-temp__unit {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.72;
+  }
+
+  .paso-page-root .wn-embed-desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin: 10px 0 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  .paso-page-root .wn-mobile-hero .wn-embed-condition {
+    order: 2;
+    margin: 0;
+    padding: 10px 0 0;
+    border: 0;
+    border-top: 1px solid rgb(16 32 51 / 0.12);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  :root:not([data-theme="light"]) .paso-page-root .wn-mobile-hero .wn-embed-condition {
+    border-top-color: rgb(255 255 255 / 0.14);
+  }
+
+  .paso-page-root .wn-mobile-hero .wn-embed-condition__sub {
+    color: #3d5166;
+  }
+
+  :root:not([data-theme="light"]) .paso-page-root .wn-mobile-hero .wn-embed-condition__sub {
+    color: #c5d5e4;
+  }
+
+  .paso-page-root .paso-weather-driving {
+    order: 2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .paso-page-root .paso-weather-driving:not(:has(.driving-conditions)) {
+    display: none;
+  }
+
+  .paso-page-root .paso-weather-driving .paso-weather-subhead,
+  .paso-page-root .paso-weather-forecast-block .paso-weather-subhead {
+    display: none;
+  }
+
+  .paso-page-root .paso-weather-driving .driving-conditions {
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid color-mix(in srgb, var(--dc-color, var(--color-conditional)) 32%, transparent);
+    border-left-width: 1px;
+    border-radius: 14px;
+    gap: 6px;
+  }
+
+  .paso-page-root .paso-weather-driving .dc-title {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .paso-page-root .paso-weather-driving .dc-message {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .paso-page-root .wn-embed-temp-note {
+    order: 3;
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .paso-page-root .wn-embed-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    order: 4;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .paso-page-root .wn-embed-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+    min-height: 0;
+    padding: 12px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--color-surface);
+    box-shadow: var(--m-shadow-card, 0 8px 24px rgba(15, 23, 42, 0.06));
+  }
+
+  .paso-page-root .wn-embed-metric[data-empty="true"] {
+    display: none;
+  }
+
+  .paso-page-root .wn-embed-metric:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .paso-page-root .wn-embed-metric__icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: #1d6fb8;
+  }
+
+  :root:not([data-theme="light"]) .paso-page-root .wn-embed-metric__icon {
+    color: #8ec5ff;
+  }
+
+  .paso-page-root .wn-embed-metric__label,
+  .paso-page-root .wn-embed-metric__badge,
+  .paso-page-root .wn-embed-metric__value,
+  .paso-page-root .wn-embed-metric__detail {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .paso-page-root .wn-embed-metric__label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .paso-page-root .wn-embed-metric__value,
+  .paso-page-root .wn-embed-metrics .wn-badge {
+    max-width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .paso-page-root .wn-embed-metric__detail {
+    font-size: 12px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .paso-page-root .wn-metric--desktop-off {
+    display: flex;
+  }
+
+  .paso-page-root .staleness-warning {
+    order: 6;
+  }
+
+  .paso-page-root .paso-weather-forecast-block {
+    order: 5;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .paso-page-root .forecast-section .text-section-title {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: var(--color-text-primary);
+  }
+
+  .paso-page-root .forecast-section .live-pulse-dot {
+    display: none;
+  }
+
+  .paso-page-root .forecast-grid {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    margin: 0;
+    padding: 2px 2px 6px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 2px;
+    scrollbar-width: none;
+  }
+
+  .paso-page-root .forecast-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .paso-page-root .forecast-grid:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .paso-page-root .forecast-section .fcard {
+    flex: 0 0 152px;
+    width: 152px;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--m-shadow-card, 0 8px 24px rgba(15, 23, 42, 0.06));
+  }
+
+  .paso-page-root .forecast-section .fcard-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    height: 100%;
+    padding: 12px;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .paso-page-root .forecast-section .fcard-icon-wrap {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    margin: 0;
+  }
+
+  .paso-page-root .forecast-section .fcard-icon-wrap svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .paso-page-root .forecast-section .fcard-meta,
+  .paso-page-root .forecast-section .fcard-top-right {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .paso-page-root .forecast-section .fcard-period {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .paso-page-root .forecast-section .fcard-date {
+    font-size: 12px;
+  }
+
+  .paso-page-root .forecast-section .fcard-desc--summary {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .paso-page-root .forecast-section .fcard-temp {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .paso-page-root .forecast-section .fcard-cond-badge,
+  .paso-page-root .forecast-section .fcard-body {
+    display: none;
+  }
+
+  .paso-page-root .paso-page-weather {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) {
+  .paso-page-root .forecast-grid {
+    scroll-behavior: auto;
+  }
+
+  .paso-page-root .paso-weather-driving .driving-conditions {
+    animation: none;
+  }
+}

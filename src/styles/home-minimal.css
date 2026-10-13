@@ -353,112 +353,560 @@
   color: #b45309;
 }
 
-/* Móvil — cards compactas, alineación izquierda, ícono clima a la derecha */
+/* Escritorio: los wrappers no crean caja, la card sigue en columna */
+@media (min-width: 640px) {
+  .home-layout--minimal .pass-card-lead,
+  .home-layout--minimal .pass-card-climate,
+  .home-layout--minimal .pass-card-notice,
+  .home-layout--minimal .home-hero-meta {
+    display: contents;
+  }
+
+  .home-layout--minimal .pass-card-go,
+  .home-layout--minimal .pass-card-mark,
+  .home-layout--minimal .pass-card-wx,
+  .home-layout--minimal .home-app-tools,
+  .home-layout--minimal .home-live,
+  .home-layout--minimal .home-hero-source,
+  .home-layout--minimal .home-lead-icon {
+    display: none;
+  }
+}
+
+/* Móvil — tres cards independientes */
 @media (max-width: 639px) {
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid {
+  body:has(.home-layout--minimal) .ticker-wrapper {
+    display: none;
+  }
+
+  .home-layout--minimal a.pass-card {
+    transition: transform 160ms ease;
+  }
+
+  .home-layout--minimal a.pass-card:active {
+    transform: scale(0.985);
+  }
+
+  .home-layout--minimal {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+    padding-bottom: 28px;
+    overflow-x: clip;
+  }
+
+  .home-layout--minimal .home-hero {
+    display: contents;
+  }
+
+  .home-layout--minimal .home-live {
+    order: 1;
+    display: flex;
+    align-items: center;
     gap: 10px;
-    align-items: start;
+    min-width: 0;
+    margin: 0 0 14px;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--m-shadow-card);
+  }
+
+  :root[data-theme="light"] .home-layout--minimal .home-live {
+    background: #ffffff;
+  }
+
+  .home-layout--minimal .home-live-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin: 0;
+    color: #dc2626;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .home-layout--minimal .home-live-flag--stale {
+    color: var(--color-text-muted);
+  }
+
+  .home-layout--minimal .home-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #ef4444;
+  }
+
+  .home-layout--minimal .home-live-flag--stale .home-live-dot {
+    background: var(--color-text-muted);
+  }
+
+  .home-layout--minimal .home-live-scroll {
+    display: flex;
+    gap: 14px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .home-layout--minimal .home-live-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-layout--minimal .home-live-pass {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    min-height: 36px;
+    color: var(--color-text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .home-layout--minimal .home-live-pass-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #9ca3af;
+  }
+
+  .home-layout--minimal .home-live-pass--abierto .home-live-pass-dot {
+    background: #16a34a;
+  }
+
+  .home-layout--minimal .home-live-pass--cerrado .home-live-pass-dot {
+    background: #dc2626;
+  }
+
+  .home-layout--minimal .home-live-pass--condicionado .home-live-pass-dot {
+    background: #d97706;
+  }
+
+  .home-layout--minimal .home-hero-title {
+    order: 2;
+    margin: 0 0 8px;
+    font-size: 1.625rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .home-layout--minimal .home-hero-meta {
+    order: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 14px;
+  }
+
+  .home-layout--minimal .home-hero-updated {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .home-layout--minimal .home-hero-source {
+    flex-shrink: 0;
+    color: var(--brand);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2.pass-card {
-    padding: 11px 13px 10px;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 104px;
+    grid-template-areas:
+      "mark lead climate"
+      "mark route climate"
+      "notice notice notice";
+    column-gap: 12px;
+    row-gap: 2px;
+    align-items: center;
     min-height: 0 !important;
     height: auto !important;
-    align-self: start;
-    border-left-width: 4px;
+    padding: 14px 14px 12px;
+    border-radius: 18px !important;
+    border: 1px solid var(--color-border-subtle) !important;
+    border-left-width: 4px !important;
+    border-left-style: solid !important;
+    background: var(--color-surface) !important;
+    box-shadow: var(--m-shadow-card) !important;
     text-align: left;
-    align-items: stretch;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2--abierto.pass-card,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2--cerrado.pass-card,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2--condicionado.pass-card,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2--sin_datos.pass-card {
+    background: var(--color-surface) !important;
+    box-shadow: var(--m-shadow-card) !important;
+  }
+
+  :root[data-theme="light"] .home-layout--minimal .pasos-grid.pcv2-cards-grid .paso-card-v2.pass-card {
+    background: #ffffff !important;
+    border-top-color: rgba(15, 23, 42, 0.06) !important;
+    border-right-color: rgba(15, 23, 42, 0.06) !important;
+    border-bottom-color: rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid a.pass-card:hover {
+    transform: none;
+    box-shadow: var(--m-shadow-card);
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid a.pass-card:active {
+    background: var(--color-surface-raised) !important;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid a.pass-card:focus-visible,
+  .home-layout--minimal .home-live-pass:focus-visible,
+  .home-layout--minimal .home-app-tools a:focus-visible,
+  .home-layout--minimal .home-hero-source:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-weather-icon {
-    width: 34px;
-    height: 34px;
-    top: 10px;
-    right: 10px;
-    left: auto;
-    transform: none;
-    opacity: 0.45;
+    display: none;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-mark {
+    grid-area: mark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    width: 46px;
+    height: 46px;
+    margin-top: 2px;
+    border-radius: 999px;
+    background: color-mix(in srgb, #16a34a 14%, var(--color-surface));
+    color: #15803d;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-mark--cerrado {
+    background: color-mix(in srgb, #dc2626 12%, var(--color-surface));
+    color: #dc2626;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-mark--condicionado {
+    background: color-mix(in srgb, #d97706 14%, var(--color-surface));
+    color: #b45309;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-mark--sin_datos {
+    background: var(--color-surface-raised);
+    color: var(--color-text-muted);
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-lead {
+    grid-area: lead;
+    min-width: 0;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-header--minimal {
-    padding-right: 42px;
-    padding-top: 0;
-    margin-bottom: 2px;
-    justify-content: flex-start;
-    text-align: left;
+    width: auto;
     min-height: 0;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-name {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.2;
     text-align: left;
   }
 
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip {
-    margin-bottom: 4px;
-    gap: 6px;
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-route {
+    grid-area: route;
+    width: auto;
+    min-width: 0;
+    margin: 1px 0 0;
+    padding: 0;
+    border: 0;
+    color: var(--color-text-muted);
+    font-size: 12px;
+    line-height: 1.3;
     justify-content: flex-start;
   }
 
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip__dot {
-    width: 8px;
-    height: 8px;
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-route svg,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-arrow {
+    display: none;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-route span {
+    min-width: 0;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip {
+    width: fit-content;
+    max-width: 100%;
+    margin: 6px 0 0;
+    padding: 3px 8px 3px 7px;
+    gap: 6px;
+    border-radius: 999px;
+    justify-content: flex-start;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip--abierto {
+    background: color-mix(in srgb, #16a34a 14%, var(--color-surface));
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip--cerrado {
+    background: color-mix(in srgb, #dc2626 12%, var(--color-surface));
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip--condicionado {
+    background: color-mix(in srgb, #d97706 16%, var(--color-surface));
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip--sin_datos {
+    background: var(--color-surface-raised);
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip__label {
     font-size: 13px;
+    font-weight: 700;
   }
 
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-weather-icon {
-    opacity: 0.88;
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-climate {
+    grid-area: climate;
+    display: grid;
+    grid-template-columns: auto 28px;
+    grid-template-areas:
+      "temp wx"
+      "cond cond";
+    align-items: center;
+    justify-content: end;
+    column-gap: 2px;
+    row-gap: 0;
+    min-width: 0;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-temp {
-    margin-bottom: 0;
-    justify-content: center;
+    grid-area: temp;
+    width: auto;
+    margin: 0;
+    justify-content: flex-end;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .temp-main {
-    font-size: 1.625rem;
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.03em;
+    line-height: 1;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .temp-deg {
     font-size: 14px;
-    margin-top: 3px;
+    margin-top: 1px;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-wx {
+    grid-area: wx;
+    display: block;
+    width: 28px;
+    height: 28px;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-wx .weather-icon-svg {
+    width: 28px;
+    height: 28px;
+    display: block;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-condition {
+    grid-area: cond;
+    width: auto;
+    max-width: 104px;
+    margin: 2px 0 0;
     font-size: 12px;
-    margin-bottom: 4px;
-    text-align: center;
-    white-space: nowrap;
+    line-height: 1.25;
+    text-align: right;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-alert-preview,
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pcv2-alert-banner {
-    width: 100%;
-    max-width: 100%;
-    font-size: 11px;
-    line-height: 1.35;
-    padding: 6px 8px;
-    margin-bottom: 4px;
-    border-radius: var(--radius-sm);
-    box-sizing: border-box;
-  }
-
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-route {
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice {
+    grid-area: notice;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
     margin-top: 8px;
-    padding-top: 7px;
-    font-size: 11px;
-    justify-content: space-between;
-    text-align: left;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: color-mix(in srgb, #fb7185 16%, var(--color-surface));
+    color: #9f1239;
   }
 
-  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-route span {
-    text-align: left;
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice:has(.critical),
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice:has(.pcv2-alert-banner):not(:has(.pass-card-alert-preview)) {
+    background: color-mix(in srgb, #ef4444 14%, var(--color-surface));
+    color: #b91c1c;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice:not(:has(.pass-card-alert-preview)):not(:has(.pcv2-alert-banner)):has(.pass-card-closes) {
+    background: color-mix(in srgb, #d97706 14%, var(--color-surface));
+    color: #9a3412;
+  }
+
+  :root[data-theme="dark"] .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice {
+    color: #fecdd3;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice--quiet {
+    min-height: 0;
+    margin-top: 0;
+    padding: 0;
+    background: transparent;
+    justify-content: flex-end;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-alert-preview ~ .pcv2-alert-banner,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-alert-preview ~ .pass-card-closes,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pcv2-alert-banner ~ .pass-card-closes {
+    display: none;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice .pass-card-alert-preview,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice .pass-card-alert-preview.critical,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice .pcv2-alert-banner,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-notice .pass-card-closes {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    color: inherit;
+    font-size: 13px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-alert-preview span,
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pcv2-alert-text {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-go {
+    display: block;
+    flex-shrink: 0;
+    margin-left: auto;
+    color: currentColor;
+  }
+
+  .home-layout--minimal .home-app-tools {
+    order: 5;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 14px 0 0;
+    overflow: visible;
+  }
+
+  .home-layout--minimal .home-app-tools a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 78px;
+    padding: 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--m-shadow-card);
+    color: var(--color-text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+    white-space: normal;
+  }
+
+  :root[data-theme="light"] .home-layout--minimal .home-app-tools a {
+    background: #ffffff;
+  }
+
+  .home-layout--minimal .home-app-tools a svg:last-child {
+    margin-left: auto;
+    color: var(--color-text-muted);
+  }
+
+  .home-layout--minimal .home-app-tools a:active {
+    background: var(--color-surface-raised);
+  }
+
+  .home-layout--minimal .home-hero-lead {
+    order: 6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .home-layout--minimal .home-lead-icon {
+    display: block;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--brand);
+  }
+
+  .home-layout--minimal .home-hero-subtitle,
+  .home-layout--minimal .home-hero-landing-link,
+  .home-layout--minimal .home-after-cards,
+  .home-layout--minimal .tsim-root,
+  .home-layout--minimal .entry-chile,
+  .home-layout--minimal .rutas-section,
+  .home-layout--minimal .las-lenas-home,
+  .home-layout--minimal .twitter-section-x {
+    order: 7;
+  }
+
+  .home-layout--minimal .home-hero-subtitle,
+  .home-layout--minimal .home-hero-landing-link {
+    margin-top: 8px;
+    font-size: 13px;
   }
 }
 
@@ -466,6 +914,10 @@
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .status-dot--pulse,
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-status-strip__dot--pulse {
     animation: none;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid a.pass-card:active {
+    transform: none;
   }
 
   .home-layout--minimal .pasos-grid.pcv2-cards-grid .pass-card-weather-icon .sun-rays,
