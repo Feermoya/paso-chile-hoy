@@ -152,7 +152,7 @@ function applyHero(slug: string, env: PassRefreshEnvelope): void {
       const rel = env.lastKnownGoodRelative?.trim();
       if (rel && view.meta.lastKnownGoodAt) {
         sinLkg.classList.remove("hidden");
-        sinLkg.textContent = `Último dato confiable: hace ${rel}`;
+        sinLkg.textContent = `Último dato confiable: ${rel}`;
       } else {
         sinLkg.classList.add("hidden");
         sinLkg.textContent = "";

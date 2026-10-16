@@ -16,24 +16,25 @@ const activePasos = PASOS.filter((p) => p.active);
 
 const passBlurbs: Record<string, string> = {
   "cristo-redentor":
-    "Principal cruce Mendoza–Chile por la ruta internacional 7 (Los Libertadores). Consultá estado, horario y clima en Villa Las Cuevas.",
+    "Principal cruce Mendoza–Chile (Los Libertadores) por la Ruta Nacional 7. Estado, horario y clima del paso.",
   pehuenche:
-    "Enlace entre Malargüe (Mendoza) y Talca (Chile). Ideal para quienes viajan por el sur cordillerano.",
+    "Cruce Malargüe–Talca por la RN 145. Alternativa al Cristo Redentor para el sur mendocino.",
   "agua-negra":
-    "Paso de gran altitud entre San Juan y Chile. Verificá clima y restricciones antes de subir por Las Flores.",
+    "Cruce San Juan–Chile por la RN 150, de gran altitud. Revisá clima y restricciones antes de subir.",
 };
 ---
 
 <MainLayout {...meta} structuredData={structuredData}>
   <article class="container-main paso-chile-landing">
     <header class="paso-chile-landing__hero">
-      <h1 class="paso-chile-landing__title">Paso a Chile hoy: estado actualizado</h1>
+      <h1 class="paso-chile-landing__title">Paso a Chile hoy: estado de los cruces y horarios</h1>
       <p class="paso-chile-landing__lead">
-        Consultá en un solo lugar si los principales pasos a Chile están abiertos, cerrados o condicionados, con
-        horario publicado, clima en cordillera y datos de ruta.
+        Guía para revisar los principales cruces hacia Chile antes de viajar: qué mirar en cada paso, horarios
+        publicados y clima en cordillera. El panel con el estado del día está en el
+        <a href="/">inicio</a>.
       </p>
       <p class="paso-chile-landing__back">
-        <a href="/">Volver al panel principal</a>
+        <a href="/">Ver estado actual de los pasos</a>
       </p>
     </header>
 

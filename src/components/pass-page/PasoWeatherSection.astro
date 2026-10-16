@@ -4,6 +4,7 @@ import WeatherForecast from "@/components/WeatherForecast.astro";
 import WeatherNow from "@/components/WeatherNow.astro";
 import ForecastShareButton from "@/components/share/ForecastShareButton.astro";
 import ForecastShareModal from "@/components/share/ForecastShareModal.astro";
+import { getPasoBySlug } from "@/data/pasos";
 import { mapForecastToShareData } from "@/lib/mappers/forecastShareMapper";
 import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
@@ -34,6 +35,19 @@ const {
   cristoRisk,
   class: className,
 } = Astro.props;
+const pasoCfg = getPasoBySlug(slug);
+const passShort = pasoCfg?.shortName ?? passName.replace(/^Paso\s+/i, "");
+const weatherHeading = `Clima en el Paso ${passShort}`;
+const weatherSourceLabel =
+  pasoCfg?.climaSource === "wttr" ? "wttr.in · datos públicos" : "SMN · datos públicos";
+const weatherLead =
+  slug === "cristo-redentor"
+    ? "Temperatura y condiciones en alta montaña del Paso Cristo Redentor. No reemplaza el parte oficial del paso."
+    : slug === "pehuenche"
+      ? "Temperatura y condiciones en cordillera del Paso Pehuenche. Confirmá siempre con la fuente oficial antes de viajar."
+      : slug === "agua-negra"
+        ? "Temperatura y condiciones en altura del Paso Agua Negra. El clima puede cambiar rápido en la cumbre."
+        : "Temperatura y condiciones en el paso. Confirmá siempre con la fuente oficial antes de viajar.";
 const shareData = mapForecastToShareData({
   slug,
   passName,
@@ -51,7 +65,7 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
 <section
   id="clima"
   class:list={["paso-page-weather paso-col paso-col--sticky", className]}
-  aria-label="Condiciones climáticas"
+  aria-label={weatherHeading}
   data-paso-weather-section
   data-weather-slug={slug}
 >
@@ -71,10 +85,11 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
         <header class="paso-weather-panel__head">
           <div class="paso-weather-panel__title-row">
             <span class="paso-weather-panel__live" aria-hidden="true" />
-            <h2 class="paso-weather-panel__title">Clima en el paso</h2>
+            <h2 class="paso-weather-panel__title">{weatherHeading}</h2>
           </div>
-          <span class="paso-weather-panel__source">SMN · datos públicos</span>
+          <span class="paso-weather-panel__source">{weatherSourceLabel}</span>
         </header>
+        <p class="paso-weather-panel__lead">{weatherLead}</p>
         <div class="paso-panel__body paso-weather-panel__body">
           {
             showNow && now && (
@@ -85,7 +100,7 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
                 updatedAt={now.providerNote}
                 scrapedAt={scrapedAt}
                 includeDriving={false}
-                hideDataTimestamp
+                hideDataTimestamp={false}
                 embedded
               />
             )

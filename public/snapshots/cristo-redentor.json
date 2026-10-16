@@ -3,66 +3,66 @@
   "name": "Sistema Cristo Redentor",
   "schedule": "Mo-Su 09:00-21:00 open \"Corte de flujo vehicular: 19 h de Argentina, 18 h de Chile.\"",
   "scheduleRaw": "HABILITADO DE LAS 0900 HS A 2100 HS",
-  "rawStatus": "CERRADO",
-  "motivo": "Inclemencias climáticas",
+  "rawStatus": "ABIERTO",
+  "motivo": null,
   "motivoInfo": null,
   "htmlAlerts": [],
   "vialidadRuta": "7",
   "vialidadTramo": "Tunel Internacional",
-  "vialidadEstado": "CORTE TOTAL",
+  "vialidadEstado": "HABILITADA",
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.1,
-    "description": "Ligeramente nublado",
+    "temperatureC": 9.4,
+    "description": "Mayormente nublado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "07:15",
-    "sunset": "19:43",
-    "updatedAt": "2026-10-01T09:00:00-03:00",
+    "sunrise": "06:56",
+    "sunset": "19:54",
+    "updatedAt": "2026-10-15T21:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 60
+    "humidity": 68
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-10-01T14:40:04.649Z",
+  "scrapedAt": "2026-10-16T12:09:22.911Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
       "description": "Nevadas",
-      "temperatureC": -2,
-      "wind": "SO a 13-22 km/h",
+      "temperatureC": -4,
+      "wind": "SO a 7-12 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
-      "temperatureC": -4,
-      "wind": "O a 7-12 km/h",
+      "temperatureC": -7,
+      "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Nevadas",
-      "temperatureC": -2,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Mala"
+      "description": "Parcialmente nublado",
+      "temperatureC": -12,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas fuertes",
-      "temperatureC": -3,
-      "wind": "O a 13-22 km/h",
-      "visibility": "Muy mala"
+      "description": "Parcialmente nublado",
+      "temperatureC": -8,
+      "wind": "O a 7-12 km/h",
+      "visibility": "Buena"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "29/09/2026 23:00:38"
+    "statusUpdatedAt": "9/10/2026 17:15:24"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-10-01T14:40:04.649Z"
+  "lastKnownGoodAt": "2026-10-16T12:09:22.911Z"
 }

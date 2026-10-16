@@ -16,6 +16,7 @@
     "scrape": "tsx scripts/scrape.ts",
     "twitter:update": "tsx scripts/update-latest-tweet.ts",
     "validate:risk": "tsx scripts/validate-cristo-risk-engine.ts",
+    "validate:seo": "tsx scripts/validate-seo.ts",
     "debug:pass": "node scripts/debug-pass.mjs",
     "update:pass": "node scripts/update-pass.mjs",
     "update:all-passes": "node scripts/update-all-passes.mjs",

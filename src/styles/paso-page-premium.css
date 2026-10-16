@@ -322,6 +322,14 @@
   letter-spacing: 0.02em;
 }
 
+.paso-page-shell .paso-weather-panel__lead {
+  margin: 0;
+  padding: 10px 18px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
 .paso-page-shell .paso-weather-panel__body {
   gap: 0;
   padding: 16px 18px 18px;

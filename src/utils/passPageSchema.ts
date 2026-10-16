@@ -109,7 +109,14 @@ export function buildPassStructuredGraph(opts: {
         "@type": "WebPage",
         "@id": pageId,
         url: `${SITE_URL}/${opts.paso.slug}`,
-        name: `${opts.paso.shortName} — estado del paso a Chile`,
+        name:
+          opts.paso.slug === "cristo-redentor"
+            ? "Paso Cristo Redentor hoy: ¿Abierto o cerrado? | Estado y clima"
+            : opts.paso.slug === "pehuenche"
+              ? "Paso Pehuenche hoy: estado, horario y clima"
+              : opts.paso.slug === "agua-negra"
+                ? "Paso Agua Negra hoy: estado, horario y clima"
+                : `Paso ${opts.paso.shortName} hoy: estado, horario y clima`,
         inLanguage: "es-AR",
         isPartOf: { "@id": schemaWebsiteId() },
         about: { "@id": attractionId },
