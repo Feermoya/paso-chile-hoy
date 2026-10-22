@@ -628,6 +628,17 @@
     background: var(--color-surface-raised);
   }
 
+  .paso-section-nav:has(> a:nth-child(4)) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .paso-section-nav:has(> a:nth-child(4)) a {
+    font-size: 11px;
+    line-height: 1.15;
+    padding-inline: 1px;
+    text-align: center;
+  }
+
   .paso-section-nav a {
     display: flex;
     align-items: center;
@@ -660,7 +671,8 @@
 
   #estado,
   #clima,
-  #informacion {
+  #informacion,
+  #antes-de-cruzar {
     scroll-margin-top: calc(var(--header-height, 56px) + var(--m-space-3));
   }
 }

@@ -1,0 +1,816 @@
+---
+import { Icon } from "astro-icon/components";
+import {
+  AGUA_NEGRA_PREP_SOURCE,
+  aguaNegraAltitude,
+  aguaNegraChecklist,
+  aguaNegraDriving,
+  aguaNegraEssentials,
+  aguaNegraFaq,
+  aguaNegraFuelStops,
+  aguaNegraPhones,
+} from "@/data/aguaNegraPrep";
+---
+
+<section class="an-prep" id="antes-de-cruzar" aria-labelledby="an-prep-title">
+  <div class="an-prep__banner">
+    <div class="an-prep__banner-copy">
+      <h2 id="an-prep-title">Antes de cruzar</h2>
+      <p>
+        Combustible, papeles, abrigo y a quién llamar antes de subir por Agua Negra. El estado de hoy está
+        más arriba.
+      </p>
+    </div>
+    <a class="an-prep__pdf" href={AGUA_NEGRA_PREP_SOURCE.checklistPdf} target="_blank" rel="noopener noreferrer">
+      <Icon name="lucide:download" width="18" height="18" aria-hidden="true" />
+      Checklist PDF
+    </a>
+  </div>
+
+  <div class="an-prep__group">
+    <div class="an-prep__group-head">
+      <h3>Checklist</h3>
+      <p>Revisá cada punto antes de salir.</p>
+    </div>
+    <div class="an-prep__cards">
+      {
+        aguaNegraChecklist.map((item) => (
+          <details class="an-card">
+            <summary>
+              <span class="an-ico" aria-hidden="true">
+                <Icon name={item.icon} width="22" height="22" />
+              </span>
+              <span class="an-card__title">{item.title}</span>
+              <span class="an-card__teaser">{item.teaser}</span>
+              <span class="an-card__toggle">
+                Ver detalles
+                <Icon name="lucide:chevron-down" width="16" height="16" aria-hidden="true" />
+              </span>
+            </summary>
+            <div class="an-card__panel">
+              <div class="an-card__panel-inner">
+                <p>{item.body}</p>
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.linkLabel}
+                  <Icon name="lucide:arrow-up-right" width="15" height="15" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="an-prep__group">
+    <div class="an-prep__group-head">
+      <h3>Logística de viaje</h3>
+      <p>Preparate para la alta montaña.</p>
+    </div>
+    <ul class="an-prep__minis">
+      {
+        aguaNegraEssentials.map((item) => (
+          <li class="an-mini">
+            <span class="an-ico" aria-hidden="true">
+              <Icon name={item.icon} width="22" height="22" />
+            </span>
+            <span>
+              <strong>{item.label}</strong>
+              <span>{item.value}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="an-prep__group">
+    <div class="an-prep__group-head">
+      <h3>Dónde cargar</h3>
+      <p>Hay 230 km sin estaciones. Cargá en Las Flores aunque el tanque parezca alcanzar.</p>
+    </div>
+    <div class="an-prep__stations">
+      {
+        aguaNegraFuelStops.map((stop) => (
+          <article class:list={["an-station", `an-station--${stop.tone}`]}>
+            <div class="an-station__media" aria-hidden="true">
+              {stop.badge ? <span class="an-station__badge">{stop.badge}</span> : null}
+              <span class="an-station__mark">
+                <Icon name="lucide:fuel" width="28" height="28" />
+              </span>
+              <span class="an-station__flag">{stop.side}</span>
+            </div>
+            <div class="an-station__body">
+              <p class="an-station__where">{stop.where}</p>
+              <h4>{stop.name}</h4>
+              <ul>
+                {stop.hours.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+              <p>{stop.note}</p>
+              <a href={stop.map} target="_blank" rel="noopener noreferrer">
+                <Icon name="lucide:map-pin" width="16" height="16" aria-hidden="true" />
+                Ver ubicación
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="an-prep__duo">
+    <article class="an-panel">
+      <header>
+        <span class="an-ico" aria-hidden="true">
+          <Icon name="lucide:gauge" width="22" height="22" />
+        </span>
+        <h3>En la ruta</h3>
+      </header>
+      <ul>
+        {aguaNegraDriving.map((line) => <li>{line}</li>)}
+      </ul>
+    </article>
+    <article class="an-panel">
+      <header>
+        <span class="an-ico" aria-hidden="true">
+          <Icon name="lucide:mountain" width="22" height="22" />
+        </span>
+        <h3>Altura</h3>
+      </header>
+      <p>{aguaNegraAltitude.lead}</p>
+      <p>{aguaNegraAltitude.symptoms}</p>
+      <p class="an-panel__warn">{aguaNegraAltitude.warning}</p>
+      <ul>
+        {
+          aguaNegraAltitude.actions.map((action) => (
+            <li>
+              <strong>{action.level}.</strong> {action.text}
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+
+  <div class="an-prep__group">
+    <div class="an-prep__group-head">
+      <h3>Si necesitás ayuda</h3>
+      <p>Tocá el número para llamar.</p>
+    </div>
+    <ul class="an-prep__phones">
+      {
+        aguaNegraPhones.map((phone) => (
+          <li>
+            <a href={`tel:${phone.tel}`}>
+              <span class="an-ico" aria-hidden="true">
+                <Icon name="lucide:phone" width="18" height="18" />
+              </span>
+              <span>
+                <strong>{phone.display}</strong>
+                <span>{phone.label}</span>
+                <small>{phone.detail}</small>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="an-prep__group">
+    <div class="an-prep__group-head">
+      <h3>Preguntas frecuentes</h3>
+    </div>
+    <div class="an-prep__faq">
+      {
+        aguaNegraFaq.map((item) => (
+          <details>
+            <summary>
+              {item.q}
+              <Icon name="lucide:chevron-down" width="16" height="16" aria-hidden="true" />
+            </summary>
+            <div class="an-faq__panel">
+              <div>
+                <p>{item.a}</p>
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <footer class="an-prep__foot">
+    <p>
+      Resumen de la guía del Gobierno de San Juan. Horarios, papeles y teléfonos cambian: confirmá en la fuente
+      antes de salir.
+    </p>
+    <ul>
+      <li>
+        <a href={AGUA_NEGRA_PREP_SOURCE.guide} target="_blank" rel="noopener noreferrer">Guía oficial</a>
+      </li>
+      <li>
+        <a href={AGUA_NEGRA_PREP_SOURCE.gpx} target="_blank" rel="noopener noreferrer">Mapa GPX</a>
+      </li>
+      <li>
+        <a href={AGUA_NEGRA_PREP_SOURCE.kml} target="_blank" rel="noopener noreferrer">Mapa KML</a>
+      </li>
+      <li>
+        <a href={AGUA_NEGRA_PREP_SOURCE.safety} target="_blank" rel="noopener noreferrer">Seguridad y salud</a>
+      </li>
+      <li>
+        <a href={AGUA_NEGRA_PREP_SOURCE.emergencies} target="_blank" rel="noopener noreferrer">Emergencias</a>
+      </li>
+    </ul>
+  </footer>
+</section>
+
+<style>
+  .an-prep {
+    scroll-margin-top: 8.5rem;
+    margin-top: 28px;
+    display: grid;
+    gap: 28px;
+  }
+
+  .an-prep__banner {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 176px;
+    padding: 22px;
+    overflow: hidden;
+    border-radius: 16px;
+    color: #f7fbff;
+    background-color: #1a3348;
+    background-image:
+      linear-gradient(180deg, rgb(8 18 32 / 0.12), rgb(8 16 28 / 0.78)),
+      url("/images/cordillera-cover.webp");
+    background-image:
+      linear-gradient(180deg, rgb(8 18 32 / 0.12), rgb(8 16 28 / 0.78)),
+      image-set(
+        url("/images/cordillera-cover.avif") type("image/avif"),
+        url("/images/cordillera-cover.webp") type("image/webp")
+      );
+    background-position: center, center 42%;
+    background-size: cover, cover;
+  }
+
+  .an-prep__banner h2 {
+    margin: 0;
+    max-width: 16ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #fff;
+  }
+
+  .an-prep__banner-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .an-prep__banner p {
+    margin: 8px 0 0;
+    max-width: 46ch;
+    color: rgb(255 255 255 / 0.88);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .an-prep__pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #fff;
+    color: #123048;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .an-prep__pdf:hover {
+    transform: translateY(-2px);
+  }
+
+  .an-prep__group-head h3,
+  .an-panel h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+  }
+
+  .an-prep__group-head p,
+  .an-panel p,
+  .an-card__teaser,
+  .an-card__panel p,
+  .an-station__body p,
+  .an-station__body li,
+  .an-mini span span,
+  .an-prep__phones small,
+  .an-prep__foot p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .an-prep__group-head p {
+    margin-top: 4px;
+  }
+
+  .an-prep__cards,
+  .an-prep__minis,
+  .an-prep__stations,
+  .an-prep__phones,
+  .an-prep__faq,
+  .an-panel ul,
+  .an-station__body ul,
+  .an-prep__foot ul {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .an-prep__cards {
+    display: grid;
+    gap: 12px;
+  }
+
+  .an-ico {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 14px;
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+  }
+
+  .an-card,
+  .an-mini,
+  .an-station,
+  .an-panel,
+  .an-prep__phones a,
+  .an-prep__faq {
+    border: 1px solid var(--color-border-default);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  .an-card {
+    min-width: 0;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms ease;
+  }
+
+  .an-card:hover,
+  .an-mini:hover,
+  .an-station:hover,
+  .an-prep__phones a:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-border);
+  }
+
+  .an-card summary,
+  .an-prep__faq summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .an-card summary::-webkit-details-marker,
+  .an-prep__faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .an-card summary {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 4px 14px;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .an-card .an-ico {
+    grid-row: 1 / span 2;
+  }
+
+  .an-card__title {
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .an-card__toggle,
+  .an-prep__faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--color-accent-soft);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  :root:not([data-theme="light"]) .an-card__toggle,
+  :root:not([data-theme="light"]) .an-prep__faq summary {
+    color: var(--brand);
+  }
+
+  .an-card__toggle {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+  }
+
+  .an-card__toggle :global(svg),
+  .an-prep__faq summary :global(svg) {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .an-card[open] .an-card__toggle :global(svg),
+  .an-prep__faq details[open] summary :global(svg) {
+    transform: rotate(180deg);
+  }
+
+  .an-card__panel,
+  .an-faq__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .an-card[open] .an-card__panel,
+  .an-prep__faq details[open] .an-faq__panel {
+    grid-template-rows: 1fr;
+  }
+
+  .an-card__panel-inner,
+  .an-faq__panel > div {
+    overflow: hidden;
+  }
+
+  .an-card__panel-inner {
+    padding: 0 16px 16px 74px;
+  }
+
+  .an-card__panel a,
+  .an-station__body a,
+  .an-prep__foot a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    margin-top: 4px;
+    color: var(--color-accent-soft);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  :root:not([data-theme="light"]) .an-card__panel a,
+  :root:not([data-theme="light"]) .an-station__body a,
+  :root:not([data-theme="light"]) .an-prep__foot a {
+    color: var(--brand);
+  }
+
+  .an-card__panel a:hover,
+  .an-station__body a:hover,
+  .an-prep__foot a:hover,
+  .an-prep__pdf:focus-visible,
+  .an-card summary:focus-visible,
+  .an-prep__faq summary:focus-visible,
+  .an-prep__phones a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .an-card summary:focus-visible,
+  .an-prep__faq summary:focus-visible,
+  .an-prep__phones a:focus-visible,
+  .an-prep__pdf:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
+
+  .an-prep__minis,
+  .an-prep__phones {
+    display: grid;
+    gap: 12px;
+  }
+
+  .an-mini {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 84px;
+    padding: 14px;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms ease;
+  }
+
+  .an-mini strong,
+  .an-prep__phones strong,
+  .an-station h4 {
+    display: block;
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .an-station {
+    display: grid;
+    overflow: hidden;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms ease;
+  }
+
+  .an-station__media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 128px;
+    color: #123048;
+  }
+
+  .an-station--ar .an-station__media {
+    background: linear-gradient(180deg, #75acdf 0 34%, #f4f8fc 34% 66%, #75acdf 66%);
+  }
+
+  .an-station--cl .an-station__media {
+    background: linear-gradient(180deg, #0039a6 0 42%, #f7f7f7 42% 58%, #d52b1e 58%);
+    color: #102033;
+  }
+
+  .an-station__mark {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.92);
+    box-shadow: 0 8px 18px rgb(12 24 40 / 0.16);
+  }
+
+  .an-station__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #9a3412;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .an-station__flag {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgb(12 24 40 / 0.72);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .an-station__body {
+    padding: 16px 18px 14px;
+  }
+
+  .an-station__where {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .an-station h4 {
+    margin: 2px 0 8px;
+    font-size: 1.12rem;
+  }
+
+  .an-station__body ul {
+    display: grid;
+    gap: 2px;
+    margin-top: 0;
+  }
+
+  .an-station__body p + a {
+    margin-top: 2px;
+  }
+
+  .an-prep__stations,
+  .an-prep__duo {
+    display: grid;
+    gap: 12px;
+  }
+
+  .an-panel {
+    padding: 16px 18px 18px;
+  }
+
+  .an-panel header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .an-panel p + p {
+    margin-top: 8px;
+  }
+
+  .an-panel__warn {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .an-panel ul {
+    display: grid;
+    gap: 8px;
+  }
+
+  .an-panel li {
+    position: relative;
+    padding-left: 14px;
+    color: var(--color-text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .an-panel li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+
+  .an-panel strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .an-prep__phones a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 76px;
+    padding: 12px 14px;
+    color: inherit;
+    text-decoration: none;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms ease;
+  }
+
+  .an-prep__phones strong {
+    font-size: 1.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .an-prep__phones small {
+    display: block;
+    font-size: 0.78rem;
+  }
+
+  .an-prep__faq {
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .an-prep__faq details + details {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .an-prep__faq summary {
+    min-height: 52px;
+    padding: 14px 16px;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .an-faq__panel p {
+    padding: 0 16px 14px;
+    max-width: 72ch;
+  }
+
+  .an-prep__foot p {
+    max-width: 68ch;
+    font-size: 0.86rem;
+  }
+
+  .an-prep__foot ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+
+  @media (min-width: 720px) {
+    .an-prep__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .an-prep__cards .an-card:nth-child(4),
+    .an-prep__cards .an-card:nth-child(5) {
+      grid-column: span 1;
+    }
+
+    .an-prep__minis {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .an-mini {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 148px;
+    }
+
+    .an-prep__stations,
+    .an-prep__duo {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .an-station {
+      grid-template-columns: 148px minmax(0, 1fr);
+      min-height: 100%;
+    }
+
+    .an-station__media {
+      min-height: 100%;
+    }
+
+    .an-prep__phones {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .an-card__panel-inner {
+      padding-left: 16px;
+    }
+  }
+
+  @media (max-width: 719px) {
+    .an-prep__banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .an-prep__minis,
+    .an-prep__phones {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .an-prep__minis li:last-child,
+    .an-prep__phones li:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .an-card,
+    .an-mini,
+    .an-station,
+    .an-prep__phones a,
+    .an-prep__pdf,
+    .an-card__panel,
+    .an-faq__panel,
+    .an-card__toggle :global(svg),
+    .an-prep__faq summary :global(svg) {
+      transition: none;
+    }
+
+    .an-card:hover,
+    .an-mini:hover,
+    .an-station:hover,
+    .an-prep__phones a:hover,
+    .an-prep__pdf:hover {
+      transform: none;
+    }
+  }
+</style>

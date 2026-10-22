@@ -1,4 +1,5 @@
 ---
+import AguaNegraAntesDeCruzar from "@/components/pass-page/AguaNegraAntesDeCruzar.astro";
 import PasoFullwidthSection from "@/components/pass-page/PasoFullwidthSection.astro";
 import PasoOperationalSection from "@/components/pass-page/PasoOperationalSection.astro";
 import PasoWeatherSection from "@/components/pass-page/PasoWeatherSection.astro";
@@ -82,6 +83,8 @@ const {
       cristoRisk={cristoRisk}
     />
   </div>
+
+  {slug === "agua-negra" && <AguaNegraAntesDeCruzar />}
 
   <PasoFullwidthSection
     view={view}

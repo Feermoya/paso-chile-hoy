@@ -13,56 +13,56 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 9.4,
-    "description": "Mayormente nublado",
+    "temperatureC": 5.1,
+    "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "06:56",
-    "sunset": "19:54",
-    "updatedAt": "2026-10-15T21:00:00-03:00",
+    "sunrise": "06:50",
+    "sunset": "19:57",
+    "updatedAt": "2026-10-22T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 68
+    "humidity": 77
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-10-16T12:09:22.911Z",
+  "scrapedAt": "2026-10-22T14:49:08.816Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
       "description": "Nevadas",
-      "temperatureC": -4,
-      "wind": "SO a 7-12 km/h",
+      "temperatureC": -1,
+      "wind": "O a 32-41 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Hoy por la noche",
       "description": "Nevadas",
-      "temperatureC": -7,
+      "temperatureC": -6,
       "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la madrugada",
-      "description": "Parcialmente nublado",
-      "temperatureC": -12,
+      "description": "Nevadas",
+      "temperatureC": -6,
       "wind": "O a 13-22 km/h",
-      "visibility": "Buena"
+      "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Parcialmente nublado",
-      "temperatureC": -8,
-      "wind": "O a 7-12 km/h",
-      "visibility": "Buena"
+      "description": "Nevadas",
+      "temperatureC": -10,
+      "wind": "NE a 7-12 km/h",
+      "visibility": "Mala"
     }
   ],
   "sources": {
     "status": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_consolidado/ruta/29",
     "clima": "https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle_clima/-32.8211/-69.9232",
-    "statusUpdatedAt": "9/10/2026 17:15:24"
+    "statusUpdatedAt": "21/10/2026 9:00:41"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-10-16T12:09:22.911Z"
+  "lastKnownGoodAt": "2026-10-22T14:49:08.816Z"
 }

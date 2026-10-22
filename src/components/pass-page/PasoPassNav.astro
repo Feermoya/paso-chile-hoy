@@ -41,6 +41,7 @@ const routeLine = `${paso.localityAR} — ${paso.localityCL}`;
   <nav class="paso-section-nav" aria-label="Secciones del paso">
     <a href="#estado" data-paso-section-link>Estado</a>
     <a href="#clima" data-paso-section-link>Clima</a>
+    {paso.slug === "agua-negra" && <a href="#antes-de-cruzar" data-paso-section-link>Viaje</a>}
     <a href="#informacion" data-paso-section-link>Información</a>
   </nav>
 </div>
