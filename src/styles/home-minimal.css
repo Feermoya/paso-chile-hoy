@@ -931,3 +931,71 @@
     animation: none !important;
   }
 }
+
+/* Escritorio ancho: el hero y los bloques de abajo usan el ancho, no una sola columna */
+@media (min-width: 1200px) {
+  .home-layout--minimal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(16px, 1.4vw, 32px);
+    align-items: start;
+    width: 100%;
+    max-width: none;
+  }
+
+  .home-layout--minimal > .home-hero,
+  .home-layout--minimal > .pasos-grid,
+  .home-layout--minimal > .home-after-cards,
+  .home-layout--minimal > .rutas-section {
+    grid-column: 1 / -1;
+  }
+
+  .home-layout--minimal .home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(24px, 3vw, 64px);
+    align-items: end;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+  }
+
+  .home-layout--minimal .home-hero-lead,
+  .home-layout--minimal .home-hero-subtitle,
+  .home-layout--minimal .home-hero-landing-link {
+    max-width: 68ch;
+  }
+
+  .home-layout--minimal .home-hero-meta {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 6px;
+    margin: 0;
+  }
+
+  .home-layout--minimal .home-hero-source {
+    display: inline;
+  }
+
+  .home-layout--minimal .pasos-grid.pcv2-cards-grid {
+    gap: 18px;
+  }
+
+  .home-layout--minimal > .tsim-root,
+  .home-layout--minimal > .entry-chile,
+  .home-layout--minimal > .las-lenas-home,
+  .home-layout--minimal > .twitter-section-x {
+    min-width: 0;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .home-layout--minimal > .las-lenas-home {
+    max-width: none;
+    margin-inline: 0;
+  }
+}

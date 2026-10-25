@@ -2,7 +2,10 @@ import type { PasoConfig } from "@/data/pasos";
 import {
   SITE_URL,
   passAlternateNames,
+  passDocumentTitle,
   passEnglishDiscoveryLine,
+  passFaqItems,
+  passMetaDescription,
   schemaWebsiteId,
   type PassStatus,
 } from "@/utils/seo";
@@ -95,8 +98,12 @@ export function buildPassStructuredGraph(opts: {
 }): Record<string, unknown> {
   const single = buildPassTouristAttractionSchema(opts);
   const { "@context": _ctx, ...attractionBody } = single;
-  const attractionId = `${SITE_URL}/${opts.paso.slug}#place`;
-  const pageId = `${SITE_URL}/${opts.paso.slug}#webpage`;
+  const pageUrl = `${SITE_URL}/${opts.paso.slug}`;
+  const attractionId = `${pageUrl}#place`;
+  const pageId = `${pageUrl}#webpage`;
+  const faqId = `${pageUrl}#faq`;
+  const faqs = passFaqItems(opts.paso.slug);
+  const title = passDocumentTitle(opts.paso.slug, opts.paso.shortName);
 
   return {
     "@context": "https://schema.org",
@@ -108,22 +115,36 @@ export function buildPassStructuredGraph(opts: {
       {
         "@type": "WebPage",
         "@id": pageId,
-        url: `${SITE_URL}/${opts.paso.slug}`,
-        name:
-          opts.paso.slug === "cristo-redentor"
-            ? "Paso Cristo Redentor hoy: ¿Abierto o cerrado? | Estado y clima"
-            : opts.paso.slug === "pehuenche"
-              ? "Paso Pehuenche hoy: estado, horario y clima"
-              : opts.paso.slug === "agua-negra"
-                ? "Paso Agua Negra hoy: estado, horario y clima"
-                : `Paso ${opts.paso.shortName} hoy: estado, horario y clima`,
+        url: pageUrl,
+        name: title,
+        description: passMetaDescription(opts.paso.slug, opts.paso.shortName),
         inLanguage: "es-AR",
         isPartOf: { "@id": schemaWebsiteId() },
         about: { "@id": attractionId },
+        ...(faqs.length > 0 ? { mainEntity: { "@id": faqId } } : {}),
         ...(opts.dateModified?.trim()
           ? { dateModified: opts.dateModified.trim() }
           : {}),
       },
+      ...(faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": faqId,
+              url: pageUrl,
+              isPartOf: { "@id": pageId },
+              mainEntity: faqs.map((item, i) => ({
+                "@type": "Question",
+                "@id": `${pageUrl}#faq-q${i + 1}`,
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         "@id": `${SITE_URL}/${opts.paso.slug}#breadcrumbs`,
@@ -137,7 +158,7 @@ export function buildPassStructuredGraph(opts: {
           {
             "@type": "ListItem",
             position: 2,
-            name: opts.paso.shortName,
+            name: `Paso ${opts.paso.shortName}`,
             item: `${SITE_URL}/${opts.paso.slug}`,
           },
         ],

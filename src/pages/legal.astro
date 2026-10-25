@@ -300,4 +300,50 @@ const legalLd = {
       padding: 22px 24px 10px;
     }
   }
+
+  @media (min-width: 1200px) {
+    .legal-page {
+      max-width: none;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 46rem);
+      column-gap: clamp(32px, 4vw, 72px);
+      justify-content: start;
+      align-items: start;
+    }
+
+    .legal-header,
+    .legal-nav-internal {
+      grid-column: 1 / -1;
+    }
+
+    .legal-toc {
+      grid-column: 1;
+      grid-row: 2 / span 12;
+      position: sticky;
+      top: 8.5rem;
+      align-self: start;
+      margin-top: 28px;
+    }
+
+    .legal-toc ol {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1680px) {
+    .legal-page {
+      grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: clamp(28px, 2.5vw, 56px);
+    }
+
+    .legal-toc {
+      grid-row: 2 / span 4;
+    }
+
+    .legal-page section p,
+    .legal-page section li {
+      max-width: 62ch;
+    }
+  }
 </style>

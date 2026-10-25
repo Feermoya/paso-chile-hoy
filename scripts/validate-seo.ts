@@ -154,19 +154,31 @@ if (cristoOpen.title !== cristoClosed.title) {
 if (cristoOpen.description !== cristoClosed.description) {
   err("Description de /cristo-redentor cambia según el estado operativo");
 }
+if (!/tránsito en vivo/i.test(cristoOpen.title) || !/Cristo Redentor/.test(cristoOpen.title)) {
+  err("Title de /cristo-redentor no cubre la búsqueda «tránsito en vivo paso cristo redentor»");
+}
+if (cristoOpen.title.length > 60) {
+  warn(`Title de /cristo-redentor: ${cristoOpen.title.length} caracteres (ideal ≤ 60 en el resultado móvil)`);
+}
+if (!/tránsito/i.test(cristoOpen.description) || !/Mendoza/.test(cristoOpen.description)) {
+  err("Description de /cristo-redentor no invita a la búsqueda de tránsito desde Mendoza");
+}
 
-// JSON-LD básico de un paso.
-const graph = buildPassStructuredGraph({
+const cristoGraph = buildPassStructuredGraph({
   paso: PASOS.find((p) => p.slug === "cristo-redentor")!,
   scheduleText: "09:00-21:00",
   displayStatus: "abierto",
   dateModified: "2026-10-16T12:00:00.000Z",
 });
 try {
-  JSON.stringify(graph);
-  const nodes = (graph as { "@graph"?: unknown[] })["@graph"];
+  JSON.stringify(cristoGraph);
+  const nodes = (cristoGraph as { "@graph"?: Array<{ "@type"?: string }> })["@graph"];
   if (!Array.isArray(nodes) || nodes.length < 2) {
     err("JSON-LD de paso: @graph incompleto");
+  }
+  const cristoTypes = (nodes ?? []).map((node) => node["@type"]);
+  if (!cristoTypes.includes("FAQPage")) {
+    err("JSON-LD de /cristo-redentor: falta FAQPage para las búsquedas en forma de pregunta");
   }
 } catch {
   err("JSON-LD de paso: no serializa");

@@ -54,7 +54,8 @@ function highlightKeywords(text: string, keywords: string[]): string {
   const sorted = [...new Set(keywords)].sort((a, b) => b.length - a.length);
   let out = text;
   for (const kw of sorted) {
-    const re = new RegExp(`(${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+    const stem = kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`(?<![\\p{L}])(${stem}\\p{L}*)`, "giu");
     out = out.replace(re, '<mark class="pext-hl">$1</mark>');
   }
   return out;

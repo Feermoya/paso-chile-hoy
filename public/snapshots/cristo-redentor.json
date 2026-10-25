@@ -13,49 +13,49 @@
   "vialidadObservaciones": "-",
   "latestTweet": null,
   "weather": {
-    "temperatureC": 5.1,
+    "temperatureC": 5,
     "description": "Despejado",
     "wind": "Calma",
     "visibilityKm": 15,
-    "sunrise": "06:50",
-    "sunset": "19:57",
-    "updatedAt": "2026-10-22T09:00:00-03:00",
+    "sunrise": "06:47",
+    "sunset": "20:00",
+    "updatedAt": "2026-10-25T09:00:00-03:00",
     "feelsLikeC": null,
-    "humidity": 77
+    "humidity": 61
   },
   "contact": "(2624) 420094",
   "lat": -32.8211,
   "lng": -69.9232,
   "altitudeM": 3200,
-  "scrapedAt": "2026-10-22T14:49:08.816Z",
+  "scrapedAt": "2026-10-25T14:59:25.933Z",
   "forecast": [
     {
       "period": "Hoy por la tarde",
-      "description": "Nevadas",
-      "temperatureC": -1,
-      "wind": "O a 32-41 km/h",
-      "visibility": "Mala"
+      "description": "Parcialmente nublado",
+      "temperatureC": -5,
+      "wind": "O a 13-22 km/h",
+      "visibility": "Buena"
     },
     {
       "period": "Hoy por la noche",
-      "description": "Nevadas",
-      "temperatureC": -6,
+      "description": "Mayormente nublado",
+      "temperatureC": -8,
       "wind": "O a 13-22 km/h",
-      "visibility": "Mala"
+      "visibility": "Buena"
     },
     {
       "period": "Mañana por la madrugada",
       "description": "Nevadas",
-      "temperatureC": -6,
+      "temperatureC": -9,
       "wind": "O a 13-22 km/h",
       "visibility": "Mala"
     },
     {
       "period": "Mañana por la mañana",
-      "description": "Nevadas",
-      "temperatureC": -10,
-      "wind": "NE a 7-12 km/h",
-      "visibility": "Mala"
+      "description": "Nevadas fuertes",
+      "temperatureC": -9,
+      "wind": "O a 23-31 km/h",
+      "visibility": "Muy mala"
     }
   ],
   "sources": {
@@ -64,5 +64,6 @@
     "statusUpdatedAt": "21/10/2026 9:00:41"
   },
   "operationalStale": false,
-  "lastKnownGoodAt": "2026-10-22T14:49:08.816Z"
+  "lastKnownGoodAt": "2026-10-25T14:59:25.933Z",
+  "extendedForecastText": "Pronóstico para hoy: </strong>algo a parcialmente nublado y frío.</p>\n\n\n\n<p><strong>Máxima: 21 °C.<br>Mínima: 6 °C.</strong></p>\n\n\n\n<p><strong>Alta montaña: </strong>algo nublado con nubosidad en aumento hacia la tarde.</p>\n\n\n\n<p><strong>Máxima: 2 °C.<br>Mínima: -18 °C.</strong></p>\n\n\n\n<p></p>\n\n\n\n \n\n\n\n<p></p>\n\n\n\n<h2 class=\"wp-block-heading\">Reporte meteorológico</h2>\n\n\n\n<p><strong>Domingo 25:</strong></p>\n\n\n\n<p><strong>Viento:</strong> se espera viento leve del sector norte en toda la provincia, desde las 14 hasta las 21.</p>\n\n\n\n<p><strong>Nubosidad:</strong> la jornada comienza con cielo generalmente despejado, con nubosidad parcial en la zona Sur. A partir de las 14, se prevé un aumento de la nubosidad en el llano provincial, con cielo parcialmente nublado desde las 18, sin precipitaciones.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> cielo despejado durante la mañana, con aumento de la nubosidad a partir de las 14:00 hs. No se esperan precipitaciones durante la jornada.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 18°C.<br>Mínima (Malargüe): 1°C a 2°C.<br>Mínima (resto de la provincia): 5°C a 6°C.</strong></p>\n\n\n\n<p><strong>Lunes 26:</strong></p>\n\n\n\n<p><strong>Viento:</strong> se espera viento leve del sector Norte, desde las 11 hasta las 20, en la zona Este y zona Sur.</p>\n\n\n\n<p><strong>Nubosidad:</strong> la jornada comienza con cielo parcialmente nublado. A partir de las 15, se prevé un aumento de la nubosidad en Malargüe, con probabilidad de lluvias débiles a moderadas desde las 19. Durante la noche, las precipitaciones se extenderían a toda la zona Sur, con intensidad moderada en esa región y más débil en el sector Sur del Valle de Uco.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> se espera mal tiempo desde la mañana, con lluvias débiles en toda la cordillera. A partir de las 14:00 hs., se prevé un aumento de las precipitaciones, con avance desde el sector Norte hacia el Centro y posteriormente la zona Sur.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 20°C a 21°C.<br>Mínima (Malargüe): 5°C.<br>Mínima (resto de la provincia): 9°C a 10°C.</strong></p>\n\n\n\n<p><strong>Martes 27:</strong></p>\n\n\n\n<p><strong>Viento</strong>: se espera viento leve del sector este en toda la provincia, desde las 14 hasta las 21.</p>\n\n\n\n<p><strong>Nubosidad:</strong> la jornada comienza con cielo nublado y probabilidad de lluvias débiles en el Valle de Uco, zona Este y zona Sur. También existe probabilidad de precipitaciones en el Gran Mendoza. Las condiciones mejorarán a partir de las 11, con cielo parcialmente nublado y algunos claros. Desde las 14, se prevé cielo despejado en todo el llano provincial.</p>\n\n\n\n<p><strong>Alta Montaña:</strong> el mal tiempo persistirá durante la madrugada, con una mejora significativa a partir de las 08:00 hs.</p>\n\n\n\n<p><strong>Temperatura promedio en el llano:<br>Máxima: 21°C a 22°C.<br>Mínima (Malargüe): 6°C.<br>Mínima (resto de la provincia): 10°C.</strong></p>\n\n\n\n<p><strong>Se mantiene monitoreo de la situación meteorológica por parte de Dirección Provincial de Defensa Civil.<br></strong></p>\n\n\n\n<p></p>\n\n\n\n \n\n\n\n \n \n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n \n\n\n\n<p></p>\n\n\n\n \n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<h2 class=\"wp-block-heading\">Pasos internacionales</h2>\n\n\n\n<ul class=\"wp-block-list\">\n<li></li>\n</ul>\n\n\n\n<p></p>\n\n\n\n<h3 class=\"wp-block-heading\">Sistema Integrado Cristo Redentor: Habilitado </h3>\n\n\n\n \n \n\n\n\n \n \n\n\n\n<p></p>\n\n\n\n<p></p>\n\n\n\n<h3 class=\"wp-block-heading\">Paso Pehuenche: Cerrado.</h3>"
 }

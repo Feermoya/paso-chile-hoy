@@ -65,14 +65,28 @@ function hasExplicitOperationalClosure(corpus: string): boolean {
   );
 }
 
-/** Prensa Mendoza: línea del Paso Cristo Redentor con cierre (puede ir desfasado el JSON nacional). */
-function mendozaBulletinDeclaresCristoClosed(plain?: string): boolean {
+/**
+ * Estado del parte provincial para un paso, sin mezclar el renglón del paso siguiente.
+ * «Sistema Integrado Cristo Redentor: Habilitado» y, debajo, «Paso Pehuenche: Cerrado»
+ * no deben cerrarse entre sí.
+ */
+function mendozaBulletinDeclaresPassClosed(
+  plain: string | undefined,
+  which: "cristo" | "pehuenche",
+): boolean {
   if (!plain?.trim()) return false;
   const b = stripDiacritics(plain.toLowerCase());
-  const idx = b.search(/cristo\s+redentor/);
-  if (idx < 0) return false;
-  const slice = b.slice(idx, idx + 220);
-  return /\bcerrad/.test(slice);
+  const label = which === "cristo" ? /cristo\s+redentor/ : /paso\s+pehuenche/;
+  const m = label.exec(b);
+  if (!m || m.index == null) return false;
+  let clause = b.slice(m.index + m[0].length);
+  const nextPass =
+    which === "cristo"
+      ? clause.search(/paso\s+pehuenche|agua\s+negra/)
+      : clause.search(/cristo\s+redentor|agua\s+negra/);
+  if (nextPass >= 0) clause = clause.slice(0, nextPass);
+  clause = clause.slice(0, 180);
+  return /\b(cerrad\w*|cierre|inhabilitad\w*|suspendid\w*)\b/.test(clause);
 }
 
 function normalizeAlertText(view: PassView): string {
@@ -380,22 +394,26 @@ function inferFromOfficialApi(view: PassView, now: Date): PassStatusResult {
 
     const corpus = buildClosureCorpus(view);
     const explicitClosure = hasExplicitOperationalClosure(corpus);
-    const mendozaCristoClosed =
-      view.slug === "cristo-redentor" &&
-      mendozaBulletinDeclaresCristoClosed(view.operationalInfo.supplementaryBulletinPlain);
+    const mendozaPassClosed =
+      (view.slug === "cristo-redentor" &&
+        mendozaBulletinDeclaresPassClosed(view.operationalInfo.supplementaryBulletinPlain, "cristo")) ||
+      (view.slug === "pehuenche" &&
+        mendozaBulletinDeclaresPassClosed(view.operationalInfo.supplementaryBulletinPlain, "pehuenche"));
 
     const corteTotalVial = isVialidadCorteTotal(vialRaw);
-    if ((corteTotalVial && explicitClosure) || mendozaCristoClosed) {
+    if ((corteTotalVial && explicitClosure) || mendozaPassClosed) {
       const vialObs = view.operationalInfo.vialidadObservaciones?.trim();
       const htmlHit = view.operationalInfo.htmlAlerts?.find((a) =>
         /cerrad|cierre|corte|nev|uspallata/i.test(a),
       );
+      const bulletinDetail =
+        view.slug === "pehuenche"
+          ? "Prensa Gobierno de Mendoza: Paso Pehuenche cerrado."
+          : "Prensa Gobierno de Mendoza: Paso Cristo Redentor cerrado o con restricción de tránsito.";
       const detail =
         vialObs ||
         htmlHit?.trim() ||
-        (mendozaCristoClosed
-          ? "Prensa Gobierno de Mendoza: Paso Cristo Redentor cerrado o con restricción de tránsito."
-          : "");
+        (mendozaPassClosed ? bulletinDetail : "");
       return {
         status: "cerrado",
         reason: detail

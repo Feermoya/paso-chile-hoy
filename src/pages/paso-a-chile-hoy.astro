@@ -16,7 +16,7 @@ const activePasos = PASOS.filter((p) => p.active);
 
 const passBlurbs: Record<string, string> = {
   "cristo-redentor":
-    "Principal cruce Mendoza–Chile (Los Libertadores) por la Ruta Nacional 7. Estado, horario y clima del paso.",
+    "Tránsito del Paso Cristo Redentor (Los Libertadores) por la Ruta Nacional 7: si está abierto, horario y clima.",
   pehuenche:
     "Cruce Malargüe–Talca por la RN 145. Alternativa al Cristo Redentor para el sur mendocino.",
   "agua-negra":
@@ -45,7 +45,7 @@ const passBlurbs: Record<string, string> = {
           activePasos.map((paso) => (
             <li class="paso-chile-landing__pass-card">
               <h3 class="paso-chile-landing__pass-name">
-                <a href={`/${paso.slug}`}>{paso.shortName}</a>
+                <a href={`/${paso.slug}`}>Paso {paso.shortName}</a>
               </h3>
               <p class="paso-chile-landing__pass-route">
                 {paso.localityAR} — {paso.localityCL} · {paso.provinceAR}
@@ -256,5 +256,25 @@ const passBlurbs: Record<string, string> = {
 
   .paso-chile-landing__footer-links a:hover {
     text-decoration: underline;
+  }
+
+  @media (min-width: 1200px) {
+    .paso-chile-landing__pass-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .paso-chile-landing {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      column-gap: 28px;
+      align-items: start;
+    }
+
+    .paso-chile-landing__hero,
+    .paso-chile-landing__section:nth-of-type(1) {
+      grid-column: 1 / -1;
+    }
   }
 </style>

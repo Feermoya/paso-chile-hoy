@@ -67,8 +67,8 @@ export interface PassSnapshot {
   /** true si falló detalle_consolidado (Pehuenche) u operación equivalente. */
   operationalStale?: boolean;
   /**
-   * Boletín / texto extendido (p. ej. Prensa Mendoza). Opcional; ingestión manual o futura.
-   * Solo lo usa el motor de riesgo de Cristo Redentor.
+   * Boletín de Prensa Mendoza. Opcional.
+   * Cristo Redentor: panorama y riesgo. Pehuenche: cierre si el API figura abierto.
    */
   extendedForecastText?: string;
 }

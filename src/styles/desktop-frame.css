@@ -1,0 +1,110 @@
+/**
+ * Escritorio fluido. No aplica por debajo de 1024px:
+ * el mobile (≤639) y la tablet quedan como están.
+ * Desde 1024 el marco ocupa el ancho de la ventana.
+ */
+@media (min-width: 1024px) {
+  :root {
+    --desk-gutter: clamp(28px, 2.2vw, 72px);
+  }
+
+  .header-inner,
+  .container-main,
+  .paso-page-wrapper,
+  .home-layout,
+  .support-block-section,
+  .home-faq,
+  .seo-content,
+  .footer-top-inner,
+  .footer-bottom-inner {
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
+    box-sizing: border-box;
+  }
+
+  .header-inner,
+  .container-main,
+  .paso-page-wrapper,
+  .home-layout,
+  .support-block-section,
+  .home-faq,
+  .seo-content {
+    padding-inline: var(--desk-gutter);
+  }
+
+  .ticker-wrapper {
+    padding-inline: var(--desk-gutter);
+    box-sizing: border-box;
+  }
+
+  .ticker-wrapper > .status-bar {
+    max-width: none;
+    width: 100%;
+  }
+
+  .home-layout .rutas-section,
+  .home-layout .las-lenas-home,
+  .home-layout .twitter-section-x {
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .paso-page-wrapper .support-block-section,
+  .paso-page-wrapper .seo-content {
+    padding-inline: 0;
+  }
+
+  .seo-content p,
+  .seo-content li,
+  .home-faq p {
+    max-width: 70ch;
+  }
+}
+
+@media (min-width: 1200px) {
+  main:has(> .home-layout--minimal) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(16px, 1.4vw, 32px);
+    align-items: start;
+    justify-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: var(--desk-gutter);
+  }
+
+  main:has(> .home-layout--minimal) > .home-layout--minimal,
+  main:has(> .home-layout--minimal) > .support-block-section,
+  main:has(> .home-layout--minimal) > .home-faq,
+  main:has(> .home-layout--minimal) > .seo-content--home {
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
+    justify-self: stretch;
+    padding-inline: 0;
+    box-sizing: border-box;
+  }
+
+  main:has(> .home-layout--minimal) > .home-layout--minimal,
+  main:has(> .home-layout--minimal) > .support-block-section {
+    grid-column: 1 / -1;
+  }
+
+  main:has(> .home-layout--minimal) > .support-block-section {
+    margin-top: 28px;
+  }
+
+  main:has(> .home-layout--minimal) > .home-faq,
+  main:has(> .home-layout--minimal) > .seo-content--home {
+    margin-top: 20px;
+    padding-top: 0;
+  }
+
+  main:has(> .home-layout--minimal) > .seo-content--home {
+    border-top: 0;
+  }
+}

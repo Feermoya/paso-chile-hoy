@@ -1,7 +1,7 @@
 ---
 import { PASOS } from "@/data/pasos";
 import type { PasoConfig } from "@/data/pasos";
-import { passEnglishDiscoveryLine } from "@/utils/seo";
+import { passEnglishDiscoveryLine, passFaqItems } from "@/utils/seo";
 
 export interface Props {
   paso: PasoConfig;
@@ -11,13 +11,14 @@ export interface Props {
 const { paso, class: className } = Astro.props;
 const enLine = passEnglishDiscoveryLine(paso.slug);
 const otros = PASOS.filter((p) => p.active && p.slug !== paso.slug);
+const faqs = passFaqItems(paso.slug);
 
 const slugIntro: Record<string, { lead: string; context: string }> = {
   "cristo-redentor": {
     lead:
-      "Estado actual del Paso Cristo Redentor (Los Libertadores): cruce Mendoza–Chile por la Ruta Nacional 7. Acá ves el horario publicado, el clima en alta montaña y el estado del paso según datos públicos oficiales.",
+      "Acá está el tránsito en vivo del Paso Cristo Redentor (Los Libertadores): si el cruce Mendoza–Chile por la Ruta Nacional 7 está abierto, el horario de hoy y el clima en el túnel. El parte sale de datos públicos oficiales y lo podés actualizar desde esta página.",
     context:
-      "Antes de salir desde Mendoza, contrastá esta pantalla con la fuente oficial: en el valle puede estar despejado y en el túnel o en cordillera haber restricciones.",
+      "En el valle puede estar despejado y en cordillera haber corte. Si el margen es justo, confirmá en Gendarmería antes de salir.",
   },
   pehuenche: {
     lead:
@@ -45,6 +46,22 @@ const block = slugIntro[paso.slug] ?? {
 >
   <p class="paso-page-seo-lead paso-page-seo-lead--visible">{block.lead}</p>
   <p class="paso-page-seo-note paso-page-seo-note--visible">{block.context}</p>
+
+  {
+    faqs.length > 0 && (
+      <div class="paso-page-seo-faq">
+        <h2 class="paso-page-seo-faq__title">Preguntas frecuentes</h2>
+        <dl class="paso-page-seo-faq__list">
+          {faqs.map((item) => (
+            <div class="paso-page-seo-faq__pair">
+              <dt>{item.question}</dt>
+              <dd>{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )
+  }
 
   <details class="paso-page-seo-details home-collapse">
     <summary class="paso-page-seo-details__summary">
@@ -104,6 +121,51 @@ const block = slugIntro[paso.slug] ?? {
     font-size: 14px;
     line-height: 1.5;
     color: var(--color-text-muted);
+  }
+
+  .paso-page-seo-faq {
+    margin: 18px 0 8px;
+    max-width: 68ch;
+  }
+
+  .paso-page-seo-faq__title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 12px;
+  }
+
+  .paso-page-seo-faq__list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .paso-page-seo-faq__pair {
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .paso-page-seo-faq__pair:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .paso-page-seo-faq__pair dt {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+  }
+
+  .paso-page-seo-faq__pair dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
   }
 
   .paso-page-seo-sub {

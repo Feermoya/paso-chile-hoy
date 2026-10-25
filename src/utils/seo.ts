@@ -21,11 +21,11 @@ export const SITE_NAME = envString("PUBLIC_SITE_NAME") || "Paso Chile Hoy";
 
 /** Meta description principal de la marca / home (~155 caracteres). */
 export const SITE_DESCRIPTION =
-  "Consultá qué pasos a Chile están abiertos hoy. Estado, horarios, clima y rutas de Cristo Redentor, Pehuenche y Agua Negra.";
+  "Consultá qué pasos a Chile están abiertos hoy: tránsito, horarios, clima y rutas de Cristo Redentor, Pehuenche y Agua Negra.";
 
 /** Texto del JSON-LD `WebSite` (marca + intención). */
 export const WEB_SITE_SCHEMA_DESCRIPTION =
-  "Paso Chile Hoy informa el estado del paso a Chile: Cristo Redentor, Pehuenche y Agua Negra, con horario, clima y rutas desde datos públicos oficiales.";
+  "Paso Chile Hoy informa el tránsito y el estado del paso a Chile: Cristo Redentor, Pehuenche y Agua Negra, con horario y clima desde datos públicos oficiales.";
 
 /**
  * Imagen Open Graph por defecto (URL absoluta).
@@ -104,6 +104,110 @@ export function passEnglishDiscoveryLine(passSlug: string): string {
   }
 }
 
+/**
+ * Título de documento, estable (sin ABIERTO/CERRADO).
+ * Una sola URL por paso cubre el racimo de búsquedas: no hace falta una página por frase.
+ * El de Cristo Redentor abre con la consulta real (“tránsito en vivo”) y cierra con la duda que hace clic.
+ */
+export function passDocumentTitle(passSlug: string, passShortName: string): string {
+  switch (passSlug) {
+    case "cristo-redentor":
+      return "Tránsito en vivo: Paso Cristo Redentor, ¿abierto hoy?";
+    case "pehuenche":
+      return "Paso Pehuenche hoy: ¿está abierto? Horario y clima";
+    case "agua-negra":
+      return "Paso Agua Negra hoy: ¿está abierto? Horario y clima";
+    default:
+      return `Paso ${passShortName} hoy: ¿está abierto? Horario y clima`;
+  }
+}
+
+/** Descripción estable del snippet. Distinta del título: dice qué se resuelve al entrar. */
+export function passMetaDescription(passSlug: string, passShortName: string): string {
+  switch (passSlug) {
+    case "cristo-redentor":
+      return "Mirá ahora si podés cruzar: abierto o cerrado, horario de hoy y clima en el túnel. El tránsito del Paso Cristo Redentor, listo antes de salir de Mendoza.";
+    case "pehuenche":
+      return "¿Salís de Malargüe a Chile? Mirá si el Paso Pehuenche está abierto, el horario de cruce y el clima en cordillera antes de tomar la ruta.";
+    case "agua-negra":
+      return "¿Subís desde San Juan? Mirá si el Paso Agua Negra está abierto, el horario y el clima en altura antes de encarar la RN 150.";
+    default:
+      return `Mirá si el Paso ${passShortName} está abierto hoy, el horario de cruce y el clima en cordillera antes de viajar.`;
+  }
+}
+
+/** Preguntas reales del racimo de búsquedas. El mismo texto va al HTML y al FAQPage. */
+export function passFaqItems(passSlug: string): readonly { question: string; answer: string }[] {
+  switch (passSlug) {
+    case "cristo-redentor":
+      return [
+        {
+          question: "¿Dónde veo el tránsito en vivo del Paso Cristo Redentor?",
+          answer:
+            "En esta página. Arriba figura si el cruce está abierto, cerrado o condicionado, el horario de hoy y el clima en alta montaña. Podés actualizar el parte con el botón de la ficha. No es una cámara de la ruta: es el estado oficial más reciente, resumido para decidir si salís.",
+        },
+        {
+          question: "¿El Paso Cristo Redentor está abierto hoy?",
+          answer:
+            "El cartel de arriba sale de datos públicos de Gendarmería y Vialidad. Si dice abierto, revisá también el horario y si hay corte en la Ruta 7 o en el túnel. Si el margen es justo, confirmá en la fuente oficial antes de salir de Mendoza.",
+        },
+        {
+          question: "¿Cuál es el horario del Paso Cristo Redentor?",
+          answer:
+            "El horario publicado está en la ficha y cambia según la temporada, a veces con ventanas nocturnas en invierno. No uses el de ayer: miralo el mismo día del viaje.",
+        },
+        {
+          question: "¿Los Libertadores es el mismo paso que Cristo Redentor?",
+          answer:
+            "Sí. En Argentina se lo llama Paso Cristo Redentor o Sistema Cristo Redentor, y del lado chileno, paso Los Libertadores. Es el cruce principal entre Mendoza y Chile por la Ruta Nacional 7.",
+        },
+        {
+          question: "¿Hay corte de tránsito en la Ruta 7 o en el túnel?",
+          answer:
+            "La ficha muestra si Vialidad informa corte o restricción en la ruta o en el túnel internacional, además del estado del paso. Puede haber corte en cordillera aunque en el valle esté despejado.",
+        },
+      ];
+    case "pehuenche":
+      return [
+        {
+          question: "¿El Paso Pehuenche está abierto hoy?",
+          answer:
+            "En esta página ves si el cruce Malargüe–Talca figura abierto, cerrado o condicionado, con el horario y el clima en cordillera. Confirmá en la fuente oficial antes de salir del sur mendocino.",
+        },
+        {
+          question: "¿Cuál es el horario del Paso Pehuenche?",
+          answer:
+            "El horario publicado está en la ficha y puede cambiar por temporada o por nieve. Revisalo el mismo día del viaje.",
+        },
+        {
+          question: "¿El Pehuenche sirve si el Cristo Redentor está cerrado?",
+          answer:
+            "A veces es la alternativa desde el sur de Mendoza hacia Talca, por la RN 145. No des por hecho que está habilitado porque el Cristo cerró: mirá el estado de este paso por separado.",
+        },
+      ];
+    case "agua-negra":
+      return [
+        {
+          question: "¿El Paso Agua Negra está abierto hoy?",
+          answer:
+            "Acá ves si el cruce San Juan–Chile figura habilitado, el horario y el clima. Es un paso de gran altitud: el tiempo en el valle no alcanza para decidir.",
+        },
+        {
+          question: "¿Se puede cruzar de San Juan a Chile por Agua Negra?",
+          answer:
+            "Cuando el paso está abierto y dentro del horario. La ruta es la RN 150, entre Las Flores y Huanta. La nieve y el viento lo cierran seguido.",
+        },
+        {
+          question: "¿Cuál es el horario del Paso Agua Negra?",
+          answer:
+            "El horario del día está en la ficha. Confirmalo antes de subir: en altura el estado cambia en pocas horas.",
+        },
+      ];
+    default:
+      return [];
+  }
+}
+
 export function buildPassPageMeta(opts: {
   passName: string;
   passShortName: string;
@@ -133,24 +237,9 @@ export function buildPassPageMeta(opts: {
   const emoji = STATUS_EMOJI[status];
   const headline = opts.statusHeadline?.trim() || STATUS_LABEL[status];
 
-  /** Title estable (sin estado ABIERTO/CERRADO) para no dejar un snippet desactualizado en Google. */
-  const title =
-    passSlug === "cristo-redentor"
-      ? "Paso Cristo Redentor hoy: ¿Abierto o cerrado? | Estado y clima"
-      : passSlug === "pehuenche"
-        ? "Paso Pehuenche hoy: estado, horario y clima"
-        : passSlug === "agua-negra"
-          ? "Paso Agua Negra hoy: estado, horario y clima"
-          : `Paso ${passShortName} hoy: estado, horario y clima`;
-
-  const description =
-    passSlug === "cristo-redentor"
-      ? "¿Viajás de Mendoza a Chile? Consultá si el paso Cristo Redentor está abierto, su horario, el clima en alta montaña y el estado de la ruta."
-      : passSlug === "pehuenche"
-        ? "Consultá el estado del Paso Pehuenche hoy, horario de cruce, clima y condiciones de la ruta entre Malargüe y Talca antes de viajar."
-        : passSlug === "agua-negra"
-          ? "Revisá si el Paso Agua Negra está habilitado, los horarios de cruce y las condiciones del tiempo para viajar entre San Juan y Chile."
-          : `Consultá el estado del Paso ${passShortName} hoy, horario publicado y clima en cordillera antes de viajar.`;
+  /** Title y description estables: el estado en vivo va al OG, no al snippet que Google cachea. */
+  const title = passDocumentTitle(passSlug, passShortName);
+  const description = passMetaDescription(passSlug, passShortName);
 
   const ogTitle = title;
   const climaPart =
@@ -272,6 +361,8 @@ export function passAlternateNames(slug: string, shortName: string, name: string
         "Paso Los Libertadores",
         "Sistema Cristo Redentor",
         "Los Libertadores",
+        "Túnel Cristo Redentor",
+        "Paso Internacional Cristo Redentor",
         "Christ the Redeemer border crossing",
       ];
     case "pehuenche":

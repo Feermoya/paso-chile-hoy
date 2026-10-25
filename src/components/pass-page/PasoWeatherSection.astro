@@ -6,6 +6,7 @@ import ForecastShareButton from "@/components/share/ForecastShareButton.astro";
 import ForecastShareModal from "@/components/share/ForecastShareModal.astro";
 import { getPasoBySlug } from "@/data/pasos";
 import { mapForecastToShareData } from "@/lib/mappers/forecastShareMapper";
+import type { CordilleraStationTemp } from "@/lib/external/mendozaExtendedForecast";
 import type { CristoRedentorRiskV1 } from "@/types/cristo-redentor-risk-v1";
 import type { ForecastItemView, WeatherNowView } from "@/types/pass-view";
 import { weatherNowToDrivingInput } from "@/utils/drivingConditions";
@@ -20,6 +21,8 @@ export interface Props {
   showNow: boolean;
   showForecast: boolean;
   cristoRisk?: CristoRedentorRiskV1;
+  /** Temperaturas del parte de Prensa Mendoza (corredor a Las Cuevas). */
+  cordilleraStations?: CordilleraStationTemp[];
   class?: string;
 }
 
@@ -33,6 +36,7 @@ const {
   showNow,
   showForecast,
   cristoRisk,
+  cordilleraStations = [],
   class: className,
 } = Astro.props;
 const pasoCfg = getPasoBySlug(slug);
@@ -63,7 +67,6 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
 ---
 
 <section
-  id="clima"
   class:list={["paso-page-weather paso-col paso-col--sticky", className]}
   aria-label={weatherHeading}
   data-paso-weather-section
@@ -71,7 +74,7 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
 >
   {
     !hasWeatherBlock && (
-      <div class="paso-panel">
+      <div class="paso-panel paso-wx-stack" id="clima">
         <p class="m-0 px-4 py-5 text-[13px] text-[var(--color-text-secondary)]" data-paso-weather-unavailable>
           Clima no disponible en este momento.
         </p>
@@ -82,44 +85,59 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
   {
     hasWeatherBlock && (
       <div class="paso-panel paso-weather-panel">
-        <header class="paso-weather-panel__head">
-          <div class="paso-weather-panel__title-row">
-            <span class="paso-weather-panel__live" aria-hidden="true" />
-            <h2 class="paso-weather-panel__title">{weatherHeading}</h2>
-          </div>
-          <span class="paso-weather-panel__source">{weatherSourceLabel}</span>
-        </header>
-        <p class="paso-weather-panel__lead">{weatherLead}</p>
-        <div class="paso-panel__body paso-weather-panel__body">
+        <div class="paso-wx-stack">
+          <header class="paso-weather-panel__head" id="clima">
+            <div class="paso-weather-panel__title-row">
+              <span class="paso-weather-panel__live" aria-hidden="true" />
+              <h2 class="paso-weather-panel__title">{weatherHeading}</h2>
+            </div>
+            <span class="paso-weather-panel__source">{weatherSourceLabel}</span>
+          </header>
+          <p class="paso-weather-panel__lead">{weatherLead}</p>
           {
             showNow && now && (
-              <WeatherNow
-                class="anim-section anim-delay-3"
-                weather={now}
-                forecast={forecast}
-                updatedAt={now.providerNote}
-                scrapedAt={scrapedAt}
-                includeDriving={false}
-                hideDataTimestamp={false}
-                embedded
-              />
+              <div class="paso-wx-now">
+                <WeatherNow
+                  class="anim-section anim-delay-3"
+                  weather={now}
+                  forecast={forecast}
+                  updatedAt={now.providerNote}
+                  scrapedAt={scrapedAt}
+                  includeDriving={false}
+                  hideDataTimestamp={false}
+                  embedded
+                />
+              </div>
             )
           }
-
-          {showForecast && forecast.length > 0 && (
-            <div class="paso-weather-forecast-block">
-              <h3 class="paso-weather-subhead">Próximos días</h3>
-              <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />
-              <div class="anim-section anim-delay-2 mt-3">
-                <ForecastShareButton targetModalId={shareModalId} />
+          {
+            slug === "cristo-redentor" && cordilleraStations.length > 0 && (
+              <div class="paso-cordillera-temps" aria-label="Temperaturas del parte provincial">
+                <h3 class="paso-weather-subhead">Corredor a Las Cuevas</h3>
+                <p class="paso-cordillera-temps__note">
+                  Parte de Prensa Mendoza. Son puntos del camino, distintos del dato SMN de arriba.
+                </p>
+                <ul class="paso-cordillera-temps__list">
+                  {cordilleraStations.map((station) => (
+                    <li
+                      class:list={[
+                        "paso-cordillera-temps__item",
+                        station.name === "Las Cuevas" && "paso-cordillera-temps__item--pass",
+                      ]}
+                    >
+                      <span class="paso-cordillera-temps__name">{station.name}</span>
+                      <span class="paso-cordillera-temps__value">
+                        {station.temperatureC}°
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
-            </div>
-          )}
-
+            )
+          }
           {
             showNow && now && (
-              <div class="paso-weather-driving">
+              <div class="paso-weather-driving paso-wx-driving">
                 <h3 class="paso-weather-subhead">Conducción</h3>
                 <DrivingConditions
                   class="anim-section anim-delay-3"
@@ -131,8 +149,72 @@ const hasWeatherBlock = (showNow && now) || (showForecast && forecast.length > 0
             )
           }
         </div>
+
+        {showForecast && forecast.length > 0 && (
+          <div class="paso-weather-forecast-block paso-wx-forecast">
+            <WeatherForecast class="anim-section anim-delay-2" forecast={forecast} />
+            <div class="anim-section anim-delay-2 mt-3">
+              <ForecastShareButton targetModalId={shareModalId} />
+            </div>
+            <ForecastShareModal modalId={shareModalId} cardId={shareCardId} data={shareData} />
+          </div>
+        )}
       </div>
     )
   }
 </section>
+
+<style>
+  .paso-cordillera-temps {
+    margin-top: 0.25rem;
+  }
+
+  .paso-cordillera-temps__note {
+    margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .paso-cordillera-temps__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .paso-cordillera-temps__item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-subtle);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  :root[data-theme="light"] .paso-cordillera-temps__item {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .paso-cordillera-temps__item--pass {
+    border-color: rgba(125, 180, 230, 0.45);
+    background: rgba(125, 180, 230, 0.08);
+  }
+
+  .paso-cordillera-temps__name {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  .paso-cordillera-temps__value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+</style>
 

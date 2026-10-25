@@ -8,6 +8,7 @@ import { extractAlertsFromDetailHTML } from "@/lib/server/htmlAlertsFromDetail";
 import { parseForecastFromHTML } from "@/lib/server/forecastParser";
 import { isPassSnapshotShape, mapToSnapshot, type PassSnapshot } from "@/lib/server/passMapper";
 import { readPassSnapshot } from "@/lib/server/storage/passSnapshotStorage";
+import { fetchMendozaForecast } from "@/lib/external/fetchMendozaForecast";
 
 const GOV_AR = "https://www.argentina.gob.ar/seguridad/pasosinternacionales";
 
@@ -60,11 +61,13 @@ export async function refreshPehuencheSnapshot(cfg: PasoConfig): Promise<PassSna
     fetchConsolidado(cfg.routeId),
     fetchClima(String(cfg.lat), String(cfg.lng)),
     fetchDetailHTML(cfg.routeId, cfg.routeSlug),
+    fetchMendozaForecast(),
   ]);
 
   let consolidado: ConsolidadoResponse | null = null;
   let clima: ClimaResponse | null = null;
   let htmlDetail: string | null = null;
+  let mendozaBulletin: string | null = null;
   const failed: string[] = [];
 
   if (settled[0].status === "fulfilled") consolidado = settled[0].value;
@@ -73,6 +76,8 @@ export async function refreshPehuencheSnapshot(cfg: PasoConfig): Promise<PassSna
   else failed.push("detalle_clima");
   if (settled[2].status === "fulfilled") htmlDetail = settled[2].value;
   else failed.push("detalle_html");
+  if (settled[3].status === "fulfilled") mendozaBulletin = settled[3].value;
+  else console.warn("[pehuenche] prensa mendoza falló:", settled[3].reason);
 
   const scrapedAt = new Date().toISOString();
 
@@ -147,6 +152,10 @@ export async function refreshPehuencheSnapshot(cfg: PasoConfig): Promise<PassSna
   snap.lastKnownGoodAt = snap.rawStatus !== "SIN_DATOS" ? scrapedAt : lastKnownGood;
 
   snap.scrapedAt = scrapedAt;
+
+  if (mendozaBulletin && mendozaBulletin.length >= 50) {
+    snap.extendedForecastText = mendozaBulletin;
+  }
 
   return snap;
 }

@@ -16,12 +16,20 @@ export interface ExtendedForecastDaySignal {
   keywords: string[];
 }
 
+/** Temperaturas del corredor argentino publicadas en el parte (no son el dato SMN del paso). */
+export interface CordilleraStationTemp {
+  name: string;
+  temperatureC: number;
+}
+
 export interface ExtendedForecastSignal {
   relevantDays: ExtendedForecastDaySignal[];
   /** True si hay al menos un día relevante con riesgo no bajo. */
   hasRelevantFutureRisk: boolean;
   /** True si hay al menos un día en el listado relevante (compat / audit). */
   affectsFutureDay: boolean;
+  /** Uspallata → Las Cuevas, si el parte las publica. */
+  cordilleraStations: CordilleraStationTemp[];
 }
 
 const ADVERSE_KEYS = [
@@ -62,8 +70,34 @@ function normalizeWeekday(w: string): string {
 }
 
 function extractAltaMontanaBlock(dayBody: string): string {
-  const m = dayBody.match(/alta\s+montaña\s*:([\s\S]+?)(?=temperaturas?\s+promedio\b|$)/i);
+  const m = dayBody.match(
+    /alta\s+monta(?:ñ|n)a\s*:([\s\S]+?)(?=temperaturas?\s+promedio\b|m[aá]xima\b|m[ií]nima\b|$)/i,
+  );
   return (m?.[1] ?? "").trim();
+}
+
+const NEGATED_WEATHER =
+  /\b(?:no\s+se\s+esperan?|no\s+se\s+prev[eé]n?|sin)\s+(?:precipitaciones?|lluvias?|lloviznas?|nevadas?|nieve|tormentas?|chaparrones?)\b/gi;
+
+/** «No se esperan precipitaciones» no es un día de lluvia. */
+function weatherTextForRisk(text: string): string {
+  return text.normalize("NFD").replace(/\p{M}/gu, "").replace(NEGATED_WEATHER, " ").toLowerCase();
+}
+
+const STATION_RE =
+  /(Uspallata|Punta de Vacas|Puente del Inca|Las Cuevas)\s*:\s*(-?\d+(?:[.,]\d+)?)\s*°/gi;
+
+export function extractCordilleraStations(bulletinText: string): CordilleraStationTemp[] {
+  const plain = stripBulletinHtml(bulletinText);
+  const out: CordilleraStationTemp[] = [];
+  for (const m of plain.matchAll(STATION_RE)) {
+    const name = m[1] ?? "";
+    const temperatureC = Number((m[2] ?? "").replace(",", "."));
+    if (!name || !Number.isFinite(temperatureC)) continue;
+    if (out.some((s) => s.name.toLowerCase() === name.toLowerCase())) continue;
+    out.push({ name, temperatureC });
+  }
+  return out;
 }
 
 /** El boletín a veces trae HTML (`<strong>`, `<br>`); lo dejamos en texto plano para UI y reglas. */
@@ -88,14 +122,14 @@ export function stripBulletinHtml(s: string): string {
 }
 
 function keywordsIn(text: string): string[] {
-  const d = text.toLowerCase();
+  const d = weatherTextForRisk(text);
   return ADVERSE_KEYS.filter((k) => d.includes(k));
 }
 
 function riskLevelForAmText(am: string): ExtendedDayRiskLevel {
-  const d = am.toLowerCase();
+  const d = weatherTextForRisk(am);
   if (
-    /\bnev\b|nevada|nevadas|nieve|aguanieve|tormenta\s+fuertes?\b/i.test(am) ||
+    /\bnev\b|nevada|nevadas|nieve|aguanieve|tormenta\s+fuertes?\b/.test(d) ||
     (d.includes("tormenta") && d.includes("fuerte"))
   ) {
     return "high";
@@ -162,8 +196,9 @@ export function buildExtendedForecastSignal(
   options: BuildExtendedForecastOptions,
 ): ExtendedForecastSignal {
   const text = bulletinText.replace(/\r\n/g, "\n").trim();
+  const cordilleraStations = text ? extractCordilleraStations(text) : [];
   if (!text) {
-    return { relevantDays: [], hasRelevantFutureRisk: false, affectsFutureDay: false };
+    return { relevantDays: [], hasRelevantFutureRisk: false, affectsFutureDay: false, cordilleraStations };
   }
 
   const matches = [...text.matchAll(new RegExp(DAY_HEADER.source, "gi"))];
@@ -219,5 +254,6 @@ export function buildExtendedForecastSignal(
     relevantDays: days,
     hasRelevantFutureRisk,
     affectsFutureDay,
+    cordilleraStations,
   };
 }
