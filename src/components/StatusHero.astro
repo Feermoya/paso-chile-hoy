@@ -25,6 +25,8 @@ export interface Props {
   compactOfficialLink?: boolean;
   /** Badge visible solo si la frescura existente marca el dato como reciente. */
   showLiveBadge?: boolean;
+  /** Fecha real del último relevamiento, no del reloj del navegador. */
+  scrapedAt?: string;
   class?: string;
 }
 
@@ -45,6 +47,7 @@ const {
   lastKnownGoodRelative,
   compactOfficialLink = false,
   showLiveBadge = false,
+  scrapedAt,
   class: className,
 } = Astro.props;
 
@@ -144,6 +147,8 @@ const scheduleDisplay = formatHeroSchedule(schedule);
   data-pass-status={status}
   data-status-hero-root
   data-hero-slug={slug}
+  data-pass-observed-at={scrapedAt ?? ""}
+  data-pass-observation-valid={String(status !== "sin_datos" && rawStatus !== "SIN_DATOS" && !operationalStale && !scrapeError)}
   aria-labelledby={compactOfficialLink ? "status-hero-label" : "status-hero-heading"}
 >
   <div class="status-hero-inner mx-auto w-full max-w-[900px]">
@@ -178,12 +183,18 @@ const scheduleDisplay = formatHeroSchedule(schedule);
         {label}
       </span>
       {
-        showLiveBadge && (
+        showLiveBadge && !compactOfficialLink && (
           <span class="status-live-badge">En vivo</span>
         )
       }
     </div>
 
+    {compactOfficialLink && (
+      <div class="pass-observation" data-pass-observation>
+        <span class="pass-observation__track" aria-hidden="true"><span data-pass-age-fill /></span>
+        <span class="pass-observation__caption">Último relevamiento <span data-pass-age>{lastUpdatedRelative || "hora desconocida"}</span></span>
+      </div>
+    )}
     <div class="status-secondary">
       {
         scheduleDisplay && (
@@ -453,6 +464,7 @@ const scheduleDisplay = formatHeroSchedule(schedule);
 
 <script>
   function startCountdown(root: Element) {
+    if (root instanceof HTMLElement && root.dataset.countdownWired === "1") return;
     const found = root.querySelector(".countdown-value");
     if (!(found instanceof HTMLElement)) return;
     const countdownEl = found;
@@ -460,9 +472,14 @@ const scheduleDisplay = formatHeroSchedule(schedule);
     const startMinutes = parseInt(root.getAttribute("data-minutes") ?? "0", 10);
     if (!Number.isFinite(startMinutes) || startMinutes <= 0) return;
 
+    if (root instanceof HTMLElement) root.dataset.countdownWired = "1";
     const targetMs = Date.now() + startMinutes * 60 * 1000;
 
     function update() {
+      if (!root.isConnected) {
+        window.clearInterval(interval);
+        return;
+      }
       const diffMs = targetMs - Date.now();
       if (diffMs <= 0) {
         window.location.reload();
@@ -474,7 +491,7 @@ const scheduleDisplay = formatHeroSchedule(schedule);
       const seconds = totalSeconds % 60;
 
       if (hours > 0) {
-        countdownEl.textContent = `${hours}h ${minutes.toString().padStart(2, "0")}m`;
+        countdownEl.textContent = `${hours}h ${minutes.toString().padStart(2, "0")}m ${seconds.toString().padStart(2, "0")}s`;
       } else if (minutes > 0) {
         countdownEl.textContent = `${minutes}m ${seconds.toString().padStart(2, "0")}s`;
       } else {
@@ -489,6 +506,43 @@ const scheduleDisplay = formatHeroSchedule(schedule);
     document.addEventListener("astro:before-swap", clear, { once: true });
   }
 
+  // El reloj mide la antigüedad del dato recibido, no simula consultas al servidor.
+  function updateObservation(section: HTMLElement) {
+    const stamp = Date.parse(section.dataset.passObservedAt || "");
+    const elapsed = Math.floor((Date.now() - stamp) / 1000);
+    const known = Number.isFinite(elapsed) && elapsed >= 0;
+    const valid = section.dataset.passObservationValid === "true";
+    const fresh = known && valid && elapsed < 3600;
+    section.dataset.passSignal = fresh ? "fresh" : "quiet";
+    const age = section.querySelector("[data-pass-age]");
+    if (age) {
+      const label = !known ? "hora desconocida" :
+        elapsed < 60 ? `hace ${elapsed} s` :
+        elapsed < 3600 ? `hace ${Math.floor(elapsed / 60)}m ${String(elapsed % 60).padStart(2, "0")}s` :
+        `hace ${Math.floor(elapsed / 3600)}h ${Math.floor(elapsed % 3600 / 60)}m`;
+      age.textContent = label;
+    }
+    const fill = section.querySelector("[data-pass-age-fill]");
+    if (fill instanceof HTMLElement) fill.style.width = fresh ? `${Math.max(0, 100 - elapsed / 36)}%` : "0%";
+  }
+
+  function wireObservation(section: HTMLElement) {
+    if (section.dataset.observationWired === "1") return;
+    section.dataset.observationWired = "1";
+    updateObservation(section);
+    const interval = window.setInterval(() => {
+      if (!section.isConnected) { window.clearInterval(interval); return; }
+      if (!document.hidden) updateObservation(section);
+    }, 1000);
+    document.addEventListener("astro:before-swap", () => window.clearInterval(interval), { once: true });
+  }
+
+  function wireObservations() {
+    document.querySelectorAll<HTMLElement>(".status-hero--pass-page[data-status-hero-root]").forEach(wireObservation);
+  }
+
+  wireObservations();
+  document.addEventListener("astro:page-load", wireObservations);
   document.querySelectorAll("[data-status-countdown-root]").forEach(startCountdown);
 
   const ICON_SVG = {

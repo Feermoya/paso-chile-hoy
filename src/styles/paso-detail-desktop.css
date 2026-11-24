@@ -855,3 +855,87 @@
   .paso-page-root .paso-other-crossings { padding: 15px; }
   .paso-page-root .paso-other-crossings__list { grid-template-columns: minmax(0, 1fr); }
 }
+
+
+/* Monitoreo: el pulso depende de la antigüedad del último parte real. */
+.paso-page-root .status-hero--pass-page .status-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  animation: none;
+  box-shadow: none;
+}
+.paso-page-root .status-hero--pass-page .status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1.5px solid var(--pass-tone);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.paso-page-root .status-hero--pass-page[data-pass-signal="fresh"] .status-dot::after {
+  animation: pass-signal-ring 2.6s ease-out infinite;
+}
+@keyframes pass-signal-ring {
+  0% { transform: scale(.72); opacity: .75; }
+  80%, 100% { transform: scale(2.35); opacity: 0; }
+}
+.paso-page-root .pass-observation {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+}
+.paso-page-root .pass-observation__track {
+  display: block;
+  height: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+  overflow: hidden;
+}
+.paso-page-root .pass-observation__track > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--pass-tone);
+  transition: width .8s linear;
+}
+.paso-page-root .pass-observation__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 10px;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+.paso-page-root [data-pass-age] {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.paso-page-root .status-hero--pass-page .countdown-value {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.paso-page-root:has([data-pass-signal="fresh"]) .wn-embed-hero__icon-svg,
+.paso-page-root:has([data-pass-signal="fresh"]) .wn-mobile-wx {
+  animation: pass-weather-drift 5s ease-in-out infinite;
+}
+@keyframes pass-weather-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@media (min-width: 640px) {
+  .paso-page-root .wn-embed-hero__icon { width: 64px; height: 64px; }
+  .paso-page-root .wn-embed-hero__icon-svg { width: 34px; height: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paso-page-root .status-hero--pass-page[data-pass-signal="fresh"] .status-dot::after,
+  .paso-page-root .wn-embed-hero__icon-svg,
+  .paso-page-root .wn-mobile-wx { animation: none !important; }
+  .paso-page-root .pass-observation__track > span { transition: none; }
+}
+
+.paso-page-root .status-hero--pass-page[data-pass-signal] .status-timestamp { display: none; }

@@ -50,6 +50,11 @@ function applyHero(slug: string, env: PassRefreshEnvelope): void {
   const rawStatus = view.operationalInfo.rawStatus?.trim() ?? "";
 
   root.setAttribute("data-pass-status", status);
+  root.setAttribute("data-pass-observed-at", view.meta.scrapedAt ?? "");
+  root.setAttribute("data-pass-observation-valid", String(
+    status !== "sin_datos" && rawStatus !== "SIN_DATOS" &&
+    !view.meta.operationalStale && !view.meta.scrapeError && !env.stale && !env.refreshFailed
+  ));
 
   const labelEl = root.querySelector("[data-hero-label]");
   const upper = displayLabel.toUpperCase();
