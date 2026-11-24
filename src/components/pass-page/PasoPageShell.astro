@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+import { PASOS } from "@/data/pasos";
 import AguaNegraAntesDeCruzar from "@/components/pass-page/AguaNegraAntesDeCruzar.astro";
 import PasoFullwidthSection from "@/components/pass-page/PasoFullwidthSection.astro";
 import PasoOperationalSection from "@/components/pass-page/PasoOperationalSection.astro";
@@ -45,6 +47,7 @@ const {
   extendedForecastSignal,
   class: className,
 } = Astro.props;
+const otherPasses = PASOS.filter((paso) => paso.active && paso.slug !== slug);
 ---
 
 <div
@@ -86,6 +89,26 @@ const {
   </div>
 
   {slug === "agua-negra" && <AguaNegraAntesDeCruzar />}
+
+  {otherPasses.length > 0 && (
+    <section class="paso-other-crossings" aria-labelledby="other-crossings-heading">
+      <h2 id="other-crossings-heading">Otros pasos a Chile</h2>
+      <p>Compará el estado, los horarios y el clima de otros cruces antes de decidir tu ruta.</p>
+      <ul class="paso-other-crossings__list">
+        {otherPasses.map((paso) => (
+          <li>
+            <a class="paso-other-crossings__link" href={`/${paso.slug}`}>
+              <span>
+                <strong>Paso {paso.shortName}</strong>
+                <small>{paso.localityAR} · {paso.localityCL}</small>
+              </span>
+              <Icon name="lucide:chevron-right" width="18" height="18" aria-hidden="true" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
   <PasoFullwidthSection
     view={view}

@@ -158,6 +158,8 @@ const scheduleDisplay = formatHeroSchedule(schedule);
       )
     }
 
+    {compactOfficialLink && <p class="pass-status-kicker">Estado del cruce</p>}
+
     <div class="status-main">
       <span
         class:list={["status-dot", showPulseDot && "status-dot--live-pulse", dotModifier]}
@@ -330,6 +332,10 @@ const scheduleDisplay = formatHeroSchedule(schedule);
       </div>
 
     </div>
+
+    {compactOfficialLink && (
+      <p class="pass-status-caution">Estado interpretado a partir del último parte disponible. Confirmá en la fuente oficial antes de viajar.</p>
+    )}
 
     {
       !compactOfficialLink && (
