@@ -114,7 +114,7 @@ export function passDocumentTitle(passSlug: string, passShortName: string): stri
     case "cristo-redentor":
       return "Tránsito en vivo: Paso Cristo Redentor, ¿abierto hoy?";
     case "pehuenche":
-      return "Paso Pehuenche hoy: ¿está abierto? Horario y clima";
+      return "Paso Pehuenche hoy: estado, clima y horario de cruce";
     case "agua-negra":
       return "Paso Agua Negra hoy: ¿está abierto? Horario y clima";
     default:
@@ -128,7 +128,7 @@ export function passMetaDescription(passSlug: string, passShortName: string): st
     case "cristo-redentor":
       return "Mirá ahora si podés cruzar: abierto o cerrado, horario de hoy y clima en el túnel. El tránsito del Paso Cristo Redentor, listo antes de salir de Mendoza.";
     case "pehuenche":
-      return "¿Salís de Malargüe a Chile? Mirá si el Paso Pehuenche está abierto, el horario de cruce y el clima en cordillera antes de tomar la ruta.";
+      return "Consultá el clima del Paso Pehuenche hoy, su estado abierto o cerrado y los horarios de cruce entre Malargüe y Talca antes de viajar.";
     case "agua-negra":
       return "¿Subís desde San Juan? Mirá si el Paso Agua Negra está abierto, el horario y el clima en altura antes de encarar la RN 150.";
     default:
@@ -269,10 +269,10 @@ export function buildPassPageMeta(opts: {
 
 export function buildHomeMeta(): LayoutSeoBundle {
   return {
-    title: "Paso a Chile hoy: ¿Qué pasos están abiertos? | Estado y clima",
+    title: "Paso Chile Hoy | Estado de los pasos a Chile, clima y horarios",
     description: SITE_DESCRIPTION,
     canonical: `${SITE_URL}/`,
-    ogTitle: "Paso a Chile hoy: ¿Qué pasos están abiertos? | Estado y clima",
+    ogTitle: "Paso Chile Hoy | Estado de los pasos a Chile, clima y horarios",
     ogDescription: SITE_DESCRIPTION,
     ogImage: DEFAULT_OG_IMAGE,
     ogImageAlt:
@@ -511,7 +511,7 @@ export function buildHomeStructuredGraph(itemListElement: Array<Record<string, u
         "@type": "WebPage",
         "@id": webpageId,
         url: `${SITE_URL}/`,
-        name: "Paso a Chile hoy: ¿Qué pasos están abiertos? | Estado y clima",
+        name: "Paso Chile Hoy | Estado de los pasos a Chile, clima y horarios",
         description: SITE_DESCRIPTION,
         inLanguage: "es-AR",
         isPartOf: { "@id": schemaWebsiteId() },
